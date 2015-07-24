@@ -1,0 +1,71 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pipdig Hooks\n"
+"POT-Creation-Date: 2015-07-20 20:12+0100\n"
+"PO-Revision-Date: 2015-07-02 14:27-0000\n"
+"Last-Translator: \n"
+"Language-Team: pipdig <hello@pipdig.co>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.2\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPathExcluded-0: ../.git\n"
+"X-Poedit-SearchPathExcluded-1: ../js\n"
+"X-Poedit-SearchPathExcluded-2: ../img\n"
+"X-Poedit-SearchPathExcluded-3: ../css\n"
+
+#: ../pipdig-hooks.php:28 ../pipdig-hooks.php:129
+msgid "pipdig Theme Hooks"
+msgstr ""
+
+#: ../pipdig-hooks.php:38
+msgid ""
+"Please be careful when adding code in these options. This can break your "
+"site if not added correctly!"
+msgstr ""
+
+#: ../pipdig-hooks.php:45
+msgid "Custom CSS"
+msgstr ""
+
+#: ../pipdig-hooks.php:53
+msgid ""
+"Code to add to the  &lt;head&gt; <br /> (e.g. Google Analytics tracking code)"
+msgstr ""
+
+#: ../pipdig-hooks.php:61
+msgid "Code to add directly after the opening &lt;body&gt; tag"
+msgstr ""
+
+#: ../pipdig-hooks.php:69
+msgid "Code to add just before the closing &lt;/body&gt; tag"
+msgstr ""
+
+#: ../pipdig-hooks.php:119
+msgid ""
+"Use the fields below to add custom code to the Head, Body or Footer of your "
+"site."
+msgstr ""
+
+#: ../pipdig-hooks.php:119
+msgid ""
+"For examlpe, you might like to add a Google Analytics script to the head."
+msgstr ""
+
+#: ../pipdig-hooks.php:119
+msgid "WARNING: these options can break your site. Use with caution."
+msgstr ""
+
+#: ../pipdig-hooks.php:138
+#, php-format
+msgid ""
+"Remember, you can also change the appearance of your site by using the "
+"%sCustomizer%s."
+msgstr ""
