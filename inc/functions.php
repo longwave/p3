@@ -2,7 +2,7 @@
 
 /* Returns a "Continue Reading" link for excerpts. -------------------------*/
 function pipdig_continue_reading_link() {
-	return '<a href="'. esc_url( get_permalink() ) . '" class="more-link">' . __( 'View Post', 'pipdig-textdomain' ) . '</a>';
+	return '<a href="'. esc_url( get_permalink() ) . '" class="more-link">' . __( 'View Post', 'pipdig-power-pack' ) . '</a>';
 }
 
 
@@ -32,8 +32,8 @@ if (!function_exists('pipdig_pagination')) {
 				'total' 		=> $total,
 				'mid_size'		=> 3,
 				'type' 			=> 'list',
-				'prev_text'		=> '<i class="fa fa-chevron-left"></i> ' . __( 'Newer Posts', 'pipdig-textdomain'),
-				'next_text'		=> __( 'Older Posts', 'pipdig-textdomain') . ' <i class="fa fa-chevron-right"></i>',
+				'prev_text'		=> '<i class="fa fa-chevron-left"></i> ' . __( 'Newer Posts', 'pipdig-power-pack'),
+				'next_text'		=> __( 'Older Posts', 'pipdig-power-pack') . ' <i class="fa fa-chevron-right"></i>',
 			 ) );
 		}
 	}

@@ -3,8 +3,8 @@
 class pipdig_widget_pinterest extends WP_Widget {
  
   public function __construct() {
-      $widget_ops = array('classname' => 'pipdig_widget_pinterest', 'description' => __('Displays your latest Pinterest pins.', 'pipdig-textdomain') );
-      $this->WP_Widget('pipdig_widget_pinterest', 'pipdig - ' . __('Pinterest Widget', 'pipdig-textdomain'), $widget_ops);
+      $widget_ops = array('classname' => 'pipdig_widget_pinterest', 'description' => __('Displays your latest Pinterest pins.', 'pipdig-power-pack') );
+      $this->WP_Widget('pipdig_widget_pinterest', 'pipdig - ' . __('Pinterest Widget', 'pipdig-power-pack'), $widget_ops);
   }
   
   function widget($args, $instance) {
@@ -52,7 +52,7 @@ class pipdig_widget_pinterest extends WP_Widget {
 		<?php //} //endif ?>
 	<?php
 	} else {
-		_e('Setup not complete. Please add your Pinterest username to the Pinterest Widget in the dashboard.', 'pipdig-textdomain');
+		_e('Setup not complete. Please add your Pinterest username to the Pinterest Widget in the dashboard.', 'pipdig-power-pack');
 	}
     // After widget code, if any  
     echo (isset($after_widget)?$after_widget:'');
@@ -75,19 +75,19 @@ class pipdig_widget_pinterest extends WP_Widget {
      ?>
 	
 	<p>
-		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'pipdig-textdomain'); ?>
+		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'pipdig-power-pack'); ?>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
 		name="<?php echo $this->get_field_name('title'); ?>" type="text" 
 		value="<?php echo esc_attr($title); ?>" />
 		</label>
 	</p>
 
-	<p><?php _e('Add your Pinterest account name to the box below.', 'pipdig-textdomain'); ?></p>
-	<p><?php _e('For example, the red part of this link:', 'pipdig-textdomain'); ?></p>
+	<p><?php _e('Add your Pinterest account name to the box below.', 'pipdig-power-pack'); ?></p>
+	<p><?php _e('For example, the red part of this link:', 'pipdig-power-pack'); ?></p>
 	<p><?php echo esc_url('http://pinterest.com/'); ?><span style="color:red">songofstyle</span></p>
 	
 	<p>
-		<label for="<?php echo $this->get_field_id('pinterestuser'); ?>"><?php _e('Pinterest Account Name:', 'pipdig-textdomain'); ?>
+		<label for="<?php echo $this->get_field_id('pinterestuser'); ?>"><?php _e('Pinterest Account Name:', 'pipdig-power-pack'); ?>
 		<input class="widefat" id="<?php echo $this->get_field_id('pinterestuser'); ?>" 
 		name="<?php echo $this->get_field_name('pinterestuser'); ?>" type="text" 
 		value="<?php if (isset($instance['pinterestuser'])) { echo esc_attr($pinterestuser); } ?>" placeholder="songofstyle" />
@@ -95,8 +95,8 @@ class pipdig_widget_pinterest extends WP_Widget {
 	</p>
 	
 	<p>
-		<label for="<?php echo $this->get_field_id('images_num'); ?>"><?php _e('Number of images to display:', 'pipdig-textdomain'); ?></label>
-		<input type="number" min="3" max="21" step="3" id="<?php echo $this->get_field_id( 'images_num' ); ?>" name="<?php echo $this->get_field_name( 'images_num' ); ?>" value="<?php if ($images_num) { echo $images_num; } else { echo '4'; } ?>" />
+		<label for="<?php echo $this->get_field_id('images_num'); ?>"><?php _e('Number of images to display:', 'pipdig-power-pack'); ?></label>
+		<input type="number" min="2" max="12" step="2" id="<?php echo $this->get_field_id( 'images_num' ); ?>" name="<?php echo $this->get_field_name( 'images_num' ); ?>" value="<?php if ($images_num) { echo $images_num; } else { echo '4'; } ?>" />
 	</p>
 
      <?php

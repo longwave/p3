@@ -3,8 +3,8 @@
 class pipdig_widget_instagram extends WP_Widget {
  
   public function __construct() {
-      $widget_ops = array('classname' => 'pipdig_widget_instagram', 'description' => __('Displays your latest Instagram photos', 'pipdig-textdomain') );
-		$this->WP_Widget('pipdig_widget_instagram', 'pipdig - ' . __('Instagram Widget', 'pipdig-textdomain'), $widget_ops);
+      $widget_ops = array('classname' => 'pipdig_widget_instagram', 'description' => __('Displays your latest Instagram photos', 'pipdig-power-pack') );
+		$this->WP_Widget('pipdig_widget_instagram', 'pipdig - ' . __('Instagram Widget', 'pipdig-power-pack'), $widget_ops);
   }
   
   function widget($args, $instance) {
@@ -46,7 +46,7 @@ class pipdig_widget_instagram extends WP_Widget {
 		$bg = get_theme_mod('content_background_color', '#ffffff');
 		echo do_shortcode( '[instagram-feed width=100 height=100 widthunit=% heightunit=% background=' . $bg . ' imagepadding=1 imagepaddingunit=px class=pipdig-instagram-widget-inner num=' . $images_num . ' cols=' . $cols . ' imageres=medium disablemobile=true showheader=false showbutton=' . $load_more . ' showfollow=' . $follow . ']' );
 	} else {
-		_e('Please install and activate <a href="https://wordpress.org/plugins/instagram-feed/" rel="nofollow" target="_blank">this plugin</a> to add your Instagram Feed.', 'pipdig-textdomain');
+		_e('Please install and activate <a href="https://wordpress.org/plugins/instagram-feed/" rel="nofollow" target="_blank">this plugin</a> to add your Instagram Feed.', 'pipdig-power-pack');
 	}
     // After widget code, if any  
     echo (isset($after_widget)?$after_widget:'');
@@ -82,29 +82,29 @@ public function form( $instance ) {
 	<?php
     if (pipdig_plugin_check('instagram-feed/instagram-feed.php')) {
 		$plugin_url = admin_url( 'admin.php?page=sb-instagram-feed' );
-		printf(__('This widget will show your latest Instagram photos. You will need to authorize your Instagram account on <a href="%s">this page</a> for this widget to work.', 'pipdig-textdomain'), $plugin_url );
+		printf(__('This widget will show your latest Instagram photos. You will need to authorize your Instagram account on <a href="%s">this page</a> for this widget to work.', 'pipdig-power-pack'), $plugin_url );
 	} else {
 		$plugin_url = admin_url( 'https://wordpress.org/plugins/instagram-feed/' );
-		printf(__('Please install and activate <a href="%s" rel="nofollow" target="_blank">this plugin</a> to add your Instagram Feed.', 'pipdig-textdomain'), $plugin_url );
+		printf(__('Please install and activate <a href="%s" rel="nofollow" target="_blank">this plugin</a> to add your Instagram Feed.', 'pipdig-power-pack'), $plugin_url );
 	}
 	?>
 
 	<p>
-		<label for="<?php echo $this->get_field_id('images_num'); ?>"><?php _e('Number of images to display:', 'pipdig-textdomain'); ?></label><br />
+		<label for="<?php echo $this->get_field_id('images_num'); ?>"><?php _e('Number of images to display:', 'pipdig-power-pack'); ?></label><br />
 		<input type="number" min="1" max="10" step="1" id="<?php echo $this->get_field_id( 'images_num' ); ?>" name="<?php echo $this->get_field_name( 'images_num' ); ?>" value="<?php if ($images_num) { echo $images_num; } else { echo '4'; } ?>" />
 	</p>
 	<p>
-		<label for="<?php echo $this->get_field_id('cols'); ?>"><?php _e('Number of columns:', 'pipdig-textdomain'); ?></label><br />
+		<label for="<?php echo $this->get_field_id('cols'); ?>"><?php _e('Number of columns:', 'pipdig-power-pack'); ?></label><br />
 		<input type="number" min="1" max="10" step="1" id="<?php echo $this->get_field_id( 'cols' ); ?>" name="<?php echo $this->get_field_name( 'cols' ); ?>" value="<?php if ($cols) { echo $cols; } else { echo '2'; } ?>" />
 	</p>
 	<p>
 		<label for="<?php echo $this->get_field_id('load_more'); ?>">
-		<input type="checkbox" id="<?php echo $this->get_field_id('load_more'); ?>" name="<?php echo $this->get_field_name('load_more'); ?>" <?php if (isset($instance['load_more'])) { checked( (bool) $instance['load_more'], true ); } ?> /><?php _e('Display a "Load more" button.', 'pipdig-textdomain'); ?></label>
+		<input type="checkbox" id="<?php echo $this->get_field_id('load_more'); ?>" name="<?php echo $this->get_field_name('load_more'); ?>" <?php if (isset($instance['load_more'])) { checked( (bool) $instance['load_more'], true ); } ?> /><?php _e('Display a "Load more" button.', 'pipdig-power-pack'); ?></label>
 		<br />
 	</p>
 	<p>
 		<label for="<?php echo $this->get_field_id('follow'); ?>">
-		<input type="checkbox" id="<?php echo $this->get_field_id('follow'); ?>" name="<?php echo $this->get_field_name('follow'); ?>" <?php if (isset($instance['follow'])) { checked( (bool) $instance['follow'], true ); } ?> /><?php _e('Display a "Follow" link.', 'pipdig-textdomain'); ?></label>
+		<input type="checkbox" id="<?php echo $this->get_field_id('follow'); ?>" name="<?php echo $this->get_field_name('follow'); ?>" <?php if (isset($instance['follow'])) { checked( (bool) $instance['follow'], true ); } ?> /><?php _e('Display a "Follow" link.', 'pipdig-power-pack'); ?></label>
 		<br />
 	</p>
 	<?php

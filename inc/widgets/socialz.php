@@ -2,8 +2,8 @@
 class pipdig_widget_social_icons extends WP_Widget {
  
   public function __construct() {
-	 $widget_ops = array('classname' => 'pipdig_widget_social_icons', 'description' => __('The easy way to show social media icons.', 'pipdig-textdomain') );
-	 $this->WP_Widget('pipdig_widget_social_icons', 'pipdig - ' . __('Social Media Icons', 'pipdig-textdomain'), $widget_ops);
+	 $widget_ops = array('classname' => 'pipdig_widget_social_icons', 'description' => __('The easy way to show social media icons.', 'pipdig-power-pack') );
+	 $this->WP_Widget('pipdig_widget_social_icons', 'pipdig - ' . __('Social Media Icons', 'pipdig-power-pack'), $widget_ops);
   }
   
   function widget($args, $instance) {
@@ -68,10 +68,10 @@ class pipdig_widget_social_icons extends WP_Widget {
 	// PART 2-3: Display the fields
 	?>
 
-	<p><?php _e('Any links you add below will be shown as a social media icon. Leave any field blank to not add that icon.', 'pipdig-textdomain'); ?></p>
+	<p><?php _e('Any links you add below will be shown as a social media icon. Leave any field blank to not add that icon.', 'pipdig-power-pack'); ?></p>
 
 	<p>
-		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title (leave blank for no title):', 'pipdig-textdomain'); ?>
+		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title (leave blank for no title):', 'pipdig-power-pack'); ?>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
 		name="<?php echo $this->get_field_name('title'); ?>" type="text" 
 		value="<?php echo esc_attr($title); ?>" />

@@ -11,8 +11,8 @@ function pipdig_enque_script() {
 class pipdig_widget_profile_function extends WP_Widget {
 
     function pipdig_widget_profile_function() {
-        $widget_ops = array('classname' => 'pipdig_widget_profile', 'description' => __('Show off your profile photo!', 'pipdig-textdomain') );
-        $this->WP_Widget('pipdig_widget_profile', 'pipdig - ' . __('Profile Photo', 'pipdig-textdomain') , $widget_ops);
+        $widget_ops = array('classname' => 'pipdig_widget_profile', 'description' => __('Show off your profile photo!', 'pipdig-power-pack') );
+        $this->WP_Widget('pipdig_widget_profile', 'pipdig - ' . __('Profile Photo', 'pipdig-power-pack') , $widget_ops);
     }
 
     function widget($args, $instance) {
@@ -57,12 +57,12 @@ class pipdig_widget_profile_function extends WP_Widget {
 ?>
 
     <p>
-        <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title (leave blank for no title):', 'pipdig-textdomain'); ?></label><br />
+        <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title (leave blank for no title):', 'pipdig-power-pack'); ?></label><br />
         <input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php if (isset($instance['title'])) { echo $instance['title']; } ?>" class="widefat" />
     </p>
     <p style="display:none">
         <label for="<?php echo $this->get_field_id('image_uri'); ?>">Image</label><br />
-		<p style="font-weight:bold"><?php _e('Step 1 - Click the button below to select a photo:', 'pipdig-textdomain'); ?></p>
+		<p style="font-weight:bold"><?php _e('Step 1 - Click the button below to select a photo:', 'pipdig-power-pack'); ?></p>
         <?php
             if (!empty($instance['image_uri'])) :
                 echo '<img class="pipdig-profile-photo-img"  src="' . $instance['image_uri'] . '" style="margin:0;padding:0;max-width:150px;height:auto" /><br />';
@@ -71,19 +71,19 @@ class pipdig_widget_profile_function extends WP_Widget {
 
         <input type="text" style="display:none" class="widefat custom_media_url" name="<?php echo $this->get_field_name('image_uri'); ?>" id="<?php echo $this->get_field_id('image_uri'); ?>" value="<?php if (isset($instance['image_uri'])) { echo $instance['image_uri']; } ?>" style="margin-top:5px;">
 
-        <input type="button" class="button button-primary custom_media_button" id="custom_media_button" name="<?php echo $this->get_field_name('image_uri'); ?>" value="<?php _e('Upload Photo', 'pipdig-textdomain'); ?>" style="margin-top:0;" />
-		<p style="font-weight:bold"><?php _e('Step 2 - Optional extras:', 'pipdig-textdomain'); ?></p>
+        <input type="button" class="button button-primary custom_media_button" id="custom_media_button" name="<?php echo $this->get_field_name('image_uri'); ?>" value="<?php _e('Upload Photo', 'pipdig-power-pack'); ?>" style="margin-top:0;" />
+		<p style="font-weight:bold"><?php _e('Step 2 - Optional extras:', 'pipdig-power-pack'); ?></p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'circle' ); ?>">
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'circle' ); ?>" name="<?php echo $this->get_field_name( 'circle' ); ?>" <?php if (isset($instance['circle'])) { checked( (bool) $instance['circle'], true ); } ?> /><?php _e('Change image to a circle', 'pipdig-textdomain'); ?></label>
-			<br /><span style="font-size:80%;font-style:italic;"><?php _e('To make a perfect circle you should upload a square image. For example, 300px wide by 300px high. You can use free websites like <a href="http://picmonkey.com/" target="_blank">picmonkey.com</a> to edit your image.', 'pipdig-textdomain'); ?></span>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'circle' ); ?>" name="<?php echo $this->get_field_name( 'circle' ); ?>" <?php if (isset($instance['circle'])) { checked( (bool) $instance['circle'], true ); } ?> /><?php _e('Change image to a circle', 'pipdig-power-pack'); ?></label>
+			<br /><span style="font-size:80%;font-style:italic;"><?php _e('To make a perfect circle you should upload a square image. For example, 300px wide by 300px high. You can use free websites like <a href="http://picmonkey.com/" target="_blank">picmonkey.com</a> to edit your image.', 'pipdig-power-pack'); ?></span>
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e('Add some text under the photo:', 'pipdig-textdomain'); ?></label>
+			<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e('Add some text under the photo:', 'pipdig-power-pack'); ?></label>
 			<textarea id="<?php echo $this->get_field_id( 'description' ); ?>" name="<?php echo $this->get_field_name( 'description' ); ?>" style="width:95%;" rows="4"><?php if (isset($instance['description'])) { echo $instance['description']; } ?></textarea>
 		</p>
-		<p style="text-align:right;font-weight:bold"><?php _e('Step 3 - Click the save button:', 'pipdig-textdomain'); ?></p>
+		<p style="text-align:right;font-weight:bold"><?php _e('Step 3 - Click the save button:', 'pipdig-power-pack'); ?></p>
     </p>
 
 <?php

@@ -3,8 +3,8 @@
 class pipdig_widget_twitter extends WP_Widget {
  
   public function __construct() {
-      $widget_ops = array('classname' => 'pipdig_widget_twitter', 'description' => __('Displays your latest Tweets.', 'pipdig-textdomain') );
-      $this->WP_Widget('pipdig_widget_twitter', 'pipdig - ' . __('Twitter Widget', 'pipdig-textdomain'), $widget_ops);
+      $widget_ops = array('classname' => 'pipdig_widget_twitter', 'description' => __('Displays your latest Tweets.', 'pipdig-power-pack') );
+      $this->WP_Widget('pipdig_widget_twitter', 'pipdig - ' . __('Twitter Widget', 'pipdig-power-pack'), $widget_ops);
   }
   
   function widget($args, $instance) {
@@ -49,7 +49,7 @@ class pipdig_widget_twitter extends WP_Widget {
 
 	<?php
 	} else {
-		_e('Setup not complete. Please add your Twitter username to the Twitter Widget in the dashboard.', 'pipdig-textdomain');
+		_e('Setup not complete. Please add your Twitter username to the Twitter Widget in the dashboard.', 'pipdig-power-pack');
 	}
     // After widget code, if any  
     echo (isset($after_widget)?$after_widget:'');
@@ -68,17 +68,17 @@ class pipdig_widget_twitter extends WP_Widget {
      ?>
 	
 	<p>
-		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'pipdig-textdomain'); ?>
+		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'pipdig-power-pack'); ?>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
 		name="<?php echo $this->get_field_name('title'); ?>" type="text" 
 		value="<?php echo esc_attr($title); ?>" />
 		</label>
 	</p>
 
-	<p><?php _e('You will need to setup your Twitter account details on <a href="' . admin_url( 'options-general.php?page=tdf_settings' ) . '">this page</a> first.', 'pipdig-textdomain'); ?></p>
+	<p><?php _e('You will need to setup your Twitter account details on <a href="' . admin_url( 'options-general.php?page=tdf_settings' ) . '">this page</a> first.', 'pipdig-power-pack'); ?></p>
 	
 	<p>
-		<label for="<?php echo $this->get_field_id('twitter_handle'); ?>"><?php _e('Twitter Username:', 'pipdig-textdomain'); ?>
+		<label for="<?php echo $this->get_field_id('twitter_handle'); ?>"><?php _e('Twitter Username:', 'pipdig-power-pack'); ?>
 		<input class="widefat" id="<?php echo $this->get_field_id('twitter_handle'); ?>" 
 		name="<?php echo $this->get_field_name('twitter_handle'); ?>" type="text" 
 		value="<?php if (isset($instance['twitter_handle'])) { echo esc_attr($twitter_handle); } ?>" placeholder="e.g. ladygaga" />

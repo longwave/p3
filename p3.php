@@ -26,7 +26,13 @@ if ( !function_exists( 'pipdig_plugin_check' ) ) {
 }
 
 // functions
-require_once('inc/functions.php');
+//require_once('inc/functions.php');
+
+// customizer
+//require_once('inc/customizer.php');
+
+// cron functions
+require_once('inc/cron.php');
 
 //widgets
 require_once('inc/widgets/bloglovin.php');
