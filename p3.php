@@ -64,7 +64,7 @@ add_action( 'init', 'pipdig_power_pack_textdomain' );
 // updates
 require 'plugin-update-checker/plugin-update-checker.php';
 $MyUpdateChecker = new PluginUpdateChecker_2_0 (
-	'http://zzgr1kfiso2f0i6rz4m.pipdig.co/plugins/pipdig-power-pack.json',
+	'http://zzgr1kfiso2f0i6rz4m.pipdig.co/plugins/p3.json',
 	__FILE__,
 	'pipdig-power-pack'
 );
