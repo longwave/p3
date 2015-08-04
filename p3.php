@@ -6,12 +6,13 @@ Description: The core functions and features of any pipdig theme.
 Author: pipdig
 Author URI: http://pipdig.co
 Version: 1.0.0
-Text Domain: pipdig-power-pack
+Text Domain: pipdig-textdomain
 */
 
 class pipdig_p3_intalled_xyz {
 	// just to check this plugin is active
 }
+
 
 // load plugin check function, just in case theme hasn't
 if ( !function_exists( 'pipdig_plugin_check' ) ) {
@@ -25,8 +26,13 @@ if ( !function_exists( 'pipdig_plugin_check' ) ) {
 	}
 }
 
+require_once('inc/admin-menu.php');
+
 // functions
 //require_once('inc/functions.php');
+
+// hooks
+require_once('inc/hooks.php');
 
 // customizer
 //require_once('inc/customizer.php');
@@ -51,12 +57,9 @@ if (!pipdig_plugin_check('bloglovin-widget/bloglovin-widget.php')) {
 
 // Load text domain for languages
 function pipdig_power_pack_textdomain() {
-	$domain = 'pipdig-power-pack';
+	$domain = 'p3-textdomain';
 	$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
-
-	// wp-content/languages/plugin-name/plugin-name-en_GB.mo
 	load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
-	// wp-content/plugins/plugin-name/languages/plugin-name-en_GB.mo
 	load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 add_action( 'init', 'pipdig_power_pack_textdomain' );
@@ -66,7 +69,7 @@ require 'plugin-update-checker/plugin-update-checker.php';
 $MyUpdateChecker = new PluginUpdateChecker_2_0 (
 	'http://zzgr1kfiso2f0i6rz4m.pipdig.co/plugins/p3.json',
 	__FILE__,
-	'pipdig-power-pack'
+	'p3-textdomain'
 );
 
 ?>
