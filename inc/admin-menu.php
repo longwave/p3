@@ -5,7 +5,7 @@ if (!function_exists('pipdig_add_admin_menu')) {
 	function pipdig_add_admin_menu() {
 	
 		global $submenu;
-		add_menu_page( 'pipdig', 'pipdig', 'manage_options', 'pipdig', 'pipdig_main_options_page' );
+		add_menu_page( 'pipdig', 'pipdig', 'manage_options', 'pipdig', 'pipdig_main_options_page', 'dashicons-star-filled' );
 		add_submenu_page( 'pipdig', __('Theme Hooks', 'p3-textdomain'), __('Theme Hooks', 'p3-textdomain'), 'manage_options', 'pipdig-hooks', 'pipdig_hooks_options_page' );
 		$submenu['pipdig'][0][0] = 'Guides'; // http://wordpress.stackexchange.com/questions/98226/admin-menus-name-menu-different-from-first-submenu
 		

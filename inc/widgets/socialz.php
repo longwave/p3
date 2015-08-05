@@ -20,8 +20,9 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$youtube = empty($instance['youtube']) ? '' : $instance['youtube'];
 		$tumblr = empty($instance['tumblr']) ? '' : $instance['tumblr'];
 		$linkedin = empty($instance['linkedin']) ? '' : $instance['linkedin'];
-		$email = empty($instance['email']) ? '' : $instance['email'];
+		$vk = empty($instance['vk']) ? '' : $instance['vk'];
 		$flickr = empty($instance['flickr']) ? '' : $instance['flickr'];
+		$email = empty($instance['email']) ? '' : $instance['email'];
 		$rss = empty($instance['rss']) ? '' : $instance['rss'];
 
 		$icons_output = '';
@@ -40,8 +41,9 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		if (!empty($youtube)) $icons_output .= '<a href="' . $youtube . '" target="_blank"><i class="fa fa-youtube-play"></i></a>';
 		if (!empty($tumblr)) $icons_output .= '<a href="' . $tumblr . '" target="_blank"><i class="fa fa-tumblr"></i></a>';
 		if (!empty($linkedin)) $icons_output .= '<a href="' . $linkedin . '" target="_blank"><i class="fa fa-linkedin"></i></a>';
-		if (!empty($email)) $icons_output .= '<a href="mailto:' . $email . '"><i class="fa fa-envelope"></i></a>';
+		if (!empty($vk)) $icons_output .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i></a>';
 		if (!empty($flickr)) $icons_output .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i></a>';
+		if (!empty($email)) $icons_output .= '<a href="mailto:' . $email . '"><i class="fa fa-envelope"></i></a>';
 		if (!empty($rss)) $icons_output .= '<a href="' . $rss . '" target="_blank"><i class="fa fa-rss"></i></a>';
 		
 		echo '<div class="socialz">' . $icons_output . '</div>';
@@ -62,8 +64,9 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$youtube = empty($instance['youtube']) ? '' : $instance['youtube'];
 		$tumblr = empty($instance['tumblr']) ? '' : $instance['tumblr'];
 		$linkedin = empty($instance['linkedin']) ? '' : $instance['linkedin'];
-		$email = empty($instance['email']) ? '' : $instance['email'];
+		$vk = empty($instance['vk']) ? '' : $instance['vk'];
 		$flickr = empty($instance['flickr']) ? '' : $instance['flickr'];
+		$email = empty($instance['email']) ? '' : $instance['email'];
 		$rss = empty($instance['rss']) ? '' : $instance['rss'];
 	   
 		// PART 2-3: Display the fields
@@ -150,12 +153,12 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			value="<?php echo esc_attr($linkedin); ?>" />
 			</label>
 		</p>
-
+		
 		<p>
-			<label for="<?php echo $this->get_field_id('email'); ?>">Email (e.g. yourname@gmail.com) 
-			<input class="widefat" id="<?php echo $this->get_field_id('email'); ?>" 
-			name="<?php echo $this->get_field_name('email'); ?>" type="text" 
-			value="<?php echo esc_attr($email); ?>" />
+			<label for="<?php echo $this->get_field_id('vk'); ?>">VKontakte (e.g. http://vk.com/pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('vk'); ?>" 
+			name="<?php echo $this->get_field_name('vk'); ?>" type="text" 
+			value="<?php echo esc_attr($vk); ?>" />
 			</label>
 		</p>
 
@@ -164,6 +167,14 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<input class="widefat" id="<?php echo $this->get_field_id('flickr'); ?>" 
 			name="<?php echo $this->get_field_name('flickr'); ?>" type="text" 
 			value="<?php echo esc_attr($flickr); ?>" />
+			</label>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('email'); ?>">Email (e.g. yourname@gmail.com) 
+			<input class="widefat" id="<?php echo $this->get_field_id('email'); ?>" 
+			name="<?php echo $this->get_field_name('email'); ?>" type="text" 
+			value="<?php echo esc_attr($email); ?>" />
 			</label>
 		</p>
 
@@ -191,8 +202,9 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$instance['youtube'] = strip_tags($new_instance['youtube']);
 		$instance['tumblr'] = strip_tags($new_instance['tumblr']);
 		$instance['linkedin'] = strip_tags($new_instance['linkedin']);
-		$instance['email'] = strip_tags($new_instance['email']);
+		$instance['vk'] = strip_tags($new_instance['vk']);
 		$instance['flickr'] = strip_tags($new_instance['flickr']);
+		$instance['email'] = strip_tags($new_instance['email']);
 		$instance['rss'] = strip_tags($new_instance['rss']);
 
 		return $instance;
