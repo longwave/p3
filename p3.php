@@ -6,7 +6,7 @@ Description: The core functions and features of any pipdig theme.
 Author: pipdig
 Author URI: http://pipdig.co
 Version: 1.0.0
-Text Domain: pipdig-textdomain
+Text Domain: p3-textdomain
 */
 
 class pipdig_p3_intalled_xyz {

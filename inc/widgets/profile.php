@@ -36,7 +36,7 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 	?>
 			<?php if (isset($instance['image_uri'])) {  ?>
 				<div class="nopin">
-				<img src="<?php echo esc_url($instance['image_uri']); ?>" <?php if (isset($instance['circle'])) { if(true == $circle) { ?>class="pipdig-widget-profile-circle"<?php } } ?> />
+				<img src="<?php echo esc_url($instance['image_uri']); ?>" <?php if (isset($instance['circle'])) { if(true == $circle) { ?>class="pipdig-widget-profile-circle"<?php } } ?> alt="" />
 				</div>
 					<?php if (isset($instance['description'])) {  ?>
 						<p><?php echo $description; ?></p>
