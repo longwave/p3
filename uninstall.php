@@ -9,6 +9,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) || ! WP_UNINSTALL_PLUGIN || dirname( WP_
 // delete transients
 delete_transient( 'pipdig_random_posts_widget' );
 delete_transient( 'pipdig_popular_posts_widget' );
+delete_transient( 'pipdig_clw_map');
 
 // delete database entries
 delete_option( 'pipdig_bloglovin_follower_count' );
