@@ -48,6 +48,7 @@ require_once('inc/widgets/latest-youtube.php');
 require_once('inc/widgets/profile.php');
 require_once('inc/widgets/facebook.php');
 require_once('inc/widgets/instagram.php');
+require_once('inc/widgets/clw.php');
 require_once('inc/widgets/popular-posts.php');
 require_once('inc/widgets/random-posts.php');
 if (!pipdig_plugin_check('bloglovin-widget/bloglovin-widget.php')) {
