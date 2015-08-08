@@ -237,7 +237,10 @@ if (!class_exists('pipdig_clw_widget')) {
 				<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php if ($title) { echo $title; } ?>" />
 			</p>
 			
-			<p><?php printf(__('The information below will be used for the map marker. You can find the Latitude and Longitude of any location by %sclicking here%s.', 'pipdig-clw'), '<a href="'.esc_url('http://www.latlong.net/').'" target="_blank">', '</a>'); ?></p>
+			<p><?php
+			$plugin_url = esc_url('http://www.latlong.net/');
+			printf(__('The information below will be used for the map marker. You can find the Latitude and Longitude of any location by <a href="%s" target="_blank">clicking here</a>.', 'p3'), $plugin_url );
+			?></p>
 
 			<p>
 				<label for="<?php echo $this->get_field_id('location'); ?>"><?php _e('Location Name:', 'pipdig-clw'); ?></label><br />
@@ -276,18 +279,18 @@ if (!class_exists('pipdig_clw_widget')) {
 if (!class_exists('pipdig_clw_Customize')) {
 	class pipdig_clw_Customize {
 		public static function register ( $wp_customize ) {
-
+		
+			$plugin_url = admin_url( 'widgets.php' );
 
 			$wp_customize->add_section( 'pipdig_clw', 
 				array(
 					'title' => __( "Current Location Widget", 'pipdig-clw' ),
 					'priority' => 925,
 					'panel' => 'pipdig_features',
-					'description' => sprintf(__('Use these options to style the Current Location Widget. You will need to set your location in the %swidget options%s first.', 'pipdig-clw'), '<a href="'.admin_url( 'widgets.php' ).'">', '</a>'),
+					'description' => sprintf(__('Use these options to style the Current Location Widget. You will need to set your location in the <a href="%s">widget options</a> first.', 'p3'), $plugin_url ),
 					'capability' => 'edit_theme_options',
 				) 
 			);
-
 
 			// map color
 			$wp_customize->add_setting('pipdig_clw_map_color',

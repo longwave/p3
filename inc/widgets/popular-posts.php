@@ -3,8 +3,8 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 	class pipdig_widget_popular_posts extends WP_Widget {
 		
 	  public function __construct() {
-		  $widget_ops = array('classname' => 'pipdig_widget_popular_posts', 'description' => __('Displays your most popular posts.', 'p3-textdomain') );
-		  parent::__construct('pipdig_widget_popular_posts', 'pipdig - ' . __('Popular Posts', 'p3-textdomain'), $widget_ops);
+		  $widget_ops = array('classname' => 'pipdig_widget_popular_posts', 'description' => __('Displays your most popular posts.', 'p3') );
+		  parent::__construct('pipdig_widget_popular_posts', 'pipdig - ' . __('Popular Posts', 'p3'), $widget_ops);
 	  }
 	 
 	  function form($instance)
@@ -24,22 +24,22 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		
 	?>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'p3-textdomain'); ?></label>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'p3'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
 			name="<?php echo $this->get_field_name('title'); ?>" type="text" 
 			value="<?php echo esc_attr($title); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('date_range_posts'); ?>"><?php _e('Date range for posts:', 'p3-textdomain'); ?></label>
+			<label for="<?php echo $this->get_field_id('date_range_posts'); ?>"><?php _e('Date range for posts:', 'p3'); ?></label>
 			<select id="<?php echo $this->get_field_id( 'date_range_posts' ); ?>" name="<?php echo $this->get_field_name( 'date_range_posts' ); ?>">
-				<option <?php if (isset($instance['date_range_posts'])) { if ( '1 week ago' == $date_range_posts ) echo 'selected="selected"'; } ?> value="1 week ago"><?php _e('1 Week', 'p3-textdomain') ?></option>
-				<option <?php if (isset($instance['date_range_posts'])) { if ( '1 month ago' == $date_range_posts ) echo 'selected="selected"'; } ?> value="1 month ago"><?php _e('1 Month', 'p3-textdomain') ?></option>
-				<option <?php if (isset($instance['date_range_posts'])) { if ( '1 year ago' == $date_range_posts ) echo 'selected="selected"'; } ?> value="1 year ago"><?php _e('1 Year', 'p3-textdomain') ?></option>
-				<option <?php if (isset($instance['date_range_posts'])) { if ( '' == $date_range_posts ) echo 'selected="selected"'; } ?> value=""><?php _e('All Time', 'p3-textdomain') ?></option>
+				<option <?php if (isset($instance['date_range_posts'])) { if ( '1 week ago' == $date_range_posts ) echo 'selected="selected"'; } ?> value="1 week ago"><?php _e('1 Week', 'p3') ?></option>
+				<option <?php if (isset($instance['date_range_posts'])) { if ( '1 month ago' == $date_range_posts ) echo 'selected="selected"'; } ?> value="1 month ago"><?php _e('1 Month', 'p3') ?></option>
+				<option <?php if (isset($instance['date_range_posts'])) { if ( '1 year ago' == $date_range_posts ) echo 'selected="selected"'; } ?> value="1 year ago"><?php _e('1 Year', 'p3') ?></option>
+				<option <?php if (isset($instance['date_range_posts'])) { if ( '' == $date_range_posts ) echo 'selected="selected"'; } ?> value=""><?php _e('All Time', 'p3') ?></option>
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('number_posts'); ?>"><?php _e('Number of posts to show:', 'p3-textdomain'); ?></label>
+			<label for="<?php echo $this->get_field_id('number_posts'); ?>"><?php _e('Number of posts to show:', 'p3'); ?></label>
 			<input type="number" min="1" max="6" id="<?php echo $this->get_field_id( 'number_posts' ); ?>" name="<?php echo $this->get_field_name( 'number_posts' ); ?>" value="<?php if ($number_posts) { echo $number_posts; } else { echo '3'; } ?>" />
 		</p>
 	<?php

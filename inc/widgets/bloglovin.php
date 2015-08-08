@@ -3,8 +3,8 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 	class pipdig_theme_bloglovin_widget extends WP_Widget {
 	 
 	  public function __construct() {
-		  $widget_ops = array('classname' => 'pipdig_theme_bloglovin_widget', 'description' => __("Display your Bloglovin' follower count.", 'p3-textdomain') );
-		  parent::__construct('pipdig_theme_bloglovin_widget', 'pipdig - ' . __("Bloglovin' Widget", 'p3-textdomain'), $widget_ops);
+		  $widget_ops = array('classname' => 'pipdig_theme_bloglovin_widget', 'description' => __("Display your Bloglovin' follower count.", 'p3') );
+		  parent::__construct('pipdig_theme_bloglovin_widget', 'pipdig - ' . __("Bloglovin' Widget", 'p3'), $widget_ops);
 	  }
 	  
 	  function widget($args, $instance) {
@@ -40,15 +40,15 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 						break;
 				}
 				if ($bloglovin_count) {
-					$bloglovin_widget_output = '<p><a href="'. $bloglovin_url .'" target="blank" rel="nofollow" class="pipdig-bloglovin-widget">' . $bloglovin_icon . $bloglovin_count . ' ' . __("Followers on Bloglovin'", 'p3-textdomain') . '</a></p>';
+					$bloglovin_widget_output = '<p><a href="'. $bloglovin_url .'" target="blank" rel="nofollow" class="pipdig-bloglovin-widget">' . $bloglovin_icon . $bloglovin_count . ' ' . __("Followers on Bloglovin'", 'p3') . '</a></p>';
 				} else {
-					$bloglovin_widget_output = '<p><a href="'. $bloglovin_url .'" target="blank" rel="nofollow" class="pipdig-bloglovin-widget">' . $bloglovin_icon . __("Follow on Bloglovin'", 'p3-textdomain') . '</a></p>';
+					$bloglovin_widget_output = '<p><a href="'. $bloglovin_url .'" target="blank" rel="nofollow" class="pipdig-bloglovin-widget">' . $bloglovin_icon . __("Follow on Bloglovin'", 'p3') . '</a></p>';
 				}
 			}
 			echo $bloglovin_widget_output;
 		} else {
 			$cust_url = admin_url( 'customize.php' );
-			printf(__("Widget setup not complete. You must add your bloglovin profile to the 'Social Media Icons' section of the <a href='%s'>Customizer</a>.", 'p3-textdomain'), $cust_url );
+			printf(__("Widget setup not complete. You must add your bloglovin profile to the 'Social Media Icons' section of the <a href='%s'>Customizer</a>.", 'p3'), $cust_url );
 		}
 		// After widget code, if any
 		echo (isset($after_widget)?$after_widget:'');
@@ -58,8 +58,8 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 	   
 		$cust_url = admin_url( 'customize.php' );
 		?>
-		<p><?php _e("This widget will display your total Bloglovin' follower count.", 'p3-textdomain'); ?></p>
-		<p><?php printf(__("You can style this widget in the <em>Bloglovin' Widget</em> section of the <a href='%s'>Customizer</a>.", 'p3-textdomain'), $cust_url ); ?></p>
+		<p><?php _e("This widget will display your total Bloglovin' follower count.", 'p3'); ?></p>
+		<p><?php printf(__("You can style this widget in the <em>Bloglovin' Widget</em> section of the <a href='%s'>Customizer</a>.", 'p3'), $cust_url ); ?></p>
 
 		 <?php
 	   

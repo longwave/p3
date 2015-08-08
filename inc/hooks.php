@@ -5,7 +5,7 @@
 /*
 if (!function_exists('pipdig_add_hooks_menu')) {
 	function pipdig_add_hooks_menu() { 	
-		add_submenu_page( 'pipdig-options', __('pipdig Theme Hooks', 'p3-textdomain'), 'pipdig Hooks', 'manage_options', 'pipdig-hooks', 'pipdig_hooks_options_page' );
+		add_submenu_page( 'pipdig-options', __('pipdig Theme Hooks', 'p3'), 'pipdig Hooks', 'manage_options', 'pipdig-hooks', 'pipdig_hooks_options_page' );
 	}
 	add_action( 'admin_menu', 'pipdig_add_hooks_menu' );
 }
@@ -17,14 +17,14 @@ if (!function_exists('pipdig_settings_init')) {
 
 		add_settings_section(
 			'pipdig_pluginPage_section', 
-			__('Please be careful when adding code in these options. This can break your site if not added correctly!', 'p3-textdomain'),
+			__('Please be careful when adding code in these options. This can break your site if not added correctly!', 'p3'),
 			'pipdig_settings_section_callback', 
 			'pluginPage'
 		);
 
 		add_settings_field( 
 			'pipdig_textarea_css', 
-			__( 'Custom CSS', 'p3-textdomain' ), 
+			__( 'Custom CSS', 'p3' ), 
 			'pipdig_textarea_css_render', 
 			'pluginPage', 
 			'pipdig_pluginPage_section' 
@@ -32,7 +32,7 @@ if (!function_exists('pipdig_settings_init')) {
 
 		add_settings_field( 
 			'pipdig_textarea_scripts', 
-			__( 'Code to add to the  &lt;head&gt;', 'p3-textdomain' ).'<p style="font-style:normal;font-weight:normal;">'.__( 'For example, Google Analytics tracking code', 'p3-textdomain' ).'</p>', 
+			__( 'Code to add to the  &lt;head&gt;', 'p3' ).'<p style="font-style:normal;font-weight:normal;">'.__( 'For example, Google Analytics tracking code', 'p3' ).'</p>', 
 			'pipdig_textarea_scripts_render', 
 			'pluginPage', 
 			'pipdig_pluginPage_section' 
@@ -40,7 +40,7 @@ if (!function_exists('pipdig_settings_init')) {
 		
 		add_settings_field( 
 			'pipdig_textarea_body_scripts', 
-			__( 'Code to add directly after the opening &lt;body&gt; tag', 'p3-textdomain' ), 
+			__( 'Code to add directly after the opening &lt;body&gt; tag', 'p3' ), 
 			'pipdig_textarea_body_scripts_render', 
 			'pluginPage', 
 			'pipdig_pluginPage_section' 
@@ -48,7 +48,7 @@ if (!function_exists('pipdig_settings_init')) {
 
 		add_settings_field( 
 			'pipdig_textarea_footer_scripts', 
-			__( 'Code to add just before the closing &lt;/body&gt; tag', 'p3-textdomain' ), 
+			__( 'Code to add just before the closing &lt;/body&gt; tag', 'p3' ), 
 			'pipdig_textarea_footer_scripts_render', 
 			'pluginPage', 
 			'pipdig_pluginPage_section' 
@@ -56,7 +56,7 @@ if (!function_exists('pipdig_settings_init')) {
 		
 		add_settings_field( 
 			'pipdig_textarea_after_first_post', 
-			__( 'Code to add directly after the first post on the home page or any archive', 'p3-textdomain' ).'<p style="font-style:normal;font-weight:normal;">'.__( 'For example, you may wish to place a banner ad after the first post', 'p3-textdomain' ).'</p>', 
+			__( 'Code to add directly after the first post on the home page or any archive', 'p3' ).'<p style="font-style:normal;font-weight:normal;">'.__( 'For example, you may wish to place a banner ad after the first post', 'p3' ).'</p>', 
 			'pipdig_textarea_after_first_post_render', 
 			'pluginPage', 
 			'pipdig_pluginPage_section' 
@@ -132,7 +132,7 @@ if (!function_exists('pipdig_settings_section_callback')) {
 	function pipdig_settings_section_callback() { 
 		
 		// description text
-		echo '<p>'.__( 'Use the fields below to add custom code to the Head, Body or Footer of your site.', 'p3-textdomain' ).'</p><p>'.__( 'These settings will be carried over if you install any other pipdig theme.', 'p3-textdomain' ).'</p><p>'.__( 'WARNING: these options can break your site. Use with caution.', 'p3-textdomain' ).'</p>';
+		echo '<p>'.__( 'Use the fields below to add custom code to the Head, Body or Footer of your site.', 'p3' ).'</p><p>'.__( 'These settings will be carried over if you install any other pipdig theme.', 'p3' ).'</p><p>'.__( 'WARNING: these options can break your site. Use with caution.', 'p3' ).'</p>';
 
 	}
 }
@@ -144,7 +144,7 @@ if (!function_exists('pipdig_hooks_options_page')) {
 		?>
 		<form action='options.php' method='post'>
 			
-			<h2><?php _e('pipdig Theme Hooks', 'p3-textdomain'); ?></h2>
+			<h2><?php _e('pipdig Theme Hooks', 'p3'); ?></h2>
 			
 			<?php
 			settings_fields( 'pluginPage' );
@@ -153,7 +153,10 @@ if (!function_exists('pipdig_hooks_options_page')) {
 			?>
 			
 		</form>
-		<h3><?php printf(__('Remember, you can also change the appearance of your site by using the %sCustomizer%s.', 'p3-textdomain'), '<a href="'.admin_url( 'customize.php' ).'">', '</a>'); ?></h3>
+		<h3><?php
+		$plugin_url = admin_url('customize.php');
+		printf(__('Remember, you can also change the appearance of your site by using the <a href="%s">Customizer</a>.', 'p3'), $plugin_url );
+		?>		</h3>
 		<?php
 
 	}

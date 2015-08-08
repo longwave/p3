@@ -3,8 +3,8 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 	class pipdig_widget_latest_youtube extends WP_Widget {
 	 
 	  public function __construct() {
-		 $widget_ops = array('classname' => 'pipdig_widget_latest_youtube', 'description' => __('Automatically displays your latest YouTube video.', 'p3-textdomain') );
-		 parent::__construct('pipdig_widget_latest_youtube', 'pipdig - ' . __('Latest YouTube', 'p3-textdomain'), $widget_ops);
+		 $widget_ops = array('classname' => 'pipdig_widget_latest_youtube', 'description' => __('Automatically displays your latest YouTube video.', 'p3') );
+		 parent::__construct('pipdig_widget_latest_youtube', 'pipdig - ' . __('Latest YouTube', 'p3'), $widget_ops);
 	  }
 	  
 	  function widget($args, $instance) {
@@ -28,7 +28,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		if (!empty($youtubeuser)) {
 			echo '<ifr' . 'ame src="http://www.youtube.com/embed?listType=user_uploads&list=' . $youtubeuser . '&showinfo=1" frameborder="0" width="300" height="169" allowfullscreen></ifra' . 'me>';
 		} else {
-			_e('Setup not complete. Please add your YouTube username to the YouTube Widget in the dashboard.', 'p3-textdomain');
+			_e('Setup not complete. Please add your YouTube username to the YouTube Widget in the dashboard.', 'p3');
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');
@@ -47,18 +47,18 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		?>
 		 
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'p3-textdomain'); ?>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'p3'); ?>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
 			name="<?php echo $this->get_field_name('title'); ?>" type="text" 
 			value="<?php echo esc_attr($title); ?>" />
 			</label>
 		</p>
 
-		<p><?php _e('Add your YouTube user/channel to the box below to show your latest video. This can be found in your channel\'s URL.', 'p3-textdomain'); ?></p>
-		<p><?php _e('For example, the red part below:', 'p3-textdomain'); ?></p> <p><?php echo esc_url('http://youtube.com/user/'); ?><span style="color:red">inthefrow</span></p>
+		<p><?php _e('Add your YouTube user/channel to the box below to show your latest video. This can be found in your channel\'s URL.', 'p3'); ?></p>
+		<p><?php _e('For example, the red part below:', 'p3'); ?></p> <p><?php echo esc_url('http://youtube.com/user/'); ?><span style="color:red">inthefrow</span></p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('youtubeuser'); ?>"><?php _e('YouTube Channel username:', 'p3-textdomain'); ?>
+			<label for="<?php echo $this->get_field_id('youtubeuser'); ?>"><?php _e('YouTube Channel username:', 'p3'); ?>
 			<input class="widefat" id="<?php echo $this->get_field_id('youtubeuser'); ?>" 
 			name="<?php echo $this->get_field_name('youtubeuser'); ?>" type="text" 
 			value="<?php if (isset($instance['youtubeuser'])) { echo esc_attr($youtubeuser); } ?>" placeholder="inthefrow" />

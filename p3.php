@@ -6,12 +6,19 @@ Description: The core functions and features of any pipdig theme.
 Author: pipdig
 Author URI: http://pipdig.co
 Version: 1.1.0
-Text Domain: p3-textdomain
+Text Domain: p3
 */
 
 class pipdig_p3_intalled_xyz {
 	// just to check this plugin is active
 }
+
+
+// Load text domain for languages
+function pipdig_p3_textdomain() {
+	load_plugin_textdomain( 'p3', false, 'p3/languages' );
+}
+add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 
 
 // load plugin check function, just in case theme hasn't
@@ -56,21 +63,12 @@ if (!pipdig_plugin_check('bloglovin-widget/bloglovin-widget.php')) {
 }
 
 
-// Load text domain for languages
-function pipdig_power_pack_textdomain() {
-	$domain = 'p3-textdomain';
-	$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
-	load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
-	load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
-}
-add_action( 'init', 'pipdig_power_pack_textdomain' );
-
 // updates
 require 'plugin-update-checker/plugin-update-checker.php';
 $MyUpdateChecker = new PluginUpdateChecker_2_0 (
 	'https://www.dropbox.com/s/uzjjcib0pcjtmgp/p3.json?dl=1',
 	__FILE__,
-	'p3-textdomain'
+	'p3'
 );
 
 ?>

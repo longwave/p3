@@ -3,8 +3,8 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 	class pipdig_widget_twitter extends WP_Widget {
 	 
 	  public function __construct() {
-		  $widget_ops = array('classname' => 'pipdig_widget_twitter', 'description' => __('Displays your latest Tweets.', 'p3-textdomain') );
-		  parent::__construct('pipdig_widget_twitter', 'pipdig - ' . __('Twitter Widget', 'p3-textdomain'), $widget_ops);
+		  $widget_ops = array('classname' => 'pipdig_widget_twitter', 'description' => __('Displays your latest Tweets.', 'p3') );
+		  parent::__construct('pipdig_widget_twitter', 'pipdig - ' . __('Twitter Widget', 'p3'), $widget_ops);
 	  }
 	  
 	  function widget($args, $instance) {
@@ -49,7 +49,7 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 
 		<?php
 		} else {
-			_e('Setup not complete. Please add your Twitter username to the Twitter Widget in the dashboard.', 'p3-textdomain');
+			_e('Setup not complete. Please add your Twitter username to the Twitter Widget in the dashboard.', 'p3');
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');
@@ -68,17 +68,17 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 		 ?>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'p3-textdomain'); ?>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'p3'); ?>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
 			name="<?php echo $this->get_field_name('title'); ?>" type="text" 
 			value="<?php echo esc_attr($title); ?>" />
 			</label>
 		</p>
 
-		<p><?php printf(__('You will need to setup your Twitter account details on %sthis page%s first.', 'p3-textdomain'), '<a href="'.admin_url('options-general.php?page=tdf_settings').'">', '</a>'); ?></p>
+		<p><?php printf(__('You will need to setup your Twitter account details on %sthis page%s first.', 'p3'), '<a href="'.admin_url('options-general.php?page=tdf_settings').'">', '</a>'); ?></p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('twitter_handle'); ?>"><?php _e('Twitter Username:', 'p3-textdomain'); ?>
+			<label for="<?php echo $this->get_field_id('twitter_handle'); ?>"><?php _e('Twitter Username:', 'p3'); ?>
 			<input class="widefat" id="<?php echo $this->get_field_id('twitter_handle'); ?>" 
 			name="<?php echo $this->get_field_name('twitter_handle'); ?>" type="text" 
 			value="<?php if (isset($instance['twitter_handle'])) { echo esc_attr($twitter_handle); } ?>" placeholder="e.g. ladygaga" />

@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-08-06 15:41-0000\n"
-"PO-Revision-Date: 2015-08-06 15:43-0000\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2015-08-08 16:17+0100\n"
+"PO-Revision-Date: 2015-08-08 16:45+0100\n"
+"Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
@@ -78,11 +78,11 @@ msgstr ""
 msgid "pipdig Theme Hooks"
 msgstr ""
 
-#: ../inc/hooks.php:156
+#: ../inc/hooks.php:158
 #, php-format
 msgid ""
-"Remember, you can also change the appearance of your site by using the "
-"%sCustomizer%s."
+"Remember, you can also change the appearance of your site by using the <a "
+"href=\"%s\">Customizer</a>."
 msgstr ""
 
 #: ../inc/widgets/bloglovin.php:6
@@ -117,6 +117,74 @@ msgstr ""
 msgid ""
 "You can style this widget in the <em>Bloglovin' Widget</em> section of the "
 "<a href='%s'>Customizer</a>."
+msgstr ""
+
+#: ../inc/widgets/clw.php:20
+msgid "Proudly display where you are in the world."
+msgstr ""
+
+#: ../inc/widgets/clw.php:21 ../inc/widgets/clw.php:124
+#: ../inc/widgets/clw.php:193
+msgid "Current Location"
+msgstr ""
+
+#: ../inc/widgets/clw.php:200 ../inc/widgets/clw.php:202
+msgid "Please enter location data in the widget settings."
+msgstr ""
+
+#: ../inc/widgets/clw.php:236
+msgid "Title:"
+msgstr ""
+
+#: ../inc/widgets/clw.php:242
+#, php-format
+msgid ""
+"The information below will be used for the map marker. You can find the "
+"Latitude and Longitude of any location by <a href=\"%s\" target=\"_blank"
+"\">clicking here</a>."
+msgstr ""
+
+#: ../inc/widgets/clw.php:246
+msgid "Location Name:"
+msgstr ""
+
+#: ../inc/widgets/clw.php:247
+msgid "London, UK"
+msgstr ""
+
+#: ../inc/widgets/clw.php:250
+msgid "Latitude:"
+msgstr ""
+
+#: ../inc/widgets/clw.php:254
+msgid "Longitude:"
+msgstr ""
+
+#: ../inc/widgets/clw.php:287
+msgid "Current Location Widget"
+msgstr ""
+
+#: ../inc/widgets/clw.php:290
+#, php-format
+msgid ""
+"Use these options to style the Current Location Widget. You will need to set "
+"your location in the <a href=\"%s\">widget options</a> first."
+msgstr ""
+
+#: ../inc/widgets/clw.php:305
+msgid "Map color"
+msgstr ""
+
+#: ../inc/widgets/clw.php:322
+msgid "Border color"
+msgstr ""
+
+#: ../inc/widgets/clw.php:339
+msgid "Marker color"
+msgstr ""
+
+#: ../inc/widgets/clw.php:359
+msgid "Marker size"
 msgstr ""
 
 #: ../inc/widgets/facebook.php:6
@@ -169,14 +237,14 @@ msgstr ""
 msgid "Instagram Widget"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:49
+#: ../inc/widgets/instagram.php:50 ../inc/widgets/instagram.php:89
+#, php-format
 msgid ""
-"Please install and activate <a href=\"https://wordpress.org/plugins/"
-"instagram-feed/\" rel=\"nofollow\" target=\"_blank\">this plugin</a> to add "
-"your Instagram Feed."
+"Please install and activate <a href=\"%s\" rel=\"nofollow\" target=\"_blank"
+"\">this plugin</a> to add your Instagram Feed."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:85
+#: ../inc/widgets/instagram.php:86
 #, php-format
 msgid ""
 "This widget will show your latest Instagram photos. You will need to "
@@ -184,26 +252,19 @@ msgid ""
 "widget to work."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:88
-#, php-format
-msgid ""
-"Please install and activate <a href=\"%s\" rel=\"nofollow\" target=\"_blank"
-"\">this plugin</a> to add your Instagram Feed."
-msgstr ""
-
-#: ../inc/widgets/instagram.php:93 ../inc/widgets/pinterest.php:98
+#: ../inc/widgets/instagram.php:94 ../inc/widgets/pinterest.php:98
 msgid "Number of images to display:"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:97
+#: ../inc/widgets/instagram.php:98
 msgid "Number of columns:"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:102
+#: ../inc/widgets/instagram.php:103
 msgid "Display a \"Load more\" button."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:107
+#: ../inc/widgets/instagram.php:108
 msgid "Display a \"Follow\" link."
 msgstr ""
 
