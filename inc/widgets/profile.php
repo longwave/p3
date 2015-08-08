@@ -15,7 +15,7 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 
 		function pipdig_widget_profile_function() {
 			$widget_ops = array('classname' => 'pipdig_widget_profile', 'description' => __('Show off your profile photo!', 'p3-textdomain') );
-			$this->WP_Widget('pipdig_widget_profile', 'pipdig - ' . __('Profile Photo', 'p3-textdomain') , $widget_ops);
+			parent::__construct('pipdig_widget_profile', 'pipdig - ' . __('Profile Photo', 'p3-textdomain') , $widget_ops);
 		}
 
 		function widget($args, $instance) {

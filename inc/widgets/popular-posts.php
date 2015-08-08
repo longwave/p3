@@ -4,7 +4,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		
 	  public function __construct() {
 		  $widget_ops = array('classname' => 'pipdig_widget_popular_posts', 'description' => __('Displays your most popular posts.', 'p3-textdomain') );
-		  $this->WP_Widget('pipdig_widget_popular_posts', 'pipdig - ' . __('Popular Posts', 'p3-textdomain'), $widget_ops);
+		  parent::__construct('pipdig_widget_popular_posts', 'pipdig - ' . __('Popular Posts', 'p3-textdomain'), $widget_ops);
 	  }
 	 
 	  function form($instance)

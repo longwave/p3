@@ -4,7 +4,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 	 
 	  public function __construct() {
 		 $widget_ops = array('classname' => 'pipdig_widget_social_icons', 'description' => __('The easy way to show social media icons.', 'p3-textdomain') );
-		 $this->WP_Widget('pipdig_widget_social_icons', 'pipdig - ' . __('Social Media Icons', 'p3-textdomain'), $widget_ops);
+		 parent::__construct('pipdig_widget_social_icons', 'pipdig - ' . __('Social Media Icons', 'p3-textdomain'), $widget_ops);
 	  }
 	  
 	  function widget($args, $instance) {

@@ -5,7 +5,7 @@ Plugin URI: http://pipdig.co
 Description: The core functions and features of any pipdig theme.
 Author: pipdig
 Author URI: http://pipdig.co
-Version: 1.0.0
+Version: 1.1.0
 Text Domain: p3-textdomain
 */
 
@@ -67,7 +67,7 @@ add_action( 'init', 'pipdig_power_pack_textdomain' );
 // updates
 require 'plugin-update-checker/plugin-update-checker.php';
 $MyUpdateChecker = new PluginUpdateChecker_2_0 (
-	'http://zzgr1kfiso2f0i6rz4m.pipdig.co/plugins/p3.json',
+	'https://www.dropbox.com/s/uzjjcib0pcjtmgp/p3.json?dl=1',
 	__FILE__,
 	'p3-textdomain'
 );

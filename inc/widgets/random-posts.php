@@ -4,7 +4,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		
 	  public function __construct() {
 		  $widget_ops = array('classname' => 'pipdig_widget_random_posts', 'description' => __('Displays a selection of random posts.', 'p3-textdomain') );
-		  $this->WP_Widget('pipdig_widget_random_posts', 'pipdig - ' . __('Random Posts', 'p3-textdomain'), $widget_ops);
+		  parent::__construct('pipdig_widget_random_posts', 'pipdig - ' . __('Random Posts', 'p3-textdomain'), $widget_ops);
 	  }
 	 
 	  function form($instance)

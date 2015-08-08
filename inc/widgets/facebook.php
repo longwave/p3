@@ -4,7 +4,7 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 	 
 	  public function __construct() {
 		  $widget_ops = array('classname' => 'pipdig_widget_facebook', 'description' => __('Displays a Facebook Like Box.', 'p3-textdomain') );
-		  $this->WP_Widget('pipdig_widget_facebook', 'pipdig - ' . __('Facebook Widget', 'p3-textdomain'), $widget_ops);
+		  parent::__construct('pipdig_widget_facebook', 'pipdig - ' . __('Facebook Widget', 'p3-textdomain'), $widget_ops);
 	  }
 	  
 	  function widget($args, $instance) {

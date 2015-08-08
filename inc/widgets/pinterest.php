@@ -4,7 +4,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 	 
 	  public function __construct() {
 		  $widget_ops = array('classname' => 'pipdig_widget_pinterest', 'description' => __('Displays your latest Pinterest pins.', 'p3-textdomain') );
-		  $this->WP_Widget('pipdig_widget_pinterest', 'pipdig - ' . __('Pinterest Widget', 'p3-textdomain'), $widget_ops);
+		  parent::__construct('pipdig_widget_pinterest', 'pipdig - ' . __('Pinterest Widget', 'p3-textdomain'), $widget_ops);
 	  }
 	  
 	  function widget($args, $instance) {
