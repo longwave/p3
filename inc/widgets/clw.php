@@ -18,7 +18,7 @@ if (!class_exists('pipdig_clw_widget')) {
 	 
 		public function __construct() {
 			$widget_ops = array('classname' => 'pipdig_clw_widget', 'description' => __('Proudly display where you are in the world.', 'pipdig-clw') );
-			$this->WP_Widget('pipdig_clw_widget', 'pipdig - ' . __('Current Location', 'pipdig-clw'), $widget_ops);
+			parent::__construct('pipdig_clw_widget', 'pipdig - ' . __('Current Location', 'pipdig-clw'), $widget_ops);
 				
 			//enqueue JS on frontend only if widget is active on page:
 			if(is_active_widget(false, false, $this->id_base)) {
