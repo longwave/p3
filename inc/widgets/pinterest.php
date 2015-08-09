@@ -32,7 +32,40 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		
 
 		if (!empty($pinterestuser)) { ?>
-		
+			<style scoped>
+				#pinterest-gallery {
+				overflow: auto;
+				width: 100%;
+				list-style: none;
+				}
+				#pinterest-gallery li {
+				float: left;
+				width: 49%;
+				height: 150px;
+				background-size: cover;
+				margin: .5%;
+				padding: 0;
+				border: none;
+				-o-transition: all 0.25s ease-out; -moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out;
+				}
+				#pinterest-gallery li:hover {
+				opacity: .8;
+				}
+				#pinterest-gallery img { border: none; }
+				.pinterest-link {
+				display: block;
+				overflow: hidden;
+				text-indent: 100%;
+				height: 100%;
+				white-space: nowrap;
+				}
+				/* IE correction */
+				#pinterest-gallery li a { 
+				color: transparent; 
+				line-height: 1px;
+				font-size: 0px;
+				}
+			</style>
 			<div id="pinterest-gallery"></div>
 			<script>
 			jQuery(document).ready(function($) {

@@ -33,13 +33,10 @@ if ( !function_exists( 'pipdig_plugin_check' ) ) {
 	}
 }
 
-require_once('inc/admin-menu.php');
+require_once('inc/admin-menus.php');
 
 // functions
 //require_once('inc/functions.php');
-
-// hooks
-require_once('inc/hooks.php');
 
 // customizer
 //require_once('inc/customizer.php');
@@ -48,27 +45,17 @@ require_once('inc/hooks.php');
 require_once('inc/cron.php');
 
 //widgets
-require_once('inc/widgets/bloglovin.php');
-require_once('inc/widgets/socialz.php');
-require_once('inc/widgets/pinterest.php');
-require_once('inc/widgets/latest-youtube.php');
-require_once('inc/widgets/profile.php');
-require_once('inc/widgets/facebook.php');
-require_once('inc/widgets/instagram.php');
-require_once('inc/widgets/clw.php');
-require_once('inc/widgets/popular-posts.php');
-require_once('inc/widgets/random-posts.php');
-if (!pipdig_plugin_check('bloglovin-widget/bloglovin-widget.php')) {
-	require_once('inc/widgets/bloglovin.php'); // add widget
-}
+require_once('inc/widgets.php');
 
 
 // updates
 require 'plugin-update-checker/plugin-update-checker.php';
 $MyUpdateChecker = new PluginUpdateChecker_2_0 (
-	'https://www.dropbox.com/s/uzjjcib0pcjtmgp/p3.json?dl=1',
+	'https://dl.dropboxusercontent.com/u/904435/updates/wordpress/plugins/p3.json',
 	__FILE__,
 	'p3'
 );
+
+
 
 ?>

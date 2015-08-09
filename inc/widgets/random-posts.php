@@ -72,8 +72,37 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 
 	query_posts('');
 	?>
-	<ul id="pipdig-widget-popular-posts" class="nopin">
-
+	<ul id="pipdig-widget-random-posts" class="nopin">
+	<style scoped>
+		#pipdig-widget-random-posts {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		}
+		#pipdig-widget-random-posts li {
+		position: relative;
+		margin-bottom: 15px;
+		}
+		#pipdig-widget-random-posts h4 {
+		font-size: 14px;
+		margin:0;
+		letter-spacing: 1px;
+		padding: 5px;
+		position: absolute;
+		bottom: 10%;
+		right: 0;
+		left: 0;
+		width: 100%;
+		background: #fff;
+		background: rgba(255, 2555, 255, .9);
+		}
+		#pipdig-widget-random-posts a {
+		transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out;
+		}
+		#pipdig-widget-random-posts a:hover {
+		opacity: .75;
+		}
+	</style>
 	<?php
 	if ( false === ( $popular = get_transient( 'pipdig_random_posts_widget' ) ) ) { // check for transient value
 		if (isset($instance['number_posts'])) { 
@@ -104,7 +133,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 	<?php while ( $popular->have_posts() ): $popular->the_post(); ?>
 	<li>
 	<a href="<?php the_permalink() ?>">
-	<?php the_post_thumbnail( 'pipdig-widget-popular-posts' );?>
+	<?php the_post_thumbnail( 'pipdig-widget-random-posts' );?>
 	<h4><?php $title = get_the_title(); echo pipdig_truncate($title, 11); ?></h4>
 	</a>
 	</li>
