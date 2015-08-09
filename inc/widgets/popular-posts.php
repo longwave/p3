@@ -69,8 +69,38 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 
 	query_posts('');
 	?>
+	<style scoped>
+		#pipdig-widget-popular-posts {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		}
+		#pipdig-widget-popular-posts li {
+		position: relative;
+		margin-bottom: 15px;
+		}
+		#pipdig-widget-popular-posts h4 {
+		font-size: 14px;
+		margin:0;
+		letter-spacing: 1px;
+		padding: 5px;
+		position: absolute;
+		bottom: 10%;
+		right: 0;
+		left: 0;
+		width: 100%;
+		background: #fff;
+		background: rgba(255, 2555, 255, .9);
+		}
+		#pipdig-widget-popular-posts a {
+		transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out;
+		}
+		#pipdig-widget-popular-posts a:hover {
+		opacity: .75;
+		}
+	</style>
 	<ul id="pipdig-widget-popular-posts" class="nopin">
-
+	
 	<?php
 	if ( false === ( $popular = get_transient('pipdig_popular_posts_widget') ) ) { // check for transient value
 		if (isset($instance['number_posts'])) { 

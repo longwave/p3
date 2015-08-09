@@ -13,12 +13,12 @@ if (!function_exists('pipdig_clw_enqueue_scripts')) {
 
 
 // the widget class
-if (!class_exists('pipdig_clw_widget')) {
-	class pipdig_clw_widget extends WP_Widget {
+if (!class_exists('pipdig_widget_clw')) {
+	class pipdig_widget_clw extends WP_Widget {
 	 
 		public function __construct() {
-			$widget_ops = array('classname' => 'pipdig_clw_widget', 'description' => __('Proudly display where you are in the world.', 'pipdig-clw') );
-			parent::__construct('pipdig_clw_widget', 'pipdig - ' . __('Current Location', 'pipdig-clw'), $widget_ops);
+			$widget_ops = array('classname' => 'pipdig_widget_clw', 'description' => __('Proudly display where you are in the world.', 'pipdig-clw') );
+			parent::__construct('pipdig_widget_clw', 'pipdig - ' . __('Current Location', 'pipdig-clw'), $widget_ops);
 				
 			//enqueue JS on frontend only if widget is active on page:
 			if(is_active_widget(false, false, $this->id_base)) {
@@ -270,7 +270,7 @@ if (!class_exists('pipdig_clw_widget')) {
 		}
 	  
 	} // close widget class
-	add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_clw_widget");') );
+	add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_widget_clw");') );
 }
 
 
