@@ -18,6 +18,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$bloglovin = empty($instance['bloglovin']) ? '' : $instance['bloglovin'];
 		$pinterest = empty($instance['pinterest']) ? '' : $instance['pinterest'];
 		$youtube = empty($instance['youtube']) ? '' : $instance['youtube'];
+		$vine = empty($instance['vine']) ? '' : $instance['vine'];
 		$tumblr = empty($instance['tumblr']) ? '' : $instance['tumblr'];
 		$linkedin = empty($instance['linkedin']) ? '' : $instance['linkedin'];
 		$vk = empty($instance['vk']) ? '' : $instance['vk'];
@@ -39,6 +40,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		if (!empty($bloglovin)) $icons_output .= '<a href="' . $bloglovin . '" target="_blank"><i class="fa fa-plus"></i></a>';
 		if (!empty($pinterest)) $icons_output .= '<a href="' . $pinterest . '" target="_blank"><i class="fa fa-pinterest"></i></a>';
 		if (!empty($youtube)) $icons_output .= '<a href="' . $youtube . '" target="_blank"><i class="fa fa-youtube-play"></i></a>';
+		if (!empty($vine)) $icons_output .= '<a href="' . $vine . '" target="_blank"><i class="fa fa-vine"></i></a>';
 		if (!empty($tumblr)) $icons_output .= '<a href="' . $tumblr . '" target="_blank"><i class="fa fa-tumblr"></i></a>';
 		if (!empty($linkedin)) $icons_output .= '<a href="' . $linkedin . '" target="_blank"><i class="fa fa-linkedin"></i></a>';
 		if (!empty($vk)) $icons_output .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i></a>';
@@ -62,6 +64,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$bloglovin = empty($instance['bloglovin']) ? '' : $instance['bloglovin'];
 		$pinterest = empty($instance['pinterest']) ? '' : $instance['pinterest'];
 		$youtube = empty($instance['youtube']) ? '' : $instance['youtube'];
+		$vine = empty($instance['vine']) ? '' : $instance['vine'];
 		$tumblr = empty($instance['tumblr']) ? '' : $instance['tumblr'];
 		$linkedin = empty($instance['linkedin']) ? '' : $instance['linkedin'];
 		$vk = empty($instance['vk']) ? '' : $instance['vk'];
@@ -137,6 +140,14 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			value="<?php echo esc_attr($youtube); ?>" />
 			</label>
 		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('vine'); ?>">Vine (e.g. http://vine.co/pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('vine'); ?>" 
+			name="<?php echo $this->get_field_name('vine'); ?>" type="text" 
+			value="<?php echo esc_attr($vine); ?>" />
+			</label>
+		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id('tumblr'); ?>">Tumblr (e.g. http://pipdig.tumblr.com) 
@@ -200,6 +211,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$instance['bloglovin'] = strip_tags($new_instance['bloglovin']);
 		$instance['pinterest'] = strip_tags($new_instance['pinterest']);
 		$instance['youtube'] = strip_tags($new_instance['youtube']);
+		$instance['vine'] = strip_tags($new_instance['vine']);
 		$instance['tumblr'] = strip_tags($new_instance['tumblr']);
 		$instance['linkedin'] = strip_tags($new_instance['linkedin']);
 		$instance['vk'] = strip_tags($new_instance['vk']);
