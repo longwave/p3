@@ -131,7 +131,7 @@ if (!function_exists('pipdig_head_stuff')) {
 		$output = '';
 		$options = get_option( 'pipdig_settings', '' );
 		if (!empty($options['pipdig_textarea_scripts'])) {
-			$output .= '<!-- pipdig custom code head -->' . $options['pipdig_textarea_scripts'] . '<!-- // pipdig custom code head -->';
+			$output .= '<!-- pipdig p3 custom code head -->' . $options['pipdig_textarea_scripts'] . '<!-- // pipdig p3 custom code head -->';
 		}
 		echo $output;
 	}
@@ -144,7 +144,7 @@ if (!function_exists('pipdig_opening_body_stuff')) {
 		$output = '';
 		$options = get_option( 'pipdig_settings', '' );
 		if (!empty($options['pipdig_textarea_body_scripts'])) {
-			$output .= '<!-- pipdig custom after <body> -->' . $options['pipdig_textarea_body_scripts'] . '<!-- // pipdig custom after <body> -->';
+			$output .= '<!-- pipdig p3 custom after <body> -->' . $options['pipdig_textarea_body_scripts'] . '<!-- // pipdig p3 custom after <body> -->';
 		}
 		echo $output;
 	}
@@ -170,7 +170,7 @@ if (!function_exists('pipdig_after_first_post_stuff')) {
 		$output = '';
 		$options = get_option( 'pipdig_settings', '' );
 		if (!empty($options['pipdig_textarea_after_first_post'])) {
-			$output .= '<div class="hook_after-first-post"><!-- pipdig custom code after first post -->' . $options['pipdig_textarea_after_first_post'] . '<!-- // pipdig custom code after first post --></div>';
+			$output .= '<div class="hook_after-first-post"><!-- pipdig p3 custom code after first post -->' . $options['pipdig_textarea_after_first_post'] . '<!-- // pipdig p3 custom code after first post --></div>';
 		}
 		echo $output;
 	}

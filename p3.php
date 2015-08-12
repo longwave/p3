@@ -49,6 +49,27 @@ require_once('inc/cron.php');
 require_once('inc/widgets.php');
 
 
+
+function pipdig_p3_emmmm_heeey() {
+	?>
+	<script>	
+	jQuery(document).ready(function($) {
+		$(window).scroll(function() {
+		   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+			   $("#cookie-law-info-bar,.cc_container").slideUp();
+		   } else {
+			   $("#cookie-law-info-bar,.cc_container").slideDown()
+		   }
+		});
+	});
+	</script>
+	<?php
+}
+add_action('wp_footer','pipdig_p3_emmmm_heeey');
+
+
+
+
 // updates
 require 'plugin-update-checker/plugin-update-checker.php';
 $MyUpdateChecker = new PluginUpdateChecker_2_0 (
