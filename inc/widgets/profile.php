@@ -64,7 +64,7 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 			<input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php if (isset($instance['title'])) { echo $instance['title']; } ?>" class="widefat" />
 		</p>
 		<p style="display:none">
-			<label for="<?php echo $this->get_field_id('image_uri'); ?>">Image</label><br />
+			<label for="<?php echo $this->get_field_id('image_uri'); ?>"><?php _e('Image', 'p3'); ?></label><br />
 			<p style="font-weight:bold"><?php _e('Step 1 - Click the button below to select a photo:', 'p3'); ?></p>
 			<?php
 				if (!empty($instance['image_uri'])) :
@@ -84,7 +84,7 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 			</p>
 			
 			<p>
-				<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e('Add some text under the photo:', 'p3'); ?></label>
+				<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e('Add some text below the photo:', 'p3'); ?></label>
 				<textarea id="<?php echo $this->get_field_id( 'description' ); ?>" name="<?php echo $this->get_field_name( 'description' ); ?>" style="width:95%;" rows="4"><?php if (isset($instance['description'])) { echo $instance['description']; } ?></textarea>
 			</p>
 			<p style="text-align:right;font-weight:bold"><?php _e('Step 3 - Click the save button:', 'p3'); ?></p>

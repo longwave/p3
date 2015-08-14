@@ -13,6 +13,8 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		if (isset($instance['facebook_url'])) { 
 			$facebook_url =	$instance['facebook_url'];
+		} else {
+			$facebook_url =	get_theme_mod('socialz_facebook');
 		}
 		if (isset($instance['hide_cover'])) { 
 			$hide_cover = $instance['hide_cover'];
@@ -56,6 +58,8 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 		$title = $instance['title'];
 		if (isset($instance['facebook_url'])) { 
 			$facebook_url =	$instance['facebook_url'];
+		} else {
+			$facebook_url =	get_theme_mod('socialz_facebook');
 		}
 		if (isset($instance['hide_cover'])) { 
 			$hide_cover = $instance['hide_cover'];
@@ -84,7 +88,7 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 			<label for="<?php echo $this->get_field_id('facebook_url'); ?>"><?php _e('Facebook Page URL:', 'p3'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('facebook_url'); ?>" 
 			name="<?php echo $this->get_field_name('facebook_url'); ?>" type="text" 
-			value="<?php if (isset($instance['facebook_url'])) { echo esc_attr($facebook_url); } ?>" placeholder="https://facebook.com/pipdig" />
+			value="<?php echo esc_attr($facebook_url); ?>" placeholder="https://facebook.com/pipdig" />
 		</p>
 		
 		<p>
@@ -108,8 +112,8 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 	 
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['facebook_url'] = strip_tags( $new_instance['facebook_url'] );
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['facebook_url'] = strip_tags($new_instance['facebook_url']);
 		$instance['hide_cover'] = $new_instance['hide_cover'];
 		$instance['show_posts'] = $new_instance['show_posts'];
 		$instance['show_faces'] = $new_instance['show_faces'];

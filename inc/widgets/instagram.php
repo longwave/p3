@@ -44,10 +44,11 @@ if ( !class_exists( 'pipdig_widget_instagram' ) ) {
 
 		if (pipdig_plugin_check('instagram-feed/instagram-feed.php')) {
 			$bg = get_theme_mod('content_background_color', '#ffffff');
+			echo '<style scoped>#sb_instagram #sbi_load .sbi_load_btn,#sb_instagram .sbi_follow_btn a{border-radius:0;background:none;color:#000}</style>';
 			echo do_shortcode( '[instagram-feed width=100 height=100 widthunit=% heightunit=% background=' . $bg . ' imagepadding=1 imagepaddingunit=px class=pipdig-instagram-widget-inner num=' . $images_num . ' cols=' . $cols . ' imageres=medium disablemobile=true showheader=false showbutton=' . $load_more . ' showfollow=' . $follow . ']' );
 		} else {
 			$plugin_url = esc_url( 'https://wordpress.org/plugins/instagram-feed/' );
-			printf(__('Please install and activate <a href="%s" rel="nofollow" target="_blank">this plugin</a> to add your Instagram Feed.', 'p3'), $plugin_url );
+			printf(__('Please install and activate <a href="%s">this plugin</a> to add your Instagram Feed.', 'p3'), $plugin_url );
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');
