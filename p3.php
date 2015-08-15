@@ -33,6 +33,22 @@ if ( !function_exists( 'pipdig_plugin_check' ) ) {
 	}
 }
 
+// load image catch function, just in case theme hasn't
+if (!function_exists('pipdig_catch_that_image')) {
+	function pipdig_catch_that_image() {
+		global $post, $posts;
+		$first_img = '';
+		ob_start();
+		ob_end_clean();
+		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+		if(empty($output)){
+			return;
+		}
+		$first_img = $matches [1] [0];
+		return $first_img;
+	}
+}
+
 require_once('inc/admin-menus.php');
 
 // functions

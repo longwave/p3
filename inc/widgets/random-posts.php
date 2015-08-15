@@ -69,7 +69,6 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 	 
 		// WIDGET CODE GOES HERE
 
-
 	query_posts('');
 	?>
 	<ul id="pipdig-widget-random-posts" class="nopin">
@@ -97,7 +96,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		background: rgba(255, 2555, 255, .9);
 		}
 		#pipdig-widget-random-posts a {
-		transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out;
+		transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out;
 		}
 		#pipdig-widget-random-posts a:hover {
 		opacity: .75;
@@ -117,7 +116,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		}
 		$popular = new WP_Query( array(
 			'post_type'             => array( 'post' ),
-			'meta_key'              => '_thumbnail_id',
+			//'meta_key'              => '_thumbnail_id',
 			'showposts'             => $number_posts,
 			'ignore_sticky_posts'   => true,
 			'orderby'               => 'comment_count',
@@ -130,10 +129,18 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		) );
 		set_transient( 'pipdig_random_posts_widget', $popular, 30 * MINUTE_IN_SECONDS ); // set transient value
 	} ?>
-	<?php while ( $popular->have_posts() ): $popular->the_post(); ?>
+	<?php while ( $popular->have_posts() ): $popular->the_post();
+		if(has_post_thumbnail()){
+			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'pipdig-widget-popular-posts' );
+			$bg = $thumb['0'];
+		} else { // what? No featured image?  Let's use the first from post
+			$bg = pipdig_catch_that_image();
+		}
+	?>
 	<li>
 	<a href="<?php the_permalink() ?>">
-	<?php the_post_thumbnail( 'pipdig-widget-random-posts' );?>
+	<?php //the_post_thumbnail( 'pipdig-widget-random-posts' );?>
+	<img src="<?php echo $bg; ?>" alt="" />
 	<h4><?php $title = get_the_title(); echo pipdig_truncate($title, 11); ?></h4>
 	</a>
 	</li>
