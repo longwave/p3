@@ -10,3 +10,4 @@ require_once('widgets/instagram.php');
 require_once('widgets/clw.php');
 require_once('widgets/popular-posts.php');
 require_once('widgets/random-posts.php');
+require_once('widgets/subscribe.php');
