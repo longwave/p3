@@ -72,5 +72,5 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 	  }
 	  
 	}
-} // end class exists check
+}
 //add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_theme_bloglovin_widget");') );

@@ -93,5 +93,5 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 	<?php
 		}
 	}
-	//add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_widget_profile_function");') );
-} // end class exists check
+	add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_widget_profile_function");') );
+}

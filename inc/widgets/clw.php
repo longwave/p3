@@ -364,59 +364,9 @@ if (!class_exists('pipdig_clw_Customize')) {
 					),
 				)
 			);
-			
-			/*
-			$wp_customize->add_setting('pipdig_clw_icon',
-				array(
-					'default' => 'heart',
-					//'sanitize_callback' => 'pipdig_clw_sanitize_icon',
-				)
-			);
-			 
-			$wp_customize->add_control('pipdig_clw_icon',
-				array(
-					'type' => 'radio',
-					'label' => __( 'Widget Icon', 'pipdig-clw' ),
-					'section' => 'pipdig_clw',
-					'choices' => array(
-						'heart' => __( 'Heart', 'pipdig-clw' ),
-						'plus' => __( 'Plus', 'pipdig-clw' ),
-						'none' => __( 'None', 'pipdig-clw' ),
-					),
-				)
-			);
-			*/
-		}
-
-
-		/*
-		function pipdig_clw_sanitize_icon( $input ) {
-			$valid = array(
-				'heart' => 'Heart',
-				'plus' => 'Plus',
-				'' => 'None',
-			);
-			if ( array_key_exists( $input, $valid ) ) {
-				return $input;
-			} else {
-				return '';
-			}
-		}
-		*/
-
-		public static function live_preview() {
-			$plugin_url = plugins_url( 'inc/customizer.js', __FILE__ );
-			wp_enqueue_script( 
-				'pipdig-pipdig-clw-customizer',
-				$plugin_url ,
-				array(  'jquery', 'customize-preview' ),
-				'', // Define a version (optional) 
-				true // Specify whether to put in footer (leave this true)
-			);
 		}
 	}
 	add_action( 'customize_register' , array( 'pipdig_clw_Customize' , 'register' ) );
-	add_action( 'customize_preview_init' , array( 'pipdig_clw_Customize' , 'live_preview' ) );
 }
 
 
@@ -429,8 +379,3 @@ if (!function_exists('pipdig_clw_delete_transients')) {
 	}
 	add_action( 'customize_save_after', 'pipdig_clw_delete_transients' );
 }
-
-
-
-
-?>
