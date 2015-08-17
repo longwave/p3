@@ -33,6 +33,8 @@ function pipdig_p3_bad_mojo() {
 	remove_action( 'widgets_init', 'mm_register_widget' ); // remove mojo widget
 	remove_action( 'admin_head-themes.php', 'mm_add_theme_button' ); // remove mojo theme menu item
 	remove_action( 'admin_menu', 'mm_add_theme_page' ); // remove mojo themes link
+	
+	remove_action( 'widgets_init', 'akismet_register_widgets' ); // remove akismet widget
 }
 add_action('plugins_loaded','pipdig_p3_bad_mojo');
 

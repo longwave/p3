@@ -12,7 +12,7 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
          'json-api',
         // 'publicize',
         // 'vaultpress',
-        // 'custom-css',
+         'custom-css',
          'post-by-email',
         // 'widgets',
         // 'comments',
@@ -31,7 +31,6 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
          'mobile-push',
         // 'likes',
         // 'videopress',
-        // 'gplus-authorship',
         // 'sso',
          'monitor',
          'markdown',
@@ -50,13 +49,44 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
     return $modules;
 }
 add_filter( 'jetpack_get_available_modules', 'pipdig_p3_kill_jetpack_modules', 20, 3 );
-
+/*
+// switch modules on by default
+function pipdig_p3_activate_jetpack_modules( $modules ){
+    $modules = array(
+         'shortcodes',
+         'widget-visibility',
+        // 'contact-form',
+         'shortlinks',
+         'wpcc',
+         'publicize',
+        // 'vaultpress',
+        // 'custom-css',
+         'widgets',
+        // 'comments',
+         'enhanced-distribution',
+         'notes',
+         'subscriptions',
+         'stats',
+         'after-the-deadline',
+        // 'carousel',
+        // 'likes',
+        // 'videopress',
+         'sso',
+         'manage',
+        // 'verification-tools',
+        // 'custom-content-types',
+         'protect',
+    );
+    return $modules;
+}
+add_filter( 'option_jetpack_active_modules', 'pipdig_p3_activate_jetpack_modules' );
+*/
 // remove cruddy jetpack widgets
-function pipdig_p3_jetpack() {
+function pipdig_p3_jetpack_widgets() {
 	remove_action('widgets_init', 'jetpack_facebook_likebox_init');
 	remove_action('widgets_init', 'wpcom_social_media_icons_widget_load_widget');
 	remove_action('widgets_init', 'jetpack_top_posts_widget_init');
 	remove_action('widgets_init', 'jetpack_display_posts_widget');
 }
-add_action('jetpack_modules_loaded','pipdig_p3_jetpack');
+add_action('jetpack_modules_loaded','pipdig_p3_jetpack_widgets');
 
