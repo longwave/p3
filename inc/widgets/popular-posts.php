@@ -142,10 +142,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 	<h4><?php $title = get_the_title(); echo pipdig_truncate($title, 11); ?></h4>
 	</a>
 	</li>
-	<?php endwhile;?>
-	<?php
-	wp_reset_query();
-	?>
+	<?php endwhile; wp_reset_query(); ?>
 	</ul>
 	 
 	<?php

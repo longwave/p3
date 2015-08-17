@@ -364,7 +364,7 @@ msgid "Profile Photo"
 msgstr ""
 
 #: ../inc/widgets/profile.php:63 ../inc/widgets/socialz.php:78
-msgid "Widget Title (leave blank for no title):"
+msgid "Widget Title:"
 msgstr ""
 
 #: ../inc/widgets/profile.php:68

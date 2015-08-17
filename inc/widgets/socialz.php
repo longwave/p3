@@ -78,7 +78,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		<p><?php _e('Any links you add below will be shown as a social media icon. Leave any field blank to not add that icon.', 'p3'); ?></p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title (leave blank for no title):', 'p3'); ?>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'p3'); ?>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
 			name="<?php echo $this->get_field_name('title'); ?>" type="text" 
 			value="<?php echo esc_attr($title); ?>" />

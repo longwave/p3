@@ -25,33 +25,8 @@ function pipdig_p3_textdomain() {
 add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 
 
-// load plugin check function, just in case theme hasn't
-if ( !function_exists( 'pipdig_plugin_check' ) ) {
-	function pipdig_plugin_check( $plugin_name ) {
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		if ( is_plugin_active($plugin_name) ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-}
-
-// load image catch function, just in case theme hasn't
-if (!function_exists('pipdig_catch_that_image')) {
-	function pipdig_catch_that_image() {
-		global $post, $posts;
-		$first_img = '';
-		ob_start();
-		ob_end_clean();
-		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-		if(empty($output)){
-			return;
-		}
-		$first_img = $matches [1] [0];
-		return $first_img;
-	}
-}
+// functions
+require_once('inc/functions.php');
 
 // admin menus
 require_once('inc/admin-menus.php');
@@ -63,38 +38,9 @@ require_once('inc/cron.php');
 require_once('inc/widgets.php');
 
 // Jetpack stuff
-require_once('inc/jetpack.php');
-
-function pipdig_p3_emmmm_heeey() {
-	?>
-	<script>	
-	jQuery(document).ready(function($) {
-		$(window).scroll(function() {
-		   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-			   $("#cookie-law-info-bar,.cc_container").slideUp();
-		   } else {
-			   $("#cookie-law-info-bar,.cc_container").slideDown()
-		   }
-		});
-	});
-	</script>
-	<?php
+if (pipdig_plugin_check('jetpack/jetpack.php')) {
+	require_once('inc/jetpack.php');
 }
-add_action('wp_footer','pipdig_p3_emmmm_heeey');
-
-
-function pipdig_p3_themes_top_link() {
-	if(!isset($_GET['page'])) {
-	?>
-	<script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$('.add-new-h2').before('<a class="add-new-h2" href="http://www.pipdig.co/products/wordpress-themes?utm_source=wpmojo&utm_medium=wpmojo&utm_campaign=wpmojo" target="_blank">pipdig Themes</a>');
-	});
-	</script>
-	<?php
-	}
-}
-
 
 
 // updates

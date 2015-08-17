@@ -60,12 +60,3 @@ function pipdig_p3_jetpack() {
 }
 add_action('jetpack_modules_loaded','pipdig_p3_jetpack');
 
-
-function pipdig_p3_plugins_loaded() {
-	remove_action( 'admin_menu', 'mm_main_menu' ); // remove mojo menu
-	remove_action('widgets_init', 'mm_register_widget'); // remove mojo widget
-	remove_action( 'admin_head-themes.php', 'mm_add_theme_button' ); // remove mojo theme menu item
-	remove_action( 'admin_menu', 'mm_add_theme_page' ); // remove mojo themes link
-	add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' ); // replace themes link...
-}
-add_action('plugins_loaded','pipdig_p3_plugins_loaded');

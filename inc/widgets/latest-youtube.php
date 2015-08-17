@@ -58,7 +58,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		<p><?php _e('For example, the red part below:', 'p3'); ?></p> <p><?php echo esc_url('http://youtube.com/user/'); ?><span style="color:red">inthefrow</span></p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('youtubeuser'); ?>"><?php _e('YouTube Channel username:', 'p3'); ?>
+			<label for="<?php echo $this->get_field_id('youtubeuser'); ?>"><?php _e('YouTube Username:', 'p3'); ?>
 			<input class="widefat" id="<?php echo $this->get_field_id('youtubeuser'); ?>" 
 			name="<?php echo $this->get_field_name('youtubeuser'); ?>" type="text" 
 			value="<?php if (isset($instance['youtubeuser'])) { echo esc_attr($youtubeuser); } ?>" placeholder="inthefrow" />

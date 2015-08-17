@@ -116,8 +116,8 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		</p>
 
 		<p><?php _e('Add your Pinterest account name to the box below.', 'p3'); ?></p>
-		<p><?php _e('For example, the red part of this link:', 'p3'); ?></p>
-		<p><?php echo esc_url('http://pinterest.com/'); ?><span style="color:red">songofstyle</span></p>
+		<p><?php _e('For example, the red part below:', 'p3'); ?><br />
+		<?php echo esc_url('http://pinterest.com/'); ?><span style="color:red">songofstyle</span></p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('pinterestuser'); ?>"><?php _e('Pinterest Account Name:', 'p3'); ?>

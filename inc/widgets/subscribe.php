@@ -30,13 +30,14 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 		}
 
 		if (!empty($feed)) {
+			$lang = str_replace('-', '_', get_bloginfo('language'));
 			?>
 			
-				<form id="feedburner" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"	onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=<?php echo $feed; ?>', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true" >
+				<form id="feedburner" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"	onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=<?php echo $feed; ?>&amp;loc=<?php echo $lang; ?>', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true" >
 				<label for="fbg-mail"><?php echo $text; ?></label>
 				<p><input id="fbg-mail" type="email" required name="email" />
 				<input type="hidden" value="<?php echo $feed; ?>" name="uri" />
-				<input type="hidden" name="loc" value="en_US" />
+				<input type="hidden" name="loc" value="<?php echo $lang; ?>" />
 				<input type="submit" style="margin-top: 10px;" value="Subscribe" />
 				</p>
 			</form>
@@ -71,7 +72,7 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 		
 		<p>1. <?php _e('If you have not already setup FeedBurner with your site, you will need to by following <a href="http://goo.gl/udSrVR" target="_blank">this guide</a>.', 'p3'); ?></p>
 		<p>2. <?php _e('Add your FeedBurner ID to the box below.', 'p3'); ?></p>
-		<p><?php _e('For example, the red part of this feed url:', 'p3'); ?><br />
+		<p><?php _e('For example, the red part below:', 'p3'); ?><br />
 		http://feeds.feedburner.com/<span style="color:red;">TheLovecatsInc</span></p>
 
 		<p>

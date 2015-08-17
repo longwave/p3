@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-08-12 19:13-0000\n"
-"PO-Revision-Date: 2015-08-12 19:13-0000\n"
+"POT-Creation-Date: 2015-08-17 14:03-0000\n"
+"PO-Revision-Date: 2015-08-17 14:03-0000\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: fr\n"
@@ -22,15 +22,21 @@ msgstr ""
 
 #: ../inc/admin-menus.php:9 ../inc/admin-menus/css.php:10
 msgid "Custom CSS"
-msgstr ""
+msgstr "Modifier le CSS"
 
 #: ../inc/admin-menus.php:10
-msgid "Theme Hooks"
+msgid "Theme"
+msgstr "Thème"
+
+#: ../inc/admin-menus.php:11
+msgid "Help / Guides"
 msgstr ""
 
 #: ../inc/admin-menus/css.php:17
 msgid "Any CSS added to this box will be kept after theme updates."
 msgstr ""
+"Tout ajout de code CSS à cet emplacement sera sauvegardé après la mise à "
+"jour du thème."
 
 #: ../inc/admin-menus/css.php:63
 #, php-format
@@ -38,56 +44,66 @@ msgid ""
 "Remember, you can also change the appearance of your site by using the <a "
 "href=\"%s\">Customizer</a>."
 msgstr ""
+"Souvenez-vous, vous pouvez également changer l’apparence du site en "
+"utilisant <a href=\"%s\">Personnaliser</a>."
 
 #: ../inc/admin-menus/hooks.php:10
 msgid ""
 "Please be careful when adding code in these options. This can break your "
 "site if not added correctly!"
 msgstr ""
+" Soyez vigilant lors de l’ajout de code dans les options suivantes. Cela "
+"pourrait erroner le site!"
 
 #: ../inc/admin-menus/hooks.php:17
 msgid "Code to add to the  &lt;head&gt;"
-msgstr ""
+msgstr "Code à ajouter au &lt;head&gt;"
 
 #: ../inc/admin-menus/hooks.php:17
 msgid "For example, Google Analytics tracking code"
-msgstr ""
+msgstr "Par exemple, le numéro de suivi de Google Analytics."
 
 #: ../inc/admin-menus/hooks.php:25
 msgid "Code to add directly after the opening &lt;body&gt; tag"
-msgstr ""
+msgstr "Code à ajouter directement après le début du tag &lt;body&gt;"
 
 #: ../inc/admin-menus/hooks.php:33
 msgid "Code to add just before the closing &lt;/body&gt; tag"
-msgstr ""
+msgstr "Code  à ajouter  juste avant la fin du tag &lt;body&gt;"
 
 #: ../inc/admin-menus/hooks.php:41
 msgid ""
 "Code to add directly after the first post on the home page or any archive"
 msgstr ""
+"Code à ajouter directement après le premier article sur la page d’accueil ou "
+"sur n’importe quelle archive."
 
 #: ../inc/admin-menus/hooks.php:41
 msgid "For example, you may wish to place a banner ad after the first post"
 msgstr ""
+"Par exemple, vous souhaiteriez peut être placer la bannière publicitaire "
+"après le premier article."
 
 #: ../inc/admin-menus/hooks.php:105
 msgid ""
 "Use the fields below to add custom code to the Head, Body or Footer of your "
 "site."
 msgstr ""
+"Utilisez les champs ci dessous pour ajouter un code de customisation pour "
+"l’en tête, le corps du site ou pour le pieds de page."
 
 #: ../inc/admin-menus/hooks.php:105
 msgid ""
 "These settings will be carried over if you install any other pipdig theme."
 msgstr ""
+"Ces paramètres resteront en place si vous installez n’importe quel autre "
+"thème pipdig."
 
 #: ../inc/admin-menus/hooks.php:105
 msgid "WARNING: these options can break your site. Use with caution."
 msgstr ""
-
-#: ../inc/admin-menus/hooks.php:116
-msgid "pipdig Theme Hooks"
-msgstr ""
+"ATTENTION: Ces options peuvent erroner votre site. Utilisez les avec "
+"précaution."
 
 #: ../inc/widgets/bloglovin.php:6
 msgid "Display your Bloglovin' follower count."
@@ -103,7 +119,7 @@ msgstr "abonnés sur Bloglovin'"
 
 #: ../inc/widgets/bloglovin.php:45
 msgid "Follow on Bloglovin'"
-msgstr ""
+msgstr "Suivre sur Bloglovin’"
 
 #: ../inc/widgets/bloglovin.php:51
 #, php-format
@@ -111,10 +127,13 @@ msgid ""
 "Widget setup not complete. You must add your bloglovin profile to the "
 "'Social Media Icons' section of the <a href='%s'>Customizer</a>."
 msgstr ""
+"L’installation du widget est incomplète. Vous devez ajouter votre profil "
+"bloglovin dans la section « Icônes réseaux sociaux » <a href='%s'>de "
+"l’éditeur</a>."
 
 #: ../inc/widgets/bloglovin.php:61
 msgid "This widget will display your total Bloglovin' follower count."
-msgstr ""
+msgstr "Ce widget affichera votre total d’abonnés sur Bloglovin’."
 
 #: ../inc/widgets/bloglovin.php:62
 #, php-format
@@ -122,23 +141,25 @@ msgid ""
 "You can style this widget in the <em>Bloglovin' Widget</em> section of the "
 "<a href='%s'>Customizer</a>."
 msgstr ""
+"Vous pouvez customiser ce widget dans la section Bloglovin’ <a href='%s'>de "
+"l’éditeur</a>."
 
 #: ../inc/widgets/clw.php:20
 msgid "Proudly display where you are in the world."
-msgstr ""
+msgstr "Affichez fièrement où vous vous trouvez dans le monde."
 
 #: ../inc/widgets/clw.php:21 ../inc/widgets/clw.php:124
 #: ../inc/widgets/clw.php:193
 msgid "Current Location"
-msgstr ""
+msgstr "Lieu actuel"
 
 #: ../inc/widgets/clw.php:200 ../inc/widgets/clw.php:202
 msgid "Please enter location data in the widget settings."
-msgstr ""
+msgstr "Entrez les données de votre position dans les paramètres du widget."
 
 #: ../inc/widgets/clw.php:236
 msgid "Title:"
-msgstr ""
+msgstr "Titre:"
 
 #: ../inc/widgets/clw.php:242
 #, php-format
@@ -147,14 +168,19 @@ msgid ""
 "Latitude and Longitude of any location by <a href=\"%s\" target=\"_blank"
 "\">clicking here</a>."
 msgstr ""
+"Les informations ci dessous seront utilisées pour le créateur de carte. "
+"Trouvez la longitude et la latitude de n’importe quel endroit dans le monde "
+"en <a href=\"%s\" target=\"_blank\">cliquant ici</a>. (There are plenty of "
+"french websites where you can find your latitude and longitude, just type: "
+"Trouver sa latitude et sa longitude in google and choose the one you prefer."
 
 #: ../inc/widgets/clw.php:246
 msgid "Location Name:"
-msgstr ""
+msgstr "Nom du lieu:"
 
 #: ../inc/widgets/clw.php:247
 msgid "London, UK"
-msgstr ""
+msgstr "Paris, France"
 
 #: ../inc/widgets/clw.php:250
 msgid "Latitude:"
@@ -166,7 +192,7 @@ msgstr ""
 
 #: ../inc/widgets/clw.php:287
 msgid "Current Location Widget"
-msgstr ""
+msgstr "Widget Position Actuelle"
 
 #: ../inc/widgets/clw.php:290
 #, php-format
@@ -174,217 +200,234 @@ msgid ""
 "Use these options to style the Current Location Widget. You will need to set "
 "your location in the <a href=\"%s\">widget options</a> first."
 msgstr ""
+"Utilisez ces options pour modifier votre Widget Position Actuelle. Vous "
+"aurez d’abord besoin de paramétrer votre position dans les <a href=\"%s"
+"\">options du widget</a>. "
 
 #: ../inc/widgets/clw.php:305
 msgid "Map color"
-msgstr ""
+msgstr "Couleur de la carte"
 
 #: ../inc/widgets/clw.php:322
 msgid "Border color"
-msgstr ""
+msgstr "Couleur de la bordure"
 
 #: ../inc/widgets/clw.php:339
 msgid "Marker color"
-msgstr ""
+msgstr "Couleur du marqueur"
 
 #: ../inc/widgets/clw.php:359
 msgid "Marker size"
-msgstr ""
+msgstr "Taille du marqueur"
 
 #: ../inc/widgets/facebook.php:6
 msgid "Displays a Facebook Like Box."
-msgstr ""
+msgstr "Afficher un bouton J’aime Facebook."
 
 #: ../inc/widgets/facebook.php:7
 msgid "Facebook Widget"
-msgstr ""
+msgstr "Widget Facebook"
 
-#: ../inc/widgets/facebook.php:46
+#: ../inc/widgets/facebook.php:48 ../inc/widgets/subscribe.php:47
 msgid ""
 "Setup not complete. Please add your Facebook Page URL to the Facebook Widget "
 "in the dashboard."
 msgstr ""
+"Installation incomplète. Ajoutez l’URL de votre page Facebook à votre widget "
+"Facebook dans la tableau de bord."
 
-#: ../inc/widgets/facebook.php:75 ../inc/widgets/latest-youtube.php:50
+#: ../inc/widgets/facebook.php:79 ../inc/widgets/latest-youtube.php:50
 #: ../inc/widgets/pinterest.php:111 ../inc/widgets/popular-posts.php:27
-#: ../inc/widgets/random-posts.php:27
+#: ../inc/widgets/profile.php:63 ../inc/widgets/random-posts.php:27
+#: ../inc/widgets/socialz.php:81 ../inc/widgets/subscribe.php:67
 msgid "Widget Title:"
-msgstr ""
+msgstr "Titre du widget:"
 
-#: ../inc/widgets/facebook.php:81
+#: ../inc/widgets/facebook.php:85
 msgid ""
 "Add your Facebook page URL to the box below. For example, https://facebook."
 "com/pipdig"
 msgstr ""
+"Ajouter l’URL de votre page Facebook dans le cadre ci dessous. Par exemple, "
+"https://facebook.com/pipdig"
 
-#: ../inc/widgets/facebook.php:84
+#: ../inc/widgets/facebook.php:88
 msgid "Facebook Page URL:"
-msgstr ""
+msgstr "Url de la page Facebook:"
 
-#: ../inc/widgets/facebook.php:92
+#: ../inc/widgets/facebook.php:96
 msgid "Hide Cover Image"
-msgstr ""
+msgstr "Masquer l’image de couverture"
 
-#: ../inc/widgets/facebook.php:97
+#: ../inc/widgets/facebook.php:101
 msgid "Show Faces"
-msgstr ""
+msgstr "Afficher les visages"
 
-#: ../inc/widgets/facebook.php:102
+#: ../inc/widgets/facebook.php:106
 msgid "Show Posts"
-msgstr ""
+msgstr "Afficher les articles"
 
 #: ../inc/widgets/instagram.php:6
 msgid "Displays your latest Instagram photos"
-msgstr ""
+msgstr "Afficher vos dernières publications Instagram."
 
 #: ../inc/widgets/instagram.php:7
 msgid "Instagram Widget"
-msgstr ""
+msgstr "Widget Instagram"
 
-#: ../inc/widgets/instagram.php:50 ../inc/widgets/instagram.php:89
+#: ../inc/widgets/instagram.php:51 ../inc/widgets/instagram.php:90
 #, php-format
 msgid ""
-"Please install and activate <a href=\"%s\" rel=\"nofollow\" target=\"_blank"
-"\">this plugin</a> to add your Instagram Feed."
+"Please install and activate <a href=\"%s\">this plugin</a> to add your "
+"Instagram Feed."
 msgstr ""
+"Veuillez installer et activer <a href=\"%s\">ce plugin</a> pour afficher "
+"votre fil d’actualité Instagram."
 
-#: ../inc/widgets/instagram.php:86
+#: ../inc/widgets/instagram.php:87
 #, php-format
 msgid ""
 "This widget will show your latest Instagram photos. You will need to "
 "authorize your Instagram account on <a href=\"%s\">this page</a> for this "
 "widget to work."
 msgstr ""
+"Ce widget affichera vos dernières publications Instagram. Vous devrez "
+"autoriser votre compte Instagram sur <a href=\"%s\">cette page</a> pour que "
+"le widget fonctionne."
 
-#: ../inc/widgets/instagram.php:94 ../inc/widgets/pinterest.php:131
+#: ../inc/widgets/instagram.php:95 ../inc/widgets/pinterest.php:131
 msgid "Number of images to display:"
-msgstr ""
+msgstr "Nombre d’images à afficher:"
 
-#: ../inc/widgets/instagram.php:98
+#: ../inc/widgets/instagram.php:99
 msgid "Number of columns:"
-msgstr ""
+msgstr "Nombre de colonnes:"
 
-#: ../inc/widgets/instagram.php:103
+#: ../inc/widgets/instagram.php:104
 msgid "Display a \"Load more\" button."
-msgstr ""
+msgstr "Afficher un bouton « voir plus »."
 
-#: ../inc/widgets/instagram.php:108
+#: ../inc/widgets/instagram.php:109
 msgid "Display a \"Follow\" link."
-msgstr ""
+msgstr "Afficher un lien « suivre »."
 
 #: ../inc/widgets/latest-youtube.php:6
 msgid "Automatically displays your latest YouTube video."
-msgstr ""
+msgstr "Affiche automatiquement votre dernière vidéo Youtube."
 
 #: ../inc/widgets/latest-youtube.php:7
 msgid "Latest YouTube"
-msgstr ""
+msgstr "Dernière vidéo Youtube."
 
 #: ../inc/widgets/latest-youtube.php:31
 msgid ""
 "Setup not complete. Please add your YouTube username to the YouTube Widget "
 "in the dashboard."
 msgstr ""
+"Installation incomplète. Ajoutez votre nom d’utilisateur Youtube au Widget "
+"Youtube dans le tableau de bord."
 
 #: ../inc/widgets/latest-youtube.php:57
 msgid ""
 "Add your YouTube user/channel to the box below to show your latest video. "
 "This can be found in your channel's URL."
 msgstr ""
+"Ajouter votre nom d’utilisateur Youtube ou le nom de votre chaine dans "
+"l’encadré ci dessous pour afficher votre dernière vidéo. Vous pourrez "
+"trouver ces informations dans l’URL de votre chaine."
 
-#: ../inc/widgets/latest-youtube.php:58
+#: ../inc/widgets/latest-youtube.php:58 ../inc/widgets/pinterest.php:119
+#: ../inc/widgets/subscribe.php:75
 msgid "For example, the red part below:"
-msgstr ""
+msgstr "Par exemple, la partie rouge ci dessous:"
 
 #: ../inc/widgets/latest-youtube.php:61
-msgid "YouTube Channel username:"
-msgstr ""
+msgid "YouTube Username:"
+msgstr "Nom d’utilisateur de votre chaine Youtube:"
 
 #: ../inc/widgets/pinterest.php:6
 msgid "Displays your latest Pinterest pins."
-msgstr ""
+msgstr "Afficher vos derniers pins."
 
 #: ../inc/widgets/pinterest.php:7
 msgid "Pinterest Widget"
-msgstr ""
+msgstr "Widget Pinterest"
 
 #: ../inc/widgets/pinterest.php:88
 msgid ""
 "Setup not complete. Please add your Pinterest username to the Pinterest "
 "Widget in the dashboard."
 msgstr ""
+"Installation incomplète. Ajoutez votre nom d’utilisateur Pinterest au Widget "
+"Pinterest dans le tableau de bord."
 
 #: ../inc/widgets/pinterest.php:118
 msgid "Add your Pinterest account name to the box below."
-msgstr ""
-
-#: ../inc/widgets/pinterest.php:119
-msgid "For example, the red part of this link:"
-msgstr ""
+msgstr "Ajoutez votre nom d’utilisateur Pinterest dans l’encadré ci dessous."
 
 #: ../inc/widgets/pinterest.php:123
 msgid "Pinterest Account Name:"
-msgstr ""
+msgstr "Nom d’utilisateur de votre compte Pinterest:"
 
 #: ../inc/widgets/popular-posts.php:6
 msgid "Displays your most popular posts."
-msgstr ""
+msgstr "Affichez vos articles les plus populaires."
 
 #: ../inc/widgets/popular-posts.php:7
 msgid "Popular Posts"
-msgstr ""
+msgstr "Articles populaires"
 
 #: ../inc/widgets/popular-posts.php:33 ../inc/widgets/random-posts.php:33
 msgid "Date range for posts:"
-msgstr ""
+msgstr "Période:"
 
 #: ../inc/widgets/popular-posts.php:35 ../inc/widgets/random-posts.php:35
 msgid "1 Week"
-msgstr ""
+msgstr "1 semaine"
 
 #: ../inc/widgets/popular-posts.php:36 ../inc/widgets/random-posts.php:36
 msgid "1 Month"
-msgstr ""
+msgstr "1 mois"
 
 #: ../inc/widgets/popular-posts.php:37 ../inc/widgets/random-posts.php:37
 msgid "1 Year"
-msgstr ""
+msgstr "1 année"
 
 #: ../inc/widgets/popular-posts.php:38 ../inc/widgets/random-posts.php:38
 msgid "All Time"
-msgstr ""
+msgstr "Depuis la création de votre blog"
 
 #: ../inc/widgets/popular-posts.php:42 ../inc/widgets/random-posts.php:42
 msgid "Number of posts to show:"
-msgstr ""
+msgstr "Nombre d’articles à afficher:"
 
 #: ../inc/widgets/profile.php:17
 msgid "Show off your profile photo!"
-msgstr ""
+msgstr "Affichez fièrement votre photo de profil!"
 
 #: ../inc/widgets/profile.php:18
 msgid "Profile Photo"
-msgstr ""
+msgstr "Photo de profil"
 
-#: ../inc/widgets/profile.php:63 ../inc/widgets/socialz.php:81
-msgid "Widget Title (leave blank for no title):"
+#: ../inc/widgets/profile.php:67
+msgid "Image"
 msgstr ""
 
 #: ../inc/widgets/profile.php:68
 msgid "Step 1 - Click the button below to select a photo:"
-msgstr ""
+msgstr "Étape 1 - Cliquez sur le bouton ci dessous pour choisir une photo:"
 
 #: ../inc/widgets/profile.php:77
 msgid "Upload Photo"
-msgstr ""
+msgstr "Télécharger une photo"
 
 #: ../inc/widgets/profile.php:78
 msgid "Step 2 - Optional extras:"
-msgstr ""
+msgstr "Étape 2 - Extras optionnels:"
 
 #: ../inc/widgets/profile.php:81
 msgid "Change image to a circle"
-msgstr ""
+msgstr "Transformez votre image en cercle"
 
 #: ../inc/widgets/profile.php:83
 #, php-format
@@ -393,37 +436,74 @@ msgid ""
 "300px wide by 300px high. You can use free websites like <a href='%s' "
 "target='_blank'>picmonkey.com</a> to edit your image."
 msgstr ""
+"Pour un cercle parfait il est préférable de télécharger une image carrée. "
+"Par exemple 300 px de large et 300 px de haut.Vous pouvez utiliser des sites "
+"gratuits tels que <a href='%s' target='_blank'>www.picmonkey.com</a> pour "
+"éditer votre image."
 
 #: ../inc/widgets/profile.php:87
-msgid "Add some text under the photo:"
-msgstr ""
+msgid "Add some text below the photo:"
+msgstr "Ajouter du texte sous la photo:"
 
 #: ../inc/widgets/profile.php:90
 msgid "Step 3 - Click the save button:"
-msgstr ""
+msgstr "Étape 3 - Cliquez sur le bouton enregistrer:"
 
 #: ../inc/widgets/random-posts.php:6
 msgid "Displays a selection of random posts."
-msgstr ""
+msgstr "Afficher une selection aléatoire d’articles."
 
 #: ../inc/widgets/random-posts.php:7
 msgid "Random Posts"
-msgstr ""
+msgstr "Articles aléatoires"
 
 #: ../inc/widgets/random-posts.php:45
 msgid "Posts will be refreshed every 30 minutes"
-msgstr ""
+msgstr "Les articles seront actualisés toutes les 30 minutes."
 
 #: ../inc/widgets/socialz.php:6
 msgid "The easy way to show social media icons."
-msgstr ""
+msgstr "Une manière simple d’afficher ses icônes de réseaux sociaux."
 
 #: ../inc/widgets/socialz.php:7
 msgid "Social Media Icons"
-msgstr ""
+msgstr "Icônes réseaux sociaux"
 
 #: ../inc/widgets/socialz.php:78
 msgid ""
 "Any links you add below will be shown as a social media icon. Leave any "
 "field blank to not add that icon."
 msgstr ""
+"Tous les liens ajoutés ci dessous seront affichés comme des icônes de vos "
+"réseaux sociaux. Ne pas remplir les champs suivants pour ne pas ajouter "
+"d’icone."
+
+#: ../inc/widgets/subscribe.php:6
+msgid "Allow people to subscribe to your blog via email"
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:7
+msgid "Email Subscribe"
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:20 ../inc/widgets/subscribe.php:87
+msgid "Enter your email address to subscribe:"
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:73
+msgid ""
+"If you have not already setup FeedBurner with your site, you will need to by "
+"following <a href=\"http://goo.gl/udSrVR\" target=\"_blank\">this guide</a>."
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:74
+msgid "Add your FeedBurner ID to the box below."
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:86
+msgid "Text to display above the form:"
+msgstr ""
+
+#: ../p3.php:91
+msgid "Themes"
+msgstr "Thèmes"
