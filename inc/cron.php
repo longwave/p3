@@ -63,7 +63,7 @@ if (!function_exists('pipdig_p3_do_this_daily')) {
 		// change width (and height and quality if so)
 		if(get_option('jr_resizeupload_width') == '1200') {
 			
-			update_option('jr_resizeupload_width', '1600');
+			update_option('jr_resizeupload_width', '1920');
 			
 			// change height
 			if(get_option('jr_resizeupload_height') == '1200') {
