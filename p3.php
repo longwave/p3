@@ -38,7 +38,7 @@ require_once('inc/cron.php');
 require_once('inc/widgets.php');
 
 // Jetpack stuff
-if (pipdig_plugin_check('jetpack/jetpack.php')) {
+if(class_exists('Jetpack')) {
 	require_once('inc/jetpack.php');
 }
 

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-08-08 23:35+0100\n"
+"POT-Creation-Date: 2015-08-18 22:53+0100\n"
 "PO-Revision-Date: 2015-07-02 14:27-0000\n"
 "Last-Translator: \n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
@@ -21,69 +21,77 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: ../img\n"
 "X-Poedit-SearchPathExcluded-3: ../css\n"
 
-#: ../inc/admin-menu.php:9
-msgid "Theme Hooks"
+#: ../inc/admin-menus.php:9 ../inc/admin-menus/css.php:10
+msgid "Custom CSS"
 msgstr ""
 
-#: ../inc/hooks.php:20
+#: ../inc/admin-menus.php:10
+msgid "Theme"
+msgstr ""
+
+#: ../inc/admin-menus.php:11
+msgid "Help / Guides"
+msgstr ""
+
+#: ../inc/admin-menus/css.php:17
+msgid "Any CSS added to this box will be kept after theme updates."
+msgstr ""
+
+#: ../inc/admin-menus/css.php:63
+#, php-format
+msgid ""
+"Remember, you can also change the appearance of your site by using the <a "
+"href=\"%s\">Customizer</a>."
+msgstr ""
+
+#: ../inc/admin-menus/hooks.php:10
 msgid ""
 "Please be careful when adding code in these options. This can break your "
 "site if not added correctly!"
 msgstr ""
 
-#: ../inc/hooks.php:27
-msgid "Custom CSS"
-msgstr ""
-
-#: ../inc/hooks.php:35
+#: ../inc/admin-menus/hooks.php:17
 msgid "Code to add to the  &lt;head&gt;"
 msgstr ""
 
-#: ../inc/hooks.php:35
+#: ../inc/admin-menus/hooks.php:17
 msgid "For example, Google Analytics tracking code"
 msgstr ""
 
-#: ../inc/hooks.php:43
+#: ../inc/admin-menus/hooks.php:25
 msgid "Code to add directly after the opening &lt;body&gt; tag"
 msgstr ""
 
-#: ../inc/hooks.php:51
+#: ../inc/admin-menus/hooks.php:33
 msgid "Code to add just before the closing &lt;/body&gt; tag"
 msgstr ""
 
-#: ../inc/hooks.php:59
+#: ../inc/admin-menus/hooks.php:41
 msgid ""
 "Code to add directly after the first post on the home page or any archive"
 msgstr ""
 
-#: ../inc/hooks.php:59
+#: ../inc/admin-menus/hooks.php:41
 msgid "For example, you may wish to place a banner ad after the first post"
 msgstr ""
 
-#: ../inc/hooks.php:135
+#: ../inc/admin-menus/hooks.php:105
 msgid ""
 "Use the fields below to add custom code to the Head, Body or Footer of your "
 "site."
 msgstr ""
 
-#: ../inc/hooks.php:135
+#: ../inc/admin-menus/hooks.php:105
 msgid ""
 "These settings will be carried over if you install any other pipdig theme."
 msgstr ""
 
-#: ../inc/hooks.php:135
+#: ../inc/admin-menus/hooks.php:105
 msgid "WARNING: these options can break your site. Use with caution."
 msgstr ""
 
-#: ../inc/hooks.php:147
-msgid "pipdig Theme Hooks"
-msgstr ""
-
-#: ../inc/hooks.php:158
-#, php-format
-msgid ""
-"Remember, you can also change the appearance of your site by using the <a "
-"href=\"%s\">Customizer</a>."
+#: ../inc/functions.php:48
+msgid "Themes"
 msgstr ""
 
 #: ../inc/widgets/bloglovin.php:6
@@ -106,7 +114,7 @@ msgstr ""
 #, php-format
 msgid ""
 "Widget setup not complete. You must add your bloglovin profile to the "
-"'Social Media Icons' section of the <a href='%s'>Customizer</a>."
+"'Social Media Links' section of the <a href='%s'>Customizer</a>."
 msgstr ""
 
 #: ../inc/widgets/bloglovin.php:61
@@ -196,37 +204,38 @@ msgstr ""
 msgid "Facebook Widget"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:46
+#: ../inc/widgets/facebook.php:48 ../inc/widgets/subscribe.php:47
 msgid ""
 "Setup not complete. Please add your Facebook Page URL to the Facebook Widget "
 "in the dashboard."
 msgstr ""
 
-#: ../inc/widgets/facebook.php:75 ../inc/widgets/latest-youtube.php:50
-#: ../inc/widgets/pinterest.php:78 ../inc/widgets/popular-posts.php:27
-#: ../inc/widgets/random-posts.php:27
+#: ../inc/widgets/facebook.php:79 ../inc/widgets/latest-youtube.php:50
+#: ../inc/widgets/pinterest.php:111 ../inc/widgets/popular-posts.php:27
+#: ../inc/widgets/profile.php:63 ../inc/widgets/random-posts.php:27
+#: ../inc/widgets/socialz.php:81 ../inc/widgets/subscribe.php:67
 msgid "Widget Title:"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:81
+#: ../inc/widgets/facebook.php:85
 msgid ""
 "Add your Facebook page URL to the box below. For example, https://facebook."
 "com/pipdig"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:84
+#: ../inc/widgets/facebook.php:88
 msgid "Facebook Page URL:"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:92
+#: ../inc/widgets/facebook.php:96
 msgid "Hide Cover Image"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:97
+#: ../inc/widgets/facebook.php:101
 msgid "Show Faces"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:102
+#: ../inc/widgets/facebook.php:106
 msgid "Show Posts"
 msgstr ""
 
@@ -238,14 +247,14 @@ msgstr ""
 msgid "Instagram Widget"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:50 ../inc/widgets/instagram.php:89
+#: ../inc/widgets/instagram.php:51 ../inc/widgets/instagram.php:90
 #, php-format
 msgid ""
-"Please install and activate <a href=\"%s\" rel=\"nofollow\" target=\"_blank"
-"\">this plugin</a> to add your Instagram Feed."
+"Please install and activate <a href=\"%s\">this plugin</a> to add your "
+"Instagram Feed."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:86
+#: ../inc/widgets/instagram.php:87
 #, php-format
 msgid ""
 "This widget will show your latest Instagram photos. You will need to "
@@ -253,19 +262,19 @@ msgid ""
 "widget to work."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:94 ../inc/widgets/pinterest.php:98
+#: ../inc/widgets/instagram.php:95 ../inc/widgets/pinterest.php:131
 msgid "Number of images to display:"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:98
+#: ../inc/widgets/instagram.php:99
 msgid "Number of columns:"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:103
+#: ../inc/widgets/instagram.php:104
 msgid "Display a \"Load more\" button."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:108
+#: ../inc/widgets/instagram.php:109
 msgid "Display a \"Follow\" link."
 msgstr ""
 
@@ -289,12 +298,13 @@ msgid ""
 "This can be found in your channel's URL."
 msgstr ""
 
-#: ../inc/widgets/latest-youtube.php:58
+#: ../inc/widgets/latest-youtube.php:58 ../inc/widgets/pinterest.php:119
+#: ../inc/widgets/subscribe.php:75
 msgid "For example, the red part below:"
 msgstr ""
 
 #: ../inc/widgets/latest-youtube.php:61
-msgid "YouTube Channel username:"
+msgid "YouTube Username:"
 msgstr ""
 
 #: ../inc/widgets/pinterest.php:6
@@ -305,21 +315,17 @@ msgstr ""
 msgid "Pinterest Widget"
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:55
+#: ../inc/widgets/pinterest.php:88
 msgid ""
 "Setup not complete. Please add your Pinterest username to the Pinterest "
 "Widget in the dashboard."
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:85
+#: ../inc/widgets/pinterest.php:118
 msgid "Add your Pinterest account name to the box below."
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:86
-msgid "For example, the red part of this link:"
-msgstr ""
-
-#: ../inc/widgets/pinterest.php:90
+#: ../inc/widgets/pinterest.php:123
 msgid "Pinterest Account Name:"
 msgstr ""
 
@@ -363,8 +369,8 @@ msgstr ""
 msgid "Profile Photo"
 msgstr ""
 
-#: ../inc/widgets/profile.php:63 ../inc/widgets/socialz.php:78
-msgid "Widget Title:"
+#: ../inc/widgets/profile.php:67
+msgid "Image"
 msgstr ""
 
 #: ../inc/widgets/profile.php:68
@@ -392,7 +398,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/widgets/profile.php:87
-msgid "Add some text under the photo:"
+msgid "Add some text below the photo:"
 msgstr ""
 
 #: ../inc/widgets/profile.php:90
@@ -419,8 +425,34 @@ msgstr ""
 msgid "Social Media Icons"
 msgstr ""
 
-#: ../inc/widgets/socialz.php:75
+#: ../inc/widgets/socialz.php:78
 msgid ""
 "Any links you add below will be shown as a social media icon. Leave any "
 "field blank to not add that icon."
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:6
+msgid "Allow people to subscribe to your blog via email"
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:7
+msgid "Email Subscribe"
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:20 ../inc/widgets/subscribe.php:87
+msgid "Enter your email address to subscribe:"
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:73
+msgid ""
+"If you have not already setup FeedBurner with your site, you will need to by "
+"following <a href=\"http://goo.gl/udSrVR\" target=\"_blank\">this guide</a>."
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:74
+msgid "Add your FeedBurner ID to the box below."
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:86
+msgid "Text to display above the form:"
 msgstr ""

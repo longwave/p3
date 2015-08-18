@@ -48,7 +48,7 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 			echo $bloglovin_widget_output;
 		} else {
 			$cust_url = admin_url( 'customize.php' );
-			printf(__("Widget setup not complete. You must add your bloglovin profile to the 'Social Media Icons' section of the <a href='%s'>Customizer</a>.", 'p3'), $cust_url );
+			printf(__("Widget setup not complete. You must add your bloglovin profile to the 'Social Media Links' section of the <a href='%s'>Customizer</a>.", 'p3'), $cust_url );
 		}
 		// After widget code, if any
 		echo (isset($after_widget)?$after_widget:'');
