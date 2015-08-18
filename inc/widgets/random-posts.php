@@ -134,7 +134,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'pipdig-widget-popular-posts' );
 			$bg = $thumb['0'];
 		} else { // what? No featured image?  Let's use the first from post
-			$bg = pipdig_catch_that_image();
+			$bg = pipdig_p3_catch_that_image();
 		}
 	?>
 	<li>
