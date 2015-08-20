@@ -135,7 +135,7 @@ if (!function_exists('pipdig_head_stuff')) {
 		}
 		echo $output;
 	}
-	add_action('wp_head','pipdig_head_stuff');
+	add_action('wp_head', 'pipdig_head_stuff');
 }
 
 
@@ -148,7 +148,7 @@ if (!function_exists('pipdig_opening_body_stuff')) {
 		}
 		echo $output;
 	}
-	add_action('before','pipdig_opening_body_stuff');
+	add_action('before', 'pipdig_opening_body_stuff');
 }
 
 
@@ -161,7 +161,7 @@ if (!function_exists('pipdig_footer_stuff')) {
 		}
 		echo $output;
 	}
-	add_action('wp_footer','pipdig_footer_stuff');
+	add_action('wp_footer', 'pipdig_footer_stuff');
 }
 
 

@@ -37,6 +37,9 @@ require_once('inc/cron.php');
 // widgets
 require_once('inc/widgets.php');
 
+// shortcodes
+require_once('inc/shortcodes.php');
+
 // Jetpack stuff
 if(class_exists('Jetpack')) {
 	require_once('inc/jetpack.php');
