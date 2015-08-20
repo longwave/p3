@@ -30,7 +30,7 @@ if (!function_exists('pipdig_textarea_css_render')) {
 
 		$options = get_option( 'pipdig_css' );
 		?>
-		<textarea cols='60' rows='30' name='pipdig_css[pipdig_textarea_css]' placeholder='body {color: #000000; background: #ffffff}'><?php if (isset($options['pipdig_textarea_css'])) { echo $options['pipdig_textarea_css']; } ?></textarea>
+		<textarea style="width:90%;height: 400px;" name='pipdig_css[pipdig_textarea_css]' placeholder='body {color: #000000; background: #ffffff}'><?php if (isset($options['pipdig_textarea_css'])) { echo $options['pipdig_textarea_css']; } ?></textarea>
 		<?php
 
 	}
@@ -72,7 +72,7 @@ if (!function_exists('pipdig_css_head')) {
 		$output = '';
 		$options = get_option( 'pipdig_css', '' );
 		if (!empty($options['pipdig_textarea_css'])) {
-			$output .= '<!-- pipdig custom css --><style>' . $options['pipdig_textarea_css'] . '</style><!-- // pipdig custom css head -->';
+			$output .= '<!-- pipdig custom css --><style>' . $options['pipdig_textarea_css'] . '</style><!-- // pipdig custom css -->';
 		}
 		echo $output;
 	}
