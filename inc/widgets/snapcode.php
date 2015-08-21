@@ -79,7 +79,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 	$instance['title'] = strip_tags($new_instance['title']);
 	$instance['snapcode'] = strip_tags($new_instance['snapcode']);
     $instance['snapchat_account'] = strip_tags($new_instance['snapchat_account']);
-	update_option('snapchat_snapcode_account', $instance['snapchat_account']); // might use this in a shortcode later
+	update_option('pipdig_p3_snapchat_account', $instance['snapchat_account']); // might use this in a shortcode later
     return $instance;
   }
   
