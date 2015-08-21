@@ -8,7 +8,7 @@ add_action( 'wp_enqueue_scripts', 'pipdig_p3_star_enqueue_scripts' );
 
 
 // [stars rating="5"]
-function star_rating_shortcode( $atts, $content = null ) {
+function pipdig_p3_star_rating_shortcode( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'rating' => '5',
 		'color' => '#fec400'
@@ -34,7 +34,7 @@ function star_rating_shortcode( $atts, $content = null ) {
 	</script>
 	';
 }
-add_shortcode( 'stars', 'star_rating_shortcode' );
+add_shortcode( 'pipdig_stars', 'pipdig_p3_star_rating_shortcode' );
 
 
 function pipdig_p3_star_enqueue_styles() {
