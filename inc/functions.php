@@ -27,6 +27,21 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 	}
 }
 
+/* Add Featured Image to feed -------------------------------------------------------*/
+if (!function_exists('pipdig_p3_rss_post_thumbnail')) {
+	function pipdig_p3_rss_post_thumbnail($content) {
+		global $post;
+		if(has_post_thumbnail($post->ID)) {
+			$content = '<p>' . get_the_post_thumbnail($post->ID) . '</p>' . get_the_excerpt();
+		} else {
+			$content = '<p><img src="'.pipdig_p3_catch_that_image().'" alt=""/></p>' . get_the_excerpt();
+		}
+		return $content;
+	}
+	add_filter('the_excerpt_rss', 'pipdig_p3_rss_post_thumbnail');
+	add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');
+}
+
 // remove mojo crap
 function pipdig_p3_bad_mojo() {
 	remove_action( 'admin_menu', 'mm_main_menu' ); // remove mojo menu
