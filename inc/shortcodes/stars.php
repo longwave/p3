@@ -1,12 +1,5 @@
 <?php 
 
-// add scripts
-function pipdig_p3_star_enqueue_scripts($hook) {
-	wp_register_script( 'rateyo', plugin_dir_url(__FILE__) . 'rateyo.js', array('jquery') );
-}
-add_action( 'wp_enqueue_scripts', 'pipdig_p3_star_enqueue_scripts' );
-
-
 // [stars rating="5"]
 function pipdig_p3_star_rating_shortcode( $atts, $content = null ) {
 	extract( shortcode_atts( array(

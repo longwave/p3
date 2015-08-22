@@ -24,6 +24,12 @@ function pipdig_p3_textdomain() {
 }
 add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 
+// enqueue scripts and styles
+function pipdig_p3_scripts_styles($hook) {
+	wp_register_script( 'rateyo', plugin_dir_url(__FILE__) . 'assets/js/rateyo.js', array('jquery') );
+	wp_register_script( 'imagesloaded', '//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js', array('jquery'), false );
+}
+add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles' );
 
 // functions
 require_once('inc/functions.php');

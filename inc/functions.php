@@ -20,7 +20,7 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 		ob_end_clean();
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 		if(empty($output)){
-			return;
+			return 'http://pipdigz.co.uk/p3/img/catch-placeholder.jpg';
 		}
 		$first_img = $matches [1] [0];
 		return $first_img;
