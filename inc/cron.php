@@ -56,29 +56,7 @@ if (!function_exists('pipdig_p3_do_this_daily')) {
 			$pinterest_count = intval(str_replace(',', '', $pinterest_count));
 			update_option('pipdig_theme_pinterest_count', $pinterest_count);
 		}
-		
-		
-		
-		// change default values for https://wordpress.org/plugins/resize-image-after-upload/ -------------------
-		// change width (and height and quality if so)
-		if(get_option('jr_resizeupload_width') == '1200') {
-			
-			update_option('jr_resizeupload_width', '1920');
-			
-			// change height
-			if(get_option('jr_resizeupload_height') == '1200') {
-				update_option('jr_resizeupload_height', '0');
-			}
-			
-			// change quality
-			if(get_option('jr_resizeupload_quality') == '90') {
-				update_option('jr_resizeupload_quality', '70');
-			}	
-		}
-		
-		
-		
-		
+
 	}
 	add_action( 'pipdig_p3_daily_event', 'pipdig_p3_do_this_daily' );
 }

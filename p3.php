@@ -14,10 +14,58 @@ if (!strpos($theme, 'pipdig')) {
 	return;
 }
 
-class pipdig_p3_intalled_xyz {
-	// just to check this plugin is active
-}
+update_option('pipdig_p3_version', '1.3.0');
 
+class pipdig_p3_intalled_xyz {
+	//constructor for pipdig_p3_intalled_xyz object
+	function pipdig_p3_intalled_xyz() {
+		register_activation_hook(__FILE__,array(&$this, 'pipdig_p3_activate'));
+	}
+
+	function pipdig_p3_activate() {
+		
+		// trackbacks
+		update_option('default_pingback_flag', 0);
+		update_option('default_ping_status', 'closed');
+		
+		// comments notify
+		update_option('comments_notify', 0);
+		update_option('moderation_notify', 0);
+		
+		// akismet
+		if (get_option('wordpress_api_key') == '') {
+			update_option('wordpress_api_key', '1ab26b12c4f1');
+			update_option('akismet_discard_month', 'false');
+		}
+		
+		// media sizes
+		update_option('medium_size_w', 800);
+		update_option('medium_size_h', 0);
+		update_option('large_size_w', 1600);
+		update_option('large_size_h', 0);
+		
+		update_option('image_default_size', 'full');
+		update_option('image_default_align', 'none');
+		
+		if (get_option('posts_per_page') == '10') {
+			update_option('posts_per_page', 5);
+		}
+		
+		// change default values for https://wordpress.org/plugins/resize-image-after-upload/
+		if(get_option('jr_resizeupload_width') == '1200') {
+			update_option('jr_resizeupload_width', '1920');
+			// change height
+			if(get_option('jr_resizeupload_height') == '1200') {
+				update_option('jr_resizeupload_height', '0');
+			}
+			// change quality
+			if(get_option('jr_resizeupload_quality') == '90') {
+				update_option('jr_resizeupload_quality', '70');
+			}
+		}
+		
+	}
+}
 // Load text domain for languages
 function pipdig_p3_textdomain() {
 	load_plugin_textdomain( 'p3', false, 'p3/languages' );

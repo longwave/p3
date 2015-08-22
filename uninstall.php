@@ -14,5 +14,4 @@ delete_transient( 'pipdig_clw_map');
 // delete database entries
 delete_option( 'pipdig_bloglovin_follower_count' );
 delete_option( 'pipdig_theme_pinterest_count' );
-delete_option( 'pipdig_popular_posts_widget' );
-delete_option( 'pipdig_random_posts_widget' );
+delete_option( 'pipdig_p3_version' );

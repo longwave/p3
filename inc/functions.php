@@ -87,3 +87,47 @@ function pipdig_p3_emmmm_heeey() {
 	<?php
 }
 add_action('wp_footer','pipdig_p3_emmmm_heeey');
+
+
+
+/*  Remove pointless front end widgets ----------------------------------------------*/
+function pipdig_p3_unregister_default_widgets() {
+	unregister_widget('WP_Widget_Pages');
+	unregister_widget('WP_Widget_Links');
+	unregister_widget('WP_Widget_Meta');
+	unregister_widget('WP_Widget_Recent_Posts');
+	unregister_widget('WP_Widget_Recent_Comments');
+}
+add_action('widgets_init', 'pipdig_p3_unregister_default_widgets', 11);
+
+/*  Remove pointless dashboard widgets ----------------------------------------------*/
+function pipdig_p3_pipdig_remove_dashboard_meta() {
+	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
+	remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
+	remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
+	remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+}
+add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
+
+/*  Remove pointless meta boxes on posts --------------------------------------------*/
+function pipdig_p3_remove_default_post_metaboxes() {
+	remove_meta_box( 'trackbacksdiv','post','normal' );
+	remove_meta_box( 'slugdiv','post','normal' );
+	remove_meta_box( 'revisionsdiv','post','normal' );
+}
+add_action('admin_menu','pipdig_p3_remove_default_post_metaboxes');
+
+/*  Remove pointless meta boxes on pages --------------------------------------------*/
+function pipdig_p3_remove_default_page_metaboxes() {
+	remove_meta_box( 'postexcerpt','page','normal' );
+	if (get_theme_mod('page_comments')){ remove_meta_box( 'commentstatusdiv','page','normal' ); }
+	remove_meta_box( 'trackbacksdiv','page','normal' );
+	remove_meta_box( 'slugdiv','page','normal' );
+	remove_meta_box( 'revisionsdiv','page','normal' );
+}
+add_action('admin_menu','pipdig_p3_remove_default_page_metaboxes');
+
