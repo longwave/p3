@@ -64,7 +64,7 @@ function pipdig_p3_activate_jetpack_modules( $modules ){
          'notes',
          'subscriptions',
          'stats',
-         'after-the-deadline',
+         //'after-the-deadline',
          'sso',
          'manage',
          'protect',
@@ -80,6 +80,8 @@ function pipdig_p3_jetpack_widgets() {
 	remove_action('widgets_init', 'wpcom_social_media_icons_widget_load_widget');
 	remove_action('widgets_init', 'jetpack_top_posts_widget_init');
 	remove_action('widgets_init', 'jetpack_display_posts_widget');
+	remove_action('widgets_init', 'jetpack_top_posts_widget_init');
+	remove_action('widgets_init', 'jetpack_contact_info_widget_init');
 }
 add_action('jetpack_modules_loaded','pipdig_p3_jetpack_widgets');
 

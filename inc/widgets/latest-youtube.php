@@ -26,7 +26,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		}
 
 		if (!empty($youtubeuser)) {
-			echo '<ifr' . 'ame src="http://www.youtube.com/embed?listType=user_uploads&list=' . $youtubeuser . '&showinfo=1" frameborder="0" width="300" height="169" allowfullscreen></ifra' . 'me>';
+			echo '<ifr' . 'ame src="http://www.youtube.com/embed?max-results=1&listType=user_uploads&list=' . $youtubeuser . '&showinfo=1" frameborder="0" width="300" height="169" allowfullscreen></ifra' . 'me>';
 		} else {
 			_e('Setup not complete. Please add your YouTube username to the YouTube Widget in the dashboard.', 'p3');
 		}
@@ -54,7 +54,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 			</label>
 		</p>
 
-		<p><?php _e('Add your YouTube user/channel to the box below to show your latest video. This can be found in your channel\'s URL.', 'p3'); ?></p>
+		<p><?php _e('Add your YouTube Username.', 'p3'); ?></p>
 		<p><?php _e('For example, the red part below:', 'p3'); ?></p> <p><?php echo esc_url('http://youtube.com/user/'); ?><span style="color:red">inthefrow</span></p>
 		
 		<p>
