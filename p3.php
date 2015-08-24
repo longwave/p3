@@ -60,7 +60,7 @@ class pipdig_p3_intalled_xyz {
 			}
 			// change quality
 			if(get_option('jr_resizeupload_quality') == '90') {
-				update_option('jr_resizeupload_quality', '70');
+				update_option('jr_resizeupload_quality', '75');
 			}
 		}
 		
