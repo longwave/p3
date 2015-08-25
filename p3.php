@@ -5,7 +5,7 @@ Plugin URI: http://pipdig.co
 Description: The core functions and features of any pipdig theme.
 Author: pipdig
 Author URI: http://pipdig.co
-Version: 1.3.0
+Version: 1.4.0
 Text Domain: p3
 */
 
@@ -14,7 +14,7 @@ if (!strpos($theme, 'pipdig')) {
 	return;
 }
 
-update_option('pipdig_p3_version', '1.3.0');
+update_option('pipdig_p3_version', '1.4.0');
 
 class pipdig_p3_intalled_xyz {
 	//constructor for pipdig_p3_intalled_xyz object

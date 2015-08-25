@@ -10,7 +10,29 @@ if ( !function_exists( 'pipdig_plugin_check' ) ) {
 		}
 	}
 }
-
+/*
+if (!function_exists('pipdig_p3_mobile_detect')) {
+	function pipdig_p3_mobile_detect() {
+		if (!get_theme_mod('disable_responsive')) { // Check if responsive layout has been disabled in cust. If so, let's continue:
+			if (pipdig_plugin_check('wp-super-cache/wp-cache.php') || pipdig_plugin_check('w3-total-cache/w3-total-cache.php') || pipdig_plugin_check('quick-cache/quick-cache.php') || pipdig_plugin_check('wp-fastest-cache/wpFastestCache.php') || pipdig_plugin_check('hyper-cache/plugin.php')) {
+				// If there is a cache plugin active, let's jump ship:
+				return false;
+			} else {
+				// No obvious cache plugin, so let's check if it's a mobile:
+				require_once(dirname(__FILE__).'/third/Mobile_Detect.php');
+				$detect = new Mobile_Detect();
+				if($detect->isMobile() && !$detect->isTablet()) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} else {
+			return false;
+		}
+	}
+}
+*/
 // load image catch function, just in case theme hasn't
 if (!function_exists('pipdig_p3_catch_that_image')) {
 	function pipdig_p3_catch_that_image() {

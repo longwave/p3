@@ -50,7 +50,7 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
 }
 add_filter( 'jetpack_get_available_modules', 'pipdig_p3_kill_jetpack_modules', 20, 3 );
 
-
+/*
 // switch modules on by default
 function pipdig_p3_activate_jetpack_modules( $modules ){
     $modules = array(
@@ -72,7 +72,7 @@ function pipdig_p3_activate_jetpack_modules( $modules ){
     return $modules;
 }
 add_filter( 'option_jetpack_active_modules', 'pipdig_p3_activate_jetpack_modules' );
-
+*/
 
 // remove cruddy jetpack widgets
 function pipdig_p3_jetpack_widgets() {
