@@ -66,6 +66,8 @@ class pipdig_p3_intalled_xyz {
 		
 	}
 }
+new pipdig_p3_intalled_xyz();
+
 // Load text domain for languages
 function pipdig_p3_textdomain() {
 	load_plugin_textdomain( 'p3', false, 'p3/languages' );
