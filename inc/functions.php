@@ -153,3 +153,11 @@ function pipdig_p3_remove_default_page_metaboxes() {
 }
 add_action('admin_menu','pipdig_p3_remove_default_page_metaboxes');
 
+// Heartbeat rate
+if ( !function_exists( 'heartbeat_control_menu' ) ) {
+	function pipdig_p3_heartbeat_settings( $settings ) {
+		$settings['interval'] = 45; // anything between 15-60
+		return $settings;
+	}
+	add_filter( 'heartbeat_settings', 'pipdig_p3_heartbeat_settings' );
+}
