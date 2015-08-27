@@ -30,7 +30,7 @@ if (!function_exists('pipdig_textarea_css_render')) {
 
 		$options = get_option( 'pipdig_css' );
 		?>
-		<textarea style="width:90%;height: 400px;" name='pipdig_css[pipdig_textarea_css]' placeholder='body {color: #000000; background: #ffffff}'><?php if (isset($options['pipdig_textarea_css'])) { echo $options['pipdig_textarea_css']; } ?></textarea>
+		<textarea style="width:90%;height: 400px;" name="pipdig_css[pipdig_textarea_css]" placeholder="body {color: #000000; background: #ffffff}"><?php if (isset($options['pipdig_textarea_css'])) { echo $options['pipdig_textarea_css']; } ?></textarea>
 		<?php
 
 	}

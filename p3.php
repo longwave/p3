@@ -35,7 +35,7 @@ class pipdig_p3_intalled_xyz {
 		// akismet
 		if (get_option('wordpress_api_key') == '') {
 			update_option('wordpress_api_key', '1ab26b12c4f1');
-			update_option('akismet_discard_month', 'false');
+			update_option('akismet_discard_month', 'true');
 		}
 		
 		// media sizes

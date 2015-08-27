@@ -73,15 +73,3 @@ function pipdig_p3_activate_jetpack_modules( $modules ){
 }
 add_filter( 'option_jetpack_active_modules', 'pipdig_p3_activate_jetpack_modules' );
 */
-
-// remove cruddy jetpack widgets
-function pipdig_p3_jetpack_widgets() {
-	remove_action('widgets_init', 'jetpack_facebook_likebox_init');
-	remove_action('widgets_init', 'wpcom_social_media_icons_widget_load_widget');
-	remove_action('widgets_init', 'jetpack_top_posts_widget_init');
-	remove_action('widgets_init', 'jetpack_display_posts_widget');
-	remove_action('widgets_init', 'jetpack_top_posts_widget_init');
-	remove_action('widgets_init', 'jetpack_contact_info_widget_init');
-}
-add_action('jetpack_modules_loaded','pipdig_p3_jetpack_widgets');
-

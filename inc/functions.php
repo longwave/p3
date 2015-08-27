@@ -55,7 +55,7 @@ if (!function_exists('pipdig_p3_rss_post_thumbnail')) {
 		global $post;
 		if(has_post_thumbnail($post->ID)) {
 			$content = '<p>' . get_the_post_thumbnail($post->ID) . '</p>' . get_the_excerpt();
-		} else {
+		} elseif (pipdig_p3_catch_that_image()) {
 			$content = '<p><img src="'.pipdig_p3_catch_that_image().'" alt=""/></p>' . get_the_excerpt();
 		}
 		return $content;
@@ -65,16 +65,17 @@ if (!function_exists('pipdig_p3_rss_post_thumbnail')) {
 }
 
 // remove mojo crap
-function pipdig_p3_bad_mojo() {
-	remove_action( 'admin_menu', 'mm_main_menu' ); // remove mojo menu
-	remove_action( 'widgets_init', 'mm_register_widget' ); // remove mojo widget
-	remove_action( 'admin_head-themes.php', 'mm_add_theme_button' ); // remove mojo theme menu item
-	remove_action( 'admin_menu', 'mm_add_theme_page' ); // remove mojo themes link
-	
-	remove_action( 'widgets_init', 'akismet_register_widgets' ); // remove akismet widget
+if (function_exists('mm_load_updater')) {
+	function pipdig_p3_bad_mojo() {
+		remove_action( 'admin_menu', 'mm_main_menu' ); // remove mojo menu
+		remove_action( 'widgets_init', 'mm_register_widget' ); // remove mojo widget
+		remove_action( 'admin_head-themes.php', 'mm_add_theme_button' ); // remove mojo theme menu item
+		remove_action( 'admin_menu', 'mm_add_theme_page' ); // remove mojo themes link
+		
+		remove_action( 'widgets_init', 'akismet_register_widgets' ); // remove akismet widget
+	}
+	add_action('plugins_loaded','pipdig_p3_bad_mojo');
 }
-add_action('plugins_loaded','pipdig_p3_bad_mojo');
-
 
 // add pipdig link to themes section
 function pipdig_p3_themes_top_link() {
@@ -111,16 +112,25 @@ function pipdig_p3_emmmm_heeey() {
 add_action('wp_footer','pipdig_p3_emmmm_heeey');
 
 
-
 /*  Remove pointless front end widgets ----------------------------------------------*/
-function pipdig_p3_unregister_default_widgets() {
+function pipdig_p3_unregister_widgets() {
 	unregister_widget('WP_Widget_Pages');
 	unregister_widget('WP_Widget_Links');
 	unregister_widget('WP_Widget_Meta');
 	unregister_widget('WP_Widget_Recent_Posts');
 	unregister_widget('WP_Widget_Recent_Comments');
+	// jetpack
+	unregister_widget('Jetpack_Gravatar_Profile_Widget');
+	unregister_widget('WPCOM_Widget_Facebook_LikeBox');
+	unregister_widget('Jetpack_Gallery_Widget');
+	unregister_widget('Jetpack_RSS_Links_Widget');
+	unregister_widget('wpcom_social_media_icons_widget');
+	unregister_widget('Jetpack_Display_Posts_Widget');
+	unregister_widget('Jetpack_Top_Posts_Widget');
+	
+	unregister_widget('SocialCountPlus');
 }
-add_action('widgets_init', 'pipdig_p3_unregister_default_widgets', 11);
+add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 
 /*  Remove pointless dashboard widgets ----------------------------------------------*/
 function pipdig_p3_pipdig_remove_dashboard_meta() {
