@@ -33,8 +33,10 @@ class pipdig_p3_intalled_xyz {
 		update_option('moderation_notify', 0);
 		
 		// akismet
-		if (get_option('wordpress_api_key') == '') {
-			update_option('wordpress_api_key', '1ab26b12c4f1');
+		if (function_exists('akismet_admin_init')) {
+			if (get_option('wordpress_api_key') == '') {
+				update_option('wordpress_api_key', '1ab26b12c4f1');
+			}
 			update_option('akismet_discard_month', 'true');
 		}
 		
@@ -52,17 +54,17 @@ class pipdig_p3_intalled_xyz {
 		}
 		
 		// change default values for https://wordpress.org/plugins/resize-image-after-upload/
-		if(get_option('jr_resizeupload_width') == '1200') {
-			update_option('jr_resizeupload_width', '1920');
-			// change height
-			if(get_option('jr_resizeupload_height') == '1200') {
-				update_option('jr_resizeupload_height', '0');
-			}
-			// change quality
-			if(get_option('jr_resizeupload_quality') == '90') {
-				update_option('jr_resizeupload_quality', '75');
-			}
-		}
+		//if(get_option('jr_resizeupload_width') == '1200' || null) {
+		update_option('jr_resizeupload_width', '1920');
+		update_option('jr_resizeupload_quality', '75');
+		update_option('jr_resizeupload_height', '0');
+			//if(get_option('jr_resizeupload_height') == '1200') {
+			
+			//}
+			//if(get_option('jr_resizeupload_quality') == '90') {
+			
+			//}
+		//}
 		
 	}
 }
