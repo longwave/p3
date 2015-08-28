@@ -127,8 +127,10 @@ function pipdig_p3_unregister_widgets() {
 	unregister_widget('Jetpack_Top_Posts_Widget');
 	
 	unregister_widget('Akismet_Widget');
-	
 	unregister_widget('SocialCountPlus');
+	unregister_widget('GADWP_Frontend_Widget');
+	
+	
 }
 add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 
