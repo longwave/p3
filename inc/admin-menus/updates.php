@@ -20,10 +20,12 @@ if (!function_exists('pipdig_updates_options_page')) {
 
 					<div class="postbox">
 
-						<h3>Update 1.4 - Shortcodes</h3>
+						<h3>Update 1.4 - Shortcodes and Snapcodes:</h3>
 
 						<div class="inside">
 							<p>We'll be creating a new selection of shortcodes over the next few weeks.  To start things off, you can now use the shortcode [pipdig_stars] to automatically add a start rating. Perfect for anyone who writes product reviews. <a href="<?php echo admin_url('admin.php?page=pipdig-shortcodes'); ?>">Click here to read more</a>.</p>
+							<p>New widget! Find our "pipdig - Snapchat Snapcode" widget available <a href="<?php echo admin_url('widgets.php'); ?>">here</a>. Easily add your <a href="<?php echo esc_url('https://accounts.snapchat.com/accounts/snapcodes'); ?>">Snapchat Snapcode</a> to your site. We'll be adding more Snapchat integrations soon :)</p>
+							<p>We've added some extra tweaks/changes behind the scenes to help boost your SEO, speed and security.</p>
 						</div>
 						<!-- .inside -->
 

@@ -33,8 +33,10 @@ class pipdig_p3_intalled_xyz {
 		update_option('moderation_notify', 0);
 		
 		// akismet
-		if (get_option('wordpress_api_key') == '') {
-			update_option('wordpress_api_key', '1ab26b12c4f1');
+		if (function_exists('akismet_admin_init')) {
+			if (get_option('wordpress_api_key') == '') {
+				update_option('wordpress_api_key', '1ab26b12c4f1');
+			}
 			update_option('akismet_discard_month', 'true');
 		}
 		
@@ -52,17 +54,17 @@ class pipdig_p3_intalled_xyz {
 		}
 		
 		// change default values for https://wordpress.org/plugins/resize-image-after-upload/
-		if(get_option('jr_resizeupload_width') == '1200') {
-			update_option('jr_resizeupload_width', '1920');
-			// change height
-			if(get_option('jr_resizeupload_height') == '1200') {
-				update_option('jr_resizeupload_height', '0');
-			}
-			// change quality
-			if(get_option('jr_resizeupload_quality') == '90') {
-				update_option('jr_resizeupload_quality', '75');
-			}
-		}
+		//if(get_option('jr_resizeupload_width') == '1200' || null) {
+		update_option('jr_resizeupload_width', '1920');
+		update_option('jr_resizeupload_quality', '75');
+		update_option('jr_resizeupload_height', '0');
+			//if(get_option('jr_resizeupload_height') == '1200') {
+			
+			//}
+			//if(get_option('jr_resizeupload_quality') == '90') {
+			
+			//}
+		//}
 		
 	}
 }
@@ -83,6 +85,46 @@ function pipdig_p3_scripts_styles($hook) {
 	wp_register_script( 'imagesloaded', '//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js', array('jquery'), false );
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles' );
+
+/*
+require_once('inc/third/Facebook.php');
+
+// Create our Application instance (replace this with your appId and secret).
+$facebook = new Facebook(array(
+  'appId' => '722209331218125',
+  'secret' => '3f9d971ecad0debbc0b983b7af6fcf34',
+));
+
+
+$user = $facebook->getUser();
+$page_id = "390642081017203";
+$page_name = $facebook->api("/".$page_id)['name'];
+$page_link = $facebook->api("/".$page_id)['link'];
+
+
+
+if ($user) {
+  try {
+    $likes = $facebook->api("/me/likes/".$page_id);
+    if( !empty($likes['data']) )
+        echo "I like!";
+    else
+        echo "not a fan!";
+  } catch (FacebookApiException $e) {
+    error_log($e);
+    $user = null;
+  }
+}
+
+if ($user) {
+  $logoutUrl = $facebook->getLogoutUrl();
+} else {
+  $loginUrl = $facebook->getLoginUrl(array(
+    'scope' => 'user_likes'
+  ));
+}
+*/
+
 
 // functions
 require_once('inc/functions.php');

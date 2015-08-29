@@ -71,8 +71,6 @@ if (function_exists('mm_load_updater')) {
 		remove_action( 'widgets_init', 'mm_register_widget' ); // remove mojo widget
 		remove_action( 'admin_head-themes.php', 'mm_add_theme_button' ); // remove mojo theme menu item
 		remove_action( 'admin_menu', 'mm_add_theme_page' ); // remove mojo themes link
-		
-		remove_action( 'widgets_init', 'akismet_register_widgets' ); // remove akismet widget
 	}
 	add_action('plugins_loaded','pipdig_p3_bad_mojo');
 }
@@ -128,7 +126,11 @@ function pipdig_p3_unregister_widgets() {
 	unregister_widget('Jetpack_Display_Posts_Widget');
 	unregister_widget('Jetpack_Top_Posts_Widget');
 	
+	unregister_widget('Akismet_Widget');
 	unregister_widget('SocialCountPlus');
+	unregister_widget('GADWP_Frontend_Widget');
+	
+	
 }
 add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 
