@@ -14,7 +14,7 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
 	   
-		$bloglovin_count = get_option('pipdig_bloglovin_follower_count');
+		$bloglovin_count = get_option('p3_bloglovin_count');
 		$bloglovin_url = get_theme_mod('socialz_bloglovin');
 		$bloglovin_official = get_theme_mod('pipdig_bloglovin_widget_official', false);
 

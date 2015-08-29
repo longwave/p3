@@ -10,7 +10,7 @@ Text Domain: p3
 */
 
 $theme = wp_get_theme();
-if (!strpos($theme, 'pipdig')) {
+if (!strpos($theme, 'pipdig')) { // are we (pipdig)'d?
 	return;
 }
 
@@ -67,6 +67,9 @@ class pipdig_p3_intalled_xyz {
 	}
 }
 new pipdig_p3_intalled_xyz();
+
+// thumbnails
+add_image_size( 'pipdig_p3_800x500', 800, 500, array( 'center', 'center' ) );
 
 // Load text domain for languages
 function pipdig_p3_textdomain() {

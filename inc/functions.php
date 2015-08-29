@@ -50,7 +50,7 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 }
 
 /* Add Featured Image to feed -------------------------------------------------------*/
-if (!function_exists('pipdig_p3_rss_post_thumbnail')) {
+if (!function_exists('pipdig_rss_post_thumbnail')) {
 	function pipdig_p3_rss_post_thumbnail($content) {
 		global $post;
 		if(has_post_thumbnail($post->ID)) {

@@ -114,22 +114,20 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		}
 		$popular = new WP_Query( array(
 			'post_type'             => array( 'post' ),
-			//'meta_key'              => '_thumbnail_id',
 			'showposts'             => $number_posts,
 			'ignore_sticky_posts'   => true,
 			'orderby'               => 'comment_count',
-			'order'                 => 'dsc',
 			'date_query' => array(
 				array(
 					'after' => $date_range_posts,
 				),
 			),
 		) );
-		set_transient('pipdig_popular_posts_widget', $popular, 24 * HOUR_IN_SECONDS); // set transient value
+		set_transient('pipdig_popular_posts_widget', $popular, 12 * HOUR_IN_SECONDS); // set transient value
 	} ?>
 	<?php while ( $popular->have_posts() ): $popular->the_post();
 		if(has_post_thumbnail()){
-			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'pipdig-widget-popular-posts' );
+			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'pipdig_p3_800x500' );
 			$bg = $thumb['0'];
 		} else { // what? No featured image?  Let's use the first from post
 			$bg = pipdig_p3_catch_that_image();
@@ -137,7 +135,6 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 	?>
 	<li>
 	<a href="<?php the_permalink() ?>">
-	<?php //the_post_thumbnail( 'pipdig-widget-popular-posts' );?>
 	<img src="<?php echo $bg; ?>" alt="" />
 	<h4><?php $title = get_the_title(); echo pipdig_truncate($title, 11); ?></h4>
 	</a>
