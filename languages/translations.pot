@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-08-30 17:38+0100\n"
+"POT-Creation-Date: 2015-08-30 23:39+0100\n"
 "PO-Revision-Date: 2015-08-20 15:57-0000\n"
 "Last-Translator: \n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
@@ -21,19 +21,23 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: ../img\n"
 "X-Poedit-SearchPathExcluded-3: ../css\n"
 
-#: ../inc/admin-menus.php:10 ../inc/admin-menus/css.php:10
+#: ../inc/admin-menus.php:11
+msgid "Social Stats"
+msgstr ""
+
+#: ../inc/admin-menus.php:13 ../inc/admin-menus/css.php:10
 msgid "Custom CSS"
 msgstr ""
 
-#: ../inc/admin-menus.php:11
+#: ../inc/admin-menus.php:14
 msgid "Theme"
 msgstr ""
 
-#: ../inc/admin-menus.php:12
+#: ../inc/admin-menus.php:15
 msgid "Updates"
 msgstr ""
 
-#: ../inc/admin-menus.php:13 ../inc/admin-menus/guides.php:8
+#: ../inc/admin-menus.php:16 ../inc/admin-menus/guides.php:8
 msgid "Help / Guides"
 msgstr ""
 
@@ -94,7 +98,27 @@ msgstr ""
 msgid "WARNING: these options can break your site. Use with caution."
 msgstr ""
 
-#: ../inc/functions.php:84
+#: ../inc/admin-menus/social.php:122
+msgid "Total followers:"
+msgstr ""
+
+#: ../inc/admin-menus/social.php:126
+msgid "Follower Stats"
+msgstr ""
+
+#: ../inc/admin-menus/social.php:139
+msgid "Click here to add more accounts"
+msgstr ""
+
+#: ../inc/admin-menus/social.php:144
+msgid "No posts found."
+msgstr ""
+
+#: ../inc/admin-menus/social.php:192
+msgid "No posts published."
+msgstr ""
+
+#: ../inc/functions.php:96
 msgid "Themes"
 msgstr ""
 
@@ -123,8 +147,8 @@ msgid "Follow on Bloglovin'"
 msgstr ""
 
 #: ../inc/widgets/bloglovin.php:51 ../inc/widgets/facebook.php:48
-#: ../inc/widgets/latest-youtube.php:31 ../inc/widgets/pinterest.php:94
-#: ../inc/widgets/snapcode.php:31 ../inc/widgets/subscribe.php:47
+#: ../inc/widgets/pinterest.php:94 ../inc/widgets/snapcode.php:31
+#: ../inc/widgets/subscribe.php:47 ../inc/widgets/youtube.php:31
 msgid "Setup not complete. Please check the widget options."
 msgstr ""
 
@@ -215,10 +239,10 @@ msgstr ""
 msgid "Facebook Widget"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:79 ../inc/widgets/latest-youtube.php:50
-#: ../inc/widgets/pinterest.php:117 ../inc/widgets/popular-posts.php:27
-#: ../inc/widgets/profile.php:63 ../inc/widgets/random-posts.php:27
-#: ../inc/widgets/socialz.php:81 ../inc/widgets/subscribe.php:67
+#: ../inc/widgets/facebook.php:79 ../inc/widgets/pinterest.php:117
+#: ../inc/widgets/popular-posts.php:27 ../inc/widgets/profile.php:63
+#: ../inc/widgets/random-posts.php:27 ../inc/widgets/socialz.php:81
+#: ../inc/widgets/subscribe.php:67 ../inc/widgets/youtube.php:50
 msgid "Widget Title:"
 msgstr ""
 
@@ -283,27 +307,6 @@ msgstr ""
 msgid "Display a \"Follow\" link."
 msgstr ""
 
-#: ../inc/widgets/latest-youtube.php:6
-msgid "Automatically displays your latest YouTube video."
-msgstr ""
-
-#: ../inc/widgets/latest-youtube.php:7
-msgid "Latest YouTube"
-msgstr ""
-
-#: ../inc/widgets/latest-youtube.php:57
-msgid "Add your YouTube Username."
-msgstr ""
-
-#: ../inc/widgets/latest-youtube.php:58 ../inc/widgets/pinterest.php:125
-#: ../inc/widgets/subscribe.php:75
-msgid "For example, the red part below:"
-msgstr ""
-
-#: ../inc/widgets/latest-youtube.php:61
-msgid "YouTube Username:"
-msgstr ""
-
 #: ../inc/widgets/pinterest.php:6
 msgid "Displays your latest Pinterest pins."
 msgstr ""
@@ -318,6 +321,11 @@ msgstr ""
 
 #: ../inc/widgets/pinterest.php:124
 msgid "Add your Pinterest account name to the box below."
+msgstr ""
+
+#: ../inc/widgets/pinterest.php:125 ../inc/widgets/subscribe.php:75
+#: ../inc/widgets/youtube.php:58
+msgid "For example, the red part below:"
 msgstr ""
 
 #: ../inc/widgets/pinterest.php:129
@@ -477,4 +485,20 @@ msgstr ""
 
 #: ../inc/widgets/subscribe.php:86
 msgid "Text to display above the form:"
+msgstr ""
+
+#: ../inc/widgets/youtube.php:6
+msgid "Automatically displays your latest YouTube video."
+msgstr ""
+
+#: ../inc/widgets/youtube.php:7
+msgid "Latest YouTube"
+msgstr ""
+
+#: ../inc/widgets/youtube.php:57
+msgid "Add your YouTube Username."
+msgstr ""
+
+#: ../inc/widgets/youtube.php:61
+msgid "YouTube Username:"
 msgstr ""

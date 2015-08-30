@@ -72,11 +72,11 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 			$output .= '<nav id="mosaic-nav" class="clearfix" role="navigation">';
 			
 			if (get_next_posts_link('',$query->max_num_pages) ) {
-				$output .= '<div class="nav-previous">'.get_next_posts_link( '<span class="meta-nav"><i class="fa fa-chevron-left"></i></span> '.__( 'Older Posts', 'p3' ), $query->max_num_pages ).'</div>';
+				$output .= '<div class="nav-previous">'.get_next_posts_link( '<span class="meta-nav"><i class="fa fa-chevron-left"></i></span> '.__( 'Older posts', 'p3' ), $query->max_num_pages ).'</div>';
 			}
 
 			if ( get_previous_posts_link() ) {
-				$output .= '<div class="nav-next">'.get_previous_posts_link(__( 'Newer Posts', 'p3' ).' <span class="meta-nav"><i class="fa fa-chevron-right"></i></span>').'</div>';
+				$output .= '<div class="nav-next">'.get_previous_posts_link(__( 'Newer posts', 'p3' ).' <span class="meta-nav"><i class="fa fa-chevron-right"></i></span>').'</div>';
 			}
 			
 			$output .= '</nav>';

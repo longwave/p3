@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-08-30 17:38+0100\n"
-"PO-Revision-Date: 2015-08-30 17:38+0100\n"
+"POT-Creation-Date: 2015-08-30 23:47+0100\n"
+"PO-Revision-Date: 2015-08-30 23:48+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: fr\n"
@@ -20,19 +20,23 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: ../img\n"
 "X-Poedit-SearchPathExcluded-3: ../css\n"
 
-#: ../inc/admin-menus.php:10 ../inc/admin-menus/css.php:10
+#: ../inc/admin-menus.php:11
+msgid "Social Stats"
+msgstr ""
+
+#: ../inc/admin-menus.php:13 ../inc/admin-menus/css.php:10
 msgid "Custom CSS"
 msgstr "Modifier le CSS"
 
-#: ../inc/admin-menus.php:11
+#: ../inc/admin-menus.php:14
 msgid "Theme"
 msgstr "Thème"
 
-#: ../inc/admin-menus.php:12
+#: ../inc/admin-menus.php:15
 msgid "Updates"
 msgstr ""
 
-#: ../inc/admin-menus.php:13 ../inc/admin-menus/guides.php:8
+#: ../inc/admin-menus.php:16 ../inc/admin-menus/guides.php:8
 msgid "Help / Guides"
 msgstr ""
 
@@ -109,17 +113,37 @@ msgstr ""
 "ATTENTION: Ces options peuvent erroner votre site. Utilisez les avec "
 "précaution."
 
-#: ../inc/functions.php:84
+#: ../inc/admin-menus/social.php:122
+msgid "Total followers:"
+msgstr ""
+
+#: ../inc/admin-menus/social.php:126
+msgid "Follower Stats"
+msgstr ""
+
+#: ../inc/admin-menus/social.php:139
+msgid "Click here to add more accounts"
+msgstr ""
+
+#: ../inc/admin-menus/social.php:144
+msgid "Recent post share stats:"
+msgstr ""
+
+#: ../inc/admin-menus/social.php:192
+msgid "No posts found."
+msgstr "Aucun article trouvé."
+
+#: ../inc/functions.php:96
 msgid "Themes"
 msgstr "Thèmes"
 
 #: ../inc/shortcodes/mosaic.php:75
-msgid "Older Posts"
-msgstr ""
+msgid "Older posts"
+msgstr "Articles plus anciens"
 
 #: ../inc/shortcodes/mosaic.php:79
-msgid "Newer Posts"
-msgstr ""
+msgid "Newer posts"
+msgstr "Articles plus récents"
 
 #: ../inc/widgets/bloglovin.php:6
 msgid "Display your Bloglovin' follower count."
@@ -138,8 +162,8 @@ msgid "Follow on Bloglovin'"
 msgstr "Suivre sur Bloglovin’"
 
 #: ../inc/widgets/bloglovin.php:51 ../inc/widgets/facebook.php:48
-#: ../inc/widgets/latest-youtube.php:31 ../inc/widgets/pinterest.php:94
-#: ../inc/widgets/snapcode.php:31 ../inc/widgets/subscribe.php:47
+#: ../inc/widgets/pinterest.php:94 ../inc/widgets/snapcode.php:31
+#: ../inc/widgets/subscribe.php:47 ../inc/widgets/youtube.php:31
 msgid "Setup not complete. Please check the widget options."
 msgstr ""
 
@@ -240,10 +264,10 @@ msgstr "Afficher un bouton J’aime Facebook."
 msgid "Facebook Widget"
 msgstr "Widget Facebook"
 
-#: ../inc/widgets/facebook.php:79 ../inc/widgets/latest-youtube.php:50
-#: ../inc/widgets/pinterest.php:117 ../inc/widgets/popular-posts.php:27
-#: ../inc/widgets/profile.php:63 ../inc/widgets/random-posts.php:27
-#: ../inc/widgets/socialz.php:81 ../inc/widgets/subscribe.php:67
+#: ../inc/widgets/facebook.php:79 ../inc/widgets/pinterest.php:117
+#: ../inc/widgets/popular-posts.php:27 ../inc/widgets/profile.php:63
+#: ../inc/widgets/random-posts.php:27 ../inc/widgets/socialz.php:81
+#: ../inc/widgets/subscribe.php:67 ../inc/widgets/youtube.php:50
 msgid "Widget Title:"
 msgstr "Titre du widget:"
 
@@ -315,27 +339,6 @@ msgstr "Afficher un bouton « voir plus »."
 msgid "Display a \"Follow\" link."
 msgstr "Afficher un lien « suivre »."
 
-#: ../inc/widgets/latest-youtube.php:6
-msgid "Automatically displays your latest YouTube video."
-msgstr "Affiche automatiquement votre dernière vidéo Youtube."
-
-#: ../inc/widgets/latest-youtube.php:7
-msgid "Latest YouTube"
-msgstr "Dernière vidéo Youtube."
-
-#: ../inc/widgets/latest-youtube.php:57
-msgid "Add your YouTube Username."
-msgstr ""
-
-#: ../inc/widgets/latest-youtube.php:58 ../inc/widgets/pinterest.php:125
-#: ../inc/widgets/subscribe.php:75
-msgid "For example, the red part below:"
-msgstr "Par exemple, la partie rouge ci dessous:"
-
-#: ../inc/widgets/latest-youtube.php:61
-msgid "YouTube Username:"
-msgstr "Nom d’utilisateur de votre chaine Youtube:"
-
 #: ../inc/widgets/pinterest.php:6
 msgid "Displays your latest Pinterest pins."
 msgstr "Afficher vos derniers pins."
@@ -351,6 +354,11 @@ msgstr ""
 #: ../inc/widgets/pinterest.php:124
 msgid "Add your Pinterest account name to the box below."
 msgstr "Ajoutez votre nom d’utilisateur Pinterest dans l’encadré ci dessous."
+
+#: ../inc/widgets/pinterest.php:125 ../inc/widgets/subscribe.php:75
+#: ../inc/widgets/youtube.php:58
+msgid "For example, the red part below:"
+msgstr "Par exemple, la partie rouge ci dessous:"
 
 #: ../inc/widgets/pinterest.php:129
 msgid "Pinterest Account Name:"
@@ -473,7 +481,7 @@ msgstr ""
 
 #: ../inc/widgets/snapcode.php:69
 msgid "For example:"
-msgstr ""
+msgstr "Par exemple :"
 
 #: ../inc/widgets/socialz.php:6
 msgid "The easy way to show social media icons."
@@ -517,6 +525,28 @@ msgstr ""
 #: ../inc/widgets/subscribe.php:86
 msgid "Text to display above the form:"
 msgstr ""
+
+#: ../inc/widgets/youtube.php:6
+msgid "Automatically displays your latest YouTube video."
+msgstr "Affiche automatiquement votre dernière vidéo Youtube."
+
+#: ../inc/widgets/youtube.php:7
+msgid "Latest YouTube"
+msgstr "Dernière vidéo Youtube."
+
+#: ../inc/widgets/youtube.php:57
+msgid "Add your YouTube Username."
+msgstr ""
+
+#: ../inc/widgets/youtube.php:61
+msgid "YouTube Username:"
+msgstr "Nom d’utilisateur de votre chaine Youtube:"
+
+#~ msgid "Older Posts"
+#~ msgstr "Articles plus anciens"
+
+#~ msgid "Newer Posts"
+#~ msgstr "Articles plus récents"
 
 #~ msgid ""
 #~ "Widget setup not complete. You must add your bloglovin profile to the "
