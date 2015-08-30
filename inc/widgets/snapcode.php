@@ -28,7 +28,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 			<p><?php printf( __('Follow <b>%s</b> on Snapchat!', 'p3'), $snapchat_account ); ?></p>
 		<?php } ?>
 	<?php } else {
-		_e("Setup not complete. Please check you have entered all information in the widget options.", 'p3');
+		_e("Setup not complete. Please check the widget options.", 'p3');
 	}
     // After widget code, if any
     echo (isset($after_widget)?$after_widget:'');
@@ -66,7 +66,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 
 	<p>
 		<label for="<?php echo $this->get_field_id('snapchat_account'); ?>"><?php _e("Snapchat Account Name:", 'p3'); ?></label>
-		<input class="widefat" id="<?php echo $this->get_field_id('snapchat_account'); ?>" name="<?php echo $this->get_field_name('snapchat_account'); ?>" type="text" value="<?php echo esc_attr($snapchat_account); ?>" placeholder="<?php _e("For example: mileyxxcyrus or rhianna", 'p3'); ?>" />
+		<input class="widefat" id="<?php echo $this->get_field_id('snapchat_account'); ?>" name="<?php echo $this->get_field_name('snapchat_account'); ?>" type="text" value="<?php echo esc_attr($snapchat_account); ?>" placeholder="<?php _e("For example:", 'p3'); ?> mileyxxcyrus" />
 	</p>
 	
 	

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-08-22 22:36+0100\n"
+"POT-Creation-Date: 2015-08-30 17:38+0100\n"
 "PO-Revision-Date: 2015-08-20 15:57-0000\n"
 "Last-Translator: \n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
@@ -29,7 +29,11 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-#: ../inc/admin-menus.php:12 ../inc/admin-menus/guides.php:8
+#: ../inc/admin-menus.php:12
+msgid "Updates"
+msgstr ""
+
+#: ../inc/admin-menus.php:13 ../inc/admin-menus/guides.php:8
 msgid "Help / Guides"
 msgstr ""
 
@@ -90,7 +94,7 @@ msgstr ""
 msgid "WARNING: these options can break your site. Use with caution."
 msgstr ""
 
-#: ../inc/functions.php:63
+#: ../inc/functions.php:84
 msgid "Themes"
 msgstr ""
 
@@ -118,11 +122,10 @@ msgstr ""
 msgid "Follow on Bloglovin'"
 msgstr ""
 
-#: ../inc/widgets/bloglovin.php:51
-#, php-format
-msgid ""
-"Widget setup not complete. You must add your bloglovin profile to the "
-"'Social Media Links' section of the <a href='%s'>Customizer</a>."
+#: ../inc/widgets/bloglovin.php:51 ../inc/widgets/facebook.php:48
+#: ../inc/widgets/latest-youtube.php:31 ../inc/widgets/pinterest.php:94
+#: ../inc/widgets/snapcode.php:31 ../inc/widgets/subscribe.php:47
+msgid "Setup not complete. Please check the widget options."
 msgstr ""
 
 #: ../inc/widgets/bloglovin.php:61
@@ -212,14 +215,8 @@ msgstr ""
 msgid "Facebook Widget"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:48 ../inc/widgets/subscribe.php:47
-msgid ""
-"Setup not complete. Please add your Facebook Page URL to the Facebook Widget "
-"in the dashboard."
-msgstr ""
-
 #: ../inc/widgets/facebook.php:79 ../inc/widgets/latest-youtube.php:50
-#: ../inc/widgets/pinterest.php:111 ../inc/widgets/popular-posts.php:27
+#: ../inc/widgets/pinterest.php:117 ../inc/widgets/popular-posts.php:27
 #: ../inc/widgets/profile.php:63 ../inc/widgets/random-posts.php:27
 #: ../inc/widgets/socialz.php:81 ../inc/widgets/subscribe.php:67
 msgid "Widget Title:"
@@ -270,7 +267,7 @@ msgid ""
 "widget to work."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:95 ../inc/widgets/pinterest.php:131
+#: ../inc/widgets/instagram.php:95 ../inc/widgets/pinterest.php:137
 msgid "Number of images to display:"
 msgstr ""
 
@@ -282,7 +279,7 @@ msgstr ""
 msgid "Display a \"Load more\" button."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:109
+#: ../inc/widgets/instagram.php:109 ../inc/widgets/pinterest.php:143
 msgid "Display a \"Follow\" link."
 msgstr ""
 
@@ -294,19 +291,11 @@ msgstr ""
 msgid "Latest YouTube"
 msgstr ""
 
-#: ../inc/widgets/latest-youtube.php:31
-msgid ""
-"Setup not complete. Please add your YouTube username to the YouTube Widget "
-"in the dashboard."
-msgstr ""
-
 #: ../inc/widgets/latest-youtube.php:57
-msgid ""
-"Add your YouTube user/channel to the box below to show your latest video. "
-"This can be found in your channel's URL."
+msgid "Add your YouTube Username."
 msgstr ""
 
-#: ../inc/widgets/latest-youtube.php:58 ../inc/widgets/pinterest.php:119
+#: ../inc/widgets/latest-youtube.php:58 ../inc/widgets/pinterest.php:125
 #: ../inc/widgets/subscribe.php:75
 msgid "For example, the red part below:"
 msgstr ""
@@ -323,17 +312,15 @@ msgstr ""
 msgid "Pinterest Widget"
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:88
-msgid ""
-"Setup not complete. Please add your Pinterest username to the Pinterest "
-"Widget in the dashboard."
+#: ../inc/widgets/pinterest.php:85
+msgid "Follow on Pinterest"
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:118
+#: ../inc/widgets/pinterest.php:124
 msgid "Add your Pinterest account name to the box below."
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:123
+#: ../inc/widgets/pinterest.php:129
 msgid "Pinterest Account Name:"
 msgstr ""
 
@@ -434,12 +421,6 @@ msgstr ""
 msgid "Follow <b>%s</b> on Snapchat!"
 msgstr ""
 
-#: ../inc/widgets/snapcode.php:31
-msgid ""
-"Setup not complete. Please check you have entered all information in the "
-"widget options."
-msgstr ""
-
 #: ../inc/widgets/snapcode.php:56
 msgid ""
 "Upload your <a href=\"https://accounts.snapchat.com/accounts/snapcodes?"
@@ -455,7 +436,7 @@ msgid "Snapchat Account Name:"
 msgstr ""
 
 #: ../inc/widgets/snapcode.php:69
-msgid "For example: mileyxxcyrus or rhianna"
+msgid "For example:"
 msgstr ""
 
 #: ../inc/widgets/socialz.php:6

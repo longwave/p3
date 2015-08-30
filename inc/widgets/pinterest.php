@@ -79,13 +79,19 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			});
 			</script>
 			<?php
+			if (isset($instance['follow'])) {
+				if (!empty($pinterestuser)) { ?>
+					<div class="clearfix"></div>
+					<p><a href="http://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-pinterest" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Pinterest', 'p3'); ?></a></p>
+				<?php }
+			}
 			//$pinterest_count = get_option('pipdig_theme_pinterest_count');
 			//if ($pinterest_count) { ?>
 				<!--<div class="pinterest-widget-count"><?php //echo $pinterest_count; ?></div> -->
 			<?php //} //endif ?>
 		<?php
 		} else {
-			_e('Setup not complete. Please add your Pinterest username to the Pinterest Widget in the dashboard.', 'p3');
+			_e('Setup not complete. Please check the widget options.', 'p3');
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');
@@ -132,6 +138,11 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			<input type="number" min="2" max="12" step="2" id="<?php echo $this->get_field_id( 'images_num' ); ?>" name="<?php echo $this->get_field_name( 'images_num' ); ?>" value="<?php if ($images_num) { echo $images_num; } else { echo '4'; } ?>" />
 		</p>
 
+		<p>
+			<label for="<?php echo $this->get_field_id('follow'); ?>">
+			<input type="checkbox" id="<?php echo $this->get_field_id('follow'); ?>" name="<?php echo $this->get_field_name('follow'); ?>" <?php if (isset($instance['follow'])) { checked( (bool) $instance['follow'], true ); } ?> /><?php _e('Display a "Follow" link.', 'p3'); ?></label>
+			<br />
+		</p>
 		 <?php
 	   
 	  }
@@ -141,6 +152,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['pinterestuser'] = strip_tags( $new_instance['pinterestuser'] );
 		$instance['images_num'] = absint( $new_instance['images_num'] );
+		$instance['follow'] = $new_instance['follow'];
 
 		return $instance;
 	  }

@@ -1,17 +1,18 @@
 <?php
 
-// If uninstall not called from WordPress exit.
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) || ! WP_UNINSTALL_PLUGIN || dirname( WP_UNINSTALL_PLUGIN ) != dirname( plugin_basename( __FILE__ ) ) ) {
-    status_header( 404 );
+// If uninstall not called from WordPress, exit.
+if ( ! defined('WP_UNINSTALL_PLUGIN') || ! WP_UNINSTALL_PLUGIN || dirname( WP_UNINSTALL_PLUGIN ) != dirname( plugin_basename( __FILE__ ) ) ) {
+    status_header(404);
     exit;
 }
 
 // delete transients
-delete_transient( 'pipdig_random_posts_widget' );
-delete_transient( 'pipdig_popular_posts_widget' );
-delete_transient( 'pipdig_clw_map');
+delete_transient('pipdig_random_posts_widget');
+delete_transient('pipdig_popular_posts_widget');
+delete_transient('pipdig_clw_map');
 
 // delete database entries
-delete_option( 'p3_bloglovin_count' );
-delete_option( 'pipdig_theme_pinterest_count' );
-delete_option( 'pipdig_p3_version' );
+delete_option('p3_bloglovin_count');
+delete_option('pipdig_theme_pinterest_count');
+delete_option('pipdig_p3_snapchat_account');
+delete_option('pipdig_p3_version');

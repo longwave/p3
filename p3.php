@@ -5,16 +5,16 @@ Plugin URI: http://pipdig.co
 Description: The core functions and features of any pipdig theme.
 Author: pipdig
 Author URI: http://pipdig.co
-Version: 1.4.0
+Version: 1.4.1
 Text Domain: p3
 */
 
 $theme = wp_get_theme();
-if (!strpos($theme, 'pipdig')) { // are we (pipdig)'d?
+if (!strpos($theme, 'pipdig')) {
 	return;
 }
 
-update_option('pipdig_p3_version', '1.4.0');
+update_option('pipdig_p3_version', '1.4.1');
 
 class pipdig_p3_intalled_xyz {
 	//constructor for pipdig_p3_intalled_xyz object
@@ -85,45 +85,6 @@ function pipdig_p3_scripts_styles($hook) {
 	wp_register_script( 'imagesloaded', '//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js', array('jquery'), false );
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles' );
-
-/*
-require_once('inc/third/Facebook.php');
-
-// Create our Application instance (replace this with your appId and secret).
-$facebook = new Facebook(array(
-  'appId' => '722209331218125',
-  'secret' => '3f9d971ecad0debbc0b983b7af6fcf34',
-));
-
-
-$user = $facebook->getUser();
-$page_id = "390642081017203";
-$page_name = $facebook->api("/".$page_id)['name'];
-$page_link = $facebook->api("/".$page_id)['link'];
-
-
-
-if ($user) {
-  try {
-    $likes = $facebook->api("/me/likes/".$page_id);
-    if( !empty($likes['data']) )
-        echo "I like!";
-    else
-        echo "not a fan!";
-  } catch (FacebookApiException $e) {
-    error_log($e);
-    $user = null;
-  }
-}
-
-if ($user) {
-  $logoutUrl = $facebook->getLogoutUrl();
-} else {
-  $loginUrl = $facebook->getLoginUrl(array(
-    'scope' => 'user_likes'
-  ));
-}
-*/
 
 
 // functions

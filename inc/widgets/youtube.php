@@ -28,7 +28,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		if (!empty($youtubeuser)) {
 			echo '<ifr' . 'ame src="http://www.youtube.com/embed?max-results=1&listType=user_uploads&list=' . $youtubeuser . '&showinfo=1" frameborder="0" width="300" height="169" allowfullscreen></ifra' . 'me>';
 		} else {
-			_e('Setup not complete. Please add your YouTube username to the YouTube Widget in the dashboard.', 'p3');
+			_e('Setup not complete. Please check the widget options.', 'p3');
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-08-20 15:57-0000\n"
-"PO-Revision-Date: 2015-08-20 15:57-0000\n"
+"POT-Creation-Date: 2015-08-30 17:38+0100\n"
+"PO-Revision-Date: 2015-08-30 17:38+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
@@ -20,15 +20,19 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: ../img\n"
 "X-Poedit-SearchPathExcluded-3: ../css\n"
 
-#: ../inc/admin-menus.php:9 ../inc/admin-menus/css.php:10
+#: ../inc/admin-menus.php:10 ../inc/admin-menus/css.php:10
 msgid "Custom CSS"
 msgstr "Modifier le CSS"
 
-#: ../inc/admin-menus.php:10
+#: ../inc/admin-menus.php:11
 msgid "Theme"
 msgstr "Thème"
 
-#: ../inc/admin-menus.php:11
+#: ../inc/admin-menus.php:12
+msgid "Updates"
+msgstr ""
+
+#: ../inc/admin-menus.php:13 ../inc/admin-menus/guides.php:8
 msgid "Help / Guides"
 msgstr ""
 
@@ -105,9 +109,17 @@ msgstr ""
 "ATTENTION: Ces options peuvent erroner votre site. Utilisez les avec "
 "précaution."
 
-#: ../inc/functions.php:48
+#: ../inc/functions.php:84
 msgid "Themes"
 msgstr "Thèmes"
+
+#: ../inc/shortcodes/mosaic.php:75
+msgid "Older Posts"
+msgstr ""
+
+#: ../inc/shortcodes/mosaic.php:79
+msgid "Newer Posts"
+msgstr ""
 
 #: ../inc/widgets/bloglovin.php:6
 msgid "Display your Bloglovin' follower count."
@@ -125,15 +137,11 @@ msgstr "abonnés sur Bloglovin'"
 msgid "Follow on Bloglovin'"
 msgstr "Suivre sur Bloglovin’"
 
-#: ../inc/widgets/bloglovin.php:51
-#, php-format
-msgid ""
-"Widget setup not complete. You must add your bloglovin profile to the "
-"'Social Media Links' section of the <a href='%s'>Customizer</a>."
+#: ../inc/widgets/bloglovin.php:51 ../inc/widgets/facebook.php:48
+#: ../inc/widgets/latest-youtube.php:31 ../inc/widgets/pinterest.php:94
+#: ../inc/widgets/snapcode.php:31 ../inc/widgets/subscribe.php:47
+msgid "Setup not complete. Please check the widget options."
 msgstr ""
-"L’installation du widget est incomplète. Vous devez ajouter votre profil "
-"bloglovin dans la section « Liens des réseaux sociaux » <a href='%s'>de "
-"l’éditeur</a>."
 
 #: ../inc/widgets/bloglovin.php:61
 msgid "This widget will display your total Bloglovin' follower count."
@@ -232,16 +240,8 @@ msgstr "Afficher un bouton J’aime Facebook."
 msgid "Facebook Widget"
 msgstr "Widget Facebook"
 
-#: ../inc/widgets/facebook.php:48 ../inc/widgets/subscribe.php:47
-msgid ""
-"Setup not complete. Please add your Facebook Page URL to the Facebook Widget "
-"in the dashboard."
-msgstr ""
-"Installation incomplète. Ajoutez l’URL de votre page Facebook à votre widget "
-"Facebook dans la tableau de bord."
-
 #: ../inc/widgets/facebook.php:79 ../inc/widgets/latest-youtube.php:50
-#: ../inc/widgets/pinterest.php:111 ../inc/widgets/popular-posts.php:27
+#: ../inc/widgets/pinterest.php:117 ../inc/widgets/popular-posts.php:27
 #: ../inc/widgets/profile.php:63 ../inc/widgets/random-posts.php:27
 #: ../inc/widgets/socialz.php:81 ../inc/widgets/subscribe.php:67
 msgid "Widget Title:"
@@ -299,7 +299,7 @@ msgstr ""
 "autoriser votre compte Instagram sur <a href=\"%s\">cette page</a> pour que "
 "le widget fonctionne."
 
-#: ../inc/widgets/instagram.php:95 ../inc/widgets/pinterest.php:131
+#: ../inc/widgets/instagram.php:95 ../inc/widgets/pinterest.php:137
 msgid "Number of images to display:"
 msgstr "Nombre d’images à afficher:"
 
@@ -311,7 +311,7 @@ msgstr "Nombre de colonnes:"
 msgid "Display a \"Load more\" button."
 msgstr "Afficher un bouton « voir plus »."
 
-#: ../inc/widgets/instagram.php:109
+#: ../inc/widgets/instagram.php:109 ../inc/widgets/pinterest.php:143
 msgid "Display a \"Follow\" link."
 msgstr "Afficher un lien « suivre »."
 
@@ -323,24 +323,11 @@ msgstr "Affiche automatiquement votre dernière vidéo Youtube."
 msgid "Latest YouTube"
 msgstr "Dernière vidéo Youtube."
 
-#: ../inc/widgets/latest-youtube.php:31
-msgid ""
-"Setup not complete. Please add your YouTube username to the YouTube Widget "
-"in the dashboard."
-msgstr ""
-"Installation incomplète. Ajoutez votre nom d’utilisateur Youtube au Widget "
-"Youtube dans le tableau de bord."
-
 #: ../inc/widgets/latest-youtube.php:57
-msgid ""
-"Add your YouTube user/channel to the box below to show your latest video. "
-"This can be found in your channel's URL."
+msgid "Add your YouTube Username."
 msgstr ""
-"Ajouter votre nom d’utilisateur Youtube ou le nom de votre chaine dans "
-"l’encadré ci dessous pour afficher votre dernière vidéo. Vous pourrez "
-"trouver ces informations dans l’URL de votre chaine."
 
-#: ../inc/widgets/latest-youtube.php:58 ../inc/widgets/pinterest.php:119
+#: ../inc/widgets/latest-youtube.php:58 ../inc/widgets/pinterest.php:125
 #: ../inc/widgets/subscribe.php:75
 msgid "For example, the red part below:"
 msgstr "Par exemple, la partie rouge ci dessous:"
@@ -357,19 +344,15 @@ msgstr "Afficher vos derniers pins."
 msgid "Pinterest Widget"
 msgstr "Widget Pinterest"
 
-#: ../inc/widgets/pinterest.php:88
-msgid ""
-"Setup not complete. Please add your Pinterest username to the Pinterest "
-"Widget in the dashboard."
+#: ../inc/widgets/pinterest.php:85
+msgid "Follow on Pinterest"
 msgstr ""
-"Installation incomplète. Ajoutez votre nom d’utilisateur Pinterest au Widget "
-"Pinterest dans le tableau de bord."
 
-#: ../inc/widgets/pinterest.php:118
+#: ../inc/widgets/pinterest.php:124
 msgid "Add your Pinterest account name to the box below."
 msgstr "Ajoutez votre nom d’utilisateur Pinterest dans l’encadré ci dessous."
 
-#: ../inc/widgets/pinterest.php:123
+#: ../inc/widgets/pinterest.php:129
 msgid "Pinterest Account Name:"
 msgstr "Nom d’utilisateur de votre compte Pinterest:"
 
@@ -474,12 +457,6 @@ msgstr ""
 msgid "Follow <b>%s</b> on Snapchat!"
 msgstr ""
 
-#: ../inc/widgets/snapcode.php:31
-msgid ""
-"Setup not complete. Please check you have entered all information in the "
-"widget options."
-msgstr ""
-
 #: ../inc/widgets/snapcode.php:56
 msgid ""
 "Upload your <a href=\"https://accounts.snapchat.com/accounts/snapcodes?"
@@ -495,7 +472,7 @@ msgid "Snapchat Account Name:"
 msgstr ""
 
 #: ../inc/widgets/snapcode.php:69
-msgid "For example: mileyxxcyrus or rhianna"
+msgid "For example:"
 msgstr ""
 
 #: ../inc/widgets/socialz.php:6
@@ -540,6 +517,43 @@ msgstr ""
 #: ../inc/widgets/subscribe.php:86
 msgid "Text to display above the form:"
 msgstr ""
+
+#~ msgid ""
+#~ "Widget setup not complete. You must add your bloglovin profile to the "
+#~ "'Social Media Links' section of the <a href='%s'>Customizer</a>."
+#~ msgstr ""
+#~ "L’installation du widget est incomplète. Vous devez ajouter votre profil "
+#~ "bloglovin dans la section « Liens des réseaux sociaux » <a href='%s'>de "
+#~ "l’éditeur</a>."
+
+#~ msgid ""
+#~ "Setup not complete. Please add your Facebook Page URL to the Facebook "
+#~ "Widget in the dashboard."
+#~ msgstr ""
+#~ "Installation incomplète. Ajoutez l’URL de votre page Facebook à votre "
+#~ "widget Facebook dans la tableau de bord."
+
+#~ msgid ""
+#~ "Setup not complete. Please add your YouTube username to the YouTube "
+#~ "Widget in the dashboard."
+#~ msgstr ""
+#~ "Installation incomplète. Ajoutez votre nom d’utilisateur Youtube au "
+#~ "Widget Youtube dans le tableau de bord."
+
+#~ msgid ""
+#~ "Add your YouTube user/channel to the box below to show your latest video. "
+#~ "This can be found in your channel's URL."
+#~ msgstr ""
+#~ "Ajouter votre nom d’utilisateur Youtube ou le nom de votre chaine dans "
+#~ "l’encadré ci dessous pour afficher votre dernière vidéo. Vous pourrez "
+#~ "trouver ces informations dans l’URL de votre chaine."
+
+#~ msgid ""
+#~ "Setup not complete. Please add your Pinterest username to the Pinterest "
+#~ "Widget in the dashboard."
+#~ msgstr ""
+#~ "Installation incomplète. Ajoutez votre nom d’utilisateur Pinterest au "
+#~ "Widget Pinterest dans le tableau de bord."
 
 #~ msgid ""
 #~ "Widget setup not complete. You must add your bloglovin profile to the "

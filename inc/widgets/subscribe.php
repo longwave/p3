@@ -44,7 +44,7 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 			
 			<?php
 		} else {
-			_e('Setup not complete. Please add your Facebook Page URL to the Facebook Widget in the dashboard.', 'p3');
+			_e('Setup not complete. Please check the widget options.', 'p3');
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');

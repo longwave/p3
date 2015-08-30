@@ -10,6 +10,9 @@ if ( !function_exists( 'pipdig_plugin_check' ) ) {
 		}
 	}
 }
+
+
+
 /*
 if (!function_exists('pipdig_p3_mobile_detect')) {
 	function pipdig_p3_mobile_detect() {
@@ -33,6 +36,9 @@ if (!function_exists('pipdig_p3_mobile_detect')) {
 	}
 }
 */
+
+
+
 // load image catch function, just in case theme hasn't
 if (!function_exists('pipdig_p3_catch_that_image')) {
 	function pipdig_p3_catch_that_image() {
@@ -49,6 +55,8 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 	}
 }
 
+
+
 /* Add Featured Image to feed -------------------------------------------------------*/
 if (!function_exists('pipdig_rss_post_thumbnail')) {
 	function pipdig_p3_rss_post_thumbnail($content) {
@@ -64,6 +72,8 @@ if (!function_exists('pipdig_rss_post_thumbnail')) {
 	add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');
 }
 
+
+
 // remove mojo crap
 if (function_exists('mm_load_updater')) {
 	function pipdig_p3_bad_mojo() {
@@ -74,6 +84,8 @@ if (function_exists('mm_load_updater')) {
 	}
 	add_action('plugins_loaded','pipdig_p3_bad_mojo');
 }
+
+
 
 // add pipdig link to themes section
 function pipdig_p3_themes_top_link() {
@@ -88,7 +100,6 @@ function pipdig_p3_themes_top_link() {
 	}
 }
 add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
-
 
 
 
@@ -117,7 +128,7 @@ function pipdig_p3_unregister_widgets() {
 	unregister_widget('WP_Widget_Meta');
 	unregister_widget('WP_Widget_Recent_Posts');
 	unregister_widget('WP_Widget_Recent_Comments');
-	// jetpack
+
 	unregister_widget('Jetpack_Gravatar_Profile_Widget');
 	unregister_widget('WPCOM_Widget_Facebook_LikeBox');
 	unregister_widget('Jetpack_Gallery_Widget');
@@ -134,6 +145,8 @@ function pipdig_p3_unregister_widgets() {
 }
 add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 
+
+
 /*  Remove pointless dashboard widgets ----------------------------------------------*/
 function pipdig_p3_pipdig_remove_dashboard_meta() {
 	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
@@ -147,6 +160,8 @@ function pipdig_p3_pipdig_remove_dashboard_meta() {
 }
 add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
 
+
+
 /*  Remove pointless meta boxes on posts --------------------------------------------*/
 function pipdig_p3_remove_default_post_metaboxes() {
 	remove_meta_box( 'trackbacksdiv','post','normal' );
@@ -154,6 +169,8 @@ function pipdig_p3_remove_default_post_metaboxes() {
 	remove_meta_box( 'revisionsdiv','post','normal' );
 }
 add_action('admin_menu','pipdig_p3_remove_default_post_metaboxes');
+
+
 
 /*  Remove pointless meta boxes on pages --------------------------------------------*/
 function pipdig_p3_remove_default_page_metaboxes() {
@@ -165,6 +182,8 @@ function pipdig_p3_remove_default_page_metaboxes() {
 }
 add_action('admin_menu','pipdig_p3_remove_default_page_metaboxes');
 
+
+
 // Heartbeat rate
 if ( !function_exists( 'heartbeat_control_menu' ) ) {
 	function pipdig_p3_heartbeat_settings( $settings ) {
@@ -172,4 +191,16 @@ if ( !function_exists( 'heartbeat_control_menu' ) ) {
 		return $settings;
 	}
 	add_filter( 'heartbeat_settings', 'pipdig_p3_heartbeat_settings' );
+}
+
+
+// hide tabs on social count plus
+if (pipdig_plugin_check('social-count-plus/social-count-plus.php')) {
+	function hide_complex_tabs_social_count_plus() {
+		$screen = get_current_screen();
+		if (is_object($screen) && $screen->id == 'settings_page_social-count-plus') {
+			echo '<style>.nav-tab-wrapper{display:none!important}</style>';
+		}
+	}
+	add_action('admin_footer', 'hide_complex_tabs_social_count_plus');
 }
