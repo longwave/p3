@@ -54,7 +54,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 		<?php } ?>
 
 		<?php if (!empty($google_plus)) { ?>
-			{channel: "Google Plus", count: <?php echo $google_plus; ?>, "color": "#dd4c39"},
+			{channel: "Google+", count: <?php echo $google_plus; ?>, "color": "#dd4c39"},
 		<?php } ?>
 
 		<?php if (!empty($soundcloud)) { ?>

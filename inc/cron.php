@@ -41,7 +41,6 @@ if (!function_exists('pipdig_p3_do_this_daily')) {
 		// Facebook --------------------
 		$facebook_url = $links['facebook'];
 		if($facebook_url) {
-			sleep(0.1);
 			// get page id from scrape first
 			//<meta property="al:android:url" content="fb://page/?id=390642081017203" />
 			$facebook = wp_remote_fopen($facebook_url, array( 'timeout' => 10 ));
@@ -117,9 +116,9 @@ if (!function_exists('pipdig_p3_do_this_daily')) {
 		if ($youtube_url) {
 			$youtube_url = rawurlencode($youtube_url);
 			sleep(0.1);
-			$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22https://www.youtube.com/user/inthefrow%22%20AND%20xpath%3D%22%2F%2Fspan%5B%40class%3D'yt-subscription-button-subscriber-count-branded-horizontal%20yt-uix-tooltip'%5D%22&format=json");
+			$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$youtube_url."%22%20AND%20xpath%3D%22%2F%2Fspan%5B%40class%3D'yt-subscription-button-subscriber-count-branded-horizontal%20yt-uix-tooltip'%5D%22&format=json");
 			$youtube_yql = json_decode($youtube_yql);
-			$youtube_count = $youtube_yql->query->results->span->span[1]->title;
+			$youtube_count = $youtube_yql->query->results->span->title;
 			$youtube_count = intval(str_replace(',', '', $youtube_count));
 			update_option('p3_youtube_count', $youtube_count);
 		}
