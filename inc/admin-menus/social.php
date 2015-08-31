@@ -5,22 +5,25 @@ if (!function_exists('pipdig_social_options_page')) {
 	
 	$total_followers = $twitter = $instagram = $facebook = $youtube = $googleplus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $linkedin = $vimeo = $bloglovin = '';
 
-	$twitter = get_scp_twitter();
-	$instagram = get_scp_instagram();
-	$facebook = get_scp_facebook();
-	$youtube = get_scp_youtube();
-	$googleplus = get_scp_googleplus();
-	$soundcloud = get_scp_soundcloud();
+	//$twitter = get_scp_twitter();
+	//$instagram = get_scp_instagram();
+	//$facebook = get_scp_facebook();
+	//$youtube = get_scp_youtube();
+	//$googleplus = get_scp_googleplus();
+	//$soundcloud = get_scp_soundcloud();
 	//$pinterest = get_scp_pinterest();
 	//$linkedin = get_scp_linkedin();
-	//$twitch = get_scp_twitch();
 	//$tumblr = get_scp_tumblr();
 	//$linkedin = get_scp_linkedin();
-	//$vimeo = get_scp_vimeo();
-
-	$bloglovin = get_option('p3_bloglovin_count');
 	
-	$total_followers = $twitter + $instagram + $facebook + $youtube + $googleplus + $soundcloud + $bloglovin;
+	$bloglovin = get_option('p3_bloglovin_count');
+	$pinterest = get_option('p3_pinterest_count');
+	$twitter = get_option('p3_twitter_count');
+	$facebook = get_option('p3_facebook_count');
+	$instagram = get_option('p3_instagram_count');
+	$youtube = get_option('p3_youtube_count');
+	
+	$total_followers = $twitter + $instagram + $facebook + $youtube + $googleplus + $soundcloud + $bloglovin + $pinterest;
 	
 	?>
 	
@@ -69,16 +72,8 @@ if (!function_exists('pipdig_social_options_page')) {
 			{channel: "tumblr", count: <?php echo $tumblr; ?>, "color": "#36465d"},
 		<?php } ?>
 
-		<?php if (!empty($twitch)) { ?>
-			{channel: "Twitch", count: <?php echo $twitch; ?>, "color": "#6441a5"},
-		<?php } ?>
-
 		<?php if (!empty($linkedin)) { ?>
 			{channel: "LinkedIn", count: <?php echo $linkedin; ?>, "color": "#0077b5"},
-		<?php } ?>
-
-		<?php if (!empty($vimeo)) { ?>
-			{channel: "Vimeo", count: <?php echo $vimeo; ?>, "color": "#17b3e8"},
 		<?php } ?>
 
 		];

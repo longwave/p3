@@ -13,6 +13,9 @@ delete_transient('pipdig_clw_map');
 
 // delete database entries
 delete_option('p3_bloglovin_count');
-delete_option('pipdig_theme_pinterest_count');
+delete_option('p3_pinterest_count');
+delete_option('p3_twitter_count');
+delete_option('p3_instagram_count');
+delete_option('p3_youtube_count');
 delete_option('pipdig_p3_snapchat_account');
 delete_option('pipdig_p3_version');
