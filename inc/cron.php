@@ -13,13 +13,15 @@ if (!function_exists('pipdig_event_setup_schedule')) {
 
 if (!function_exists('pipdig_p3_do_this_daily')) {
 	function pipdig_p3_do_this_daily() {
+		
+		$links = get_option('pipdig_links');
 			
 		// Bloglovin --------------------
-		$bloglovin_url = get_theme_mod('socialz_bloglovin');
+		$bloglovin_url = $links['bloglovin'];
 		if($bloglovin_url) {
 			$bloglovin = wp_remote_fopen($bloglovin_url, array( 'timeout' => 10 ));
 			$bloglovin_doc = new DOMDocument();
-				libxml_use_internal_errors(TRUE); //disable libxml errors
+				libxml_use_internal_errors(true); //disable libxml errors
 				if(!empty($bloglovin)){ //if any html is actually returned
 					$bloglovin_doc->loadHTML($bloglovin);
 				libxml_clear_errors(); //remove errors for yucky html
@@ -37,7 +39,7 @@ if (!function_exists('pipdig_p3_do_this_daily')) {
 		}
 		
 		// Facebook --------------------
-		$facebook_url = get_theme_mod('socialz_facebook');
+		$facebook_url = $links['facebook'];
 		if($facebook_url) {
 			sleep(0.1);
 			// get page id from scrape first
@@ -69,8 +71,9 @@ if (!function_exists('pipdig_p3_do_this_daily')) {
 		// Pinterest ---------------------
 		// <meta property="pinterestapp:followers" name="pinterestapp:followers" content="106168" data-app>
 		// SELECT * from html where url="https://www.pinterest.com/thelovecatsinc" AND xpath="//meta[@property='pinterestapp:followers']"
-		$pinterest_url = rawurlencode(get_theme_mod('socialz_pinterest'));
+		$pinterest_url = $links['pinterest'];
 		if ($pinterest_url) {
+			$pinterest_url = rawurlencode($pinterest_url);
 			sleep(0.1);
 			$pinterest_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$pinterest_url."%22%20AND%20xpath%3D%22%2F%2Fmeta%5B%40property%3D'pinterestapp%3Afollowers'%5D%22&format=json", array( 'timeout' => 10 ));
 			$pinterest_yql = json_decode($pinterest_yql);
@@ -81,8 +84,9 @@ if (!function_exists('pipdig_p3_do_this_daily')) {
 		// Twitter ---------------------
 		// <li class="ProfileNav-item ProfileNav-item--followers"> (title tag of link element inside)
 		// SELECT * from html where url="http://twitter.com/pipdig" AND xpath="//li[3]/a[@data-nav='followers']"
-		$twitter_url = rawurlencode(get_theme_mod('socialz_twitter'));
+		$twitter_url = $links['twitter'];
 		if ($twitter_url) {
+			$twitter_url = rawurlencode($twitter_url);
 			sleep(0.1);
 			$twitter_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$twitter_url."%22%20AND%20xpath%3D%22%2F%2Fli%5B3%5D%2Fa%5B%40data-nav%3D'followers'%5D%22&format=json&callback=", array( 'timeout' => 10 ));
 			//$twitter_yql = utf8_encode($twitter_yql);
@@ -96,8 +100,9 @@ if (!function_exists('pipdig_p3_do_this_daily')) {
 		// Instagram ---------------------
 		// <span data-reactid=".0.1.0.0:0.1.3.1.0.1" title="476,475" class="-cx-PRIVATE-FollowedByStatistic__count">476k</span>
 		// SELECT * from html where url="http://instagram.com/inthefrow" AND xpath="//li[2]/span"
-		$instagram_url = rawurlencode(get_theme_mod('socialz_instagram'));
+		$instagram_url = $links['instagram'];
 		if ($instagram_url) {
+			$instagram_url = rawurlencode($instagram_url);
 			sleep(0.1);
 			$instagram_yql = wp_remote_fopen("http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$instagram_url."%22%20AND%20xpath%3D%22%2F%2Fli%5B2%5D%2Fspan%22&format=json", array( 'timeout' => 10 ));
 			$instagram_yql = json_decode($instagram_yql);
@@ -108,8 +113,9 @@ if (!function_exists('pipdig_p3_do_this_daily')) {
 		
 		// YouTube ---------------------
 		// SELECT * from html where url="https://www.youtube.com/user/inthefrow" AND xpath="//span[@class='yt-subscription-button-subscriber-count-branded-horizontal yt-uix-tooltip']"
-		$youtube_url = rawurlencode(get_theme_mod('socialz_youtube'));
+		$youtube_url = $links['youtube'];
 		if ($youtube_url) {
+			$youtube_url = rawurlencode($youtube_url);
 			sleep(0.1);
 			$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22https://www.youtube.com/user/inthefrow%22%20AND%20xpath%3D%22%2F%2Fspan%5B%40class%3D'yt-subscription-button-subscriber-count-branded-horizontal%20yt-uix-tooltip'%5D%22&format=json");
 			$youtube_yql = json_decode($youtube_yql);

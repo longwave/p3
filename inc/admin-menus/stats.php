@@ -1,7 +1,7 @@
 <?php
 
-if (!function_exists('pipdig_social_options_page')) {
-	function pipdig_social_options_page() {
+if (!function_exists('pipdig_stats_options_page')) {
+	function pipdig_stats_options_page() {
 	
 	$total_followers = $twitter = $instagram = $facebook = $youtube = $googleplus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $linkedin = $vimeo = $bloglovin = '';
 
@@ -116,7 +116,7 @@ if (!function_exists('pipdig_social_options_page')) {
 			?>
 				<h2><?php echo __('Total followers:', 'p3').' '.$total_followers; ?></h2>
 			<?php } else {
-				$height = 0;
+				$height = 200;
 			?>
 				<h2><?php _e('Follower Stats', 'p3'); ?></h2>
 			<?php } ?>
@@ -131,14 +131,14 @@ if (!function_exists('pipdig_social_options_page')) {
 				font-size: 0!important;
 			}
 			</style>
-			<p><a href="<?php echo admin_url('options-general.php?page=social-count-plus'); ?>"><?php _e('Click here to add more accounts', 'p3'); ?></a></p>
+			<p><a href="<?php echo admin_url('admin.php?page=pipdig-links'); ?>"><?php _e('Click here to add more accounts', 'p3'); ?></a></p>
 		</div>
 		
 		
 		<div class="card">
 			<h2><?php _e('Recent post share stats:', 'p3'); ?></h2>
 			<?php
-			
+			/*
 				$args = array (
 					'posts_per_page'         => 5,
 					'ignore_sticky_posts'    => true,
@@ -189,7 +189,7 @@ if (!function_exists('pipdig_social_options_page')) {
 
 				// Restore original Post Data
 				wp_reset_postdata();
-			
+				*/
 				if ( false === ( $sharedcount = get_transient('p3_stats_sharedcount_home') ) ) {
 					$url = 'http://www.inthefrow.com'; // just for testing
 					//$url = home_url();

@@ -7,7 +7,8 @@ if (!function_exists('pipdig_add_admin_menu')) {
 		global $submenu;
 		add_menu_page( 'pipdig', 'pipdig', 'manage_options', 'pipdig', 'pipdig_main_options_page', 'dashicons-star-filled' );
 		add_submenu_page( 'pipdig', 'Shortcodes', 'Shortcodes', 'manage_options', 'pipdig-shortcodes', 'pipdig_shortcodes_options_page' );
-		add_submenu_page( 'pipdig', __('Social Stats', 'p3'), __('Social Stats', 'p3'), 'manage_options', 'pipdig-social', 'pipdig_social_options_page' );
+		add_submenu_page( 'pipdig', __('Site Stats', 'p3'), __('Site Stats', 'p3'), 'manage_options', 'pipdig-stats', 'pipdig_stats_options_page' );
+		add_submenu_page( 'pipdig', __('Social Links', 'p3'), __('Social Links', 'p3'), 'manage_options', 'pipdig-links', 'pipdig_links_options_page' );
 		add_submenu_page( 'pipdig', __('Custom CSS', 'p3'), __('Custom CSS', 'p3'), 'manage_options', 'pipdig-css', 'pipdig_css_options_page' );
 		add_submenu_page( 'pipdig', __('Theme', 'p3').' Hooks', __('Theme', 'p3').' Hooks', 'manage_options', 'pipdig-hooks', 'pipdig_hooks_options_page' );
 		add_submenu_page( 'pipdig', __('Updates', 'p3'), __('Updates', 'p3'), 'manage_options', 'pipdig-updates', 'pipdig_updates_options_page' );
@@ -22,4 +23,5 @@ require_once('admin-menus/updates.php');
 require_once('admin-menus/shortcodes.php');
 require_once('admin-menus/css.php');
 require_once('admin-menus/hooks.php');
-require_once('admin-menus/social.php');
+require_once('admin-menus/stats.php');
+require_once('admin-menus/links.php'); // social links

@@ -16,6 +16,76 @@ if (!strpos($theme, 'pipdig')) {
 
 update_option('pipdig_p3_version', '1.4.1');
 
+		// ========= remove this on 1st March 2016
+		if (get_option('p3_social_transfer') != 1) {
+			
+			$links = get_option('pipdig_links');
+			
+			$socialz_twitter = get_theme_mod('socialz_twitter');
+			$socialz_instagram = get_theme_mod('socialz_instagram');
+			$socialz_facebook = get_theme_mod('socialz_facebook');
+			$socialz_google_plus = get_theme_mod('socialz_google_plus');
+			$socialz_bloglovin = get_theme_mod('socialz_bloglovin');
+			$socialz_pinterest = get_theme_mod('socialz_pinterest');
+			$socialz_youtube = get_theme_mod('socialz_youtube');
+			$socialz_tumblr = get_theme_mod('socialz_tumblr');
+			$socialz_linkedin = get_theme_mod('socialz_linkedin');
+			$socialz_email = get_theme_mod('socialz_email');
+			$socialz_soundcloud = get_theme_mod('socialz_soundcloud');
+			$socialz_flickr = get_theme_mod('socialz_flickr');
+			
+			if ($socialz_twitter) {
+				$links['twitter'] = $socialz_twitter;
+				update_option( "pipdig_links", $links );
+			}
+			if ($socialz_instagram) {
+				$links['instagram'] = $socialz_instagram;
+				update_option( "pipdig_links", $links );
+			}
+			if ($socialz_facebook) {
+				$links['facebook'] = $socialz_facebook;
+				update_option( "pipdig_links", $links );
+			}
+			if ($socialz_google_plus) {
+				$links['google_plus'] = $socialz_google_plus;
+				update_option( "pipdig_links", $links );
+			}
+			if ($socialz_bloglovin) {
+				$links['bloglovin'] = $socialz_bloglovin;
+				update_option( "pipdig_links", $links );
+			}
+			if ($socialz_pinterest) {
+				$links['pinterest'] = $socialz_pinterest;
+				update_option( "pipdig_links", $links );
+			}
+			if ($socialz_youtube) {
+				$links['youtube'] = $socialz_youtube;
+				update_option( "pipdig_links", $links );
+			}
+			if ($socialz_tumblr) {
+				$links['tumblr'] = $socialz_tumblr;
+				update_option( "pipdig_links", $links );
+			}
+			if ($socialz_linkedin) {
+				$links['linkedin'] = $socialz_linkedin;
+				update_option( "pipdig_links", $links );
+			}
+			if ($socialz_email) {
+				$links['email'] = $socialz_email;
+				update_option( "pipdig_links", $links );
+			}
+			if ($socialz_soundcloud) {
+				$links['soundcloud'] = $socialz_soundcloud;
+				update_option( "pipdig_links", $links );
+			}
+			if ($socialz_flickr) {
+				$links['flickr'] = $socialz_flickr;
+				update_option( "pipdig_links", $links );
+			}
+			update_option('p3_social_transfer', 1);
+			// =======================
+		}
+
 class pipdig_p3_intalled_xyz {
 	//constructor for pipdig_p3_intalled_xyz object
 	function pipdig_p3_intalled_xyz() {
@@ -54,17 +124,9 @@ class pipdig_p3_intalled_xyz {
 		}
 		
 		// change default values for https://wordpress.org/plugins/resize-image-after-upload/
-		//if(get_option('jr_resizeupload_width') == '1200' || null) {
 		update_option('jr_resizeupload_width', '1920');
 		update_option('jr_resizeupload_quality', '75');
 		update_option('jr_resizeupload_height', '0');
-			//if(get_option('jr_resizeupload_height') == '1200') {
-			
-			//}
-			//if(get_option('jr_resizeupload_quality') == '90') {
-			
-			//}
-		//}
 		
 	}
 }
