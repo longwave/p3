@@ -3,13 +3,13 @@
 if (!function_exists('pipdig_stats_options_page')) {
 	function pipdig_stats_options_page() {
 	
-	$total_followers = $twitter = $instagram = $facebook = $youtube = $googleplus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $linkedin = $vimeo = $bloglovin = '';
+	$total_followers = $twitter = $instagram = $facebook = $youtube = $google_plus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $linkedin = $vimeo = $bloglovin = '';
 
 	//$twitter = get_scp_twitter();
 	//$instagram = get_scp_instagram();
 	//$facebook = get_scp_facebook();
 	//$youtube = get_scp_youtube();
-	//$googleplus = get_scp_googleplus();
+	//$google_plus = get_scp_google_plus();
 	//$soundcloud = get_scp_soundcloud();
 	//$pinterest = get_scp_pinterest();
 	//$linkedin = get_scp_linkedin();
@@ -22,8 +22,9 @@ if (!function_exists('pipdig_stats_options_page')) {
 	$facebook = get_option('p3_facebook_count');
 	$instagram = get_option('p3_instagram_count');
 	$youtube = get_option('p3_youtube_count');
+	$google_plus = get_option('p3_google_plus_count');
 	
-	$total_followers = $twitter + $instagram + $facebook + $youtube + $googleplus + $soundcloud + $bloglovin + $pinterest;
+	$total_followers = $twitter + $instagram + $facebook + $youtube + $google_plus + $soundcloud + $bloglovin + $pinterest;
 	
 	?>
 	
@@ -52,8 +53,8 @@ if (!function_exists('pipdig_stats_options_page')) {
 			{channel: "Bloglovin", count: <?php echo $bloglovin; ?>, "color": "#37aeed"},
 		<?php } ?>
 
-		<?php if (!empty($googleplus)) { ?>
-			{channel: "Google Plus", count: <?php echo $googleplus; ?>, "color": "#dd4c39"},
+		<?php if (!empty($google_plus)) { ?>
+			{channel: "Google Plus", count: <?php echo $google_plus; ?>, "color": "#dd4c39"},
 		<?php } ?>
 
 		<?php if (!empty($soundcloud)) { ?>
@@ -163,7 +164,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 						$Reddit = intval($sharedcount['Reddit']);
 						$Delicious = intval($sharedcount['Delicious']);
 						$Facebook = intval($sharedcount['Facebook']['total_count']);
-						$GooglePlusOne = intval($sharedcount['GooglePlusOne']);
+						$google_plusOne = intval($sharedcount['google_plusOne']);
 						$Twitter = intval($sharedcount['Twitter']);
 						$Diggs = intval($sharedcount['Diggs']);
 						$Pinterest = intval($sharedcount['Pinterest']);
@@ -172,7 +173,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 						<p><?php echo 'Post ' . $post_no.': '. $StumbleUpon; ?></p>
 						<p><?php echo 'Post ' . $post_no.': '. $Reddit; ?></p>
 						<p><?php echo 'Post ' . $post_no.': '. $Delicious; ?></p>
-						<p><?php echo 'Post ' . $post_no.': '. $GooglePlusOne; ?></p>
+						<p><?php echo 'Post ' . $post_no.': '. $google_plusOne; ?></p>
 						<p><?php echo 'Post ' . $post_no.': '. $Twitter; ?></p>
 						<p><?php echo 'Post ' . $post_no.': '. $Diggs; ?></p>
 						<p><?php echo 'Post ' . $post_no.': '. $Pinterest; ?></p>
@@ -202,7 +203,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 				$Reddit = intval($sharedcount['Reddit']);
 				$Delicious = intval($sharedcount['Delicious']);
 				$Facebook = intval($sharedcount['Facebook']['total_count']);
-				$GooglePlusOne = intval($sharedcount['GooglePlusOne']);
+				$google_plusOne = intval($sharedcount['google_plusOne']);
 				$Twitter = intval($sharedcount['Twitter']);
 				$Diggs = intval($sharedcount['Diggs']);
 				$Pinterest = intval($sharedcount['Pinterest']);
@@ -212,7 +213,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 			<p>Home: <?php echo $StumbleUpon; ?></p>
 			<p>Home: <?php echo $Reddit; ?></p>
 			<p>Home: <?php echo $Delicious; ?></p>
-			<p>Home: <?php echo $GooglePlusOne; ?></p>
+			<p>Home: <?php echo $google_plusOne; ?></p>
 			<p>Home: <?php echo $Twitter; ?></p>
 			<p>Home: <?php echo $Diggs; ?></p>
 			<p>Home: <?php echo $Pinterest; ?></p>
