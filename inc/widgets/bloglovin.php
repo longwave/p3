@@ -20,7 +20,7 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 
 		if (!empty($bloglovin_url)) {
 			if ($bloglovin_official) { //use official widget
-				$bloglovin_widget_output = '<div style="text-align:center;width:98%;margin:0 auto"><a class="blsdk-follow" href="'.$bloglovin_url.'" target="_blank" rel="nofollow" data-blsdk-type="button" data-blsdk-counter="true">Follow on Bloglovin</a><script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s);js.id = id;js.src = "https://widget.bloglovin.com/assets/widget/loader.js";fjs.parentNode.insertBefore(js, fjs);}(document, "script", "bloglovin-sdk"))</script></div>';
+				$bloglovin_widget_output = '<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"><div style="text-align:center;margin:0 auto"><a target="_blank" rel="nofollow" href="'.$bloglovin_url.'" style="background: #000; border: 0; border-radius: 2px; display: block; height: 20px; overflow: hidden; padding: 0 5px; position: relative; width: 110px; display: inline-block"><div style="background: url(//static.blovcdn.com/assets/gfx/follow.svg) no-repeat; display: inline-block; height: 14px; left: 4px; position: absolute; top: 3px; width: 15px;"></div><div style="background: url(//static.blovcdn.com/assets/gfx/logo-2-white.svg) no-repeat; display: inline-block; height: 10px; left: 21px; position: absolute; top: 5px; width: 84px;"></div></a><a href="'.$bloglovin_url.'" rel="nofollow" target="_blank" style="padding:0 4px;height:20px;display:inline-block;text-align:center;border:1px solid #cfcfcf;border-radius:2px;background-color:white;overflow:hidden;position:relative;left:3px;font:13px Open Sans,sans-serif;line-height:18px;color:#000!important;text-decoration:none!important">25632</a></div>';
 			} else { // use customizer
 				$icon_type = get_theme_mod('pipdig_bloglovin_widget_icon', 'heart');
 				if (empty($icon_type)) {
@@ -57,10 +57,14 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 	  public function form( $instance ) {
 		$links = get_option('pipdig_links');
 		$bloglovin_url = $links['bloglovin'];
+		$bloglovin_count = get_option('p3_bloglovin_count');
 		$cust_url = admin_url( 'admin.php?page=pipdig-links' );
 		?>
 		<p><?php _e("This widget will display your total Bloglovin' follower count.", 'p3'); ?></p>
-		
+		<?php if ($bloglovin_count) { ?>
+			<p><?php echo $bloglovin_count.' '. __("Followers on Bloglovin'", 'p3'); ?>.</p>
+			<?php //echo '<div style="text-align:center;margin:0 auto"><a target="_blank" rel="nofollow" href="'.$bloglovin_url.'" style="background: #000; border: 0; border-radius: 2px; display: block; height: 20px; overflow: hidden; padding: 0 5px; position: relative; width: 110px; display: inline-block"><div style="background: url(//static.blovcdn.com/assets/gfx/follow.svg) no-repeat; display: inline-block; height: 14px; left: 4px; position: absolute; top: 3px; width: 15px;"></div><div style="background: url(//static.blovcdn.com/assets/gfx/logo-2-white.svg) no-repeat; display: inline-block; height: 10px; left: 21px; position: absolute; top: 5px; width: 84px;"></div></a><a href="'.$bloglovin_url.'" style="padding:0 3px;height:20px;display:inline-block;text-align:center;border:1px solid #cfcfcf;border-radius:2px;background-color:white;overflow:hidden;position:relative;left:2px;font:13px Open Sans,sans-serif;line-height:18px;color:#000!important;text-decoration:none!important">25632</a></div>'; ?>
+		<?php } ?>
 		<p><?php
 		if (empty($bloglovin_url)) {
 			$cust_url = admin_url( 'admin.php?page=pipdig-links' );

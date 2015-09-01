@@ -156,7 +156,7 @@ require_once('inc/functions.php');
 require_once('inc/admin-menus.php');
 
 // cron functions
-require_once('inc/cron.php');
+//require_once('inc/cron.php');
 
 // widgets
 require_once('inc/widgets.php');
