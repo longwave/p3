@@ -2,6 +2,11 @@
 
 if (!function_exists('pipdig_stats_options_page')) {
 	function pipdig_stats_options_page() {
+		if ( false === ( get_transient('p3_stats_gen') ) ) {
+			pipdig_p3_do_this_daily();			
+			set_transient('p3_stats_gen', true, 30 * MINUTE_IN_SECONDS);
+		}
+		
 	
 	$total_followers = $twitter = $instagram = $facebook = $youtube = $google_plus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $linkedin = $vimeo = $bloglovin = '';
 
@@ -30,88 +35,88 @@ if (!function_exists('pipdig_stats_options_page')) {
 	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/amcharts.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/serial.js"></script>
-	<!--<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/themes/light.js"></script>-->
-	
-	<script>
-		var chart;
-
-		var chartData = [
-
-		<?php if (!empty($twitter)) { ?>
-			{channel: "Twitter", count: <?php echo $twitter; ?>, "color": "#5ea9dd"},
-		<?php } ?>
-
-		<?php if (!empty($instagram)) { ?>
-			{channel: "Instagram", count: <?php echo $instagram; ?>, "color": "#447398"},
-		<?php } ?>
-
-		<?php if (!empty($pinterest)) { ?>
-			{channel: "Pinterest", count: <?php echo $pinterest; ?>, "color": "#cb2027"},
-		<?php } ?>
-
-		<?php if (!empty($bloglovin)) { ?>
-			{channel: "Bloglovin", count: <?php echo $bloglovin; ?>, "color": "#37aeed"},
-		<?php } ?>
-
-		<?php if (!empty($google_plus)) { ?>
-			{channel: "Google+", count: <?php echo $google_plus; ?>, "color": "#dd4c39"},
-		<?php } ?>
-
-		<?php if (!empty($soundcloud)) { ?>
-			{channel: "Soundcloud", count: <?php echo $soundcloud; ?>, "color": "#ff7200"},
-		<?php } ?>
-
-		<?php if (!empty($facebook)) { ?>
-			{channel: "Facebook", count: <?php echo $facebook; ?>, "color": "#3b5998"},
-		<?php } ?>
-
-		<?php if (!empty($youtube)) { ?>
-			{channel: "YouTube", count: <?php echo $youtube; ?>, "color": "#d11f1e"},
-		<?php } ?>
-
-		<?php if (!empty($tumblr)) { ?>
-			{channel: "tumblr", count: <?php echo $tumblr; ?>, "color": "#36465d"},
-		<?php } ?>
-
-		<?php if (!empty($linkedin)) { ?>
-			{channel: "LinkedIn", count: <?php echo $linkedin; ?>, "color": "#0077b5"},
-		<?php } ?>
-
-		];
-
-
-		AmCharts.ready(function() {
-
-			chart = new AmCharts.AmSerialChart();
-			chart.dataProvider = chartData;
-			chart.categoryField = "channel";
-			chart.startDuration = 1.4;
-
-			var categoryAxis = chart.categoryAxis;
-			categoryAxis.gridPosition = "start";
-
-			var graph = new AmCharts.AmGraph();
-			graph.valueField = "count";
-			graph.colorField = "color"
-			graph.balloonText = "[[category]]: [[value]]";
-			graph.type = "column";
-			graph.lineAlpha = 0;
-			graph.fillAlphas = 0.9;
-			chart.addGraph(graph);
-			
-			chart.addListener("clickGraphItem", function (event) {
-				
-			});
-
-			chart.write("followers");
-		});
-	</script>
 	
 	<div class="wrap">
 		<h1>Social Stats</h1>
-		<p>For example, when you add the <code>[gallery]</code> shortcode to a post, WordPress automatically replaces this with all of the code required to display an image gallery. Read more about this <a href="<?php echo esc_url('http://code.tutsplus.com/articles/the-wordpress-gallery-shortcode-a-comprehensive-overview--wp-23743'); ?>" target="_blank">here</a>.</p>
-		
-		<div class="card">
+		<p><?php
+			$cust_url = admin_url( 'admin.php?page=pipdig-links' );
+			printf(__('This page will display your total social follower counts. Please add your links to <a href="%s">this page</a> first.', 'p3'), $cust_url ); ?>
+		</p>
+		<div class="card" style="max-width: 800px">
+			<script>
+				var chart;
+
+				var chartData = [
+
+				<?php if (!empty($twitter)) { ?>
+					{channel: "Twitter", count: <?php echo $twitter; ?>, "color": "#5ea9dd"},
+				<?php } ?>
+
+				<?php if (!empty($instagram)) { ?>
+					{channel: "Instagram", count: <?php echo $instagram; ?>, "color": "#447398"},
+				<?php } ?>
+
+				<?php if (!empty($pinterest)) { ?>
+					{channel: "Pinterest", count: <?php echo $pinterest; ?>, "color": "#cb2027"},
+				<?php } ?>
+
+				<?php if (!empty($bloglovin)) { ?>
+					{channel: "Bloglovin", count: <?php echo $bloglovin; ?>, "color": "#37aeed"},
+				<?php } ?>
+
+				<?php if (!empty($google_plus)) { ?>
+					{channel: "Google+", count: <?php echo $google_plus; ?>, "color": "#dd4c39"},
+				<?php } ?>
+
+				<?php if (!empty($soundcloud)) { ?>
+					{channel: "Soundcloud", count: <?php echo $soundcloud; ?>, "color": "#ff7200"},
+				<?php } ?>
+
+				<?php if (!empty($facebook)) { ?>
+					{channel: "Facebook", count: <?php echo $facebook; ?>, "color": "#3b5998"},
+				<?php } ?>
+
+				<?php if (!empty($youtube)) { ?>
+					{channel: "YouTube", count: <?php echo $youtube; ?>, "color": "#d11f1e"},
+				<?php } ?>
+
+				<?php if (!empty($tumblr)) { ?>
+					{channel: "tumblr", count: <?php echo $tumblr; ?>, "color": "#36465d"},
+				<?php } ?>
+
+				<?php if (!empty($linkedin)) { ?>
+					{channel: "LinkedIn", count: <?php echo $linkedin; ?>, "color": "#0077b5"},
+				<?php } ?>
+
+				];
+
+
+				AmCharts.ready(function() {
+
+					chart = new AmCharts.AmSerialChart();
+					chart.dataProvider = chartData;
+					chart.categoryField = "channel";
+					chart.startDuration = 1.4;
+
+					var categoryAxis = chart.categoryAxis;
+					categoryAxis.gridPosition = "start";
+
+					var graph = new AmCharts.AmGraph();
+					graph.valueField = "count";
+					graph.colorField = "color"
+					graph.balloonText = "[[category]]: [[value]]";
+					graph.type = "column";
+					graph.lineAlpha = 0;
+					graph.fillAlphas = 0.85;
+					chart.addGraph(graph);
+					
+					chart.addListener("clickGraphItem", function (event) {
+						
+					});
+
+					chart.write("followers");
+				});
+			</script>
 			<?php if ($total_followers != 0) {
 				$height = 500;
 			?>
@@ -126,7 +131,6 @@ if (!function_exists('pipdig_stats_options_page')) {
 			#followers {
 				width: 100%;
 				height: <?php echo $height; ?>px;
-				font-size: 11px;
 			}
 			.amcharts-chart-div a {
 				font-size: 0!important;
@@ -135,9 +139,9 @@ if (!function_exists('pipdig_stats_options_page')) {
 			<p><a href="<?php echo admin_url('admin.php?page=pipdig-links'); ?>"><?php _e('Click here to add more accounts', 'p3'); ?></a></p>
 		</div>
 		
-		
+		<!--
 		<div class="card">
-			<h2><?php _e('Recent post share stats:', 'p3'); ?></h2>
+			
 			<?php
 			/*
 				$args = array (
@@ -199,31 +203,103 @@ if (!function_exists('pipdig_stats_options_page')) {
 					
 					set_transient('p3_stats_sharedcount_home', $sharedcount, 2 * HOUR_IN_SECONDS);
 				}
-				$StumbleUpon = intval($sharedcount['StumbleUpon']);
-				$Reddit = intval($sharedcount['Reddit']);
-				$Delicious = intval($sharedcount['Delicious']);
-				$Facebook = intval($sharedcount['Facebook']['total_count']);
-				$google_plusOne = intval($sharedcount['google_plusOne']);
-				$Twitter = intval($sharedcount['Twitter']);
-				$Diggs = intval($sharedcount['Diggs']);
-				$Pinterest = intval($sharedcount['Pinterest']);
-				$LinkedIn = intval($sharedcount['LinkedIn']);
+				$StumbleUpon_shares = intval($sharedcount['StumbleUpon']);
+				$Reddit_shares = intval($sharedcount['Reddit']);
+				$Delicious_shares = intval($sharedcount['Delicious']);
+				$Facebook_shares = intval($sharedcount['Facebook']['total_count']);
+				$GooglePlusOne_shares = intval($sharedcount['GooglePlusOne']);
+				$Twitter_shares = intval($sharedcount['Twitter']);
+				$Diggs_shares = intval($sharedcount['Diggs']);
+				$Pinterest_shares = intval($sharedcount['Pinterest']);
+				$LinkedIn_shares = intval($sharedcount['LinkedIn']);
 			?>
 
-			<p>Home: <?php echo $StumbleUpon; ?></p>
-			<p>Home: <?php echo $Reddit; ?></p>
-			<p>Home: <?php echo $Delicious; ?></p>
-			<p>Home: <?php echo $google_plusOne; ?></p>
-			<p>Home: <?php echo $Twitter; ?></p>
-			<p>Home: <?php echo $Diggs; ?></p>
-			<p>Home: <?php echo $Pinterest; ?></p>
-			<p>Home: <?php echo $LinkedIn; ?></p>
-			<p>Home: <?php echo $Diggs; ?></p>
-			<p>Home: <?php echo $Facebook; ?></p>
+			<script>
+				var chart;
+
+				var chartData = [
+
+				<?php if (!empty($StumbleUpon_shares)) { ?>
+					{channel: "StumbleUpon", count: <?php echo $StumbleUpon_shares; ?>, "color": "#5ea9dd"},
+				<?php } ?>
+
+				<?php if (!empty($Reddit_shares)) { ?>
+					{channel: "Reddit", count: <?php echo $Reddit_shares; ?>, "color": "#447398"},
+				<?php } ?>
+
+				<?php if (!empty($Delicious_shares)) { ?>
+					{channel: "Delicious", count: <?php echo $Delicious_shares; ?>, "color": "#cb2027"},
+				<?php } ?>
+
+				<?php if (!empty($Facebook_shares)) { ?>
+					{channel: "Facebook", count: <?php echo $Facebook_shares; ?>, "color": "#37aeed"},
+				<?php } ?>
+
+				<?php if (!empty($GooglePlusOne_shares)) { ?>
+					{channel: "Google+", count: <?php echo $GooglePlusOne_shares; ?>, "color": "#dd4c39"},
+				<?php } ?>
+
+				<?php if (!empty($Twitter_shares)) { ?>
+					{channel: "Twitter", count: <?php echo $Twitter_shares; ?>, "color": "#ff7200"},
+				<?php } ?>
+
+				<?php if (!empty($Diggs_shares)) { ?>
+					{channel: "Diggs", count: <?php echo $Diggs_shares; ?>, "color": "#3b5998"},
+				<?php } ?>
+
+				<?php if (!empty($Pinterest_shares)) { ?>
+					{channel: "Pinterest", count: <?php echo $Pinterest_shares; ?>, "color": "#d11f1e"},
+				<?php } ?>
+
+				<?php if (!empty($LinkedIn_shares)) { ?>
+					{channel: "LinkedIn", count: <?php echo $LinkedIn_shares; ?>, "color": "#0077b5"},
+				<?php } ?>
+
+				];
+
+
+				AmCharts.ready(function() {
+
+					chart = new AmCharts.AmSerialChart();
+					chart.dataProvider = chartData;
+					chart.categoryField = "channel";
+					chart.startDuration = 2.2;
+
+					var categoryAxis = chart.categoryAxis;
+					categoryAxis.gridPosition = "start";
+
+					var graph = new AmCharts.AmGraph();
+					graph.valueField = "count";
+					graph.colorField = "color"
+					graph.balloonText = "[[category]]: [[value]]";
+					graph.type = "column";
+					graph.lineAlpha = 0;
+					graph.fillAlphas = 0.85;
+					chart.addGraph(graph);
+					
+					chart.addListener("clickGraphItem", function (event) {
+						
+					});
+
+					chart.write("shares");
+				});
+			</script>
+			
+
+			<h2><?php _e('Social Sharing Stats (Homepage only)', 'p3'); ?></h2>
+			<div id="shares"></div>
+			<style scoped>
+			#shares {
+				width: 100%;
+				height: 300px;
+			}
+			.amcharts-chart-div a {
+				font-size: 0!important;
+			}
+			</style>
 		</div>
-		
+		-->
 	</div>
-	
 	<?php
 
 	}
