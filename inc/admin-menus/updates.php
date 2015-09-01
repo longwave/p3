@@ -17,10 +17,24 @@ if (!function_exists('pipdig_updates_options_page')) {
 			<div id="post-body-content">
 
 				<div class="meta-box-sortables ui-sortable">
+				
+					<div class="postbox">
+
+						<h3>Update 1.5 - Social Media Stats</h3>
+
+						<div class="inside">
+							<p>We're working on a lot of new ways to optimise social engagement right across our themes.</p>
+							<p>To start, if you add your social media links to <a href="<?php echo admin_url('admin.php?page=pipdig-links'); ?>">this page</a>, you'll be able to see an overview of your social stats and follower counts on <a href="<?php echo admin_url('admin.php?page=pipdig-stats'); ?>">this page</a>. Once your links have been added, the theme can then start to use these links for all kinds of features in future, so head over and add them now!</p>
+							<p>Then stay tuned for more coming soon :)</p>
+						</div>
+						<!-- .inside -->
+
+					</div>
+					<!-- .postbox -->
 
 					<div class="postbox">
 
-						<h3>Update 1.4 - Shortcodes and Snapcodes:</h3>
+						<h3>Update 1.4 - Shortcodes and Snapcodes</h3>
 
 						<div class="inside">
 							<p>We'll be creating a new selection of shortcodes over the next few weeks.  To start things off, you can now use the shortcode [pipdig_stars] to automatically add a start rating. Perfect for anyone who writes product reviews. <a href="<?php echo admin_url('admin.php?page=pipdig-shortcodes'); ?>">Click here to read more</a>.</p>
