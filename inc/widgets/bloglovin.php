@@ -13,9 +13,9 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
-	   
+		$links = get_option('pipdig_links');
+		$bloglovin_url = $links['bloglovin'];
 		$bloglovin_count = get_option('p3_bloglovin_count');
-		$bloglovin_url = get_theme_mod('socialz_bloglovin');
 		$bloglovin_official = get_theme_mod('pipdig_bloglovin_widget_official', false);
 
 		if (!empty($bloglovin_url)) {
@@ -55,11 +55,19 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 	  }
 	 
 	  public function form( $instance ) {
-	   
-		$cust_url = admin_url( 'customize.php' );
+		$links = get_option('pipdig_links');
+		$bloglovin_url = $links['bloglovin'];
+		$cust_url = admin_url( 'admin.php?page=pipdig-links' );
 		?>
 		<p><?php _e("This widget will display your total Bloglovin' follower count.", 'p3'); ?></p>
-		<p><?php printf(__("You can style this widget in the <em>Bloglovin' Widget</em> section of the <a href='%s'>Customizer</a>.", 'p3'), $cust_url ); ?></p>
+		
+		<p><?php
+		if (empty($bloglovin_url)) {
+			$cust_url = admin_url( 'admin.php?page=pipdig-links' );
+			printf(__("You will need to <a href='%s'>add the link</a> to your Bloglovin' page first.", 'p3'), $cust_url );
+		}
+		?></p>
+		
 
 		 <?php
 	   
@@ -73,4 +81,4 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 	  
 	}
 }
-//add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_theme_bloglovin_widget");') );
+add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_theme_bloglovin_widget");') );
