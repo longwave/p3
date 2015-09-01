@@ -55,7 +55,7 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 	}
 }
 
-function pipdig_p3_do_this_daily() {
+function pipdig_p3_scrapey_scrapes() {
 		
 		$links = get_option('pipdig_links');
 			

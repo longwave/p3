@@ -2,9 +2,9 @@
 
 if (!function_exists('pipdig_stats_options_page')) {
 	function pipdig_stats_options_page() {
-		if ( false === ( get_transient('p3_stats_gen') ) ) {
-			pipdig_p3_do_this_daily();			
-			set_transient('p3_stats_gen', true, 2 * HOUR_IN_SECONDS);
+		if ( !get_transient('p3_stats_gen') ) {
+			pipdig_p3_scrapey_scrapes();			
+			set_transient('p3_stats_gen', true, 6 * HOUR_IN_SECONDS);
 		}
 		
 	
@@ -137,7 +137,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 			}
 			</style>
 			<p><a href="<?php echo admin_url('admin.php?page=pipdig-links'); ?>"><?php _e('Click here to add more accounts', 'p3'); ?></a>.</p>
-			<p><?php _e('Stats are refreshed every 2 hours', 'p3'); ?>.</p>
+			<p><?php _e('Stats are refreshed every 6 hours', 'p3'); ?>.</p>
 		</div>
 		
 		<!--

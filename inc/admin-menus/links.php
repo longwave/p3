@@ -173,7 +173,7 @@ function p3_flickr_field_render() {
 
 function pipdig_links_section_callback() { 
 	// description text
-	//pipdig_p3_do_this_daily();
+	//pipdig_p3_scrapey_scrapes();
 	$social_stats_page = admin_url('admin.php?page=pipdig-stats');
 	echo '<p>'.__('Add the links to each social media page below:', 'p3').'</p>';
 	printf(__('Any links added can then be used across your website, such as on <a href="%s">this page</a>.', 'p3'), $social_stats_page);
