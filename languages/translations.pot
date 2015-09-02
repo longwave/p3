@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-08-30 23:39+0100\n"
+"POT-Creation-Date: 2015-09-02 18:30+0100\n"
 "PO-Revision-Date: 2015-08-20 15:57-0000\n"
 "Last-Translator: \n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
@@ -21,23 +21,27 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: ../img\n"
 "X-Poedit-SearchPathExcluded-3: ../css\n"
 
-#: ../inc/admin-menus.php:11
-msgid "Social Stats"
+#: ../inc/admin-menus.php:10
+msgid "Site Stats"
 msgstr ""
 
-#: ../inc/admin-menus.php:13 ../inc/admin-menus/css.php:10
+#: ../inc/admin-menus.php:11
+msgid "Social Links"
+msgstr ""
+
+#: ../inc/admin-menus.php:12 ../inc/admin-menus/css.php:10
 msgid "Custom CSS"
 msgstr ""
 
-#: ../inc/admin-menus.php:14
+#: ../inc/admin-menus.php:13
 msgid "Theme"
 msgstr ""
 
-#: ../inc/admin-menus.php:15
+#: ../inc/admin-menus.php:14
 msgid "Updates"
 msgstr ""
 
-#: ../inc/admin-menus.php:16 ../inc/admin-menus/guides.php:8
+#: ../inc/admin-menus.php:15 ../inc/admin-menus/guides.php:8
 msgid "Help / Guides"
 msgstr ""
 
@@ -98,36 +102,54 @@ msgstr ""
 msgid "WARNING: these options can break your site. Use with caution."
 msgstr ""
 
-#: ../inc/admin-menus/social.php:122
+#: ../inc/admin-menus/links.php:178
+msgid "Add the links to each social media page below:"
+msgstr ""
+
+#: ../inc/admin-menus/links.php:179
+#, php-format
+msgid ""
+"Any links added can then be used across your website, such as on <a href=\"%s"
+"\">this page</a>."
+msgstr ""
+
+#: ../inc/admin-menus/stats.php:43
+#, php-format
+msgid ""
+"This page will display your total social follower counts. Please add your "
+"links to <a href=\"%s\">this page</a> first."
+msgstr ""
+
+#: ../inc/admin-menus/stats.php:123
 msgid "Total followers:"
 msgstr ""
 
-#: ../inc/admin-menus/social.php:126
+#: ../inc/admin-menus/stats.php:127
 msgid "Follower Stats"
 msgstr ""
 
-#: ../inc/admin-menus/social.php:139
+#: ../inc/admin-menus/stats.php:139
 msgid "Click here to add more accounts"
 msgstr ""
 
-#: ../inc/admin-menus/social.php:144
-msgid "No posts found."
+#: ../inc/admin-menus/stats.php:140
+msgid "Stats are refreshed every 6 hours"
 msgstr ""
 
-#: ../inc/admin-menus/social.php:192
-msgid "No posts published."
+#: ../inc/admin-menus/stats.php:290
+msgid "Social Sharing Stats (Homepage only)"
 msgstr ""
 
-#: ../inc/functions.php:96
+#: ../inc/functions.php:367
 msgid "Themes"
 msgstr ""
 
 #: ../inc/shortcodes/mosaic.php:75
-msgid "Older Posts"
+msgid "Older posts"
 msgstr ""
 
 #: ../inc/shortcodes/mosaic.php:79
-msgid "Newer Posts"
+msgid "Newer posts"
 msgstr ""
 
 #: ../inc/widgets/bloglovin.php:6
@@ -138,7 +160,7 @@ msgstr ""
 msgid "Bloglovin' Widget"
 msgstr ""
 
-#: ../inc/widgets/bloglovin.php:43
+#: ../inc/widgets/bloglovin.php:43 ../inc/widgets/bloglovin.php:65
 msgid "Followers on Bloglovin'"
 msgstr ""
 
@@ -152,15 +174,14 @@ msgstr ""
 msgid "Setup not complete. Please check the widget options."
 msgstr ""
 
-#: ../inc/widgets/bloglovin.php:61
+#: ../inc/widgets/bloglovin.php:63
 msgid "This widget will display your total Bloglovin' follower count."
 msgstr ""
 
-#: ../inc/widgets/bloglovin.php:62
+#: ../inc/widgets/bloglovin.php:71
 #, php-format
 msgid ""
-"You can style this widget in the <em>Bloglovin' Widget</em> section of the "
-"<a href='%s'>Customizer</a>."
+"You will need to <a href='%s'>add the link</a> to your Bloglovin' page first."
 msgstr ""
 
 #: ../inc/widgets/clw.php:20
