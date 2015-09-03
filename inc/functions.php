@@ -138,7 +138,7 @@ function pipdig_p3_scrapey_scrapes() {
 	if ($twitter_url) {
 		$twitter_url = rawurlencode($twitter_url);
 		usleep(50000);
-		$twitter_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$twitter_url."%22%20AND%20xpath%3D%22%2F%2Fli%5B3%5D%2Fa%5B%40data-nav%3D'followers'%5D%22&format=json&callback=", array( 'timeout' => 10 ));
+		$twitter_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$twitter_url."%22%20AND%20xpath%3D%22%2F%2Fli%5B3%5D%2Fa%5B%40data-nav%3D'followers'%5D%22&format=json", array( 'timeout' => 10 ));
 		//$twitter_yql = utf8_encode($twitter_yql);
 		$twitter_yql = json_decode($twitter_yql);
 		$twitter_count = $twitter_yql->query->results->a->title;
@@ -257,7 +257,7 @@ function pipdig_p3_social_footer() {
 			$class = 'col-'.$md.'-3';
 			break;
 		case '5':
-			$class = 'col-'.$md.'5ths';
+			$class = 'col-'.$md.'-5ths';
 			break;
 		case '6':
 			$class = 'col-'.$md.'-2';
