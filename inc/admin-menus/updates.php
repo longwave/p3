@@ -7,7 +7,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 	
 	<div class="wrap">
 
-	<h1><?php esc_attr_e( 'Updates', 'p3' ); ?></h1>
+	<h1><?php _e( 'Updates', 'p3' ); ?></h1>
 
 	<div id="poststuff">
 
@@ -17,6 +17,19 @@ if (!function_exists('pipdig_updates_options_page')) {
 			<div id="post-body-content">
 
 				<div class="meta-box-sortables ui-sortable">
+				
+					<div class="postbox">
+
+						<h3>Update 1.6 - Improved YouTube Widget</h3>
+
+						<div class="inside">
+							<p>We have significantly improved the way our custom YouTube widget works.  Please note, you will need to <a href="<?php echo admin_url('widgets.php'); ?>">re-configure this widget</a> if you have already set it up.</p>
+							<p>Other minor improvements to speed up your site's loading time.</p>
+						</div>
+						<!-- .inside -->
+
+					</div>
+					<!-- .postbox -->
 				
 					<div class="postbox">
 

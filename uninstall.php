@@ -11,6 +11,7 @@ delete_transient('pipdig_random_posts_widget');
 delete_transient('pipdig_popular_posts_widget');
 delete_transient('pipdig_clw_map');
 delete_transient('p3_stats_gen');
+delete_transient('p3_youtube_widget');
 
 // delete database entries
 delete_option('pipdig_links');

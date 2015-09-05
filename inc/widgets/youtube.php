@@ -11,8 +11,8 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		// PART 1: Extracting the arguments + getting the values
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
-		if (isset($instance['youtubeuser'])) { 
-			$youtubeuser =	$instance['youtubeuser'];
+		if (isset($instance['channel_id'])) { 
+			$channel_id =	$instance['channel_id'];
 		}
 
 		// Before widget code, if any
@@ -25,8 +25,19 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 			echo $before_title . 'YouTube' . $after_title;
 		}
 
-		if (!empty($youtubeuser)) {
-			echo '<ifr' . 'ame src="http://www.youtube.com/embed?max-results=1&listType=user_uploads&list=' . $youtubeuser . '&showinfo=1" frameborder="0" width="300" height="169" allowfullscreen></ifra' . 'me>';
+		if (!empty($channel_id)) {
+			//echo '<ifr' . 'ame src="http://www.youtube.com/embed?max-results=1&listType=user_uploads&list=' . $channel_id . '&showinfo=1" frameborder="0" width="300" height="169" allowfullscreen></ifra' . 'me>';
+			if ( false === ( $output = get_transient( 'p3_youtube_widget' ) ) ) { // transient
+				$json = wp_remote_fopen('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c&maxResults=1');
+				$listFromYouTube=json_decode($json);
+				$video_title = $listFromYouTube->items[0]->snippet->title;
+				$video_id = $listFromYouTube->items[0]->id->videoId;
+				$output = '<div style="position:relative"><a href="https://www.youtube.com/watch?v='.$video_id.'" title="'.$video_title.'" target="_blank" rel="nofollow"><img src="http://img.youtube.com/vi/'.$video_id.'/maxresdefault.jpg" alt="'.$video_title.'"/><div style="position:absolute;bottom:2px;right:7px;color:#d92524;opacity:.8;font-size:23px;"><i class="fa fa-youtube-play"></i></div></a></div><a href="https://www.youtube.com/watch?v='.$video_id.'" title="'.$video_title.'" target="_blank" rel="nofollow">'.$video_title.'</a>';
+				set_transient('p3_youtube_widget', $output, 30 * MINUTE_IN_SECONDS);
+			}
+			echo $output;
+			//echo '<div><i class="fa fa-youtube-play"></i></div>';
+			
 		} else {
 			_e('Setup not complete. Please check the widget options.', 'p3');
 		}
@@ -39,8 +50,8 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		// PART 1: Extract the data from the instance variable
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
-		if (isset($instance['youtubeuser'])) { 
-			$youtubeuser =	$instance['youtubeuser'];
+		if (isset($instance['channel_id'])) { 
+			$channel_id =	$instance['channel_id'];
 		}
 	   
 		// PART 2-3: Display the fields
@@ -54,14 +65,14 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 			</label>
 		</p>
 
-		<p><?php _e('Add your YouTube Username.', 'p3'); ?></p>
-		<p><?php _e('For example, the red part below:', 'p3'); ?></p> <p><?php echo esc_url('http://youtube.com/user/'); ?><span style="color:red">inthefrow</span></p>
+		<p><?php _e('Enter your YouTube <a href="https://support.google.com/youtube/answer/3250431" target="_blank">Channel ID</a>.', 'p3'); ?></p>
+		<p><?php _e('For example, the red part below:', 'p3'); ?></p> <p><?php echo esc_url('https://youtube.com/channel/'); ?><span style="color:red">UCyxZB7SqkRFqij18X1rDYHQ</span></p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('youtubeuser'); ?>"><?php _e('YouTube Username:', 'p3'); ?>
-			<input class="widefat" id="<?php echo $this->get_field_id('youtubeuser'); ?>" 
-			name="<?php echo $this->get_field_name('youtubeuser'); ?>" type="text" 
-			value="<?php if (isset($instance['youtubeuser'])) { echo esc_attr($youtubeuser); } ?>" placeholder="inthefrow" />
+			<label for="<?php echo $this->get_field_id('channel_id'); ?>"><?php _e('YouTube Channel ID:', 'p3'); ?>
+			<input class="widefat" id="<?php echo $this->get_field_id('channel_id'); ?>" 
+			name="<?php echo $this->get_field_name('channel_id'); ?>" type="text" 
+			value="<?php if (isset($instance['channel_id'])) { echo esc_attr($channel_id); } ?>" placeholder="UCyxZB7SqkRFqij18X1rDYHQ" />
 			</label>
 		</p>
 
@@ -72,8 +83,8 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['youtubeuser'] = strip_tags( $new_instance['youtubeuser'] );
-
+		$instance['channel_id'] = strip_tags( $new_instance['channel_id'] );
+		delete_transient('p3_youtube_widget'); // delete transient
 		return $instance;
 	  }
 	  
