@@ -155,8 +155,8 @@ require_once('inc/functions.php');
 // admin menus
 require_once('inc/admin-menus.php');
 
-// cron functions
-//require_once('inc/cron.php');
+// dashboard widgets
+//require_once('inc/dash.php');
 
 // widgets
 require_once('inc/widgets.php');
