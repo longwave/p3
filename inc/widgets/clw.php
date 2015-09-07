@@ -286,7 +286,7 @@ if (!class_exists('pipdig_clw_Customize')) {
 				array(
 					'title' => __( "Current Location Widget", 'pipdig-clw' ),
 					'priority' => 925,
-					'panel' => 'pipdig_features',
+					//'panel' => 'pipdig_features',
 					'description' => sprintf(__('Use these options to style the Current Location Widget. You will need to set your location in the <a href="%s">widget options</a> first.', 'p3'), $plugin_url ),
 					'capability' => 'edit_theme_options',
 				) 
