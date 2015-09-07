@@ -107,6 +107,14 @@ function pipdig_links_init() {
 		'pipdig_links_options_page_section' 
 	);
 	
+	add_settings_field( 
+		'vk', 
+		'<i class="fa fa-vk"></i>&nbsp;&nbsp;VK', 
+		'p3_vk_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
 }
 add_action('admin_init', 'pipdig_links_init');
 
@@ -168,6 +176,11 @@ function p3_soundcloud_field_render() {
 function p3_flickr_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[flickr]' placeholder='https://flickr.com/pipdig' value="<?php if (isset($links['flickr'])) { echo $links['flickr']; } ?>"> <?php
+}
+
+function p3_vk_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[vk]' placeholder='https://vk.com/pipdig' value="<?php if (isset($links['vk'])) { echo $links['vk']; } ?>"> <?php
 }
 
 
