@@ -14,7 +14,8 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 		if (isset($instance['facebook_url'])) { 
 			$facebook_url =	$instance['facebook_url'];
 		} else {
-			$facebook_url =	get_theme_mod('socialz_facebook');
+			$links = get_option('pipdig_links');
+			$facebook_url =	$links['facebook'];
 		}
 		if (isset($instance['hide_cover'])) { 
 			$hide_cover = $instance['hide_cover'];
@@ -59,7 +60,8 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 		if (isset($instance['facebook_url'])) { 
 			$facebook_url =	$instance['facebook_url'];
 		} else {
-			$facebook_url =	get_theme_mod('socialz_facebook');
+			$links = get_option('pipdig_links');
+			$facebook_url =	$links['facebook'];
 		}
 		if (isset($instance['hide_cover'])) { 
 			$hide_cover = $instance['hide_cover'];
