@@ -12,3 +12,6 @@ require_once('widgets/popular-posts.php');
 require_once('widgets/random-posts.php');
 require_once('widgets/subscribe.php');
 require_once('widgets/snapcode.php');
+if(!class_exists('Jetpack')) {
+	require_once('widgets/twitter.php');
+}
