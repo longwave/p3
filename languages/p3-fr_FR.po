@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-09-05 14:30-0000\n"
-"PO-Revision-Date: 2015-09-05 14:46-0000\n"
+"POT-Creation-Date: 2015-09-07 11:47-0000\n"
+"PO-Revision-Date: 2015-09-07 11:49-0000\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: fr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: ../img\n"
 "X-Poedit-SearchPathExcluded-3: ../css\n"
 
-#: ../inc/admin-menus.php:10
+#: ../inc/admin-menus.php:10 ../inc/dash.php:7
 msgid "Social Stats"
 msgstr ""
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "Follower Stats"
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:139
+#: ../inc/admin-menus/stats.php:139 ../inc/dash.php:128
 msgid "Click here to add more accounts"
 msgstr ""
 
@@ -151,7 +151,19 @@ msgstr ""
 msgid "Social Sharing Stats (Homepage only)"
 msgstr ""
 
-#: ../inc/functions.php:413
+#: ../inc/functions.php:64 ../inc/functions.php:66
+msgid "Comments"
+msgstr "Commentaires"
+
+#: ../inc/functions.php:76
+msgid "Older Comments"
+msgstr "Commentaires précédents"
+
+#: ../inc/functions.php:77
+msgid "Newer Comments"
+msgstr "Nouveaux commentaires"
+
+#: ../inc/functions.php:436
 msgid "Themes"
 msgstr "Thèmes"
 
@@ -181,7 +193,7 @@ msgstr "Suivre sur Bloglovin’"
 
 #: ../inc/widgets/bloglovin.php:51 ../inc/widgets/facebook.php:48
 #: ../inc/widgets/pinterest.php:94 ../inc/widgets/snapcode.php:31
-#: ../inc/widgets/subscribe.php:47 ../inc/widgets/youtube.php:42
+#: ../inc/widgets/subscribe.php:47 ../inc/widgets/youtube.php:50
 msgid "Setup not complete. Please check the widget options."
 msgstr ""
 
@@ -282,7 +294,7 @@ msgstr "Widget Facebook"
 #: ../inc/widgets/facebook.php:79 ../inc/widgets/pinterest.php:117
 #: ../inc/widgets/popular-posts.php:27 ../inc/widgets/profile.php:63
 #: ../inc/widgets/random-posts.php:27 ../inc/widgets/socialz.php:81
-#: ../inc/widgets/subscribe.php:67 ../inc/widgets/youtube.php:61
+#: ../inc/widgets/subscribe.php:67 ../inc/widgets/youtube.php:69
 msgid "Widget Title:"
 msgstr "Titre du widget:"
 
@@ -371,7 +383,7 @@ msgid "Add your Pinterest account name to the box below."
 msgstr "Ajoutez votre nom d’utilisateur Pinterest dans l’encadré ci dessous."
 
 #: ../inc/widgets/pinterest.php:125 ../inc/widgets/subscribe.php:75
-#: ../inc/widgets/youtube.php:69
+#: ../inc/widgets/youtube.php:77
 msgid "For example, the red part below:"
 msgstr "Par exemple, la partie rouge ci dessous:"
 
@@ -552,13 +564,13 @@ msgstr "Affiche automatiquement votre dernière vidéo Youtube."
 msgid "Latest YouTube"
 msgstr "Dernière vidéo Youtube."
 
-#: ../inc/widgets/youtube.php:68
+#: ../inc/widgets/youtube.php:76
 msgid ""
 "Enter your YouTube <a href=\"https://support.google.com/youtube/"
 "answer/3250431\" target=\"_blank\">Channel ID</a>."
 msgstr ""
 
-#: ../inc/widgets/youtube.php:72
+#: ../inc/widgets/youtube.php:80
 msgid "YouTube Channel ID:"
 msgstr ""
 

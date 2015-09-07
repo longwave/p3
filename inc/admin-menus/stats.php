@@ -81,7 +81,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 				<?php } ?>
 
 				<?php if (!empty($tumblr)) { ?>
-					{channel: "tumblr", count: <?php echo $tumblr; ?>, "color": "#36465d"},
+					{channel: "Tumblr", count: <?php echo $tumblr; ?>, "color": "#36465d"},
 				<?php } ?>
 
 				<?php if (!empty($linkedin)) { ?>
