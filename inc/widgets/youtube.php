@@ -33,7 +33,15 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 				$listFromYouTube=json_decode($json);
 				$video_title = $listFromYouTube->items[0]->snippet->title;
 				$video_id = $listFromYouTube->items[0]->id->videoId;
-				$output = '<div style="position:relative"><a href="https://www.youtube.com/watch?v='.$video_id.'" title="'.$video_title.'" target="_blank" rel="nofollow"><img src="http://img.youtube.com/vi/'.$video_id.'/maxresdefault.jpg" alt="'.$video_title.'"/><div style="position:absolute;bottom:2px;right:7px;color:#d92524;opacity:.8;font-size:23px;"><i class="fa fa-youtube-play"></i></div></a></div><a href="https://www.youtube.com/watch?v='.$video_id.'" title="'.$video_title.'" target="_blank" rel="nofollow">'.$video_title.'</a>';
+				$max_res_url = "http://img.youtube.com/vi/".$video_id."/maxresdefault.jpg";
+				usleep(500);
+				$max = get_headers($max_res_url);
+				if (substr($max[0], 9, 3) !== '404') {
+					$thumbnail = $max_res_url;   
+				} else {
+					$thumbnail = "http://img.youtube.com/vi/".$video_id."/mqdefault.jpg";
+				}
+				$output = '<div style="position:relative"><a href="https://www.youtube.com/watch?v='.$video_id.'" title="'.$video_title.'" target="_blank" rel="nofollow"><img src="'.$thumbnail.'" style="width:100%;height:auto" alt="'.$video_title.'"/><div style="position:absolute;bottom:2px;right:7px;color:#d92524;opacity:.8;font-size:25px;"><i class="fa fa-youtube-play"></i></div></a></div><a href="https://www.youtube.com/watch?v='.$video_id.'" title="'.$video_title.'" target="_blank" rel="nofollow">'.$video_title.'</a>';
 				set_transient('p3_youtube_widget', $output, 30 * MINUTE_IN_SECONDS);
 			}
 			echo $output;
