@@ -5,7 +5,7 @@ Plugin URI: http://pipdig.co
 Description: The core functions and features of any pipdig theme.
 Author: pipdig
 Author URI: http://pipdig.co
-Version: 1.5.1
+Version: 1.6.0
 Text Domain: p3
 */
 
@@ -14,7 +14,7 @@ if (!strpos($theme, 'pipdig')) {
 	return;
 }
 
-update_option('pipdig_p3_version', '1.5.0');
+update_option('pipdig_p3_version', '1.6.0');
 
 		// ========= remove this on 1st March 2016
 		if (get_option('p3_social_transfer') != 1) {
@@ -95,12 +95,12 @@ class pipdig_p3_intalled_xyz {
 	function pipdig_p3_activate() {
 		
 		// trackbacks
-		update_option('default_pingback_flag', 0);
+		update_option('default_pingback_flag', '');
 		update_option('default_ping_status', 'closed');
 		
 		// comments notify
-		update_option('comments_notify', 0);
-		update_option('moderation_notify', 0);
+		update_option('comments_notify', '');
+		update_option('moderation_notify', '');
 		
 		// akismet
 		if (function_exists('akismet_admin_init')) {
@@ -116,17 +116,23 @@ class pipdig_p3_intalled_xyz {
 		update_option('large_size_w', 1600);
 		update_option('large_size_h', 0);
 		
-		update_option('image_default_size', 'full');
+		update_option('image_default_size', 'large');
 		update_option('image_default_align', 'none');
+		update_option('image_default_link_type', 'none');
 		
-		if (get_option('posts_per_page') == '10') {
+		if (get_option('posts_per_page') > 9) {
 			update_option('posts_per_page', 5);
+		}
+		update_option('posts_per_rss', 8);
+		
+		if (get_option('blogdescription') == 'Just another WordPress site') {
+			update_option('blogdescription', '');
 		}
 		
 		// change default values for https://wordpress.org/plugins/resize-image-after-upload/
-		update_option('jr_resizeupload_width', '1920');
-		update_option('jr_resizeupload_quality', '75');
-		update_option('jr_resizeupload_height', '0');
+		update_option('jr_resizeupload_width', 1920);
+		update_option('jr_resizeupload_quality', 75);
+		update_option('jr_resizeupload_height', 0);
 		
 	}
 }

@@ -24,7 +24,6 @@ if (!function_exists('pipdig_updates_options_page')) {
 
 						<div class="inside">
 							<p>We have greatly improved the way our custom YouTube widget works.  Please note, you will need to <a href="<?php echo admin_url('widgets.php'); ?>">re-configure this widget</a> if you have already set it up.</p>
-							<p>Other minor improvements to speed up your site's loading time.</p>
 						</div>
 						<!-- .inside -->
 
