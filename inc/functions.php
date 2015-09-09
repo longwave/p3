@@ -48,15 +48,27 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 		ob_end_clean();
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 		if(empty($output)){
-			return 'http://pipdigz.co.uk/p3/img/catch-placeholder.jpg';
+			return '//pipdigz.co.uk/p3/img/catch-placeholder.jpg';
 		}
 		$first_img = $matches [1] [0];
 		return $first_img;
 	}
 }
 
-
-
+// use cloudflares public CDN for jquery - inspired by https://wordpress.org/plugins/use-jquery-cloudflare/
+if (!function_exists('modify_jquery_luc') && !class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')) {
+	function pipdig_p3_cdn() {global $wp_scripts;
+		if (!is_admin()) {
+			$jquery_ver = $wp_scripts->registered['jquery']->ver;
+			$jquery_migrate_ver = $wp_scripts->registered['jquery-migrate']->ver;
+			wp_deregister_script('jquery');
+			wp_deregister_script('jquery-migrate');
+			wp_enqueue_script('jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/'.$jquery_ver.'/jquery.min.js', false, null, false);
+			wp_enqueue_script('jquery-migrate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/'.$jquery_migrate_ver.'/jquery-migrate.min.js', false, null, false);
+		}
+	}
+	add_action('wp_enqueue_scripts', 'pipdig_p3_cdn', 9999);
+}
 
 // comments count
 if (!function_exists('pipdig_p3_comment_count')) {
