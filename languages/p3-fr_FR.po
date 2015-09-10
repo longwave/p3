@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-09-07 11:47-0000\n"
-"PO-Revision-Date: 2015-09-07 11:49-0000\n"
+"POT-Creation-Date: 2015-09-10 11:18-0000\n"
+"PO-Revision-Date: 2015-09-10 11:20-0000\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: fr\n"
@@ -113,11 +113,11 @@ msgstr ""
 "ATTENTION: Ces options peuvent erroner votre site. Utilisez les avec "
 "précaution."
 
-#: ../inc/admin-menus/links.php:178
+#: ../inc/admin-menus/links.php:191
 msgid "Add the links to each social media page below:"
 msgstr ""
 
-#: ../inc/admin-menus/links.php:179
+#: ../inc/admin-menus/links.php:192
 #, php-format
 msgid ""
 "Any links added can then be used across your website, such as on <a href=\"%s"
@@ -151,29 +151,29 @@ msgstr ""
 msgid "Social Sharing Stats (Homepage only)"
 msgstr ""
 
-#: ../inc/functions.php:64 ../inc/functions.php:66
+#: ../inc/functions.php:84 ../inc/functions.php:86
 msgid "Comments"
 msgstr "Commentaires"
 
-#: ../inc/functions.php:76
+#: ../inc/functions.php:96
 msgid "Older Comments"
 msgstr "Commentaires précédents"
 
-#: ../inc/functions.php:77
+#: ../inc/functions.php:97
 msgid "Newer Comments"
 msgstr "Nouveaux commentaires"
 
-#: ../inc/functions.php:436
+#: ../inc/functions.php:489
 msgid "Themes"
 msgstr "Thèmes"
 
 #: ../inc/shortcodes/mosaic.php:75
 msgid "Older posts"
-msgstr "Articles plus anciens"
+msgstr "Articles anciens"
 
 #: ../inc/shortcodes/mosaic.php:79
 msgid "Newer posts"
-msgstr "Articles plus récents"
+msgstr "Articles récents"
 
 #: ../inc/widgets/bloglovin.php:6
 msgid "Display your Bloglovin' follower count."
@@ -191,9 +191,10 @@ msgstr "abonnés sur Bloglovin'"
 msgid "Follow on Bloglovin'"
 msgstr "Suivre sur Bloglovin’"
 
-#: ../inc/widgets/bloglovin.php:51 ../inc/widgets/facebook.php:48
+#: ../inc/widgets/bloglovin.php:51 ../inc/widgets/facebook.php:49
 #: ../inc/widgets/pinterest.php:94 ../inc/widgets/snapcode.php:31
-#: ../inc/widgets/subscribe.php:47 ../inc/widgets/youtube.php:50
+#: ../inc/widgets/subscribe.php:47 ../inc/widgets/twitter.php:51
+#: ../inc/widgets/youtube.php:50
 msgid "Setup not complete. Please check the widget options."
 msgstr ""
 
@@ -291,14 +292,15 @@ msgstr "Afficher un bouton J’aime Facebook."
 msgid "Facebook Widget"
 msgstr "Widget Facebook"
 
-#: ../inc/widgets/facebook.php:79 ../inc/widgets/pinterest.php:117
+#: ../inc/widgets/facebook.php:81 ../inc/widgets/pinterest.php:117
 #: ../inc/widgets/popular-posts.php:27 ../inc/widgets/profile.php:63
 #: ../inc/widgets/random-posts.php:27 ../inc/widgets/socialz.php:81
-#: ../inc/widgets/subscribe.php:67 ../inc/widgets/youtube.php:69
+#: ../inc/widgets/subscribe.php:67 ../inc/widgets/twitter.php:83
+#: ../inc/widgets/youtube.php:69
 msgid "Widget Title:"
 msgstr "Titre du widget:"
 
-#: ../inc/widgets/facebook.php:85
+#: ../inc/widgets/facebook.php:87 ../inc/widgets/twitter.php:89
 msgid ""
 "Add your Facebook page URL to the box below. For example, https://facebook."
 "com/pipdig"
@@ -306,19 +308,19 @@ msgstr ""
 "Ajouter l’URL de votre page Facebook dans le cadre ci dessous. Par exemple, "
 "https://facebook.com/pipdig"
 
-#: ../inc/widgets/facebook.php:88
+#: ../inc/widgets/facebook.php:90 ../inc/widgets/twitter.php:92
 msgid "Facebook Page URL:"
 msgstr "Url de la page Facebook:"
 
-#: ../inc/widgets/facebook.php:96
+#: ../inc/widgets/facebook.php:98 ../inc/widgets/twitter.php:100
 msgid "Hide Cover Image"
 msgstr "Masquer l’image de couverture"
 
-#: ../inc/widgets/facebook.php:101
+#: ../inc/widgets/facebook.php:103 ../inc/widgets/twitter.php:105
 msgid "Show Faces"
 msgstr "Afficher les visages"
 
-#: ../inc/widgets/facebook.php:106
+#: ../inc/widgets/facebook.php:108 ../inc/widgets/twitter.php:110
 msgid "Show Posts"
 msgstr "Afficher les articles"
 
@@ -555,6 +557,14 @@ msgstr "Ajoutez votre identifiant FeedBurner dans l’encart ci-dessous."
 #: ../inc/widgets/subscribe.php:86
 msgid "Text to display above the form:"
 msgstr "Texte à afficher au dessus du formulaire :"
+
+#: ../inc/widgets/twitter.php:6
+msgid "Displays your latest tweets."
+msgstr ""
+
+#: ../inc/widgets/twitter.php:7
+msgid "Twitter Widget"
+msgstr ""
 
 #: ../inc/widgets/youtube.php:6
 msgid "Automatically displays your latest YouTube video."

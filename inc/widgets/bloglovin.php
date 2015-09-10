@@ -39,7 +39,7 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 						 $bloglovin_icon = '';
 						break;
 				}
-				if ($bloglovin_count) {
+				if ($bloglovin_count > 1) {
 					$bloglovin_widget_output = '<p><a href="'. $bloglovin_url .'" target="blank" rel="nofollow" class="pipdig-bloglovin-widget">' . $bloglovin_icon . $bloglovin_count . ' ' . __("Followers on Bloglovin'", 'p3') . '</a></p>';
 				} else {
 					$bloglovin_widget_output = '<p><a href="'. $bloglovin_url .'" target="blank" rel="nofollow" class="pipdig-bloglovin-widget">' . $bloglovin_icon . __("Follow on Bloglovin'", 'p3') . '</a></p>';

@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 // load plugin check function, just in case theme hasn't
 if ( !function_exists( 'pipdig_plugin_check' ) ) {
 	function pipdig_plugin_check( $plugin_name ) {
@@ -55,16 +60,16 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 	}
 }
 
-// use cloudflares public CDN for jquery - inspired by https://wordpress.org/plugins/use-jquery-cloudflare/
-if (!function_exists('modify_jquery_luc') && !class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')) {
+// use public CDNs for jquery
+if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')) {
 	function pipdig_p3_cdn() {global $wp_scripts;
 		if (!is_admin()) {
 			$jquery_ver = $wp_scripts->registered['jquery']->ver;
 			$jquery_migrate_ver = $wp_scripts->registered['jquery-migrate']->ver;
 			wp_deregister_script('jquery');
 			wp_deregister_script('jquery-migrate');
-			wp_enqueue_script('jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/'.$jquery_ver.'/jquery.min.js', false, null, false);
-			wp_enqueue_script('jquery-migrate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/'.$jquery_migrate_ver.'/jquery-migrate.min.js', false, null, false);
+			wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/'.$jquery_ver.'/jquery.min.js', false, null, false);
+			wp_enqueue_script('jquery-migrate', '//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/'.$jquery_migrate_ver.'/jquery-migrate.min.js', false, null, false);
 		}
 	}
 	add_action('wp_enqueue_scripts', 'pipdig_p3_cdn', 9999);
@@ -133,7 +138,7 @@ function pipdig_p3_scrapey_scrapes() {
 		$facebook = wp_remote_fopen($facebook_url, array( 'timeout' => 10 ));
 		$facebook_doc = new DOMDocument();
 		libxml_use_internal_errors(true); //disable libxml errors
-		usleep(50000);
+		usleep(5000);
 		if(!empty($facebook)){ //if any html is actually returned
 			$facebook_doc->loadHTML($facebook);
 			libxml_clear_errors(); //remove errors for yucky html
@@ -163,7 +168,7 @@ function pipdig_p3_scrapey_scrapes() {
 	$pinterest_url = $links['pinterest'];
 	if ($pinterest_url) {
 		$pinterest_url = rawurlencode($pinterest_url);
-		usleep(50000);
+		usleep(5000);
 		$pinterest_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$pinterest_url."%22%20AND%20xpath%3D%22%2F%2Fmeta%5B%40property%3D'pinterestapp%3Afollowers'%5D%22&format=json", array( 'timeout' => 10 ));
 		$pinterest_yql = json_decode($pinterest_yql);
 		$pinterest_count = intval($pinterest_yql->query->results->meta->content);
@@ -171,32 +176,62 @@ function pipdig_p3_scrapey_scrapes() {
 	} else {
 		delete_option('p3_pinterest_count');
 	}
-		
+	
+	
+	
+	/*
 	// Twitter ---------------------
-	// <li class="ProfileNav-item ProfileNav-item--followers"> (title tag of link element inside)
-	// SELECT * from html where url="http://twitter.com/pipdig" AND xpath="//li[3]/a[@data-nav='followers']"
+	//$twitter_url = $links['twitter'];
+	//preg_match("/http:\/\/twitter.com\/(#!\/)?([^\/]*)/", $twitter_url, $matches);
+	//preg_match("|https?://(www\.)?twitter\.com/(#!/)?@?([^/]*)|", $twitter_url, $matches);
+	//if ($matches[3]) {
+		usleep(5000);
+		require "third/Abraham/TwitterOAuth/autoload.php";
+		//use Abraham\TwitterOAuth\TwitterOAuth;
+
+		//$settings = array(
+			//'oauth_access_token' => "331530555-BYUS6g6XsQfjRnl1gmnGGl3oLao4I3CIMVYonm31",
+			//'oauth_access_token_secret' => "pugNxZDRn8ds3TAladgVC6bpyxHbn1nYJRDJFYizbR0vf",
+			//'consumer_key' => "1FDHAvyiq7OToAkxUuYkY9nx1",
+			//'consumer_secret' => "fKE9GTb4JW6UUUfUxv83ghO5MOMdEb4F0tzrtHzBlQWXQyKGbe"
+		//);
+
+		$twitterConnection = new TwitterOAuth('1FDHAvyiq7OToAkxUuYkY9nx1','fKE9GTb4JW6UUUfUxv83ghO5MOMdEb4F0tzrtHzBlQWXQyKGbe','331530555-BYUS6g6XsQfjRnl1gmnGGl3oLao4I3CIMVYonm31', 'pugNxZDRn8ds3TAladgVC6bpyxHbn1nYJRDJFYizbR0vf');
+		$twitterData = $twitterConnection->get('users/show', array('screen_name' => 'pipdig'));
+		$followerCount = $twitterData->followers_count;
+		echo $followerCount;
+		update_option('p3_twitter_count', $followerCount);
+	//} else {
+		//delete_option('p3_twitter_count');
+	//}
+	*/
+	
+	// Twitter ---------------------
+	// SELECT * from html where url="https://twitter.com/pipdig" AND xpath="//ul[@class='ProfileNav-list']/li[3]/a/span[2]"
+	/*
 	$twitter_url = $links['twitter'];
 	if ($twitter_url) {
 		$twitter_url = rawurlencode($twitter_url);
 		usleep(50000);
-		$twitter_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$twitter_url."%22%20AND%20xpath%3D%22%2F%2Fli%5B3%5D%2Fa%5B%40data-nav%3D'followers'%5D%22&format=json", array( 'timeout' => 10 ));
+		$twitter_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$twitter_url."%22%20AND%20xpath%3D%22%2F%2Ful%5B%40class%3D'ProfileNav-list'%5D%2Fli%5B3%5D%2Fa%2Fspan%5B2%5D%22&format=json", array( 'timeout' => 10 ));
 		//$twitter_yql = utf8_encode($twitter_yql);
 		$twitter_yql = json_decode($twitter_yql);
-		$twitter_count = $twitter_yql->query->results->a->title;
+		$twitter_count = $twitter_yql->query->results->span->content;
 		$twitter_count = str_replace(',', '', $twitter_count);
 		$twitter_count = intval(str_replace('.', '', $twitter_count));
 		update_option('p3_twitter_count', $twitter_count);
 	} else {
 		delete_option('p3_twitter_count');
 	}
-		
+	*/
+
 	// Instagram ---------------------
 	// <span data-reactid=".0.1.0.0:0.1.3.1.0.1" title="476,475" class="-cx-PRIVATE-FollowedByStatistic__count">476k</span>
 	// SELECT * from html where url="http://instagram.com/inthefrow" AND xpath="//li[2]/span"
 	$instagram_url = $links['instagram'];
 	if ($instagram_url) {
 		$instagram_url = rawurlencode($instagram_url);
-		usleep(50000);
+		usleep(40000);
 		$instagram_yql = wp_remote_fopen("http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$instagram_url."%22%20AND%20xpath%3D%22%2F%2Fli%5B2%5D%2Fspan%22&format=json", array( 'timeout' => 10 ));
 		$instagram_yql = json_decode($instagram_yql);
 		$instagram_count = $instagram_yql->query->results->span->span[1]->title;
@@ -227,7 +262,7 @@ function pipdig_p3_scrapey_scrapes() {
 	$google_plus_url = $links['google_plus'];
 	if ($google_plus_url) {
 		$google_plus_url = rawurlencode($google_plus_url);
-		usleep(50000);
+		usleep(5000);
 		$google_plus_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$google_plus_url."%22%20AND%20xpath%3D%22%2F%2Fdiv%5B%40class%3D'Zmjtc'%5D%2Fspan%22&format=json&diagnostics=true", array( 'timeout' => 10 ));
 		$google_plus_yql = json_decode($google_plus_yql);
 		$google_plus_count = $google_plus_yql->query->results->span[0]->content;

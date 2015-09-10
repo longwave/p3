@@ -117,7 +117,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		$popular = new WP_Query( array(
 			'post_type'             => array( 'post' ),
 			'showposts'             => $number_posts,
-			'ignore_sticky_posts'   => true,
+			'ignore_sticky_posts'   => 1,
 			'orderby'               => 'rand',
 			'date_query' => array(
 				array(
