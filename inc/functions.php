@@ -149,19 +149,23 @@ function pipdig_p3_scrapey_scrapes() {
 			  $page_id = preg_replace('/[^0-9.]+/', '', $page_id);
 			}
 		}
-		$appid = '722209331218125';
-		$appsecret = '3f9d971ecad0debbc0b983b7af6fcf34';
-		$json_url ='https://graph.facebook.com/'.$page_id.'?access_token='.$appid.'|'.$appsecret.'&fields=likes';
-		$json = wp_remote_fopen($json_url);
-		$json_output = json_decode($json);
-		if($json_output->likes){
-			$likes = intval($json_output->likes);
-			update_option('p3_facebook_count', $likes);
+		if(!empty($page_id)){ // if we found the page id
+			$appid = '722209331218125';
+			$apsec = '3f9d971ecad0debbc0b983b7af6fcf34';
+			$json_url ='https://graph.facebook.com/'.$page_id.'?access_token='.$appid.'|'.$apsec.'&fields=likes';
+			$json = wp_remote_fopen($json_url);
+			$json_output = json_decode($json);
+			if($json_output->likes){
+				$likes = intval($json_output->likes);
+				update_option('p3_facebook_count', $likes);
+			}
+		} else {
+			delete_option('p3_facebook_count');
 		}
 	} else {
 		delete_option('p3_facebook_count');
 	}
-		
+	
 	// Pinterest ---------------------
 	// <meta property="pinterestapp:followers" name="pinterestapp:followers" content="106168" data-app>
 	// SELECT * from html where url="https://www.pinterest.com/thelovecatsinc" AND xpath="//meta[@property='pinterestapp:followers']"
@@ -179,32 +183,34 @@ function pipdig_p3_scrapey_scrapes() {
 	
 	
 	
-	/*
+	
 	// Twitter ---------------------
-	//$twitter_url = $links['twitter'];
-	//preg_match("/http:\/\/twitter.com\/(#!\/)?([^\/]*)/", $twitter_url, $matches);
-	//preg_match("|https?://(www\.)?twitter\.com/(#!/)?@?([^/]*)|", $twitter_url, $matches);
-	//if ($matches[3]) {
-		usleep(5000);
-		require "third/Abraham/TwitterOAuth/autoload.php";
-		//use Abraham\TwitterOAuth\TwitterOAuth;
-
-		//$settings = array(
-			//'oauth_access_token' => "331530555-BYUS6g6XsQfjRnl1gmnGGl3oLao4I3CIMVYonm31",
-			//'oauth_access_token_secret' => "pugNxZDRn8ds3TAladgVC6bpyxHbn1nYJRDJFYizbR0vf",
-			//'consumer_key' => "1FDHAvyiq7OToAkxUuYkY9nx1",
-			//'consumer_secret' => "fKE9GTb4JW6UUUfUxv83ghO5MOMdEb4F0tzrtHzBlQWXQyKGbe"
-		//);
-
-		$twitterConnection = new TwitterOAuth('1FDHAvyiq7OToAkxUuYkY9nx1','fKE9GTb4JW6UUUfUxv83ghO5MOMdEb4F0tzrtHzBlQWXQyKGbe','331530555-BYUS6g6XsQfjRnl1gmnGGl3oLao4I3CIMVYonm31', 'pugNxZDRn8ds3TAladgVC6bpyxHbn1nYJRDJFYizbR0vf');
-		$twitterData = $twitterConnection->get('users/show', array('screen_name' => 'pipdig'));
-		$followerCount = $twitterData->followers_count;
-		echo $followerCount;
-		update_option('p3_twitter_count', $followerCount);
-	//} else {
-		//delete_option('p3_twitter_count');
-	//}
-	*/
+	$twitter_url = $links['twitter'];
+	if ($twitter_url) {
+		usleep(500);
+		$twitter_handle = parse_url($twitter_url, PHP_URL_PATH);
+		$twitter_handle = str_replace('/', '', $twitter_handle);
+		require_once('TwitterAPIExchange.php');
+		$settings = array(
+			'oauth_access_token' => "331530555-BYUS6g6XsQfjRnl1gmnGGl3oLao4I3CIMVYonm31",
+			'oauth_access_token_secret' => "pugNxZDRn8ds3TAladgVC6bpyxHbn1nYJRDJFYizbR0vf",
+			'consumer_key' => "1FDHAvyiq7OToAkxUuYkY9nx1",
+			'consumer_secret' => "fKE9GTb4JW6UUUfUxv83ghO5MOMdEb4F0tzrtHzBlQWXQyKGbe"
+		);
+		$ta_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+		$getfield = '?screen_name='.$twitter_handle;
+		$requestMethod = 'GET';
+		$twitter = new TwitterAPIExchange($settings);
+		$follow_count = $twitter->setGetfield($getfield)
+		->buildOauth($ta_url, $requestMethod)
+		->performRequest();
+		$data = json_decode($follow_count, true);
+		$followers_count = intval($data[0]['user']['followers_count']);
+		update_option('p3_twitter_count', $followers_count);
+	} else {
+		delete_option('p3_twitter_count');
+	}
+	
 	
 	// Twitter ---------------------
 	// SELECT * from html where url="https://twitter.com/pipdig" AND xpath="//ul[@class='ProfileNav-list']/li[3]/a/span[2]"
