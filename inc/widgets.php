@@ -1,5 +1,9 @@
 <?php 
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 require_once('widgets/bloglovin.php');
 require_once('widgets/socialz.php');
 require_once('widgets/pinterest.php');

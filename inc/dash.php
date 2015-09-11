@@ -1,5 +1,9 @@
 <?php 
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 /*  Dashboard widgets ----------------------------------------------------------------*/
 function pipdig_p3_dashboard_widgets() {
 	add_meta_box( 

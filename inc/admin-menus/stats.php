@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 if (!function_exists('pipdig_stats_options_page')) {
 	function pipdig_stats_options_page() {
 		if ( !get_transient('p3_stats_gen') ) {

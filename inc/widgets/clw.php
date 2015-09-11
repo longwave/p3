@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 // add scripts to widgets admin page to render map
 if (!function_exists('pipdig_clw_enqueue_scripts')) {
 	function pipdig_clw_enqueue_scripts($hook) {

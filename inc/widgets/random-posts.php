@@ -1,4 +1,9 @@
 <?php
+
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 	class pipdig_widget_random_posts extends WP_Widget {
 		

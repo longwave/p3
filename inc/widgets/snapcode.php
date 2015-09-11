@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 class pipdig_p3_snapchat_snapcode extends WP_Widget {
  
   public function __construct() {

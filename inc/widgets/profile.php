@@ -1,5 +1,9 @@
 <?php 
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 // add admin scripts
 if ( !function_exists( 'pipdig_enque_script' ) ) {
 	function pipdig_enque_script() {

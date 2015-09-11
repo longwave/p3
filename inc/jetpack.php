@@ -1,4 +1,9 @@
 <?php 
+
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 // get rid of some bad jetpack smells
 function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) {
         $jp_mods_to_disable = array(

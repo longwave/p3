@@ -1,5 +1,9 @@
 <?php 
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 // [stars rating="5"]
 function pipdig_p3_star_rating_shortcode( $atts, $content = null ) {
 	extract( shortcode_atts( array(

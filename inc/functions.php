@@ -1,8 +1,9 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
+
 
 // load plugin check function, just in case theme hasn't
 if ( !function_exists( 'pipdig_plugin_check' ) ) {

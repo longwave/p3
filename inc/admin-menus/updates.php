@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 if (!function_exists('pipdig_updates_options_page')) {
 	function pipdig_updates_options_page() { 
 

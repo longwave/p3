@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 function pipdig_links_init() {
 
 	register_setting('pipdig_links_options_page', 'pipdig_links');

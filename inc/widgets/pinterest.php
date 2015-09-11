@@ -1,4 +1,9 @@
 <?php 
+
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 	class pipdig_widget_pinterest extends WP_Widget {
 	 

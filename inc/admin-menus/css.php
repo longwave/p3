@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
 if (!function_exists('pipdig_css_init')) {
 	function pipdig_css_init() { 
 

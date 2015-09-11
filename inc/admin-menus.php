@@ -1,5 +1,8 @@
 <?php
-// create admin menus
+
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
 
 if (!function_exists('pipdig_add_admin_menu')) {
 	function pipdig_add_admin_menu() {
