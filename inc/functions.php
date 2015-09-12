@@ -595,6 +595,7 @@ if ( !function_exists( 'heartbeat_control_menu' ) ) {
 
 
 // hide tabs on social count plus
+/*
 if (pipdig_plugin_check('social-count-plus/social-count-plus.php')) {
 	function hide_complex_tabs_social_count_plus() {
 		$screen = get_current_screen();
@@ -604,3 +605,30 @@ if (pipdig_plugin_check('social-count-plus/social-count-plus.php')) {
 	}
 	add_action('admin_footer', 'hide_complex_tabs_social_count_plus');
 }
+*/
+
+function p3_flush_htacess() {
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
+}
+
+function p3_htaccess_edit($rules) {
+$p3_rules = "
+# p3 gzip
+<ifmodule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
+</ifmodule>
+# /p3 gzip
+
+# p3 Blogger
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{QUERY_STRING} ^m=1$
+RewriteRule ^(.*)$ /$1? [R=301,L]
+</IfModule>
+# /p3 Blogger
+
+";
+return $p3_rules . $rules;
+}
+add_filter('mod_rewrite_rules', 'p3_htaccess_edit');

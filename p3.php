@@ -134,6 +134,8 @@ class pipdig_p3_intalled_xyz {
 		update_option('jr_resizeupload_quality', 75);
 		update_option('jr_resizeupload_height', 0);
 		
+		p3_flush_htacess();
+		
 	}
 }
 new pipdig_p3_intalled_xyz();
