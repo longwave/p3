@@ -21,8 +21,8 @@ if (!class_exists('pipdig_widget_clw')) {
 	class pipdig_widget_clw extends WP_Widget {
 	 
 		public function __construct() {
-			$widget_ops = array('classname' => 'pipdig_widget_clw', 'description' => __('Proudly display where you are in the world.', 'pipdig-clw') );
-			parent::__construct('pipdig_widget_clw', 'pipdig - ' . __('Current Location', 'pipdig-clw'), $widget_ops);
+			$widget_ops = array('classname' => 'pipdig_widget_clw', 'description' => __('Proudly display where you are in the world.', 'p3') );
+			parent::__construct('pipdig_widget_clw', 'pipdig - ' . __('Current Location', 'p3'), $widget_ops);
 				
 			//enqueue JS on frontend only if widget is active on page:
 			if(is_active_widget(false, false, $this->id_base)) {
@@ -125,7 +125,7 @@ if (!class_exists('pipdig_widget_clw')) {
 							});
 						</script>
 						<div id="mapdiv" style="width: 100%;height: 170px;"></div>
-						<p>'.__('Current Location', 'pipdig-clw').': '.$location.'</p>
+						<p>'.__('Current Location', 'p3').': '.$location.'</p>
 						<style scoped>#mapdiv a{display:none!important}</style>';
 						set_transient( 'pipdig_clw_map', $map, 24 * HOUR_IN_SECONDS ); // set transient
 					}
@@ -194,16 +194,16 @@ if (!class_exists('pipdig_widget_clw')) {
 							});
 						</script>
 						<div id="mapdiv" style="width: 100%;height: 170px;"></div>
-						<p>'.__('Current Location', 'pipdig-clw').': '.$location.'</p>
+						<p>'.__('Current Location', 'p3').': '.$location.'</p>
 						<style scoped>#mapdiv a{display:none!important}</style>';
 				}
 				
 			} else { // no latitude/longitude set, so let's display a friendly reminder:
 				
 				if (current_user_can('manage_options')) {
-					echo '<a href="'.admin_url( 'widgets.php' ).'">'.__('Please enter location data in the widget settings.', 'pipdig-clw').'</a>';
+					echo '<a href="'.admin_url( 'widgets.php' ).'">'.__('Please enter location data in the widget settings.', 'p3').'</a>';
 				} else {
-					_e('Please enter location data in the widget settings.', 'pipdig-clw');
+					_e('Please enter location data in the widget settings.', 'p3');
 				}
 				
 			}
@@ -237,7 +237,7 @@ if (!class_exists('pipdig_widget_clw')) {
 			?>
 			
 			<p>
-				<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'pipdig-clw'); ?></label><br />
+				<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'p3'); ?></label><br />
 				<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php if ($title) { echo $title; } ?>" />
 			</p>
 			
@@ -247,15 +247,15 @@ if (!class_exists('pipdig_widget_clw')) {
 			?></p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id('location'); ?>"><?php _e('Location Name:', 'pipdig-clw'); ?></label><br />
-				<input type="text" id="<?php echo $this->get_field_id( 'location' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'location' ); ?>" value="<?php if ($location) { echo $location; } ?>" placeholder="e.g. <?php _e('London, UK', 'pipdig-clw'); ?>" />
+				<label for="<?php echo $this->get_field_id('location'); ?>"><?php _e('Location Name:', 'p3'); ?></label><br />
+				<input type="text" id="<?php echo $this->get_field_id( 'location' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'location' ); ?>" value="<?php if ($location) { echo $location; } ?>" placeholder="e.g. <?php _e('London, UK', 'p3'); ?>" />
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id('latitude'); ?>"><?php _e('Latitude:', 'pipdig-clw'); ?></label><br />
+				<label for="<?php echo $this->get_field_id('latitude'); ?>"><?php _e('Latitude:', 'p3'); ?></label><br />
 				<input type="number" id="<?php echo $this->get_field_id( 'latitude' ); ?>" name="<?php echo $this->get_field_name( 'latitude' ); ?>" value="<?php if ($latitude) { echo $latitude; } ?>" placeholder="e.g. 51.179343" />
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id('longitude'); ?>"><?php _e('Longitude:', 'pipdig-clw'); ?></label><br />
+				<label for="<?php echo $this->get_field_id('longitude'); ?>"><?php _e('Longitude:', 'p3'); ?></label><br />
 				<input type="number" id="<?php echo $this->get_field_id( 'longitude' ); ?>" name="<?php echo $this->get_field_name( 'longitude' ); ?>" value="<?php if ($longitude) { echo $longitude; } ?>" placeholder="e.g. -1.546873" />
 			</p>
 			<?php
@@ -284,14 +284,14 @@ if (!class_exists('pipdig_clw_Customize')) {
 	class pipdig_clw_Customize {
 		public static function register ( $wp_customize ) {
 		
-			$plugin_url = admin_url( 'widgets.php' );
+			$widgets_url = admin_url( 'widgets.php' );
 
 			$wp_customize->add_section( 'pipdig_clw', 
 				array(
-					'title' => __( "Current Location Widget", 'pipdig-clw' ),
+					'title' => __( "Current Location Widget", 'p3' ),
 					'priority' => 925,
 					//'panel' => 'pipdig_features',
-					'description' => sprintf(__('Use these options to style the Current Location Widget. You will need to set your location in the <a href="%s">widget options</a> first.', 'p3'), $plugin_url ),
+					'description' => sprintf(__('Use these options to style the Current Location Widget. You will need to set your location in the <a href="%s">widget options</a> first.', 'p3'), $widgets_url ),
 					'capability' => 'edit_theme_options',
 				) 
 			);
@@ -306,7 +306,7 @@ if (!class_exists('pipdig_clw_Customize')) {
 			);
 			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'pipdig_clw_map_color',
 				array(
-					'label' => __( 'Map color', 'pipdig-clw' ),
+					'label' => __( 'Map color', 'p3' ),
 					'section' => 'pipdig_clw',
 					'settings' => 'pipdig_clw_map_color',
 				)
@@ -323,7 +323,7 @@ if (!class_exists('pipdig_clw_Customize')) {
 			);
 			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'pipdig_clw_border_color',
 				array(
-					'label' => __( 'Border color', 'pipdig-clw' ),
+					'label' => __( 'Border color', 'p3' ),
 					'section' => 'pipdig_clw',
 					'settings' => 'pipdig_clw_border_color',
 				)
@@ -340,7 +340,7 @@ if (!class_exists('pipdig_clw_Customize')) {
 			);
 			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'pipdig_clw_marker_color',
 				array(
-					'label' => __( 'Marker color', 'pipdig-clw' ),
+					'label' => __( 'Marker color', 'p3' ),
 					'section' => 'pipdig_clw',
 					'settings' => 'pipdig_clw_marker_color',
 				)
@@ -360,7 +360,7 @@ if (!class_exists('pipdig_clw_Customize')) {
 				array(
 					'type' => 'range',
 					'section' => 'pipdig_clw',
-					'label' => __( 'Marker size', 'pipdig-clw' ),
+					'label' => __( 'Marker size', 'p3' ),
 					'input_attrs' => array(
 						'min' => 3,
 						'max' => 9,
