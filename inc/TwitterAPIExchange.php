@@ -275,6 +275,7 @@ class TwitterAPIExchange
         $postfields = $this->getPostfields();
 
         $options = array(
+	       CURLOPT_SSL_VERIFYPEER => false, // PHIL
             CURLOPT_HTTPHEADER => $header,
             CURLOPT_HEADER => false,
             CURLOPT_URL => $this->url,
