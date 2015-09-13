@@ -52,8 +52,7 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 			}
 			echo $bloglovin_widget_output;
 		} else {
-			$cust_url = admin_url( 'customize.php' );
-			printf(__("Setup not complete. Please check the widget options.", 'p3'), $cust_url );
+			_e('Setup not complete. Please check the widget options.', 'p3');
 		}
 		// After widget code, if any
 		echo (isset($after_widget)?$after_widget:'');
@@ -91,3 +90,123 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 	}
 }
 add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_theme_bloglovin_widget");') );
+
+
+
+/*
+// customiser
+class pipdig_bloglovin_Customize {
+	public static function register ( $wp_customize ) {
+		
+		$widgets_url = admin_url( 'widgets.php' );
+
+		$wp_customize->add_section( 'pipdig_bloglovin', 
+			array(
+				'title' => __( "Bloglovin' Widget", 'pipdig-arubanights' ),
+				'description' => sprintf(__('Use these settings to style our custom <a href="%s">Bloglovin Widget</a>.', 'p3'), $widgets_url ),
+				'capability' => 'edit_theme_options',
+				//'panel' => 'pipdig_features',
+				'priority' => 140,
+			) 
+		);
+		
+		
+		
+
+	// background color
+	$wp_customize->add_setting('pipdig_bloglovin_widget_background_color',
+		array(
+			'default' => '#ffffff',
+			//'transport'=>'postMessage',
+			'sanitize_callback' => 'sanitize_hex_color',
+		)
+	);
+	$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'pipdig_bloglovin_widget_background_color',
+		array(
+			'label' => __( 'Background color', 'pipdig-arubanights' ),
+			'section' => 'pipdig_bloglovin',
+			'settings' => 'pipdig_bloglovin_widget_background_color',
+		)
+		)
+	);
+
+	// border color
+	$wp_customize->add_setting('pipdig_bloglovin_widget_border_color',
+		array(
+			'default' => '#cccccc',
+			//'transport'=>'postMessage',
+			'sanitize_callback' => 'sanitize_hex_color',
+		)
+	);
+	$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'pipdig_bloglovin_widget_border_color',
+		array(
+			'label' => __( 'Border color', 'pipdig-arubanights' ),
+			'section' => 'pipdig_bloglovin',
+			'settings' => 'pipdig_bloglovin_widget_border_color',
+		)
+		)
+	);
+
+	// text color
+	$wp_customize->add_setting('pipdig_bloglovin_widget_text_color',
+		array(
+			'default' => '#000000',
+			//'transport'=>'postMessage',
+			'sanitize_callback' => 'sanitize_hex_color',
+		)
+	);
+	$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'pipdig_bloglovin_widget_text_color',
+		array(
+			'label' => __( 'Text color', 'pipdig-arubanights' ),
+			'section' => 'pipdig_bloglovin',
+			'settings' => 'pipdig_bloglovin_widget_text_color',
+		)
+		)
+	);
+
+	$wp_customize->add_setting('pipdig_bloglovin_widget_icon',
+		array(
+			'default' => 'heart',
+			//'sanitize_callback' => 'bloglovin_widget_sanitize_icon',
+		)
+	);
+	 
+	$wp_customize->add_control('pipdig_bloglovin_widget_icon',
+		array(
+			'type' => 'radio',
+			'label' => __( 'Widget Icon', 'pipdig-arubanights' ),
+			'section' => 'pipdig_bloglovin',
+			'choices' => array(
+				'heart' => __( 'Heart', 'pipdig-arubanights' ),
+				'plus' => __( 'Plus', 'pipdig-arubanights' ),
+				'none' => __( 'None', 'pipdig-arubanights' ),
+			),
+		)
+	);
+	
+
+
+// Use Bloglovin official widget?
+$wp_customize->add_setting('pipdig_bloglovin_widget_official',
+	array(
+		'default' => 0,
+		'sanitize_callback' => 'pipdig_sanitize_checkbox',
+	)
+);
+$wp_customize->add_control('pipdig_bloglovin_widget_official',
+	array(
+		'type' => 'checkbox',
+		'label' => __( "Use the official Bloglovin' widget", 'pipdig-arubanights' ),
+		'description' => __( "Select this option if you would prefer to use the official Bloglovin' widget.", 'pipdig-arubanights' ),
+		'section' => 'pipdig_bloglovin',
+	)
+);
+		
+		
+		
+		
+		
+	}
+}
+add_action( 'customize_register' , array( 'pipdig_bloglovin_Customize' , 'register' ) );
+*/
