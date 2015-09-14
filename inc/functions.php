@@ -69,8 +69,8 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 			$jquery_migrate_ver = $wp_scripts->registered['jquery-migrate']->ver;
 			wp_deregister_script('jquery');
 			wp_deregister_script('jquery-migrate');
-			wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/'.$jquery_ver.'/jquery.min.js', false, null, false);
-			wp_enqueue_script('jquery-migrate', '//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/'.$jquery_migrate_ver.'/jquery-migrate.min.js', false, null, false);
+			wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/'.$jquery_ver.'/jquery.min.js', false, null, false);
+			wp_enqueue_script('jquery-migrate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/'.$jquery_migrate_ver.'/jquery-migrate.min.js', false, null, false);
 		}
 	}
 	add_action('wp_enqueue_scripts', 'pipdig_p3_cdn', 9999);
@@ -247,6 +247,8 @@ function pipdig_p3_scrapey_scrapes() {
 	
 function pipdig_p3_social_footer() {
 	
+	$links = get_option('pipdig_links');
+	
 	if(!empty($links)) {
 		if ( !get_transient('p3_stats_gen') ) {
 			pipdig_p3_scrapey_scrapes();
@@ -321,8 +323,6 @@ function pipdig_p3_social_footer() {
 	$total_count = $twitter_count + $facebook_count + $instagram_count + $youtube_count + $bloglovin_count + $pinterest_count;
 	
 	if ($total_count) {
-		
-		$links = get_option('pipdig_links');
 	
 		if(!empty($twitter_count)) {
 		$output .='<div '.$colz.'>';

@@ -122,8 +122,8 @@ if ( !class_exists( 'pipdig_widget_instagram' ) ) {
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['images_num'] = absint( $new_instance['images_num'] );
 		$instance['cols'] = absint( $new_instance['cols'] );
-		$instance['load_more'] = $new_instance['load_more'];
-		$instance['follow'] = $new_instance['follow'];
+		$instance['load_more'] = strip_tags( $new_instance['load_more'] );
+		$instance['follow'] = strip_tags( $new_instance['follow'] );
 		return $instance;
 	  }
 	  

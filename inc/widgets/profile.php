@@ -64,7 +64,7 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 	?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'p3'); ?></label><br />
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label><br />
 			<input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php if (isset($instance['title'])) { echo $instance['title']; } ?>" class="widefat" />
 		</p>
 		<p style="display:none">

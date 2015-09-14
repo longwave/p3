@@ -27,7 +27,10 @@ if (!function_exists('pipdig_updates_options_page')) {
 						<h3>Update 1.6 - Improved YouTube Widget</h3>
 
 						<div class="inside">
+							<p>Improved Pinterest Widget options.</p>
+							<p>New Social Media Icons widget layout options.</p>
 							<p>We have greatly improved the way our custom YouTube widget works.  Please note, you will need to <a href="<?php echo admin_url('widgets.php'); ?>">re-configure this widget</a> if you have already set it up.</p>
+							<p>Performance and security boosts by run external files through <a href="<?php echo esc_url('https://www.cloudflare.com/overview'); ?>" target="_blank">CloudFlare</a>.</p>
 						</div>
 						<!-- .inside -->
 

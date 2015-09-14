@@ -24,7 +24,32 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		} else {
 			$images_num = 4;
 		}
-
+		if (isset($instance['cols'])) { 
+			$cols = $instance['cols'];
+		} else {
+			$cols = 2;
+		}
+		if ($cols == 2) {
+			$width = '49%';
+			$height = '150px';
+			$tablet_height = '250px';
+			$margin = '.5%';
+		} elseif ($cols == 3) {
+			$width = '32.3%';
+			$height = '95px';
+			$tablet_height = '150px';
+			$margin = '.5%';
+		} else {
+			$width = '100%';
+			$height = '300px';
+			$tablet_height = '500px';
+			$margin = '5px 0';
+		}
+		if (isset($instance['follow'])) { 
+			$follow = $instance['follow'];
+		} else {
+			$follow = false;
+		}
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
 	   
@@ -45,10 +70,10 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 				}
 				#pinterest-gallery li {
 				float: left;
-				width: 49%;
-				height: 150px;
+				width: <?php echo $width; ?>;
+				height: <?php echo $height; ?>;
 				background-size: cover;
-				margin: .5%;
+				margin: <?php echo $margin; ?>;
 				padding: 0;
 				border: none;
 				-o-transition: all 0.25s ease-out; -moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out;
@@ -70,6 +95,11 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 				line-height: 1px;
 				font-size: 0px;
 				}
+				@media screen and (min-width: 400px) and (max-width: 767px) {
+					#pinterest-gallery li {
+						height: <?php echo $tablet_height; ?>;
+					}
+				}
 			</style>
 			<div id="pinterest-gallery"></div>
 			<script>
@@ -85,7 +115,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			</script>
 			<?php
 			if (isset($instance['follow'])) {
-				if (!empty($pinterestuser)) { ?>
+				if (!empty($pinterestuser) && $follow) { ?>
 					<div class="clearfix"></div>
 					<p><a href="http://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-pinterest" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Pinterest', 'p3'); ?></a></p>
 				<?php }
@@ -115,11 +145,16 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		} else {
 			$images_num = 4;
 		}
+		if (isset($instance['cols'])) { 
+			$cols = $instance['cols'];
+		} else {
+			$cols = 2;
+		}
 		 // PART 2-3: Display the fields
 		 ?>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'p3'); ?>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
 			name="<?php echo $this->get_field_name('title'); ?>" type="text" 
 			value="<?php echo esc_attr($title); ?>" />
@@ -131,16 +166,21 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		<?php echo esc_url('http://pinterest.com/'); ?><span style="color:red">songofstyle</span></p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('pinterestuser'); ?>"><?php _e('Pinterest Account Name:', 'p3'); ?>
-			<input class="widefat" id="<?php echo $this->get_field_id('pinterestuser'); ?>" 
+			<label for="<?php echo $this->get_field_id('pinterestuser'); ?>"><?php _e('Pinterest Account Name:', 'p3'); ?><br />
+			<input class="" id="<?php echo $this->get_field_id('pinterestuser'); ?>" 
 			name="<?php echo $this->get_field_name('pinterestuser'); ?>" type="text" 
 			value="<?php if (isset($instance['pinterestuser'])) { echo esc_attr($pinterestuser); } ?>" placeholder="songofstyle" />
 			</label>
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('images_num'); ?>"><?php _e('Number of images to display:', 'p3'); ?></label>
-			<input type="number" min="2" max="12" step="2" id="<?php echo $this->get_field_id( 'images_num' ); ?>" name="<?php echo $this->get_field_name( 'images_num' ); ?>" value="<?php if ($images_num) { echo $images_num; } else { echo '4'; } ?>" />
+			<label for="<?php echo $this->get_field_id('images_num'); ?>"><?php _e('Number of images to display:', 'p3'); ?></label><br />
+			<input type="number" min="2" max="12" id="<?php echo $this->get_field_id( 'images_num' ); ?>" name="<?php echo $this->get_field_name( 'images_num' ); ?>" value="<?php if ($images_num) { echo $images_num; } else { echo '4'; } ?>" />
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('cols'); ?>"><?php _e('Number of columns:', 'p3'); ?></label><br />
+			<input type="number" min="1" max="3" id="<?php echo $this->get_field_id( 'cols' ); ?>" name="<?php echo $this->get_field_name( 'cols' ); ?>" value="<?php if ($cols) { echo $cols; } else { echo '2'; } ?>" />
 		</p>
 
 		<p>
@@ -157,7 +197,8 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['pinterestuser'] = strip_tags( $new_instance['pinterestuser'] );
 		$instance['images_num'] = absint( $new_instance['images_num'] );
-		$instance['follow'] = $new_instance['follow'];
+		$instance['cols'] = absint( $new_instance['cols'] );
+		$instance['follow'] = strip_tags( $new_instance['follow'] );
 
 		return $instance;
 	  }

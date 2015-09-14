@@ -30,6 +30,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$flickr = empty($instance['flickr']) ? '' : $instance['flickr'];
 		$email = empty($instance['email']) ? '' : $instance['email'];
 		$rss = empty($instance['rss']) ? '' : $instance['rss'];
+		$style_select = empty($instance['style_select']) ? '' : $instance['style_select'];
 
 		$icons_output = '';
 
@@ -38,22 +39,47 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		// PART 2: The title and the text output
 		if (!empty($title)) echo $before_title . $title . $after_title;
 		
-		if (!empty($twitter)) $icons_output .= '<a href="' . $twitter . '" target="_blank"><i class="fa fa-twitter"></i></a>';
-		if (!empty($instagram)) $icons_output .= '<a href="' . $instagram . '" target="_blank"><i class="fa fa-instagram"></i></a>';
-		if (!empty($facebook)) $icons_output .= '<a href="' . $facebook . '" target="_blank"><i class="fa fa-facebook"></i></a>';
-		if (!empty($google)) $icons_output .= '<a href="' . $google . '" target="_blank"><i class="fa fa-google-plus"></i></a>';
-		if (!empty($bloglovin)) $icons_output .= '<a href="' . $bloglovin . '" target="_blank"><i class="fa fa-plus"></i></a>';
-		if (!empty($pinterest)) $icons_output .= '<a href="' . $pinterest . '" target="_blank"><i class="fa fa-pinterest"></i></a>';
-		if (!empty($youtube)) $icons_output .= '<a href="' . $youtube . '" target="_blank"><i class="fa fa-youtube-play"></i></a>';
-		if (!empty($vine)) $icons_output .= '<a href="' . $vine . '" target="_blank"><i class="fa fa-vine"></i></a>';
-		if (!empty($tumblr)) $icons_output .= '<a href="' . $tumblr . '" target="_blank"><i class="fa fa-tumblr"></i></a>';
-		if (!empty($linkedin)) $icons_output .= '<a href="' . $linkedin . '" target="_blank"><i class="fa fa-linkedin"></i></a>';
-		if (!empty($vk)) $icons_output .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i></a>';
-		if (!empty($flickr)) $icons_output .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i></a>';
-		if (!empty($email)) $icons_output .= '<a href="mailto:' . $email . '"><i class="fa fa-envelope"></i></a>';
-		if (!empty($rss)) $icons_output .= '<a href="' . $rss . '" target="_blank"><i class="fa fa-rss"></i></a>';
+		if ($style_select == 1) { // style/layout of icons
 		
-		echo '<div class="socialz">' . $icons_output . '</div>';
+			if (!empty($twitter)) $icons_output .= '<a href="' . $twitter . '" target="_blank"><i class="fa fa-twitter"></i></a>';
+			if (!empty($instagram)) $icons_output .= '<a href="' . $instagram . '" target="_blank"><i class="fa fa-instagram"></i></a>';
+			if (!empty($facebook)) $icons_output .= '<a href="' . $facebook . '" target="_blank"><i class="fa fa-facebook"></i></a>';
+			if (!empty($google)) $icons_output .= '<a href="' . $google . '" target="_blank"><i class="fa fa-google-plus"></i></a>';
+			if (!empty($bloglovin)) $icons_output .= '<a href="' . $bloglovin . '" target="_blank"><i class="fa fa-plus"></i></a>';
+			if (!empty($pinterest)) $icons_output .= '<a href="' . $pinterest . '" target="_blank"><i class="fa fa-pinterest"></i></a>';
+			if (!empty($youtube)) $icons_output .= '<a href="' . $youtube . '" target="_blank"><i class="fa fa-youtube-play"></i></a>';
+			if (!empty($vine)) $icons_output .= '<a href="' . $vine . '" target="_blank"><i class="fa fa-vine"></i></a>';
+			if (!empty($tumblr)) $icons_output .= '<a href="' . $tumblr . '" target="_blank"><i class="fa fa-tumblr"></i></a>';
+			if (!empty($linkedin)) $icons_output .= '<a href="' . $linkedin . '" target="_blank"><i class="fa fa-linkedin"></i></a>';
+			if (!empty($vk)) $icons_output .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i></a>';
+			if (!empty($flickr)) $icons_output .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i></a>';
+			if (!empty($email)) $icons_output .= '<a href="mailto:' . $email . '"><i class="fa fa-envelope"></i></a>';
+			if (!empty($rss)) $icons_output .= '<a href="' . $rss . '" target="_blank"><i class="fa fa-rss"></i></a>';
+			
+			echo '<div class="socialz">' . $icons_output . '</div>';
+		
+		} else {
+			
+			if (!empty($twitter)) $icons_output .= '<a href="' . $twitter . '" target="_blank"><i class="fa fa-twitter"></i><br /><span>Twitter</span></a>';
+			if (!empty($instagram)) $icons_output .= '<a href="' . $instagram . '" target="_blank"><i class="fa fa-instagram"></i><br /><span>Instagram</span></a>';
+			if (!empty($facebook)) $icons_output .= '<a href="' . $facebook . '" target="_blank"><i class="fa fa-facebook"></i><br /><span>Facebook</span></a>';
+			if (!empty($google)) $icons_output .= '<a href="' . $google . '" target="_blank"><i class="fa fa-google-plus"></i><br /><span>Google+</span></a>';
+			if (!empty($bloglovin)) $icons_output .= '<a href="' . $bloglovin . '" target="_blank"><i class="fa fa-plus"></i><br /><span>Bloglovin</span></a>';
+			if (!empty($pinterest)) $icons_output .= '<a href="' . $pinterest . '" target="_blank"><i class="fa fa-pinterest"></i><br /><span>Pinterest</span></a>';
+			if (!empty($youtube)) $icons_output .= '<a href="' . $youtube . '" target="_blank"><i class="fa fa-youtube-play"></i><br /><span>YouTube</span></a>';
+			if (!empty($vine)) $icons_output .= '<a href="' . $vine . '" target="_blank"><i class="fa fa-vine"></i><br /><span>Vine</span></a>';
+			if (!empty($tumblr)) $icons_output .= '<a href="' . $tumblr . '" target="_blank"><i class="fa fa-tumblr"></i><br /><span>Tumblr</span></a>';
+			if (!empty($linkedin)) $icons_output .= '<a href="' . $linkedin . '" target="_blank"><i class="fa fa-linkedin"></i><br /><span>LinkedIn</span></a>';
+			if (!empty($vk)) $icons_output .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i><br /><span>VKontakte</span></a>';
+			if (!empty($flickr)) $icons_output .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i><br /><span>Flickr</span></a>';
+			if (!empty($email)) $icons_output .= '<a href="mailto:' . $email . '"><i class="fa fa-envelope"></i><br /><span>Email</span></a>';
+			if (!empty($rss)) $icons_output .= '<a href="' . $rss . '" target="_blank"><i class="fa fa-rss"></i><br /><span>RSS</span></a>';
+			echo '<style scoped>.socialz a {line-height:.9; display: inline-block; width: 25%; padding: 2px; margin: 10px;} .socialz a span {font: 10px montserrat, arial, sans-serif;text-transform: uppercase; letter-spacing: 1px}</style>';
+			echo '<div class="socialz">' . $icons_output . '</div>';
+
+		}
+		
+		
 		
 		echo (isset($after_widget)?$after_widget:''); // After widget code, if any  
 	  }
@@ -76,20 +102,35 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$flickr = empty($instance['flickr']) ? '' : $instance['flickr'];
 		$email = empty($instance['email']) ? '' : $instance['email'];
 		$rss = empty($instance['rss']) ? '' : $instance['rss'];
+		
+		$style_select = ( isset( $instance['style_select'] ) && is_numeric( $instance['style_select'] ) ) ? (int) $instance['style_select'] : 1;
 	   
 		// PART 2-3: Display the fields
 		?>
-
-		<p><?php _e('Any links you add below will be shown as a social media icon. Leave any field blank to not add that icon.', 'p3'); ?></p>
-
+		
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'p3'); ?>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
 			name="<?php echo $this->get_field_name('title'); ?>" type="text" 
 			value="<?php echo esc_attr($title); ?>" />
 			</label>
 		</p>
+		
+		<hr style="margin: 25px 0 10px;">
+	
+		<p>
+			<legend><h3><?php _e('Select a layout:', 'bloglovin-widget'); ?></h3></legend>
+			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-1') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="1" <?php checked( $style_select == 1, true) ?>>
+			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-1' ) ?>"><img src="<?php echo plugins_url( '../../assets/img/social_widget_style_1.png', __FILE__ ) ?>" style="position:relative;top:5px;border:1px solid #ddd" /></label>
+			<br /><br />
+			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-2') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="2" <?php checked( $style_select == 2, true) ?>>
+			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-2' ) ?>"><img src="<?php echo plugins_url( '../../assets/img/social_widget_style_2.png', __FILE__ ) ?>" style="position:relative;top:5px;border:1px solid #ddd" /></label>
+		</p>
 
+		<hr style="margin: 25px 0 10px;">
+		
+		<h3><?php _e('Add your links:', 'bloglovin-widget'); ?></h3>
+		
 		<p>
 			<label for="<?php echo $this->get_field_id('twitter'); ?>">Twitter (e.g. http://twitter.com/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('twitter'); ?>" 
@@ -187,7 +228,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('email'); ?>">Email (e.g. yourname@gmail.com) 
+			<label for="<?php echo $this->get_field_id('email'); ?>">Email Address (e.g. yourname@gmail.com) 
 			<input class="widefat" id="<?php echo $this->get_field_id('email'); ?>" 
 			name="<?php echo $this->get_field_name('email'); ?>" type="text" 
 			value="<?php echo esc_attr($email); ?>" />
@@ -221,8 +262,10 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$instance['linkedin'] = strip_tags($new_instance['linkedin']);
 		$instance['vk'] = strip_tags($new_instance['vk']);
 		$instance['flickr'] = strip_tags($new_instance['flickr']);
-		$instance['email'] = strip_tags($new_instance['email']);
+		$instance['email'] = sanitize_email($new_instance['email']);
 		$instance['rss'] = strip_tags($new_instance['rss']);
+		
+		$instance['style_select'] = ( isset( $new_instance['style_select'] ) && $new_instance['style_select'] > 0 && $new_instance['style_select'] < 3 ) ? (int) $new_instance['style_select'] : 0; // 3 is total radio +1
 
 		return $instance;
 	  }
