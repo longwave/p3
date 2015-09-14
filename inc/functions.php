@@ -196,16 +196,23 @@ function pipdig_p3_scrapey_scrapes() {
 
 
 	// Instagram ---------------------
-	// <span data-reactid=".0.1.0.0:0.1.3.1.0.1" title="476,475" class="-cx-PRIVATE-FollowedByStatistic__count">476k</span>
 	// SELECT * from html where url="http://instagram.com/inthefrow" AND xpath="//li[2]/span"
 	$instagram_url = $links['instagram'];
 	if ($instagram_url) {
-		$instagram_url = rawurlencode($instagram_url);
-		usleep(4000);
-		$instagram_yql = wp_remote_fopen("http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$instagram_url."%22%20AND%20xpath%3D%22%2F%2Fli%5B2%5D%2Fspan%22&format=json", array( 'timeout' => 10 ));
-		$instagram_yql = json_decode($instagram_yql);
-		$instagram_count = $instagram_yql->query->results->span->span[1]->title;
-		$instagram_count = intval(str_replace(',', '', $instagram_count));
+		usleep(450);
+		$ig_token = '21659'.'12485'.'.'.'ee7687e'.'.'.'b66a7b'.'1e71c8'.'4d30ae087f'.'963c7a3aaa';
+		// get the handle from url
+		$instagram_handle = parse_url($instagram_url, PHP_URL_PATH);
+		$instagram_handle = str_replace('/', '', $instagram_handle);
+		//get the userid from json
+		$userid = wp_remote_fopen('https://api.instagram.com/v1/users/search?q=%22'.$instagram_handle.'%22&access_token='.$ig_token, array( 'timeout' => 10 ));
+		$userid = json_decode($userid);
+		$userid = $userid->data[0]->id;
+		usleep(50);
+		// use userid for second json
+		$instagram_count = wp_remote_fopen('https://api.instagram.com/v1/users/'.$userid.'?access_token='.$ig_token, array( 'timeout' => 10 ));
+		$instagram_count = json_decode($instagram_count);
+		$instagram_count = $instagram_count->data->counts->followed_by;
 		update_option('p3_instagram_count', $instagram_count);
 	} else {
 		delete_option('p3_instagram_count');
@@ -371,6 +378,28 @@ function pipdig_p3_social_footer() {
 
 }
 
+/*
+function pipdig_p3_instagram_feed() {
+	//if ( false === ( $result = get_transient( 'p3_instagram_feed' ) )) {		
+		$userid = '240996866';
+		$accessToken = '2165912485.ee7687e.b66a7b1e71c84d30ae087f963c7a3aaa';
+		$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$accessToken."&count=1";
+		$result = wp_remote_fopen($url);
+		//set_transient( 'p3_instagram_feed', $result, 1 * HOUR_IN_SECONDS );
+	//}
+
+    $result = json_decode($result);
+
+	//print_r ($result);
+	
+	$img_1_src = esc_url($result->data[0]->images->standard_resolution->url);
+	$img_1_lks = intval($result->data[0]->likes->count);
+	$img_1_cmt = intval($result->data[0]->comments->count);
+	$img_1_cap = strip_tags($result->data[0]->caption->text);
+	
+	echo '<img src="'.$img_1_src.'"/>';
+}
+*/
 
 /* Add socialz, super search and cart to navbar -------------------------------------------------*/
 if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3_social_navbar by Dec 2015
