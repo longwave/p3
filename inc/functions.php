@@ -252,7 +252,7 @@ function pipdig_p3_social_footer() {
 	if(!empty($links)) {
 		if ( !get_transient('p3_stats_gen') ) {
 			pipdig_p3_scrapey_scrapes();
-			set_transient('p3_stats_gen', true, 6 * HOUR_IN_SECONDS);
+			set_transient('p3_stats_gen', true, 12 * HOUR_IN_SECONDS);
 		}
 	}
 	
