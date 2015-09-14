@@ -30,8 +30,15 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$flickr = empty($instance['flickr']) ? '' : $instance['flickr'];
 		$email = empty($instance['email']) ? '' : $instance['email'];
 		$rss = empty($instance['rss']) ? '' : $instance['rss'];
-		$style_select = empty($instance['style_select']) ? '' : $instance['style_select'];
+		//$style_select = empty($instance['style_select']) ? '' : $instance['style_select'];
 
+	
+		if (isset($instance['style_select'])) { 
+			$style_select = $instance['style_select'];
+		} else {
+			$style_select = 1;
+		}
+		
 		$icons_output = '';
 
 		echo (isset($before_widget)?$before_widget:''); // Before widget code, if any
@@ -74,7 +81,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($flickr)) $icons_output .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i><br /><span>Flickr</span></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:' . $email . '"><i class="fa fa-envelope"></i><br /><span>Email</span></a>';
 			if (!empty($rss)) $icons_output .= '<a href="' . $rss . '" target="_blank"><i class="fa fa-rss"></i><br /><span>RSS</span></a>';
-			echo '<style scoped>.socialz a {line-height:.9; display: inline-block; width: 25%; padding: 2px; margin: 10px;} .socialz a span {font: 10px montserrat, arial, sans-serif;text-transform: uppercase; letter-spacing: 1px}</style>';
+			echo '<style scoped>.pipdig_widget_social_icons .socialz a {line-height:.9; display: inline-block; width: 25%; padding: 2px; margin: 10px;} .pipdig_widget_social_icons .socialz a span {font: 10px montserrat, arial, sans-serif;text-transform: uppercase; letter-spacing: 1px}</style>';
 			echo '<div class="socialz">' . $icons_output . '</div>';
 
 		}
