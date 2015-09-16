@@ -61,6 +61,17 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 	}
 }
 
+// truncate stuff
+if (!function_exists('pipdig_p3_truncate')) {
+	function pipdig_p3_truncate($text, $limit) {
+		if (str_word_count($text, 0) > $limit) {
+			$words = str_word_count($text, 2);
+			$pos = array_keys($words);
+			$text = substr($text, 0, $pos[$limit]).'&hellip;';
+		}
+		return $text;
+	}
+}
 // use public CDNs for jquery
 if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')) {
 	function pipdig_p3_cdn() {global $wp_scripts;
