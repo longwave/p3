@@ -306,13 +306,13 @@ function pipdig_p3_social_footer() {
 			$class = 'col-'.$sm.'-6';
 			break;
 		case '3':
-			$class = 'col-'.$md.'-4';
+			$class = 'col-'.$sm.'-4';
 			break;
 		case '4':
-			$class = 'col-'.$md.'-3';
+			$class = 'col-'.$sm.'-3';
 			break;
 		case '5':
-			$class = 'col-'.$md.'-5ths';
+			$class = 'col-'.$sm.'-5ths';
 			break;
 		case '6':
 			$class = 'col-'.$md.'-2';
