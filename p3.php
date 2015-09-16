@@ -98,11 +98,9 @@ class pipdig_p3_intalled_xyz {
 		update_option('default_pingback_flag', '');
 		update_option('default_ping_status', 'closed');
 		
-		// comments notify
 		update_option('comments_notify', '');
 		update_option('moderation_notify', '');
 		
-		// akismet
 		if (function_exists('akismet_admin_init')) {
 			if (get_option('wordpress_api_key') == '') {
 				update_option('wordpress_api_key', '1ab26b12c4f1');
@@ -110,7 +108,6 @@ class pipdig_p3_intalled_xyz {
 			update_option('akismet_discard_month', 'true');
 		}
 		
-		// media sizes
 		update_option('medium_size_w', 800);
 		update_option('medium_size_h', 0);
 		update_option('large_size_w', 1600);
@@ -129,10 +126,11 @@ class pipdig_p3_intalled_xyz {
 			update_option('blogdescription', '');
 		}
 		
-		// change default values for https://wordpress.org/plugins/resize-image-after-upload/
 		update_option('jr_resizeupload_width', 1920);
-		update_option('jr_resizeupload_quality', 75);
+		update_option('jr_resizeupload_quality', 72);
 		update_option('jr_resizeupload_height', 0);
+		
+		update_option('woocommerce_enable_lightbox', 'no');
 		
 		p3_flush_htacess();
 		
