@@ -583,7 +583,7 @@ function pipdig_p3_remove_default_page_metaboxes() {
 	remove_meta_box( 'slugdiv','page','normal' );
 	remove_meta_box( 'revisionsdiv','page','normal' );
 }
-add_action('admin_menu','pipdig_p3_remove_default_page_metaboxes');
+add_action('admin_menu', 'pipdig_p3_remove_default_page_metaboxes');
 
 
 
