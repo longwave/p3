@@ -83,7 +83,10 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 	 
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		pipdig_p3_scrapey_scrapes(); // activate scrape when widget saved/added
+		pipdig_p3_scrapey_scrapes();
+		if ( !get_transient('p3_stats_gen') ) {
+			set_transient('p3_stats_gen', true, 6 * HOUR_IN_SECONDS);
+		}
 		return $instance;
 	  }
 	  
