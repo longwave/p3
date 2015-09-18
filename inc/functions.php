@@ -512,9 +512,9 @@ function pipdig_p3_emmmm_heeey() {
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 		   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-			   $("#cookie-law-info-bar,.cc_container").slideUp();
+			   $("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideUp();
 		   } else {
-			   $("#cookie-law-info-bar,.cc_container").slideDown()
+			   $("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideDown()
 		   }
 		});
 	});
