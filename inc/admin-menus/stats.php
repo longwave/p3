@@ -6,25 +6,11 @@ if (!defined('ABSPATH')) {
 
 if (!function_exists('pipdig_stats_options_page')) {
 	function pipdig_stats_options_page() {
-		if ( !get_transient('p3_stats_gen') ) {
-			pipdig_p3_scrapey_scrapes();			
-			set_transient('p3_stats_gen', true, 6 * HOUR_IN_SECONDS);
-		}
 		
+	pipdig_p3_scrapey_scrapes();
 	
 	$total_followers = $twitter = $instagram = $facebook = $youtube = $google_plus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $linkedin = $vimeo = $bloglovin = '';
 
-	//$twitter = get_scp_twitter();
-	//$instagram = get_scp_instagram();
-	//$facebook = get_scp_facebook();
-	//$youtube = get_scp_youtube();
-	//$google_plus = get_scp_google_plus();
-	//$soundcloud = get_scp_soundcloud();
-	//$pinterest = get_scp_pinterest();
-	//$linkedin = get_scp_linkedin();
-	//$tumblr = get_scp_tumblr();
-	//$linkedin = get_scp_linkedin();
-	
 	$bloglovin = get_option('p3_bloglovin_count');
 	$pinterest = get_option('p3_pinterest_count');
 	$twitter = get_option('p3_twitter_count');
@@ -43,8 +29,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 	<div class="wrap">
 		<h1>Social Stats</h1>
 		<p><?php
-			$cust_url = admin_url( 'admin.php?page=pipdig-links' );
-			printf(__('This page will display your total social follower counts. Please add your links to <a href="%s">this page</a> first.', 'p3'), $cust_url ); ?>
+			printf(__('This page will display your total social follower counts. Please add your links to <a href="%s">this page</a> first.', 'p3'), admin_url('admin.php?page=pipdig-links') ); ?>
 		</p>
 		<div class="card" style="max-width: 800px">
 			<script>
