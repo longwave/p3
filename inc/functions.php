@@ -415,20 +415,24 @@ function pipdig_p3_instagram_feed() {
 /* Add socialz, super search and cart to navbar -------------------------------------------------*/
 if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3_social_navbar by Dec 2015
 	function pipdig_p3_social_navbar( $items, $args ) {
-		$links = get_option('pipdig_links');
-		$twitter = $links['twitter'];
-		$instagram = $links['instagram'];
-		$facebook = $links['facebook'];
-		$google = $links['google_plus'];
-		$bloglovin = $links['bloglovin'];
-		$pinterest = $links['pinterest'];
-		$youtube = $links['youtube'];
-		$tumblr = $links['tumblr'];
-		$linkedin = $links['linkedin'];
-		$soundcloud = $links['soundcloud'];
-		$flickr = $links['flickr'];
-		$email = $links['email'];
+		
 		$navbar_icons = '';
+		
+		$links = get_option('pipdig_links');
+		if (!empty($links)) {
+			$twitter = $links['twitter'];
+			$instagram = $links['instagram'];
+			$facebook = $links['facebook'];
+			$google = $links['google_plus'];
+			$bloglovin = $links['bloglovin'];
+			$pinterest = $links['pinterest'];
+			$youtube = $links['youtube'];
+			$tumblr = $links['tumblr'];
+			$linkedin = $links['linkedin'];
+			$soundcloud = $links['soundcloud'];
+			$flickr = $links['flickr'];
+			$email = $links['email'];
+		}
 		if(get_theme_mod('show_socialz_navbar')) {
 			if($twitter) $navbar_icons .= '<a href="' . $twitter . '" target="_blank"><i class="fa fa-twitter"></i></a>';
 			if($instagram) $navbar_icons .= '<a href="' . $instagram . '" target="_blank"><i class="fa fa-instagram"></i></a>';
@@ -443,6 +447,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 			if($flickr) $navbar_icons .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i></a>';
 			if($email) $navbar_icons .= '<a href="mailto:' . $email . '" target="_blank"><i class="fa fa-envelope"></i></a>';
 		}
+		
 		if(get_theme_mod('site_top_search')) $navbar_icons .= '<a class="toggle-search" href="#"><i class="fa fa-search"></i></a>';
 		
 		if (class_exists('Woocommerce')) {
