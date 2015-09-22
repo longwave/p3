@@ -72,6 +72,8 @@ if (!function_exists('pipdig_p3_truncate')) {
 		return $text;
 	}
 }
+
+
 // use public CDNs for jquery
 if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')) {
 	function pipdig_p3_cdn() {global $wp_scripts;
@@ -80,8 +82,8 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 			$jquery_migrate_ver = $wp_scripts->registered['jquery-migrate']->ver;
 			wp_deregister_script('jquery');
 			wp_deregister_script('jquery-migrate');
-			wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/'.$jquery_ver.'/jquery.min.js', false, null, false);
-			wp_enqueue_script('jquery-migrate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/'.$jquery_migrate_ver.'/jquery-migrate.min.js', false, null, false);
+			wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/'.$jquery_ver.'/jquery.min.js', false, null, false);
+			wp_enqueue_script('jquery-migrate', '//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/'.$jquery_migrate_ver.'/jquery-migrate.min.js', false, null, false);
 		}
 	}
 	add_action('wp_enqueue_scripts', 'pipdig_p3_cdn', 9999);

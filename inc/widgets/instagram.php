@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-if ( !class_exists( 'pipdig_widget_instagram' ) ) {
+if (!class_exists( 'pipdig_widget_instagram')) {
 	class pipdig_widget_instagram extends WP_Widget {
 	 
 	  public function __construct() {
@@ -50,10 +50,9 @@ if ( !class_exists( 'pipdig_widget_instagram' ) ) {
 		if (pipdig_plugin_check('instagram-feed/instagram-feed.php')) {
 			$bg = get_theme_mod('content_background_color', '#ffffff');
 			echo '<style scoped>#sb_instagram #sbi_load .sbi_load_btn,#sb_instagram .sbi_follow_btn a{border-radius:0;background:none;color:#000}</style>';
-			echo do_shortcode( '[instagram-feed width=100 height=100 widthunit=% heightunit=% background=' . $bg . ' imagepadding=1 imagepaddingunit=px class=pipdig-instagram-widget-inner num=' . $images_num . ' cols=' . $cols . ' imageres=medium disablemobile=true showheader=false showbutton=' . $load_more . ' showfollow=' . $follow . ']' );
+			echo do_shortcode('[instagram-feed width=100 height=100 widthunit=% heightunit=% background='.$bg.' imagepadding=1 imagepaddingunit=px class=pipdig-instagram-widget-inner num='.$images_num.' cols='.$cols.' imageres=medium disablemobile=true showheader=false showbutton='.$load_more.' showfollow='.$follow.']');
 		} else {
-			$plugin_url = esc_url( 'https://wordpress.org/plugins/instagram-feed/' );
-			printf(__('Please install and activate <a href="%s">this plugin</a> to add your Instagram Feed.', 'p3'), $plugin_url );
+			printf(__('Please install and activate <a href="%s">this plugin</a> to add your Instagram Feed.', 'p3'), esc_url('https://wordpress.org/plugins/instagram-feed/'));
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');
@@ -88,11 +87,9 @@ if ( !class_exists( 'pipdig_widget_instagram' ) ) {
 		<p>
 		<?php
 		if (pipdig_plugin_check('instagram-feed/instagram-feed.php')) {
-			$plugin_url = admin_url( 'admin.php?page=sb-instagram-feed' );
-			printf(__('This widget will show your latest Instagram photos. You will need to authorize your Instagram account on <a href="%s">this page</a> for this widget to work.', 'p3'), $plugin_url );
+			printf(__('This widget will show your latest Instagram photos. You will need to authorize your Instagram account on <a href="%s">this page</a> for this widget to work.', 'p3'), $plugin_url = admin_url('admin.php?page=sb-instagram-feed'));
 		} else {
-			$plugin_url = esc_url( 'https://wordpress.org/plugins/instagram-feed/' );
-			printf(__('Please install and activate <a href="%s">this plugin</a> to add your Instagram Feed.', 'p3'), $plugin_url );
+			printf(__('Please install and activate <a href="%s">this plugin</a> to add your Instagram Feed.', 'p3'), esc_url('https://wordpress.org/plugins/instagram-feed/'));
 		}
 		?>
 
@@ -119,11 +116,11 @@ if ( !class_exists( 'pipdig_widget_instagram' ) ) {
 	 
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['images_num'] = absint( $new_instance['images_num'] );
-		$instance['cols'] = absint( $new_instance['cols'] );
-		$instance['load_more'] = strip_tags( $new_instance['load_more'] );
-		$instance['follow'] = strip_tags( $new_instance['follow'] );
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['images_num'] = absint($new_instance['images_num']);
+		$instance['cols'] = absint($new_instance['cols'] );
+		$instance['load_more'] = strip_tags($new_instance['load_more']);
+		$instance['follow'] = strip_tags($new_instance['follow']);
 		return $instance;
 	  }
 	  
