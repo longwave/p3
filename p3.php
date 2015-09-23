@@ -2,19 +2,29 @@
 /*
 Plugin Name: pipdig Power Pack (p3)
 Plugin URI: http://pipdig.co
-Description: The core functions and features of any pipdig theme.
+Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://pipdig.co
-Version: 1.6.4
+Version: 1.6.5
 Text Domain: p3
 */
+
 
 $theme = wp_get_theme();
 if (!strpos($theme, 'pipdig')) {
 	return;
 }
 
-update_option('pipdig_p3_version', '1.6.4');
+
+if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
+	set_transient('pipdig_shaq_fu', true, 1 * WEEK_IN_SECONDS);
+}
+/*
+if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
+	return;
+}
+*/
+update_option('pipdig_p3_version', '1.6.5');
 
 		// ========= remove this on 1st March 2016
 		if (get_option('p3_social_transfer') != 1) {
@@ -157,6 +167,7 @@ add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles' );
 
 // functions
 require_once('inc/functions.php');
+require_once('inc/dom-functions.php');
 
 // admin menus
 require_once('inc/admin-menus.php');

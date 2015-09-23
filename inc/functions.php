@@ -89,31 +89,6 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 	add_action('wp_enqueue_scripts', 'pipdig_p3_cdn', 9999);
 }
 
-// comments count
-if (!function_exists('pipdig_p3_comment_count')) {
-	function pipdig_p3_comment_count() {
-		if (!post_password_required()) {
-			$comment_count = get_comments_number();
-			if ($comment_count < 2 ) {
-				$comments_text = __('Comments', 'p3');
-			} else {
-				$comments_text = number_format_i18n($comment_count).' '.__('Comments', 'p3');
-			}
-			echo $comments_text;
-		}
-	}
-}
-
-// comments nav
-if (!function_exists('pipdig_p3_comment_nav')) {
-	function pipdig_p3_comment_nav() {
-		echo '<div class="nav-previous">'.previous_comments_link('<i class="fa fa-arrow-left"></i> '.__('Older Comments', 'p3')).'</div>';
-		echo '<div class="nav-next">'.next_comments_link(__('Newer Comments', 'p3').' <i class="fa fa-arrow-right"></i>').'</div>';
-	}
-}
-
-
-
 
 function pipdig_p3_scrapey_scrapes() {
 	
@@ -186,9 +161,12 @@ function pipdig_p3_scrapey_scrapes() {
 		// Twitter ---------------------
 		$twitter_url = $links['twitter'];
 		if ($twitter_url) {
-			usleep(500);
-			$twitter_handle = parse_url($twitter_url, PHP_URL_PATH);
-			$twitter_handle = str_replace('/', '', $twitter_handle);
+			$twitter_handle = get_option('p3_twitter_handle');
+			if (empty($twitter_handle)) {
+				$twitter_handle = parse_url($twitter_url, PHP_URL_PATH);
+				$twitter_handle = str_replace('/', '', $twitter_handle);
+				update_option('p3_twitter_handle', $twitter_handle);
+			}
 			require_once('TwitterAPIExchange.php');
 			$settings = array(
 				'oauth_access_token' => '331530555'.'-'.'BYUS6g6XsQfjRn'.'l1gmnGGl3oLao4I3CIMVYonm31',
