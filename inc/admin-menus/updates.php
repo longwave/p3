@@ -27,6 +27,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 						<h3>Update 1.6 - Widgets, speed and security. Oh my.</h3>
 
 						<div class="inside">
+							<p>Added Spotify to social media icons widget.</p>
 							<p>Improved Pinterest Widget options.</p>
 							<p>New Social Media Icons widget layout options.</p>
 							<p>We have greatly improved the way our custom YouTube widget works.  Please note, you will need to <a href="<?php echo admin_url('widgets.php'); ?>">re-configure this widget</a> if you have already set it up.</p>

@@ -28,6 +28,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$linkedin = empty($instance['linkedin']) ? '' : $instance['linkedin'];
 		$vk = empty($instance['vk']) ? '' : $instance['vk'];
 		$flickr = empty($instance['flickr']) ? '' : $instance['flickr'];
+		$spotify = empty($instance['spotify']) ? '' : $instance['spotify'];
 		$email = empty($instance['email']) ? '' : $instance['email'];
 		$rss = empty($instance['rss']) ? '' : $instance['rss'];
 		//$style_select = empty($instance['style_select']) ? '' : $instance['style_select'];
@@ -60,6 +61,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($linkedin)) $icons_output .= '<a href="' . $linkedin . '" target="_blank"><i class="fa fa-linkedin"></i></a>';
 			if (!empty($vk)) $icons_output .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i></a>';
 			if (!empty($flickr)) $icons_output .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i></a>';
+			if (!empty($spotify)) $icons_output .= '<a href="' . $spotify . '" target="_blank"><i class="fa fa-spotify"></i></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:' . $email . '"><i class="fa fa-envelope"></i></a>';
 			if (!empty($rss)) $icons_output .= '<a href="' . $rss . '" target="_blank"><i class="fa fa-rss"></i></a>';
 			
@@ -79,6 +81,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($linkedin)) $icons_output .= '<a href="' . $linkedin . '" target="_blank"><i class="fa fa-linkedin"></i><br /><span>LinkedIn</span></a>';
 			if (!empty($vk)) $icons_output .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i><br /><span>VKontakte</span></a>';
 			if (!empty($flickr)) $icons_output .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i><br /><span>Flickr</span></a>';
+			if (!empty($spotify)) $icons_output .= '<a href="' . $spotify . '" target="_blank"><i class="fa fa-spotify"></i><br /><span>Spotify</span></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:' . $email . '"><i class="fa fa-envelope"></i><br /><span>Email</span></a>';
 			if (!empty($rss)) $icons_output .= '<a href="' . $rss . '" target="_blank"><i class="fa fa-rss"></i><br /><span>RSS</span></a>';
 			echo '<style scoped>.pipdig_widget_social_icons .socialz a {line-height:.9; display: inline-block; width: 25%; padding: 2px; margin: 10px;} .pipdig_widget_social_icons .socialz a span {font: 10px montserrat, arial, sans-serif;text-transform: uppercase; letter-spacing: 1px}</style>';
@@ -107,6 +110,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$linkedin = empty($instance['linkedin']) ? '' : $instance['linkedin'];
 		$vk = empty($instance['vk']) ? '' : $instance['vk'];
 		$flickr = empty($instance['flickr']) ? '' : $instance['flickr'];
+		$spotify = empty($instance['spotify']) ? '' : $instance['spotify'];
 		$email = empty($instance['email']) ? '' : $instance['email'];
 		$rss = empty($instance['rss']) ? '' : $instance['rss'];
 		
@@ -235,6 +239,14 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		</p>
 		
 		<p>
+			<label for="<?php echo $this->get_field_id('spotify'); ?>">Spotify (e.g. http://open.spotify.com/user/pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('spotify'); ?>" 
+			name="<?php echo $this->get_field_name('spotify'); ?>" type="text" 
+			value="<?php echo esc_attr($spotify); ?>" />
+			</label>
+		</p>
+		
+		<p>
 			<label for="<?php echo $this->get_field_id('email'); ?>">Email Address (e.g. yourname@gmail.com) 
 			<input class="widefat" id="<?php echo $this->get_field_id('email'); ?>" 
 			name="<?php echo $this->get_field_name('email'); ?>" type="text" 
@@ -269,6 +281,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$instance['linkedin'] = strip_tags($new_instance['linkedin']);
 		$instance['vk'] = strip_tags($new_instance['vk']);
 		$instance['flickr'] = strip_tags($new_instance['flickr']);
+		$instance['spotify'] = strip_tags($new_instance['spotify']);
 		$instance['email'] = sanitize_email($new_instance['email']);
 		$instance['rss'] = strip_tags($new_instance['rss']);
 		
