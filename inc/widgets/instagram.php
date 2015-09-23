@@ -16,27 +16,22 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		// PART 1: Extracting the arguments + getting the values
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
+		$images_num = 4;
+		$cols = 2;
+		$follow = 'false';
+		$load_more = 'false';
 		if (isset($instance['images_num'])) { 
 			$images_num = $instance['images_num'];
-		} else {
-			$images_num = 4;
 		}
 		if (isset($instance['cols'])) { 
 			$cols = $instance['cols'];
-		} else {
-			$cols = 2;
 		}
-		if (isset($instance['load_more'])) {
+		if (!empty($instance['load_more'])) {
 			$load_more = 'true';
-		} else {
-			$load_more = 'false';
 		}
-		if (isset($instance['follow'])) {
+		if (!empty($instance['follow'])) {
 			$follow = 'true';
-		} else {
-			$follow = 'false';
 		}
-
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
 	   
@@ -63,25 +58,21 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		// PART 1: Extract the data from the instance variable
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 		$title = $instance['title'];
+		$images_num = 4;
+		$cols = 2;
+		$follow = 'false';
+		$load_more = 'false';
 		if (isset($instance['images_num'])) { 
 			$images_num = $instance['images_num'];
-		} else {
-			$images_num = 4;
 		}
 		if (isset($instance['cols'])) { 
 			$cols = $instance['cols'];
-		} else {
-			$cols = 2;
 		}
-		if (isset($instance['load_more'])) { 
-			$load_more = $instance['load_more'];
-		} else {
-			$load_more = 'false';
+		if (!empty($instance['load_more'])) {
+			$load_more = 'true';
 		}
-		if (isset($instance['follow'])) {
+		if (!empty($instance['follow'])) {
 			$follow = 'true';
-		} else {
-			$follow = 'false';
 		}
 		?>
 		<p>
