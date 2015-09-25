@@ -97,7 +97,7 @@ update_option('pipdig_p3_version', '1.6.5');
 		}
 
 class pipdig_p3_intalled_xyz {
-	//constructor for pipdig_p3_intalled_xyz object
+
 	function pipdig_p3_intalled_xyz() {
 		register_activation_hook(__FILE__,array(&$this, 'pipdig_p3_activate'));
 	}
@@ -149,7 +149,7 @@ class pipdig_p3_intalled_xyz {
 new pipdig_p3_intalled_xyz();
 
 // thumbnails
-add_image_size( 'pipdig_p3_800x500', 800, 500, array( 'center', 'center' ) );
+//add_image_size( 'pipdig_p3_800x500', 800, 500, array( 'center', 'center' ) );
 
 // Load text domain for languages
 function pipdig_p3_textdomain() {
@@ -161,6 +161,8 @@ add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 function pipdig_p3_scripts_styles($hook) {
 	wp_register_script( 'rateyo', plugin_dir_url(__FILE__) . 'assets/js/rateyo.js', array('jquery') );
 	wp_register_script( 'imagesloaded', '//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js', array('jquery'), false );
+	wp_register_script( 'bxslider', '//cdnjs.cloudflare.com/ajax/libs/bxslider/4.1.2/jquery.bxslider.min.js', array('jquery'), false );
+	wp_register_script( 'cycle2', '//cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), false );
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles' );
 
