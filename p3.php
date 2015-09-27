@@ -127,8 +127,14 @@ class pipdig_p3_intalled_xyz {
 		update_option('image_default_align', 'none');
 		update_option('image_default_link_type', 'none');
 		
+		$posts_number = 5;
+		$theme = wp_get_theme();
+		if (!strpos($theme, 'aquae')) {
+			$posts_number = 13;
+		}
+		
 		if (get_option('posts_per_page') > 9) {
-			update_option('posts_per_page', 5);
+			update_option('posts_per_page', $posts_number);
 		}
 		update_option('posts_per_rss', 8);
 		
