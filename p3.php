@@ -5,7 +5,7 @@ Plugin URI: http://pipdig.co
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://pipdig.co
-Version: 1.6.5
+Version: 1.6.6
 Text Domain: p3
 */
 

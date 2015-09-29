@@ -113,12 +113,12 @@ function pipdig_p3_scrapey_scrapes() {
 		if($bloglovin_url) {
 			$bloglovin = wp_remote_fopen($bloglovin_url, array( 'timeout' => 10 ));
 			$bloglovin_doc = new DOMDocument();
-				libxml_use_internal_errors(true); //disable libxml errors
-				if(!empty($bloglovin)){ //if any html is actually returned
+				libxml_use_internal_errors(true);
+				if(!empty($bloglovin)){
 					$bloglovin_doc->loadHTML($bloglovin);
-					libxml_clear_errors(); //remove errors for yucky html
+					libxml_clear_errors();
 					$bloglovin_xpath = new DOMXPath($bloglovin_doc);
-					$bloglovin_row = $bloglovin_xpath->query('//div[@class="num"]');
+					$bloglovin_row = $bloglovin_xpath->query('//div[@class="header-card"]/ol/li[2]');
 					if($bloglovin_row->length > 0){
 					foreach($bloglovin_row as $row){
 						$followers = $row->nodeValue;
@@ -135,7 +135,6 @@ function pipdig_p3_scrapey_scrapes() {
 		// Facebook --------------------
 		$facebook_url = $links['facebook'];
 		if($facebook_url) {
-			usleep(500);
 			$facebook_id = parse_url($facebook_url, PHP_URL_PATH);
 			$facebook_id = str_replace('/', '', $facebook_id);
 			$appid = '7222'.'093312'.'18125';
@@ -157,7 +156,6 @@ function pipdig_p3_scrapey_scrapes() {
 		$pinterest_url = $links['pinterest'];
 		if ($pinterest_url) {
 			$pinterest_url = rawurlencode($pinterest_url);
-			usleep(500);
 			$pinterest_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$pinterest_url."%22%20AND%20xpath%3D%22%2F%2Fmeta%5B%40property%3D'pinterestapp%3Afollowers'%5D%22&format=json", array( 'timeout' => 10 ));
 			$pinterest_yql = json_decode($pinterest_yql);
 			$pinterest_count = intval($pinterest_yql->query->results->meta->content);
@@ -204,7 +202,6 @@ function pipdig_p3_scrapey_scrapes() {
 		// SELECT * from html where url="http://instagram.com/inthefrow" AND xpath="//li[2]/span"
 		$instagram_url = $links['instagram'];
 		if ($instagram_url) {
-			usleep(450);
 			$ig_token = '21659'.'12485'.'.'.'ee7687e'.'.'.'b66a7b'.'1e71c8'.'4d30ae087f'.'963c7a3aaa';
 			// get the handle from url
 			$instagram_handle = parse_url($instagram_url, PHP_URL_PATH);
@@ -213,7 +210,7 @@ function pipdig_p3_scrapey_scrapes() {
 			$userid = wp_remote_fopen('https://api.instagram.com/v1/users/search?q=%22'.$instagram_handle.'%22&access_token='.$ig_token, array( 'timeout' => 10 ));
 			$userid = json_decode($userid);
 			$userid = $userid->data[0]->id;
-			usleep(50);
+			usleep(250);
 			// use userid for second json
 			$instagram_count = wp_remote_fopen('https://api.instagram.com/v1/users/'.$userid.'?access_token='.$ig_token, array( 'timeout' => 10 ));
 			$instagram_count = json_decode($instagram_count);
@@ -228,7 +225,7 @@ function pipdig_p3_scrapey_scrapes() {
 		$youtube_url = $links['youtube'];
 		if ($youtube_url) {
 			$youtube_url = rawurlencode($youtube_url);
-			usleep(5000);
+			usleep(500);
 			$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$youtube_url."%22%20AND%20xpath%3D%22%2F%2Fspan%5B%40class%3D'yt-subscription-button-subscriber-count-branded-horizontal%20yt-uix-tooltip'%5D%22&format=json", array( 'timeout' => 10 ));
 			$youtube_yql = json_decode($youtube_yql);
 			$youtube_count = $youtube_yql->query->results->span->title;
@@ -244,7 +241,7 @@ function pipdig_p3_scrapey_scrapes() {
 		$google_plus_url = $links['google_plus'];
 		if ($google_plus_url) {
 			$google_plus_url = rawurlencode($google_plus_url);
-			usleep(5000);
+			usleep(500);
 			$google_plus_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$google_plus_url."%22%20AND%20xpath%3D%22%2F%2Fdiv%5B%40class%3D'Zmjtc'%5D%2Fspan%22&format=json&diagnostics=true", array( 'timeout' => 10 ));
 			$google_plus_yql = json_decode($google_plus_yql);
 			$google_plus_count = $google_plus_yql->query->results->span[0]->content;
