@@ -279,12 +279,18 @@ function pipdig_p3_instagram_feed() {
 	
 	?>
 	<div id="instagramz">
+	<style scoped="scoped">
+	.p3_instagram_post {width:10%;display:block;float:left;background-size:cover;background-repeat:no-repeat;background-position:center;-moz-transition:all 0.2s ease-out;-webkit-transition:all 0.2s ease-out;transition:all 0.2s ease-out;}
+	.p3_instagram_post:hover {opacity:.6}
+	</style>
+	
 	<?php for ($x = 0; $x <= 9; $x++) { ?>
-		<a href="<?php echo $images[$x]['link']; ?>" class="p3_instagram_post" style="background-image:url(<?php echo $images[$x]['src']; ?>);width:10%;display:block;float:left;background-size:cover;background-repeat:no-repeat;background-position:center;-moz-transition:all 0.25s ease-out;-webkit-transition:all 0.25s ease-out;transition:all 0.25s ease-out;">
+		<a href="<?php echo $images[$x]['link']; ?>" class="p3_instagram_post" style="background-image:url(<?php echo $images[$x]['src']; ?>);">
 			<img style="max-width:100%;height:auto;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" alt=""/>
 		</a>
 	<?php } ?>
 	</div>
+	<div class="clearfix"></div>
 	<?php
 }
 
