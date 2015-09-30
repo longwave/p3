@@ -176,8 +176,17 @@ function pipdig_p3_social_footer() {
 
 }
 
+if (!function_exists('p3_instagram_css')) {
+	function p3_instagram_css() {
+		$output = 'poop';
+				
+		echo $output;
+	}
+	add_action('wp_head', 'p3_instagram_css');
+}
+
 function pipdig_p3_instagram_feed() {
-	//if ( false === ( $result = get_transient( 'p3_instagram_feed' ) )) {
+	if ( false === ( $result = get_transient( 'p3_instagram_feed' ) )) {
 		$sb_options = get_option('sb_instagram_settings');
 		if (!empty($sb_options['sb_instagram_at']) && !empty($sb_options['sb_instagram_user_id'])) {
 			$accessToken = $sb_options['sb_instagram_at'];
@@ -188,11 +197,12 @@ function pipdig_p3_instagram_feed() {
 		}
 		$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$accessToken."&count=10";
 		$result = wp_remote_fopen($url);
-		//set_transient( 'p3_instagram_feed', $result, 1 * HOUR_IN_SECONDS );
-	//}
+		set_transient( 'p3_instagram_feed', $result, 1 * HOUR_IN_SECONDS );
+	}
 
 	$result = json_decode($result);
-
+	
+	
 	//print_r ($result);
 	
 	
@@ -269,24 +279,35 @@ function pipdig_p3_instagram_feed() {
 
 	$images = array ($img_1, $img_2, $img_3, $img_4, $img_5, $img_6, $img_7, $img_8, $img_9, $img_10);
 	
-	//$img_1_src = esc_url($result->data[0]->images->standard_resolution->url);
-	//$img_1_lks = intval($result->data[0]->likes->count);
-	//$img_1_cmt = intval($result->data[0]->comments->count);
-	//$img_1_cap = strip_tags($result->data[0]->caption->text);
-	
-	//echo $images[3]['link']; 
-	
-	
 	?>
-	<div id="instagramz">
+	<div id="p3_instagram_footer">
 	<style scoped="scoped">
-	.p3_instagram_post {width:10%;display:block;float:left;background-size:cover;background-repeat:no-repeat;background-position:center;-moz-transition:all 0.2s ease-out;-webkit-transition:all 0.2s ease-out;transition:all 0.2s ease-out;}
-	.p3_instagram_post:hover {opacity:.6}
+	.p3_instagram_post {width:10%;position:relative;display:block;float:left;background-size:cover;background-repeat:no-repeat;background-position:center;-moz-transition:all 0.2s ease-out;-webkit-transition:all 0.2s ease-out;transition:all 0.2s ease-out;text-align:center}
+	#p3_instagram_footer .p3_instagram_post:hover {opacity:.63}
+	#p3_instagram_footer .p3_instagram_post img {max-width:100%;height:auto;}
+	#p3_instagram_footer .p3_instagram_post .p3_instagram_likes {color:#000;position:absolute;bottom:44%;display:block;width:100%;}
+	#p3_instagram_footer .p3_instagram_post .p3_instagram_comments {color:#000;position:absolute;bottom:5%;left:5%}
+	@media only screen and (max-width: 769px) {
+		#p3_instagram_footer .p3_instagram_post {
+			width: 25%;
+		}
+		#p3_instagram_post_4, #p3_instagram_post_5, #p3_instagram_post_6, #p3_instagram_post_7, #p3_instagram_post_8, #p3_instagram_post_9, #p3_instagram_post_10 {
+			display: none;
+		}
+	}
+	@media only screen and (max-width: 400px) {
+		#p3_instagram_footer .p3_instagram_post {
+			width: 50%;
+		}
+		#p3_instagram_post_2, #p3_instagram_post_3, #p3_instagram_post_4, #p3_instagram_post_5, #p3_instagram_post_6, #p3_instagram_post_7, #p3_instagram_post_8, #p3_instagram_post_9, #p3_instagram_post_10 {
+			display: none;
+		}
+	}
 	</style>
-	
 	<?php for ($x = 0; $x <= 9; $x++) { ?>
-		<a href="<?php echo $images[$x]['link']; ?>" class="p3_instagram_post" style="background-image:url(<?php echo $images[$x]['src']; ?>);">
-			<img style="max-width:100%;height:auto;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" alt=""/>
+		<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
+			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" alt=""/>
+			<span class="p3_instagram_likes"><i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?>&nbsp;&nbsp;<i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?></span>
 		</a>
 	<?php } ?>
 	</div>
