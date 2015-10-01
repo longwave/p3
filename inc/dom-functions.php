@@ -285,7 +285,7 @@ function pipdig_p3_instagram_feed() {
 	.p3_instagram_post {width:10%;position:relative;display:block;float:left;background-size:cover;background-repeat:no-repeat;background-position:center;-moz-transition:all 0.2s ease-out;-webkit-transition:all 0.2s ease-out;transition:all 0.2s ease-out;text-align:center}
 	#p3_instagram_footer .p3_instagram_post:hover {opacity:.63}
 	#p3_instagram_footer .p3_instagram_post img {max-width:100%;height:auto;}
-	#p3_instagram_footer .p3_instagram_post .p3_instagram_likes {color:#000;position:absolute;bottom:44%;display:block;width:100%;}
+	#p3_instagram_footer .p3_instagram_post .p3_instagram_likes {color:#000;position:absolute;bottom:44%;width:100%;}
 	#p3_instagram_footer .p3_instagram_post .p3_instagram_comments {color:#000;position:absolute;bottom:5%;left:5%}
 	@media only screen and (max-width: 769px) {
 		#p3_instagram_footer .p3_instagram_post {
@@ -303,11 +303,23 @@ function pipdig_p3_instagram_feed() {
 			display: none;
 		}
 	}
+	
+.p3_instagram_likes {
+	display: none;
+}
+
+.p3_instagram_square:hover~.p3_instagram_likes{
+	display: block;
+}
+.p3_instagram_likes:hover {
+	display: block;
+}
+	
 	</style>
 	<?php for ($x = 0; $x <= 9; $x++) { ?>
 		<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
-			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" alt=""/>
-			<span class="p3_instagram_likes"><i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?>&nbsp;&nbsp;<i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?></span>
+			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
+			<span class="p3_instagram_likes"><i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span>
 		</a>
 	<?php } ?>
 	</div>
