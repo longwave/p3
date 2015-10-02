@@ -13,8 +13,6 @@ function pipdig_p3_star_rating_shortcode( $atts, $content = null ) {
 	
 	wp_enqueue_script( 'rateyo' );
 
-	add_action('wp_footer', 'pipdig_p3_star_enqueue_styles');
-	
 	$post_id = get_the_ID();
 	
 	return '
@@ -32,8 +30,3 @@ function pipdig_p3_star_rating_shortcode( $atts, $content = null ) {
 	';
 }
 add_shortcode( 'pipdig_stars', 'pipdig_p3_star_rating_shortcode' );
-
-
-function pipdig_p3_star_enqueue_styles() {
-	echo '<style>.jq-ry-container{position:relative;padding:0 5px;line-height:0;display:block;cursor:pointer}.jq-ry-container[readonly=readonly]{cursor:default}.jq-ry-container>.jq-ry-group-wrapper{position:relative;width:100%}.jq-ry-container>.jq-ry-group-wrapper>.jq-ry-group{position:relative;line-height:0;z-index:10;white-space:nowrap}.jq-ry-container>.jq-ry-group-wrapper>.jq-ry-group>svg{display:inline-block}.jq-ry-container>.jq-ry-group-wrapper>.jq-ry-group.jq-ry-normal-group{width:100%}.jq-ry-container>.jq-ry-group-wrapper>.jq-ry-group.jq-ry-rated-group{width:0;z-index:11;position:absolute;top:0;left:0;overflow:hidden}</style>';
-}

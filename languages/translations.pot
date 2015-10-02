@@ -1,7 +1,8 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-09-07 12:44-0000\n"
+"POT-Creation-Date: 2015-10-02 18:26+0100\n"
 "PO-Revision-Date: 2015-09-07 12:44-0000\n"
 "Last-Translator: \n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
@@ -9,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.8.5\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
@@ -20,195 +21,256 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: ../img\n"
 "X-Poedit-SearchPathExcluded-3: ../css\n"
 
-#: ../inc/admin-menus.php:10 ../inc/dash.php:7
+#: ../inc/admin-menus.php:13 ../inc/dash.php:11
 msgid "Social Stats"
 msgstr ""
 
-#: ../inc/admin-menus.php:11
+#: ../inc/admin-menus.php:14
 msgid "Social Links"
 msgstr ""
 
-#: ../inc/admin-menus.php:12 ../inc/admin-menus/css.php:10
+#: ../inc/admin-menus.php:15 ../inc/admin-menus/css.php:14
 msgid "Custom CSS"
 msgstr ""
 
-#: ../inc/admin-menus.php:13
+#: ../inc/admin-menus.php:16
 msgid "Theme"
 msgstr ""
 
-#: ../inc/admin-menus.php:14 ../inc/admin-menus/updates.php:10
+#: ../inc/admin-menus.php:17 ../inc/admin-menus/updates.php:14
 msgid "Updates"
 msgstr ""
 
-#: ../inc/admin-menus/css.php:17
+#: ../inc/admin-menus/css.php:21
 msgid "Any CSS added to this box will be kept after theme updates."
 msgstr ""
 
-#: ../inc/admin-menus/css.php:63
+#: ../inc/admin-menus/css.php:67
 #, php-format
 msgid ""
 "Remember, you can also change the appearance of your site by using the <a "
 "href=\"%s\">Customizer</a>."
 msgstr ""
 
-#: ../inc/admin-menus/hooks.php:10
+#: ../inc/admin-menus/hooks.php:14
 msgid ""
 "Please be careful when adding code in these options. This can break your "
 "site if not added correctly!"
 msgstr ""
 
-#: ../inc/admin-menus/hooks.php:17
+#: ../inc/admin-menus/hooks.php:21
 msgid "Code to add to the  &lt;head&gt;"
 msgstr ""
 
-#: ../inc/admin-menus/hooks.php:17
+#: ../inc/admin-menus/hooks.php:21
 msgid "For example, Google Analytics tracking code"
 msgstr ""
 
-#: ../inc/admin-menus/hooks.php:25
+#: ../inc/admin-menus/hooks.php:29
 msgid "Code to add directly after the opening &lt;body&gt; tag"
 msgstr ""
 
-#: ../inc/admin-menus/hooks.php:33
+#: ../inc/admin-menus/hooks.php:37
 msgid "Code to add just before the closing &lt;/body&gt; tag"
 msgstr ""
 
-#: ../inc/admin-menus/hooks.php:41
+#: ../inc/admin-menus/hooks.php:45
 msgid ""
 "Code to add directly after the first post on the home page or any archive"
 msgstr ""
 
-#: ../inc/admin-menus/hooks.php:41
+#: ../inc/admin-menus/hooks.php:45
 msgid "For example, you may wish to place a banner ad after the first post"
 msgstr ""
 
-#: ../inc/admin-menus/hooks.php:105
+#: ../inc/admin-menus/hooks.php:109
 msgid ""
 "Use the fields below to add custom code to the Head, Body or Footer of your "
 "site."
 msgstr ""
 
-#: ../inc/admin-menus/hooks.php:105
+#: ../inc/admin-menus/hooks.php:109
 msgid ""
 "These settings will be carried over if you install any other pipdig theme."
 msgstr ""
 
-#: ../inc/admin-menus/hooks.php:105
+#: ../inc/admin-menus/hooks.php:109
 msgid "WARNING: these options can break your site. Use with caution."
 msgstr ""
 
-#: ../inc/admin-menus/links.php:178
+#: ../inc/admin-menus/links.php:195
 msgid "Add the links to each social media page below:"
 msgstr ""
 
-#: ../inc/admin-menus/links.php:179
+#: ../inc/admin-menus/links.php:196
 #, php-format
 msgid ""
 "Any links added can then be used across your website, such as on <a href=\"%s"
 "\">this page</a>."
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:43
+#: ../inc/admin-menus/stats.php:32
 #, php-format
 msgid ""
 "This page will display your total social follower counts. Please add your "
 "links to <a href=\"%s\">this page</a> first."
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:123
+#: ../inc/admin-menus/stats.php:112
 msgid "Total followers:"
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:127
+#: ../inc/admin-menus/stats.php:116
 msgid "Follower Stats"
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:139 ../inc/dash.php:128
+#: ../inc/admin-menus/stats.php:128 ../inc/dash.php:132
 msgid "Click here to add more accounts"
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:140
-msgid "Stats are refreshed every 6 hours"
+#: ../inc/admin-menus/stats.php:129
+msgid "Stats are refreshed every 12 hours"
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:290
+#: ../inc/admin-menus/stats.php:279
 msgid "Social Sharing Stats (Homepage only)"
 msgstr ""
 
-#: ../inc/functions.php:67 ../inc/functions.php:69
+#: ../inc/dom-functions.php:33
+msgid "Share:"
+msgstr ""
+
+#: ../inc/dom-functions.php:43
+msgid "1 Comment"
+msgstr ""
+
+#: ../inc/dom-functions.php:45
 msgid "Comments"
 msgstr ""
 
-#: ../inc/functions.php:79
+#: ../inc/dom-functions.php:55
 msgid "Older Comments"
 msgstr ""
 
-#: ../inc/functions.php:80
+#: ../inc/dom-functions.php:56
 msgid "Newer Comments"
 msgstr ""
 
-#: ../inc/functions.php:442
+#: ../inc/functions.php:295
 msgid "Themes"
 msgstr ""
 
-#: ../inc/shortcodes/mosaic.php:75
+#: ../inc/functions/related-posts.php:47
+msgid "You may also enjoy:"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:91
+msgid "Related Posts"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:92
+msgid ""
+"Related Posts are calculated based on what category a post is in. Use these "
+"options to show/hide this feature on posts."
+msgstr ""
+
+#: ../inc/functions/related-posts.php:110 ../inc/widgets/popular-posts.php:49
+#: ../inc/widgets/post-slider.php:57 ../inc/widgets/random-posts.php:49
+msgid "Date range for posts:"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:113 ../inc/widgets/popular-posts.php:53
+#: ../inc/widgets/post-slider.php:61 ../inc/widgets/random-posts.php:53
+msgid "1 Year"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:114 ../inc/widgets/popular-posts.php:52
+#: ../inc/widgets/post-slider.php:60 ../inc/widgets/random-posts.php:52
+msgid "1 Month"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:115 ../inc/widgets/popular-posts.php:51
+#: ../inc/widgets/post-slider.php:59 ../inc/widgets/random-posts.php:51
+msgid "1 Week"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:116 ../inc/widgets/popular-posts.php:54
+#: ../inc/widgets/post-slider.php:62 ../inc/widgets/random-posts.php:54
+msgid "All Time"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:132
+msgid "Don't display on homepage"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:148
+msgid "Don't display on posts"
+msgstr ""
+
+#: ../inc/shortcodes/grid-mosaic.php:85 ../inc/shortcodes/grid-squares.php:84
 msgid "Older posts"
 msgstr ""
 
-#: ../inc/shortcodes/mosaic.php:79
+#: ../inc/shortcodes/grid-mosaic.php:89 ../inc/shortcodes/grid-squares.php:88
 msgid "Newer posts"
 msgstr ""
 
-#: ../inc/widgets/bloglovin.php:6
+#: ../inc/widgets/bloglovin.php:11
 msgid "Display your Bloglovin' follower count."
 msgstr ""
 
-#: ../inc/widgets/bloglovin.php:7
+#: ../inc/widgets/bloglovin.php:12
 msgid "Bloglovin' Widget"
 msgstr ""
 
-#: ../inc/widgets/bloglovin.php:43 ../inc/widgets/bloglovin.php:65
+#: ../inc/widgets/bloglovin.php:48 ../inc/widgets/bloglovin.php:69
 msgid "Followers on Bloglovin'"
 msgstr ""
 
-#: ../inc/widgets/bloglovin.php:45
+#: ../inc/widgets/bloglovin.php:50
 msgid "Follow on Bloglovin'"
 msgstr ""
 
-#: ../inc/widgets/bloglovin.php:51 ../inc/widgets/facebook.php:48
-#: ../inc/widgets/pinterest.php:94 ../inc/widgets/snapcode.php:31
-#: ../inc/widgets/subscribe.php:47 ../inc/widgets/youtube.php:50
+#: ../inc/widgets/bloglovin.php:55 ../inc/widgets/facebook.php:54
+#: ../inc/widgets/pinterest.php:129 ../inc/widgets/snapcode.php:35
+#: ../inc/widgets/subscribe.php:52 ../inc/widgets/twitter.php:56
+#: ../inc/widgets/youtube.php:55
 msgid "Setup not complete. Please check the widget options."
 msgstr ""
 
-#: ../inc/widgets/bloglovin.php:63
+#: ../inc/widgets/bloglovin.php:67
 msgid "This widget will display your total Bloglovin' follower count."
 msgstr ""
 
-#: ../inc/widgets/bloglovin.php:71
+#: ../inc/widgets/bloglovin.php:75
 #, php-format
 msgid ""
 "You will need to <a href='%s'>add the link</a> to your Bloglovin' page first."
 msgstr ""
 
-#: ../inc/widgets/clw.php:20
+#: ../inc/widgets/clw.php:24
 msgid "Proudly display where you are in the world."
 msgstr ""
 
-#: ../inc/widgets/clw.php:21 ../inc/widgets/clw.php:124
-#: ../inc/widgets/clw.php:193
+#: ../inc/widgets/clw.php:25 ../inc/widgets/clw.php:128
+#: ../inc/widgets/clw.php:197
 msgid "Current Location"
 msgstr ""
 
-#: ../inc/widgets/clw.php:200 ../inc/widgets/clw.php:202
+#: ../inc/widgets/clw.php:204 ../inc/widgets/clw.php:206
 msgid "Please enter location data in the widget settings."
 msgstr ""
 
-#: ../inc/widgets/clw.php:236 ../inc/widgets/snapcode.php:52
+#: ../inc/widgets/clw.php:240 ../inc/widgets/facebook.php:86
+#: ../inc/widgets/pinterest.php:157 ../inc/widgets/popular-posts.php:39
+#: ../inc/widgets/post-slider.php:49 ../inc/widgets/profile.php:67
+#: ../inc/widgets/random-posts.php:39 ../inc/widgets/snapcode.php:56
+#: ../inc/widgets/socialz.php:123 ../inc/widgets/subscribe.php:72
+#: ../inc/widgets/twitter.php:88 ../inc/widgets/youtube.php:74
 msgid "Title:"
 msgstr ""
 
-#: ../inc/widgets/clw.php:242
+#: ../inc/widgets/clw.php:246
 #, php-format
 msgid ""
 "The information below will be used for the map marker. You can find the "
@@ -216,102 +278,95 @@ msgid ""
 "\">clicking here</a>."
 msgstr ""
 
-#: ../inc/widgets/clw.php:246
+#: ../inc/widgets/clw.php:250
 msgid "Location Name:"
 msgstr ""
 
-#: ../inc/widgets/clw.php:247
+#: ../inc/widgets/clw.php:251
 msgid "London, UK"
 msgstr ""
 
-#: ../inc/widgets/clw.php:250
+#: ../inc/widgets/clw.php:254
 msgid "Latitude:"
 msgstr ""
 
-#: ../inc/widgets/clw.php:254
+#: ../inc/widgets/clw.php:258
 msgid "Longitude:"
 msgstr ""
 
-#: ../inc/widgets/clw.php:287
+#: ../inc/widgets/clw.php:291
 msgid "Current Location Widget"
 msgstr ""
 
-#: ../inc/widgets/clw.php:290
+#: ../inc/widgets/clw.php:294
 #, php-format
 msgid ""
 "Use these options to style the Current Location Widget. You will need to set "
 "your location in the <a href=\"%s\">widget options</a> first."
 msgstr ""
 
-#: ../inc/widgets/clw.php:305
+#: ../inc/widgets/clw.php:309
 msgid "Map color"
 msgstr ""
 
-#: ../inc/widgets/clw.php:322
+#: ../inc/widgets/clw.php:326
 msgid "Border color"
 msgstr ""
 
-#: ../inc/widgets/clw.php:339
+#: ../inc/widgets/clw.php:343
 msgid "Marker color"
 msgstr ""
 
-#: ../inc/widgets/clw.php:359
+#: ../inc/widgets/clw.php:363
 msgid "Marker size"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:6
+#: ../inc/widgets/facebook.php:11
 msgid "Displays a Facebook Like Box."
 msgstr ""
 
-#: ../inc/widgets/facebook.php:7
+#: ../inc/widgets/facebook.php:12
 msgid "Facebook Widget"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:79 ../inc/widgets/pinterest.php:117
-#: ../inc/widgets/popular-posts.php:27 ../inc/widgets/profile.php:63
-#: ../inc/widgets/random-posts.php:27 ../inc/widgets/socialz.php:81
-#: ../inc/widgets/subscribe.php:67 ../inc/widgets/youtube.php:69
-msgid "Widget Title:"
-msgstr ""
-
-#: ../inc/widgets/facebook.php:85
+#: ../inc/widgets/facebook.php:92 ../inc/widgets/twitter.php:94
 msgid ""
 "Add your Facebook page URL to the box below. For example, https://facebook."
 "com/pipdig"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:88
+#: ../inc/widgets/facebook.php:95 ../inc/widgets/twitter.php:97
 msgid "Facebook Page URL:"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:96
+#: ../inc/widgets/facebook.php:103 ../inc/widgets/twitter.php:105
 msgid "Hide Cover Image"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:101
+#: ../inc/widgets/facebook.php:108 ../inc/widgets/twitter.php:110
 msgid "Show Faces"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:106
+#: ../inc/widgets/facebook.php:113 ../inc/widgets/twitter.php:115
 msgid "Show Posts"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:6
+#: ../inc/widgets/instagram.php:11
 msgid "Displays your latest Instagram photos"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:7
+#: ../inc/widgets/instagram.php:12
 msgid "Instagram Widget"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:51 ../inc/widgets/instagram.php:90
+#: ../inc/widgets/instagram.php:50 ../inc/widgets/instagram.php:83
 #, php-format
 msgid ""
 "Please install and activate <a href=\"%s\">this plugin</a> to add your "
 "Instagram Feed."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:87
+#: ../inc/widgets/instagram.php:81
 #, php-format
 msgid ""
 "This widget will show your latest Instagram photos. You will need to "
@@ -319,108 +374,135 @@ msgid ""
 "widget to work."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:95 ../inc/widgets/pinterest.php:137
+#: ../inc/widgets/instagram.php:88 ../inc/widgets/pinterest.php:177
 msgid "Number of images to display:"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:99
+#: ../inc/widgets/instagram.php:92 ../inc/widgets/pinterest.php:182
 msgid "Number of columns:"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:104
+#: ../inc/widgets/instagram.php:97
 msgid "Display a \"Load more\" button."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:109 ../inc/widgets/pinterest.php:143
+#: ../inc/widgets/instagram.php:102 ../inc/widgets/pinterest.php:188
 msgid "Display a \"Follow\" link."
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:6
+#: ../inc/widgets/pinterest.php:11
 msgid "Displays your latest Pinterest pins."
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:7
+#: ../inc/widgets/pinterest.php:12
 msgid "Pinterest Widget"
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:85
+#: ../inc/widgets/pinterest.php:120
 msgid "Follow on Pinterest"
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:124
+#: ../inc/widgets/pinterest.php:164
 msgid "Add your Pinterest account name to the box below."
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:125 ../inc/widgets/subscribe.php:75
-#: ../inc/widgets/youtube.php:77
+#: ../inc/widgets/pinterest.php:165 ../inc/widgets/subscribe.php:80
+#: ../inc/widgets/youtube.php:82
 msgid "For example, the red part below:"
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:129
+#: ../inc/widgets/pinterest.php:169
 msgid "Pinterest Account Name:"
 msgstr ""
 
-#: ../inc/widgets/popular-posts.php:6
+#: ../inc/widgets/popular-posts.php:11
 msgid "Displays your most popular posts."
 msgstr ""
 
-#: ../inc/widgets/popular-posts.php:7
+#: ../inc/widgets/popular-posts.php:12
 msgid "Popular Posts"
 msgstr ""
 
-#: ../inc/widgets/popular-posts.php:33 ../inc/widgets/random-posts.php:33
-msgid "Date range for posts:"
+#: ../inc/widgets/popular-posts.php:45 ../inc/widgets/post-slider.php:53
+#: ../inc/widgets/random-posts.php:45
+msgid "Select Category"
 msgstr ""
 
-#: ../inc/widgets/popular-posts.php:35 ../inc/widgets/random-posts.php:35
-msgid "1 Week"
+#: ../inc/widgets/popular-posts.php:46 ../inc/widgets/post-slider.php:54
+#: ../inc/widgets/random-posts.php:46
+msgid "All Categories"
 msgstr ""
 
-#: ../inc/widgets/popular-posts.php:36 ../inc/widgets/random-posts.php:36
-msgid "1 Month"
-msgstr ""
-
-#: ../inc/widgets/popular-posts.php:37 ../inc/widgets/random-posts.php:37
-msgid "1 Year"
-msgstr ""
-
-#: ../inc/widgets/popular-posts.php:38 ../inc/widgets/random-posts.php:38
-msgid "All Time"
-msgstr ""
-
-#: ../inc/widgets/popular-posts.php:42 ../inc/widgets/random-posts.php:42
+#: ../inc/widgets/popular-posts.php:58 ../inc/widgets/post-slider.php:66
+#: ../inc/widgets/random-posts.php:58
 msgid "Number of posts to show:"
 msgstr ""
 
-#: ../inc/widgets/profile.php:17
+#: ../inc/widgets/post-slider.php:11
+msgid "Display a selection of posts in a slider."
+msgstr ""
+
+#: ../inc/widgets/post-slider.php:12
+msgid "Post Slider"
+msgstr ""
+
+#: ../inc/widgets/post-slider.php:70
+msgid "Slider height in pixels:"
+msgstr ""
+
+#: ../inc/widgets/post-slider.php:73
+msgid "The width of the slider will always be 100%."
+msgstr ""
+
+#: ../inc/widgets/post-slider.php:75
+msgid "Display post titles?"
+msgstr ""
+
+#: ../inc/widgets/post-slider.php:77
+msgid "Yes"
+msgstr ""
+
+#: ../inc/widgets/post-slider.php:78
+msgid "No"
+msgstr ""
+
+#: ../inc/widgets/post-slider.php:79
+msgid "On hover"
+msgstr ""
+
+#: ../inc/widgets/post-slider.php:198
+msgid "View Post"
+msgstr ""
+
+#: ../inc/widgets/profile.php:21
 msgid "Show off your profile photo!"
 msgstr ""
 
-#: ../inc/widgets/profile.php:18
+#: ../inc/widgets/profile.php:22
 msgid "Profile Photo"
 msgstr ""
 
-#: ../inc/widgets/profile.php:67
+#: ../inc/widgets/profile.php:71
 msgid "Image"
 msgstr ""
 
-#: ../inc/widgets/profile.php:68
+#: ../inc/widgets/profile.php:72
 msgid "Step 1 - Click the button below to select a photo:"
 msgstr ""
 
-#: ../inc/widgets/profile.php:77
+#: ../inc/widgets/profile.php:81
 msgid "Upload Photo"
 msgstr ""
 
-#: ../inc/widgets/profile.php:78
+#: ../inc/widgets/profile.php:82
 msgid "Step 2 - Optional extras:"
 msgstr ""
 
-#: ../inc/widgets/profile.php:81
+#: ../inc/widgets/profile.php:85
 msgid "Change image to a circle"
 msgstr ""
 
-#: ../inc/widgets/profile.php:83
+#: ../inc/widgets/profile.php:87
 #, php-format
 msgid ""
 "To make a perfect circle you should upload a square image. For example, "
@@ -428,107 +510,117 @@ msgid ""
 "target='_blank'>picmonkey.com</a> to edit your image."
 msgstr ""
 
-#: ../inc/widgets/profile.php:87
+#: ../inc/widgets/profile.php:91
 msgid "Add some text below the photo:"
 msgstr ""
 
-#: ../inc/widgets/profile.php:90
+#: ../inc/widgets/profile.php:94
 msgid "Step 3 - Click the save button:"
 msgstr ""
 
-#: ../inc/widgets/random-posts.php:6
+#: ../inc/widgets/random-posts.php:11
 msgid "Displays a selection of random posts."
 msgstr ""
 
-#: ../inc/widgets/random-posts.php:7
+#: ../inc/widgets/random-posts.php:12
 msgid "Random Posts"
 msgstr ""
 
-#: ../inc/widgets/random-posts.php:45
+#: ../inc/widgets/random-posts.php:61
 msgid "Posts will be refreshed every 30 minutes"
 msgstr ""
 
-#: ../inc/widgets/snapcode.php:6
+#: ../inc/widgets/snapcode.php:10
 msgid "Display your Snapchat Snapcode (QR code)."
 msgstr ""
 
-#: ../inc/widgets/snapcode.php:28
+#: ../inc/widgets/snapcode.php:32
 #, php-format
 msgid "Follow <b>%s</b> on Snapchat!"
 msgstr ""
 
-#: ../inc/widgets/snapcode.php:56
+#: ../inc/widgets/snapcode.php:60
 msgid ""
 "Upload your <a href=\"https://accounts.snapchat.com/accounts/snapcodes?"
 "type=png\" target=\"_blank\">Snapcode</a> PNG file:"
 msgstr ""
 
-#: ../inc/widgets/snapcode.php:65
+#: ../inc/widgets/snapcode.php:69
 msgid "Upload Snapcode"
 msgstr ""
 
-#: ../inc/widgets/snapcode.php:68
+#: ../inc/widgets/snapcode.php:72
 msgid "Snapchat Account Name:"
 msgstr ""
 
-#: ../inc/widgets/snapcode.php:69
+#: ../inc/widgets/snapcode.php:73
 msgid "For example:"
 msgstr ""
 
-#: ../inc/widgets/socialz.php:6
+#: ../inc/widgets/socialz.php:11
 msgid "The easy way to show social media icons."
 msgstr ""
 
-#: ../inc/widgets/socialz.php:7
+#: ../inc/widgets/socialz.php:12
 msgid "Social Media Icons"
 msgstr ""
 
-#: ../inc/widgets/socialz.php:78
-msgid ""
-"Any links you add below will be shown as a social media icon. Leave any "
-"field blank to not add that icon."
+#: ../inc/widgets/socialz.php:133
+msgid "Select a layout:"
 msgstr ""
 
-#: ../inc/widgets/subscribe.php:6
+#: ../inc/widgets/socialz.php:143
+msgid "Add your links:"
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:11
 msgid "Allow people to subscribe to your blog via email"
 msgstr ""
 
-#: ../inc/widgets/subscribe.php:7
+#: ../inc/widgets/subscribe.php:12
 msgid "Email Subscribe"
 msgstr ""
 
-#: ../inc/widgets/subscribe.php:20 ../inc/widgets/subscribe.php:87
+#: ../inc/widgets/subscribe.php:25 ../inc/widgets/subscribe.php:92
 msgid "Enter your email address to subscribe:"
 msgstr ""
 
-#: ../inc/widgets/subscribe.php:73
+#: ../inc/widgets/subscribe.php:78
 msgid ""
 "If you have not already setup FeedBurner with your site, you will need to by "
 "following <a href=\"http://goo.gl/udSrVR\" target=\"_blank\">this guide</a>."
 msgstr ""
 
-#: ../inc/widgets/subscribe.php:74
+#: ../inc/widgets/subscribe.php:79
 msgid "Add your FeedBurner ID to the box below."
 msgstr ""
 
-#: ../inc/widgets/subscribe.php:86
+#: ../inc/widgets/subscribe.php:91
 msgid "Text to display above the form:"
 msgstr ""
 
-#: ../inc/widgets/youtube.php:6
+#: ../inc/widgets/twitter.php:11
+msgid "Displays your latest tweets."
+msgstr ""
+
+#: ../inc/widgets/twitter.php:12
+msgid "Twitter Widget"
+msgstr ""
+
+#: ../inc/widgets/youtube.php:11
 msgid "Automatically displays your latest YouTube video."
 msgstr ""
 
-#: ../inc/widgets/youtube.php:7
+#: ../inc/widgets/youtube.php:12
 msgid "Latest YouTube"
 msgstr ""
 
-#: ../inc/widgets/youtube.php:76
+#: ../inc/widgets/youtube.php:81
 msgid ""
 "Enter your YouTube <a href=\"https://support.google.com/youtube/"
 "answer/3250431\" target=\"_blank\">Channel ID</a>."
 msgstr ""
 
-#: ../inc/widgets/youtube.php:80
+#: ../inc/widgets/youtube.php:85
 msgid "YouTube Channel ID:"
 msgstr ""

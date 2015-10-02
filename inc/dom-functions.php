@@ -12,6 +12,7 @@ if (!function_exists('pipdig_p3_comment_count')) {
 		}
 		$link = rawurlencode(get_the_permalink());
 		$title = urlencode(get_the_title());
+		$summary = urlencode(get_the_excerpt());
 		
 		$twitter_handle = get_option('p3_twitter_handle');
 		$via_handle = '';
@@ -20,7 +21,9 @@ if (!function_exists('pipdig_p3_comment_count')) {
 		}
 		
 		$output = '';
-		$output .= '<a href="//www.facebook.com/sharer.php?u='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>';
+		//$output .= '<a href="//www.facebook.com/sharer.php?u='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>';
+		$output .= '<a onClick="window.open(\'http://www.facebook.com/sharer.php?s=100&amp;p[title]='.$title.'&amp;p[summary]='.$summary.'&amp;p[url]='.$link.'&amp;p[images][0]='.$img.'\',\'sharer\',\'toolbar=0,status=0,width=548,height=325\');" href="javascript: void(0)"><i class="fa fa-facebook"></i></a>';
+		
 		$output .= '<a href="//twitter.com/share?url='.$link.'&text='.$title.$via_handle.'" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i></a>';
 		$output .= '<a href="//pinterest.com/pin/create/link/?url='.$link.'&media='.$img.'&description='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-pinterest"></i></a>';
 		$output .= '<a href="//plus.google.com/share?url='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-google-plus"></i></a>';
@@ -54,6 +57,8 @@ if (!function_exists('pipdig_p3_comment_nav')) {
 	}
 }
 
+
+//include_once('functions/related-posts.php');
 
 function pipdig_p3_social_footer() {
 	
@@ -176,9 +181,10 @@ function pipdig_p3_social_footer() {
 
 }
 
+/*
 if (!function_exists('p3_instagram_css')) {
 	function p3_instagram_css() {
-		$output = 'poop';
+		$output = '';
 				
 		echo $output;
 	}
@@ -326,7 +332,7 @@ function pipdig_p3_instagram_feed() {
 	<div class="clearfix"></div>
 	<?php
 }
-
+*/
 
 /* Add socialz, super search and cart to navbar -------------------------------------------------*/
 if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3_social_navbar by Dec 2015

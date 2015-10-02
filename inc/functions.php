@@ -302,24 +302,6 @@ add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
 
 
-function pipdig_p3_emmmm_heeey() {
-	?>
-	<script>	
-	jQuery(document).ready(function($) {
-		$(window).scroll(function() {
-		   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-			   $("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideUp();
-		   } else {
-			   $("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideDown()
-		   }
-		});
-	});
-	</script>
-	<?php
-}
-add_action('wp_footer','pipdig_p3_emmmm_heeey');
-
-
 /*  Remove pointless front end widgets ----------------------------------------------*/
 function pipdig_p3_unregister_widgets() {
 	unregister_widget('WP_Widget_Pages');
@@ -431,3 +413,22 @@ RewriteRule ^(.*)$ /$1? [R=301,L]
 return $p3_rules . $rules;
 }
 add_filter('mod_rewrite_rules', 'p3_htaccess_edit');
+
+
+function pipdig_p3_emmmm_heeey() {
+	?>
+	<script>	
+	jQuery(document).ready(function($) {
+		$(window).scroll(function() {
+		   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+			   $("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideUp();
+		   } else {
+			   $("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideDown()
+		   }
+		});
+	});
+	</script>
+	<!-- p3 v<?php echo get_option('pipdig_p3_version'); ?> -->
+	<?php
+}
+add_action('wp_footer','pipdig_p3_emmmm_heeey', 99);

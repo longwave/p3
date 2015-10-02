@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-09-29 11:50+0100\n"
-"PO-Revision-Date: 2015-09-29 11:56+0100\n"
+"POT-Creation-Date: 2015-10-02 18:26+0100\n"
+"PO-Revision-Date: 2015-10-02 18:26+0100\n"
 "Last-Translator: \n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: nl_NL\n"
@@ -135,28 +135,75 @@ msgstr ""
 msgid "Social Sharing Stats (Homepage only)"
 msgstr ""
 
-#: ../inc/dom-functions.php:30
+#: ../inc/dom-functions.php:33
 msgid "Share:"
 msgstr ""
 
-#: ../inc/dom-functions.php:40
+#: ../inc/dom-functions.php:43
 msgid "1 Comment"
 msgstr "1 Reactie"
 
-#: ../inc/dom-functions.php:42
+#: ../inc/dom-functions.php:45
 msgid "Comments"
 msgstr "Reacties"
 
-#: ../inc/dom-functions.php:52
+#: ../inc/dom-functions.php:55
 msgid "Older Comments"
 msgstr "Oudere reacties"
 
-#: ../inc/dom-functions.php:53
+#: ../inc/dom-functions.php:56
 msgid "Newer Comments"
 msgstr "Nieuwere reactie"
 
-#: ../inc/functions.php:298
+#: ../inc/functions.php:295
 msgid "Themes"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:47
+msgid "You may also enjoy:"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:91
+msgid "Related Posts"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:92
+msgid ""
+"Related Posts are calculated based on what category a post is in. Use these "
+"options to show/hide this feature on posts."
+msgstr ""
+
+#: ../inc/functions/related-posts.php:110 ../inc/widgets/popular-posts.php:49
+#: ../inc/widgets/post-slider.php:57 ../inc/widgets/random-posts.php:49
+msgid "Date range for posts:"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:113 ../inc/widgets/popular-posts.php:53
+#: ../inc/widgets/post-slider.php:61 ../inc/widgets/random-posts.php:53
+msgid "1 Year"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:114 ../inc/widgets/popular-posts.php:52
+#: ../inc/widgets/post-slider.php:60 ../inc/widgets/random-posts.php:52
+msgid "1 Month"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:115 ../inc/widgets/popular-posts.php:51
+#: ../inc/widgets/post-slider.php:59 ../inc/widgets/random-posts.php:51
+msgid "1 Week"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:116 ../inc/widgets/popular-posts.php:54
+#: ../inc/widgets/post-slider.php:62 ../inc/widgets/random-posts.php:54
+msgid "All Time"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:132
+msgid "Don't display on homepage"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:148
+msgid "Don't display on posts"
 msgstr ""
 
 #: ../inc/shortcodes/grid-mosaic.php:85 ../inc/shortcodes/grid-squares.php:84
@@ -383,31 +430,6 @@ msgstr ""
 #: ../inc/widgets/popular-posts.php:46 ../inc/widgets/post-slider.php:54
 #: ../inc/widgets/random-posts.php:46
 msgid "All Categories"
-msgstr ""
-
-#: ../inc/widgets/popular-posts.php:49 ../inc/widgets/post-slider.php:57
-#: ../inc/widgets/random-posts.php:49
-msgid "Date range for posts:"
-msgstr ""
-
-#: ../inc/widgets/popular-posts.php:51 ../inc/widgets/post-slider.php:59
-#: ../inc/widgets/random-posts.php:51
-msgid "1 Week"
-msgstr ""
-
-#: ../inc/widgets/popular-posts.php:52 ../inc/widgets/post-slider.php:60
-#: ../inc/widgets/random-posts.php:52
-msgid "1 Month"
-msgstr ""
-
-#: ../inc/widgets/popular-posts.php:53 ../inc/widgets/post-slider.php:61
-#: ../inc/widgets/random-posts.php:53
-msgid "1 Year"
-msgstr ""
-
-#: ../inc/widgets/popular-posts.php:54 ../inc/widgets/post-slider.php:62
-#: ../inc/widgets/random-posts.php:54
-msgid "All Time"
 msgstr ""
 
 #: ../inc/widgets/popular-posts.php:58 ../inc/widgets/post-slider.php:66
