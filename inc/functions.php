@@ -236,7 +236,7 @@ function pipdig_p3_scrapey_scrapes() {
 		}
 			
 		// Google Plus ---------------------
-		// https://www.googleapis.com/plus/v1/people/102904094379339545145?key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c    OR YQL below:
+		// https://www.googleapis.com/plus/v1/people/102904094379339545145?key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c		OR YQL below:
 		// SELECT * from html where url="https://plus.google.com/+Inthefrowpage/about" AND xpath="//div[@class='Zmjtc']/span"
 		$google_plus_url = $links['google_plus'];
 		if ($google_plus_url) {
@@ -302,7 +302,7 @@ add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
 
 
-/*  Remove pointless front end widgets ----------------------------------------------*/
+/*	Remove pointless front end widgets ----------------------------------------------*/
 function pipdig_p3_unregister_widgets() {
 	unregister_widget('WP_Widget_Pages');
 	unregister_widget('WP_Widget_Links');
@@ -317,6 +317,8 @@ function pipdig_p3_unregister_widgets() {
 	unregister_widget('wpcom_social_media_icons_widget');
 	unregister_widget('Jetpack_Display_Posts_Widget');
 	unregister_widget('Jetpack_Top_Posts_Widget');
+	unregister_widget('Jetpack_Contact_Info_Widget');
+	
 	
 	unregister_widget('Akismet_Widget');
 	unregister_widget('SocialCountPlus');
@@ -328,7 +330,7 @@ add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 
 
 
-/*  Remove pointless dashboard widgets ----------------------------------------------*/
+/*	Remove pointless dashboard widgets ----------------------------------------------*/
 function pipdig_p3_pipdig_remove_dashboard_meta() {
 	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
 	remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
@@ -343,27 +345,71 @@ add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
 
 
 
-/*  Remove pointless meta boxes on posts --------------------------------------------*/
-function pipdig_p3_remove_default_post_metaboxes() {
+/*	Remove pointless meta boxes on posts --------------------------------------------*/
+function pipdig_p3_remove_default_metaboxes() {
+	// posts:
 	remove_meta_box( 'trackbacksdiv','post','normal' );
 	remove_meta_box( 'slugdiv','post','normal' );
 	remove_meta_box( 'revisionsdiv','post','normal' );
-}
-add_action('admin_menu','pipdig_p3_remove_default_post_metaboxes');
-
-
-
-/*  Remove pointless meta boxes on pages --------------------------------------------*/
-function pipdig_p3_remove_default_page_metaboxes() {
+	// pages:
 	remove_meta_box( 'postexcerpt','page','normal' );
 	if (get_theme_mod('page_comments')){ remove_meta_box( 'commentstatusdiv','page','normal' ); }
 	remove_meta_box( 'trackbacksdiv','page','normal' );
 	remove_meta_box( 'slugdiv','page','normal' );
 	remove_meta_box( 'revisionsdiv','page','normal' );
 }
-add_action('admin_menu', 'pipdig_p3_remove_default_page_metaboxes');
+add_action('admin_menu','pipdig_p3_remove_default_metaboxes');
 
 
+function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) {
+	$jp_mods_to_disable = array(
+	// 'shortcodes',
+	// 'widget-visibility',
+	// 'contact-form',
+	// 'shortlinks',
+	'infinite-scroll',
+	// 'wpcc',
+	'tiled-gallery',
+	'json-api',
+	// 'publicize',
+	// 'vaultpress',
+	'custom-css',
+	'post-by-email',
+	// 'widgets',
+	// 'comments',
+	'minileven',
+	'latex',
+	'gravatar-hovercards',
+	// 'enhanced-distribution',
+	// 'notes',
+	// 'subscriptions',
+	// 'stats',
+	// 'after-the-deadline',
+	// 'carousel',
+	'photon',
+	'sharedaddy',
+	'omnisearch',
+	'mobile-push',
+	// 'likes',
+	// 'videopress',
+	// 'sso',
+	'monitor',
+	'markdown',
+	// 'manage',
+	// 'verification-tools',
+	'related-posts',
+	// 'custom-content-types',
+	'site-icon',
+	// 'protect',
+	);
+	foreach ( $jp_mods_to_disable as $mod ) {
+		if ( isset( $modules[$mod] ) ) {
+			unset( $modules[$mod] );
+		}
+	}
+	return $modules;
+}
+add_filter( 'jetpack_get_available_modules', 'pipdig_p3_kill_jetpack_modules', 20, 3 );
 
 // Heartbeat rate
 if ( !function_exists( 'heartbeat_control_menu' ) ) {
@@ -420,15 +466,56 @@ function pipdig_p3_emmmm_heeey() {
 	<script>	
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
-		   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-			   $("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideUp();
-		   } else {
-			   $("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideDown()
-		   }
+			 if($(window).scrollTop() + $(window).height() == $(document).height()) {
+	$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideUp();
+			 } else {
+	$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideDown()
+			 }
 		});
 	});
-	</script>
+	
+	WebFontConfig = {
+		google: { families: [ 'Montserrat::latin' ] }
+	};
+	(function() {
+		var wf = document.createElement('script');
+		wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+		wf.type = 'text/javascript';
+		wf.async = 'true';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(wf, s);
+	})();
+</script>
 	<!-- p3 v<?php echo get_option('pipdig_p3_version'); ?> -->
 	<?php
 }
 add_action('wp_footer','pipdig_p3_emmmm_heeey', 99);
+
+// comments count
+if (!function_exists('pipdig_p3_comment_count')) {
+	function pipdig_p3_comment_count() {
+		if (!post_password_required()) {
+			$comment_count = get_comments_number();
+			if ($comment_count == 1 ) {
+				$comments_text = __('1 Comment', 'p3');
+			} else {
+				$comments_text = number_format_i18n($comment_count).' '.__('Comments', 'p3');
+			}
+			echo $comments_text;
+		}
+	}
+}
+
+// comments nav
+if (!function_exists('pipdig_p3_comment_nav')) {
+	function pipdig_p3_comment_nav() {
+		echo '<div class="nav-previous">'.previous_comments_link('<i class="fa fa-arrow-left"></i> '.__('Older Comments', 'p3')).'</div>';
+		echo '<div class="nav-next">'.next_comments_link(__('Newer Comments', 'p3').' <i class="fa fa-arrow-right"></i>').'</div>';
+	}
+}
+
+include_once('functions/shares.php');
+//include_once('functions/related-posts.php');
+include_once('functions/instagram.php');
+include_once('functions/social-footer.php');
+include_once('functions/navbar-icons.php');

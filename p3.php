@@ -183,7 +183,6 @@ add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles' );
 
 // functions
 require_once('inc/functions.php');
-require_once('inc/dom-functions.php');
 
 // admin menus
 require_once('inc/admin-menus.php');
@@ -196,11 +195,6 @@ require_once('inc/widgets.php');
 
 // shortcodes
 require_once('inc/shortcodes.php');
-
-// Jetpack stuff
-if(class_exists('Jetpack')) {
-	require_once('inc/jetpack.php');
-}
 
 
 // updates
