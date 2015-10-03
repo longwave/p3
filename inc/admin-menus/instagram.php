@@ -4,63 +4,96 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-if (!function_exists('pipdig_instagram_settings_init')) {
-	function pipdig_instagram_settings_init() { 
+function pipdig_instagram_init() {
 
-		register_setting( 'pipdig_instagram_settings_page', 'pipdig_instagram_settings' );
+	register_setting('pipdig_instagram_options_page', 'pipdig_instagram');
+	
+	add_settings_section(
+		'pipdig_instagram_options_page_section', 
+		'',
+		'pipdig_instagram_section_callback', 
+		'pipdig_instagram_options_page'
+	);
 
-		add_settings_section(
-			'pipdig_pipdig_instagram_settings_page_section', 
-			__('Instagram Settings', 'p3'),
-			'pipdig_instagram_settings_section_callback', 
-			'pipdig_instagram_settings_page'
-		);
+	
+	add_settings_field( 
+		'access_token', 
+		'Access Token', 
+		'p3_instagram_at_render', 
+		'pipdig_instagram_options_page', 
+		'pipdig_instagram_options_page_section' 
+	);
+	
+	add_settings_field( 
+		'user_id', 
+		'User ID', 
+		'p3_instagram_userid_render', 
+		'pipdig_instagram_options_page', 
+		'pipdig_instagram_options_page_section' 
+	);
+	
 
-		add_settings_field( 
-			'email', 
-			'Access Token', 
-			'p3_instagram_at_render', 
-			'pipdig_links_options_page', 
-			'pipdig_links_options_page_section' 
-		);
+	
 
+	
+}
+add_action('admin_init', 'pipdig_instagram_init');
+
+
+function p3_instagram_at_render() {
+	$instagram_deets = get_option('pipdig_instagram');
+	$access_token = '';
+	if (!empty($instagram_deets['access_token'])) { 
+		$access_token = strip_tags($instagram_deets['access_token']);
 	}
-	add_action( 'admin_init', 'pipdig_instagram_settings_init' );
+	?>
+	<input class='large-text' type='text' name='pipdig_instagram[access_token]' value="<?php echo $access_token; ?>"> <?php
 }
 
-
-function p3_instagram_at_render() { 
-	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='email' name='pipdig_links[email]' placeholder='yourname@gmail.com' value="<?php if (isset($links['email'])) { echo $links['email']; } ?>"> <?php
-}
-
-
-
-if (!function_exists('pipdig_instagram_settings_section_callback')) {
-	function pipdig_instagram_settings_section_callback() { 
-		//_e('Any CSS added to the box below will be kept after theme updates.', 'p3');
+function p3_instagram_userid_render() {
+	$instagram_deets = get_option('pipdig_instagram');
+	$user_id = '';
+	if (!empty($instagram_deets['user_id'])) { 
+		$user_id = intval($instagram_deets['user_id']);
 	}
+	
+	?>
+	<input class='large-text' type='text' name='pipdig_instagram[user_id]' value="<?php echo $user_id; ?>"> <?php
 }
 
 
-if (!function_exists('pipdig_instagram_settings_options_page')) {
-	function pipdig_instagram_settings_options_page() { 
 
-		?>
-		<form action='options.php' method='post'>
-		
-			<?php
-			settings_fields( 'pipdig_instagram_settings_page' );
-			do_settings_sections( 'pipdig_instagram_settings_page' );
-			submit_button();
-			?>
+
+function pipdig_instagram_section_callback() {
+	//$instagram_deets = get_option('pipdig_instagram');
+	//if (empty($instagram_deets['access_token'])) { 
+		echo '<p><a href="http://www.pipdig.co/instagram/" target="_blank">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
+	//} else {
+		//echo '<a href="http://www.pipdig.co/instagram/">'.__('Click here to re-authorize your Instagram account', 'p3').'</a>';
+	//}
+	echo '<p>Once you have authorized your account, copy and paste your information below:</p>';
+}
+
+
+
+
+function pipdig_instagram_options_page() { 
+	?>
+	<style scoped="scoped">
+	.form-table th {width: 110px;}
+	</style>
+	<form action='options.php' method='post'>
 			
-		</form>
-		<h3><?php
-		$plugin_url = admin_url('customize.php');
-		printf(__('Remember, you can also change the appearance of your site by using the <a href="%s">Customizer</a>.', 'p3'), $plugin_url );
-		?>		</h3>
+		<h2>Instagram Settings</h2>
+		
+		<p><?php _e("You will need to sign in to Instagram to allow this theme's widgets to display our photos. Click the button below to do this:", 'p3'); ?></p>
+			
 		<?php
-
-	}
+		settings_fields('pipdig_instagram_options_page');
+		do_settings_sections('pipdig_instagram_options_page');
+		submit_button();
+		?>
+			
+	</form>
+	<?php
 }

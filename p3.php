@@ -148,6 +148,14 @@ class pipdig_p3_intalled_xyz {
 		
 		update_option('woocommerce_enable_lightbox', 'no');
 		
+		$sb_options = get_option('sb_instagram_settings');
+		if (!empty($sb_options['sb_instagram_at']) && !empty($sb_options['sb_instagram_user_id'])) {
+			$pipdig_instagram = get_option('pipdig_instagram');
+			$pipdig_instagram['user_id'] = $sb_options['sb_instagram_user_id'];
+			$pipdig_instagram['access_token'] = $sb_options['sb_instagram_at'];
+			update_option( "pipdig_instagram", $pipdig_instagram );
+		}
+		
 		p3_flush_htacess();
 		
 	}

@@ -208,7 +208,7 @@ function pipdig_links_options_page() {
 	</style>
 	<form action='options.php' method='post'>
 			
-		<h1>Social Media Links</h1>
+		<h2>Social Media Links</h2>
 			
 		<?php
 		settings_fields('pipdig_links_options_page');
