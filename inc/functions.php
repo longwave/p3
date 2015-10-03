@@ -202,15 +202,20 @@ function pipdig_p3_scrapey_scrapes() {
 		// SELECT * from html where url="http://instagram.com/inthefrow" AND xpath="//li[2]/span"
 		$instagram_url = $links['instagram'];
 		if ($instagram_url) {
-			$ig_token = '21659'.'12485'.'.'.'ee7687e'.'.'.'b66a7b'.'1e71c8'.'4d30ae087f'.'963c7a3aaa';
-			// get the handle from url
-			$instagram_handle = parse_url($instagram_url, PHP_URL_PATH);
-			$instagram_handle = str_replace('/', '', $instagram_handle);
-			//get the userid from json
-			$userid = wp_remote_fopen('https://api.instagram.com/v1/users/search?q=%22'.$instagram_handle.'%22&access_token='.$ig_token, array( 'timeout' => 10 ));
-			$userid = json_decode($userid);
-			$userid = $userid->data[0]->id;
-			usleep(250);
+			$instagram_deets = get_option('pipdig_instagram'); // from p3
+			if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) { 
+				$ig_token = strip_tags($instagram_deets['access_token']);
+				$userid = intval($instagram_deets['user_id']);
+			} else {
+				$ig_token = '21659'.'12485'.'.'.'ee7687e'.'.'.'b66a7b'.'1e71c8'.'4d30ae087f'.'963c7a3aaa';
+				// get the handle from url
+				$instagram_handle = parse_url($instagram_url, PHP_URL_PATH);
+				$instagram_handle = str_replace('/', '', $instagram_handle);
+				//get the userid from json
+				$userid = wp_remote_fopen('https://api.instagram.com/v1/users/search?q=%22'.$instagram_handle.'%22&access_token='.$ig_token, array( 'timeout' => 10 ));
+				$userid = json_decode($userid);
+				$userid = intval($userid->data[0]->id);
+			}
 			// use userid for second json
 			$instagram_count = wp_remote_fopen('https://api.instagram.com/v1/users/'.$userid.'?access_token='.$ig_token, array( 'timeout' => 10 ));
 			$instagram_count = json_decode($instagram_count);
