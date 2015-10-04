@@ -53,10 +53,17 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 		ob_start();
 		ob_end_clean();
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+		
 		if(empty($output)){
 			return '//pipdigz.co.uk/p3/img/catch-placeholder.jpg';
 		}
+		
 		$first_img = $matches [1] [0];
+		
+		if ($first_img == 'http://assets.rewardstyle.com/images/search/350.gif') {
+			return '//pipdigz.co.uk/p3/img/catch-placeholder.jpg';
+		}
+		
 		return $first_img;
 	}
 }
@@ -111,7 +118,8 @@ function pipdig_p3_scrapey_scrapes() {
 		// Bloglovin --------------------
 		$bloglovin_url = $links['bloglovin'];
 		if($bloglovin_url) {
-			$bloglovin = wp_remote_fopen($bloglovin_url, array( 'timeout' => 10 ));
+			$user_agent  = stream_context_create(array('http' => array('user_agent' => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')));
+			$bloglovin = file_get_contents($bloglovin_url, false, $user_agent);
 			$bloglovin_doc = new DOMDocument();
 				libxml_use_internal_errors(true);
 				if(!empty($bloglovin)){
@@ -472,25 +480,13 @@ function pipdig_p3_emmmm_heeey() {
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 			 if($(window).scrollTop() + $(window).height() == $(document).height()) {
-	$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideUp();
+				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox").slideUp();
 			 } else {
-	$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar").slideDown()
+				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox").slideDown()
 			 }
 		});
 	});
-	
-	WebFontConfig = {
-		google: { families: [ 'Montserrat::latin' ] }
-	};
-	(function() {
-		var wf = document.createElement('script');
-		wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-		wf.type = 'text/javascript';
-		wf.async = 'true';
-		var s = document.getElementsByTagName('script')[0];
-		s.parentNode.insertBefore(wf, s);
-	})();
-</script>
+	</script>
 	<!-- p3 v<?php echo get_option('pipdig_p3_version'); ?> -->
 	<?php
 }
@@ -520,7 +516,7 @@ if (!function_exists('pipdig_p3_comment_nav')) {
 }
 
 include_once('functions/shares.php');
-//include_once('functions/related-posts.php');
-include_once('functions/instagram.php');
+include_once('functions/related-posts.php');
+//include_once('functions/instagram.php');
 include_once('functions/social-footer.php');
 include_once('functions/navbar-icons.php');

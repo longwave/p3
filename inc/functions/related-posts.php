@@ -1,6 +1,13 @@
 <?php
 function pipdig_p3_related_posts() {
-
+	
+	if (is_single() && get_theme_mod('hide_related_posts')) {
+		return;
+	}
+	if (is_archive() && get_theme_mod('hide_related_posts_home')) {
+		return;
+	}
+	
 	$output = '';
 	global $post;
 	$date_range = get_theme_mod( 'related_posts_date', '1 year ago' );
@@ -89,7 +96,7 @@ if (!class_exists('pipdig_related_Customize')) {
 			$wp_customize->add_section( 'pipdig_related_posts_pop', 
 				array(
 					'title' => __( 'Related Posts', 'p3' ),
-					'description'=> __( 'Related Posts are calculated based on what category a post is in. Use these options to show/hide this feature on posts.', 'p3' ),
+					'description'=> __( 'Related Posts are displayed from the same category.', 'p3' ),
 					'capability' => 'edit_theme_options',
 					//'panel' => 'pipdig_features',
 					'priority' => 95,
@@ -101,7 +108,7 @@ if (!class_exists('pipdig_related_Customize')) {
 			$wp_customize->add_setting('related_posts_date',
 				array(
 					'default' => '1 year ago',
-					'sanitize_callback' => 'pipdig_sanitize_trending_dates',
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 			$wp_customize->add_control('related_posts_date',
