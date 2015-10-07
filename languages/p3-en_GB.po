@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-10-02 18:26+0100\n"
-"PO-Revision-Date: 2015-10-02 18:26+0100\n"
+"POT-Creation-Date: 2015-10-06 14:21+0100\n"
+"PO-Revision-Date: 2015-10-06 14:22+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: en_GB\n"
@@ -28,15 +28,15 @@ msgstr ""
 msgid "Social Links"
 msgstr ""
 
-#: ../inc/admin-menus.php:15 ../inc/admin-menus/css.php:14
+#: ../inc/admin-menus.php:16 ../inc/admin-menus/css.php:14
 msgid "Custom CSS"
 msgstr ""
 
-#: ../inc/admin-menus.php:16
+#: ../inc/admin-menus.php:17
 msgid "Theme"
 msgstr ""
 
-#: ../inc/admin-menus.php:17 ../inc/admin-menus/updates.php:14
+#: ../inc/admin-menus.php:18 ../inc/admin-menus/updates.php:14
 msgid "Updates"
 msgstr ""
 
@@ -99,6 +99,16 @@ msgstr ""
 msgid "WARNING: these options can break your site. Use with caution."
 msgstr ""
 
+#: ../inc/admin-menus/instagram.php:70
+msgid "Click here to authorize your Instagram account"
+msgstr "Click here to authorise your Instagram account"
+
+#: ../inc/admin-menus/instagram.php:89
+msgid ""
+"You will need to sign in to Instagram to allow this theme's widgets to "
+"display our photos. Click the button below to do this:"
+msgstr ""
+
 #: ../inc/admin-menus/links.php:195
 msgid "Add the links to each social media page below:"
 msgstr ""
@@ -137,75 +147,100 @@ msgstr ""
 msgid "Social Sharing Stats (Homepage only)"
 msgstr ""
 
-#: ../inc/dom-functions.php:33
-msgid "Share:"
+#: ../inc/bundled/customizer-reset.php:27
+msgid "Reset Options"
 msgstr ""
 
-#: ../inc/dom-functions.php:43
-msgid "1 Comment"
+#: ../inc/bundled/customizer-reset.php:28
+msgid ""
+"Warning! This will reset all options you have changed for this theme so far. "
+"Are you sure?"
 msgstr ""
 
-#: ../inc/dom-functions.php:45
-msgid "Comments"
-msgstr ""
-
-#: ../inc/dom-functions.php:55
-msgid "Older Comments"
-msgstr ""
-
-#: ../inc/dom-functions.php:56
-msgid "Newer Comments"
-msgstr ""
-
-#: ../inc/functions.php:295
+#: ../inc/functions.php:308
 msgid "Themes"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:47
+#: ../inc/functions.php:501
+msgid "1 Comment"
+msgstr ""
+
+#: ../inc/functions.php:503
+msgid "Comments"
+msgstr ""
+
+#: ../inc/functions.php:513
+msgid "Older Comments"
+msgstr ""
+
+#: ../inc/functions.php:514
+msgid "Newer Comments"
+msgstr ""
+
+#: ../inc/functions/related-posts.php:54
 msgid "You may also enjoy:"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:91
+#: ../inc/functions/related-posts.php:98
 msgid "Related Posts"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:92
-msgid ""
-"Related Posts are calculated based on what category a post is in. Use these "
-"options to show/hide this feature on posts."
+#: ../inc/functions/related-posts.php:99
+msgid "Related Posts are displayed from the same category."
 msgstr ""
 
-#: ../inc/functions/related-posts.php:110 ../inc/widgets/popular-posts.php:49
+#: ../inc/functions/related-posts.php:117 ../inc/widgets/popular-posts.php:49
 #: ../inc/widgets/post-slider.php:57 ../inc/widgets/random-posts.php:49
 msgid "Date range for posts:"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:113 ../inc/widgets/popular-posts.php:53
+#: ../inc/functions/related-posts.php:120 ../inc/widgets/popular-posts.php:53
 #: ../inc/widgets/post-slider.php:61 ../inc/widgets/random-posts.php:53
 msgid "1 Year"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:114 ../inc/widgets/popular-posts.php:52
+#: ../inc/functions/related-posts.php:121 ../inc/widgets/popular-posts.php:52
 #: ../inc/widgets/post-slider.php:60 ../inc/widgets/random-posts.php:52
 msgid "1 Month"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:115 ../inc/widgets/popular-posts.php:51
+#: ../inc/functions/related-posts.php:122 ../inc/widgets/popular-posts.php:51
 #: ../inc/widgets/post-slider.php:59 ../inc/widgets/random-posts.php:51
 msgid "1 Week"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:116 ../inc/widgets/popular-posts.php:54
+#: ../inc/functions/related-posts.php:123 ../inc/widgets/popular-posts.php:54
 #: ../inc/widgets/post-slider.php:62 ../inc/widgets/random-posts.php:54
 msgid "All Time"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:132
+#: ../inc/functions/related-posts.php:139
 msgid "Don't display on homepage"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:148
+#: ../inc/functions/related-posts.php:155
 msgid "Don't display on posts"
+msgstr ""
+
+#: ../inc/functions/shares.php:45
+msgid "Share:"
+msgstr ""
+
+#: ../inc/functions/shares.php:58
+msgid "Sharing Icons"
+msgstr ""
+
+#: ../inc/functions/shares.php:59
+msgid ""
+"Use these options to control which social sharing icons should be displayed."
+msgstr ""
+
+#: ../inc/functions/shares.php:75
+msgid "Disable all icons"
+msgstr ""
+
+#: ../inc/functions/shares.php:76
+msgid "Select this option to completely remove this feature."
 msgstr ""
 
 #: ../inc/shortcodes/grid-mosaic.php:85 ../inc/shortcodes/grid-squares.php:84
@@ -249,20 +284,20 @@ msgid ""
 "You will need to <a href='%s'>add the link</a> to your Bloglovin' page first."
 msgstr ""
 
-#: ../inc/widgets/clw.php:24
+#: ../inc/widgets/clw.php:20
 msgid "Proudly display where you are in the world."
 msgstr ""
 
-#: ../inc/widgets/clw.php:25 ../inc/widgets/clw.php:128
-#: ../inc/widgets/clw.php:197
+#: ../inc/widgets/clw.php:21 ../inc/widgets/clw.php:124
+#: ../inc/widgets/clw.php:193
 msgid "Current Location"
 msgstr ""
 
-#: ../inc/widgets/clw.php:204 ../inc/widgets/clw.php:206
+#: ../inc/widgets/clw.php:200 ../inc/widgets/clw.php:202
 msgid "Please enter location data in the widget settings."
 msgstr ""
 
-#: ../inc/widgets/clw.php:240 ../inc/widgets/facebook.php:86
+#: ../inc/widgets/clw.php:236 ../inc/widgets/facebook.php:86
 #: ../inc/widgets/pinterest.php:157 ../inc/widgets/popular-posts.php:39
 #: ../inc/widgets/post-slider.php:49 ../inc/widgets/profile.php:67
 #: ../inc/widgets/random-posts.php:39 ../inc/widgets/snapcode.php:56
@@ -271,7 +306,7 @@ msgstr ""
 msgid "Title:"
 msgstr ""
 
-#: ../inc/widgets/clw.php:246
+#: ../inc/widgets/clw.php:242
 #, php-format
 msgid ""
 "The information below will be used for the map marker. You can find the "
@@ -279,46 +314,46 @@ msgid ""
 "\">clicking here</a>."
 msgstr ""
 
-#: ../inc/widgets/clw.php:250
+#: ../inc/widgets/clw.php:246
 msgid "Location Name:"
 msgstr ""
 
-#: ../inc/widgets/clw.php:251
+#: ../inc/widgets/clw.php:247
 msgid "London, UK"
 msgstr ""
 
-#: ../inc/widgets/clw.php:254
+#: ../inc/widgets/clw.php:250
 msgid "Latitude:"
 msgstr ""
 
-#: ../inc/widgets/clw.php:258
+#: ../inc/widgets/clw.php:254
 msgid "Longitude:"
 msgstr ""
 
-#: ../inc/widgets/clw.php:291
+#: ../inc/widgets/clw.php:287
 msgid "Current Location Widget"
 msgstr ""
 
-#: ../inc/widgets/clw.php:294
+#: ../inc/widgets/clw.php:290
 #, php-format
 msgid ""
 "Use these options to style the Current Location Widget. You will need to set "
 "your location in the <a href=\"%s\">widget options</a> first."
 msgstr ""
 
-#: ../inc/widgets/clw.php:309
+#: ../inc/widgets/clw.php:305
 msgid "Map color"
 msgstr "Map colour"
 
-#: ../inc/widgets/clw.php:326
+#: ../inc/widgets/clw.php:322
 msgid "Border color"
 msgstr "Border colour"
 
-#: ../inc/widgets/clw.php:343
+#: ../inc/widgets/clw.php:339
 msgid "Marker color"
 msgstr "Marker colour"
 
-#: ../inc/widgets/clw.php:363
+#: ../inc/widgets/clw.php:359
 msgid "Marker size"
 msgstr ""
 

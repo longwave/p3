@@ -1,0 +1,13 @@
+@media only screen and (max-width: 990px) {
+	#trendingz, #home-sliderz, .top-socialz {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 719px) {
+	.top-socialz, #wpadminbar, .wpadminbar-nudge {
+		display:none;
+		opacity: 0;
+		height: 0;
+	}
+}

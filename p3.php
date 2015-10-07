@@ -5,11 +5,11 @@ Plugin URI: http://pipdig.co
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://pipdig.co
-Version: 1.6.7
+Version: 1.7.0
 Text Domain: p3
 */
 
-update_option('pipdig_p3_version', '1.6.7');
+update_option('pipdig_p3_version', '1.7.0');
 
 $theme = wp_get_theme();
 if (!strpos($theme, 'pipdig')) {
@@ -175,16 +175,19 @@ add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles($hook) {
+	
+	wp_enqueue_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css' );
+	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', plugin_dir_url(__FILE__).'assets/css/responsive.css' ); }
+	
 	wp_register_script( 'imagesloaded', '//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js', array('jquery'), false );
 	wp_register_script( 'bxslider', '//cdnjs.cloudflare.com/ajax/libs/bxslider/4.1.2/jquery.bxslider.min.js', array('jquery'), false );
-	wp_register_script( 'cycle2', '//cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), false );
+	wp_register_script( 'pipdig-cycle', '//cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), false );
 	wp_register_script( 'owl-carousel', '//cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js', array('jquery'), false );
 	wp_register_script( 'backstretch', '//cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js', array('jquery'), false );
-	wp_register_script( 'rateyo', plugin_dir_url(__FILE__).'assets/js/rateyo.js', array('jquery') );
+	wp_register_script( 'stellar', '//cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js', array('jquery'), true );
+	wp_register_script( 'rateyo', plugin_dir_url(__FILE__).'assets/js/rateyo.js', array('jquery'), true );
 	wp_enqueue_script( 'pipdig-fitvids', '//cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js', array( 'jquery' ), true );
 
-	wp_enqueue_style( 'p3-instagram', plugin_dir_url(__FILE__).'assets/css/core.css' );
-	
 	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' );
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles' );
