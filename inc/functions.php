@@ -520,3 +520,6 @@ include_once('functions/related-posts.php');
 //include_once('functions/instagram.php');
 include_once('functions/social-footer.php');
 include_once('functions/navbar-icons.php');
+
+// bundled
+include_once('bundled/customizer-reset.php');
