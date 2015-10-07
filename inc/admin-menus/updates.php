@@ -24,6 +24,20 @@ if (!function_exists('pipdig_updates_options_page')) {
 				
 					<div class="postbox">
 
+						<h3>Update 1.7 - Social Sharing</h3>
+
+						<div class="inside">
+							<p>You can now control which social sharing icons you'd like to use for posts. You can find these options under the "Social Sharing" section of the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>.</p>
+							<p>Improved "Related Posts" section.</p>
+							<p>Please note that you will need to make sure you have the <a href="<?php echo admin_url('update-core.php'); ?>">latest version</a> of your theme for these features to work.</p>
+						</div>
+						<!-- .inside -->
+
+					</div>
+					<!-- .postbox -->
+				
+					<div class="postbox">
+
 						<h3>Update 1.6 - Widgets, speed and security. Oh my.</h3>
 
 						<div class="inside">
