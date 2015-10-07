@@ -4,15 +4,11 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-// add scripts to widgets admin page to render map
 if (!function_exists('pipdig_clw_enqueue_scripts')) {
 	function pipdig_clw_enqueue_scripts($hook) {
 		wp_enqueue_script( 'ammap', '//cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/ammap.js' );
 		wp_enqueue_script( 'continentsLow', '//cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/maps/js/continentsLow.js' );
-		//wp_enqueue_script( 'ammap', plugin_dir_url( __FILE__ ) . 'js/ammap.js' );
-		//wp_enqueue_script( 'continentsLow', plugin_dir_url( __FILE__ ) . 'js/continentsLow.js' );
 	}
-	//add_action( 'wp_enqueue_scripts', 'pipdig_clw_enqueue_scripts' );
 }
 
 
