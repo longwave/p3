@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 if (!function_exists('pipdig_stats_options_page')) {

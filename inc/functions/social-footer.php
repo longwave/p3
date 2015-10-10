@@ -1,4 +1,9 @@
 <?php
+
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 function pipdig_p3_social_footer() {
 	
 	$links = get_option('pipdig_links');

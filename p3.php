@@ -1,15 +1,15 @@
 <?php
 /*
 Plugin Name: pipdig Power Pack (p3)
-Plugin URI: http://pipdig.co
+Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
-Author URI: http://pipdig.co
-Version: 1.7.0
+Author URI: http://www.pipdig.co/
+Version: 1.7.2
 Text Domain: p3
 */
 
-update_option('pipdig_p3_version', '1.7.0');
+update_option('pipdig_p3_version', '1.7.2');
 
 $theme = wp_get_theme();
 if (!strpos($theme, 'pipdig')) {
@@ -134,7 +134,7 @@ class pipdig_p3_intalled_xyz {
 			$posts_number = 13;
 		}
 		
-		if (get_option('posts_per_page') > 9) {
+		if (get_option('posts_per_page') == 10) {
 			update_option('posts_per_page', $posts_number);
 		}
 		update_option('posts_per_rss', 8);
@@ -165,6 +165,8 @@ new pipdig_p3_intalled_xyz();
 
 // thumbnails
 add_image_size( 'p3_small', 300, 9999, array( 'center', 'center' ) );
+add_image_size( 'p3_medium', 600, 9999, array( 'center', 'center' ) );
+add_image_size( 'p3_large', 1200, 9999, array( 'center', 'center' ) );
 
 
 // Load text domain for languages
@@ -217,4 +219,12 @@ $MyUpdateChecker = new PluginUpdateChecker_2_0 (
 	'p3'
 );
 
+// 1200 x 800
+// data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLAAAAMgAQMAAAAJLglBAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJhJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9d+MAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAFNfvAAEQ/dDPAAAAAElFTkSuQmCC
+
+// 600 x 400
+// data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAGQAQMAAABI+4zbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADRJREFUeNrtwQENAAAAwiD7p7bHBwwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgKQDdsAAAWZeCiIAAAAASUVORK5CYII=
+
+// 500 x 500
+// data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC
 ?>

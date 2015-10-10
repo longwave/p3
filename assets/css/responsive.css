@@ -1,9 +1,24 @@
-@media only screen and (max-width: 990px) {
-	#trendingz, #home-sliderz, .top-socialz {
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+@media only screen and (max-width: 992px) {
+	.col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+	#trendingz, #home-sliderz, .top-socialz, #p3_feature_header {
 		display: none;
 	}
 }
-
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
 @media only screen and (max-width: 719px) {
 	.top-socialz, #wpadminbar, .wpadminbar-nudge {
 		display:none;

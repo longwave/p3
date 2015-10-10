@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 if (!function_exists('pipdig_updates_options_page')) {
@@ -22,6 +22,18 @@ if (!function_exists('pipdig_updates_options_page')) {
 
 				<div class="meta-box-sortables ui-sortable">
 				
+					<!-- <div id="hide-trav" class="postbox">
+
+						<h3>Update 1.8 - "Feature Header"</h3>
+
+						<div class="inside">
+							<p>Under the new "Feature Header" section of the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>, you'll find some new options for a new magazine style layout.</p>
+							<p>Please note that you will need to make sure you have the <a href="<?php echo admin_url('update-core.php'); ?>">latest version</a> of your theme for this feature to work correctly.</p>
+						</div>
+
+					</div> -->
+					<!-- .postbox -->
+				
 					<div class="postbox">
 
 						<h3>Update 1.7 - Social Sharing</h3>
@@ -31,7 +43,6 @@ if (!function_exists('pipdig_updates_options_page')) {
 							<p>Improved "Related Posts" section.</p>
 							<p>Please note that you will need to make sure you have the <a href="<?php echo admin_url('update-core.php'); ?>">latest version</a> of your theme for these features to work.</p>
 						</div>
-						<!-- .inside -->
 
 					</div>
 					<!-- .postbox -->
@@ -47,7 +58,6 @@ if (!function_exists('pipdig_updates_options_page')) {
 							<p>We have greatly improved the way our custom YouTube widget works.  Please note, you will need to <a href="<?php echo admin_url('widgets.php'); ?>">re-configure this widget</a> if you have already set it up.</p>
 							<p>Speed and security boosts by running external files through <a href="<?php echo esc_url('https://www.cloudflare.com/overview'); ?>" target="_blank">CloudFlare</a>.</p>
 						</div>
-						<!-- .inside -->
 
 					</div>
 					<!-- .postbox -->
@@ -61,7 +71,6 @@ if (!function_exists('pipdig_updates_options_page')) {
 							<p>To start, if you add your social media links to <a href="<?php echo admin_url('admin.php?page=pipdig-links'); ?>">this page</a>, you'll be able to see an overview of your social stats and follower counts on <a href="<?php echo admin_url('admin.php?page=pipdig-stats'); ?>">this page</a>. Once your links have been added, the theme can then start to use these links for all kinds of features in future, so head over and add them now!</p>
 							<p>Then stay tuned for more coming soon :)</p>
 						</div>
-						<!-- .inside -->
 
 					</div>
 					<!-- .postbox -->
@@ -75,7 +84,6 @@ if (!function_exists('pipdig_updates_options_page')) {
 							<p>New widget! Find our "pipdig - Snapchat Snapcode" widget available <a href="<?php echo admin_url('widgets.php'); ?>">here</a>. Easily add your <a href="<?php echo esc_url('https://accounts.snapchat.com/accounts/snapcodes'); ?>">Snapchat Snapcode</a> to your site. We'll be adding more Snapchat integrations soon :)</p>
 							<p>We've added some extra tweaks/changes behind the scenes to help boost your SEO, speed and security.</p>
 						</div>
-						<!-- .inside -->
 
 					</div>
 					<!-- .postbox -->

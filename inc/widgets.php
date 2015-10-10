@@ -1,7 +1,7 @@
 <?php 
 
 if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 include_once('widgets/bloglovin.php');

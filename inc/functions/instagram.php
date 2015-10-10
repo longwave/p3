@@ -1,4 +1,9 @@
 <?php
+
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 function pipdig_p3_instagram_feed() {
 	$instagram_deets = get_option('pipdig_instagram');
 	if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) { 

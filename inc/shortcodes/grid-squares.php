@@ -1,7 +1,7 @@
 <?php 
 
 if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 // [pipdig_grid_square number="30" columns="3" category="slug"]

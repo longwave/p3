@@ -1,10 +1,15 @@
 <?php
+
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 function pipdig_p3_related_posts() {
 	
 	if (is_single() && get_theme_mod('hide_related_posts')) {
 		return;
 	}
-	if (is_archive() && get_theme_mod('hide_related_posts_home')) {
+	if ((is_home() || is_archive()) && get_theme_mod('hide_related_posts_home')) {
 		return;
 	}
 	
@@ -68,7 +73,7 @@ function pipdig_p3_related_posts() {
 							$output .= '<a href="'.$link.'" title="'.$title.'"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAGQAQMAAABI+4zbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADRJREFUeNrtwQENAAAAwiD7p7bHBwwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgKQDdsAAAWZeCiIAAAAASUVORK5CYII=" alt="'.$title.'" class="p3_invisible" data-pin-nopin="true"/></a>';
 						$output .= '</div>';
 						$output .= '<div class="pipdig_p3_related_content">';
-							$output .= '<h4 class="pipdig-related-title"><a href="'.$link.'" title="'.$title.'">'.pipdig_p3_truncate($title, 5).'</a></h4>';
+							$output .= '<h4 class="pipdig_p3_related_title"><a href="'.$link.'" title="'.$title.'">'.pipdig_p3_truncate($title, 5).'</a></h4>';
 						$output .= '</div>';
 					$output .= '</li>';
 				} //endwhile 
@@ -129,7 +134,7 @@ if (!class_exists('pipdig_related_Customize')) {
 			$wp_customize->add_setting('hide_related_posts_home',
 				array(
 					'default' => 0,
-					'sanitize_callback' => 'pipdig_sanitize_checkbox',
+					'sanitize_callback' => 'absint',
 				)
 			);
 			$wp_customize->add_control(
@@ -145,7 +150,7 @@ if (!class_exists('pipdig_related_Customize')) {
 			$wp_customize->add_setting('hide_related_posts',
 				array(
 					'default' => 0,
-					'sanitize_callback' => 'pipdig_sanitize_checkbox',
+					'sanitize_callback' => 'absint',
 				)
 			);
 			$wp_customize->add_control(

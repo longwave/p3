@@ -24,7 +24,7 @@ if ( ! class_exists( 'ZOOM_Customizer_Reset' ) ) {
 		public function customize_controls_print_scripts() {
 			wp_enqueue_script( 'zoom-customizer-reset', plugins_url( 'customizer-reset.js', __FILE__ ), array( 'jquery' ), '20150120' );
 			wp_localize_script( 'zoom-customizer-reset', '_ZoomCustomizerReset', array(
-				'reset'   => __( 'Reset Options', 'p3' ),
+				'reset'   => __( 'Reset', 'p3' ),
 				'confirm' => __( "Warning! This will reset all options you have changed for this theme so far. Are you sure?", 'p3' ),
 				'nonce'   => array(
 					'reset' => wp_create_nonce( 'customizer-reset' ),

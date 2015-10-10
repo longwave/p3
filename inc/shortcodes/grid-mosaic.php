@@ -1,7 +1,7 @@
 <?php 
 
 if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 // [pipdig_mosaic number="30" columns="3" category="slug"]

@@ -1,7 +1,7 @@
 <?php 
 
 if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
@@ -17,7 +17,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		if (isset($instance['pinterestuser'])) { 
-			$pinterestuser =	$instance['pinterestuser'];
+			$pinterestuser = $instance['pinterestuser'];
 		}
 		if (isset($instance['images_num'])) { 
 			$images_num = $instance['images_num'];
@@ -31,19 +31,10 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		}
 		if ($cols == 2) {
 			$width = '49%';
-			$height = '150px';
-			$tablet_height = '250px';
-			$margin = '.5%';
 		} elseif ($cols == 3) {
 			$width = '32.3%';
-			$height = '95px';
-			$tablet_height = '150px';
-			$margin = '.5%';
 		} else {
 			$width = '100%';
-			$height = '300px';
-			$tablet_height = '500px';
-			$margin = '5px 0';
 		}
 		if (isset($instance['follow'])) { 
 			$follow = $instance['follow'];
@@ -62,46 +53,12 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		
 
 		if (!empty($pinterestuser)) { ?>
-			<style scoped>
-				#pinterest-gallery {
-				overflow: auto;
-				width: 100%;
-				list-style: none;
-				}
-				#pinterest-gallery li {
-				float: left;
+			<style scoped="scoped">
+				.p3_pinterest_widget li {
 				width: <?php echo $width; ?>;
-				height: <?php echo $height; ?>;
-				background-size: cover;
-				margin: <?php echo $margin; ?>;
-				padding: 0;
-				border: none;
-				-o-transition: all 0.25s ease-out; -moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out;
-				}
-				#pinterest-gallery li:hover {
-				opacity: .8;
-				}
-				#pinterest-gallery img { border: none; }
-				.pinterest-link {
-				display: block;
-				overflow: hidden;
-				text-indent: 100%;
-				height: 100%;
-				white-space: nowrap;
-				}
-				/* IE correction */
-				#pinterest-gallery li a { 
-				color: transparent; 
-				line-height: 1px;
-				font-size: 0px;
-				}
-				@media screen and (min-width: 400px) and (max-width: 767px) {
-					#pinterest-gallery li {
-						height: <?php echo $tablet_height; ?>;
-					}
 				}
 			</style>
-			<div id="pinterest-gallery"></div>
+			<div class="p3_pinterest_widget"></div>
 			<script>
 			jQuery(document).ready(function($) {
 				var thumbnailCount = <?php echo $images_num; ?>;
@@ -109,8 +66,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 				var profile = true;
 				var board = false;
 				var boardname = "";
-				var newWindow = true;
-				var url;var urlPrefix="https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=https://www.pinterest.com/";if(board===true&&profile===true||board===false&&profile===false){$("#pinterest-gallery").append("<p>Error: please choose a profile gallery or board gallery.</p>")}else{if(profile===true){url=urlPrefix+username+"/feed.rss&num="+thumbnailCount}else{if(board===true&&boardname===""){$("#pinterest-gallery").append("<p>Error: Please specify a boardname.</p>")}url=urlPrefix+username+"/"+boardname+"/rss&num="+thumbnailCount}}$.ajax({url:url,dataType:"jsonp",success:function(e){$.each(e.responseData.feed.entries,function(t){var n=e.responseData.feed.entries;var r=n[t].title;var i=n[t].link;var s=n[t].content;var o=s.indexOf("http");var u=s.indexOf('"></a>');var a=s.substring(o,u);var f=$('<li><a class="pinterest-link" href="'+i+'">'+r+"</a></li>");if(newWindow===true){$(".pinterest-link").attr("target","_blank")}f.appendTo("#pinterest-gallery").css("background-image","url("+a+")")})}})
+				var url;var urlPrefix="https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=https://www.pinterest.com/";if(board===true&&profile===true||board===false&&profile===false){$(".p3_pinterest_widget").append("<p>Error: please choose a profile gallery or board gallery.</p>")}else{if(profile===true){url=urlPrefix+username+"/feed.rss&num="+thumbnailCount}else{if(board===true&&boardname===""){$(".p3_pinterest_widget").append("<p>Error: Please specify a boardname.</p>")}url=urlPrefix+username+"/"+boardname+"/rss&num="+thumbnailCount}}$.ajax({url:url,dataType:"jsonp",success:function(e){$.each(e.responseData.feed.entries,function(t){var n=e.responseData.feed.entries;var r=n[t].title;var i=n[t].link;var s=n[t].content;var o=s.indexOf("http");var u=s.indexOf('"></a>');var a=s.substring(o,u);var f=$('<li><a target="_blank" rel="nofollow" href="'+i+'">'+r+"<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC' alt=''/></a></li>");f.appendTo(".p3_pinterest_widget").css("background-image","url("+a+")")})}})
 			});
 			</script>
 			<?php
