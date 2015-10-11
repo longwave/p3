@@ -201,6 +201,9 @@ require_once('inc/functions.php');
 // admin menus
 require_once('inc/admin-menus.php');
 
+// meta boxes
+//require_once('inc/meta.php');
+
 // dashboard widgets
 //require_once('inc/dash.php');
 
