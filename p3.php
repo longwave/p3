@@ -157,6 +157,13 @@ class pipdig_p3_intalled_xyz {
 			update_option( "pipdig_instagram", $pipdig_instagram );
 		}
 		
+		// set header if WP default used
+		if (!get_theme_mod('logo_image')) {
+			if (get_header_image()) {
+				 set_theme_mod('logo_image', get_header_image());
+			}
+		}
+		
 		p3_flush_htacess();
 		
 	}
@@ -192,7 +199,7 @@ function pipdig_p3_scripts_styles($hook) {
 
 	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' );
 }
-add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles' );
+add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles', 1);
 
 
 // functions
