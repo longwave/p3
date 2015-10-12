@@ -12,7 +12,7 @@ function p3_display_featured_image_in_post() {
 }
 
 }
-add_action('p3_content_single_start', 'p3_display_featured_image_in_post');
+add_action('p3_content_start', 'p3_display_featured_image_in_post');
 
 
 
