@@ -357,6 +357,7 @@ if (!function_exists('pipdig_p3_comment_nav')) {
 }
 
 include_once('functions/favicon.php');
+include_once('functions/post-options.php');
 include_once('functions/shares.php');
 include_once('functions/related-posts.php');
 //include_once('functions/instagram.php');
