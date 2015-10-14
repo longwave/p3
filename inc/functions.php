@@ -50,21 +50,22 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 	function pipdig_p3_catch_that_image() {
 		global $post, $posts;
 		$first_img = '';
+		$default_img = esc_url('//pipdigz.co.uk/p3/img/catch-placeholder.jpg');
 		ob_start();
 		ob_end_clean();
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 		
 		if(empty($output)){
-			return '//pipdigz.co.uk/p3/img/catch-placeholder.jpg';
+			return $default_img;
 		}
 		
 		$first_img = $matches [1] [0];
 		
 		if ($first_img == 'http://assets.rewardstyle.com/images/search/350.gif') {
-			return '//pipdigz.co.uk/p3/img/catch-placeholder.jpg';
+			return $default_img;
 		}
 		
-		return $first_img;
+		return esc_url($first_img);
 	}
 }
 
@@ -172,7 +173,6 @@ function pipdig_p3_unregister_widgets() {
 	unregister_widget('Jetpack_Display_Posts_Widget');
 	unregister_widget('Jetpack_Top_Posts_Widget');
 	unregister_widget('Jetpack_Contact_Info_Widget');
-	
 	
 	unregister_widget('Akismet_Widget');
 	unregister_widget('SocialCountPlus');
@@ -328,7 +328,7 @@ function pipdig_p3_emmmm_heeey() {
 		});
 	});
 	</script>
-	<!-- p3 v<?php echo get_option('pipdig_p3_version'); ?> | <?php echo PHP_VERSION; ?> -->
+	<!-- p3 v<?php echo strip_tags(get_option('pipdig_p3_version')); ?> | <?php echo PHP_VERSION; ?> -->
 	<?php
 }
 add_action('wp_footer','pipdig_p3_emmmm_heeey', 99);

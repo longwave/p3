@@ -20,7 +20,7 @@ function pipdig_p3_star_rating_shortcode( $atts, $content = null ) {
 	<script>
 		jQuery(document).ready(function($) {
 			$(".rateyo-'.$post_id.'").rateYo({
-				rating: '.$rating.',
+				rating: '.strip_tags($rating).',
 				normalFill: "#e8e8e8",
 				ratedFill: "'.$color.'",
 				readOnly: true

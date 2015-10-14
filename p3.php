@@ -5,11 +5,11 @@ Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://www.pipdig.co/
-Version: 1.7.2
+Version: 1.8.0
 Text Domain: p3
 */
 
-update_option('pipdig_p3_version', '1.7.2');
+update_option('pipdig_p3_version', '1.8.0');
 
 $theme = wp_get_theme();
 if (!strpos($theme, 'pipdig')) {
@@ -128,14 +128,8 @@ class pipdig_p3_intalled_xyz {
 		update_option('image_default_align', 'none');
 		update_option('image_default_link_type', 'none');
 		
-		$posts_number = 5;
-		$theme = wp_get_theme();
-		if (strpos($theme, 'aquae')) {
-			$posts_number = 13;
-		}
-		
 		if (get_option('posts_per_page') == 10) {
-			update_option('posts_per_page', $posts_number);
+			update_option('posts_per_page', 5);
 		}
 		update_option('posts_per_rss', 8);
 		
@@ -183,7 +177,7 @@ function pipdig_p3_textdomain() {
 add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 
 // enqueue scripts and styles
-function pipdig_p3_scripts_styles($hook) {
+function pipdig_p3_scripts_styles() {
 	
 	wp_enqueue_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css' );
 	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', plugin_dir_url(__FILE__).'assets/css/responsive.css' ); }
@@ -199,7 +193,7 @@ function pipdig_p3_scripts_styles($hook) {
 
 	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' );
 }
-add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles', 1);
+add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
 
 
 // functions

@@ -22,16 +22,17 @@ if (!function_exists('pipdig_updates_options_page')) {
 
 				<div class="meta-box-sortables ui-sortable">
 				
-					<!-- <div id="hide-trav" class="postbox">
+					<div id="hide-trav" class="postbox">
 
-						<h3>Update 1.8 - "Feature Header"</h3>
+						<h3>Update 1.8 - Customizer options and widgets</h3>
 
 						<div class="inside">
+							<p>New <a href="<?php echo admin_url('widgets.php'); ?>">widget</a>! Use "pipdig - Post Slider" to display a slider of recent posts in your sidebar.</p>
 							<p>Under the new "Feature Header" section of the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>, you'll find some new options for a new magazine style layout.</p>
-							<p>Please note that you will need to make sure you have the <a href="<?php echo admin_url('update-core.php'); ?>">latest version</a> of your theme for this feature to work correctly.</p>
+							<p>Add a custom Favicon to your site from the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>.</p>
 						</div>
 
-					</div> -->
+					</div>
 					<!-- .postbox -->
 				
 					<div class="postbox">
@@ -41,7 +42,6 @@ if (!function_exists('pipdig_updates_options_page')) {
 						<div class="inside">
 							<p>You can now control which social sharing icons you'd like to use for posts. You can find these options under the "Social Sharing" section of the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>.</p>
 							<p>Improved "Related Posts" section.</p>
-							<p>Please note that you will need to make sure you have the <a href="<?php echo admin_url('update-core.php'); ?>">latest version</a> of your theme for these features to work.</p>
 						</div>
 
 					</div>

@@ -18,6 +18,7 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
+		pipdig_p3_scrapey_scrapes();
 		$links = get_option('pipdig_links');
 		$bloglovin_url = $links['bloglovin'];
 		$bloglovin_count = get_option('p3_bloglovin_count');

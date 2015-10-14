@@ -11,12 +11,12 @@ function pipdig_p3_social_footer() {
 	pipdig_p3_scrapey_scrapes();
 	
 	$count = 0;
-	$twitter_count = get_option('p3_twitter_count');
-	$facebook_count = get_option('p3_facebook_count');
-	$instagram_count = get_option('p3_instagram_count');
-	$youtube_count = get_option('p3_youtube_count');
-	$pinterest_count = get_option('p3_pinterest_count');
-	$bloglovin_count = get_option('p3_bloglovin_count');
+	$twitter_count = intval(get_option('p3_twitter_count'));
+	$facebook_count = intval(get_option('p3_facebook_count'));
+	$instagram_count = intval(get_option('p3_instagram_count'));
+	$youtube_count = intval(get_option('p3_youtube_count'));
+	$pinterest_count = intval(get_option('p3_pinterest_count'));
+	$bloglovin_count = intval(get_option('p3_bloglovin_count'));
 	
 	if (get_theme_mod('disable_responsive')) {
 		$sm = $md = 'xs';
@@ -80,37 +80,37 @@ function pipdig_p3_social_footer() {
 	
 		if(!empty($twitter_count)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.$links['twitter'].'" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i> Twitter | '.$twitter_count.'</a>';
+		$output .= '<a href="'.esc_url($links['twitter']).'" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i> Twitter | '.$twitter_count.'</a>';
 		$output .= '</div>';
 		}
 		
 		if(!empty($facebook_count)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.$links['facebook'].'" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i> Facebook | '.$facebook_count.'</a>';
+		$output .= '<a href="'.esc_url($links['facebook']).'" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i> Facebook | '.$facebook_count.'</a>';
 		$output .= '</div>';
 		}
 		
 		if(!empty($instagram_count)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.$links['instagram'].'" target="_blank" rel="nofollow"><i class="fa fa-instagram"></i> Instagram | '.$instagram_count.'</a>';
+		$output .= '<a href="'.esc_url($links['instagram']).'" target="_blank" rel="nofollow"><i class="fa fa-instagram"></i> Instagram | '.$instagram_count.'</a>';
 		$output .= '</div>';
 		}
 		
 		if(!empty($youtube_count)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.$links['youtube'].'" target="_blank" rel="nofollow"><i class="fa fa-youtube-play"></i> YouTube | '.$youtube_count.'</a>';
+		$output .= '<a href="'.esc_url($links['youtube']).'" target="_blank" rel="nofollow"><i class="fa fa-youtube-play"></i> YouTube | '.$youtube_count.'</a>';
 		$output .= '</div>';
 		}
 		
 		if(!empty($pinterest_count)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.$links['pinterest'].'" target="_blank" rel="nofollow"><i class="fa fa-pinterest"></i> Pinterest | '.$pinterest_count.'</a>';
+		$output .= '<a href="'.esc_url($links['pinterest']).'" target="_blank" rel="nofollow"><i class="fa fa-pinterest"></i> Pinterest | '.$pinterest_count.'</a>';
 		$output .= '</div>';
 		}
 		
 		if(!empty($bloglovin_count)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.$links['bloglovin'].'" target="_blank" rel="nofollow"><i class="fa fa-plus"></i> Bloglovin | '.$bloglovin_count.'</a>';
+		$output .= '<a href="'.esc_url($links['bloglovin']).'" target="_blank" rel="nofollow"><i class="fa fa-plus"></i> Bloglovin | '.$bloglovin_count.'</a>';
 		$output .= '</div>';
 		}
 		
