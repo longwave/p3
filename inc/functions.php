@@ -364,6 +364,7 @@ include_once('functions/related-posts.php');
 include_once('functions/social-footer.php');
 include_once('functions/navbar-icons.php');
 include_once('functions/feature-header.php');
+include_once('functions/post_slider_site_main_width.php');
 
 // bundled
 include_once('bundled/customizer-reset.php');

@@ -25,4 +25,15 @@
 		opacity: 0;
 		height: 0;
 	}
+	#p3_full_width_slider_site_main .p3_slide_img {
+		height: 250px;
+	}
+}
+@media only screen and (max-width: 400px) {
+	#p3_full_width_slider_site_main .p3_slide_img {
+		height: 200px;
+	}
+	#p3_full_width_slider_site_main h2{
+		font-size: 13px;
+	}
 }

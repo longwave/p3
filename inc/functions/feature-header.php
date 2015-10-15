@@ -4,132 +4,133 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-function pipdig_p3_feature_header() {
-	
-	if (!get_theme_mod('p3_feature_header_enable')) {
-		return;
-	}
-	if ((!is_home() || !is_front_page()) && get_theme_mod('p3_feature_header_home', 1)) {
-		return;
-	}
-	
-	$post_cat_trending = get_theme_mod('p3_feature_header_trending_cat');
-	$post_cat_slider = get_theme_mod('p3_feature_header_slider_cat');
-	$big_this_month_title = get_theme_mod('big_this_month', __('Big this Month', 'p3'));
-	$recent_posts_title = get_theme_mod('recent_posts_title', __('Recent Posts', 'p3'));
-	$date_range = get_theme_mod( 'p3_feature_header_trending_dates', '1 month ago' );
-	$text_color = get_theme_mod('p3_feature_header_text_color', '#000');
-	$text_bg_color = get_theme_mod('p3_feature_header_text_bg_color', '#fff');
-	?>
-	<div id="p3_feature_header" class="row nopin">
-		<style scoped="scoped">
-			.cycle-slideshow {height: auto} .cycle-slideshow li{display:none}.cycle-slideshow li.first{display:block}
-			.p3_trending_panel h4, .p3_feature_slide_banner, .p3_feature_slide_banner h2 {background:<?php echo $text_bg_color; ?>;color:<?php echo $text_color; ?>;}
-		</style>
-		<div class="col-md-6">
-
-			<div id="p3_big_this" class="nopin">
-				<h3 class="widget-title"><span><?php echo $big_this_month_title; ?></span></h3>
-				<?php
-					$popular = new WP_Query( array(
-						'meta_key'              => '_thumbnail_id',
-						'cat'                   => $post_cat_trending,
-						'showposts'             => 4,
-						'ignore_sticky_posts'   => true,
-						'orderby'               => 'comment_count',
-						'order'                 => 'dsc',
-						'date_query' => array(
-							array(
-								'after' => $date_range,
-							),
-						),
-					) );
-				?>
-				<?php while ( $popular->have_posts() ): $popular->the_post();
-					
-					$this_post = $popular->current_post;
-
-					$panel_margins = '';
-					
-					switch ($this_post) {
-						case 0:
-							$panel_margins = 'style="margin:0 .5% .5%"';
-							break;
-						case 1:
-							$panel_margins = 'style="margin:0 .5% .5%"';
-							break;
-						case 2:
-							$panel_margins = 'style="margin:.5% .5% 0"';
-							break;
-						case 3:
-							$panel_margins = 'style="margin:.5% .5% 0"';
-							break;
-					}
-					
-					if(has_post_thumbnail()){
-						$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_small' );
-						$bg = $thumb['0'];
-					} else {
-						$bg = pipdig_p3_catch_that_image();
-					}
-				?>
-				<div class="p3_trending_panel" <?php echo $panel_margins; ?>>
-					<a href="<?php the_permalink() ?>">
-						<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
-							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAHCAQMAAAAtrT+LAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAENJREFUeNrtwYEAAAAAw6D7U19hANUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIDsYoAAZ9qTLEAAAAASUVORK5CYII=" alt="<?php echo get_the_title(); ?>" class="p3_invisible" data-pin-nopin="true"/>
-						</div>
-						<h4><?php echo pipdig_p3_truncate(get_the_title(), 4); ?></h4>
-					</a>
-				</div>
-				<?php endwhile;?>
-			</div>
-		</div>
+if (!function_exists('p3_feature_header')) {
+	function p3_feature_header() {
 		
-		<div class="col-md-6">
-			<h3 class="widget-title"><span><?php echo $recent_posts_title; ?></span></h3>
-			<div data-starting-slide="1" data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
-			<ul>
-				<?php
-					wp_enqueue_script( 'pipdig-cycle' );
-					$args = array(
-						'showposts' => 4,
-						'cat' => $post_cat_slider,
-					);
-					$the_query = new WP_Query( $args );
-						
-					while ($the_query -> have_posts()) : $the_query -> the_post();
+		if (!get_theme_mod('p3_feature_header_enable')) {
+			return;
+		}
+		if ((!is_home() || !is_front_page()) && get_theme_mod('p3_feature_header_home', 1)) {
+			return;
+		}
+		
+		$post_cat_trending = get_theme_mod('p3_feature_header_trending_cat');
+		$post_cat_slider = get_theme_mod('p3_feature_header_slider_cat');
+		$big_this_month_title = get_theme_mod('big_this_month', __('Big this Month', 'p3'));
+		$recent_posts_title = get_theme_mod('recent_posts_title', __('Recent Posts', 'p3'));
+		$date_range = get_theme_mod( 'p3_feature_header_trending_dates', '1 month ago' );
+		$text_color = get_theme_mod('p3_feature_header_text_color', '#000');
+		$text_bg_color = get_theme_mod('p3_feature_header_text_bg_color', '#fff');
+		?>
+		<div id="p3_feature_header" class="row nopin">
+			<style scoped="scoped">
+				.cycle-slideshow {height: auto} .cycle-slideshow li{display:none}.cycle-slideshow li.first{display:block}
+				.p3_trending_panel h4, .p3_feature_slide_banner, .p3_feature_slide_banner h2 {background:<?php echo $text_bg_color; ?>;color:<?php echo $text_color; ?>;}
+			</style>
+			<div class="col-md-6">
 
+				<div id="p3_big_this" class="nopin">
+					<h3 class="widget-title"><span><?php echo $big_this_month_title; ?></span></h3>
+					<?php
+						$popular = new WP_Query( array(
+							'meta_key'              => '_thumbnail_id',
+							'cat'                   => $post_cat_trending,
+							'showposts'             => 4,
+							'ignore_sticky_posts'   => true,
+							'orderby'               => 'comment_count',
+							'order'                 => 'dsc',
+							'date_query' => array(
+								array(
+									'after' => $date_range,
+								),
+							),
+						) );
+					?>
+					<?php while ( $popular->have_posts() ): $popular->the_post();
+						
+						$this_post = $popular->current_post;
+
+						$panel_margins = '';
+						
+						switch ($this_post) {
+							case 0:
+								$panel_margins = 'style="margin:0 .5% .5%"';
+								break;
+							case 1:
+								$panel_margins = 'style="margin:0 .5% .5%"';
+								break;
+							case 2:
+								$panel_margins = 'style="margin:.5% .5% 0"';
+								break;
+							case 3:
+								$panel_margins = 'style="margin:.5% .5% 0"';
+								break;
+						}
+						
 						if(has_post_thumbnail()){
-							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_large' );
+							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_small' );
 							$bg = $thumb['0'];
 						} else {
 							$bg = pipdig_p3_catch_that_image();
 						}
-				?>
-				<li>
-					<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
-						<div class="p3_feature_slide">
-							<span class="p3_feature_slide_banner">
-								<h2><?php echo pipdig_p3_truncate(get_the_title(), 10); ?></h2>
-							</span>
-							<a href="<?php the_permalink() ?>" style="display: block; width: 100%; height: 100%;">
+					?>
+					<div class="p3_trending_panel" <?php echo $panel_margins; ?>>
+						<a href="<?php the_permalink() ?>">
+							<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
 								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAHCAQMAAAAtrT+LAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAENJREFUeNrtwYEAAAAAw6D7U19hANUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIDsYoAAZ9qTLEAAAAASUVORK5CYII=" alt="<?php echo get_the_title(); ?>" class="p3_invisible" data-pin-nopin="true"/>
-							</a>
-						</div>
+							</div>
+							<h4><?php echo pipdig_p3_truncate(get_the_title(), 4); ?></h4>
+						</a>
 					</div>
-				</li>
-			<?php endwhile;?>
-			</ul>
-			<div class='cycle-prev'></div>
-			<div class='cycle-next'></div>
+					<?php endwhile;?>
+				</div>
 			</div>
-			<div class="clearfix"></div>
-		</div>
-		
-	</div>
-<?php
-}
+			
+			<div class="col-md-6">
+				<h3 class="widget-title"><span><?php echo $recent_posts_title; ?></span></h3>
+				<div data-starting-slide="1" data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
+					<ul>
+						<?php
+							wp_enqueue_script( 'pipdig-cycle' );
+							$args = array(
+								'showposts' => 4,
+								'cat' => $post_cat_slider,
+							);
+							$the_query = new WP_Query( $args );
+								
+							while ($the_query -> have_posts()) : $the_query -> the_post();
 
+								if(has_post_thumbnail()){
+									$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_large' );
+									$bg = $thumb['0'];
+								} else {
+									$bg = pipdig_p3_catch_that_image();
+								}
+						?>
+						<li>
+							<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
+								<div class="p3_feature_slide">
+									<span class="p3_feature_slide_banner">
+										<h2><?php echo pipdig_p3_truncate(get_the_title(), 10); ?></h2>
+									</span>
+									<a href="<?php the_permalink() ?>" style="display: block; width: 100%; height: 100%;">
+										<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAHCAQMAAAAtrT+LAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAENJREFUeNrtwYEAAAAAw6D7U19hANUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIDsYoAAZ9qTLEAAAAASUVORK5CYII=" alt="<?php echo get_the_title(); ?>" class="p3_invisible" data-pin-nopin="true"/>
+									</a>
+								</div>
+							</div>
+						</li>
+					<?php endwhile;?>
+					</ul>
+					<div class='cycle-prev'></div>
+					<div class='cycle-next'></div>
+				</div>
+			</div>
+			
+		</div>
+	<?php
+	}
+	add_action('p3_top_site_main', 'p3_feature_header');
+}
 
 // customiser
 if (!class_exists('pipdig_feature_header_Customize')) {
@@ -147,7 +148,7 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 				) 
 			);
 			
-			// Enable feature header
+			// Enable feature
 			$wp_customize->add_setting('p3_feature_header_enable',
 				array(
 					'default' => 0,
@@ -163,7 +164,7 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 				)
 			);
 			
-			// Hide related posts on home page
+			// homepage only
 			$wp_customize->add_setting('p3_feature_header_home',
 				array(
 					'default' => 1,

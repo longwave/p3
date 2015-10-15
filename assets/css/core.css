@@ -140,6 +140,15 @@ font-size: 0;
 }
 
 
+.p3_slide_link_box {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+#p3_full_width_slider_site_main .p3_slide_img {
+	width: 100%;
+	height: 380px;
+}
 
 .p3_slide_img {
 background-size: cover;
@@ -158,7 +167,7 @@ position: relative;
 width: 100%;
 overflow: hidden;
 }
-#p3_feature_header .p3_feature_slide_banner {
+#p3_full_width_slider_site_main .p3_feature_slide, #p3_feature_header .p3_feature_slide_banner {
 background: #fff;
 opacity: .8;
 color: #000;
@@ -170,7 +179,10 @@ bottom: 5%;
 width: 100%;
 z-index: 8;
 }
-#p3_feature_header .p3_feature_slide_banner h2 {
+#p3_full_width_slider_site_main .p3_feature_slide {
+	bottom: 10%;
+}
+#p3_full_width_slider_site_main .p3_feature_slide h2, #p3_feature_header .p3_feature_slide_banner h2 {
 display: block;
 margin: 0;
 padding: 0;
@@ -201,6 +213,7 @@ opacity: .8;
 
 /* Post slider widget ========================== */
 
+.pipdig_widget_post_slider .cycle-slideshow {height:auto;}
 .pipdig_widget_post_slider .cycle-slideshow li{display:none}
 .pipdig_widget_post_slider .cycle-slideshow li.first{display:block}
 .pipdig_widget_post_slider .slide-image{background-attachment:scroll;background-position:center center; background-size:cover;background-repeat: no-repeat;height:100%;width:100%;}
