@@ -80,7 +80,7 @@ function pipdig_p3_scrapey_scrapes() {
 				$twitter_handle = str_replace('/', '', $twitter_handle);
 				update_option('p3_twitter_handle', $twitter_handle);
 			}
-			require_once('TwitterAPIExchange.php');
+			include_once('TwitterAPIExchange.php');
 			$settings = array(
 				'oauth_access_token' => '331530555'.'-'.'BYUS6g6XsQfjRn'.'l1gmnGGl3oLao4I3CIMVYonm31',
 				'oauth_access_token_secret' => 'pugNxZDRn8ds3'.'TAladgVC6bpyxHb'.'n1nYJRDJFYizbR0vf',
