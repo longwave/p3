@@ -5,11 +5,11 @@ Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://www.pipdig.co/
-Version: 1.8.0
+Version: 1.8.1
 Text Domain: p3
 */
 
-update_option('pipdig_p3_version', '1.8.0');
+update_option('pipdig_p3_version', '1.8.1');
 
 $theme = wp_get_theme();
 if (!strpos($theme, 'pipdig')) {
@@ -105,69 +105,76 @@ class pipdig_p3_intalled_xyz {
 
 	function pipdig_p3_activate() {
 		
-		// trackbacks
-		update_option('default_pingback_flag', '');
-		update_option('default_ping_status', 'closed');
+		if ( false === ( $value = get_transient('p3_houekeeping') ) ) {
+			
+			set_transient('p3_houekeeping', true, 1 * WEEK_IN_SECONDS);
 		
-		update_option('comments_notify', '');
-		update_option('moderation_notify', '');
-		
-		if (function_exists('akismet_admin_init')) {
-			if (get_option('wordpress_api_key') == '') {
-				update_option('wordpress_api_key', '1ab26b12c4f1');
+			// trackbacks
+			update_option('default_pingback_flag', '');
+			update_option('default_ping_status', 'closed');
+			
+			update_option('comments_notify', '');
+			update_option('moderation_notify', '');
+			
+			if (function_exists('akismet_admin_init')) {
+				if (get_option('wordpress_api_key') == '') {
+					update_option('wordpress_api_key', '1ab26b12c4f1');
+				}
+				update_option('akismet_discard_month', 'true');
 			}
-			update_option('akismet_discard_month', 'true');
-		}
-		
-		update_option('medium_size_w', 800);
-		update_option('medium_size_h', 0);
-		update_option('large_size_w', 1600);
-		update_option('large_size_h', 0);
-		
-		update_option('image_default_size', 'large');
-		update_option('image_default_align', 'none');
-		update_option('image_default_link_type', 'none');
-		
-		if (get_option('posts_per_page') == 10) {
-			update_option('posts_per_page', 5);
-		}
-		update_option('posts_per_rss', 8);
-		
-		if (get_option('blogdescription') == 'Just another WordPress site') {
-			update_option('blogdescription', '');
-		}
-		
-		update_option('jr_resizeupload_width', 1920);
-		update_option('jr_resizeupload_quality', 72);
-		update_option('jr_resizeupload_height', 0);
-		
-		update_option('woocommerce_enable_lightbox', 'no');
-		
-		$sb_options = get_option('sb_instagram_settings');
-		if (!empty($sb_options['sb_instagram_at']) && !empty($sb_options['sb_instagram_user_id'])) {
-			$pipdig_instagram = get_option('pipdig_instagram');
-			$pipdig_instagram['user_id'] = $sb_options['sb_instagram_user_id'];
-			$pipdig_instagram['access_token'] = $sb_options['sb_instagram_at'];
-			update_option( "pipdig_instagram", $pipdig_instagram );
-		}
-		
-		// set header if WP default used
-		if (!get_theme_mod('logo_image')) {
-			if (get_header_image()) {
-				 set_theme_mod('logo_image', get_header_image());
+			
+			update_option('medium_size_w', 800);
+			update_option('medium_size_h', 0);
+			update_option('large_size_w', 1600);
+			update_option('large_size_h', 0);
+			
+			update_option('image_default_size', 'large');
+			update_option('image_default_align', 'none');
+			update_option('image_default_link_type', 'none');
+			
+			if (get_option('posts_per_page') == 10 && (get_option('pipdig_p3_posts_per_page_set') != 1)) {
+				update_option('posts_per_page', 5);
+				update_option('pipdig_p3_posts_per_page_set', 1);
 			}
-		}
-		
-		p3_flush_htacess();
-		
+			update_option('posts_per_rss', 8);
+			
+			if (get_option('blogdescription') == 'Just another WordPress site') {
+				update_option('blogdescription', '');
+			}
+			
+			update_option('jr_resizeupload_width', 1920);
+			update_option('jr_resizeupload_quality', 72);
+			update_option('jr_resizeupload_height', 0);
+			
+			update_option('woocommerce_enable_lightbox', 'no');
+			
+			$sb_options = get_option('sb_instagram_settings');
+			if (!empty($sb_options['sb_instagram_at']) && !empty($sb_options['sb_instagram_user_id'])) {
+				$pipdig_instagram = get_option('pipdig_instagram');
+				$pipdig_instagram['user_id'] = $sb_options['sb_instagram_user_id'];
+				$pipdig_instagram['access_token'] = $sb_options['sb_instagram_at'];
+				update_option( "pipdig_instagram", $pipdig_instagram );
+			}
+			
+			// set header if WP default used
+			if (!get_theme_mod('logo_image') && (get_option('pipdig_p3_header_set') != 1)) {
+				if (get_header_image()) {
+					 set_theme_mod('logo_image', get_header_image());
+					 update_option('pipdig_p3_header_set', 1);
+				}
+			}
+			
+			p3_flush_htacess();
+			
+		} // transient check
 	}
 }
 new pipdig_p3_intalled_xyz();
 
 // thumbnails
 add_image_size( 'p3_small', 300, 9999, array( 'center', 'center' ) );
-add_image_size( 'p3_medium', 600, 9999, array( 'center', 'center' ) );
-add_image_size( 'p3_large', 1200, 9999, array( 'center', 'center' ) );
+add_image_size( 'p3_medium', 800, 9999, array( 'center', 'center' ) );
+add_image_size( 'p3_large', 1280, 9999, array( 'center', 'center' ) );
 
 
 // Load text domain for languages
@@ -222,6 +229,10 @@ $MyUpdateChecker = new PluginUpdateChecker_2_0 (
 	__FILE__,
 	'p3'
 );
+
+// 800 x 450
+
+// data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAHCAQMAAAAtrT+LAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAENJREFUeNrtwYEAAAAAw6D7U19hANUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIDsYoAAZ9qTLEAAAAASUVORK5CYII=
 
 // 1200 x 800
 // data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLAAAAMgAQMAAAAJLglBAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJhJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9d+MAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAFNfvAAEQ/dDPAAAAAElFTkSuQmCC
