@@ -76,7 +76,7 @@ function pipdig_p3_feature_header() {
 				<div class="p3_trending_panel" <?php echo $panel_margins; ?>>
 					<a href="<?php the_permalink() ?>">
 						<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
-							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLAAAAMgAQMAAAAJLglBAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJhJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9d+MAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAFNfvAAEQ/dDPAAAAAElFTkSuQmCC" alt="<?php echo get_the_title(); ?>" class="p3_invisible" data-pin-nopin="true"/>
+							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAHCAQMAAAAtrT+LAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAENJREFUeNrtwYEAAAAAw6D7U19hANUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIDsYoAAZ9qTLEAAAAASUVORK5CYII=" alt="<?php echo get_the_title(); ?>" class="p3_invisible" data-pin-nopin="true"/>
 						</div>
 						<h4><?php echo pipdig_p3_truncate(get_the_title(), 4); ?></h4>
 					</a>
@@ -113,7 +113,7 @@ function pipdig_p3_feature_header() {
 								<h2><?php echo pipdig_p3_truncate(get_the_title(), 10); ?></h2>
 							</span>
 							<a href="<?php the_permalink() ?>" style="display: block; width: 100%; height: 100%;">
-								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLAAAAMgAQMAAAAJLglBAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJhJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9d+MAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAFNfvAAEQ/dDPAAAAAElFTkSuQmCC" alt="<?php echo get_the_title(); ?>" class="p3_invisible" data-pin-nopin="true"/>
+								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAHCAQMAAAAtrT+LAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAENJREFUeNrtwYEAAAAAw6D7U19hANUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIDsYoAAZ9qTLEAAAAASUVORK5CYII=" alt="<?php echo get_the_title(); ?>" class="p3_invisible" data-pin-nopin="true"/>
 							</a>
 						</div>
 					</div>
