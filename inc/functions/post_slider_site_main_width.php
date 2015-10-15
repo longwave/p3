@@ -129,7 +129,7 @@ if (!class_exists('pipdig_full_width_slider_site_main_Customize')) {
 					$wp_customize,
 					'p3_full_width_slider_site_main_slider_cat',
 					array(
-						'label'    => __('Category for "Recent Posts":', 'p3'),
+						'label'    => __('Display posts from:', 'p3'),
 						'settings' => 'p3_full_width_slider_site_main_slider_cat',
 						'section'  => 'p3_full_width_slider_site_main_section'
 					)

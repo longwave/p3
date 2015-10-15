@@ -113,8 +113,11 @@ class pipdig_p3_intalled_xyz {
 			update_option('default_pingback_flag', '');
 			update_option('default_ping_status', 'closed');
 			
-			update_option('comments_notify', '');
-			update_option('moderation_notify', '');
+			if (get_option('comments_notify') === 1 && (get_option('pipdig_p3_comments_set') != 1)) {
+				update_option('comments_notify', '');
+				update_option('moderation_notify', '');
+				update_option('pipdig_p3_comments_set', 1);
+			}
 			
 			if (function_exists('akismet_admin_init')) {
 				if (get_option('wordpress_api_key') == '') {
