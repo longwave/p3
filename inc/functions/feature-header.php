@@ -16,8 +16,14 @@ if (!function_exists('p3_feature_header')) {
 		
 		$post_cat_trending = get_theme_mod('p3_feature_header_trending_cat');
 		$post_cat_slider = get_theme_mod('p3_feature_header_slider_cat');
-		$big_this_month_title = get_theme_mod('big_this_month', __('Big this Month', 'p3'));
-		$recent_posts_title = get_theme_mod('recent_posts_title', __('Recent Posts', 'p3'));
+		$big_this_month_title = get_theme_mod('p3_feature_header_pop_title');
+		if (empty($big_this_month_title)) {
+			$big_this_month_title = __('Big this Month', 'p3');
+		}
+		$recent_posts_title = get_theme_mod('p3_feature_header_slider_title');
+		if (empty($recent_posts_title)) {
+			$recent_posts_title = __('Recent Posts', 'p3');
+		}
 		$date_range = get_theme_mod( 'p3_feature_header_trending_dates', '1 month ago' );
 		$text_color = get_theme_mod('p3_feature_header_text_color', '#000');
 		$text_bg_color = get_theme_mod('p3_feature_header_text_bg_color', '#fff');
@@ -271,6 +277,41 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 					'settings' => 'p3_feature_header_text_color',
 					'section' => 'p3_feature_header_section',
 				)
+				)
+			);
+			
+			
+			$wp_customize->add_setting('p3_feature_header_pop_title',
+				array(
+					'sanitize_callback' => 'sanitize_text_field',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_feature_header_pop_title',
+				array(
+					'type' => 'text',
+					'label' => __( '"Big this Month" title', 'p3' ),
+					'section' => 'p3_feature_header_section',
+					'input_attrs' => array(
+					'placeholder' => __('Big this Month', 'p3'),
+					),
+				)
+			);
+			
+			$wp_customize->add_setting('p3_feature_header_slider_title',
+				array(
+					'sanitize_callback' => 'sanitize_text_field',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_feature_header_slider_title',
+				array(
+					'type' => 'text',
+					'label' => __( '"Recent Posts" title', 'p3' ),
+					'section' => 'p3_feature_header_section',
+					'input_attrs' => array(
+					'placeholder' => __('Recent Posts', 'p3'),
+					),
 				)
 			);
 
