@@ -168,6 +168,9 @@ position: relative;
 width: 100%;
 overflow: hidden;
 }
+#p3_full_width_slider_site_main {
+margin-bottom: 20px;
+}
 #p3_full_width_slider_site_main .p3_feature_slide, #p3_feature_header .p3_feature_slide_banner {
 background: #fff;
 opacity: .8;
