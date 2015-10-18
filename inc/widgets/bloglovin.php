@@ -191,7 +191,7 @@ class pipdig_bloglovin_Customize {
 $wp_customize->add_setting('pipdig_bloglovin_widget_official',
 	array(
 		'default' => 0,
-		'sanitize_callback' => 'pipdig_sanitize_checkbox',
+		'sanitize_callback' => 'absint',
 	)
 );
 $wp_customize->add_control('pipdig_bloglovin_widget_official',

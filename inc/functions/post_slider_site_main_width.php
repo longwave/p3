@@ -15,13 +15,22 @@ if (!function_exists('p3_full_width_slider_site_main')) {
 		if ((!is_home() || !is_front_page()) && get_theme_mod('p3_full_width_slider_site_main_home', 1)) {
 			return;
 		}
+		$text_color_out = '';
+		$text_bg_color_out = '';
+		$text_bg_color = get_theme_mod('p3_full_width_slider_site_main_text_bg_color');
+		if ($text_bg_color) {
+			$text_bg_color_out = 'background:'.$text_bg_color.';';
+		}
+		$text_color = get_theme_mod('p3_full_width_slider_site_main_text_color');
+		if ($text_color) {
+			$text_color_out = 'color:'.$text_color.';';
+		}
 		
 	?>
 	<div id="p3_full_width_slider_site_main" class="row">
 		<div class="col-xs-12">
 			<style scoped="scoped">
 				.cycle-slideshow {height: auto} .cycle-slideshow li{display:none;width:100%}.cycle-slideshow li.first{display:block}
-				.p3_full_width_slider_site_main h4, .p3_slide_banner, .p3_slide_banner h2 {background:<?php echo $text_bg_color; ?>;color:<?php echo $text_color; ?>;}
 			</style>
 				<div data-starting-slide="1" data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
 					<ul>
@@ -38,22 +47,19 @@ if (!function_exists('p3_full_width_slider_site_main')) {
 
 								if(has_post_thumbnail()){
 									$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_large' );
-									$bg = $thumb['0'];
+									$bg = esc_url($thumb['0']);
 								} else {
 									$bg = pipdig_p3_catch_that_image();
 								}
 						?>
 						<li>
-							<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
-								<div class="p3_feature_slide">
-									<span class="p3_slide_banner">
-										<h2><?php echo pipdig_p3_truncate(get_the_title(), 15); ?></h2>
+							<a href="<?php the_permalink() ?>" class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
+								<div class="p3_feature_slide" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
+									<span class="p3_slide_banner" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
+										<h2 style="<?php echo $text_color_out; ?>"><?php echo pipdig_p3_truncate(get_the_title(), 15); ?></h2>
 									</span>
-									<a href="<?php the_permalink() ?>" class="p3_slide_link_box">
-										
-									</a>
 								</div>
-							</div>
+							</a>
 						</li>
 					<?php endwhile;?>
 					</ul>

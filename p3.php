@@ -5,27 +5,25 @@ Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://www.pipdig.co/
-Version: 1.8.1
+Version: 1.8.2
 Text Domain: p3
 */
 
-update_option('pipdig_p3_version', '1.8.1');
-
+update_option('pipdig_p3_version', '1.8.2');
+/*
 $theme = wp_get_theme();
 if (!strpos($theme, 'pipdig')) {
 	return;
 }
-
-
+*/
+/*
 if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 	set_transient('pipdig_shaq_fu', true, 1 * WEEK_IN_SECONDS);
 }
-/*
+*/
 if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 	return;
 }
-*/
-
 
 		// ========= remove this on 1st March 2016
 		if (get_option('p3_social_transfer') != 1) {
@@ -136,7 +134,10 @@ class pipdig_p3_intalled_xyz {
 			update_option('image_default_link_type', 'none');
 			
 			if (get_option('posts_per_page') == 10 && (get_option('pipdig_p3_posts_per_page_set') != 1)) {
-				update_option('posts_per_page', 5);
+				if ( false === ( $value = get_transient('pipdig_aquae') ) ) {
+					update_option('posts_per_page', 5);
+				}
+				update_option('posts_per_page', 13); // aquae
 				update_option('pipdig_p3_posts_per_page_set', 1);
 			}
 			update_option('posts_per_rss', 8);
@@ -215,7 +216,7 @@ require_once('inc/admin-menus.php');
 // meta boxes
 //require_once('inc/meta.php');
 
-// dashboard widgets
+// dashboard enhancements
 //require_once('inc/dash.php');
 
 // widgets
@@ -228,7 +229,7 @@ require_once('inc/shortcodes.php');
 // updates
 require 'plugin-update-checker/plugin-update-checker.php';
 $MyUpdateChecker = new PluginUpdateChecker_2_0 (
-	'https://dl.dropboxusercontent.com/u/904435/updates/wordpress/plugins/p3.json',
+	'https://dl.dropboxusercontent.com/u/904435/updates/wordpress/theme-updates/p3.json',
 	__FILE__,
 	'p3'
 );

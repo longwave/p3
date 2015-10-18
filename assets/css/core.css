@@ -146,6 +146,7 @@ font-size: 0;
 	height: 100%;
 }
 #p3_full_width_slider_site_main .p3_slide_img {
+	display: block;
 	width: 100%;
 	height: 380px;
 }

@@ -60,20 +60,20 @@ if (!function_exists('p3_related_posts')) {
 					$output .= '<ul>';
 					
 					while( $query->have_posts() ) { $query->the_post();
-						$title = get_the_title();
-						$link = get_the_permalink();
+						$title_attr = esc_attr(get_the_title());
+						$link = esc_url(get_the_permalink());
 						$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'pipdig-trending' );
 						if ($thumb) {
-							$bg = $thumb['0'];
+							$bg = esc_url($thumb['0']);
 						} else {
 							$bg = pipdig_p3_catch_that_image();
 						}
 						$output .= '<li>';
 							$output .= '<div class="pipdig_p3_related_thumb" style="background-image:url('.$bg.');">';
-								$output .= '<a href="'.$link.'" title="'.$title.'"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAGQAQMAAABI+4zbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADRJREFUeNrtwQENAAAAwiD7p7bHBwwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgKQDdsAAAWZeCiIAAAAASUVORK5CYII=" alt="'.$title.'" class="p3_invisible" data-pin-nopin="true"/></a>';
+								$output .= '<a href="'.$link.'" title="'.$title_attr.'"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAGQAQMAAABI+4zbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADRJREFUeNrtwQENAAAAwiD7p7bHBwwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgKQDdsAAAWZeCiIAAAAASUVORK5CYII=" alt="'.$title_attr.'" class="p3_invisible" data-pin-nopin="true"/></a>';
 							$output .= '</div>';
 							$output .= '<div class="pipdig_p3_related_content">';
-								$output .= '<h4 class="pipdig_p3_related_title"><a href="'.$link.'" title="'.$title.'">'.pipdig_p3_truncate($title, 5).'</a></h4>';
+								$output .= '<h4 class="pipdig_p3_related_title"><a href="'.$link.'" title="'.$title_attr.'">'.pipdig_p3_truncate(get_the_title(), 5).'</a></h4>';
 							$output .= '</div>';
 						$output .= '</li>';
 					} //endwhile 

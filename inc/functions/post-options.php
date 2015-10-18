@@ -33,7 +33,7 @@ if (!class_exists('pipdig_p3_post_options_Customiser')) {
 			$wp_customize->add_setting('display_featured_image',
 				array(
 					'default' => 0,
-					'sanitize_callback' => 'pipdig_sanitize_checkbox',
+					'sanitize_callback' => 'absint',
 				)
 			);
 			$wp_customize->add_control(

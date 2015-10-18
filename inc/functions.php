@@ -50,7 +50,7 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 	function pipdig_p3_catch_that_image() {
 		global $post, $posts;
 		$first_img = '';
-		$default_img = esc_url('//pipdigz.co.uk/p3/img/catch-placeholder.jpg');
+		$default_img = '//pipdigz.co.uk/p3/img/catch-placeholder.jpg';
 		ob_start();
 		ob_end_clean();
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
@@ -128,7 +128,7 @@ if (!function_exists('pipdig_rss_post_thumbnail')) {
 
 
 
-// remove mojo crap
+// remove bad mojo
 if (function_exists('mm_load_updater')) {
 	function pipdig_p3_bad_mojo() {
 		remove_action( 'admin_menu', 'mm_main_menu' ); // remove mojo menu
@@ -136,7 +136,8 @@ if (function_exists('mm_load_updater')) {
 		remove_action( 'admin_head-themes.php', 'mm_add_theme_button' ); // remove mojo theme menu item
 		remove_action( 'admin_menu', 'mm_add_theme_page' ); // remove mojo themes link
 	}
-	add_action('plugins_loaded','pipdig_p3_bad_mojo');
+	add_action('plugins_loaded','pipdig_p3_bad_mojo', 11);
+	
 }
 
 
@@ -178,6 +179,8 @@ function pipdig_p3_unregister_widgets() {
 	unregister_widget('SocialCountPlus');
 	unregister_widget('GADWP_Frontend_Widget');
 	
+	remove_action( 'admin_menu', 'socialwidget_top_level_menu' ); // https://wordpress.org/plugins/social-media-widget/
+	remove_action( 'admin_notices', 'socialwidget_global_notice' ); // https://wordpress.org/plugins/social-media-widget/
 	
 }
 add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
