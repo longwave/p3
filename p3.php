@@ -145,7 +145,10 @@ class pipdig_p3_intalled_xyz {
 			if (get_option('blogdescription') == 'Just another WordPress site') {
 				update_option('blogdescription', '');
 			}
-			
+			if ((get_option('show_on_front') == 'page') && (get_option('pipdig_p3_show_on_front_set') != 1)) {
+				update_option('show_on_front', 'post');
+				update_option('pipdig_p3_show_on_front_set', 1);
+			}
 			update_option('jr_resizeupload_width', 1920);
 			update_option('jr_resizeupload_quality', 72);
 			update_option('jr_resizeupload_height', 0);

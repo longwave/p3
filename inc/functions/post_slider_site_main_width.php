@@ -61,7 +61,7 @@ if (!function_exists('p3_full_width_slider_site_main')) {
 								</div>
 							</a>
 						</li>
-					<?php endwhile;?>
+					<?php endwhile; wp_reset_query; ?>
 					</ul>
 					<div class='cycle-prev'></div>
 					<div class='cycle-next'></div>

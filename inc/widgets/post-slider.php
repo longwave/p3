@@ -183,7 +183,7 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 		</div>
 	</div>
 	</li>
-<?php endwhile;?>
+<?php endwhile;wp_reset_query(); ?>
 </ul>
 <div class='cycle-pager'></div>
 </div>
