@@ -171,9 +171,30 @@ class pipdig_p3_intalled_xyz {
 			p3_flush_htacess();
 			
 		} // transient check
+		
+		// live site check
+		if (get_option('pipdig_live_site') != 1) {
+			// add this site
+			$submit_data = wp_remote_fopen('http://status.pipdig.co/?dcx15=15&action=1&site_url='.rawurldecode(get_site_url()));
+			update_option('pipdig_live_site', 1);
+		}
+		
 	}
 }
 new pipdig_p3_intalled_xyz();
+
+
+function pipdig_p3_deactivate() {
+    if (!current_user_can('activate_plugins')) {
+        return;
+	}
+    $plugin = isset( $_REQUEST['plugin'] ) ? $_REQUEST['plugin'] : '';
+    check_admin_referer( "deactivate-plugin_{$plugin}" );
+	// delete this site
+	$remove_data = wp_remote_fopen('http://status.pipdig.co/?dcx15=15&action=2&site_url='.rawurldecode(get_site_url()));
+	delete_option('pipdig_live_site');
+}
+register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
 
 // thumbnails
 add_image_size( 'p3_small', 300, 9999, array( 'center', 'center' ) );
