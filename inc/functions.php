@@ -108,7 +108,7 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 	add_action('wp_enqueue_scripts', 'pipdig_p3_cdn', 9999);
 }
 
-require_once('functions/scrapey-scrapes.php');
+include_once('functions/scrapey-scrapes.php');
 
 
 // Add Featured Image to feed 

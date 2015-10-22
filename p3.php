@@ -9,20 +9,20 @@ Version: 1.8.2
 Text Domain: p3
 */
 
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 update_option('pipdig_p3_version', '1.8.2');
-/*
-$theme = wp_get_theme();
-if (!strpos($theme, 'pipdig')) {
-	return;
-}
-*/
-/*
-if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
-	set_transient('pipdig_shaq_fu', true, 1 * WEEK_IN_SECONDS);
-}
-*/
+
 if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 	return;
+}
+
+if (!class_exists('pipdig_widget_facebook')) {
+	class pipdig_widget_facebook {
+	
+	}
 }
 
 		// ========= remove this on 1st March 2016
@@ -134,10 +134,7 @@ class pipdig_p3_intalled_xyz {
 			update_option('image_default_link_type', 'none');
 			
 			if (get_option('posts_per_page') == 10 && (get_option('pipdig_p3_posts_per_page_set') != 1)) {
-				if ( false === ( $value = get_transient('pipdig_aquae') ) ) {
-					update_option('posts_per_page', 5);
-				}
-				update_option('posts_per_page', 13); // aquae
+				update_option('posts_per_page', 5);
 				update_option('pipdig_p3_posts_per_page_set', 1);
 			}
 			update_option('posts_per_rss', 8);
@@ -149,10 +146,12 @@ class pipdig_p3_intalled_xyz {
 				update_option('show_on_front', 'post');
 				update_option('pipdig_p3_show_on_front_set', 1);
 			}
-			update_option('jr_resizeupload_width', 1920);
-			update_option('jr_resizeupload_quality', 72);
-			update_option('jr_resizeupload_height', 0);
-			
+			if (get_option('jr_resizeupload_width') == '1200' && (get_option('pipdig_p3_jr_resizeupload_width_set') != 1)) {
+				update_option('jr_resizeupload_width', 1920);
+				update_option('jr_resizeupload_quality', 70);
+				update_option('jr_resizeupload_height', 0);
+				update_option('pipdig_p3_jr_resizeupload_width_set', 1);
+			}
 			update_option('woocommerce_enable_lightbox', 'no');
 			
 			$sb_options = get_option('sb_instagram_settings');
@@ -249,6 +248,23 @@ require_once('inc/widgets.php');
 // shortcodes
 require_once('inc/shortcodes.php');
 
+if (!function_exists('sar_block_xmlrpc_attacks')) {
+	function p3_block_xmlrpc_attacks( $methods ) {
+	   unset( $methods['pingback.ping'] );
+	   unset( $methods['pingback.extensions.getPingbacks'] );
+	   unset( $methods['system.multicall'] );
+	   return $methods;
+	}
+	add_filter( 'xmlrpc_methods', 'p3_block_xmlrpc_attacks' );
+}
+
+if (!function_exists('sar_remove_x_pingback_header')) {
+	function p3_remove_x_pingback_header( $headers ) {
+	   unset( $headers['X-Pingback'] );
+	   return $headers;
+	}
+	add_filter( 'wp_headers', 'p3_remove_x_pingback_header' );
+}
 
 // updates
 require 'plugin-update-checker/plugin-update-checker.php';

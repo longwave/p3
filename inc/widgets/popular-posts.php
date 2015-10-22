@@ -99,7 +99,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 	 
 	query_posts('');
 	?>
-	<style scoped>
+	<style scoped="scoped">
 		#pipdig-widget-popular-posts {
 		padding: 0;
 		margin: 0;

@@ -27,6 +27,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 						<h3>Update 1.8 - Customizer options and widgets</h3>
 
 						<div class="inside">
+							<p>We're constantly monitoring the latest WordPress security threats to make your site safer. This plugin will now provide automatic protection from <a target="_blank" href="<?php esc_url('https://goo.gl/vfjunt'); ?>">XML-RPC based attacks</a>.</p>
 							<p>New <a href="<?php echo admin_url('widgets.php'); ?>">widget</a>! Use "pipdig - Post Slider" to display a slider of recent posts in your sidebar.</p>
 							<p>Under the new "Feature Header" section of the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>, you'll find some new options for a new magazine style layout.</p>
 							<p>Add a custom Favicon to your site from the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>.</p>

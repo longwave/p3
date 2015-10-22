@@ -78,7 +78,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		<p>
 		<?php
 		if (pipdig_plugin_check('instagram-feed/instagram-feed.php')) {
-			printf(__('This widget will show your latest Instagram photos. You will need to authorize your Instagram account on <a href="%s">this page</a> for this widget to work.', 'p3'), $plugin_url = admin_url('admin.php?page=sb-instagram-feed'));
+			printf(__('This widget will show your latest Instagram photos. You will need to authorize your Instagram account on <a href="%s">this page</a> for this widget to work.', 'p3'), admin_url('admin.php?page=sb-instagram-feed'));
 		} else {
 			printf(__('Please install and activate <a href="%s">this plugin</a> to add your Instagram Feed.', 'p3'), esc_url('https://wordpress.org/plugins/instagram-feed/'));
 		}

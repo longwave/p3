@@ -4,6 +4,12 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+/*  Add credit to admin area --------------------------------------------------------*/
+function pipdig_footer_admin () {
+	echo 'Powered by <a href="'.esc_url('http://www.wordpress.org/').'" target="_blank">WordPress</a>. Enhancements by <a href="'.esc_url('http://www.pipdig.co/?utm_source=wp-dashboard&utm_medium=footer&utm_campaign=wp-dashboard').'" target="_blank">pipdig</a>.';
+}
+add_filter('admin_footer_text', 'pipdig_footer_admin');
+
 /*  Dashboard widgets ----------------------------------------------------------------*/
 function pipdig_p3_dashboard_widgets() {
 	add_meta_box( 
