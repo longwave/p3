@@ -5,7 +5,7 @@ Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://www.pipdig.co/
-Version: 1.8.2
+Version: 1.8.3
 Text Domain: p3
 */
 
@@ -13,17 +13,12 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-update_option('pipdig_p3_version', '1.8.2');
+update_option('pipdig_p3_version', '1.8.3');
 
 if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 	return;
 }
 
-if (!class_exists('pipdig_widget_facebook')) {
-	class pipdig_widget_facebook {
-	
-	}
-}
 
 		// ========= remove this on 1st March 2016
 		if (get_option('p3_social_transfer') != 1) {
@@ -95,9 +90,9 @@ if (!class_exists('pipdig_widget_facebook')) {
 			// =======================
 		}
 
-class pipdig_p3_intalled_xyz {
+class pipdig_p3_intalled_xyz_2 {
 
-	function pipdig_p3_intalled_xyz() {
+	function pipdig_p3_intalled_xyz_2() {
 		register_activation_hook(__FILE__,array(&$this, 'pipdig_p3_activate'));
 	}
 
@@ -183,7 +178,7 @@ class pipdig_p3_intalled_xyz {
 		
 	}
 }
-new pipdig_p3_intalled_xyz();
+new pipdig_p3_intalled_xyz_2();
 
 
 function pipdig_p3_deactivate() {
