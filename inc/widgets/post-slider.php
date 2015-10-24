@@ -137,9 +137,10 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 	query_posts('');
 	?>
 
+	
 
 <style scoped="scoped">
-.pipdig_widget_post_slider .slide-desc{bottom:<?php echo $height / 2.5; ?>px;
+.pipdig_widget_post_slider .slide-desc{bottom:<?php echo $height / 2.5; ?>px;}
 <?php if ($post_title_layout == 'hover') { ?>
 .slide-inside{opacity:0}
 .slide-inside:hover{opacity:1}
@@ -173,17 +174,19 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 	<li>
 	<div class="slide-image" style="background-image:url(<?php echo $bg; ?>);">
 		<div class="slide-inside">
+			<?php if ($post_title_layout != 'no') { ?>
 				<span class="slide-desc">
 					<h2><?php $title = get_the_title(); echo pipdig_truncate($title, 4); ?></h2>
 					<a href="<?php the_permalink(); ?>" class="read-more"><?php _e('View Post', 'p3'); ?></a>
 				</span>
-				<a href="<?php the_permalink() ?>" style="display: block; width: 100%; height: <?php echo $height; ?>px;">
+			<?php } ?>
+			<a href="<?php the_permalink() ?>" style="display: block; width: 100%; height: <?php echo $height; ?>px;">
 					
-				</a>
+			</a>
 		</div>
 	</div>
 	</li>
-<?php endwhile;wp_reset_query(); ?>
+<?php endwhile; wp_reset_query(); ?>
 </ul>
 <div class='cycle-pager'></div>
 </div>
