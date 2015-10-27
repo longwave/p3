@@ -40,7 +40,7 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 			
 				<form id="feedburner" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"	onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=<?php echo $feed; ?>&amp;loc=<?php echo $lang; ?>', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true" >
 				<?php if (!$text == '') { ?><label for="fbg-mail"><?php echo $text; ?></label><?php } ?>
-				<p><input id="fbg-mail" type="email" required name="email" placeholder="Email" style="text-align:center" />
+				<p><input id="fbg-mail" type="email" required name="email" placeholder="<?php _e('Enter your email', 'p3'); ?>" style="text-align:center" />
 				<input type="hidden" value="<?php echo $feed; ?>" name="uri" />
 				<input type="hidden" name="loc" value="<?php echo $lang; ?>" />
 				<input type="submit" style="margin-top: 10px;" value="Subscribe" />
