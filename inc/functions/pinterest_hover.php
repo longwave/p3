@@ -3,8 +3,25 @@
 if (!defined('ABSPATH')) {
 	exit;
 }
+/*
+function p3_pinterest_hover_add_data_tags($content) {
+     $dom = new DOMDocument();
+     @$dom->loadHTML($content);
+
+     foreach ($dom->getElementsByTagName('img') as $node) {
+         $node->setAttribute("data-original", 'poop' );
+     }
+     $newHtml = $dom->saveHtml();
+     return $newHtml;
+}
+add_filter('the_content', 'p3_pinterest_hover_add_data_tags');
+*/
+
 if (!function_exists('p3_pinterest_hover')) {
 	function p3_pinterest_hover() {
+		
+		
+		
 		?>
 		<style>
 		.imgPinWrap {
