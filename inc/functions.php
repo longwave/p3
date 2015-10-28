@@ -111,15 +111,21 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 include_once('functions/scrapey-scrapes.php');
 
 
-// Add Featured Image to feed 
+// Add Featured Image to feed if using excerpt mode, or just add the full content if not
 if (!function_exists('pipdig_rss_post_thumbnail')) {
 	function pipdig_p3_rss_post_thumbnail($content) {
-		global $post;
-		if(has_post_thumbnail($post->ID)) {
-			$content = '<p>' . get_the_post_thumbnail($post->ID) . '</p>' . get_the_excerpt();
-		} elseif (pipdig_p3_catch_that_image()) {
-			$content = '<p><img src="'.pipdig_p3_catch_that_image().'" alt=""/></p>' . get_the_excerpt();
+		
+		if (get_option('rss_use_excerpt')) {
+			global $post;
+			if(has_post_thumbnail($post->ID)) {
+				$content = '<p>' . get_the_post_thumbnail($post->ID) . '</p>' . get_the_excerpt();
+			} elseif (pipdig_p3_catch_that_image()) {
+				$content = '<p><img src="'.pipdig_p3_catch_that_image().'" alt=""/></p>' . get_the_excerpt();
+			}
+		} else {
+			$content = get_the_content();
 		}
+
 		return $content;
 	}
 	add_filter('the_excerpt_rss', 'pipdig_p3_rss_post_thumbnail');
@@ -363,6 +369,7 @@ include_once('functions/favicon.php');
 include_once('functions/post-options.php');
 include_once('functions/shares.php');
 include_once('functions/related-posts.php');
+include_once('functions/pinterest_hover.php');
 //include_once('functions/instagram.php');
 include_once('functions/social-footer.php');
 include_once('functions/navbar-icons.php');
