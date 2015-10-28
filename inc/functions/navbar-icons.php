@@ -10,7 +10,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		$navbar_icons = '';
 		
 		$links = get_option('pipdig_links');
-		if (!empty($links)) {
+
 			$twitter = $links['twitter'];
 			$instagram = $links['instagram'];
 			$facebook = $links['facebook'];
@@ -23,7 +23,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 			$soundcloud = $links['soundcloud'];
 			$flickr = $links['flickr'];
 			$email = $links['email'];
-		}
+
 		if(get_theme_mod('show_socialz_navbar')) {
 			if($twitter) $navbar_icons .= '<a href="' . $twitter . '" target="_blank"><i class="fa fa-twitter"></i></a>';
 			if($instagram) $navbar_icons .= '<a href="' . $instagram . '" target="_blank"><i class="fa fa-instagram"></i></a>';
