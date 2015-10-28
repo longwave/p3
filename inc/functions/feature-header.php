@@ -27,6 +27,8 @@ if (!function_exists('p3_feature_header')) {
 		$date_range = get_theme_mod( 'p3_feature_header_trending_dates', '1 month ago' );
 		$text_color = get_theme_mod('p3_feature_header_text_color', '#000');
 		$text_bg_color = get_theme_mod('p3_feature_header_text_bg_color', '#fff');
+		
+		wp_enqueue_script( 'pipdig-cycle' );
 		?>
 		<div id="p3_feature_header" class="row nopin">
 			<style scoped="scoped">
@@ -74,7 +76,7 @@ if (!function_exists('p3_feature_header')) {
 						}
 						
 						if(has_post_thumbnail()){
-							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_small' );
+							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_small' ); // 640 x 360
 							$bg = esc_url($thumb['0']);
 						} else {
 							$bg = pipdig_p3_catch_that_image();
@@ -83,7 +85,7 @@ if (!function_exists('p3_feature_header')) {
 					<div class="p3_trending_panel" <?php echo $panel_margins; ?>>
 						<a href="<?php the_permalink() ?>">
 							<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
-								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAHCAQMAAAAtrT+LAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAENJREFUeNrtwYEAAAAAw6D7U19hANUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIDsYoAAZ9qTLEAAAAASUVORK5CYII=" alt="<?php the_title_attribute(); ?>" class="p3_invisible" data-pin-nopin="true"/>
+								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC" alt="<?php the_title_attribute(); ?>" class="p3_invisible" data-pin-nopin="true"/>
 							</div>
 							<h4><?php echo pipdig_p3_truncate(get_the_title(), 4); ?></h4>
 						</a>
@@ -97,7 +99,6 @@ if (!function_exists('p3_feature_header')) {
 				<div data-starting-slide="1" data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
 					<ul>
 						<?php
-							wp_enqueue_script( 'pipdig-cycle' );
 							$args = array(
 								'showposts' => 4,
 								'cat' => $post_cat_slider,
@@ -107,7 +108,7 @@ if (!function_exists('p3_feature_header')) {
 							while ($the_query -> have_posts()) : $the_query -> the_post();
 
 								if(has_post_thumbnail()){
-									$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_large' );
+									$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_medium' ); // 800 x 450
 									$bg = esc_url($thumb['0']);
 								} else {
 									$bg = pipdig_p3_catch_that_image();

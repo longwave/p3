@@ -25,12 +25,12 @@
 		opacity: 0;
 		height: 0;
 	}
-	#p3_full_width_slider_site_main .p3_slide_img {
-		height: 250px;
+	#p3_full_width_slider_site_main .p3_slide_img, #p3_post_slider_posts_column .p3_slide_img {
+		height: 260px;
 	}
 }
 @media only screen and (max-width: 400px) {
-	#p3_full_width_slider_site_main .p3_slide_img {
+	#p3_full_width_slider_site_main .p3_slide_img, #p3_post_slider_posts_column .p3_slide_img {
 		height: 200px;
 	}
 	#p3_full_width_slider_site_main h2{

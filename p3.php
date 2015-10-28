@@ -5,7 +5,7 @@ Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://www.pipdig.co/
-Version: 1.8.3
+Version: 1.8.4
 Text Domain: p3
 */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-update_option('pipdig_p3_version', '1.8.3');
+update_option('pipdig_p3_version', '1.8.4');
 
 if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 	return;
@@ -98,9 +98,13 @@ class pipdig_p3_intalled_xyz_2 {
 
 	function pipdig_p3_activate() {
 		
+		if (get_theme_mod('show_slider') == 1) { // remove this in Jan
+			set_theme_mod('p3_post_slider_posts_column_enable', 1);
+		}
+		
 		if ( false === ( $value = get_transient('p3_houekeeping') ) ) {
 			
-			set_transient('p3_houekeeping', true, 1 * WEEK_IN_SECONDS);
+			set_transient('p3_houekeeping', true, 4 * DAY_IN_SECONDS);
 		
 			// trackbacks
 			update_option('default_pingback_flag', '');
@@ -194,9 +198,9 @@ function pipdig_p3_deactivate() {
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
 
 // thumbnails
-add_image_size( 'p3_small', 300, 9999, array( 'center', 'center' ) );
-add_image_size( 'p3_medium', 800, 9999, array( 'center', 'center' ) );
-add_image_size( 'p3_large', 1280, 9999, array( 'center', 'center' ) );
+add_image_size( 'p3_small', 640, 360, array( 'center', 'center' ) );
+add_image_size( 'p3_medium', 800, 450, array( 'center', 'center' ) );
+add_image_size( 'p3_large', 1280, 720, array( 'center', 'center' ) );
 
 
 // Load text domain for languages
@@ -269,9 +273,15 @@ $MyUpdateChecker = new PluginUpdateChecker_2_0 (
 	'p3'
 );
 
-// 800 x 450
+// 1280 x 720
+// data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=
 
+// 800 x 450
 // data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAHCAQMAAAAtrT+LAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAENJREFUeNrtwYEAAAAAw6D7U19hANUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIDsYoAAZ9qTLEAAAAASUVORK5CYII=
+
+// 640 x 360
+// data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC
+
 
 // 1200 x 800
 // data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLAAAAMgAQMAAAAJLglBAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJhJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9d+MAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAFNfvAAEQ/dDPAAAAAElFTkSuQmCC

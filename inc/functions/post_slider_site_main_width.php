@@ -24,6 +24,8 @@ if (!function_exists('p3_full_width_slider_site_main')) {
 			$text_color_out = 'color:'.$text_color.';';
 		}
 		
+		wp_enqueue_script( 'pipdig-cycle' );
+		
 	?>
 	<div id="p3_full_width_slider_site_main" class="row">
 		<div class="col-xs-12">
@@ -33,7 +35,6 @@ if (!function_exists('p3_full_width_slider_site_main')) {
 				<div data-starting-slide="1" data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
 					<ul>
 						<?php
-							wp_enqueue_script( 'pipdig-cycle' );
 							$post_cat_slider = get_theme_mod('p3_full_width_slider_site_main_slider_cat');
 							$args = array(
 								'showposts' => 4,
