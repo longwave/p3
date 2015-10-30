@@ -12,7 +12,7 @@ function pipdig_p3_scrapey_scrapes() {
 		$links = get_option('pipdig_links');
 		
 		// Bloglovin --------------------
-		$bloglovin_url = $links['bloglovin'];
+		$bloglovin_url = esc_url($links['bloglovin']);
 		if($bloglovin_url) {
 			$user_agent  = stream_context_create(array('http' => array('user_agent' => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')));
 			$bloglovin = file_get_contents($bloglovin_url, false, $user_agent);
@@ -37,7 +37,7 @@ function pipdig_p3_scrapey_scrapes() {
 		}
 			
 		// Facebook --------------------
-		$facebook_url = $links['facebook'];
+		$facebook_url = esc_url($links['facebook']);
 		if($facebook_url) {
 			$facebook_id = parse_url($facebook_url, PHP_URL_PATH);
 			$facebook_id = str_replace('/', '', $facebook_id);
@@ -57,7 +57,7 @@ function pipdig_p3_scrapey_scrapes() {
 		// Pinterest ---------------------
 		// <meta property="pinterestapp:followers" name="pinterestapp:followers" content="106168" data-app>
 		// SELECT * from html where url="https://www.pinterest.com/thelovecatsinc" AND xpath="//meta[@property='pinterestapp:followers']"
-		$pinterest_url = $links['pinterest'];
+		$pinterest_url = esc_url($links['pinterest']);
 		if ($pinterest_url) {
 			$pinterest_url = rawurlencode($pinterest_url);
 			$pinterest_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$pinterest_url."%22%20AND%20xpath%3D%22%2F%2Fmeta%5B%40property%3D'pinterestapp%3Afollowers'%5D%22&format=json", array( 'timeout' => 10 ));
@@ -72,7 +72,7 @@ function pipdig_p3_scrapey_scrapes() {
 		
 		
 		// Twitter ---------------------
-		$twitter_url = $links['twitter'];
+		$twitter_url = esc_url($links['twitter']);
 		if ($twitter_url) {
 			$twitter_handle = get_option('p3_twitter_handle');
 			if (empty($twitter_handle)) {
@@ -104,7 +104,7 @@ function pipdig_p3_scrapey_scrapes() {
 
 		// Instagram ---------------------
 		// SELECT * from html where url="http://instagram.com/inthefrow" AND xpath="//li[2]/span"
-		$instagram_url = $links['instagram'];
+		$instagram_url = esc_url($links['instagram']);
 		if ($instagram_url) {
 			$instagram_deets = get_option('pipdig_instagram'); // from p3
 			if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) { 
@@ -131,7 +131,7 @@ function pipdig_p3_scrapey_scrapes() {
 			
 		// YouTube ---------------------
 		// SELECT * from html where url="https://www.youtube.com/user/inthefrow" AND xpath="//span[@class='yt-subscription-button-subscriber-count-branded-horizontal yt-uix-tooltip']"
-		$youtube_url = $links['youtube'];
+		$youtube_url = esc_url($links['youtube']);
 		if ($youtube_url) {
 			$youtube_url = rawurlencode($youtube_url);
 			usleep(500);
@@ -147,7 +147,7 @@ function pipdig_p3_scrapey_scrapes() {
 		// Google Plus ---------------------
 		// https://www.googleapis.com/plus/v1/people/102904094379339545145?key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c		OR YQL below:
 		// SELECT * from html where url="https://plus.google.com/+Inthefrowpage/about" AND xpath="//div[@class='Zmjtc']/span"
-		$google_plus_url = $links['google_plus'];
+		$google_plus_url = esc_url($links['google_plus']);
 		if ($google_plus_url) {
 			$google_plus_url = rawurlencode($google_plus_url);
 			usleep(500);

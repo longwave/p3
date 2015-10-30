@@ -228,7 +228,7 @@ line-height: 1.2;
 .pipdig_widget_post_slider .cycle-slideshow {height:auto;}
 .pipdig_widget_post_slider .cycle-slideshow li{display:none}
 .pipdig_widget_post_slider .cycle-slideshow li.first{display:block}
-.pipdig_widget_post_slider .slide-image{background-attachment:scroll;background-position:center center; background-size:cover;background-repeat: no-repeat;height:100%;width:100%;}
+.pipdig_widget_post_slider .slide-image{background-attachment:scroll;background-position:center center; background-size:cover;background-repeat: no-repeat;height:100%;width:100%;position:relative;top:-1px}
 .pipdig_widget_post_slider .cycle-slideshow li {width: 100%;}
 .pipdig_widget_post_slider .cycle-pager {text-align: center; width: 100%; z-index: 500; position: absolute; bottom: -10%; overflow: hidden;}
 .pipdig_widget_post_slider .cycle-pager span {font-family: arial, sans-serif; font-size: 41px; width: 15px; height: 15px; display: inline-block; color: #eee; cursor: pointer;margin: 0 3px;}

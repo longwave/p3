@@ -369,7 +369,7 @@ include_once('functions/favicon.php');
 include_once('functions/post-options.php');
 include_once('functions/shares.php');
 include_once('functions/related-posts.php');
-include_once('functions/pinterest_hover.php');
+//include_once('functions/pinterest_hover.php');
 //include_once('functions/instagram.php');
 include_once('functions/social-footer.php');
 include_once('functions/navbar-icons.php');
