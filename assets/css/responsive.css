@@ -20,7 +20,7 @@
     }
 }
 @media only screen and (max-width: 719px) {
-	.top-socialz, #wpadminbar, .wpadminbar-nudge {
+	.top-socialz, #wpadminbar, .wpadminbar-nudge, #p3_top_menu_bar {
 		display:none;
 		opacity: 0;
 		height: 0;

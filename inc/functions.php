@@ -337,7 +337,7 @@ function pipdig_p3_emmmm_heeey() {
 		});
 	});
 	</script>
-	<!-- p3 v<?php echo strip_tags(get_option('pipdig_p3_version')); ?> | <?php echo PHP_VERSION; ?> -->
+	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo PHP_VERSION; ?> -->
 	<?php
 }
 add_action('wp_footer','pipdig_p3_emmmm_heeey', 99);
@@ -366,6 +366,7 @@ if (!function_exists('pipdig_p3_comment_nav')) {
 }
 
 include_once('functions/favicon.php');
+include_once('functions/top_menu_bar.php');
 include_once('functions/post-options.php');
 include_once('functions/shares.php');
 include_once('functions/related-posts.php');
@@ -375,7 +376,7 @@ include_once('functions/social-footer.php');
 include_once('functions/navbar-icons.php');
 include_once('functions/feature-header.php');
 include_once('functions/post_slider_site_main_width.php');
-//include_once('functions/post_slider_container_large_square.php');
+//include_once('functions/post_slider_site_main_width_sq.php');
 include_once('functions/post_slider_posts_column.php');
 
 // bundled

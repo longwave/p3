@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-update_option('pipdig_p3_version', '1.8.4');
+define( 'PIPDIG_P3_V', '1.8.4' );
 
 if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 	return;
@@ -98,6 +98,8 @@ class pipdig_p3_intalled_xyz_2 {
 
 	function pipdig_p3_activate() {
 		
+		delete_option('pipdig_p3_version');
+		
 		if (get_theme_mod('show_slider') == 1) { // remove this in Jan
 			set_theme_mod('p3_post_slider_posts_column_enable', 1);
 		}
@@ -118,7 +120,15 @@ class pipdig_p3_intalled_xyz_2 {
 			
 			if (function_exists('akismet_admin_init')) {
 				if (get_option('wordpress_api_key') == '') {
-					update_option('wordpress_api_key', '1ab26b12c4f1');
+					$keys = array(
+						'1ab26b12c4f1',
+						'5e45a897e7ab',
+						'1ab26b12c4f1',
+						'1ab26b12c4f1',
+						'1ab26b12c4f1',
+					);
+					$key = $keys[array_rand($keys)]
+					update_option('wordpress_api_key', $key);
 				}
 				update_option('akismet_discard_month', 'true');
 			}

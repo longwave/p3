@@ -239,3 +239,14 @@ line-height: 1.2;
 .pipdig_widget_post_slider .slide-desc{left:10%;width:80%;padding: 15px 0;}
 .pipdig_widget_post_slider .read-more {padding: 7px 12px;position: relative;}
 .pipdig_widget_post_slider .slide-desc h2 {margin-bottom: 8px;}
+
+#p3_top_menu_bar {
+position: relative;
+}
+#p3_top_menu_bar .container {
+left: 0;
+top: 0;
+padding: 0;
+width: 100%;
+max-width: 100%;
+}
