@@ -132,7 +132,15 @@ if (!function_exists('pipdig_rss_post_thumbnail')) {
 	add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');
 }
 
-
+// truncate stuff
+function pipdig_p3_truncate($text, $limit) {
+if (str_word_count($text, 0) > $limit) {
+    $words = str_word_count($text, 2);
+    $pos = array_keys($words);
+    $text = substr($text, 0, $pos[$limit]) . '&hellip;';
+}
+return $text;
+}
 
 // remove bad mojo
 if (function_exists('mm_load_updater')) {
