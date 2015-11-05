@@ -122,6 +122,9 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		text-align: center;
 		width: 50%;
 		}
+		@media screen and (max-width: 769px) {
+			.grid-item {width: 48%}
+		}
 	</style>
 	<script>
 		(function($){

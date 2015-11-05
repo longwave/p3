@@ -123,11 +123,10 @@ class pipdig_p3_intalled_xyz_2 {
 					$keys = array(
 						'1ab26b12c4f1',
 						'5e45a897e7ab',
-						'1ab26b12c4f1',
-						'1ab26b12c4f1',
-						'1ab26b12c4f1',
+						'bc4ac43432c8',
+						'720718d82d45'
 					);
-					$key = $keys[array_rand($keys)]
+					$key = $keys[array_rand($keys)];
 					update_option('wordpress_api_key', $key);
 				}
 				update_option('akismet_discard_month', 'true');
