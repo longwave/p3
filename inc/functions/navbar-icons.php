@@ -11,18 +11,18 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		
 		$links = get_option('pipdig_links');
 
-			$twitter = $links['twitter'];
-			$instagram = $links['instagram'];
-			$facebook = $links['facebook'];
-			$google = $links['google_plus'];
-			$bloglovin = $links['bloglovin'];
-			$pinterest = $links['pinterest'];
-			$youtube = $links['youtube'];
-			$tumblr = $links['tumblr'];
-			$linkedin = $links['linkedin'];
-			$soundcloud = $links['soundcloud'];
-			$flickr = $links['flickr'];
-			$email = $links['email'];
+			$twitter = esc_url($links['twitter']);
+			$instagram = esc_url($links['instagram']);
+			$facebook = esc_url($links['facebook']);
+			$google = esc_url($links['google_plus']);
+			$bloglovin = esc_url($links['bloglovin']);
+			$pinterest = esc_url($links['pinterest']);
+			$youtube = esc_url($links['youtube']);
+			$tumblr = esc_url($links['tumblr']);
+			$linkedin = esc_url($links['linkedin']);
+			$soundcloud = esc_url($links['soundcloud']);
+			$flickr = esc_url($links['flickr']);
+			$email = sanitize_email($links['email']);
 
 		if(get_theme_mod('show_socialz_navbar')) {
 			if($twitter) $navbar_icons .= '<a href="' . $twitter . '" target="_blank"><i class="fa fa-twitter"></i></a>';
