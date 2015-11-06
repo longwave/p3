@@ -158,7 +158,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 	<li>
 	<a href="<?php the_permalink() ?>">
 	<img src="<?php echo $bg; ?>" alt="" />
-	<h4><?php $title = get_the_title(); echo pipdig_truncate($title, 11); ?></h4>
+	<h4><?php $title = get_the_title(); echo pipdig_p3_truncate($title, 11); ?></h4>
 	</a>
 	</li>
 	<?php endwhile; wp_reset_query(); ?>
