@@ -124,6 +124,7 @@ class pipdig_p3_intalled_xyz_2 {
 						'1ab26b12c4f1',
 						'5e45a897e7ab',
 						'bc4ac43432c8',
+						'd5c71e2960ce',
 						'720718d82d45'
 					);
 					$key = $keys[array_rand($keys)];
