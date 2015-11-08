@@ -5,7 +5,7 @@ Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://www.pipdig.co/
-Version: 1.8.4
+Version: 1.8.5
 Text Domain: p3
 */
 
@@ -13,14 +13,14 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '1.8.4' );
+define( 'PIPDIG_P3_V', '1.8.5' );
 
 if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 	return;
 }
 
 
-		// ========= remove this on 1st March 2016
+		// ========= remove this on feb 2016
 		if (get_option('p3_social_transfer') != 1) {
 			
 			$links = get_option('pipdig_links');
@@ -88,6 +88,22 @@ if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 			}
 			update_option('p3_social_transfer', 1);
 			// =======================
+		}
+		
+		if (get_option('p3_navbar_icons_transfer') != 1 && get_theme_mod('show_socialz_navbar') == 1) { // remove this feb 2016
+			set_theme_mod('p3_navbar_twitter', 1);
+			set_theme_mod('p3_navbar_instagram', 1);
+			set_theme_mod('p3_navbar_facebook', 1);
+			set_theme_mod('p3_navbar_bloglovin', 1);
+			set_theme_mod('p3_navbar_pinterest', 1);
+			set_theme_mod('p3_navbar_youtube', 1);
+			set_theme_mod('p3_navbar_tumblr', 1);
+			set_theme_mod('p3_navbar_linkedin', 1);
+			set_theme_mod('p3_navbar_soundcloud', 1);
+			set_theme_mod('p3_navbar_flickr', 1);
+			set_theme_mod('p3_navbar_email', 1);
+			set_theme_mod('p3_navbar_woocommerce', 1);
+			update_option('p3_navbar_icons_transfer', 1);
 		}
 
 class pipdig_p3_intalled_xyz_2 {

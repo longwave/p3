@@ -25,13 +25,13 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 		function widget($args, $instance) {
 			extract($args);
 			if (isset($instance['title'])) { 
-				$title = $instance['title'];
+				$title = strip_tags($instance['title']);
 			}
 			if (isset($instance['circle'])) { 
-				$circle = $instance['circle'];
+				$circle = 'style="-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;"';
 			}
 			if (isset($instance['description'])) { 
-				$description = $instance['description'];
+				$description = wp_kses_post($instance['description']);
 			}
 			
 			// widget content
@@ -40,9 +40,9 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 	?>
 			<?php if (isset($instance['image_uri'])) {  ?>
 				<div class="nopin">
-				<img src="<?php echo esc_url($instance['image_uri']); ?>" <?php if (isset($instance['circle'])) { if(true == $circle) { ?>style="-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;"<?php } } ?> alt="" />
+				<img src="<?php echo esc_url($instance['image_uri']); ?>" <?php echo $circle; ?> alt="" />
 				</div>
-					<?php if (isset($instance['description'])) {  ?>
+					<?php if ($description) {  ?>
 						<p><?php echo $description; ?></p>
 					<?php } //endif ?>
 			<?php } //endif ?>
@@ -71,9 +71,14 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 			<label for="<?php echo $this->get_field_id('image_uri'); ?>"><?php _e('Image', 'p3'); ?></label><br />
 			<p style="font-weight:bold"><?php _e('Step 1 - Click the button below to select a photo:', 'p3'); ?></p>
 			<?php
-				if (!empty($instance['image_uri'])) :
-					echo '<img class="pipdig-profile-photo-img"  src="' . $instance['image_uri'] . '" style="margin:0;padding:0;max-width:150px;height:auto" /><br />';
-				endif;
+				if (isset($instance['circle'])) { 
+					$circle = '-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;';
+				} else {
+					$circle = '';
+				}
+				if (!empty($instance['image_uri'])) {
+					echo '<img class="pipdig-profile-photo-img"  src="' . esc_url($instance['image_uri']) . '" style="margin:0;padding:0;max-width:150px;height:auto;'.$circle.'" /><br />';
+				}
 			?>
 
 			<input type="text" style="display:none" class="widefat custom_media_url" name="<?php echo $this->get_field_name('image_uri'); ?>" id="<?php echo $this->get_field_id('image_uri'); ?>" value="<?php if (isset($instance['image_uri'])) { echo $instance['image_uri']; } ?>" style="margin-top:5px;">

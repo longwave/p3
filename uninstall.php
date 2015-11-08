@@ -15,7 +15,7 @@ delete_transient('p3_youtube_widget');
 //delete_transient('pipdig_shaq_fu');
 
 // delete database entries
-delete_option('pipdig_links');
+//delete_option('pipdig_links');
 delete_option('p3_bloglovin_count');
 delete_option('p3_pinterest_count');
 delete_option('p3_twitter_count');
@@ -23,8 +23,9 @@ delete_option('p3_instagram_count');
 delete_option('p3_youtube_count');
 delete_option('p3_google_plus_count');
 delete_option('pipdig_p3_snapchat_account');
-delete_option('p3_social_transfer');
 delete_option('p3_twitter_handle');
+delete_option('p3_social_transfer');
+delete_option('p3_navbar_icons_transfer');
 /*
 delete_option('pipdig_p3_posts_per_page_set');
 delete_option('pipdig_p3_header_set');

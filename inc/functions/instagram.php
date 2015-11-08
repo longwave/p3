@@ -103,7 +103,9 @@ function pipdig_p3_instagram_feed() {
 		</div>
 		<div class="clearfix"></div>
 		<?php
-	} else { // no access token or user id, so error:
-		echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'" rel="nofollow">this page</a>.</p>';	
+	} else { // no access token or user id, so error for admins:
+		if (current_user_can('manage_options')) {
+			echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'" rel="nofollow">this page</a>.</p>';
+		}
 	} // endif no user_id or AT
 }
