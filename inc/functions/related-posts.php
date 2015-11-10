@@ -56,7 +56,7 @@ if (!function_exists('p3_related_posts')) {
 				$output .= '<div class="clearfix"></div>';
 		
 					$output .= '<div class="pipdig_p3_related_posts">';
-					$output .= '<h3><span>'.__('You may also enjoy:', 'p3').'</span></h3>';
+					$output .= '<h3><span>'.get_theme_mod('p3_related_posts_title', __('You may also enjoy:', 'p3')).'</span></h3>';
 					$output .= '<ul>';
 					
 					while( $query->have_posts() ) { $query->the_post();
@@ -160,6 +160,23 @@ if (!class_exists('pipdig_related_Customize')) {
 					'type' => 'checkbox',
 					'label' => __( "Don't display on posts", 'p3' ),
 					'section' => 'pipdig_related_posts_pop',
+				)
+			);
+			
+			$wp_customize->add_setting('p3_related_posts_title',
+				array(
+					'sanitize_callback' => 'sanitize_text_field',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_related_posts_title',
+				array(
+					'type' => 'text',
+					'label' => __( 'Title:', 'p3' ),
+					'section' => 'pipdig_related_posts_pop',
+					'input_attrs' => array(
+						'placeholder' => __('You may also enjoy:', 'p3'),
+					),
 				)
 			);
 
