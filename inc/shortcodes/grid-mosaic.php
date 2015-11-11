@@ -127,11 +127,12 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		}
 	</style>
 	<script>
-		(function($){
-		var $container = $(".js-masonry");
-		$container.imagesLoaded( function() {
-		$container.masonry();
-		});})(jQuery);
+	$(function(){
+		var $container = $("#container");
+		$container.masonry({
+		itemSelector : ".masonryImage"
+		});
+	});
 	</script>';
 	}
 	

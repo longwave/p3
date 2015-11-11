@@ -11,26 +11,48 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		
 		$links = get_option('pipdig_links');
 		
-		if (!empty($links)) {
-
+		$instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $vk = $email = '';
+		
+		if ($links['twitter']) {
 			$twitter = esc_url($links['twitter']);
+		}
+		if ($links['instagram']) {
 			$instagram = esc_url($links['instagram']);
+		}
+		if ($links['facebook']) {
 			$facebook = esc_url($links['facebook']);
-			//$google = esc_url($links['google_plus']);
+		}
+		if ($links['bloglovin']) {
 			$bloglovin = esc_url($links['bloglovin']);
+		}
+		if ($links['pinterest']) {
 			$pinterest = esc_url($links['pinterest']);
+		}
+		if ($links['youtube']) {
 			$youtube = esc_url($links['youtube']);
+		}
+		if ($links['tumblr']) {
 			$tumblr = esc_url($links['tumblr']);
+		}
+		if ($links['linkedin']) {
 			$linkedin = esc_url($links['linkedin']);
+		}
+		if ($links['soundcloud']) {
 			$soundcloud = esc_url($links['soundcloud']);
+		}
+		if ($links['flickr']) {
 			$flickr = esc_url($links['flickr']);
+		}
+		if ($links['vk']) {
 			$vk = esc_url($links['vk']);
+		}
+		if ($links['email']) {
 			$email = sanitize_email($links['email']);
+		}
 
 			if($twitter && get_theme_mod('p3_navbar_twitter')) $navbar_icons .= '<a href="' . $twitter . '" target="_blank"><i class="fa fa-twitter"></i></a>';
 			if($instagram && get_theme_mod('p3_navbar_instagram')) $navbar_icons .= '<a href="' . $instagram . '" target="_blank"><i class="fa fa-instagram"></i></a>';
 			if($facebook && get_theme_mod('p3_navbar_facebook')) $navbar_icons .= '<a href="' . $facebook . '" target="_blank"><i class="fa fa-facebook"></i></a>';
-			//if($google && get_theme_mod('p3_navbar_google')) $navbar_icons .= '<a href="' . $google . '" target="_blank"><i class="fa fa-google-plus"></i></a>';
 			if($bloglovin && get_theme_mod('p3_navbar_bloglovin')) $navbar_icons .= '<a href="' . $bloglovin . '" target="_blank"><i class="fa fa-plus"></i></a>';
 			if($pinterest && get_theme_mod('p3_navbar_pinterest')) $navbar_icons .= '<a href="' . $pinterest . '" target="_blank"><i class="fa fa-pinterest"></i></a>';
 			if($youtube && get_theme_mod('p3_navbar_youtube')) $navbar_icons .= '<a href="' . $youtube . '" target="_blank"><i class="fa fa-youtube-play"></i></a>';
@@ -40,8 +62,6 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 			if($flickr && get_theme_mod('p3_navbar_flickr')) $navbar_icons .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i></a>';
 			if($vk && get_theme_mod('p3_navbar_vk')) $navbar_icons .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i></a>';
 			if($email && get_theme_mod('p3_navbar_email')) $navbar_icons .= '<a href="mailto:' . $email . '" target="_blank"><i class="fa fa-envelope"></i></a>';
-		
-		}
 		
 		if(get_theme_mod('site_top_search')) $navbar_icons .= '<a class="toggle-search" href="#"><i class="fa fa-search"></i></a>'; // still need to p3 this.
 		
@@ -139,22 +159,21 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 				)
 			);
 
-			// google plus
-			/*
-			$wp_customize->add_setting('p3_navbar_google',
+			// email
+			$wp_customize->add_setting('p3_navbar_email',
 				array(
 					'default' => 0,
 					'sanitize_callback' => 'absint',
 				)
 			);
-			$wp_customize->add_control('p3_navbar_google',
+			$wp_customize->add_control('p3_navbar_email',
 				array(
 					'type' => 'checkbox',
-					'label' => 'Google Plus',
+					'label' => 'Email',
 					'section' => 'p3_navbar_icons_section',
 				)
 			);
-			*/
+			
 			
 			// bloglovin
 			$wp_customize->add_setting('p3_navbar_bloglovin',

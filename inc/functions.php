@@ -373,7 +373,18 @@ if (!function_exists('pipdig_p3_comment_nav')) {
 	}
 }
 
-include_once('functions/favicon.php');
+// depreciate this after 4.3+
+function pipdig_p3_favicon() {
+	$output = '';
+	$favicon = esc_url(get_theme_mod('pipdig_favicon'));
+	if($favicon) {
+		$output = '<link rel="shortcut icon" href="'.$favicon.'" />';
+	}
+	echo $output;
+}
+add_action('wp_head','pipdig_p3_favicon', 2);
+
+//include_once('functions/favicon.php');
 include_once('functions/top_menu_bar.php');
 include_once('functions/post-options.php');
 include_once('functions/shares.php');
@@ -382,10 +393,11 @@ include_once('functions/related-posts.php');
 //include_once('functions/instagram.php');
 include_once('functions/social_footer.php');
 include_once('functions/navbar_icons.php');
-include_once('functions/feature-header.php');
+include_once('functions/feature_header.php');
 include_once('functions/post_slider_site_main_width.php');
 //include_once('functions/post_slider_site_main_width_sq.php');
 include_once('functions/post_slider_posts_column.php');
 
 // bundled
 include_once('bundled/customizer-reset.php');
+//include_once('bundled/simple-custom-css/simple-custom-css.php');
