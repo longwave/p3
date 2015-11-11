@@ -31,7 +31,7 @@ if (get_theme_mod('p3_top_bar_enable')) {
 
 // customiser
 if (!class_exists('pipdig_top_menu_bar_Customize')) {
-	class pipdig_related_Customize {
+	class pipdig_top_menu_bar_Customize {
 		public static function register ( $wp_customize ) {
 
 			// Enable
@@ -53,5 +53,5 @@ if (!class_exists('pipdig_top_menu_bar_Customize')) {
 
 		}
 	}
-	add_action( 'customize_register' , array( 'pipdig_related_Customize' , 'register' ) );
+	add_action( 'customize_register' , array( 'pipdig_top_menu_bar_Customize' , 'register' ) );
 }
