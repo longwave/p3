@@ -5,7 +5,7 @@ Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://www.pipdig.co/
-Version: 1.8.5
+Version: 1.8.6
 Text Domain: p3
 */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '1.8.5' );
+define( 'PIPDIG_P3_V', '1.8.6' );
 
 if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 	return;
@@ -114,8 +114,6 @@ class pipdig_p3_intalled_xyz_2 {
 
 	function pipdig_p3_activate() {
 		
-		delete_option('pipdig_p3_version');
-		
 		if (get_theme_mod('show_slider') == 1) { // remove this in Jan
 			set_theme_mod('p3_post_slider_posts_column_enable', 1);
 		}
@@ -211,6 +209,17 @@ class pipdig_p3_intalled_xyz_2 {
 			update_option('pipdig_live_site', 1);
 		}
 		
+		if (get_option('p3_amicorumi') == '') {
+			$amicorum = array(
+				'WordPress Themes',
+				'WordPress Theme',
+				'WordPress theme',
+				'WordPress themes'
+			);
+			$amicorumi = $amicorum[array_rand($amicorum)];
+			update_option('p3_amicorumi', $amicorumi);
+		}
+		
 	}
 }
 new pipdig_p3_intalled_xyz_2();
@@ -246,7 +255,7 @@ function pipdig_p3_scripts_styles() {
 	wp_enqueue_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css' );
 	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', plugin_dir_url(__FILE__).'assets/css/responsive.css' ); }
 	
-	wp_register_script( 'imagesloaded', '//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js', array('jquery'), false );
+	//wp_register_script( 'imagesloaded', '//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js', array('jquery'), false ); // I know, I know :(
 	wp_register_script( 'bxslider', '//cdnjs.cloudflare.com/ajax/libs/bxslider/4.1.2/jquery.bxslider.min.js', array('jquery'), false );
 	wp_register_script( 'pipdig-cycle', '//cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), false );
 	wp_register_script( 'owl-carousel', '//cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js', array('jquery'), false );

@@ -13,7 +13,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		//'comments' => 'yes'
 	), $atts ) );
 	
-	wp_enqueue_script( 'imagesloaded' );
+	//wp_enqueue_script( 'imagesloaded' ); // I know, I know :(
 	wp_enqueue_script( 'masonry' );
 	
 	$percent = '47';
@@ -49,7 +49,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 				
 	if ( $query->have_posts() ) {
 		
-	$output .= '<div class="grid js-masonry">';
+	$output .= '<div class="grid p3_grid_mosaic">';
 
 				while ( $query->have_posts() ) : $query->the_post();
 					if (has_post_thumbnail() != '') {
@@ -92,7 +92,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 			$output .= '</nav>';
 		
 	$output .= '
-	<style scoped>
+	<style>
 		.grid-item { width: '.$percent.'%; margin: 1%; }
 		.grid-item img {max-width: 100%; height: auto;}
 		.grid-item .hentry {margin-bottom: 0;}
@@ -126,11 +126,13 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 			.grid-item {width: 48%}
 		}
 	</style>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
 	<script>
-	$(function(){
-		var $container = $("#container");
-		$container.masonry({
-		itemSelector : ".masonryImage"
+	jQuery(document).ready(function($) {
+		$(".entry-content").imagesLoaded( function(){
+			jQuery(".p3_grid_mosaic").masonry({
+				itemSelector: ".pipdig-masonry-post",
+			});
 		});
 	});
 	</script>';

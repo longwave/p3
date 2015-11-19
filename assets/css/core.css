@@ -258,3 +258,16 @@ padding: 0;
 width: 100%;
 max-width: 100%;
 }
+
+
+
+/* layout shortcodes */
+
+.pipdig_left {
+	float:left;
+	width: 48%;
+}
+.pipdig_right {
+	float: right;
+	width: 48%;
+}

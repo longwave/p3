@@ -389,6 +389,7 @@ include_once('functions/top_menu_bar.php');
 include_once('functions/post-options.php');
 include_once('functions/shares.php');
 include_once('functions/related-posts.php');
+//include_once('functions/smash.php');
 //include_once('functions/pinterest_hover.php');
 //include_once('functions/instagram.php');
 include_once('functions/social_footer.php');

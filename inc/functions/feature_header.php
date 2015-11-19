@@ -87,7 +87,7 @@ if (!function_exists('p3_feature_header')) {
 							<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
 								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC" alt="<?php the_title_attribute(); ?>" class="p3_invisible" data-pin-nopin="true"/>
 							</div>
-							<h4><?php echo pipdig_p3_truncate(get_the_title(), 4); ?></h4>
+							<h4><?php echo pipdig_p3_truncate(get_the_title(), 7); ?></h4>
 						</a>
 					</div>
 					<?php endwhile;?>
@@ -118,7 +118,7 @@ if (!function_exists('p3_feature_header')) {
 							<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
 								<div class="p3_feature_slide">
 									<span class="p3_feature_slide_banner">
-										<h2><?php echo pipdig_p3_truncate(get_the_title(), 10); ?></h2>
+										<h2><?php echo pipdig_p3_truncate(get_the_title(), 12); ?></h2>
 									</span>
 									<a href="<?php the_permalink() ?>" style="display: block; width: 100%; height: 100%;">
 										<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAHCAQMAAAAtrT+LAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAENJREFUeNrtwYEAAAAAw6D7U19hANUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIDsYoAAZ9qTLEAAAAASUVORK5CYII=" alt="<?php the_title_attribute(); ?>" class="p3_invisible" data-pin-nopin="true"/>
