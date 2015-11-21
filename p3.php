@@ -113,6 +113,8 @@ class pipdig_p3_intalled_xyz_2 {
 	}
 
 	function pipdig_p3_activate() {
+	
+	update_option('jr_resizeupload_convertgif_yesno', 'no');
 		
 		if (get_theme_mod('show_slider') == 1) { // remove this in Jan
 			set_theme_mod('p3_post_slider_posts_column_enable', 1);
@@ -178,6 +180,7 @@ class pipdig_p3_intalled_xyz_2 {
 				update_option('jr_resizeupload_width', 1920);
 				update_option('jr_resizeupload_quality', 70);
 				update_option('jr_resizeupload_height', 0);
+				update_option('jr_resizeupload_convertgif_yesno', 'no');
 				update_option('pipdig_p3_jr_resizeupload_width_set', 1);
 			}
 			update_option('woocommerce_enable_lightbox', 'no');
