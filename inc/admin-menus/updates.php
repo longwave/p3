@@ -22,6 +22,19 @@ if (!function_exists('pipdig_updates_options_page')) {
 
 				<div class="meta-box-sortables ui-sortable">
 				
+					<div class="postbox">
+
+						<h3>Update 1.9 - Editorial Layouts</h3>
+
+						<div class="inside">
+							<p>We're working on some new shortcodes that will allow you to easily move/display your post content differently, ensuring it is fully responsive and search engine friendly. To start with, we kept things simple with some "Left/Right" layout options. You can read more about this shortcode <a href="<?php echo admin_url('admin.php?page=pipdig-shortcodes'); ?>">on this page</a>. More to come soon...</p>
+							<p>More control over the icons displayed in the navbar. Look for the "Navbar Icons" section in the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>.</p>
+							<p>We have created a dedicated WordPress section to our Knowledge Base. You can find lots of new tips and tricks in <a href="https://pipdig.zendesk.com/hc/en-gb/categories/200928922" target="_blank">this section</a>.</p>
+						</div>
+
+					</div>
+					<!-- .postbox -->
+				
 					<div id="hide-trav" class="postbox">
 
 						<h3>Update 1.8 - Customizer options and widgets</h3>
@@ -30,7 +43,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 							<p>We're constantly monitoring the latest WordPress security threats to make your site safer. This plugin will now provide automatic protection from <a target="_blank" href="<?php esc_url('https://goo.gl/vfjunt'); ?>">XML-RPC based attacks</a>.</p>
 							<p>New <a href="<?php echo admin_url('widgets.php'); ?>">widget</a>! Use "pipdig - Post Slider" to display a slider of recent posts in your sidebar.</p>
 							<p>Under the new "Feature Header" section of the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>, you'll find some new options for a new magazine style layout.</p>
-							<p>Add a custom Favicon to your site from the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>.</p>
+							<p>Add a custom Favicon to your site from the Site Identity section of the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>.</p>
 						</div>
 
 					</div>

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-11-08 19:47+0000\n"
-"PO-Revision-Date: 2015-11-08 19:47+0000\n"
+"POT-Creation-Date: 2015-11-20 10:36+0000\n"
+"PO-Revision-Date: 2015-11-20 10:36+0000\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "Any CSS added to this box will be kept after theme updates."
 msgstr ""
 
-#: ../inc/admin-menus/css.php:67
+#: ../inc/admin-menus/css.php:65
 #, php-format
 msgid ""
 "Remember, you can also change the appearance of your site by using the <a "
@@ -175,37 +175,21 @@ msgstr "Oudere reacties"
 msgid "Newer Comments"
 msgstr "Nieuwere reactie"
 
-#: ../inc/functions/favicon.php:25
-msgid "Favicon"
-msgstr ""
-
-#: ../inc/functions/favicon.php:26
-msgid ""
-"Add a Favicon to your site. This is the icon that is displayed in your "
-"browser tabs. <a href=\"http://www.favicon.co.uk/whatisfavicon.php\" target="
-"\"_blank\">Click here</a> for more information. The icon should be no larger "
-"than 32 x 32 pixels in size."
-msgstr ""
-
-#: ../inc/functions/favicon.php:40
-msgid "Upload a Favicon"
-msgstr ""
-
-#: ../inc/functions/feature-header.php:21
-#: ../inc/functions/feature-header.php:297
+#: ../inc/functions/feature_header.php:21
+#: ../inc/functions/feature_header.php:297
 msgid "Big this Month"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:25
-#: ../inc/functions/feature-header.php:314
+#: ../inc/functions/feature_header.php:25
+#: ../inc/functions/feature_header.php:314
 msgid "Recent Posts"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:150
+#: ../inc/functions/feature_header.php:150
 msgid "Feature Header"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:169
+#: ../inc/functions/feature_header.php:169
 #: ../inc/functions/pinterest_hover.php:179
 #: ../inc/functions/post_slider_posts_column.php:114
 #: ../inc/functions/post_slider_site_main_width.php:104
@@ -213,89 +197,89 @@ msgstr ""
 msgid "Enable this feature"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:185
+#: ../inc/functions/feature_header.php:185
 #: ../inc/functions/post_slider_site_main_width.php:120
 #: ../inc/functions/post_slider_site_main_width_sq.php:120
 msgid "Display on homepage only"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:201
+#: ../inc/functions/feature_header.php:201
 msgid "Date range for \"Big this Month\":"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:202
+#: ../inc/functions/feature_header.php:202
 msgid "This won't effect the Recent Posts section."
 msgstr ""
 
-#: ../inc/functions/feature-header.php:205
+#: ../inc/functions/feature_header.php:205
 #: ../inc/functions/related-posts.php:126 ../inc/widgets/popular-posts.php:53
 #: ../inc/widgets/post-slider.php:64 ../inc/widgets/random-posts.php:53
 msgid "1 Year"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:206
+#: ../inc/functions/feature_header.php:206
 #: ../inc/functions/related-posts.php:127 ../inc/widgets/popular-posts.php:52
 #: ../inc/widgets/post-slider.php:63 ../inc/widgets/random-posts.php:52
 msgid "1 Month"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:207
+#: ../inc/functions/feature_header.php:207
 #: ../inc/functions/related-posts.php:128 ../inc/widgets/popular-posts.php:51
 #: ../inc/widgets/post-slider.php:62 ../inc/widgets/random-posts.php:51
 msgid "1 Week"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:208
+#: ../inc/functions/feature_header.php:208
 #: ../inc/functions/related-posts.php:129 ../inc/widgets/popular-posts.php:54
 #: ../inc/widgets/post-slider.php:65 ../inc/widgets/random-posts.php:54
 msgid "All Time"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:224
+#: ../inc/functions/feature_header.php:224
 msgid "Category for \"Big this Month\":"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:225
+#: ../inc/functions/feature_header.php:225
 msgid "Only display posts from:"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:243
+#: ../inc/functions/feature_header.php:243
 msgid "Category for \"Recent Posts\":"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:260
+#: ../inc/functions/feature_header.php:260
 #: ../inc/functions/post_slider_posts_column.php:210
 #: ../inc/functions/post_slider_site_main_width.php:154
 #: ../inc/functions/post_slider_site_main_width_sq.php:154
 msgid "Background color"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:277
+#: ../inc/functions/feature_header.php:277
 #: ../inc/functions/post_slider_posts_column.php:227
 #: ../inc/functions/post_slider_site_main_width.php:171
 #: ../inc/functions/post_slider_site_main_width_sq.php:171
 msgid "Title color"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:294
+#: ../inc/functions/feature_header.php:294
 msgid "\"Big this Month\" title"
 msgstr ""
 
-#: ../inc/functions/feature-header.php:311
+#: ../inc/functions/feature_header.php:311
 msgid "\"Recent Posts\" title"
 msgstr ""
 
-#: ../inc/functions/navbar_icons.php:73
+#: ../inc/functions/navbar_icons.php:93
 msgid "Navbar Icons"
 msgstr ""
 
-#: ../inc/functions/navbar_icons.php:74
+#: ../inc/functions/navbar_icons.php:94
 msgid ""
 "You can display your social icons in the navbar using these options. Select "
 "the social icons you would like to add from below."
 msgstr ""
 
-#: ../inc/functions/navbar_icons.php:74 ../inc/functions/top_menu_bar.php:49
+#: ../inc/functions/navbar_icons.php:94 ../inc/functions/top_menu_bar.php:49
 msgid "Click here for more information"
 msgstr ""
 
@@ -355,7 +339,7 @@ msgstr ""
 msgid "Large Rectangle Slider"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:59
+#: ../inc/functions/related-posts.php:59 ../inc/functions/related-posts.php:178
 msgid "You may also enjoy:"
 msgstr ""
 
@@ -380,6 +364,16 @@ msgstr ""
 msgid "Don't display on posts"
 msgstr ""
 
+#: ../inc/functions/related-posts.php:175 ../inc/widgets/clw.php:236
+#: ../inc/widgets/facebook.php:86 ../inc/widgets/pinterest.php:113
+#: ../inc/widgets/popular-posts.php:39 ../inc/widgets/post-slider.php:52
+#: ../inc/widgets/profile.php:67 ../inc/widgets/random-posts.php:39
+#: ../inc/widgets/snapcode.php:56 ../inc/widgets/socialz.php:123
+#: ../inc/widgets/subscribe.php:72 ../inc/widgets/twitter.php:88
+#: ../inc/widgets/youtube.php:74
+msgid "Title:"
+msgstr ""
+
 #: ../inc/functions/shares.php:50
 msgid "Share:"
 msgstr ""
@@ -399,6 +393,30 @@ msgstr ""
 
 #: ../inc/functions/shares.php:81
 msgid "Select this option to completely remove this feature."
+msgstr ""
+
+#: ../inc/functions/smash.php:44
+msgid "Instagram Feeds"
+msgstr ""
+
+#: ../inc/functions/smash.php:45
+#, php-format
+msgid ""
+"Options to display your Instagram feed. You will need to allow access to "
+"your Instagram account with %sthis plugin%s first."
+msgstr ""
+
+#: ../inc/functions/smash.php:64
+msgid "Display across header"
+msgstr ""
+
+#: ../inc/functions/smash.php:82
+msgid "Display across footer"
+msgstr ""
+
+#: ../inc/functions/smash.php:97 ../inc/widgets/instagram.php:88
+#: ../inc/widgets/pinterest.php:133
+msgid "Number of images to display:"
 msgstr ""
 
 #: ../inc/functions/top_menu_bar.php:14
@@ -481,15 +499,6 @@ msgstr ""
 
 #: ../inc/widgets/clw.php:200 ../inc/widgets/clw.php:202
 msgid "Please enter location data in the widget settings."
-msgstr ""
-
-#: ../inc/widgets/clw.php:236 ../inc/widgets/facebook.php:86
-#: ../inc/widgets/pinterest.php:113 ../inc/widgets/popular-posts.php:39
-#: ../inc/widgets/post-slider.php:52 ../inc/widgets/profile.php:67
-#: ../inc/widgets/random-posts.php:39 ../inc/widgets/snapcode.php:56
-#: ../inc/widgets/socialz.php:123 ../inc/widgets/subscribe.php:72
-#: ../inc/widgets/twitter.php:88 ../inc/widgets/youtube.php:74
-msgid "Title:"
 msgstr ""
 
 #: ../inc/widgets/clw.php:242
@@ -594,10 +603,6 @@ msgid ""
 "This widget will show your latest Instagram photos. You will need to "
 "authorize your Instagram account on <a href=\"%s\">this page</a> for this "
 "widget to work."
-msgstr ""
-
-#: ../inc/widgets/instagram.php:88 ../inc/widgets/pinterest.php:133
-msgid "Number of images to display:"
 msgstr ""
 
 #: ../inc/widgets/instagram.php:92 ../inc/widgets/pinterest.php:138
@@ -716,19 +721,19 @@ msgstr ""
 msgid "Step 1 - Click the button below to select a photo:"
 msgstr ""
 
-#: ../inc/widgets/profile.php:81
+#: ../inc/widgets/profile.php:86
 msgid "Upload Photo"
 msgstr ""
 
-#: ../inc/widgets/profile.php:82
+#: ../inc/widgets/profile.php:87
 msgid "Step 2 - Optional extras:"
 msgstr ""
 
-#: ../inc/widgets/profile.php:85
+#: ../inc/widgets/profile.php:90
 msgid "Change image to a circle"
 msgstr ""
 
-#: ../inc/widgets/profile.php:87
+#: ../inc/widgets/profile.php:92
 #, php-format
 msgid ""
 "To make a perfect circle you should upload a square image. For example, "
@@ -736,11 +741,11 @@ msgid ""
 "target='_blank'>picmonkey.com</a> to edit your image."
 msgstr ""
 
-#: ../inc/widgets/profile.php:91
+#: ../inc/widgets/profile.php:96
 msgid "Add some text below the photo:"
 msgstr ""
 
-#: ../inc/widgets/profile.php:94
+#: ../inc/widgets/profile.php:99
 msgid "Step 3 - Click the save button:"
 msgstr ""
 
