@@ -130,12 +130,12 @@ function pipdig_p3_scrapey_scrapes() {
 		}
 			
 		// YouTube ---------------------
-		// SELECT * from html where url="https://www.youtube.com/user/inthefrow" AND xpath="//span[@class='yt-subscription-button-subscriber-count-branded-horizontal yt-uix-tooltip']"
+		// SELECT * from html where url="https://www.youtube.com/user/inthefrow" AND xpath="/html/body/div[4]/div[4]/div/div[5]/div/div[1]/div/div[2]/div/div/div[2]/div/span/span[1]"
 		$youtube_url = esc_url($links['youtube']);
 		if ($youtube_url) {
 			$youtube_url = rawurlencode($youtube_url);
 			usleep(500);
-			$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$youtube_url."%22%20AND%20xpath%3D%22%2F%2Fspan%5B%40class%3D'yt-subscription-button-subscriber-count-branded-horizontal%20yt-uix-tooltip'%5D%22&format=json", array( 'timeout' => 10 ));
+			$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$youtube_url."%22%20AND%20xpath%3D%22%2Fhtml%2Fbody%2Fdiv%5B4%5D%2Fdiv%5B4%5D%2Fdiv%2Fdiv%5B5%5D%2Fdiv%2Fdiv%5B1%5D%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fspan%2Fspan%5B1%5D%22&format=json", array( 'timeout' => 10 ));
 			$youtube_yql = json_decode($youtube_yql);
 			$youtube_count = $youtube_yql->query->results->span->title;
 			$youtube_count = intval(str_replace(',', '', $youtube_count));

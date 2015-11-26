@@ -11,7 +11,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		
 		$links = get_option('pipdig_links');
 		
-		$instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $vk = $email = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $vk = $email = '';
 		
 		if ($links['twitter']) {
 			$twitter = esc_url($links['twitter']);
@@ -63,7 +63,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 			if($vk && get_theme_mod('p3_navbar_vk')) $navbar_icons .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i></a>';
 			if($email && get_theme_mod('p3_navbar_email')) $navbar_icons .= '<a href="mailto:' . $email . '" target="_blank"><i class="fa fa-envelope"></i></a>';
 		
-		if(get_theme_mod('site_top_search')) $navbar_icons .= '<a class="toggle-search" href="#"><i class="fa fa-search"></i></a>'; // still need to p3 this.
+		if(get_theme_mod('site_top_search')) $navbar_icons .= '<a class="toggle-search"><i class="fa fa-search"></i></a>'; // still need to p3 this.
 		
 		if (class_exists('Woocommerce') && get_theme_mod('p3_navbar_woocommerce')) {
 			global $woocommerce;

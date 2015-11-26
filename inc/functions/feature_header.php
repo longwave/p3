@@ -41,7 +41,6 @@ if (!function_exists('p3_feature_header')) {
 					<h3 class="widget-title"><span><?php echo $big_this_month_title; ?></span></h3>
 					<?php
 						$popular = new WP_Query( array(
-							'meta_key'              => '_thumbnail_id',
 							'cat'                   => $post_cat_trending,
 							'showposts'             => 4,
 							'ignore_sticky_posts'   => true,

@@ -29,6 +29,9 @@ font-size: 17px !important;
 margin: 0 7px;
 padding: 0 !important;
 }
+.toggle-search:hover {
+cursor: pointer;
+}
 
 /* related posts ============================= */
 .pipdig_p3_related_posts ul {
