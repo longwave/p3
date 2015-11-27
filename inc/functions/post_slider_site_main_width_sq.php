@@ -10,7 +10,7 @@ if (!function_exists('p3_post_slider_site_main_width_sq')) {
 		if (!get_theme_mod('p3_post_slider_site_main_width_sq_enable')) {
 			return;
 		}
-		if ((!is_home() || !is_front_page()) && get_theme_mod('p3_post_slider_site_main_width_sq_home', 1)) {
+		if (!is_front_page() && get_theme_mod('p3_post_slider_site_main_width_sq_home', 1)) {
 			return;
 		}
 		$text_color_out = '';

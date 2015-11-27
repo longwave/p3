@@ -10,7 +10,7 @@ if (!function_exists('p3_feature_header')) {
 		if (!get_theme_mod('p3_feature_header_enable')) {
 			return;
 		}
-		if ((!is_home() || !is_front_page()) && get_theme_mod('p3_feature_header_home', 1)) {
+		if (!is_front_page() && get_theme_mod('p3_feature_header_home', 1)) {
 			return;
 		}
 		
