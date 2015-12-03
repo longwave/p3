@@ -29,6 +29,8 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 			}
 			if (isset($instance['circle'])) { 
 				$circle = 'style="-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;"';
+			} else {
+				$circle = '';
 			}
 			if (isset($instance['description'])) { 
 				$description = wp_kses_post($instance['description']);
