@@ -18,21 +18,22 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		if (isset($instance['pinterestuser'])) { 
 			$pinterestuser = $instance['pinterestuser'];
+			$pinterestuser = str_replace('/', '', $pinterestuser);
 		}
 		if (isset($instance['images_num'])) { 
-			$images_num = $instance['images_num'];
+			$images_num = intval($instance['images_num']);
 		} else {
 			$images_num = 4;
 		}
 		if (isset($instance['cols'])) { 
-			$cols = $instance['cols'];
+			$cols = intval($instance['cols']);
 		} else {
 			$cols = 2;
 		}
 		if ($cols == 2) {
-			$width = '49%';
+			$width = '50%';
 		} elseif ($cols == 3) {
-			$width = '32.3%';
+			$width = '33%';
 		} else {
 			$width = '100%';
 		}
@@ -50,25 +51,103 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		} else {
 			echo $before_title . 'Pinterest' . $after_title;
 		}
-		
 
-		if (!empty($pinterestuser)) { ?>
-			<style scoped="scoped">
-				.p3_pinterest_widget li {
+		if (!empty($pinterestuser)) {
+			
+			$p3_pinz = get_transient('p3_pinz');
+			
+			if ( false === ( $value = get_transient('p3_pinz') ) ) {
+		
+				$pinterest_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fwww.pinterest.com%2F".$pinterestuser."%2Ffeed.rss%22&format=json", array( 'timeout' => 10 ));
+				$pinterest_yql = json_decode($pinterest_yql);
+				
+				// yowza! Loop this in future release plx
+				
+				$pinterest_pin_1 = $pinterest_yql->query->results->body->rss->channel->item[0]->description;
+				$pinterest_pin_1 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_1, $result);
+				$pinterest_pin_1 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_1 = str_replace('"', '', $pinterest_pin_1);
+				
+				$pinterest_pin_2 = $pinterest_yql->query->results->body->rss->channel->item[1]->description;
+				$pinterest_pin_2 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_2, $result);
+				$pinterest_pin_2 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_2 = str_replace('"', '', $pinterest_pin_2);
+				
+				$pinterest_pin_3 = $pinterest_yql->query->results->body->rss->channel->item[2]->description;
+				$pinterest_pin_3 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_3, $result);
+				$pinterest_pin_3 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_3 = str_replace('"', '', $pinterest_pin_3);
+
+				$pinterest_pin_4 = $pinterest_yql->query->results->body->rss->channel->item[3]->description;
+				$pinterest_pin_4 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_4, $result);
+				$pinterest_pin_4 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_4 = str_replace('"', '', $pinterest_pin_4);
+				
+				$pinterest_pin_5 = $pinterest_yql->query->results->body->rss->channel->item[4]->description;
+				$pinterest_pin_5 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_5, $result);
+				$pinterest_pin_5 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_5 = str_replace('"', '', $pinterest_pin_5);
+				
+				$pinterest_pin_6 = $pinterest_yql->query->results->body->rss->channel->item[5]->description;
+				$pinterest_pin_6 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_6, $result);
+				$pinterest_pin_6 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_6 = str_replace('"', '', $pinterest_pin_6);
+				
+				$pinterest_pin_7 = $pinterest_yql->query->results->body->rss->channel->item[6]->description;
+				$pinterest_pin_7 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_7, $result);
+				$pinterest_pin_7 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_7 = str_replace('"', '', $pinterest_pin_7);
+
+				$pinterest_pin_8 = $pinterest_yql->query->results->body->rss->channel->item[7]->description;
+				$pinterest_pin_8 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_8, $result);
+				$pinterest_pin_8 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_8 = str_replace('"', '', $pinterest_pin_8);
+				
+				$pinterest_pin_9 = $pinterest_yql->query->results->body->rss->channel->item[8]->description;
+				$pinterest_pin_9 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_9, $result);
+				$pinterest_pin_9 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_9 = str_replace('"', '', $pinterest_pin_9);
+				
+				$pinterest_pin_10 = $pinterest_yql->query->results->body->rss->channel->item[9]->description;
+				$pinterest_pin_10 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_10, $result);
+				$pinterest_pin_10 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_10 = str_replace('"', '', $pinterest_pin_10);
+
+				$pinterest_pin_11 = $pinterest_yql->query->results->body->rss->channel->item[10]->description;
+				$pinterest_pin_11 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_11, $result);
+				$pinterest_pin_11 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_11 = str_replace('"', '', $pinterest_pin_11);
+				
+				$pinterest_pin_12 = $pinterest_yql->query->results->body->rss->channel->item[11]->description;
+				$pinterest_pin_12 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_12, $result);
+				$pinterest_pin_12 = str_replace('src="', '', $result[0][0]);
+				$pinterest_pin_12 = str_replace('"', '', $pinterest_pin_12);
+				
+				$p3_pinz = array($pinterest_pin_1, $pinterest_pin_2, $pinterest_pin_3, $pinterest_pin_4, $pinterest_pin_5, $pinterest_pin_6, $pinterest_pin_7, $pinterest_pin_8, $pinterest_pin_9, $pinterest_pin_10, $pinterest_pin_11, $pinterest_pin_12);
+				
+				set_transient('p3_pinz', $p3_pinz, 30 * MINUTE_IN_SECONDS);
+				
+			}
+			
+			?>
+			<style scoped>
+				.p3_pinterest_widget .p3_pin_wrap {
 				width: <?php echo $width; ?>;
 				}
 			</style>
-			<div class="p3_pinterest_widget"></div>
-			<script>
-			jQuery(document).ready(function($) {
-				var thumbnailCount = <?php echo $images_num; ?>;
-				var username = "<?php echo $pinterestuser; ?>";
-				var profile = true;
-				var board = false;
-				var boardname = "";
-				var url;var urlPrefix="https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=https://www.pinterest.com/";if(board===true&&profile===true||board===false&&profile===false){$(".p3_pinterest_widget").append("<p>Error: please choose a profile gallery or board gallery.</p>")}else{if(profile===true){url=urlPrefix+username+"/feed.rss&num="+thumbnailCount}else{if(board===true&&boardname===""){$(".p3_pinterest_widget").append("<p>Error: Please specify a boardname.</p>")}url=urlPrefix+username+"/"+boardname+"/rss&num="+thumbnailCount}}$.ajax({url:url,dataType:"jsonp",success:function(e){$.each(e.responseData.feed.entries,function(t){var n=e.responseData.feed.entries;var r=n[t].title;var i=n[t].link;var s=n[t].content;var o=s.indexOf("http");var u=s.indexOf('"></a>');var a=s.substring(o,u);var f=$('<li><a target="_blank" rel="nofollow" href="'+i+'">'+r+"<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC' alt=''/></a></li>");f.appendTo(".p3_pinterest_widget").css("background-image","url("+a+")")})}})
-			});
-			</script>
+			<div class="p3_pinterest_widget">
+			<?php 
+			for ($i = 0; $i < $images_num; ++$i) {
+				?>
+				<div class="p3_pin_wrap">
+					<a href="http://pinterest.com/<?php echo $pinterestuser; ?>" class="p3_pin" style="background-image:url(<?php echo $p3_pinz[$i]; ?>);">
+						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" alt="" class="p3_invisible" data-pin-nopin="true"/>
+					</a>
+				</div>
+				<?php
+			}
+			?>
+			</div>
 			<?php
 			if (isset($instance['follow'])) {
 				if (!empty($pinterestuser) && $follow) { ?>
@@ -76,11 +155,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 					<p><a href="http://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-pinterest" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Pinterest', 'p3'); ?></a></p>
 				<?php }
 			}
-			//$pinterest_count = get_option('pipdig_theme_pinterest_count');
-			//if ($pinterest_count) { ?>
-				<!--<div class="pinterest-widget-count"><?php //echo $pinterest_count; ?></div> -->
-			<?php //} //endif ?>
-		<?php
+
 		} else {
 			_e('Setup not complete. Please check the widget options.', 'p3');
 		}

@@ -121,25 +121,20 @@ display: block;
 .p3_pinterest_widget {
 overflow: auto;
 width: 100%;
-list-style: none;
 }
-.p3_pinterest_widget li {
+.p3_pinterest_widget .p3_pin_wrap {
+padding: 1px;
+float: left;
+}
+.p3_pinterest_widget .p3_pin{
+display: block;
 background-size: cover;
 background-repeat: no-repeat;
 background-position: center;
-float: left;
-margin: 0.5%;
 -moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out;
 }
-.p3_pinterest_widget li:hover {
+.p3_pinterest_widget .p3_pin:hover {
 opacity: .85;
-}
-.p3_pinterest_widget img {max-width:100%;height:auto;}
-.p3_pinterest_widget li a {
-display: block;
-color: transparent; 
-line-height: 0;
-font-size: 0;
 }
 
 

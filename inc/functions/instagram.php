@@ -12,7 +12,7 @@ function pipdig_p3_instagram_feed() {
 		if ( false === ( $result = get_transient( 'p3_instagram_feed' ) )) {
 			$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=10";
 			$result = wp_remote_fopen($url);
-			set_transient( 'p3_instagram_feed', $result, 15 * MINUTE_IN_SECONDS );
+			set_transient( 'p3_instagram_feed', $result, 30 * MINUTE_IN_SECONDS );
 		}
 		$result = json_decode($result);
 		
