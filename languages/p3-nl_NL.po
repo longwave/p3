@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-11-20 10:36+0000\n"
-"PO-Revision-Date: 2015-11-20 10:36+0000\n"
+"POT-Creation-Date: 2015-12-04 12:44+0000\n"
+"PO-Revision-Date: 2015-12-04 12:44+0000\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: nl_NL\n"
@@ -176,20 +176,20 @@ msgid "Newer Comments"
 msgstr "Nieuwere reactie"
 
 #: ../inc/functions/feature_header.php:21
-#: ../inc/functions/feature_header.php:297
+#: ../inc/functions/feature_header.php:296
 msgid "Big this Month"
 msgstr ""
 
 #: ../inc/functions/feature_header.php:25
-#: ../inc/functions/feature_header.php:314
+#: ../inc/functions/feature_header.php:313
 msgid "Recent Posts"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:150
+#: ../inc/functions/feature_header.php:149
 msgid "Feature Header"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:169
+#: ../inc/functions/feature_header.php:168
 #: ../inc/functions/pinterest_hover.php:179
 #: ../inc/functions/post_slider_posts_column.php:114
 #: ../inc/functions/post_slider_site_main_width.php:104
@@ -197,75 +197,75 @@ msgstr ""
 msgid "Enable this feature"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:185
+#: ../inc/functions/feature_header.php:184
 #: ../inc/functions/post_slider_site_main_width.php:120
 #: ../inc/functions/post_slider_site_main_width_sq.php:120
 msgid "Display on homepage only"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:201
+#: ../inc/functions/feature_header.php:200
 msgid "Date range for \"Big this Month\":"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:202
+#: ../inc/functions/feature_header.php:201
 msgid "This won't effect the Recent Posts section."
 msgstr ""
 
-#: ../inc/functions/feature_header.php:205
+#: ../inc/functions/feature_header.php:204
 #: ../inc/functions/related-posts.php:126 ../inc/widgets/popular-posts.php:53
 #: ../inc/widgets/post-slider.php:64 ../inc/widgets/random-posts.php:53
 msgid "1 Year"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:206
+#: ../inc/functions/feature_header.php:205
 #: ../inc/functions/related-posts.php:127 ../inc/widgets/popular-posts.php:52
 #: ../inc/widgets/post-slider.php:63 ../inc/widgets/random-posts.php:52
 msgid "1 Month"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:207
+#: ../inc/functions/feature_header.php:206
 #: ../inc/functions/related-posts.php:128 ../inc/widgets/popular-posts.php:51
 #: ../inc/widgets/post-slider.php:62 ../inc/widgets/random-posts.php:51
 msgid "1 Week"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:208
+#: ../inc/functions/feature_header.php:207
 #: ../inc/functions/related-posts.php:129 ../inc/widgets/popular-posts.php:54
 #: ../inc/widgets/post-slider.php:65 ../inc/widgets/random-posts.php:54
 msgid "All Time"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:224
+#: ../inc/functions/feature_header.php:223
 msgid "Category for \"Big this Month\":"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:225
+#: ../inc/functions/feature_header.php:224
 msgid "Only display posts from:"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:243
+#: ../inc/functions/feature_header.php:242
 msgid "Category for \"Recent Posts\":"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:260
+#: ../inc/functions/feature_header.php:259
 #: ../inc/functions/post_slider_posts_column.php:210
 #: ../inc/functions/post_slider_site_main_width.php:154
 #: ../inc/functions/post_slider_site_main_width_sq.php:154
 msgid "Background color"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:277
+#: ../inc/functions/feature_header.php:276
 #: ../inc/functions/post_slider_posts_column.php:227
 #: ../inc/functions/post_slider_site_main_width.php:171
 #: ../inc/functions/post_slider_site_main_width_sq.php:171
 msgid "Title color"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:294
+#: ../inc/functions/feature_header.php:293
 msgid "\"Big this Month\" title"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:311
+#: ../inc/functions/feature_header.php:310
 msgid "\"Recent Posts\" title"
 msgstr ""
 
@@ -365,10 +365,10 @@ msgid "Don't display on posts"
 msgstr ""
 
 #: ../inc/functions/related-posts.php:175 ../inc/widgets/clw.php:236
-#: ../inc/widgets/facebook.php:86 ../inc/widgets/pinterest.php:113
+#: ../inc/widgets/facebook.php:86 ../inc/widgets/pinterest.php:188
 #: ../inc/widgets/popular-posts.php:39 ../inc/widgets/post-slider.php:52
-#: ../inc/widgets/profile.php:67 ../inc/widgets/random-posts.php:39
-#: ../inc/widgets/snapcode.php:56 ../inc/widgets/socialz.php:123
+#: ../inc/widgets/profile.php:69 ../inc/widgets/random-posts.php:39
+#: ../inc/widgets/snapcode.php:56 ../inc/widgets/socialz.php:172
 #: ../inc/widgets/subscribe.php:72 ../inc/widgets/twitter.php:88
 #: ../inc/widgets/youtube.php:74
 msgid "Title:"
@@ -415,7 +415,7 @@ msgid "Display across footer"
 msgstr ""
 
 #: ../inc/functions/smash.php:97 ../inc/widgets/instagram.php:88
-#: ../inc/widgets/pinterest.php:133
+#: ../inc/widgets/pinterest.php:208
 msgid "Number of images to display:"
 msgstr ""
 
@@ -472,7 +472,7 @@ msgid "Follow on Bloglovin'"
 msgstr ""
 
 #: ../inc/widgets/bloglovin.php:56 ../inc/widgets/facebook.php:54
-#: ../inc/widgets/pinterest.php:85 ../inc/widgets/snapcode.php:35
+#: ../inc/widgets/pinterest.php:160 ../inc/widgets/snapcode.php:35
 #: ../inc/widgets/subscribe.php:52 ../inc/widgets/twitter.php:56
 #: ../inc/widgets/youtube.php:55
 msgid "Setup not complete. Please check the widget options."
@@ -605,7 +605,7 @@ msgid ""
 "widget to work."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:92 ../inc/widgets/pinterest.php:138
+#: ../inc/widgets/instagram.php:92 ../inc/widgets/pinterest.php:213
 msgid "Number of columns:"
 msgstr ""
 
@@ -613,7 +613,7 @@ msgstr ""
 msgid "Display a \"Load more\" button."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:102 ../inc/widgets/pinterest.php:144
+#: ../inc/widgets/instagram.php:102 ../inc/widgets/pinterest.php:219
 msgid "Display a \"Follow\" link."
 msgstr ""
 
@@ -625,20 +625,20 @@ msgstr ""
 msgid "Pinterest Widget"
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:76
+#: ../inc/widgets/pinterest.php:155
 msgid "Follow on Pinterest"
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:120
+#: ../inc/widgets/pinterest.php:195
 msgid "Add your Pinterest account name to the box below."
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:121 ../inc/widgets/subscribe.php:80
+#: ../inc/widgets/pinterest.php:196 ../inc/widgets/subscribe.php:80
 #: ../inc/widgets/youtube.php:82
 msgid "For example, the red part below:"
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:125
+#: ../inc/widgets/pinterest.php:200
 msgid "Pinterest Account Name:"
 msgstr ""
 
@@ -713,27 +713,27 @@ msgstr ""
 msgid "Profile Photo"
 msgstr ""
 
-#: ../inc/widgets/profile.php:71
+#: ../inc/widgets/profile.php:73
 msgid "Image"
 msgstr ""
 
-#: ../inc/widgets/profile.php:72
+#: ../inc/widgets/profile.php:74
 msgid "Step 1 - Click the button below to select a photo:"
 msgstr ""
 
-#: ../inc/widgets/profile.php:86
+#: ../inc/widgets/profile.php:88
 msgid "Upload Photo"
 msgstr ""
 
-#: ../inc/widgets/profile.php:87
+#: ../inc/widgets/profile.php:89
 msgid "Step 2 - Optional extras:"
 msgstr ""
 
-#: ../inc/widgets/profile.php:90
+#: ../inc/widgets/profile.php:92
 msgid "Change image to a circle"
 msgstr ""
 
-#: ../inc/widgets/profile.php:92
+#: ../inc/widgets/profile.php:94
 #, php-format
 msgid ""
 "To make a perfect circle you should upload a square image. For example, "
@@ -741,11 +741,11 @@ msgid ""
 "target='_blank'>picmonkey.com</a> to edit your image."
 msgstr ""
 
-#: ../inc/widgets/profile.php:96
+#: ../inc/widgets/profile.php:98
 msgid "Add some text below the photo:"
 msgstr ""
 
-#: ../inc/widgets/profile.php:99
+#: ../inc/widgets/profile.php:101
 msgid "Step 3 - Click the save button:"
 msgstr ""
 
@@ -796,11 +796,11 @@ msgstr ""
 msgid "Social Media Icons"
 msgstr ""
 
-#: ../inc/widgets/socialz.php:133
+#: ../inc/widgets/socialz.php:182
 msgid "Select a layout:"
 msgstr ""
 
-#: ../inc/widgets/socialz.php:143
+#: ../inc/widgets/socialz.php:192
 msgid "Add your links:"
 msgstr ""
 
