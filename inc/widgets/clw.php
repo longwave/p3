@@ -60,7 +60,7 @@ if (!class_exists('pipdig_widget_clw')) {
 				if (!isset($wp_customize)) { // are we in the customizer? No we're not, so let's use transients:
 				
 					if ( false === ( $map = get_transient( 'pipdig_clw_map' ) ) ) { // check for transient value
-						$map_color = get_theme_mod( 'pipdig_clw_map_color', '#888888' );
+						$map_color = get_theme_mod( 'pipdig_clw_map_color', '#cccccc' );
 						$border_color = get_theme_mod( 'pipdig_clw_border_color', '#ffffff' );
 						$marker_color = get_theme_mod( 'pipdig_clw_marker_color', '#000000' );
 						$marker_size = get_theme_mod( 'pipdig_clw_marker_size', '6' );
@@ -295,7 +295,7 @@ if (!class_exists('pipdig_clw_Customize')) {
 			// map color
 			$wp_customize->add_setting('pipdig_clw_map_color',
 				array(
-					'default' => '#dddddd',
+					'default' => '#cccccc',
 					//'transport'=>'postMessage',
 					'sanitize_callback' => 'sanitize_hex_color',
 				)
