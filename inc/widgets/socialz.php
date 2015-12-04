@@ -114,6 +114,55 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$email = empty($instance['email']) ? '' : $instance['email'];
 		$rss = empty($instance['rss']) ? '' : $instance['rss'];
 		
+		$links = get_option('pipdig_links');
+		
+		if (empty($twitter)) {
+				$twitter = $links['twitter'];
+		}
+		if (empty($instagram)) {
+				$instagram = $links['instagram'];
+		}
+		if (empty($facebook)) {
+				$facebook = $links['facebook'];
+		}
+		if (empty($google)) {
+				$google = $links['google_plus'];
+		}
+		if (empty($bloglovin)) {
+				$bloglovin = $links['bloglovin'];
+		}
+		if (empty($pinterest)) {
+				$pinterest = $links['pinterest'];
+		}
+		if (empty($youtube)) {
+				$youtube = $links['youtube'];
+		}
+		/* not on links page yet
+		if (empty($vine)) {
+				$vine = $links['vine'];
+		}
+		*/
+		if (empty($tumblr)) {
+				$tumblr = $links['tumblr'];
+		}
+		if (empty($linkedin)) {
+				$linkedin = $links['linkedin'];
+		}
+		if (empty($vk)) {
+				$vk = $links['vk'];
+		}
+		if (empty($flickr)) {
+				$flickr = $links['flickr'];
+		}
+		/* not on links page yet
+		if (empty($spotify)) {
+				$spotify = $links['spotify'];
+		}
+		*/
+		if (empty($email)) {
+				$email = $links['email'];
+		}
+		
 		$style_select = ( isset( $instance['style_select'] ) && is_numeric( $instance['style_select'] ) ) ? (int) $instance['style_select'] : 1;
 	   
 		// PART 2-3: Display the fields
@@ -130,7 +179,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		<hr style="margin: 25px 0 10px;">
 	
 		<p>
-			<legend><h3><?php _e('Select a layout:', 'bloglovin-widget'); ?></h3></legend>
+			<legend><h3><?php _e('Select a layout:', 'p3'); ?></h3></legend>
 			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-1') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="1" <?php checked( $style_select == 1, true) ?>>
 			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-1' ) ?>"><img src="<?php echo plugins_url( '../../assets/img/social_widget_style_1.png', __FILE__ ) ?>" style="position:relative;top:5px;border:1px solid #ddd" /></label>
 			<br /><br />
@@ -140,13 +189,13 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 
 		<hr style="margin: 25px 0 10px;">
 		
-		<h3><?php _e('Add your links:', 'bloglovin-widget'); ?></h3>
+		<h3><?php _e('Add your links:', 'p3'); ?></h3>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('twitter'); ?>">Twitter (e.g. http://twitter.com/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('twitter'); ?>" 
 			name="<?php echo $this->get_field_name('twitter'); ?>" type="url" 
-			value="<?php echo esc_attr($twitter); ?>" />
+			value="<?php echo esc_url($twitter); ?>" />
 			</label>
 		</p>
 
@@ -154,7 +203,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('instagram'); ?>">Instagram (e.g. http://instagram.com/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('instagram'); ?>" 
 			name="<?php echo $this->get_field_name('instagram'); ?>" type="text" 
-			value="<?php echo esc_attr($instagram); ?>" />
+			value="<?php echo esc_url($instagram); ?>" />
 			</label>
 		</p>
 
@@ -162,7 +211,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('facebook'); ?>">Facebook (e.g. http://facebook.com/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('facebook'); ?>" 
 			name="<?php echo $this->get_field_name('facebook'); ?>" type="text" 
-			value="<?php echo esc_attr($facebook); ?>" />
+			value="<?php echo esc_url($facebook); ?>" />
 			</label>
 		</p>
 
@@ -170,7 +219,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('google'); ?>">Google&#43; (e.g. https://plus.google.com/+pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('google'); ?>" 
 			name="<?php echo $this->get_field_name('google'); ?>" type="text" 
-			value="<?php echo esc_attr($google); ?>" />
+			value="<?php echo esc_url($google); ?>" />
 			</label>
 		</p>
 
@@ -178,7 +227,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('bloglovin'); ?>">Bloglovin (e.g. http://www.bloglovin.com/en/blog/3890264) 
 			<input class="widefat" id="<?php echo $this->get_field_id('bloglovin'); ?>" 
 			name="<?php echo $this->get_field_name('bloglovin'); ?>" type="text" 
-			value="<?php echo esc_attr($bloglovin); ?>" />
+			value="<?php echo esc_url($bloglovin); ?>" />
 			</label>
 		</p>
 
@@ -186,7 +235,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('pinterest'); ?>">Pinterest (e.g. http://pinterest.com/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('pinterest'); ?>" 
 			name="<?php echo $this->get_field_name('pinterest'); ?>" type="text" 
-			value="<?php echo esc_attr($pinterest); ?>" />
+			value="<?php echo esc_url($pinterest); ?>" />
 			</label>
 		</p>
 
@@ -194,7 +243,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('youtube'); ?>">YouTube (e.g. http://youtube.com/user/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('youtube'); ?>" 
 			name="<?php echo $this->get_field_name('youtube'); ?>" type="text" 
-			value="<?php echo esc_attr($youtube); ?>" />
+			value="<?php echo esc_url($youtube); ?>" />
 			</label>
 		</p>
 		
@@ -202,7 +251,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('vine'); ?>">Vine (e.g. http://vine.co/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('vine'); ?>" 
 			name="<?php echo $this->get_field_name('vine'); ?>" type="text" 
-			value="<?php echo esc_attr($vine); ?>" />
+			value="<?php echo esc_url($vine); ?>" />
 			</label>
 		</p>
 
@@ -210,7 +259,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('tumblr'); ?>">Tumblr (e.g. http://pipdig.tumblr.com) 
 			<input class="widefat" id="<?php echo $this->get_field_id('tumblr'); ?>" 
 			name="<?php echo $this->get_field_name('tumblr'); ?>" type="text" 
-			value="<?php echo esc_attr($tumblr); ?>" />
+			value="<?php echo esc_url($tumblr); ?>" />
 			</label>
 		</p>
 
@@ -218,7 +267,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('linkedin'); ?>">Linkedin (e.g. http://linkedin.com/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('linkedin'); ?>" 
 			name="<?php echo $this->get_field_name('linkedin'); ?>" type="text" 
-			value="<?php echo esc_attr($linkedin); ?>" />
+			value="<?php echo esc_url($linkedin); ?>" />
 			</label>
 		</p>
 		
@@ -226,7 +275,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('vk'); ?>">VKontakte (e.g. http://vk.com/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('vk'); ?>" 
 			name="<?php echo $this->get_field_name('vk'); ?>" type="text" 
-			value="<?php echo esc_attr($vk); ?>" />
+			value="<?php echo esc_url($vk); ?>" />
 			</label>
 		</p>
 
@@ -234,7 +283,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('flickr'); ?>">Flickr (e.g. http://flickr.com/user/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('flickr'); ?>" 
 			name="<?php echo $this->get_field_name('flickr'); ?>" type="text" 
-			value="<?php echo esc_attr($flickr); ?>" />
+			value="<?php echo esc_url($flickr); ?>" />
 			</label>
 		</p>
 		
@@ -242,7 +291,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('spotify'); ?>">Spotify (e.g. http://open.spotify.com/user/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('spotify'); ?>" 
 			name="<?php echo $this->get_field_name('spotify'); ?>" type="text" 
-			value="<?php echo esc_attr($spotify); ?>" />
+			value="<?php echo esc_url($spotify); ?>" />
 			</label>
 		</p>
 		
@@ -250,7 +299,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			<label for="<?php echo $this->get_field_id('email'); ?>">Email Address (e.g. yourname@gmail.com) 
 			<input class="widefat" id="<?php echo $this->get_field_id('email'); ?>" 
 			name="<?php echo $this->get_field_name('email'); ?>" type="text" 
-			value="<?php echo esc_attr($email); ?>" />
+			value="<?php echo sanitize_email($email); ?>" />
 			</label>
 		</p>
 
