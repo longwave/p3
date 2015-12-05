@@ -16,21 +16,23 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		// PART 1: Extracting the arguments + getting the values
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
-		$twitter = empty($instance['twitter']) ? '' : $instance['twitter'];
-		$instagram = empty($instance['instagram']) ? '' : $instance['instagram'];
-		$facebook = empty($instance['facebook']) ? '' : $instance['facebook'];
-		$google = empty($instance['google']) ? '' : $instance['google'];
-		$bloglovin = empty($instance['bloglovin']) ? '' : $instance['bloglovin'];
-		$pinterest = empty($instance['pinterest']) ? '' : $instance['pinterest'];
-		$youtube = empty($instance['youtube']) ? '' : $instance['youtube'];
-		$vine = empty($instance['vine']) ? '' : $instance['vine'];
-		$tumblr = empty($instance['tumblr']) ? '' : $instance['tumblr'];
-		$linkedin = empty($instance['linkedin']) ? '' : $instance['linkedin'];
-		$vk = empty($instance['vk']) ? '' : $instance['vk'];
-		$flickr = empty($instance['flickr']) ? '' : $instance['flickr'];
-		$spotify = empty($instance['spotify']) ? '' : $instance['spotify'];
-		$email = empty($instance['email']) ? '' : $instance['email'];
-		$rss = empty($instance['rss']) ? '' : $instance['rss'];
+		
+		$email = empty($instance['email']) ? '' : sanitize_email($instance['email']);
+		$twitter = empty($instance['twitter']) ? '' : esc_url($instance['twitter']);
+		$instagram = empty($instance['instagram']) ? '' : esc_url($instance['instagram']);
+		$facebook = empty($instance['facebook']) ? '' : esc_url($instance['facebook']);
+		$google = empty($instance['google']) ? '' : esc_url($instance['google']);
+		$bloglovin = empty($instance['bloglovin']) ? '' : esc_url($instance['bloglovin']);
+		$pinterest = empty($instance['pinterest']) ? '' : esc_url($instance['pinterest']);
+		$youtube = empty($instance['youtube']) ? '' : esc_url($instance['youtube']);
+		$vine = empty($instance['vine']) ? '' : esc_url($instance['vine']);
+		$tumblr = empty($instance['tumblr']) ? '' : esc_url($instance['tumblr']);
+		$linkedin = empty($instance['linkedin']) ? '' : esc_url($instance['linkedin']);
+		$vk = empty($instance['vk']) ? '' : esc_url($instance['vk']);
+		$flickr = empty($instance['flickr']) ? '' : esc_url($instance['flickr']);
+		$spotify = empty($instance['spotify']) ? '' : esc_url($instance['spotify']);
+		$medium = empty($instance['medium']) ? '' : esc_url($instance['medium']);
+		$rss = empty($instance['rss']) ? '' : strip_tags($instance['rss']);
 		//$style_select = empty($instance['style_select']) ? '' : $instance['style_select'];
 
 	
@@ -62,6 +64,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($vk)) $icons_output .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i></a>';
 			if (!empty($flickr)) $icons_output .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i></a>';
 			if (!empty($spotify)) $icons_output .= '<a href="' . $spotify . '" target="_blank"><i class="fa fa-spotify"></i></a>';
+			if (!empty($medium)) $icons_output .= '<a href="' . $medium . '" target="_blank"><i class="fa fa-medium"></i></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:' . $email . '"><i class="fa fa-envelope"></i></a>';
 			if (!empty($rss)) $icons_output .= '<a href="' . $rss . '" target="_blank"><i class="fa fa-rss"></i></a>';
 			
@@ -82,6 +85,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($vk)) $icons_output .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i><br /><span>VKontakte</span></a>';
 			if (!empty($flickr)) $icons_output .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i><br /><span>Flickr</span></a>';
 			if (!empty($spotify)) $icons_output .= '<a href="' . $spotify . '" target="_blank"><i class="fa fa-spotify"></i><br /><span>Spotify</span></a>';
+			if (!empty($medium)) $icons_output .= '<a href="' . $medium . '" target="_blank"><i class="fa fa-medium"></i><br /><span>Medium</span></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:' . $email . '"><i class="fa fa-envelope"></i><br /><span>Email</span></a>';
 			if (!empty($rss)) $icons_output .= '<a href="' . $rss . '" target="_blank"><i class="fa fa-rss"></i><br /><span>RSS</span></a>';
 			echo '<style scoped>.pipdig_widget_social_icons .socialz a {line-height:.9; display: inline-block; width: 25%; padding: 2px; margin: 10px;} .pipdig_widget_social_icons .socialz a span {font: 10px montserrat, arial, sans-serif;text-transform: uppercase; letter-spacing: 1px}</style>';
@@ -98,69 +102,76 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		  
 		// PART 1: Extract the data from the instance variable
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
-		$twitter = empty($instance['twitter']) ? '' : $instance['twitter'];
-		$instagram = empty($instance['instagram']) ? '' : $instance['instagram'];
-		$facebook = empty($instance['facebook']) ? '' : $instance['facebook'];
-		$google = empty($instance['google']) ? '' : $instance['google'];
-		$bloglovin = empty($instance['bloglovin']) ? '' : $instance['bloglovin'];
-		$pinterest = empty($instance['pinterest']) ? '' : $instance['pinterest'];
-		$youtube = empty($instance['youtube']) ? '' : $instance['youtube'];
-		$vine = empty($instance['vine']) ? '' : $instance['vine'];
-		$tumblr = empty($instance['tumblr']) ? '' : $instance['tumblr'];
-		$linkedin = empty($instance['linkedin']) ? '' : $instance['linkedin'];
-		$vk = empty($instance['vk']) ? '' : $instance['vk'];
-		$flickr = empty($instance['flickr']) ? '' : $instance['flickr'];
-		$spotify = empty($instance['spotify']) ? '' : $instance['spotify'];
-		$email = empty($instance['email']) ? '' : $instance['email'];
-		$rss = empty($instance['rss']) ? '' : $instance['rss'];
+		
+		$email = empty($instance['email']) ? '' : sanitize_email($instance['email']);
+		$twitter = empty($instance['twitter']) ? '' : esc_url($instance['twitter']);
+		$instagram = empty($instance['instagram']) ? '' : esc_url($instance['instagram']);
+		$facebook = empty($instance['facebook']) ? '' : esc_url($instance['facebook']);
+		$google = empty($instance['google']) ? '' : esc_url($instance['google']);
+		$bloglovin = empty($instance['bloglovin']) ? '' : esc_url($instance['bloglovin']);
+		$pinterest = empty($instance['pinterest']) ? '' : esc_url($instance['pinterest']);
+		$youtube = empty($instance['youtube']) ? '' : esc_url($instance['youtube']);
+		$vine = empty($instance['vine']) ? '' : esc_url($instance['vine']);
+		$tumblr = empty($instance['tumblr']) ? '' : esc_url($instance['tumblr']);
+		$linkedin = empty($instance['linkedin']) ? '' : esc_url($instance['linkedin']);
+		$vk = empty($instance['vk']) ? '' : esc_url($instance['vk']);
+		$flickr = empty($instance['flickr']) ? '' : esc_url($instance['flickr']);
+		$spotify = empty($instance['spotify']) ? '' : esc_url($instance['spotify']);
+		$medium = empty($instance['medium']) ? '' : esc_url($instance['medium']);
+		$rss = empty($instance['rss']) ? '' : strip_tags($instance['rss']);
 		
 		$links = get_option('pipdig_links');
 		
 		if (empty($twitter)) {
-				$twitter = $links['twitter'];
+			$twitter = esc_url($links['twitter']);
 		}
 		if (empty($instagram)) {
-				$instagram = $links['instagram'];
+			$instagram = esc_url($links['instagram']);
 		}
 		if (empty($facebook)) {
-				$facebook = $links['facebook'];
+			$facebook = esc_url($links['facebook']);
 		}
 		if (empty($google)) {
-				$google = $links['google_plus'];
+			$google = esc_url($links['google_plus']);
 		}
 		if (empty($bloglovin)) {
-				$bloglovin = $links['bloglovin'];
+			$bloglovin = esc_url($links['bloglovin']);
 		}
 		if (empty($pinterest)) {
-				$pinterest = $links['pinterest'];
+			$pinterest = esc_url($links['pinterest']);
 		}
 		if (empty($youtube)) {
-				$youtube = $links['youtube'];
+			$youtube = esc_url($links['youtube']);
 		}
 		/* not on links page yet
 		if (empty($vine)) {
-				$vine = $links['vine'];
+				$vine = esc_url($links['vine']);
 		}
 		*/
 		if (empty($tumblr)) {
-				$tumblr = $links['tumblr'];
+			$tumblr = esc_url($links['tumblr']);
 		}
 		if (empty($linkedin)) {
-				$linkedin = $links['linkedin'];
+			$linkedin = esc_url($links['linkedin']);
 		}
 		if (empty($vk)) {
-				$vk = $links['vk'];
+			$vk = esc_url($links['vk']);
 		}
 		if (empty($flickr)) {
-				$flickr = $links['flickr'];
+			$flickr = esc_url($links['flickr']);
 		}
 		/* not on links page yet
 		if (empty($spotify)) {
-				$spotify = $links['spotify'];
+			$spotify = esc_url($links['spotify']);
+		}
+		*/
+		/* not on links page yet
+		if (empty($medium)) {
+			$medium = esc_url($links['medium']);
 		}
 		*/
 		if (empty($email)) {
-				$email = $links['email'];
+			$email = sanitize_email($links['email']);
 		}
 		
 		$style_select = ( isset( $instance['style_select'] ) && is_numeric( $instance['style_select'] ) ) ? (int) $instance['style_select'] : 1;
@@ -296,6 +307,14 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		</p>
 		
 		<p>
+			<label for="<?php echo $this->get_field_id('medium'); ?>">Medium (e.g. https://medium.com/@pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('medium'); ?>" 
+			name="<?php echo $this->get_field_name('medium'); ?>" type="text" 
+			value="<?php echo esc_url($medium); ?>" />
+			</label>
+		</p>
+		
+		<p>
 			<label for="<?php echo $this->get_field_id('email'); ?>">Email Address (e.g. yourname@gmail.com) 
 			<input class="widefat" id="<?php echo $this->get_field_id('email'); ?>" 
 			name="<?php echo $this->get_field_name('email'); ?>" type="text" 
@@ -318,19 +337,20 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['twitter'] = strip_tags($new_instance['twitter']);
-		$instance['instagram'] = strip_tags($new_instance['instagram']);
-		$instance['facebook'] = strip_tags($new_instance['facebook']);
-		$instance['google'] = strip_tags($new_instance['google']);
-		$instance['bloglovin'] = strip_tags($new_instance['bloglovin']);
-		$instance['pinterest'] = strip_tags($new_instance['pinterest']);
-		$instance['youtube'] = strip_tags($new_instance['youtube']);
-		$instance['vine'] = strip_tags($new_instance['vine']);
-		$instance['tumblr'] = strip_tags($new_instance['tumblr']);
-		$instance['linkedin'] = strip_tags($new_instance['linkedin']);
-		$instance['vk'] = strip_tags($new_instance['vk']);
-		$instance['flickr'] = strip_tags($new_instance['flickr']);
-		$instance['spotify'] = strip_tags($new_instance['spotify']);
+		$instance['twitter'] = esc_url($new_instance['twitter']);
+		$instance['instagram'] = esc_url($new_instance['instagram']);
+		$instance['facebook'] = esc_url($new_instance['facebook']);
+		$instance['google'] = esc_url($new_instance['google']);
+		$instance['bloglovin'] = esc_url($new_instance['bloglovin']);
+		$instance['pinterest'] = esc_url($new_instance['pinterest']);
+		$instance['youtube'] = esc_url($new_instance['youtube']);
+		$instance['vine'] = esc_url($new_instance['vine']);
+		$instance['tumblr'] = esc_url($new_instance['tumblr']);
+		$instance['linkedin'] = esc_url($new_instance['linkedin']);
+		$instance['vk'] = esc_url($new_instance['vk']);
+		$instance['flickr'] = esc_url($new_instance['flickr']);
+		$instance['spotify'] = esc_url($new_instance['spotify']);
+		$instance['medium'] = esc_url($new_instance['medium']);
 		$instance['email'] = sanitize_email($new_instance['email']);
 		$instance['rss'] = strip_tags($new_instance['rss']);
 		
