@@ -25,18 +25,18 @@ if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 			
 			$links = get_option('pipdig_links');
 			
-			$socialz_twitter = get_theme_mod('socialz_twitter');
-			$socialz_instagram = get_theme_mod('socialz_instagram');
-			$socialz_facebook = get_theme_mod('socialz_facebook');
-			$socialz_google_plus = get_theme_mod('socialz_google_plus');
-			$socialz_bloglovin = get_theme_mod('socialz_bloglovin');
-			$socialz_pinterest = get_theme_mod('socialz_pinterest');
-			$socialz_youtube = get_theme_mod('socialz_youtube');
-			$socialz_tumblr = get_theme_mod('socialz_tumblr');
-			$socialz_linkedin = get_theme_mod('socialz_linkedin');
-			$socialz_email = get_theme_mod('socialz_email');
-			$socialz_soundcloud = get_theme_mod('socialz_soundcloud');
-			$socialz_flickr = get_theme_mod('socialz_flickr');
+			$socialz_twitter = esc_url(get_theme_mod('socialz_twitter'));
+			$socialz_instagram = esc_url(get_theme_mod('socialz_instagram'));
+			$socialz_facebook = esc_url(get_theme_mod('socialz_facebook'));
+			$socialz_google_plus = esc_url(get_theme_mod('socialz_google_plus'));
+			$socialz_bloglovin = esc_url(get_theme_mod('socialz_bloglovin'));
+			$socialz_pinterest = esc_url(get_theme_mod('socialz_pinterest'));
+			$socialz_youtube = esc_url(get_theme_mod('socialz_youtube'));
+			$socialz_tumblr = esc_url(get_theme_mod('socialz_tumblr'));
+			$socialz_linkedin = esc_url(get_theme_mod('socialz_linkedin'));
+			$socialz_email = sanitize_email(get_theme_mod('socialz_email'));
+			$socialz_soundcloud = esc_url(get_theme_mod('socialz_soundcloud'));
+			$socialz_flickr = esc_url(get_theme_mod('socialz_flickr'));
 			
 			if ($socialz_twitter) {
 				$links['twitter'] = $socialz_twitter;

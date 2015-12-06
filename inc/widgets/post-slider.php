@@ -16,30 +16,30 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 	  {
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 		if (isset($instance['title'])) { 
-			$title = $instance['title'];
+			$title = strip_tags($instance['title']);
 		}
 		if (isset($instance['date_range_posts'])) { 
-			$date_range_posts = $instance['date_range_posts'];
+			$date_range_posts = strip_tags($instance['date_range_posts']);
 		} else {
 			$date_range_posts = '';
 		}
 		if (isset($instance['category'])) { 
-			$category = $instance['category'];
+			$category = intval($instance['category']);
 		} else {
-			$category = 0;
+			$category = '';
 		}
 		if (isset($instance['number_posts'])) { 
-			$number_posts = $instance['number_posts'];
+			$number_posts = intval($instance['number_posts']);
 		} else {
 			$number_posts = 4;
 		}
 		if (isset($instance['height'])) { 
-			$height = $instance['height'];
+			$height = intval($instance['height']);
 		} else {
 			$height = 360;
 		}
 		if (isset($instance['post_title_layout'])) { 
-			$post_title_layout = $instance['post_title_layout'];
+			$post_title_layout = strip_tags($instance['post_title_layout']);
 		} else {
 			$post_title_layout = 'yes';
 		}
@@ -88,10 +88,10 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['category'] = absint($new_instance['category']);
+		$instance['category'] = intval($new_instance['category']);
 		$instance['date_range_posts'] =  strip_tags($new_instance['date_range_posts']);
-		$instance['number_posts'] = absint($new_instance['number_posts']);
-		$instance['height'] = absint($new_instance['height']);
+		$instance['number_posts'] = intval($new_instance['number_posts']);
+		$instance['height'] = intval($new_instance['height']);
 		$instance['post_title_layout'] =  strip_tags($new_instance['post_title_layout']);
 		return $instance;
 	  }
@@ -104,30 +104,30 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 	 
 		echo $before_widget;
 		if (isset($instance['title'])) { 
-			$title = $instance['title'];
+			$title = strip_tags($instance['title']);
 		}
 		if (isset($instance['date_range_posts'])) { 
-			$date_range_posts = $instance['date_range_posts'];
+			$date_range_posts = strip_tags($instance['date_range_posts']);
 		} else {
 			$date_range_posts = '';
 		}
 		if (isset($instance['category'])) { 
-			$category = $instance['category'];
+			$category = intval($instance['category']);
 		} else {
 			$category = '';
 		}
 		if (isset($instance['number_posts'])) { 
-			$number_posts = $instance['number_posts'];
+			$number_posts = intval($instance['number_posts']);
 		} else {
 			$number_posts = 4;
 		}
 		if (isset($instance['height'])) { 
-			$height = $instance['height'];
+			$height = intval($instance['height']);
 		} else {
 			$height = 360;
 		}
 		if (isset($instance['post_title_layout'])) { 
-			$post_title_layout = $instance['post_title_layout'];
+			$post_title_layout = strip_tags($instance['post_title_layout']);
 		} else {
 			$post_title_layout = 'yes';
 		}
@@ -176,7 +176,7 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 		<div class="slide-inside">
 			<?php if ($post_title_layout != 'no') { ?>
 				<span class="slide-desc">
-					<h2><?php $title = get_the_title(); echo pipdig_p3_truncate($title, 4); ?></h2>
+					<h2><?php echo pipdig_p3_truncate(get_the_title(), 4); ?></h2>
 					<a href="<?php the_permalink(); ?>" class="read-more"><?php _e('View Post', 'p3'); ?></a>
 				</span>
 			<?php } ?>
