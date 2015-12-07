@@ -139,7 +139,7 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 
 	
 
-<style scoped="scoped">
+<style scoped>
 .pipdig_widget_post_slider .slide-desc{bottom:<?php echo $height / 2.5; ?>px;}
 <?php if ($post_title_layout == 'hover') { ?>
 .slide-inside{opacity:0}

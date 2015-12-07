@@ -395,6 +395,7 @@ include_once('functions/related-posts.php');
 include_once('functions/social_footer.php');
 include_once('functions/navbar_icons.php');
 include_once('functions/feature_header.php');
+include_once('functions/trending.php');
 include_once('functions/post_slider_site_main_width.php');
 //include_once('functions/post_slider_site_main_width_sq.php');
 include_once('functions/post_slider_posts_column.php');

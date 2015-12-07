@@ -29,7 +29,7 @@ if (!function_exists('p3_post_slider_site_main_width_sq')) {
 	?>
 	<div id="p3_post_slider_site_main_width_sq" class="row">
 		<div class="col-xs-12">
-			<style scoped="scoped">
+			<style scoped>
 				.cycle-slideshow {height: auto} .cycle-slideshow li{display:none;width:100%}.cycle-slideshow li.first{display:block}
 			</style>
 				<div data-starting-slide="1" data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">

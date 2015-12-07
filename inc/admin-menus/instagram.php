@@ -79,7 +79,7 @@ function pipdig_instagram_section_callback() {
 
 function pipdig_instagram_options_page() { 
 	?>
-	<style scoped="scoped">
+	<style scoped>
 	.form-table th {width: 110px;}
 	</style>
 	<form action='options.php' method='post'>
