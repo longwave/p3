@@ -5,7 +5,7 @@ Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://www.pipdig.co/
-Version: 1.9.2
+Version: 1.9.3
 Text Domain: p3
 */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '1.9.2' );
+define( 'PIPDIG_P3_V', '1.9.3' );
 
 if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 	return;
@@ -159,7 +159,11 @@ class pipdig_p3_intalled_xyz_2 {
 			update_option('image_default_link_type', 'none');
 			
 			if (get_option('posts_per_page') == 10 && (get_option('pipdig_p3_posts_per_page_set') != 1)) {
-				update_option('posts_per_page', 5);
+				if (get_option('pipdig_theme') == 'aquae') {
+					update_option('posts_per_page', 13);
+				} else {
+					update_option('posts_per_page', 5);
+				}
 				update_option('pipdig_p3_posts_per_page_set', 1);
 			}
 			

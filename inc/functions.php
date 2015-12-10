@@ -132,15 +132,6 @@ if (!function_exists('pipdig_rss_post_thumbnail')) {
 	add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');
 }
 
-// truncate stuff
-function pipdig_p3_truncate($text, $limit) {
-if (str_word_count($text, 0) > $limit) {
-    $words = str_word_count($text, 2);
-    $pos = array_keys($words);
-    $text = substr($text, 0, $pos[$limit]) . '&hellip;';
-}
-return $text;
-}
 
 // remove bad mojo
 if (function_exists('mm_load_updater')) {
@@ -220,13 +211,13 @@ add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
 function pipdig_p3_remove_default_metaboxes() {
 	// posts:
 	remove_meta_box( 'trackbacksdiv','post','normal' );
-	remove_meta_box( 'slugdiv','post','normal' );
+	//remove_meta_box( 'slugdiv','post','normal' );
 	remove_meta_box( 'revisionsdiv','post','normal' );
 	// pages:
 	remove_meta_box( 'postexcerpt','page','normal' );
 	if (get_theme_mod('page_comments')){ remove_meta_box( 'commentstatusdiv','page','normal' ); }
 	remove_meta_box( 'trackbacksdiv','page','normal' );
-	remove_meta_box( 'slugdiv','page','normal' );
+	//remove_meta_box( 'slugdiv','page','normal' );
 	remove_meta_box( 'revisionsdiv','page','normal' );
 }
 add_action('admin_menu','pipdig_p3_remove_default_metaboxes');
@@ -340,7 +331,7 @@ function pipdig_p3_emmmm_heeey() {
 			 if($(window).scrollTop() + $(window).height() == $(document).height()) {
 				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox").slideUp();
 			 } else {
-				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox").slideDown()
+				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#upprev_box").slideDown()
 			 }
 		});
 	});
