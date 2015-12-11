@@ -8,7 +8,7 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 	class pipdig_widget_twitter extends WP_Widget {
 	 
 	  public function __construct() {
-		  $widget_ops = array('classname' => 'pipdig_widget_twitter', 'description' => __('Displays your latest tweets.', 'p3') );
+		  $widget_ops = array('classname' => 'pipdig_widget_twitter', 'description' => __('Display your Twitter timeline.', 'p3') );
 		  parent::__construct('pipdig_widget_twitter', 'pipdig - ' . __('Twitter Widget', 'p3'), $widget_ops);
 	  }
 	  
@@ -16,28 +16,15 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 		// PART 1: Extracting the arguments + getting the values
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
-		if (isset($instance['facebook_url'])) { 
-			$facebook_url =	$instance['facebook_url'];
+		if (isset($instance['twitter_handle'])) { 
+			$twitter_handle = esc_attr($instance['twitter_handle']);
 		} else {
-			$links = get_option('pipdig_links');
-			$facebook_url =	$links['facebook'];
+			$twitter_handle = '';
 		}
-		if (isset($instance['hide_cover'])) { 
-			$hide_cover = $instance['hide_cover'];
+		if (isset($instance['twitter_widget_id'])) { 
+			$twitter_widget_id = $instance['twitter_widget_id'];
 		} else {
-			$hide_cover = 'false';
-		}
-		if (isset($instance['show_faces'])) { 
-			$show_faces = $instance['show_faces'];
-		} else {
-			$show_faces = 'false';
-		}
-		if (isset($instance['show_posts'])) { 
-			$show_posts = $instance['show_posts'];
-			$height = '450px';
-		} else {
-			$show_posts = 'false';
-			$height = '320px';
+			$twitter_widget_id = '';
 		}
 
 		// Before widget code, if any
@@ -47,10 +34,13 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 		if (!empty($title)) {
 			echo $before_title . $title . $after_title;
 		}
+		
+		
 
-		if (!empty($facebook_url)) { ?>
-			<a class="twitter-timeline" data-tweet-limit="2" data-dnt="true" data-border-color="#ffffff" data-chrome="noheader nofooter" href="https://twitter.com/LRFashionInflux" data-widget-id="398447232648617985">Tweets by @LRFashionInflux</a>
-			<a href="https://twitter.com/LRFashionInflux" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @fashioninflux</a>
+		if (!empty($twitter_handle) && !empty($twitter_widget_id)) { ?>
+			<?php $twitter_handle = str_replace('@', '', $twitter_handle); ?>
+			<a class="twitter-timeline" data-tweet-limit="2" data-dnt="true" data-border-color="<?php echo get_theme_mod( 'content_background_color', '#ffffff'); ?>" data-chrome="noheader nofooter" href="https://twitter.com/<?php echo $twitter_handle; ?>" data-widget-id="<?php echo $twitter__widget_id; ?>">Tweets by @<?php echo $twitter_handle; ?></a>
+			<a href="https://twitter.com/<?php echo $twitter_handle; ?>" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @<?php echo $twitter_handle; ?></a>
 			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>		
 		<?php } else {
 			_e('Setup not complete. Please check the widget options.', 'p3');
@@ -64,69 +54,50 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 		// PART 1: Extract the data from the instance variable
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 		$title = $instance['title'];
-		if (isset($instance['facebook_url'])) { 
-			$facebook_url =	$instance['facebook_url'];
+		if (isset($instance['twitter_handle'])) { 
+			$twitter_handle = esc_attr($instance['twitter_handle']);
 		} else {
 			$links = get_option('pipdig_links');
-			$facebook_url =	$links['facebook'];
+			$twitter_url = esc_url($links['twitter']);
+			if (!empty($twitter_url)) {
+				$twitter_handle = parse_url($twitter_url, PHP_URL_PATH);
+				$twitter_handle = str_replace('/', '', $twitter_handle);
+			} else {
+				$twitter_handle = '';
+			}
 		}
-		if (isset($instance['hide_cover'])) { 
-			$hide_cover = $instance['hide_cover'];
+		
+		if (isset($instance['twitter_widget_id'])) { 
+			$twitter_widget_id = intval($instance['twitter_widget_id']);
+		} else {
+			$twitter_widget_id = '';
 		}
-		if (isset($instance['show_faces'])) { 
-			$show_faces = $instance['show_faces'];
-		}
-		if (isset($instance['show_posts'])) { 
-			$show_posts = $instance['show_posts'];
-		}
-		 
-	   
 		// PART 2-3: Display the fields
 		?>
-		 
+		
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
-			name="<?php echo $this->get_field_name('title'); ?>" type="text" 
-			value="<?php echo esc_attr($title); ?>" />
+			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
 		</p>
-
-		<p><?php _e('Add your Facebook page URL to the box below. For example, https://facebook.com/pipdig', 'p3'); ?></p>
-
 		<p>
-			<label for="<?php echo $this->get_field_id('facebook_url'); ?>"><?php _e('Facebook Page URL:', 'p3'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('facebook_url'); ?>" 
-			name="<?php echo $this->get_field_name('facebook_url'); ?>" type="text" 
-			value="<?php echo esc_attr($facebook_url); ?>" placeholder="https://facebook.com/pipdig" />
+			<label for="<?php echo $this->get_field_id('twitter_handle'); ?>"><?php _e('Twitter Username (Not including @ symbol):', 'p3'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id('twitter_handle'); ?>" name="<?php echo $this->get_field_name('twitter_handle'); ?>" type="text" value="<?php echo esc_attr($twitter_handle); ?>" placeholder="e.g. pipdig" />
+		</p>
+		<p><a href="https://pipdig.zendesk.com/hc/en-gb/articles/206407699" target="_blank"><?php _e('Click here for information', 'p3'); ?></a></p>
+		<p>
+			<label for="<?php echo $this->get_field_id('twitter_widget_id'); ?>"><?php _e('Twitter Widget ID:', 'p3'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id('twitter_widget_id'); ?>" name="<?php echo $this->get_field_name('twitter_widget_id'); ?>" type="number" value="<?php echo $twitter_widget_id; ?>" placeholder="e.g. 123456789" />
 		</p>
 		
-		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'hide_cover' ); ?>" name="<?php echo $this->get_field_name( 'hide_cover' ); ?>" <?php checked(isset($instance['hide_cover'])) ?> />
-			<label for="<?php echo $this->get_field_id('hide_cover'); ?>"><?php _e('Hide Cover Image', 'p3'); ?></label>
-		</p>
-		
-		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'show_faces' ); ?>" name="<?php echo $this->get_field_name( 'show_faces' ); ?>" <?php checked(isset($instance['show_faces'])) ?> />
-			<label for="<?php echo $this->get_field_id('show_faces'); ?>"><?php _e('Show Faces', 'p3'); ?></label>
-		</p>
-		
-		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'show_posts' ); ?>" name="<?php echo $this->get_field_name( 'show_posts' ); ?>" <?php checked(isset($instance['show_posts'])) ?> />
-			<label for="<?php echo $this->get_field_id('show_posts'); ?>"><?php _e('Show Posts', 'p3'); ?></label>
-		</p>
-
-		 <?php
+		<?php
 	   
 	  }
 	 
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['facebook_url'] = strip_tags($new_instance['facebook_url']);
-		$instance['hide_cover'] = $new_instance['hide_cover'];
-		$instance['show_posts'] = $new_instance['show_posts'];
-		$instance['show_faces'] = $new_instance['show_faces'];
-
+		$instance['title'] = esc_attr($new_instance['title']);
+		$instance['twitter_handle'] = esc_attr($new_instance['twitter_handle']);
+		$instance['twitter_widget_id'] = intval($new_instance['twitter_widget_id']);
 		return $instance;
 	  }
 
