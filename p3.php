@@ -5,7 +5,7 @@ Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme. Note: will only work when using a pipdig theme.
 Author: pipdig
 Author URI: http://www.pipdig.co/
-Version: 1.9.3
+Version: 1.9.5
 Text Domain: p3
 */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '1.9.3' );
+define( 'PIPDIG_P3_V', '1.9.5' );
 
 if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 	return;
@@ -104,6 +104,7 @@ if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
 			set_theme_mod('p3_navbar_email', 1);
 			set_theme_mod('p3_navbar_woocommerce', 1);
 			update_option('p3_navbar_icons_transfer', 1);
+			remove_theme_mod('show_socialz_navbar');
 		}
 
 class pipdig_p3_intalled_xyz_2 {

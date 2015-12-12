@@ -58,7 +58,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			
 			if ( false === ( $value = get_transient('p3_pinz') ) ) {
 		
-				$pinterest_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fwww.pinterest.com%2F".$pinterestuser."%2Ffeed.rss%22&format=json", array( 'timeout' => 10 ));
+				$pinterest_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fwww.pinterest.com%2F".$pinterestuser."%2Ffeed.rss%22&format=json", array( 'timeout' => 30 ));
 				$pinterest_yql = json_decode($pinterest_yql);
 				
 				// yowza! Loop this in future release plx
@@ -230,7 +230,9 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		$instance['images_num'] = absint( $new_instance['images_num'] );
 		$instance['cols'] = absint( $new_instance['cols'] );
 		$instance['follow'] = strip_tags( $new_instance['follow'] );
-
+		
+		delete_transient('p3_pinz');
+		
 		return $instance;
 	  }
 	  

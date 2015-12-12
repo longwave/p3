@@ -249,7 +249,7 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
 	// 'after-the-deadline',
 	// 'carousel',
 	'photon',
-	'sharedaddy',
+	//'sharedaddy',
 	'omnisearch',
 	'mobile-push',
 	// 'likes',

@@ -33,6 +33,9 @@ padding: 0 !important;
 cursor: pointer;
 }
 
+/* Jetpack Carousel */
+.slideshow-window{background:transparent;border:0}
+
 /* related posts ============================= */
 .pipdig_p3_related_posts ul {
 padding: 0;
