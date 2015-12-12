@@ -74,11 +74,10 @@ function pipdig_p3_scrapey_scrapes() {
 		// Twitter ---------------------
 		$twitter_url = esc_url($links['twitter']);
 		if ($twitter_url) {
-			$twitter_handle = get_option('p3_twitter_handle');
-			if (empty($twitter_handle)) {
+			if ( false === ( $twitter_handle = get_transient( 'p3_twitter_handle' ) ) ) {
 				$twitter_handle = parse_url($twitter_url, PHP_URL_PATH);
 				$twitter_handle = str_replace('/', '', $twitter_handle);
-				update_option('p3_twitter_handle', $twitter_handle);
+				set_transient('p3_twitter_handle', $twitter_handle, 72 * HOUR_IN_SECONDS);
 			}
 			include_once('TwitterAPIExchange.php');
 			$settings = array(
