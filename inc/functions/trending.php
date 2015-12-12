@@ -11,12 +11,15 @@ if (!function_exists('p3_trending_bar')) {
 		
 		if (get_theme_mod('show_trending')) {
 			set_theme_mod('p3_trending_bar_enable', 1);
+			remove_theme_mod('show_trending');
 		}
 		if (get_theme_mod('trending_section_title')) {
 			set_theme_mod('p3_trending_bar_slider_title', get_theme_mod('trending_section_title'));
+			remove_theme_mod('trending_section_title');
 		}
 		if (get_theme_mod('trending_dates')) {
 			set_theme_mod('p3_trending_bar_trending_dates', get_theme_mod('trending_dates'));
+			remove_theme_mod('trending_dates');
 		}
 		
 		// ----
