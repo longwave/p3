@@ -115,7 +115,7 @@ class pipdig_p3_intalled_xyz_2 {
 
 	function pipdig_p3_activate() {
 	
-	update_option('jr_resizeupload_convertgif_yesno', 'no');
+		update_option('jr_resizeupload_convertgif_yesno', 'no');
 		
 		if (get_theme_mod('show_slider') == 1) { // remove this in Jan
 			set_theme_mod('p3_post_slider_posts_column_enable', 1);

@@ -142,7 +142,6 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 				)
 			);
 			
-			
 			// Image
 			$wp_customize->add_setting('p3_pinterest_hover_image_file',
 				array(
@@ -158,10 +157,6 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 						   'label'      => __( 'Upload a header image', 'p3' ),
 						   'section'    => 'pipdig_pinterest_hover',
 						   'settings'   => 'p3_pinterest_hover_image_file',
-						   'input_attrs' => array(
-								'class' => 'test-class test',
-								'style' => 'color: #0a0',
-							),
 					   )
 				   )
 			);
