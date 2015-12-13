@@ -121,6 +121,8 @@ if (!function_exists('pipdig_rss_post_thumbnail')) {
 				$content = '<p>' . get_the_post_thumbnail($post->ID) . '</p>' . get_the_excerpt();
 			} elseif (pipdig_p3_catch_that_image()) {
 				$content = '<p><img src="'.pipdig_p3_catch_that_image().'" alt=""/></p>' . get_the_excerpt();
+			} else {
+				$content = get_the_content();
 			}
 		} else {
 			$content = get_the_content();
@@ -249,13 +251,13 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
 	// 'after-the-deadline',
 	// 'carousel',
 	'photon',
-	//'sharedaddy',
+	'sharedaddy',
 	'omnisearch',
 	'mobile-push',
 	// 'likes',
 	// 'videopress',
 	// 'sso',
-	'monitor',
+	// 'monitor',
 	'markdown',
 	// 'manage',
 	// 'verification-tools',
