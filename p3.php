@@ -162,6 +162,8 @@ class pipdig_p3_intalled_xyz_2 {
 			if (get_option('posts_per_page') == 10 && (get_option('pipdig_p3_posts_per_page_set') != 1)) {
 				if (get_option('pipdig_theme') == 'aquae') {
 					update_option('posts_per_page', 13);
+				} elseif (get_option('pipdig_theme') == 'thegrid') {
+					update_option('posts_per_page', 6);
 				} else {
 					update_option('posts_per_page', 5);
 				}

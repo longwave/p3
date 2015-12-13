@@ -34,11 +34,11 @@ if (!function_exists('p3_pinterest_hover')) {
 		</style>
 		<script>
 		(function( $ ){
-		  $.fn.imgPin = function( options ) {
+			$.fn.imgPin = function( options ) {
 
 			var defaults = {
-			  pinImg : '<?php echo esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png')); ?>',
-			  position: 'center',
+				pinImg : '<?php echo esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png')); ?>',
+				position: 'center',
 			};
 			var options = $.extend( {}, defaults, options );
 
@@ -48,49 +48,49 @@ if (!function_exists('p3_pinterest_hover')) {
 			<?php $position = get_theme_mod('p3_pinterest_hover_image_position', 'center'); ?>
 
 			this.each(function(){
-			  var src = $(this).attr('src'),
-				  shareURL = $(this).data('p3-pin-link');
+				var src = $(this).attr('src'),
+					shareURL = $(this).data('p3-pin-link');
 
-			  // get image dimensions - if < 500 then return
-			  var img = new Image();
-			  img.src = src;
+				// get image dimensions - if < 500 then return
+				var img = new Image();
+				img.src = src;
 
-			  var description = $(this).data('p3-pin-title'),
-				  imgURL = encodeURIComponent(src);
+				var description = $(this).data('p3-pin-title'),
+					imgURL = encodeURIComponent(src);
 
-			  var link = 'https://www.pinterest.com/pin/create/button/';
-				  link += '?url='+shareURL;
-				  link += '&media='+imgURL;
-				  link += '&description='+description;
+				var link = 'https://www.pinterest.com/pin/create/button/';
+					link += '?url='+shareURL;
+					link += '&media='+imgURL;
+					link += '&description='+description;
 
-			  $(this).wrap('<div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this on Pinterest', 'p3'); ?>"/></a>');
+				$(this).wrap('<div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this on Pinterest', 'p3'); ?>"/></a>');
 
-			  <?php if ($position == 'center') { ?>
+				<?php if ($position == 'center') { ?>
 				var img = new Image();
 				img.onload = function() {
-				  var w = this.width;
-				  h = this.height;
-				  $('.p3_pin_wrapper .pin.center').css('margin-left', -w/2).css('margin-top', -h/2);
+					var w = this.width;
+					h = this.height;
+					$('.p3_pin_wrapper .pin.center').css('margin-left', -w/2).css('margin-top', -h/2);
 				}
 				img.src = pinImg;
-			  <?php } ?>
+				<?php } ?>
 
 
-			  //set click events
-			  $('.p3_pin_wrapper .pin').click(function(){
+				//set click events
+				$('.p3_pin_wrapper .pin').click(function(){
 				var w = 700,
-				  h = 400;
+					h = 400;
 				var left = (screen.width/2)-(w/2);
 				var top = (screen.height/2)-(h/2);
 				var imgPinWindow = window.open(this.href,'imgPngWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=400');
 				imgPinWindow.moveTo(left, top);
 				return false;
-			  });
+				});
 
 			});
 
 
-		  }
+			}
 
 
 		})(jQuery);
@@ -105,10 +105,10 @@ if (!function_exists('p3_pinterest_hover')) {
 
 // stop image from being 100% width of tab in cust
 function p3_pinterest_hover_customizer_styles() { ?>
-    <style>
-        #customize-control-p3_pinterest_hover_image_file img {width: auto;}
-    </style>
-    <?php
+		<style>
+				#customize-control-p3_pinterest_hover_image_file img {width: auto;}
+		</style>
+		<?php
 }
 add_action( 'customize_controls_print_styles', 'p3_pinterest_hover_customizer_styles', 999 );
 
@@ -150,15 +150,15 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 				)
 			);
 			$wp_customize->add_control(
-				   new WP_Customize_Image_Control(
-					   $wp_customize,
-					   'p3_pinterest_hover_image_file',
-					   array(
-						   'label'      => __( 'Upload a custom image', 'p3' ),
-						   'section'    => 'pipdig_pinterest_hover',
-						   'settings'   => 'p3_pinterest_hover_image_file',
-					   )
-				   )
+					 new WP_Customize_Image_Control(
+						 $wp_customize,
+						 'p3_pinterest_hover_image_file',
+						 array(
+							 'label'			=> __( 'Upload a custom image', 'p3' ),
+							 'section'		=> 'pipdig_pinterest_hover',
+							 'settings'	 => 'p3_pinterest_hover_image_file',
+						 )
+					 )
 			);
 			
 			// Position			
