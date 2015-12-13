@@ -3,30 +3,33 @@
 if (!defined('ABSPATH')) {
 	exit;
 }
-/*
-function p3_pinterest_hover_add_data_tags($content) {
-     $dom = new DOMDocument();
-     @$dom->loadHTML($content);
 
-     foreach ($dom->getElementsByTagName('img') as $node) {
-         $node->setAttribute("data-original", 'poop' );
-     }
-     $newHtml = $dom->saveHtml();
-     return $newHtml;
+
+function new_content($content) {
+	
+	if (get_theme_mod('p3_pinterest_hover_enable')) {
+		$link = esc_url(get_the_permalink());
+		$title = esc_attr(get_the_title());
+		//$summary = esc_attr(get_the_excerpt());
+		$content = str_replace('<img','<img data-p3-pin-title="'.$title.'" data-p3-pin-link="'.$link.'"', $content);
+	}
+
+	return $content;
 }
-add_filter('the_content', 'p3_pinterest_hover_add_data_tags');
-*/
+
+add_filter('the_content','new_content');
+
 
 if (!function_exists('p3_pinterest_hover')) {
 	function p3_pinterest_hover() {
-		
-		
-		
+		if (!get_theme_mod('p3_pinterest_hover_enable')) {
+			return;
+		}
 		?>
 		<style>
 		.imgPinWrap {
 		  position: relative;
-		  display: inline-block;
+		  /* display: inline-block; commented out to stop images going over div */
 		}
 
 		.imgPinWrap .pin {
@@ -55,7 +58,7 @@ if (!function_exists('p3_pinterest_hover')) {
 		.imgPinWrap .top { top: 15px; }
 		.imgPinWrap .center {
 		  left: 50%;
-		  top:50%;
+		  top: 50%;
 		}
 		</style>
 		<script>
@@ -67,38 +70,26 @@ if (!function_exists('p3_pinterest_hover')) {
     // Note that the first argument to extend is an empty
     // object – this is to keep from overriding our "defaults" object.
     var defaults = {
-      pinImg : 'https://assets.pinterest.com/images/pidgets/pin_it_button.png',
-      position: 1, // Display default header
+      pinImg : '<?php echo esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png')); ?>',
+      position: 'center',
     };
     var options = $.extend( {}, defaults, options );
 
     var url = encodeURIComponent(document.URL),
         pinImg = options.pinImg,
         position = '';
-
-    switch (options.position) {
-      case 1:
-        position = 'top left'; break;
-      case 2:
-        position = 'top right'; break;
-      case 3:
-        position = 'bottom right'; break;
-      case 4:
-        position = 'bottom left'; break;
-      case 5:
-        position = 'center'; break;
-    }
+	<?php $position = get_theme_mod('p3_pinterest_hover_image_position', 'center'); ?>
 
     this.each(function(){ // add Pin buttons to all images
       var src = $(this).attr('src'),
-          shareURL = url;
+          shareURL = $(this).data('p3-pin-link');
 
       // get image dimensions - if < 500 then return
       var img = new Image();
       img.src = src;
 
       // Get Title and img to pin - encode them
-      var description = '<?php the_title(); ?>',
+      var description = $(this).data('p3-pin-title'),
           imgURL = encodeURIComponent(src);
 
       // Generate link
@@ -108,10 +99,10 @@ if (!function_exists('p3_pinterest_hover')) {
           link += '&description='+description;
 
       //add wrappers
-      $(this).wrap('<div class="imgPinWrap">').after('<a href="'+link+'" class="pin '+position+'"><img src="'+pinImg+'" alt="Pin this!"/></a>');
+      $(this).wrap('<div class="imgPinWrap">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
 
       //position center
-      if (options.position == 5) {
+      <?php if ($position == 'center') { ?>
         var img = new Image();
         img.onload = function() {
           var w = this.width;
@@ -119,7 +110,7 @@ if (!function_exists('p3_pinterest_hover')) {
           $('.imgPinWrap .pin.center').css('margin-left', -w/2).css('margin-top', -h/2);
         }
         img.src = pinImg;
-      }
+      <?php } ?>
 
 
       //set click events
@@ -162,18 +153,18 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 					'description'=> __( 'When you hover your mouse over an image in a post/page, a Pinterest "Pin it" button will appear.', 'p3' ),
 					'capability' => 'edit_theme_options',
 					//'panel' => 'pipdig_features',
-					'priority' => 74,
+					'priority' => 64,
 				) 
 			);
 
 			// Pinterest Hover
-			$wp_customize->add_setting('pinterest_hover_image_active',
+			$wp_customize->add_setting('p3_pinterest_hover_enable',
 				array(
 					'default' => 0,
 					'sanitize_callback' => 'absint',
 				)
 			);
-			$wp_customize->add_control('pinterest_hover_image_active',
+			$wp_customize->add_control('p3_pinterest_hover_enable',
 				array(
 					'type' => 'checkbox',
 					'label' => __('Enable this feature', 'p3'),
@@ -182,27 +173,47 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 			);
 			
 			// Date range for related posts
-			/*
-			$wp_customize->add_setting('related_posts_date',
+			
+			$wp_customize->add_setting('p3_pinterest_hover_image_position',
 				array(
-					'default' => '1 year ago',
+					'default' => 'center',
 					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
-			$wp_customize->add_control('related_posts_date',
+			$wp_customize->add_control('p3_pinterest_hover_image_position',
 				array(
 					'type' => 'select',
-					'label' => __('Date range for posts:', 'p3'),
+					'label' => __('Image position:', 'p3'),
 					'section' => 'pipdig_pinterest_hover',
 					'choices' => array(
-						'1 year ago' => __('1 Year', 'p3'),
-						'1 month ago' => __('1 Month', 'p3'),
-						'1 week ago' => __('1 Week', 'p3'),
-						'' => __('All Time', 'p3'),
+						'center' => __('Center', 'p3'),
+						'top left' => __('Top left', 'p3'),
+						'top right' => __('Top right', 'p3'),
+						'bottom right' => __('Bottom right', 'p3'),
+						'bottom left' => __('Bottom left', 'p3'),
 					),
 				)
 			);
-			*/
+			
+			// Header image
+			$wp_customize->add_setting('p3_pinterest_hover_image_file',
+				array(
+					'default' => 'https://assets.pinterest.com/images/pidgets/pin_it_button.png',
+					'sanitize_callback' => 'esc_url_raw',
+				)
+			);
+			$wp_customize->add_control(
+				   new WP_Customize_Image_Control(
+					   $wp_customize,
+					   'p3_pinterest_hover_image_file',
+					   array(
+						   'label'      => __( 'Upload a header image', 'p3' ),
+						   'section'    => 'pipdig_pinterest_hover',
+						   'settings'   => 'p3_pinterest_hover_image_file',
+					   )
+				   )
+			);
+			
 
 		}
 	}
