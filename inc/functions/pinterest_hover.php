@@ -145,7 +145,7 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 			// Image
 			$wp_customize->add_setting('p3_pinterest_hover_image_file',
 				array(
-					'default' => 'https://assets.pinterest.com/images/pidgets/pin_it_button.png',
+					//'default' => 'https://assets.pinterest.com/images/pidgets/pin_it_button.png',
 					'sanitize_callback' => 'esc_url_raw',
 				)
 			);
@@ -154,7 +154,7 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 					   $wp_customize,
 					   'p3_pinterest_hover_image_file',
 					   array(
-						   'label'      => __( 'Upload a header image', 'p3' ),
+						   'label'      => __( 'Upload a custom image', 'p3' ),
 						   'section'    => 'pipdig_pinterest_hover',
 						   'settings'   => 'p3_pinterest_hover_image_file',
 					   )
