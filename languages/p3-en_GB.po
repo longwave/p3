@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2015-12-04 12:44+0000\n"
-"PO-Revision-Date: 2015-12-04 12:44+0000\n"
+"POT-Creation-Date: 2015-12-13 10:59+0000\n"
+"PO-Revision-Date: 2015-12-13 11:00+0000\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: en_GB\n"
@@ -157,23 +157,23 @@ msgid ""
 "Are you sure?"
 msgstr ""
 
-#: ../inc/functions.php:165
+#: ../inc/functions.php:156
 msgid "Themes"
 msgstr ""
 
-#: ../inc/functions.php:359
+#: ../inc/functions.php:350
 msgid "1 Comment"
 msgstr ""
 
-#: ../inc/functions.php:361
+#: ../inc/functions.php:352
 msgid "Comments"
 msgstr ""
 
-#: ../inc/functions.php:371
+#: ../inc/functions.php:362
 msgid "Older Comments"
 msgstr ""
 
-#: ../inc/functions.php:372
+#: ../inc/functions.php:363
 msgid "Newer Comments"
 msgstr ""
 
@@ -192,16 +192,18 @@ msgid "Feature Header"
 msgstr ""
 
 #: ../inc/functions/feature_header.php:168
-#: ../inc/functions/pinterest_hover.php:179
+#: ../inc/functions/pinterest_hover.php:140
 #: ../inc/functions/post_slider_posts_column.php:114
 #: ../inc/functions/post_slider_site_main_width.php:104
 #: ../inc/functions/post_slider_site_main_width_sq.php:104
+#: ../inc/functions/trending.php:120
 msgid "Enable this feature"
 msgstr ""
 
 #: ../inc/functions/feature_header.php:184
 #: ../inc/functions/post_slider_site_main_width.php:120
 #: ../inc/functions/post_slider_site_main_width_sq.php:120
+#: ../inc/functions/trending.php:136
 msgid "Display on homepage only"
 msgstr ""
 
@@ -214,34 +216,38 @@ msgid "This won't effect the Recent Posts section."
 msgstr ""
 
 #: ../inc/functions/feature_header.php:204
-#: ../inc/functions/related-posts.php:126 ../inc/widgets/popular-posts.php:53
-#: ../inc/widgets/post-slider.php:64 ../inc/widgets/random-posts.php:53
+#: ../inc/functions/related-posts.php:126 ../inc/functions/trending.php:174
+#: ../inc/widgets/popular-posts.php:53 ../inc/widgets/post-slider.php:64
+#: ../inc/widgets/random-posts.php:53
 msgid "1 Year"
 msgstr ""
 
 #: ../inc/functions/feature_header.php:205
-#: ../inc/functions/related-posts.php:127 ../inc/widgets/popular-posts.php:52
-#: ../inc/widgets/post-slider.php:63 ../inc/widgets/random-posts.php:52
+#: ../inc/functions/related-posts.php:127 ../inc/functions/trending.php:175
+#: ../inc/widgets/popular-posts.php:52 ../inc/widgets/post-slider.php:63
+#: ../inc/widgets/random-posts.php:52
 msgid "1 Month"
 msgstr ""
 
 #: ../inc/functions/feature_header.php:206
-#: ../inc/functions/related-posts.php:128 ../inc/widgets/popular-posts.php:51
-#: ../inc/widgets/post-slider.php:62 ../inc/widgets/random-posts.php:51
+#: ../inc/functions/related-posts.php:128 ../inc/functions/trending.php:176
+#: ../inc/widgets/popular-posts.php:51 ../inc/widgets/post-slider.php:62
+#: ../inc/widgets/random-posts.php:51
 msgid "1 Week"
 msgstr ""
 
 #: ../inc/functions/feature_header.php:207
-#: ../inc/functions/related-posts.php:129 ../inc/widgets/popular-posts.php:54
-#: ../inc/widgets/post-slider.php:65 ../inc/widgets/random-posts.php:54
+#: ../inc/functions/related-posts.php:129 ../inc/functions/trending.php:177
+#: ../inc/widgets/popular-posts.php:54 ../inc/widgets/post-slider.php:65
+#: ../inc/widgets/random-posts.php:54
 msgid "All Time"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:223
+#: ../inc/functions/feature_header.php:223 ../inc/functions/trending.php:193
 msgid "Category for \"Big this Month\":"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:224
+#: ../inc/functions/feature_header.php:224 ../inc/functions/trending.php:194
 msgid "Only display posts from:"
 msgstr ""
 
@@ -253,6 +259,7 @@ msgstr ""
 #: ../inc/functions/post_slider_posts_column.php:210
 #: ../inc/functions/post_slider_site_main_width.php:154
 #: ../inc/functions/post_slider_site_main_width_sq.php:154
+#: ../inc/functions/trending.php:212
 msgid "Background color"
 msgstr ""
 
@@ -260,6 +267,7 @@ msgstr ""
 #: ../inc/functions/post_slider_posts_column.php:227
 #: ../inc/functions/post_slider_site_main_width.php:171
 #: ../inc/functions/post_slider_site_main_width_sq.php:171
+#: ../inc/functions/trending.php:229
 msgid "Title color"
 msgstr ""
 
@@ -285,14 +293,50 @@ msgstr ""
 msgid "Click here for more information"
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:161
+#: ../inc/functions/pinterest_hover.php:66
+msgid "Pin this on Pinterest"
+msgstr ""
+
+#: ../inc/functions/pinterest_hover.php:122
 msgid "Pinterest Hover Button"
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:162
+#: ../inc/functions/pinterest_hover.php:123
 msgid ""
 "When you hover your mouse over an image in a post/page, a Pinterest \"Pin it"
 "\" button will appear."
+msgstr ""
+
+#: ../inc/functions/pinterest_hover.php:158
+msgid "Upload a header image"
+msgstr ""
+
+#: ../inc/functions/pinterest_hover.php:179
+msgid "Image position:"
+msgstr ""
+
+#: ../inc/functions/pinterest_hover.php:182
+msgid "Center"
+msgstr "Centre"
+
+#: ../inc/functions/pinterest_hover.php:183
+msgid "Top left"
+msgstr ""
+
+#: ../inc/functions/pinterest_hover.php:184
+msgid "Top right"
+msgstr ""
+
+#: ../inc/functions/pinterest_hover.php:185
+msgid "Bottom right"
+msgstr ""
+
+#: ../inc/functions/pinterest_hover.php:186
+msgid "Bottom left"
+msgstr ""
+
+#: ../inc/functions/pinterest_hover.php:201
+msgid "Image margin"
 msgstr ""
 
 #: ../inc/functions/post-options.php:26
@@ -353,8 +397,9 @@ msgstr ""
 msgid "Related Posts are displayed from the same category."
 msgstr ""
 
-#: ../inc/functions/related-posts.php:123 ../inc/widgets/popular-posts.php:49
-#: ../inc/widgets/post-slider.php:60 ../inc/widgets/random-posts.php:49
+#: ../inc/functions/related-posts.php:123 ../inc/functions/trending.php:171
+#: ../inc/widgets/popular-posts.php:49 ../inc/widgets/post-slider.php:60
+#: ../inc/widgets/random-posts.php:49
 msgid "Date range for posts:"
 msgstr ""
 
@@ -370,30 +415,30 @@ msgstr ""
 #: ../inc/widgets/facebook.php:86 ../inc/widgets/pinterest.php:188
 #: ../inc/widgets/popular-posts.php:39 ../inc/widgets/post-slider.php:52
 #: ../inc/widgets/profile.php:69 ../inc/widgets/random-posts.php:39
-#: ../inc/widgets/snapcode.php:56 ../inc/widgets/socialz.php:172
-#: ../inc/widgets/subscribe.php:72 ../inc/widgets/twitter.php:88
+#: ../inc/widgets/snapcode.php:56 ../inc/widgets/socialz.php:183
+#: ../inc/widgets/subscribe.php:72 ../inc/widgets/twitter.php:80
 #: ../inc/widgets/youtube.php:74
 msgid "Title:"
 msgstr ""
 
-#: ../inc/functions/shares.php:50
+#: ../inc/functions/shares.php:56
 msgid "Share:"
 msgstr ""
 
-#: ../inc/functions/shares.php:63
+#: ../inc/functions/shares.php:69
 msgid "Sharing Icons"
 msgstr ""
 
-#: ../inc/functions/shares.php:64
+#: ../inc/functions/shares.php:70
 msgid ""
 "Use these options to control which social sharing icons should be displayed."
 msgstr ""
 
-#: ../inc/functions/shares.php:80
+#: ../inc/functions/shares.php:86
 msgid "Disable all icons"
 msgstr ""
 
-#: ../inc/functions/shares.php:81
+#: ../inc/functions/shares.php:87
 msgid "Select this option to completely remove this feature."
 msgstr ""
 
@@ -431,6 +476,23 @@ msgstr ""
 
 #: ../inc/functions/top_menu_bar.php:49
 msgid "Use this option to add an extra menu across the top of your site. "
+msgstr ""
+
+#: ../inc/functions/trending.php:35 ../inc/functions/trending.php:155
+#: ../inc/widgets/popular-posts.php:12
+msgid "Popular Posts"
+msgstr ""
+
+#: ../inc/functions/trending.php:101
+msgid "Popular Posts Bar"
+msgstr ""
+
+#: ../inc/functions/trending.php:102
+msgid "Display popular posts across the top of your site."
+msgstr ""
+
+#: ../inc/functions/trending.php:152
+msgid "Feature title"
 msgstr ""
 
 #: ../inc/meta/full_width_slider.php:12
@@ -475,7 +537,7 @@ msgstr ""
 
 #: ../inc/widgets/bloglovin.php:56 ../inc/widgets/facebook.php:54
 #: ../inc/widgets/pinterest.php:160 ../inc/widgets/snapcode.php:35
-#: ../inc/widgets/subscribe.php:52 ../inc/widgets/twitter.php:56
+#: ../inc/widgets/subscribe.php:52 ../inc/widgets/twitter.php:47
 #: ../inc/widgets/youtube.php:55
 msgid "Setup not complete. Please check the widget options."
 msgstr ""
@@ -562,25 +624,25 @@ msgstr ""
 msgid "Facebook Widget"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:92 ../inc/widgets/twitter.php:94
+#: ../inc/widgets/facebook.php:92
 msgid ""
 "Add your Facebook page URL to the box below. For example, https://facebook."
 "com/pipdig"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:95 ../inc/widgets/twitter.php:97
+#: ../inc/widgets/facebook.php:95
 msgid "Facebook Page URL:"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:103 ../inc/widgets/twitter.php:105
+#: ../inc/widgets/facebook.php:103
 msgid "Hide Cover Image"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:108 ../inc/widgets/twitter.php:110
+#: ../inc/widgets/facebook.php:108
 msgid "Show Faces"
 msgstr ""
 
-#: ../inc/widgets/facebook.php:113 ../inc/widgets/twitter.php:115
+#: ../inc/widgets/facebook.php:113
 msgid "Show Posts"
 msgstr ""
 
@@ -649,10 +711,6 @@ msgstr ""
 
 #: ../inc/widgets/popular-posts.php:11
 msgid "Displays your most popular posts."
-msgstr ""
-
-#: ../inc/widgets/popular-posts.php:12
-msgid "Popular Posts"
 msgstr ""
 
 #: ../inc/widgets/popular-posts.php:45 ../inc/widgets/post-slider.php:56
@@ -801,11 +859,11 @@ msgstr ""
 msgid "Social Media Icons"
 msgstr ""
 
-#: ../inc/widgets/socialz.php:182
+#: ../inc/widgets/socialz.php:193
 msgid "Select a layout:"
 msgstr ""
 
-#: ../inc/widgets/socialz.php:192
+#: ../inc/widgets/socialz.php:203
 msgid "Add your links:"
 msgstr ""
 
@@ -840,11 +898,23 @@ msgid "Text to display above the form:"
 msgstr ""
 
 #: ../inc/widgets/twitter.php:11
-msgid "Displays your latest tweets."
+msgid "Display your Twitter timeline."
 msgstr ""
 
 #: ../inc/widgets/twitter.php:12
 msgid "Twitter Widget"
+msgstr ""
+
+#: ../inc/widgets/twitter.php:84
+msgid "Twitter Username (Not including @ symbol):"
+msgstr ""
+
+#: ../inc/widgets/twitter.php:87
+msgid "Click here for information"
+msgstr ""
+
+#: ../inc/widgets/twitter.php:89
+msgid "Twitter Widget ID:"
 msgstr ""
 
 #: ../inc/widgets/youtube.php:11

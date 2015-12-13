@@ -140,6 +140,27 @@ background-position: center;
 opacity: .85;
 }
 
+.p3_pin_wrapper {
+position: relative;
+line-height: 0;
+}
+.p3_pin_wrapper .pin {
+opacity: 0;
+position: absolute;
+display: block;
+-moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out;
+}
+.p3_pin_wrapper .pin img {
+display: block;
+}
+.p3_pin_wrapper:hover .pin {
+opacity: 1;
+}
+.p3_pin_wrapper .center {
+left: 50%;
+top: 50%;
+}
+
 
 /* various sliders ============================ */
 

@@ -4,136 +4,98 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-
-function new_content($content) {
-	
-	if (get_theme_mod('p3_pinterest_hover_enable')) {
+if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pinterest_hover_enable')) {
+	function p3_pinterest_hover_add_data($content) {
+		
 		$link = esc_url(get_the_permalink());
 		$title = esc_attr(get_the_title());
-		//$summary = esc_attr(get_the_excerpt());
 		$content = str_replace('<img','<img data-p3-pin-title="'.$title.'" data-p3-pin-link="'.$link.'"', $content);
+		return $content;
+		
 	}
-
-	return $content;
+	add_filter('the_content','p3_pinterest_hover_add_data');
 }
-
-add_filter('the_content','new_content');
-
 
 if (!function_exists('p3_pinterest_hover')) {
 	function p3_pinterest_hover() {
+		
 		if (!get_theme_mod('p3_pinterest_hover_enable')) {
 			return;
 		}
+		
+		$margin = get_theme_mod('p3_pinterest_hover_margin', 0);
+		
 		?>
 		<style>
-		.imgPinWrap {
-		  position: relative;
-		  /* display: inline-block; commented out to stop images going over div */
-		}
-
-		.imgPinWrap .pin {
-		  opacity: 0;
-		  position: absolute;
-		  display: block;
-		  -webkit-transition:all .25s ease-in-out;
-		  -moz-transition:all .25s ease-in-out;
-		  -o-transition:all .25s ease-in-out;
-		  transition:all .25s ease-in-out;
-		}
-		.imgPinWrap .pin img {
-		  display: block;
-		}
-		.imgPinWrap .pin:hover {
-		  box-shadow: 0 0 5px #fff;
-		}
-
-		.imgPinWrap:hover .pin {
-		  opacity: 1;
-		}
-
-		.imgPinWrap .left { left: 15px; }
-		.imgPinWrap .right { right: 15px; }
-		.imgPinWrap .bottom { bottom: 15px; }
-		.imgPinWrap .top { top: 15px; }
-		.imgPinWrap .center {
-		  left: 50%;
-		  top: 50%;
-		}
+		.p3_pin_wrapper .left {left:<?php echo intval($margin); ?>px}
+		.p3_pin_wrapper .right {right:<?php echo intval($margin); ?>px}
+		.p3_pin_wrapper .bottom {bottom:<?php echo intval($margin); ?>px}
+		.p3_pin_wrapper .top {top:<?php echo intval($margin); ?>px}
 		</style>
 		<script>
 		(function( $ ){
-  $.fn.imgPin = function( options ) {
+		  $.fn.imgPin = function( options ) {
+
+			var defaults = {
+			  pinImg : '<?php echo esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png')); ?>',
+			  position: 'center',
+			};
+			var options = $.extend( {}, defaults, options );
+
+			var url = encodeURIComponent(document.URL),
+				pinImg = options.pinImg,
+				position = '';
+			<?php $position = get_theme_mod('p3_pinterest_hover_image_position', 'center'); ?>
+
+			this.each(function(){
+			  var src = $(this).attr('src'),
+				  shareURL = $(this).data('p3-pin-link');
+
+			  // get image dimensions - if < 500 then return
+			  var img = new Image();
+			  img.src = src;
+
+			  var description = $(this).data('p3-pin-title'),
+				  imgURL = encodeURIComponent(src);
+
+			  var link = 'https://www.pinterest.com/pin/create/button/';
+				  link += '?url='+shareURL;
+				  link += '&media='+imgURL;
+				  link += '&description='+description;
+
+			  $(this).wrap('<div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this on Pinterest', 'p3'); ?>"/></a>');
+
+			  <?php if ($position == 'center') { ?>
+				var img = new Image();
+				img.onload = function() {
+				  var w = this.width;
+				  h = this.height;
+				  $('.p3_pin_wrapper .pin.center').css('margin-left', -w/2).css('margin-top', -h/2);
+				}
+				img.src = pinImg;
+			  <?php } ?>
 
 
-    // Extend our default options with those provided.
-    // Note that the first argument to extend is an empty
-    // object – this is to keep from overriding our "defaults" object.
-    var defaults = {
-      pinImg : '<?php echo esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png')); ?>',
-      position: 'center',
-    };
-    var options = $.extend( {}, defaults, options );
+			  //set click events
+			  $('.p3_pin_wrapper .pin').click(function(){
+				var w = 700,
+				  h = 400;
+				var left = (screen.width/2)-(w/2);
+				var top = (screen.height/2)-(h/2);
+				var imgPinWindow = window.open(this.href,'imgPngWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=400');
+				imgPinWindow.moveTo(left, top);
+				return false;
+			  });
 
-    var url = encodeURIComponent(document.URL),
-        pinImg = options.pinImg,
-        position = '';
-	<?php $position = get_theme_mod('p3_pinterest_hover_image_position', 'center'); ?>
-
-    this.each(function(){ // add Pin buttons to all images
-      var src = $(this).attr('src'),
-          shareURL = $(this).data('p3-pin-link');
-
-      // get image dimensions - if < 500 then return
-      var img = new Image();
-      img.src = src;
-
-      // Get Title and img to pin - encode them
-      var description = $(this).data('p3-pin-title'),
-          imgURL = encodeURIComponent(src);
-
-      // Generate link
-      var link = 'https://www.pinterest.com/pin/create/button/';
-          link += '?url='+shareURL;
-          link += '&media='+imgURL;
-          link += '&description='+description;
-
-      //add wrappers
-      $(this).wrap('<div class="imgPinWrap">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
-
-      //position center
-      <?php if ($position == 'center') { ?>
-        var img = new Image();
-        img.onload = function() {
-          var w = this.width;
-          h = this.height;
-          $('.imgPinWrap .pin.center').css('margin-left', -w/2).css('margin-top', -h/2);
-        }
-        img.src = pinImg;
-      <?php } ?>
+			});
 
 
-      //set click events
-      $('.imgPinWrap .pin').click(function(){
-        var w = 700,
-          h = 400;
-        var left = (screen.width/2)-(w/2);
-        var top = (screen.height/2)-(h/2);
-        var imgPinWindow = window.open(this.href,'imgPngWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=400');
-        imgPinWindow.moveTo(left, top);
-        return false;
-      });
-
-    });
+		  }
 
 
-  }
+		})(jQuery);
 
-
-})( jQuery );
-
-
-jQuery('.entry-content img').imgPin();
+		jQuery('.entry-content img').imgPin();
 
 		</script>
 		<?php
@@ -141,6 +103,14 @@ jQuery('.entry-content img').imgPin();
 	add_action('wp_footer', 'p3_pinterest_hover', 999);
 }
 
+// stop image from being 100% width of tab in cust
+function p3_pinterest_hover_customizer_styles() { ?>
+    <style>
+        #customize-control-p3_pinterest_hover_image_file img {width: auto;}
+    </style>
+    <?php
+}
+add_action( 'customize_controls_print_styles', 'p3_pinterest_hover_customizer_styles', 999 );
 
 // customiser
 if (!class_exists('pipdig_pinterest_hover_Customize')) {
@@ -172,8 +142,31 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 				)
 			);
 			
-			// Date range for related posts
 			
+			// Image
+			$wp_customize->add_setting('p3_pinterest_hover_image_file',
+				array(
+					'default' => 'https://assets.pinterest.com/images/pidgets/pin_it_button.png',
+					'sanitize_callback' => 'esc_url_raw',
+				)
+			);
+			$wp_customize->add_control(
+				   new WP_Customize_Image_Control(
+					   $wp_customize,
+					   'p3_pinterest_hover_image_file',
+					   array(
+						   'label'      => __( 'Upload a header image', 'p3' ),
+						   'section'    => 'pipdig_pinterest_hover',
+						   'settings'   => 'p3_pinterest_hover_image_file',
+						   'input_attrs' => array(
+								'class' => 'test-class test',
+								'style' => 'color: #0a0',
+							),
+					   )
+				   )
+			);
+			
+			// Position			
 			$wp_customize->add_setting('p3_pinterest_hover_image_position',
 				array(
 					'default' => 'center',
@@ -195,25 +188,82 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 				)
 			);
 			
-			// Header image
-			$wp_customize->add_setting('p3_pinterest_hover_image_file',
-				array(
-					'default' => 'https://assets.pinterest.com/images/pidgets/pin_it_button.png',
-					'sanitize_callback' => 'esc_url_raw',
+			// Image margin top
+			$wp_customize->add_setting( 'p3_pinterest_hover_margin', array(
+				'default' => 0,
+				'sanitize_callback' => 'absint',
 				)
 			);
-			$wp_customize->add_control(
-				   new WP_Customize_Image_Control(
-					   $wp_customize,
-					   'p3_pinterest_hover_image_file',
-					   array(
-						   'label'      => __( 'Upload a header image', 'p3' ),
-						   'section'    => 'pipdig_pinterest_hover',
-						   'settings'   => 'p3_pinterest_hover_image_file',
-					   )
-				   )
+
+			$wp_customize->add_control( 'p3_pinterest_hover_margin', array(
+				'type' => 'number',
+				'section' => 'pipdig_pinterest_hover',
+				'label' => __( 'Image margin', 'p3' ),
+				'input_attrs' => array(
+					'min' => 0,
+					'max' => 150,
+					'step' => 1,
+					),
+				)
+			);
+			/*
+			// Image margin right
+			$wp_customize->add_setting( 'p3_pinterest_hover_margin_right', array(
+				'default' => 0,
+				'sanitize_callback' => 'absint',
+				)
+			);
+
+			$wp_customize->add_control( 'p3_pinterest_hover_margin_right', array(
+				'type' => 'number',
+				'section' => 'pipdig_pinterest_hover',
+				'label' => __( 'Image margin (right)', 'p3' ),
+				'input_attrs' => array(
+					'min' => 0,
+					'max' => 150,
+					'step' => 1,
+					),
+				)
 			);
 			
+			// Image margin bottom
+			$wp_customize->add_setting( 'p3_pinterest_hover_margin_bottom', array(
+				'default' => 0,
+				'sanitize_callback' => 'absint',
+				)
+			);
+
+			$wp_customize->add_control( 'p3_pinterest_hover_margin_bottom', array(
+				'type' => 'number',
+				'section' => 'pipdig_pinterest_hover',
+				'label' => __( 'Image margin (bottom)', 'p3' ),
+				'input_attrs' => array(
+					'min' => 0,
+					'max' => 150,
+					'step' => 1,
+					),
+				)
+			);
+			
+			// Image margin left
+			$wp_customize->add_setting( 'p3_pinterest_hover_margin_left', array(
+				'default' => 0,
+				'sanitize_callback' => 'absint',
+				)
+			);
+
+			$wp_customize->add_control( 'p3_pinterest_hover_margin_left', array(
+				'type' => 'number',
+				'section' => 'pipdig_pinterest_hover',
+				'label' => __( 'Image margin (left)', 'p3' ),
+				'input_attrs' => array(
+					'min' => 0,
+					'max' => 150,
+					'step' => 1,
+					),
+				)
+			);
+			*/
 
 		}
 	}
