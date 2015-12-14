@@ -36,10 +36,17 @@ if (!function_exists('p3_trending_bar')) {
 		}
 		$post_cat_trending = get_theme_mod('p3_trending_bar_trending_cat');
 		$big_this_month_title = get_theme_mod('p3_trending_bar_pop_title');
+		$order_by = get_theme_mod( 'p3_trending_bar_orderby', 1 );
 		$date_range = get_theme_mod( 'p3_trending_bar_trending_dates', '1 month ago' );
 		$text_color = get_theme_mod('p3_trending_bar_text_color', '#000');
 		$text_bg_color = get_theme_mod('p3_trending_bar_text_bg_color', '#fff');
-
+		
+		if ($order_by == 2) {
+			$orderby = 'rand';
+		} else {
+			$orderby = 'comment_count';
+		}
+		
 		?>
 		<div id="p3_trending_bar" class="row nopin">
 			<style scoped>
@@ -54,7 +61,7 @@ if (!function_exists('p3_trending_bar')) {
 							'cat'                   => $post_cat_trending,
 							'showposts'             => 5,
 							'ignore_sticky_posts'   => true,
-							'orderby'               => 'comment_count',
+							'orderby'               => $orderby,
 							'order'                 => 'dsc',
 							'date_query' => array(
 								array(
@@ -134,10 +141,10 @@ if (!class_exists('p3_trending_bar_Customize')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Display on homepage only', 'p3' ),
-					'description' => '<hr>',
 					'section' => 'pipdig_trending_section',
 				)
 			);
+			
 
 			
 			$wp_customize->add_setting('p3_trending_bar_slider_title',
@@ -156,7 +163,26 @@ if (!class_exists('p3_trending_bar_Customize')) {
 					),
 				)
 			);
-
+			
+			// popular or random
+			$wp_customize->add_setting('p3_trending_bar_orderby',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_trending_bar_orderby',
+				array(
+					'type' => 'radio',
+					'label' => __('Type of posts', 'p3'),
+					'section' => 'pipdig_trending_section',
+					'description' => __('If you use Disqus comments then you may need to change this to "Random".', 'p3'),
+					'choices' => array(
+						1 => __('Popular', 'p3'),
+						2 => __('Random', 'p3')
+					),
+				)
+			);
 			
 			// Date range for popular/trending posts
 			$wp_customize->add_setting('p3_trending_bar_trending_dates',
