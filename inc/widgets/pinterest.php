@@ -53,7 +53,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		}
 
 		if (!empty($pinterestuser)) {
-			
+			/*
 			$p3_pinz = get_transient('p3_pinz');
 			
 			if ( false === ( $value = get_transient('p3_pinz') ) ) {
@@ -128,26 +128,28 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 				set_transient('p3_pinz', $p3_pinz, 30 * MINUTE_IN_SECONDS);
 				
 			}
-			
+			*/
 			?>
 			<style scoped>
-				.p3_pinterest_widget .p3_pin_wrap {
+				#p3_pinterest_widget .p3_pin_wrap {
 				width: <?php echo $width; ?>;
 				}
 			</style>
-			<div class="p3_pinterest_widget">
-			<?php 
-			for ($i = 0; $i < $images_num; ++$i) {
-				?>
-				<div class="p3_pin_wrap">
-					<a href="http://pinterest.com/<?php echo $pinterestuser; ?>" class="p3_pin" style="background-image:url(<?php echo $p3_pinz[$i]; ?>);">
-						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" alt="" class="p3_invisible" data-pin-nopin="true"/>
-					</a>
-				</div>
-				<?php
-			}
-			?>
-			</div>
+			<div id="p3_pinterest_widget"></div>
+			<script>
+			jQuery(document).ready(function($) {
+				$.getJSON("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fwww.pinterest.com%2F<?php echo $pinterestuser; ?>%2Ffeed.rss%22&format=json",
+					function(data) {
+						for (i = 0; i < <?php echo $images_num; ?>; i++) {
+							var pinData = data.query.results.body.rss.channel.item[i].description;
+							var pinImg = $(pinData).find('img').attr('src');
+							var pinnyOutput = '<div class="p3_pin_wrap"><a href="http://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" class="p3_pin" style="background-image:url('+pinImg+');"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" alt="" class="p3_invisible" data-pin-nopin="true"/></a></div>';
+							$('#p3_pinterest_widget').append(pinnyOutput);
+						}
+					}
+				);
+			});
+			</script>
 			<?php
 			if (isset($instance['follow'])) {
 				if (!empty($pinterestuser) && $follow) { ?>
@@ -165,11 +167,20 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 	 
 	  public function form( $instance ) {
 	   
-		 // PART 1: Extract the data from the instance variable
-		 $instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
-		 $title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
+		// PART 1: Extract the data from the instance variable
+		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
+		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		if (isset($instance['pinterestuser'])) { 
-			$pinterestuser =	$instance['pinterestuser'];
+			$pinterestuser = $instance['pinterestuser'];
+		} else {
+			$links = get_option('pipdig_links');
+			$pinterest_url = esc_url($links['pinterest']);
+			if (!empty($pinterest_url)) {
+				$pinterestuser = parse_url($pinterest_url, PHP_URL_PATH);
+				$pinterestuser = str_replace('/', '', $pinterestuser);
+			} else {
+				$pinterestuser = '';
+			}
 		}
 		if (isset($instance['images_num'])) { 
 			$images_num = $instance['images_num'];
@@ -194,13 +205,13 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 
 		<p><?php _e('Add your Pinterest account name to the box below.', 'p3'); ?></p>
 		<p><?php _e('For example, the red part below:', 'p3'); ?><br />
-		<?php echo esc_url('http://pinterest.com/'); ?><span style="color:red">songofstyle</span></p>
+		http://pinterest.com/<span style="color:red">songofstyle</span></p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('pinterestuser'); ?>"><?php _e('Pinterest Account Name:', 'p3'); ?><br />
 			<input class="" id="<?php echo $this->get_field_id('pinterestuser'); ?>" 
 			name="<?php echo $this->get_field_name('pinterestuser'); ?>" type="text" 
-			value="<?php if (isset($instance['pinterestuser'])) { echo esc_attr($pinterestuser); } ?>" placeholder="songofstyle" />
+			value="<?php echo esc_attr($pinterestuser); ?>" placeholder="songofstyle" />
 			</label>
 		</p>
 		

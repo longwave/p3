@@ -56,7 +56,7 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 		$title = $instance['title'];
 		if (isset($instance['twitter_handle'])) { 
-			$twitter_handle = esc_attr($instance['twitter_handle']);
+			$twitter_handle = $instance['twitter_handle'];
 		} else {
 			$links = get_option('pipdig_links');
 			$twitter_url = esc_url($links['twitter']);
@@ -69,7 +69,7 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 		}
 		
 		if (isset($instance['twitter_widget_id'])) { 
-			$twitter_widget_id = esc_attr($instance['twitter_widget_id']);
+			$twitter_widget_id = $instance['twitter_widget_id'];
 		} else {
 			$twitter_widget_id = '';
 		}
@@ -87,7 +87,7 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 		<p><a href="https://pipdig.zendesk.com/hc/en-gb/articles/206407699" target="_blank"><?php _e('Click here for information', 'p3'); ?></a></p>
 		<p>
 			<label for="<?php echo $this->get_field_id('twitter_widget_id'); ?>"><?php _e('Twitter Widget ID:', 'p3'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('twitter_widget_id'); ?>" name="<?php echo $this->get_field_name('twitter_widget_id'); ?>" type="text" value="<?php echo $twitter_widget_id; ?>" placeholder="e.g. 123456789" />
+			<input class="widefat" id="<?php echo $this->get_field_id('twitter_widget_id'); ?>" name="<?php echo $this->get_field_name('twitter_widget_id'); ?>" type="text" value="<?php echo esc_attr($twitter_widget_id); ?>" placeholder="e.g. 123456789" />
 		</p>
 		
 		<?php

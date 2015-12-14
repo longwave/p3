@@ -8,7 +8,7 @@ if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pintere
 	function p3_pinterest_hover_add_data($content) {
 		
 		$link = esc_url(get_the_permalink());
-		$title = esc_attr(get_the_title());
+		$title = rawurldecode(get_the_title());
 		$content = str_replace('<img','<img data-p3-pin-title="'.$title.'" data-p3-pin-link="'.$link.'"', $content);
 		return $content;
 		
