@@ -81,10 +81,10 @@ function pipdig_p3_scrapey_scrapes() {
 			}
 			include_once('TwitterAPIExchange.php');
 			$settings = array(
-				'oauth_access_token' => '331530555'.'-'.'BYUS6g6XsQfjRn'.'l1gmnGGl3oLao4I3CIMVYonm31',
-				'oauth_access_token_secret' => 'pugNxZDRn8ds3'.'TAladgVC6bpyxHb'.'n1nYJRDJFYizbR0vf',
-				'consumer_key' => '1FDHA'.'vyiq7OToA'.'kxUuYkY9n'.'x1',
-				'consumer_secret' => 'fK'.'E9GTb4JW6UUUfUxv'.'83ghO5MOMdEb4F0tzrtHzBlQWXQyK'.'G'.'be'
+				'oauth_access_token' => '986760666-NQx9i4Xja2NWKoOdxnRHjs2EuVIhayV7EO8ydISP',
+				'oauth_access_token_secret' => 'VM234GP3J4SnCocEPT1iEcqcTd2zprm0j5Mcw4htM196u',
+				'consumer_key' => 'K4iBpRCBXll4LGbLXgG3xpMU9',
+				'consumer_secret' => 'GE4p3rCPK93t4BD3i6YxTTPMCqyXYXc30XhXtZfW4Fh4TjwUdU'
 			);
 			$ta_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 			$getfield = '?screen_name='.$twitter_handle;
