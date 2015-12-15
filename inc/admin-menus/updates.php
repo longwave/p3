@@ -24,6 +24,18 @@ if (!function_exists('pipdig_updates_options_page')) {
 				
 					<div class="postbox">
 
+						<h3>Update 1.10 - Pinterest Hover Buttons</h3>
+
+						<div class="inside">
+							<p>You can now setup a custom Pinterest Hover Button via the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>. This new feature allows you to upload any imag you like as a "Pin it" button, or use our prestyled button if you prefer.</p>
+							<p>New widget! Display your latest Tweets with "pipdig - Twitter Widget". We'll be adding more options to this widget soon...</p>
+						</div>
+
+					</div>
+					<!-- .postbox -->
+				
+					<div class="postbox">
+
 						<h3>Update 1.9 - Editorial Layouts</h3>
 
 						<div class="inside">
