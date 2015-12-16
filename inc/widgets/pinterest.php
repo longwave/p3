@@ -170,7 +170,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		// PART 1: Extract the data from the instance variable
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
-		if (isset($instance['pinterestuser'])) { 
+		if (isset($instance['pinterestuser'])) {
 			$pinterestuser = $instance['pinterestuser'];
 		} else {
 			$links = get_option('pipdig_links');

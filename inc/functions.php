@@ -43,7 +43,16 @@ if (!function_exists('pipdig_p3_mobile_detect')) {
 }
 */
 
-
+// add data rel for lightbox (still in theme functions)
+/*
+if (!function_exists('p3_lightbox_rel')) {
+	function p3_lightbox_rel($content) {
+		$content = str_replace('><img',' data-imagelightbox="g"><img', $content);
+		return $content;
+	}
+	add_filter('the_content','p3_lightbox_rel');
+}
+*/
 
 // load image catch function, just in case theme hasn't
 if (!function_exists('pipdig_p3_catch_that_image')) {

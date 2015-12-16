@@ -202,7 +202,7 @@ function pipdig_links_section_callback() {
 
 function pipdig_links_options_page() { 
 	?>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<style scoped>
 	.form-table th {width: 120px;}
 	</style>
