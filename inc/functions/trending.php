@@ -94,7 +94,7 @@ if (!function_exists('p3_trending_bar')) {
 		</div>
 	<?php
 	}
-	add_action('p3_top_site_main', 'p3_trending_bar');
+	add_action('p3_top_site_main_container', 'p3_trending_bar');
 }
 
 // customiser

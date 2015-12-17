@@ -135,7 +135,7 @@ if (!function_exists('p3_feature_header')) {
 		</div>
 	<?php
 	}
-	add_action('p3_top_site_main', 'p3_feature_header');
+	add_action('p3_top_site_main_container', 'p3_feature_header');
 }
 
 // customiser

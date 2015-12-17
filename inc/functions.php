@@ -104,7 +104,8 @@ if (!function_exists('pipdig_p3_dns_prefetch')) {
 
 // use public CDNs for jquery
 if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')) {
-	function pipdig_p3_cdn() {global $wp_scripts;
+	function pipdig_p3_cdn() {
+		global $wp_scripts;
 		if (!is_admin()) {
 			$jquery_ver = $wp_scripts->registered['jquery']->ver;
 			$jquery_migrate_ver = $wp_scripts->registered['jquery-migrate']->ver;
@@ -376,6 +377,7 @@ if (!function_exists('pipdig_p3_comment_nav')) {
 }
 
 // depreciate this after 4.3+
+/*
 function pipdig_p3_favicon() {
 	$output = '';
 	$favicon = esc_url(get_theme_mod('pipdig_favicon'));
@@ -385,6 +387,7 @@ function pipdig_p3_favicon() {
 	echo $output;
 }
 add_action('wp_head','pipdig_p3_favicon', 2);
+*/
 
 //include_once('functions/favicon.php');
 include_once('functions/top_menu_bar.php');
