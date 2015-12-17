@@ -393,7 +393,7 @@ include_once('functions/shares.php');
 include_once('functions/related-posts.php');
 //include_once('functions/smash.php');
 include_once('functions/pinterest_hover.php');
-//include_once('functions/instagram.php');
+include_once('functions/instagram.php');
 include_once('functions/social_footer.php');
 include_once('functions/navbar_icons.php');
 include_once('functions/feature_header.php');

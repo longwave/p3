@@ -95,7 +95,7 @@ if (!function_exists('p3_pinterest_hover')) {
 
 		})(jQuery);
 
-		jQuery('.entry-content img').imgPin();
+		jQuery('.entry-content p img').imgPin();
 
 		</script>
 		<?php
