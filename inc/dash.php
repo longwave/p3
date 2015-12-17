@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 
 /*  Add credit to admin area --------------------------------------------------------*/
 function pipdig_footer_admin () {
-	echo 'Powered by <a href="'.esc_url('http://www.wordpress.org/').'" target="_blank">WordPress</a>. Enhancements by <a href="'.esc_url('http://www.pipdig.co/?utm_source=wp-dashboard&utm_medium=footer&utm_campaign=wp-dashboard').'" target="_blank">pipdig</a>.';
+	echo 'Powered by <a href="'.esc_url('http://www.wordpress.org/').'" target="_blank">WordPress</a>. Enhanced by <a href="'.esc_url('http://www.pipdig.co/?utm_source=wp-dashboard&utm_medium=footer&utm_campaign=wp-dashboard').'" target="_blank">pipdig</a>.';
 }
 add_filter('admin_footer_text', 'pipdig_footer_admin');
 
@@ -14,7 +14,7 @@ add_filter('admin_footer_text', 'pipdig_footer_admin');
 function pipdig_p3_dashboard_widgets() {
 	add_meta_box( 
 		'pipdig_p3_dashboard_social_count',
-		'pipdig - '.__('Social Stats', 'p3'),
+		'pipdig - '.__('Your Followers', 'p3'),
 		'pipdig_p3_dashboard_social_count_func',
 		'dashboard',
 		'side',
@@ -24,13 +24,13 @@ function pipdig_p3_dashboard_widgets() {
 add_action( 'wp_dashboard_setup', 'pipdig_p3_dashboard_widgets' );
 
 function pipdig_p3_dashboard_social_count_func() {
-	$bloglovin = get_option('p3_bloglovin_count');
-	$pinterest = get_option('p3_pinterest_count');
-	$twitter = get_option('p3_twitter_count');
-	$facebook = get_option('p3_facebook_count');
-	$instagram = get_option('p3_instagram_count');
-	$youtube = get_option('p3_youtube_count');
-	$google_plus = get_option('p3_google_plus_count');
+	$bloglovin = absint(get_option('p3_bloglovin_count'));
+	$pinterest = absint(get_option('p3_pinterest_count'));
+	$twitter = absint(get_option('p3_twitter_count'));
+	$facebook = absint(get_option('p3_facebook_count'));
+	$instagram = absint(get_option('p3_instagram_count'));
+	$youtube = absint(get_option('p3_youtube_count'));
+	$google_plus = absint(get_option('p3_google_plus_count'));
 	?>
 	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/amcharts.js"></script>
@@ -41,7 +41,7 @@ function pipdig_p3_dashboard_social_count_func() {
 				{
 					"type": "pie",
 					"balloonText": "",
-					"labelRadius": 6,
+					"labelRadius": 5,
 					"startRadius": "25%",
 					"colors": [
 						"#5ea9dd",
@@ -74,7 +74,7 @@ function pipdig_p3_dashboard_social_count_func() {
 					"urlTarget": "_blank",
 					"valueField": "count",
 					"fontFamily": "Open Sans, sans-serif",
-					"fontSize": 12,
+					"fontSize": 11,
 					"handDrawn": true,
 					"handDrawThickness": 2,
 					"hideBalloonTime": 120,

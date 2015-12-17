@@ -84,7 +84,7 @@ function pipdig_instagram_options_page() {
 	</style>
 	<form action='options.php' method='post'>
 			
-		<h2>Instagram Settings</h2>
+		<h1>Instagram Settings</h1>
 		
 		<p><?php _e("You will need to sign in to Instagram to allow this theme's widgets to display our photos. Click the button below to do this:", 'p3'); ?></p>
 			

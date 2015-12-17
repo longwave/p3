@@ -18,12 +18,6 @@
         width: 20%;
         float: left;
     }
-	.p3_instagram_post {
-		width: 25%;
-	}
-	#p3_instagram_post_4, #p3_instagram_post_5, #p3_instagram_post_6, #p3_instagram_post_7, #p3_instagram_post_8, #p3_instagram_post_9, #p3_instagram_post_10 {
-		display: none;
-	}
 }
 @media only screen and (max-width: 719px) {
 	.top-socialz, #wpadminbar, .wpadminbar-nudge, #p3_top_menu_bar {
@@ -33,6 +27,12 @@
 	}
 	#p3_full_width_slider_site_main .p3_slide_img, #p3_post_slider_posts_column .p3_slide_img {
 		height: 260px;
+	}
+	.p3_instagram_post {
+		width: 25%;
+	}
+	#p3_instagram_post_4, #p3_instagram_post_5, #p3_instagram_post_6, #p3_instagram_post_7, #p3_instagram_post_8, #p3_instagram_post_9, #p3_instagram_post_10 {
+		display: none;
 	}
 }
 @media only screen and (max-width: 400px) {

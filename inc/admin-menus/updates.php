@@ -30,6 +30,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 							<p>You can now setup a custom Pinterest Hover Button via the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>. This new feature allows you to upload any imag you like as a "Pin it" button, or use our prestyled button if you prefer.</p>
 							<p>We have added several improvements to our Instagram features. You can now add an Instagram feed to the footer, header and any widget area of your site. Our Instagram widget can now also include 'Likes' and 'Comments' counts on hover.</p>
 							<p>New widget! Display your latest Tweets with "pipdig - Twitter Widget". We'll be adding more options to this widget soon...</p>
+							<p>New dashboard widget! View a quick summary of your social media follower stats right from your WordPress dashboard.</p>
 						</div>
 
 					</div>

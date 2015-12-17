@@ -60,25 +60,34 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		
 		$images = p3_instagram_fetch(); // grab images
 		
+		//print_r($images);
+		
 		if ($images) {
 		?>
-		
-		<div class="p3_instagram_widget">
-		<style scoped>
-			.p3_instagram_widget .p3_instagram_post {
-				width: <?php echo $width; ?>;
-				border: <?php echo $border; ?>px solid <?php echo get_theme_mod('content_background_color', '#fff'); ?>
+			<div class="p3_instagram_widget">
+			<style scoped>
+				.p3_instagram_widget .p3_instagram_post {
+					width: <?php echo $width; ?>;
+					border: <?php echo $border; ?>px solid <?php echo get_theme_mod('content_background_color', '#fff'); ?>
+				}
+			</style>
+			<?php for ($x = 0; $x <= $images_num; $x++) { ?>
+				<a href="<?php echo $images[$x]['link']; ?>" class="p3_instagram_post" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
+					<?php if ($likes) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
+				</a>
+			<?php } ?>
+			</div>
+			<div class="clearfix"></div>
+			<?php
+			$links = get_option('pipdig_links');
+			$instagram_url = esc_url($links['instagram']);
+			if (isset($instance['follow'])) {
+				if (!empty($instagram_url) && $follow) { ?>
+					<div class="clearfix"></div>
+					<p><a href="<?php echo $instagram_url; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-instagram" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Instagram', 'p3'); ?></a></p>
+				<?php }
 			}
-		</style>
-		<?php for ($x = 0; $x <= $images_num; $x++) { ?>
-			<a href="<?php echo $images[$x]['link']; ?>" class="p3_instagram_post" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
-				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
-				<?php if ($likes) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
-			</a>
-		<?php } ?>
-		</div>
-		<div class="clearfix"></div>
-		<?php
 		} else {
 			_e('Setup not complete. Please check the widget options.', 'p3');
 		}

@@ -117,7 +117,7 @@ if (!function_exists('pipdig_hooks_options_page')) {
 		?>
 		<form action='options.php' method='post'>
 			
-			<h2>pipdig Theme Hooks</h2>
+			<h1>pipdig Theme Hooks</h1>
 			
 			<?php
 			settings_fields( 'pipdig_hooks_page' );

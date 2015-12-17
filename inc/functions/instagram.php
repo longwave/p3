@@ -21,14 +21,18 @@ function p3_instagram_fetch() {
 		
 		$result = json_decode($result);
 		
+		//print_r($result);
+		
 		for ($i = 0; $i < 19; $i++) {
-			$images[$i] = array (
-				'src' => esc_url($result->data[$i]->images->standard_resolution->url),
-				'link' => esc_url($result->data[$i]->link),
-				'likes' => intval($result->data[$i]->likes->count),
-				'comments' => intval($result->data[$i]->comments->count),
-				'caption' => strip_tags($result->data[$i]->caption->text),
-			);
+			if (isset($result->data[$i])) {
+				$images[$i] = array (
+					'src' => $result->data[$i]->images->standard_resolution->url,
+					'link' => $result->data[$i]->link,
+					'likes' => $result->data[$i]->likes->count,
+					'comments' => $result->data[$i]->comments->count,
+					'caption' => $result->data[$i]->caption->text,
+				);
+			}
 		}
 		
 		return $images;
@@ -62,3 +66,4 @@ function p3_instagram_footer() {
 		}
 	}
 }
+add_action('p3_footer_bottom', 'p3_instagram_footer', 99);
