@@ -28,9 +28,9 @@ function p3_instagram_fetch() {
 				$images[$i] = array (
 					'src' => esc_url($result->data[$i]->images->standard_resolution->url),
 					'link' => esc_url($result->data[$i]->link),
-					'likes' => $result->data[$i]->likes->count,
-					'comments' => $result->data[$i]->comments->count,
-					'caption' => $result->data[$i]->caption->text,
+					'likes' => intval($result->data[$i]->likes->count),
+					'comments' => intval($result->data[$i]->comments->count),
+					'caption' => strip_tags($result->data[$i]->caption->text),
 				);
 			}
 		}
@@ -42,6 +42,14 @@ function p3_instagram_fetch() {
 	}
 }
 
+function p3_instagram_css_to_head($width) {
+	if (get_theme_mod('p3_instagram_header') || get_theme_mod('p3_instagram_footer')) {
+		$num = get_theme_mod('p3_instagram_number', 8);
+		$width = 100 / $num;
+		echo '<style>.p3_instagram_post{width:'.$width.'%}</style>';
+	}
+}
+add_action('wp_head', 'p3_instagram_css_to_head');
 
 if (!function_exists('p3_instagram_footer')) {
 	function p3_instagram_footer() {
@@ -54,12 +62,17 @@ if (!function_exists('p3_instagram_footer')) {
 			
 		if ($images) {
 			$meta = get_theme_mod('p3_instagram_meta', 1);
-			$num = get_theme_mod('p3_instagram_number', 8) - 1; // minus 1 for array
-			
+			$num = get_theme_mod('p3_instagram_number', 8);
 		?>
 			<div id="p3_instagram_footer">
-			<?php for ($x = 0; $x <= $num; $x++) { ?>
-				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
+			<?php $num = $num-1; // account for array starting at 0 ?>
+			<?php for ($x = 0; $x <= $num; $x++) {
+				$hide_class = '';
+				if ($x >= 4) {
+					$hide_class = ' p3_instagram_hide_mobile';
+				}
+				?>
+				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
 					<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
 				</a>
