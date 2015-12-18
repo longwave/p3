@@ -142,6 +142,12 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_youtube_count');
 		}
+		/* non yql 
+		$youtube_query = wp_remote_fopen('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=CHANNEL_ID&key=API_KEY');
+		$youtube_query = json_decode($youtube_query, true);
+		$youtube_count = intval($youtube_query['items'][0]['statistics']['subscriberCount']);
+		update_option('p3_youtube_count', $youtube_count);
+		*/
 			
 		// Google Plus ---------------------
 		// https://www.googleapis.com/plus/v1/people/102904094379339545145?key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c		OR YQL below:
