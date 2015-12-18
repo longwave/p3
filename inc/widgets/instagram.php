@@ -85,7 +85,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 			if (isset($instance['follow'])) {
 				if (!empty($instagram_url) && $follow) { ?>
 					<div class="clearfix"></div>
-					<p><a href="<?php echo $instagram_url; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-instagram" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Instagram', 'p3'); ?></a></p>
+					<p style="margin: 10px 0"><a href="<?php echo $instagram_url; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-instagram" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Instagram', 'p3'); ?></a></p>
 				<?php }
 			}
 		} else {

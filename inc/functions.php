@@ -358,7 +358,9 @@ if (!function_exists('pipdig_p3_comment_count')) {
 	function pipdig_p3_comment_count() {
 		if (!post_password_required()) {
 			$comment_count = get_comments_number();
-			if ($comment_count == 1 ) {
+			if ($comment_count == 0) {
+				$comments_text = __('Leave a comment', 'p3');
+			} elseif ($comment_count == 1) {
 				$comments_text = __('1 Comment', 'p3');
 			} else {
 				$comments_text = number_format_i18n($comment_count).' '.__('Comments', 'p3');
