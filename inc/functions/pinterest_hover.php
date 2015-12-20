@@ -78,8 +78,7 @@ if (!function_exists('p3_pinterest_hover')) {
 
 				//set click events
 				$('.p3_pin_wrapper .pin').click(function(){
-				var w = 700,
-					h = 400;
+				var w = 700, h = 400;
 				var left = (screen.width/2)-(w/2);
 				var top = (screen.height/2)-(h/2);
 				var imgPinWindow = window.open(this.href,'imgPngWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=400');
@@ -93,7 +92,7 @@ if (!function_exists('p3_pinterest_hover')) {
 			
 		})(jQuery);
 
-		jQuery('.entry-content p img, .wp-post-image, .separator img').imgPin();
+		jQuery('.entry-content p img, .wp-post-image, .entry-content .separator img').imgPin();
 
 		</script>
 		<?php
