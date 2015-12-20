@@ -4,6 +4,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+// function to fetch images
 function p3_instagram_fetch() {
 	
 	$instagram_deets = get_option('pipdig_instagram');
@@ -42,15 +43,38 @@ function p3_instagram_fetch() {
 	}
 }
 
+// add css to head depending on amount of images displayed
 function p3_instagram_css_to_head($width) {
 	if (get_theme_mod('p3_instagram_header') || get_theme_mod('p3_instagram_footer')) {
 		$num = get_theme_mod('p3_instagram_number', 8);
 		$width = 100 / $num;
-		echo '<style>.p3_instagram_post{width:'.$width.'%}</style>';
+		?>
+		<style>
+		.p3_instagram_post{width:<?php echo $width; ?>%}
+		@media only screen and (max-width: 719px) {
+			.top-socialz, #wpadminbar, .wpadminbar-nudge, #p3_top_menu_bar, #p3_trending_bar {
+				display:none;
+				opacity: 0;
+				height: 0;
+			}
+			#p3_full_width_slider_site_main .p3_slide_img, #p3_post_slider_posts_column .p3_slide_img {
+				height: 260px;
+			}
+			.p3_instagram_post {
+				width: 25%;
+			}
+			.p3_instagram_hide_mobile {
+				display: none;
+			}
+		}
+		</style>
+		<?php
 	}
 }
 add_action('wp_head', 'p3_instagram_css_to_head');
 
+
+// footer feed
 if (!function_exists('p3_instagram_footer')) {
 	function p3_instagram_footer() {
 		
@@ -64,6 +88,7 @@ if (!function_exists('p3_instagram_footer')) {
 			$meta = get_theme_mod('p3_instagram_meta', 1);
 			$num = get_theme_mod('p3_instagram_number', 8);
 		?>
+			<div class="clearfix"></div>
 			<div id="p3_instagram_footer">
 			<?php $num = $num-1; // account for array starting at 0 ?>
 			<?php for ($x = 0; $x <= $num; $x++) {
@@ -89,6 +114,46 @@ if (!function_exists('p3_instagram_footer')) {
 	add_action('p3_footer_bottom', 'p3_instagram_footer', 99);
 }
 
+
+// header feed
+if (!function_exists('p3_instagram_header')) {
+	function p3_instagram_header() {
+		
+		if (!get_theme_mod('p3_instagram_header') || !is_front_page() || is_paged()) {
+			return;
+		}
+		
+		$images = p3_instagram_fetch(); // grab images
+			
+		if ($images) {
+			$meta = get_theme_mod('p3_instagram_meta', 1);
+			$num = get_theme_mod('p3_instagram_number', 8);
+		?>
+			<div class="clearfix"></div>
+			<div id="p3_instagram_header">
+			<?php $num = $num-1; // account for array starting at 0 ?>
+			<?php for ($x = 0; $x <= $num; $x++) {
+				$hide_class = '';
+				if ($x >= 4) {
+					$hide_class = ' p3_instagram_hide_mobile';
+				}
+				?>
+				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
+					<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
+				</a>
+			<?php } ?>
+			</div>
+			<div class="clearfix"></div>
+			<?php
+		} else { // no access token or user id, so error for admins:
+			if (current_user_can('manage_options')) {
+				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>.</p>';
+			}
+		}
+	}
+	add_action('p3_top_site_main', 'p3_instagram_header', 99);
+}
 
 
 // customiser

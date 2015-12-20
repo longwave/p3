@@ -63,7 +63,7 @@ if (!function_exists('p3_pinterest_hover')) {
 					link += '&media='+imgURL;
 					link += '&description='+description;
 
-				$(this).wrap('<div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this on Pinterest', 'p3'); ?>"/></a>');
+				$(this).wrap('<div class="p3_pin_wrapper_outer"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this on Pinterest', 'p3'); ?>"/></a>');
 
 				<?php if ($position == 'center') { ?>
 				var img = new Image();
@@ -89,13 +89,11 @@ if (!function_exists('p3_pinterest_hover')) {
 
 			});
 
-
 			}
-
-
+			
 		})(jQuery);
 
-		jQuery('.entry-content p img').imgPin();
+		jQuery('.entry-content p img, .wp-post-image, .separator img').imgPin();
 
 		</script>
 		<?php

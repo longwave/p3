@@ -184,6 +184,7 @@ class pipdig_p3_intalled_xyz_2 {
 				update_option('show_on_front', 'post');
 				update_option('pipdig_p3_show_on_front_set', 1);
 			}
+			
 			if (get_option('jr_resizeupload_width') == '1200' && (get_option('pipdig_p3_jr_resizeupload_width_set') != 1)) {
 				update_option('jr_resizeupload_width', 1920);
 				update_option('jr_resizeupload_quality', 70);
@@ -200,6 +201,26 @@ class pipdig_p3_intalled_xyz_2 {
 				$pipdig_instagram['access_token'] = $sb_options['sb_instagram_at'];
 				update_option( "pipdig_instagram", $pipdig_instagram );
 			}
+			
+			/*
+			if (get_option('p3_instagram_transfer') != 1) {
+				if (get_theme_mod('footer_instagram')) {
+					set_theme_mod('p3_instagram_footer', 1);
+					remove_theme_mod('footer_instagram');
+				}
+				if (get_theme_mod('header_instagram')) {
+					set_theme_mod('p3_instagram_header', 1);
+					remove_theme_mod('header_instagram');
+				}
+				$old_ig_num = get_theme_mod('footer_instagram_num', 10);
+				set_theme_mod('p3_instagram_number', $old_ig_num);
+				remove_theme_mod('footer_instagram_num');
+				remove_theme_mod('header_instagram_num');
+				update_option('p3_instagram_transfer', 1);
+			}
+			*/
+			//remove_theme_mod('footer_instagram');
+			//remove_theme_mod('header_instagram');
 			
 			// set header if WP default used
 			if (!get_theme_mod('logo_image') && (get_option('pipdig_p3_header_set') != 1)) {

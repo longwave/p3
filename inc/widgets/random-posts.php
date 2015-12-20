@@ -136,9 +136,9 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 	<?php
 	if ( false === ( $popular = get_transient( 'pipdig_random_posts_widget' ) ) ) { // check for transient value
 		$popular = new WP_Query( array(
-			'showposts'             => $number_posts,
-			'ignore_sticky_posts'   => 1,
-			'orderby'               => 'rand',
+			'showposts' => $number_posts,
+			'ignore_sticky_posts' => 1,
+			'orderby' => 'rand',
 			'date_query' => array(
 				array(
 					'after' => $date_range_posts,
@@ -154,11 +154,12 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		} else {
 			$bg = pipdig_p3_catch_that_image();
 		}
+		$title = esc_attr(get_the_title());
 	?>
 	<li>
 	<a href="<?php the_permalink() ?>">
-	<img src="<?php echo $bg; ?>" alt="" />
-	<h4><?php $title = get_the_title(); echo pipdig_p3_truncate($title, 11); ?></h4>
+	<img src="<?php echo $bg; ?>" alt="<?php echo $title; ?>" />
+	<h4><?php echo pipdig_p3_truncate($title, 11); ?></h4>
 	</a>
 	</li>
 	<?php endwhile; wp_reset_query(); ?>
