@@ -34,7 +34,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 			//echo '<ifr' . 'ame src="http://www.youtube.com/embed?max-results=1&listType=user_uploads&list=' . $channel_id . '&showinfo=1" frameborder="0" width="300" height="169" allowfullscreen></ifra' . 'me>';
 			if ( false === ( $output = get_transient( 'p3_youtube_widget' ) ) ) { // transient
 				$hexadecimal = 'za'.'Sy'.'CBY'.'yh'.'zMn'.'NNP';
-				$json = wp_remote_fopen('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key=AI'.$hexadecimal.'8d0'.'tvL'.'dS'.'P8r'.'yT'.'lS'.'Dq'.'egN'.'5c&maxResults=1');
+				$json = wp_remote_fopen('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key=AI'.$hexadecimal.'8d0'.'tvL'.'dS'.'P8r'.'yT'.'lS'.'Dq'.'egN'.'5c&type=video&maxResults=1');
 				$listFromYouTube=json_decode($json);
 				$video_title = $listFromYouTube->items[0]->snippet->title;
 				$video_id = $listFromYouTube->items[0]->id->videoId;
