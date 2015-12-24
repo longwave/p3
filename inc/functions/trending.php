@@ -47,10 +47,15 @@ if (!function_exists('p3_trending_bar')) {
 			$orderby = 'comment_count';
 		}
 		
+		$overlay = '';
+		if (!get_theme_mod('p3_trending_bar_overlay', 1)) {
+			$overlay = 'position:relative';
+		}
+		
 		?>
 		<div id="p3_trending_bar" class="row nopin">
 			<style scoped>
-				.p3_trending_panel h4 {background:<?php echo esc_attr($text_bg_color); ?>;color:<?php echo esc_attr($text_color); ?>;}
+				.p3_trending_panel h4 {background:<?php echo esc_attr($text_bg_color); ?>;color:<?php echo esc_attr($text_color); ?>;<?php echo $overlay; ?>}
 			</style>
 			<div class="col-xs-12">
 
@@ -184,6 +189,7 @@ if (!class_exists('p3_trending_bar_Customize')) {
 				)
 			);
 			
+			
 			// Date range for popular/trending posts
 			$wp_customize->add_setting('p3_trending_bar_trending_dates',
 				array(
@@ -224,7 +230,7 @@ if (!class_exists('p3_trending_bar_Customize')) {
 				)
 			);
 			
-			
+					
 			// title backgroud color
 			$wp_customize->add_setting('p3_trending_bar_text_bg_color',
 				array(
@@ -256,6 +262,22 @@ if (!class_exists('p3_trending_bar_Customize')) {
 					'settings' => 'p3_trending_bar_text_color',
 					'section' => 'pipdig_trending_section',
 				)
+				)
+			);
+			
+			// overlay title text?
+			$wp_customize->add_setting('p3_trending_bar_overlay',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_trending_bar_overlay',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Overlay the post titles', 'p3' ),
+					'section' => 'pipdig_trending_section',
 				)
 			);
 
