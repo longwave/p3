@@ -4,6 +4,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+if (!function_exists('pipdig_p3_scrapey_scrapes')) {
 function pipdig_p3_scrapey_scrapes() {
 	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
@@ -167,4 +168,13 @@ function pipdig_p3_scrapey_scrapes() {
 	
 	}
 	
+}
+}
+
+// push scrape on login page to avoid cached pages
+if (!function_exists('pipdig_p3_scrapey_scrapes_pusher')) {
+	function pipdig_p3_scrapey_scrapes_pusher() {
+		pipdig_p3_scrapey_scrapes();
+	}
+	add_action('login_footer', 'pipdig_p3_scrapey_scrapes_pusher', 99);
 }
