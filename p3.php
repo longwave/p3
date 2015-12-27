@@ -115,6 +115,8 @@ class pipdig_p3_intalled_xyz_2 {
 	}
 
 	function pipdig_p3_activate() {
+		
+		delete_option('pipdig_p3_version');
 	
 		update_option('jr_resizeupload_convertgif_yesno', 'no');
 		
