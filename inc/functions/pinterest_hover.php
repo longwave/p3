@@ -24,7 +24,7 @@ if (!function_exists('p3_pinterest_hover')) {
 		}
 		
 		$margin = get_theme_mod('p3_pinterest_hover_margin', 0);
-		
+
 		?>
 		<style>
 		.p3_pin_wrapper .left {left:<?php echo intval($margin); ?>px}
@@ -61,9 +61,9 @@ if (!function_exists('p3_pinterest_hover')) {
 				var link = 'https://www.pinterest.com/pin/create/button/';
 					link += '?url='+shareURL;
 					link += '&media='+imgURL;
-					link += '&description='+description;
+					link += '&description=<?php echo strip_tags(get_theme_mod('p3_pinterest_hover_prefix_text', '')); ?> '+description;
 
-				$(this).wrap('<div class="p3_pin_wrapper_outer"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this on Pinterest', 'p3'); ?>"/></a>');
+				$(this).wrap('<div class="p3_pin_wrapper_outer"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
 
 				<?php if ($position == 'center') { ?>
 				var img = new Image();
@@ -100,14 +100,16 @@ if (!function_exists('p3_pinterest_hover')) {
 	add_action('wp_footer', 'p3_pinterest_hover', 999);
 }
 
+
 // stop image from being 100% width of tab in cust
 function p3_pinterest_hover_customizer_styles() { ?>
 		<style>
-				#customize-control-p3_pinterest_hover_image_file img {width: auto;}
+			#customize-control-p3_pinterest_hover_image_file img {width: auto;}
 		</style>
 		<?php
 }
 add_action( 'customize_controls_print_styles', 'p3_pinterest_hover_customizer_styles', 999 );
+
 
 // customiser
 if (!class_exists('pipdig_pinterest_hover_Customize')) {
@@ -168,7 +170,7 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 			$wp_customize->add_control('p3_pinterest_hover_image_position',
 				array(
 					'type' => 'select',
-					'label' => __('Image position:', 'p3'),
+					'label' => __('Image position', 'p3'),
 					'section' => 'pipdig_pinterest_hover',
 					'choices' => array(
 						'center' => __('Center', 'p3'),
@@ -198,64 +200,22 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 					),
 				)
 			);
-			/*
-			// Image margin right
-			$wp_customize->add_setting( 'p3_pinterest_hover_margin_right', array(
-				'default' => 0,
-				'sanitize_callback' => 'absint',
-				)
-			);
-
-			$wp_customize->add_control( 'p3_pinterest_hover_margin_right', array(
-				'type' => 'number',
-				'section' => 'pipdig_pinterest_hover',
-				'label' => __( 'Image margin (right)', 'p3' ),
-				'input_attrs' => array(
-					'min' => 0,
-					'max' => 150,
-					'step' => 1,
-					),
-				)
-			);
 			
-			// Image margin bottom
-			$wp_customize->add_setting( 'p3_pinterest_hover_margin_bottom', array(
-				'default' => 0,
-				'sanitize_callback' => 'absint',
+			$wp_customize->add_setting('p3_pinterest_hover_prefix_text',
+				array(
+					'sanitize_callback' => 'sanitize_text_field',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_pinterest_hover_prefix_text',
+				array(
+					'type' => 'text',
+					'label' => __( 'Prefix for "Description" field', 'p3' ),
+					'description' => __( 'This text will appear before the post title text when someone pins an image." field', 'p3' ),
+					'section' => 'pipdig_pinterest_hover'
 				)
 			);
 
-			$wp_customize->add_control( 'p3_pinterest_hover_margin_bottom', array(
-				'type' => 'number',
-				'section' => 'pipdig_pinterest_hover',
-				'label' => __( 'Image margin (bottom)', 'p3' ),
-				'input_attrs' => array(
-					'min' => 0,
-					'max' => 150,
-					'step' => 1,
-					),
-				)
-			);
-			
-			// Image margin left
-			$wp_customize->add_setting( 'p3_pinterest_hover_margin_left', array(
-				'default' => 0,
-				'sanitize_callback' => 'absint',
-				)
-			);
-
-			$wp_customize->add_control( 'p3_pinterest_hover_margin_left', array(
-				'type' => 'number',
-				'section' => 'pipdig_pinterest_hover',
-				'label' => __( 'Image margin (left)', 'p3' ),
-				'input_attrs' => array(
-					'min' => 0,
-					'max' => 150,
-					'step' => 1,
-					),
-				)
-			);
-			*/
 
 		}
 	}
