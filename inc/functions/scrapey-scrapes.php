@@ -157,7 +157,7 @@ function pipdig_p3_scrapey_scrapes() {
 		if ($google_plus_url) {
 			$google_plus_url = rawurlencode($google_plus_url);
 			usleep(500);
-			$google_plus_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$google_plus_url."%22%20AND%20xpath%3D%22%2F%2Fdiv%5B%40class%3D'Zmjtc'%5D%2Fspan%22&format=json&diagnostics=true", array( 'timeout' => 30 ));
+			$google_plus_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$google_plus_url."%22%20AND%20xpath%3D%22%2F%2Fdiv%5B%40class%3D'Zmjtc'%5D%2Fspan%22&format=json", array( 'timeout' => 30 ));
 			$google_plus_yql = json_decode($google_plus_yql);
 			$google_plus_count = $google_plus_yql->query->results->span[0]->content;
 			$google_plus_count = intval(str_replace(',', '', $google_plus_count));
