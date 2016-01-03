@@ -70,7 +70,7 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 		
 		$first_img = $matches [1] [0];
 		
-		if ($first_img == 'http://assets.rewardstyle.com/images/search/350.gif') {
+		if (($first_img == 'http://assets.rewardstyle.com/images/search/350.gif') || ($first_img == '//assets.rewardstyle.com/images/search/350.gif')) {
 			return $default_img;
 		}
 		
