@@ -56,8 +56,23 @@ function pipdig_p3_scrapey_scrapes() {
 		}
 		
 		// Pinterest ---------------------
+		$pinterest_url = esc_url($links['pinterest']);
+		if($pinterest_url) {
+			$pinterest_user = parse_url($pinterest_url, PHP_URL_PATH);
+			$pinterest_user = str_replace('/', '', $pinterest_user);
+			$json_url ='http://api.pinterest.com/v3/pidgets/users/'.$pinterest_user.'/pins/';
+			$json = wp_remote_fopen($json_url);
+			$json_output = json_decode($json);
+			if($json_output->data->pins[0]->pinner->follower_count){
+				$pinterest_followers = intval($json_output->data->pins[0]->pinner->follower_count);
+				update_option('p3_pinterest_count', $pinterest_followers);
+			}
+		} else {
+			delete_option('p3_pinterest_count');
+		}
 		// <meta property="pinterestapp:followers" name="pinterestapp:followers" content="106168" data-app>
 		// SELECT * from html where url="https://www.pinterest.com/thelovecatsinc" AND xpath="//meta[@property='pinterestapp:followers']"
+		/*
 		$pinterest_url = esc_url($links['pinterest']);
 		if ($pinterest_url) {
 			$pinterest_url = rawurlencode($pinterest_url);
@@ -68,7 +83,7 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_pinterest_count');
 		}
-		
+		*/
 		
 		
 		
@@ -159,7 +174,9 @@ function pipdig_p3_scrapey_scrapes() {
 			usleep(500);
 			$google_plus_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$google_plus_url."%22%20AND%20xpath%3D%22%2F%2Fdiv%5B%40class%3D'Zmjtc'%5D%2Fspan%22&format=json", array( 'timeout' => 30 ));
 			$google_plus_yql = json_decode($google_plus_yql);
-			$google_plus_count = $google_plus_yql->query->results->span[0]->content;
+			if ($google_plus_yql->query->results->span[0]->content) {
+				$google_plus_count = $google_plus_yql->query->results->span[0]->content;
+			}
 			$google_plus_count = intval(str_replace(',', '', $google_plus_count));
 			update_option('p3_google_plus_count', $google_plus_count);
 		} else {
