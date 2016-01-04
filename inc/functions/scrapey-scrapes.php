@@ -12,11 +12,15 @@ function pipdig_p3_scrapey_scrapes() {
 		set_transient('p3_stats_gen', true, 12 * HOUR_IN_SECONDS);
 		$links = get_option('pipdig_links');
 		
+		$args = array(
+			'timeout' => 15,
+			'headers' => array('user_agent' => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'),
+		);
+		
 		// Bloglovin --------------------
 		$bloglovin_url = esc_url($links['bloglovin']);
 		if($bloglovin_url) {
-			$user_agent  = stream_context_create(array('http' => array('user_agent' => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')));
-			$bloglovin = file_get_contents($bloglovin_url, false, $user_agent);
+			$bloglovin = wp_remote_fopen($bloglovin_url, $args);
 			$bloglovin_doc = new DOMDocument();
 				libxml_use_internal_errors(true);
 				if(!empty($bloglovin)){
@@ -45,7 +49,7 @@ function pipdig_p3_scrapey_scrapes() {
 			$appid = '7222'.'093312'.'18125';
 			$apsec = '3f9d'.'971ecad0debb'.'c0b983b7af6fcf34';
 			$json_url ='https://graph.facebook.com/'.$facebook_id.'?access_token='.$appid.'|'.$apsec.'&fields=likes';
-			$json = wp_remote_fopen($json_url);
+			$json = wp_remote_fopen($json_url, $args);
 			$json_output = json_decode($json);
 			if($json_output->likes){
 				$likes = intval($json_output->likes);
@@ -61,7 +65,7 @@ function pipdig_p3_scrapey_scrapes() {
 			$pinterest_user = parse_url($pinterest_url, PHP_URL_PATH);
 			$pinterest_user = str_replace('/', '', $pinterest_user);
 			$json_url ='http://api.pinterest.com/v3/pidgets/users/'.$pinterest_user.'/pins/';
-			$json = wp_remote_fopen($json_url);
+			$json = wp_remote_fopen($json_url, $args);
 			$json_output = json_decode($json);
 			if($json_output->data->pins[0]->pinner->follower_count){
 				$pinterest_followers = intval($json_output->data->pins[0]->pinner->follower_count);
@@ -131,14 +135,14 @@ function pipdig_p3_scrapey_scrapes() {
 				$instagram_handle = parse_url($instagram_url, PHP_URL_PATH);
 				$instagram_handle = str_replace('/', '', $instagram_handle);
 				//get the userid from json
-				$userid = wp_remote_fopen('https://api.instagram.com/v1/users/search?q=%22'.$instagram_handle.'%22&access_token='.$ig_token, array( 'timeout' => 20 ));
+				$userid = wp_remote_fopen('https://api.instagram.com/v1/users/search?q=%22'.$instagram_handle.'%22&access_token='.$ig_token, $args);
 				$userid = json_decode($userid);
 				$userid = intval($userid->data[0]->id);
 			}
 			// use userid for second json
-			$instagram_count = wp_remote_fopen('https://api.instagram.com/v1/users/'.$userid.'?access_token='.$ig_token, array( 'timeout' => 20 ));
+			$instagram_count = wp_remote_fopen('https://api.instagram.com/v1/users/'.$userid.'?access_token='.$ig_token, $args);
 			$instagram_count = json_decode($instagram_count);
-			$instagram_count = $instagram_count->data->counts->followed_by;
+			$instagram_count = intval($instagram_count->data->counts->followed_by);
 			update_option('p3_instagram_count', $instagram_count);
 		} else {
 			delete_option('p3_instagram_count');
@@ -149,8 +153,7 @@ function pipdig_p3_scrapey_scrapes() {
 		$youtube_url = esc_url($links['youtube']);
 		if ($youtube_url) {
 			$youtube_url = rawurlencode($youtube_url);
-			usleep(500);
-			$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$youtube_url."%22%20AND%20xpath%3D%22%2Fhtml%2Fbody%2Fdiv%5B4%5D%2Fdiv%5B4%5D%2Fdiv%2Fdiv%5B5%5D%2Fdiv%2Fdiv%5B1%5D%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fspan%2Fspan%5B1%5D%22&format=json", array( 'timeout' => 20 ));
+			$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$youtube_url."%22%20AND%20xpath%3D%22%2Fhtml%2Fbody%2Fdiv%5B4%5D%2Fdiv%5B4%5D%2Fdiv%2Fdiv%5B5%5D%2Fdiv%2Fdiv%5B1%5D%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fspan%2Fspan%5B1%5D%22&format=json", $args);
 			$youtube_yql = json_decode($youtube_yql);
 			$youtube_count = $youtube_yql->query->results->span->title;
 			$youtube_count = intval(str_replace(',', '', $youtube_count));
@@ -159,7 +162,9 @@ function pipdig_p3_scrapey_scrapes() {
 			delete_option('p3_youtube_count');
 		}
 		/* non yql 
-		$youtube_query = wp_remote_fopen('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=CHANNEL_ID&key=API_KEY');
+		
+		get channel id using? https://www.googleapis.com/youtube/v3/channels?key=AIzaSyAFwqQSW7MI7kKHQmrYL2jl1v9Shw1bMwE&forUsername=pipdigtv&part=id
+		$youtube_query = wp_remote_fopen('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=CHANNEL_ID&key=AIzaSyAFwqQSW7MI7kKHQmrYL2jl1v9Shw1bMwE'); // uses lem'skey
 		$youtube_query = json_decode($youtube_query, true);
 		$youtube_count = intval($youtube_query['items'][0]['statistics']['subscriberCount']);
 		update_option('p3_youtube_count', $youtube_count);
@@ -171,14 +176,13 @@ function pipdig_p3_scrapey_scrapes() {
 		$google_plus_url = esc_url($links['google_plus']);
 		if ($google_plus_url) {
 			$google_plus_url = rawurlencode($google_plus_url);
-			usleep(500);
-			$google_plus_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$google_plus_url."%22%20AND%20xpath%3D%22%2F%2Fdiv%5B%40class%3D'Zmjtc'%5D%2Fspan%22&format=json", array( 'timeout' => 30 ));
+			$google_plus_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$google_plus_url."%22%20AND%20xpath%3D%22%2F%2Fdiv%5B%40class%3D'Zmjtc'%5D%2Fspan%22&format=json", $args);
 			$google_plus_yql = json_decode($google_plus_yql);
 			if ($google_plus_yql->query->results->span[0]->content) {
 				$google_plus_count = $google_plus_yql->query->results->span[0]->content;
+				$google_plus_count = intval(str_replace(',', '', $google_plus_count));
+				update_option('p3_google_plus_count', $google_plus_count);
 			}
-			$google_plus_count = intval(str_replace(',', '', $google_plus_count));
-			update_option('p3_google_plus_count', $google_plus_count);
 		} else {
 			delete_option('p3_google_plus_count');
 		}
