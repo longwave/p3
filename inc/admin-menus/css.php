@@ -77,6 +77,6 @@ if (!function_exists('pipdig_css_head')) {
 		}
 		echo $output;
 	}
-	add_action('wp_head','pipdig_css_head');
+	add_action('wp_head','pipdig_css_head', 999);
 }
 
