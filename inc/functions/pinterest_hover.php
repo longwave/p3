@@ -211,7 +211,6 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 				array(
 					'type' => 'text',
 					'label' => __( 'Prefix for "Description" field', 'p3' ),
-					'description' => __( 'This text will appear before the post title text when someone pins an image." field', 'p3' ),
 					'section' => 'pipdig_pinterest_hover'
 				)
 			);
