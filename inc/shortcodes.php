@@ -8,6 +8,7 @@ include_once('shortcodes/pipdig_left_right.php');
 include_once('shortcodes/pipdig_stars.php');
 include_once('shortcodes/pipdig_mosaic.php');
 include_once('shortcodes/pipdig_image_overlay.php');
+include_once('shortcodes/pipdig_image_side.php');
 
 // stop wpautop on shortcodes http://stackoverflow.com/questions/5940854/disable-automatic-formatting-inside-wordpress-shortcodes
 //remove_filter('the_content', 'wpautop');

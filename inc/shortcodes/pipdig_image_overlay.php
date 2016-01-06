@@ -40,22 +40,21 @@ function pipdig_p3_image_overlay( $atts, $content = null ) {
 			break;
 	}
 	
+	if ($titletextsize) {
+		$titletextsize = 'font-size:'.esc_attr($titletextsize).'px;';
+	}
+	if ($titlecolor) {
+		$titlecolor = 'color:'.esc_attr($titlecolor).';';
+	}
+	
 	$output = '';
 	$output .= '<div style="position:relative;" class="editorial-photo-text">
 		<img src="'.esc_url($image).'" alt="'.esc_attr(get_the_title()).'" />
 		<div style="position:absolute;'.$position_out.';z-index:20">
-		<div class="editorial-photo-title" style="color:'.$titlecolor.';font-size:'.$titletextsize.';">'.$title.'</div>
+		<div class="editorial-photo-title" style="'.$titlecolor.$titletextsize.'">'.$title.'</div>
 		'.$content.'
 		</div>
 		</div>';
-	$output .= '
-	<script>
-	jQuery(window).on("load", function() {
-		var rowHeight = jQuery("#HTML519").height();
-		jQuery("#'.$id.'").css("height", rowHeight);
-	});
-	</script>
-	';
 	
 	return $output;
 }
