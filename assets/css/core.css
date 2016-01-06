@@ -306,15 +306,32 @@ max-width: 100%;
 
 
 
-/* layout shortcodes */
+/* shortcodes ======================== */
 
+/* left/right columns */
 .pipdig_left {
-	float:left;
-	width: 48%;
+float:left;
+width: 48%;
 }
 .pipdig_right {
-	float: right;
-	width: 48%;
+float: right;
+width: 48%;
+}
+
+/* pipdig_image_overlay */
+.editorial-photo-text p {
+margin: 0;
+}
+
+/* pipdig_image_side */
+.pipdig_image_side_text {
+text-align: center;
+display: table-cell;
+vertical-align: middle;
+width: 1000px;
+max-width: 100%;
+overflow: hidden;
+padding: 15px;
 }
 
 /* Blogger ======================== */

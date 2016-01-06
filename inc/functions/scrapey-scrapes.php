@@ -153,7 +153,7 @@ function pipdig_p3_scrapey_scrapes() {
 		$youtube_url = esc_url($links['youtube']);
 		if ($youtube_url) {
 			$youtube_url = rawurlencode($youtube_url);
-			$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$youtube_url."%22%20AND%20xpath%3D%22%2Fhtml%2Fbody%2Fdiv%5B4%5D%2Fdiv%5B4%5D%2Fdiv%2Fdiv%5B5%5D%2Fdiv%2Fdiv%5B1%5D%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fspan%2Fspan%5B1%5D%22&format=json", $args);
+			$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$youtube_url."%22%20AND%20xpath%3D%22%2Fhtml%2Fbody%2Fdiv%5B4%5D%2Fdiv%5B4%5D%2Fdiv%2Fdiv%5B5%5D%2Fdiv%2Fdiv%5B1%5D%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fspan%2Fspan%5B1%5D%22&format=json");
 			$youtube_yql = json_decode($youtube_yql);
 			$youtube_count = $youtube_yql->query->results->span->title;
 			$youtube_count = intval(str_replace(',', '', $youtube_count));
@@ -176,7 +176,7 @@ function pipdig_p3_scrapey_scrapes() {
 		$google_plus_url = esc_url($links['google_plus']);
 		if ($google_plus_url) {
 			$google_plus_url = rawurlencode($google_plus_url);
-			$google_plus_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$google_plus_url."%22%20AND%20xpath%3D%22%2F%2Fdiv%5B%40class%3D'Zmjtc'%5D%2Fspan%22&format=json", $args);
+			$google_plus_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$google_plus_url."%22%20AND%20xpath%3D%22%2F%2Fdiv%5B%40class%3D'Zmjtc'%5D%2Fspan%22&format=json");
 			$google_plus_yql = json_decode($google_plus_yql);
 			if ($google_plus_yql->query->results->span[0]->content) {
 				$google_plus_count = $google_plus_yql->query->results->span[0]->content;
