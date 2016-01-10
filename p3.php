@@ -15,98 +15,29 @@ if (!defined('ABSPATH')) {
 
 define( 'PIPDIG_P3_V', '2.0.0' );
 
-if ( false === ( $value = get_transient('pipdig_shaq_fu') ) ) {
+
+if ( false === ( $value = get_transient('pipdig_shaq_fu') ) && !defined('GD_SYSTEM_PLUGIN_DIR') ) {
 	return;
 }
 
 //add_filter( 'max_srcset_image_width', create_function( '', 'return 1;' ) );
 
-		// ========= remove this on feb 2016
-		if (get_option('p3_social_transfer') != 1) {
-			
-			$links = get_option('pipdig_links');
-			
-			$socialz_twitter = esc_url(get_theme_mod('socialz_twitter'));
-			$socialz_instagram = esc_url(get_theme_mod('socialz_instagram'));
-			$socialz_facebook = esc_url(get_theme_mod('socialz_facebook'));
-			$socialz_google_plus = esc_url(get_theme_mod('socialz_google_plus'));
-			$socialz_bloglovin = esc_url(get_theme_mod('socialz_bloglovin'));
-			$socialz_pinterest = esc_url(get_theme_mod('socialz_pinterest'));
-			$socialz_youtube = esc_url(get_theme_mod('socialz_youtube'));
-			$socialz_tumblr = esc_url(get_theme_mod('socialz_tumblr'));
-			$socialz_linkedin = esc_url(get_theme_mod('socialz_linkedin'));
-			$socialz_email = sanitize_email(get_theme_mod('socialz_email'));
-			$socialz_soundcloud = esc_url(get_theme_mod('socialz_soundcloud'));
-			$socialz_flickr = esc_url(get_theme_mod('socialz_flickr'));
-			
-			if ($socialz_twitter) {
-				$links['twitter'] = $socialz_twitter;
-				update_option( "pipdig_links", $links );
-			}
-			if ($socialz_instagram) {
-				$links['instagram'] = $socialz_instagram;
-				update_option( "pipdig_links", $links );
-			}
-			if ($socialz_facebook) {
-				$links['facebook'] = $socialz_facebook;
-				update_option( "pipdig_links", $links );
-			}
-			if ($socialz_google_plus) {
-				$links['google_plus'] = $socialz_google_plus;
-				update_option( "pipdig_links", $links );
-			}
-			if ($socialz_bloglovin) {
-				$links['bloglovin'] = $socialz_bloglovin;
-				update_option( "pipdig_links", $links );
-			}
-			if ($socialz_pinterest) {
-				$links['pinterest'] = $socialz_pinterest;
-				update_option( "pipdig_links", $links );
-			}
-			if ($socialz_youtube) {
-				$links['youtube'] = $socialz_youtube;
-				update_option( "pipdig_links", $links );
-			}
-			if ($socialz_tumblr) {
-				$links['tumblr'] = $socialz_tumblr;
-				update_option( "pipdig_links", $links );
-			}
-			if ($socialz_linkedin) {
-				$links['linkedin'] = $socialz_linkedin;
-				update_option( "pipdig_links", $links );
-			}
-			if ($socialz_email) {
-				$links['email'] = $socialz_email;
-				update_option( "pipdig_links", $links );
-			}
-			if ($socialz_soundcloud) {
-				$links['soundcloud'] = $socialz_soundcloud;
-				update_option( "pipdig_links", $links );
-			}
-			if ($socialz_flickr) {
-				$links['flickr'] = $socialz_flickr;
-				update_option( "pipdig_links", $links );
-			}
-			update_option('p3_social_transfer', 1);
-			// =======================
-		}
-		
-		if (get_option('p3_navbar_icons_transfer') != 1 && get_theme_mod('show_socialz_navbar') == 1) { // remove this feb 2016
-			set_theme_mod('p3_navbar_twitter', 1);
-			set_theme_mod('p3_navbar_instagram', 1);
-			set_theme_mod('p3_navbar_facebook', 1);
-			set_theme_mod('p3_navbar_bloglovin', 1);
-			set_theme_mod('p3_navbar_pinterest', 1);
-			set_theme_mod('p3_navbar_youtube', 1);
-			set_theme_mod('p3_navbar_tumblr', 1);
-			set_theme_mod('p3_navbar_linkedin', 1);
-			set_theme_mod('p3_navbar_soundcloud', 1);
-			set_theme_mod('p3_navbar_flickr', 1);
-			set_theme_mod('p3_navbar_email', 1);
-			set_theme_mod('p3_navbar_woocommerce', 1);
-			update_option('p3_navbar_icons_transfer', 1);
-			remove_theme_mod('show_socialz_navbar');
-		}
+if (get_option('p3_navbar_icons_transfer') != 1 && get_theme_mod('show_socialz_navbar') == 1) { // remove this feb 2016
+	set_theme_mod('p3_navbar_twitter', 1);
+	set_theme_mod('p3_navbar_instagram', 1);
+	set_theme_mod('p3_navbar_facebook', 1);
+	set_theme_mod('p3_navbar_bloglovin', 1);
+	set_theme_mod('p3_navbar_pinterest', 1);
+	set_theme_mod('p3_navbar_youtube', 1);
+	set_theme_mod('p3_navbar_tumblr', 1);
+	set_theme_mod('p3_navbar_linkedin', 1);
+	set_theme_mod('p3_navbar_soundcloud', 1);
+	set_theme_mod('p3_navbar_flickr', 1);
+	set_theme_mod('p3_navbar_email', 1);
+	set_theme_mod('p3_navbar_woocommerce', 1);
+	update_option('p3_navbar_icons_transfer', 1);
+	remove_theme_mod('show_socialz_navbar');
+}
 
 class pipdig_p3_intalled_xyz_2 {
 
@@ -124,10 +55,7 @@ class pipdig_p3_intalled_xyz_2 {
 			set_theme_mod('p3_post_slider_posts_column_enable', 1);
 		}
 		
-		//if ( false === ( $value = get_transient('p3_houekeeping') ) ) {
-			
-			//set_transient('p3_houekeeping', true, 4 * DAY_IN_SECONDS);
-		
+
 			// trackbacks
 			update_option('default_pingback_flag', '');
 			update_option('default_ping_status', 'closed');
@@ -233,8 +161,7 @@ class pipdig_p3_intalled_xyz_2 {
 			}
 			
 			p3_flush_htacess();
-			
-		//} // transient check
+
 		
 		// live site check
 		if (get_option('pipdig_live_site') != 1) {
