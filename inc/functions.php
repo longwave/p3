@@ -243,7 +243,7 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
 	// 'shortlinks',
 	'infinite-scroll',
 	// 'wpcc',
-	'tiled-gallery',
+	//'tiled-gallery',
 	//'json-api',
 	// 'publicize',
 	// 'vaultpress',

@@ -212,7 +212,7 @@ add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
-	
+	//wp_register_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css' );
 	wp_enqueue_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css' );
 	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', plugin_dir_url(__FILE__).'assets/css/responsive.css' ); }
 	
