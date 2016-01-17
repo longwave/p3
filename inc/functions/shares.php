@@ -53,7 +53,12 @@ function pipdig_p3_social_shares() {
 		$output .= '<a href="//www.stumbleupon.com/submit?url='.$link.'&title='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-stumbleupon"></i></a>';
 	}
 	
-	echo '<div class="addthis_toolbox">'.__('Share:', 'p3').' '.$output.'</div>';
+	$title = __('Share:', 'p3');
+	if (get_theme_mod('p3_share_title')) {
+		$title = sanitize_text_field(get_theme_mod('p3_share_title'));
+	}
+	
+	echo '<div class="addthis_toolbox">'.$title.' '.$output.'</div>';
 }
 
 
@@ -86,6 +91,23 @@ if (!class_exists('pipdig_p3_social_shares_Customiser')) {
 					'label' => __( 'Disable all icons', 'p3' ),
 					'description' => __( 'Select this option to completely remove this feature.', 'p3' ),
 					'section' => 'pipdig_p3_shares_section',
+				)
+			);
+			
+			$wp_customize->add_setting('p3_share_title',
+				array(
+					'sanitize_callback' => 'sanitize_text_field',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_share_title',
+				array(
+					'type' => 'text',
+					'label' => __('Title:'),
+					'section' => 'pipdig_p3_shares_section',
+					'input_attrs' => array(
+						'placeholder' => __('Share:', 'p3'),
+					),
 				)
 			);
 			
