@@ -15,47 +15,46 @@ if (!function_exists('pipdig_footer_admin')) {
 
 
 /*	Remove pointless front end widgets ----------------------------------------------*/
-function pipdig_p3_unregister_widgets() {
-	unregister_widget('WP_Widget_Pages');
-	unregister_widget('WP_Widget_Links');
-	unregister_widget('WP_Widget_Meta');
-	unregister_widget('WP_Widget_Recent_Posts');
-	unregister_widget('WP_Widget_Recent_Comments');
+if (!function_exists('pipdig_p3_unregister_widgets')) {
+	function pipdig_p3_unregister_widgets() {
+		unregister_widget('WP_Widget_Pages');
+		unregister_widget('WP_Widget_Links');
+		unregister_widget('WP_Widget_Meta');
+		unregister_widget('WP_Widget_Recent_Posts');
+		unregister_widget('WP_Widget_Recent_Comments');
 
-	unregister_widget('Jetpack_Gravatar_Profile_Widget');
-	unregister_widget('WPCOM_Widget_Facebook_LikeBox');
-	unregister_widget('Jetpack_Gallery_Widget');
-	unregister_widget('Jetpack_RSS_Links_Widget');
-	unregister_widget('wpcom_social_media_icons_widget');
-	unregister_widget('Jetpack_Display_Posts_Widget');
-	unregister_widget('Jetpack_Top_Posts_Widget');
-	unregister_widget('Jetpack_Contact_Info_Widget');
-	
-	unregister_widget('Akismet_Widget');
-	unregister_widget('SocialCountPlus');
-	unregister_widget('GADWP_Frontend_Widget');
-	
-	remove_action( 'admin_menu', 'socialwidget_top_level_menu' ); // https://wordpress.org/plugins/social-media-widget/
-	remove_action( 'admin_notices', 'socialwidget_global_notice' ); // https://wordpress.org/plugins/social-media-widget/
-	
+		unregister_widget('Jetpack_Gravatar_Profile_Widget');
+		unregister_widget('WPCOM_Widget_Facebook_LikeBox');
+		unregister_widget('Jetpack_Gallery_Widget');
+		unregister_widget('Jetpack_RSS_Links_Widget');
+		unregister_widget('wpcom_social_media_icons_widget');
+		unregister_widget('Jetpack_Display_Posts_Widget');
+		unregister_widget('Jetpack_Top_Posts_Widget');
+		unregister_widget('Jetpack_Contact_Info_Widget');
+		
+		unregister_widget('Akismet_Widget');
+		unregister_widget('SocialCountPlus');
+		unregister_widget('GADWP_Frontend_Widget');
+		
+	}
+	add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 }
-add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
-
 
 
 /*	Remove pointless dashboard widgets ----------------------------------------------*/
-function pipdig_p3_pipdig_remove_dashboard_meta() {
-	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
-	remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
-	remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
-	remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
-	remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
-	remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
-	remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
-	remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+if (!function_exists('pipdig_p3_pipdig_remove_dashboard_meta')) {
+	function pipdig_p3_pipdig_remove_dashboard_meta() {
+		remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
+		remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
+		remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
+		remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
+		remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
+		remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
+		remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
+		remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+	}
+	add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
 }
-add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
-
 
 
 /*	Remove pointless meta boxes on posts --------------------------------------------*/
