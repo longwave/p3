@@ -212,9 +212,9 @@ add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
-	//wp_register_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css' );
-	wp_enqueue_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css' );
-	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', plugin_dir_url(__FILE__).'assets/css/responsive.css' ); }
+	//wp_register_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css', array(), PIPDIG_P3_V );
+	wp_enqueue_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css', array(), PIPDIG_P3_V );
+	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', plugin_dir_url(__FILE__).'assets/css/responsive.css', array(), PIPDIG_P3_V ); }
 	
 	//wp_register_script( 'imagesloaded', '//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js', array('jquery'), false ); // I know, I know :(
 	//wp_register_script( 'bxslider', '//cdnjs.cloudflare.com/ajax/libs/bxslider/4.1.2/jquery.bxslider.min.js', array('jquery'), false );
