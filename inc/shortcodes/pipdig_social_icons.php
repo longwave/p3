@@ -19,40 +19,40 @@ function pipdig_p3_social_icons_shortcode( $atts, $content = null ) {
 		$output .= '<style scoped>.p3_social_icons_shortcode a {font-size:'.$size.';color:'.$color.';}</style>';
 	}
 	
-		if (isset($links['twitter'])) {
+		if (!empty($links['twitter'])) {
 			$output .= '<a href="'.esc_url($links['twitter']).'" target="_blank"><i class="fa fa-twitter"></i></a>';
 		}
-		if (isset($links['instagram'])) {
+		if (!empty($links['instagram'])) {
 			$output .= '<a href="'.esc_url($links['instagram']).'" target="_blank"><i class="fa fa-instagram"></i></a>';
 		}
-		if (isset($links['facebook'])) {
+		if (!empty($links['facebook'])) {
 			$output .= '<a href="'.esc_url($links['facebook']).'" target="_blank"><i class="fa fa-facebook"></i></a>';
 		}
-		if (isset($links['bloglovin'])) {
+		if (!empty($links['bloglovin'])) {
 			$output .= '<a href="'.esc_url($links['bloglovin']).'" target="_blank"><i class="fa fa-plus"></i></a>';
 		}
-		if (isset($links['pinterest'])) {
+		if (!empty($links['pinterest'])) {
 			$output .= '<a href="'.esc_url($links['pinterest']).'" target="_blank"><i class="fa fa-pinterest"></i></a>';
 		}
-		if (isset($links['youtube'])) {
+		if (!empty($links['youtube'])) {
 			$output .= '<a href="'.esc_url($links['youtube']).'" target="_blank"><i class="fa fa-youtube-play"></i></a>';
 		}
-		if (isset($links['tumblr'])) {
+		if (!empty($links['tumblr'])) {
 			$output .= '<a href="'.esc_url($links['tumblr']).'" target="_blank"><i class="fa fa-tumblr"></i></a>';
 		}
-		if (isset($links['linkedin'])) {
+		if (!empty($links['linkedin'])) {
 			$output .= '<a href="'.esc_url($links['linkedin']).'" target="_blank"><i class="fa fa-linkedin"></i></a>';
 		}
-		if (isset($links['soundcloud'])) {
+		if (!empty($links['soundcloud'])) {
 			$output .= '<a href="'.esc_url($links['soundcloud']).'" target="_blank"><i class="fa fa-soundcloud"></i></a>';
 		}
-		if (isset($links['flickr'])) {
+		if (!empty($links['flickr'])) {
 			$output .= '<a href="'.esc_url($links['flickr']).'" target="_blank"><i class="fa fa-flickr"></i></a>';
 		}
-		if (isset($links['vk'])) {
+		if (!empty($links['vk'])) {
 			$output .= '<a href="'.esc_url($links['vk']).'" target="_blank"><i class="fa fa-vk"></i></a>';
 		}
-		if (isset($links['email'])) {
+		if (!empty($links['email'])) {
 			$output .= '<a href="mailto:'.sanitize_email($links['facebook']).'"><i class="fa fa-envelope"></i></a>';
 		}
 
