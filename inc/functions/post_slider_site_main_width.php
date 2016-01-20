@@ -69,7 +69,7 @@ if (!function_exists('p3_full_width_slider_site_main')) {
 	</div>
 	<?php
 	}
-	add_action('p3_top_site_main_container', 'p3_full_width_slider_site_main');
+	add_action('p3_top_site_main_container', 'p3_full_width_slider_site_main', 1);
 }
 
 
