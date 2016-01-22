@@ -164,7 +164,7 @@ function pipdig_p3_scrapey_scrapes() {
 		/* non yql 
 		
 		get channel id using? https://www.googleapis.com/youtube/v3/channels?key=AIzaSyAFwqQSW7MI7kKHQmrYL2jl1v9Shw1bMwE&forUsername=pipdigtv&part=id
-		$youtube_query = wp_remote_fopen('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=CHANNEL_ID&key=AIzaSyAFwqQSW7MI7kKHQmrYL2jl1v9Shw1bMwE'); // uses lem'skey
+		$youtube_query = wp_remote_fopen('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=CHANNEL_ID&key=AIzaSyAFwqQSW7MI7kKHQmrYL2jl1v9Shw1bMwE'); // uses lemsey
 		$youtube_query = json_decode($youtube_query, true);
 		$youtube_count = intval($youtube_query['items'][0]['statistics']['subscriberCount']);
 		update_option('p3_youtube_count', $youtube_count);

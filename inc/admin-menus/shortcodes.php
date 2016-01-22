@@ -21,7 +21,7 @@ if (!function_exists('pipdig_shortcodes_options_page')) {
 			<h2>Left/Right Post Layouts</h2>
 			<p>Say goodbye to boring old post layouts and add an editorial feel to your content. By using these shortcodes you can float a section of your post content to the left or right. Simply wrap the content in:</p>
 			<p><input class="widefat" type="text" value='[pipdig_left] This text goes to the left [/pipdig_left]' /></p>
-			<p><input class="widefat" type="text" value='[pipdig_left] ...and this text goes to the right [/pipdig_left]' /></p>
+			<p><input class="widefat" type="text" value='[pipdig_right] ...and this text goes to the right [/pipdig_right]' /></p>
 			<p><a href="https://youtu.be/BVdIibUHThg" target="_blank">Click here to view a quick video example</a>.</p>
 			<p>By using these shortcodes you can ensure that your layouts are 100% responsive, working perfectly on mobiles too.</p>
 			<a href="https://youtu.be/BVdIibUHThg" target="_blank"><img src="//pipdigz.co.uk/p3/img/shortcodes/left_right_example.jpg" alt="Left / Right Layout" style="border:1px solid #eee" /></a>

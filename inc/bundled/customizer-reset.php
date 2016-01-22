@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 if ( ! class_exists( 'ZOOM_Customizer_Reset' ) ) {
 	final class pipdig_p3_Customizer_Reset {
 
@@ -62,6 +66,7 @@ if ( ! class_exists( 'ZOOM_Customizer_Reset' ) ) {
 			foreach ( $settings as $setting ) {
 				if ( 'theme_mod' == $setting->type ) {
 					remove_theme_mod( $setting->id );
+					delete_option('p3_pinterest_theme_set');
 				}
 			}
 		}
