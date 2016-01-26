@@ -33,7 +33,7 @@ if (!function_exists('p3_feature_header')) {
 		<div id="p3_feature_header" class="row nopin">
 			<style scoped>
 				.cycle-slideshow {height: auto} .cycle-slideshow li{display:none}.cycle-slideshow li.first{display:block}
-				.p3_trending_panel h4, .p3_feature_slide_banner, .p3_feature_slide_banner h2 {background:<?php echo esc_attr($text_bg_color); ?>;color:<?php echo esc_attr($text_color); ?>;}
+				#p3_feature_header .p3_trending_panel h4, #p3_feature_header .p3_feature_slide_banner, #p3_feature_header .p3_feature_slide_banner h2 {background:<?php echo esc_attr($text_bg_color); ?>;color:<?php echo esc_attr($text_color); ?>;}
 			</style>
 			<div id="p3_feature_header_big_this_month" class="col-md-6">
 
