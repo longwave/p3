@@ -23,7 +23,7 @@ if (!function_exists('p3_pinterest_hover')) {
 			return;
 		}
 		
-		$margin = get_theme_mod('p3_pinterest_hover_margin', 0);
+		$margin = intval(get_theme_mod('p3_pinterest_hover_margin', 0));
 
 		?>
 		<style>

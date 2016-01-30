@@ -346,6 +346,7 @@ include_once('functions/post_slider_site_main_width.php');
 //include_once('functions/post_slider_site_main_width_sq.php');
 include_once('functions/post_slider_posts_column.php');
 include_once('functions/width_customizer.php');
+//include_once('functions/popup.php');
 
 // bundled
 include_once('bundled/customizer-reset.php');
