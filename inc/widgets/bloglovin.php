@@ -20,8 +20,8 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 		echo (isset($before_widget)?$before_widget:'');
 		pipdig_p3_scrapey_scrapes();
 		$links = get_option('pipdig_links');
-		$bloglovin_url = $links['bloglovin'];
-		$bloglovin_count = get_option('p3_bloglovin_count');
+		$bloglovin_url = esc_url($links['bloglovin']);
+		$bloglovin_count = intval(get_option('p3_bloglovin_count'));
 		$bloglovin_official = get_theme_mod('pipdig_bloglovin_widget_official', false);
 
 		if (!empty($bloglovin_url)) {
