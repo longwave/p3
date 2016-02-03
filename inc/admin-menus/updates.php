@@ -45,7 +45,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 							<p>New <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a> feature - Add a "Popular Posts Bar" under your site's header.</p>
 							<p>We're working on some new shortcodes that will allow you to easily move/display your post content differently, ensuring it is fully responsive and search engine friendly. To start with, we kept things simple with some "Left/Right" layout options. You can read more about this shortcode <a href="<?php echo admin_url('admin.php?page=pipdig-shortcodes'); ?>">on this page</a>. More to come soon...</p>
 							<p>More control over the icons displayed in the navbar. Look for the "Navbar Icons" section in the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>.</p>
-							<p>We have created a dedicated WordPress section to our Knowledge Base. You can find lots of new tips and tricks in <a href="https://pipdig.zendesk.com/hc/en-gb/categories/200928922" target="_blank">this section</a>.</p>
+							<p>We have created a dedicated WordPress section to our Knowledge Base. You can find lots of new tips and tricks in <a href="//support.pipdig.co/article-topics/wordpress/" target="_blank">this section</a>.</p>
 						</div>
 
 					</div>

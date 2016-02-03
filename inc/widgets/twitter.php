@@ -84,7 +84,7 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 			<label for="<?php echo $this->get_field_id('twitter_handle'); ?>"><?php _e('Twitter Username (Not including @ symbol):', 'p3'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('twitter_handle'); ?>" name="<?php echo $this->get_field_name('twitter_handle'); ?>" type="text" value="<?php echo esc_attr($twitter_handle); ?>" placeholder="e.g. pipdig" />
 		</p>
-		<p><a href="https://pipdig.zendesk.com/hc/en-gb/articles/206407699" target="_blank"><?php _e('Click here for information', 'p3'); ?></a></p>
+		<p><a href="//support.pipdig.co/articles/wordpress-twitter-widget/?utm_source=wordpress&utm_medium=p3&utm_campaign=widget" target="_blank"><?php _e('Click here for information', 'p3'); ?></a></p>
 		<p>
 			<label for="<?php echo $this->get_field_id('twitter_widget_id'); ?>"><?php _e('Twitter Widget ID:', 'p3'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('twitter_widget_id'); ?>" name="<?php echo $this->get_field_name('twitter_widget_id'); ?>" type="text" value="<?php echo esc_attr($twitter_widget_id); ?>" placeholder="e.g. 123456789" />

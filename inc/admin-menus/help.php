@@ -22,13 +22,14 @@ if (!function_exists('pipdig_help_options_page')) {
 
 				<div class="meta-box-sortables ui-sortable">
 				
-					<p>Need some help? <a href="https://pipdig.zendesk.com/hc" target="_blank">Click here</a> to access our Helpdesk.</p>
+					<p>Need some help? <a href="http://support.pipdig.co/?utm_source=wordpress&utm_medium=p3&utm_campaign=supportpage" target="_blank">Click here</a> to access our Helpdesk.</p>
 					
 					<h3>Please use the form below to search for topics:</h3>
 				
-					<form role="search" class="search-form" data-search="true" action="https://pipdig.zendesk.com/hc/en-gb/search" accept-charset="UTF-8" method="get" target="_blank">
-						<input name="utf8" type="hidden" value="&#x2713;" />
-						<input type="search" name="query" id="query" placeholder="Search" />
+					<form role="search" class="search-form" data-search="true" action="//support.pipdig.co/" accept-charset="UTF-8" method="get" target="_blank">
+						<input type="hidden" value="1" name="ht-kb-search">
+						<input type="hidden" value="" name="lang">
+						<input type="search" name="s" id="query" placeholder="Search" />
 						<input type="submit" name="commit" class="button" value="Search" />
 					</form>
 

@@ -91,7 +91,7 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 			$wp_customize->add_section( 'p3_navbar_icons_section', 
 				array(
 					'title' => __( 'Navbar Icons', 'p3' ),
-					'description' => __( 'You can display your social icons in the navbar using these options. Select the social icons you would like to add from below.', 'p3' ).' <a href="https://goo.gl/Ycrlor" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
+					'description' => __( 'You can display your social icons in the navbar using these options. Select the social icons you would like to add from below.', 'p3' ).' <a href="//support.pipdig.co/articles/wordpress-how-to-add-social-icons-to-the-navbar/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
 					'capability' => 'edit_theme_options',
 					'priority' => 35,
 				) 
