@@ -6,9 +6,12 @@
 }
 @media only screen and (max-width: 992px) {
 	.col-md-5ths {
-        width: 20%;
-        float: left;
-    }
+		width: 20%;
+		float: left;
+	}
+	#p3_instagram_page {
+		padding-bottom: 15px;
+	}
 	#trendingz, #home-sliderz, .top-socialz, #p3_feature_header {
 		display: none;
 	}
