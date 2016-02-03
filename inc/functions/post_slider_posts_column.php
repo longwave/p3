@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
 if (!function_exists('p3_post_slider_posts_column')) {
 	function p3_post_slider_posts_column() {
 		
-		if (is_paged()) {
+		if (is_paged() || !is_home()) {
 			return;
 		}
 		
