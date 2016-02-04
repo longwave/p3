@@ -110,14 +110,17 @@ class pipdig_p3_intalled_xyz_2 {
 			if (get_option('blogdescription') == 'Just another WordPress site') {
 				update_option('blogdescription', '');
 			}
-			if ((get_option('show_on_front') == 'page') && (get_option('pipdig_p3_show_on_front_set') != 1)) {
+			if (get_option('blogdescription') == 'My WordPress Blog') {
+				update_option('blogdescription', '');
+			}
+			if (get_option('pipdig_p3_show_on_front_set') != 1) {
 				update_option('show_on_front', 'post');
 				update_option('pipdig_p3_show_on_front_set', 1);
 			}
 			
 			if (get_option('jr_resizeupload_width') == '1200' && (get_option('pipdig_p3_jr_resizeupload_width_set') != 1)) {
 				update_option('jr_resizeupload_width', 1920);
-				update_option('jr_resizeupload_quality', 70);
+				update_option('jr_resizeupload_quality', 75);
 				update_option('jr_resizeupload_height', 0);
 				update_option('jr_resizeupload_convertgif_yesno', 'no');
 				update_option('pipdig_p3_jr_resizeupload_width_set', 1);
