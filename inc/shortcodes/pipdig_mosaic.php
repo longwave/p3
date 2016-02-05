@@ -39,11 +39,13 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 	$query = new WP_Query( array(
 			//'meta_key'			=> '_thumbnail_id',
 			//'showposts'			=> 30,
-			'posts_per_page'		=> $number,
-			'category_name'			=> $category,
-			'ignore_sticky_posts'	=> true,
-			'pagination'			=> true,
-			'paged'					=> $paged,
+			'post_type' => 'post',
+			'post_status' => 'publish',
+			'posts_per_page' => $number,
+			'category_name' => $category,
+			'ignore_sticky_posts' => true,
+			'pagination' => true,
+			'paged' => $paged,
 			)
 		);
 				

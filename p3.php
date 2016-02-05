@@ -102,7 +102,7 @@ class pipdig_p3_intalled_xyz_2 {
 			}
 			
 			if (!get_option('rss_use_excerpt') && (get_option('pipdig_p3_rss_use_excerpt_set') != 1)) {
-				update_option('posts_per_rss', 8);
+				update_option('posts_per_rss', 10);
 				update_option('rss_use_excerpt', 1);
 				update_option('pipdig_p3_rss_use_excerpt_set', 1);
 			}

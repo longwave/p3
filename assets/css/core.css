@@ -20,8 +20,6 @@ height: auto;
 .top-socialz {
 float: right;
 margin: 0 !important;
-position: relative;
-top: -2px;
 }
 .top-socialz a {
 display: inline-block !important;
