@@ -127,14 +127,15 @@ function pipdig_p3_social_footer() {
 
 
 // customiser
+/*
 if (!class_exists('pipdig_p3_social_footer_Customiser')) {
 	class pipdig_p3_social_footer_Customiser {
 		public static function register ( $wp_customize ) {
 			
-			$wp_customize->add_section( 'p3_navbar_icons_section', 
+			$wp_customize->add_section( 'p3_social_footer_section', 
 				array(
 					'title' => __( 'Social Footer', 'p3' ),
-					'description' => __( 'Use these options to disaplay social follow icons across the footer of your site. You can also enable/disable the display of social follow counters.', 'p3' ).' <a href="//support.pipdig.co/articles/wordpress-how-to-add-social-icons-to-the-navbar/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
+					'description' => __( 'Use these options to disaplay social follow icons across the footer of your site. You can also enable/disable the display of social follow counters.', 'p3' ).' <a href="//support.pipdig.co/articles/wordpress-how-to-add-social-icons-to-the-footer/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
 					'capability' => 'edit_theme_options',
 					'priority' => 86,
 				) 
@@ -151,7 +152,7 @@ if (!class_exists('pipdig_p3_social_footer_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Enable social footer', 'pipdig-arubanights' ),
-					'section' => 'pipdig_general_options',
+					'section' => 'p3_social_footer_section',
 				)
 			);
 			
@@ -166,7 +167,7 @@ if (!class_exists('pipdig_p3_social_footer_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Display counter stats', 'pipdig-arubanights' ),
-					'section' => 'pipdig_general_options',
+					'section' => 'p3_social_footer_section',
 				)
 			);
 			
@@ -181,7 +182,7 @@ if (!class_exists('pipdig_p3_social_footer_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Twitter',
-					'section' => 'pipdig_general_options',
+					'section' => 'p3_social_footer_section',
 				)
 			);
 			
@@ -196,7 +197,7 @@ if (!class_exists('pipdig_p3_social_footer_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Facebook',
-					'section' => 'pipdig_general_options',
+					'section' => 'p3_social_footer_section',
 				)
 			);
 			
@@ -211,7 +212,7 @@ if (!class_exists('pipdig_p3_social_footer_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Instagram',
-					'section' => 'pipdig_general_options',
+					'section' => 'p3_social_footer_section',
 				)
 			);
 			
@@ -226,7 +227,7 @@ if (!class_exists('pipdig_p3_social_footer_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'YouTube',
-					'section' => 'pipdig_general_options',
+					'section' => 'p3_social_footer_section',
 				)
 			);
 			
@@ -241,7 +242,7 @@ if (!class_exists('pipdig_p3_social_footer_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Pinterest',
-					'section' => 'pipdig_general_options',
+					'section' => 'p3_social_footer_section',
 				)
 			);
 			
@@ -256,7 +257,7 @@ if (!class_exists('pipdig_p3_social_footer_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Bloglovin',
-					'section' => 'pipdig_general_options',
+					'section' => 'p3_social_footer_section',
 				)
 			);
 
@@ -264,3 +265,4 @@ if (!class_exists('pipdig_p3_social_footer_Customiser')) {
 	}
 	add_action( 'customize_register' , array( 'pipdig_p3_social_footer_Customiser' , 'register' ) );
 }
+*/
