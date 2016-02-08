@@ -106,7 +106,9 @@ if (!function_exists('pipdig_settings_section_callback')) {
 	function pipdig_settings_section_callback() { 
 		
 		// description text
-		echo '<p>'.__( 'Use the fields below to add custom code to the Head, Body or Footer of your site.', 'p3' ).'</p><p>'.__( 'These settings will be carried over if you install any other pipdig theme.', 'p3' ).'</p><p>'.__( 'WARNING: these options can break your site. Use with caution.', 'p3' ).'</p>';
+		echo '<p>'.__( 'Use the fields below to add custom code to the Head, Body or Footer of your site.', 'p3' ).'</p>
+		<p>'.__( 'These settings will be carried over if you install any other pipdig theme.', 'p3' ).'</p>
+		<p>'.__( 'WARNING: these options can break your site. Use with caution.', 'p3' ).' <a href="http://support.pipdig.co/articles/wordpress-theme-hooks/?utm_source=wordpress&utm_medium=p3&utm_campaign=themehooks" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a></p>		';
 
 	}
 }
