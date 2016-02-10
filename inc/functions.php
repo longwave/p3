@@ -153,7 +153,7 @@ if (function_exists('mm_load_updater')) {
 		remove_action( 'admin_head-themes.php', 'mm_add_theme_button' ); // remove mojo theme menu item
 		remove_action( 'admin_menu', 'mm_add_theme_page' ); // remove mojo themes link
 	}
-	add_action('plugins_loaded','pipdig_p3_bad_mojo', 11);
+	add_action('plugins_loaded','pipdig_p3_bad_mojo', 99);
 	
 }
 
