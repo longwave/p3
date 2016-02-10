@@ -11,12 +11,12 @@ function pipdig_p3_social_shares() {
 	}
 		
 	if (get_the_post_thumbnail() != '') {
-		$thumb = wp_get_attachment_image_src(get_post_thumbnail_id());
-		$img = rawurlencode($thumb['0']);
+		$thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+		$img = esc_url($thumb['0']);
 	} else {
-		$img = rawurlencode(pipdig_p3_catch_that_image());
+		$img = pipdig_p3_catch_that_image();
 	}
-	$link = rawurlencode(get_the_permalink());
+	$link = esc_url(get_the_permalink());
 	$title = rawurlencode(get_the_title());
 	$summary = rawurlencode(get_the_excerpt());
 	
