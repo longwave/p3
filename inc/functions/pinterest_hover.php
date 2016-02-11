@@ -92,7 +92,7 @@ if (!function_exists('p3_pinterest_hover')) {
 			
 		})(jQuery);
 
-		jQuery('.entry-content p img, .entry-content .alignnone, .wp-post-image, .entry-content .separator img').imgPin();
+		jQuery('.entry-content p img:not(.wp-smiley), .entry-content .alignnone, .wp-post-image, .entry-content .separator img').imgPin();
 
 		</script>
 		<?php
