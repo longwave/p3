@@ -303,6 +303,32 @@ width: 100%;
 max-width: 100%;
 }
 
+/* footer bar menu ======================== */
+
+.footer-menu-bar {
+	display: inline;
+	margin-left: 5px;
+}
+.footer-menu-bar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: inline;
+}
+.footer-menu-bar ul li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: inline;
+}
+.footer-menu-bar ul li:before{
+	content:'\00B7';
+	padding-right:5px;
+}
+.footer-menu-bar ul li a {
+	display: inline;
+	margin: 0 5px;
+}
 
 
 /* shortcodes ======================== */
