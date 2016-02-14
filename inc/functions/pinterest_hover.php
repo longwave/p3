@@ -61,7 +61,7 @@ if (!function_exists('p3_pinterest_hover')) {
 				var link = 'https://www.pinterest.com/pin/create/button/';
 					link += '?url='+shareURL;
 					link += '&media='+imgURL;
-					link += '&description=<?php echo addslashes(get_theme_mod('p3_pinterest_hover_prefix_text', '')); ?> '+description;
+					link += '&description=<?php echo addslashes(get_theme_mod('p3_pinterest_hover_prefix_text', '')); ?>%20'+description;
 
 				$(this).wrap('<div class="p3_pin_wrapper_outer"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
 

@@ -349,5 +349,9 @@ include_once('functions/width_customizer.php');
 //include_once('functions/popup.php');
 
 // bundled
-include_once('bundled/customizer-reset.php');
-//include_once('bundled/simple-custom-css/simple-custom-css.php');
+include_once('bundled/customizer-reset/customizer-reset.php');
+/*
+if (!class_exists('jQuery_Pin_It_Button_For_Images')) {
+	include_once('bundled/jquery-pin-it-button-for-images/jquery-pin-it-button-for-images.php');
+}
+*/
