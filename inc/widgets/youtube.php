@@ -17,8 +17,9 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		if (isset($instance['channel_id'])) { 
-			$channel_id =	$instance['channel_id'];
+			$channel_id = $instance['channel_id'];
 		}
+		$hexadecimal = 'za'.'Sy'.'CBY'.'yh'.'zMn'.'NNP';
 
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
@@ -33,13 +34,11 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		if (!empty($channel_id)) {
 			//echo '<ifr' . 'ame src="http://www.youtube.com/embed?max-results=1&listType=user_uploads&list=' . $channel_id . '&showinfo=1" frameborder="0" width="300" height="169" allowfullscreen></ifra' . 'me>';
 			if ( false === ( $output = get_transient( 'p3_youtube_widget' ) ) ) { // transient
-				$hexadecimal = 'za'.'Sy'.'CBY'.'yh'.'zMn'.'NNP';
 				$json = wp_remote_fopen('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key=AI'.$hexadecimal.'8d0'.'tvL'.'dS'.'P8r'.'yT'.'lS'.'Dq'.'egN'.'5c&type=video&maxResults=1');
 				$listFromYouTube=json_decode($json);
 				$video_title = $listFromYouTube->items[0]->snippet->title;
 				$video_id = $listFromYouTube->items[0]->id->videoId;
 				$max_res_url = "http://img.youtube.com/vi/".$video_id."/maxresdefault.jpg";
-				usleep(500);
 				$max = get_headers($max_res_url);
 				if (substr($max[0], 9, 3) !== '404') {
 					$thumbnail = $max_res_url;   

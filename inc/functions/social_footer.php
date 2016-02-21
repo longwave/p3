@@ -80,37 +80,37 @@ function pipdig_p3_social_footer() {
 	
 		if (!empty($twitter_count) && get_theme_mod('p3_social_footer_twitter', 1)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.esc_url($links['twitter']).'" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i> Twitter | '.$twitter_count.'</a>';
+		$output .= '<a href="'.esc_url($links['twitter']).'" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i> Twitter<span class="social-footer-counters"> | '.$twitter_count.'</span></a>';
 		$output .= '</div>';
 		}
 		
 		if(!empty($facebook_count) && get_theme_mod('p3_social_footer_facebook', 1)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.esc_url($links['facebook']).'" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i> Facebook | '.$facebook_count.'</a>';
+		$output .= '<a href="'.esc_url($links['facebook']).'" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i> Facebook<span class="social-footer-counters"> | '.$facebook_count.'</span></a>';
 		$output .= '</div>';
 		}
 		
 		if(!empty($instagram_count) && get_theme_mod('p3_social_footer_instagram', 1)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.esc_url($links['instagram']).'" target="_blank" rel="nofollow"><i class="fa fa-instagram"></i> Instagram | '.$instagram_count.'</a>';
+		$output .= '<a href="'.esc_url($links['instagram']).'" target="_blank" rel="nofollow"><i class="fa fa-instagram"></i> Instagram<span class="social-footer-counters"> | '.$instagram_count.'</span></a>';
 		$output .= '</div>';
 		}
 		
 		if(!empty($youtube_count) && get_theme_mod('p3_social_footer_youtube', 1)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.esc_url($links['youtube']).'" target="_blank" rel="nofollow"><i class="fa fa-youtube-play"></i> YouTube | '.$youtube_count.'</a>';
+		$output .= '<a href="'.esc_url($links['youtube']).'" target="_blank" rel="nofollow"><i class="fa fa-youtube-play"></i> YouTube<span class="social-footer-counters"> | '.$youtube_count.'</span></a>';
 		$output .= '</div>';
 		}
 		
 		if(!empty($pinterest_count) && get_theme_mod('p3_social_footer_pinterest', 1)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.esc_url($links['pinterest']).'" target="_blank" rel="nofollow"><i class="fa fa-pinterest"></i> Pinterest | '.$pinterest_count.'</a>';
+		$output .= '<a href="'.esc_url($links['pinterest']).'" target="_blank" rel="nofollow"><i class="fa fa-pinterest"></i> Pinterest<span class="social-footer-counters"> | '.$pinterest_count.'</span></a>';
 		$output .= '</div>';
 		}
 		
 		if(!empty($bloglovin_count) && get_theme_mod('p3_social_footer_bloglovin', 1)) {
 		$output .='<div '.$colz.'>';
-		$output .= '<a href="'.esc_url($links['bloglovin']).'" target="_blank" rel="nofollow"><i class="fa fa-plus"></i> Bloglovin | '.$bloglovin_count.'</a>';
+		$output .= '<a href="'.esc_url($links['bloglovin']).'" target="_blank" rel="nofollow"><i class="fa fa-plus"></i> Bloglovin<span class="social-footer-counters"> | '.$bloglovin_count.'</span></a>';
 		$output .= '</div>';
 		}
 		
