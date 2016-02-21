@@ -9,38 +9,15 @@ function pipdig_p3_scrapey_scrapes() {
 	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
 	
-		set_transient('p3_stats_gen', true, 4 * HOUR_IN_SECONDS);
+		set_transient('p3_stats_gen', true, 3 * HOUR_IN_SECONDS);
+		
 		$links = get_option('pipdig_links');
 		
 		$args = array(
-			'timeout' => 15,
+			'timeout' => 20,
 			'headers' => array('user_agent' => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'),
 		);
 		
-		// Bloglovin --------------------
-		$bloglovin_url = esc_url($links['bloglovin']);
-		if($bloglovin_url) {
-			$bloglovin = wp_remote_fopen($bloglovin_url, $args);
-			$bloglovin_doc = new DOMDocument();
-				libxml_use_internal_errors(true);
-				if(!empty($bloglovin)){
-					$bloglovin_doc->loadHTML($bloglovin);
-					libxml_clear_errors();
-					$bloglovin_xpath = new DOMXPath($bloglovin_doc);
-					$bloglovin_row = $bloglovin_xpath->query('//div[@class="header-card"]/ol/li[2]');
-					if($bloglovin_row->length > 0){
-					foreach($bloglovin_row as $row){
-						$followers = $row->nodeValue;
-						$followers = str_replace(' ', '', $followers);
-						$followers_int = intval($followers);
-						update_option('p3_bloglovin_count', $followers_int);
-					}
-				}
-			}
-		} else {
-			delete_option('p3_bloglovin_count');
-		}
-			
 		// Facebook --------------------
 		$facebook_url = esc_url($links['facebook']);
 		if($facebook_url) {
@@ -89,7 +66,29 @@ function pipdig_p3_scrapey_scrapes() {
 		}
 		*/
 		
-		
+				// Bloglovin --------------------
+		$bloglovin_url = esc_url($links['bloglovin']);
+		if($bloglovin_url) {
+			$bloglovin = wp_remote_fopen($bloglovin_url, $args);
+			$bloglovin_doc = new DOMDocument();
+				libxml_use_internal_errors(true);
+				if(!empty($bloglovin)){
+					$bloglovin_doc->loadHTML($bloglovin);
+					libxml_clear_errors();
+					$bloglovin_xpath = new DOMXPath($bloglovin_doc);
+					$bloglovin_row = $bloglovin_xpath->query('//div[@class="header-card"]/ol/li[2]');
+					if($bloglovin_row->length > 0){
+					foreach($bloglovin_row as $row){
+						$followers = $row->nodeValue;
+						$followers = str_replace(' ', '', $followers);
+						$followers_int = intval($followers);
+						update_option('p3_bloglovin_count', $followers_int);
+					}
+				}
+			}
+		} else {
+			delete_option('p3_bloglovin_count');
+		}		
 		
 		// Twitter ---------------------
 		$twitter_url = esc_url($links['twitter']);
