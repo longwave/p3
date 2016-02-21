@@ -52,13 +52,18 @@ function pipdig_p3_social_shares() {
 	if (get_theme_mod('p3_share_stumbleupon')) {
 		$output .= '<a href="//www.stumbleupon.com/submit?url='.$link.'&title='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-stumbleupon"></i></a>';
 	}
-	
-	$title = __('Share:', 'p3');
-	if (get_theme_mod('p3_share_title')) {
-		$title = sanitize_text_field(get_theme_mod('p3_share_title'));
+	if (get_theme_mod('p3_share_reddit')) {
+		$output .= '<a href="//reddit.com/submit?url='.$link.'&title='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-reddit"></i></a>';
+	}
+	if (get_theme_mod('p3_share_digg')) {
+		$output .= '<a href="//www.digg.com/submit?url='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-digg"></i></a>';
 	}
 	
-	echo '<div class="addthis_toolbox">'.$title.' '.$output.'</div>';
+	if (get_theme_mod('p3_share_title')) {
+		$share_title = sanitize_text_field(get_theme_mod('p3_share_title'));
+	}
+	
+	echo '<div class="addthis_toolbox">'.$share_title.' '.$output.'</div>';
 }
 
 
@@ -214,6 +219,34 @@ if (!class_exists('pipdig_p3_social_shares_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Stumbleupon',
+					'section' => 'pipdig_p3_shares_section',
+				)
+			);
+			
+			$wp_customize->add_setting('p3_share_reddit',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_share_reddit',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Reddit',
+					'section' => 'pipdig_p3_shares_section',
+				)
+			);
+			
+			$wp_customize->add_setting('p3_share_digg',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_share_digg',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Digg',
 					'section' => 'pipdig_p3_shares_section',
 				)
 			);
