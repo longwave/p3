@@ -59,6 +59,7 @@ function pipdig_p3_social_shares() {
 		$output .= '<a href="//www.digg.com/submit?url='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-digg"></i></a>';
 	}
 	
+	$share_title = __('Share:', 'p3');
 	if (get_theme_mod('p3_share_title')) {
 		$share_title = sanitize_text_field(get_theme_mod('p3_share_title'));
 	}

@@ -11,7 +11,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $vk = $email = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $vk = $email = $google_plus ='';
 		
 		if ($links['twitter']) {
 			$twitter = esc_url($links['twitter']);
@@ -46,6 +46,9 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		if ($links['vk']) {
 			$vk = esc_url($links['vk']);
 		}
+		if ($links['google_plus']) {
+			$google_plus = esc_url($links['google_plus']);
+		}
 		if ($links['email']) {
 			$email = sanitize_email($links['email']);
 		}
@@ -61,6 +64,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 			if($soundcloud && get_theme_mod('p3_navbar_soundcloud', 1)) $navbar_icons .= '<a href="' . $soundcloud . '" target="_blank"><i class="fa fa-soundcloud"></i></a>';
 			if($flickr && get_theme_mod('p3_navbar_flickr', 1)) $navbar_icons .= '<a href="' . $flickr . '" target="_blank"><i class="fa fa-flickr"></i></a>';
 			if($vk && get_theme_mod('p3_navbar_vk', 1)) $navbar_icons .= '<a href="' . $vk . '" target="_blank"><i class="fa fa-vk"></i></a>';
+			if($google_plus && get_theme_mod('p3_navbar_google_plus', 1)) $navbar_icons .= '<a href="' . $google_plus . '" target="_blank"><i class="fa fa-google-plus"></i></a>';
 			if($email && get_theme_mod('p3_navbar_email', 1)) $navbar_icons .= '<a href="mailto:' . $email . '" target="_blank"><i class="fa fa-envelope"></i></a>';
 		
 		if(get_theme_mod('site_top_search')) $navbar_icons .= '<a class="toggle-search"><i class="fa fa-search"></i></a>'; // still need to p3 this.
@@ -291,6 +295,21 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'VK',
+					'section' => 'p3_navbar_icons_section',
+				)
+			);
+			
+			// vk
+			$wp_customize->add_setting('p3_navbar_google_plus',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_navbar_google_plus',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Google Plus',
 					'section' => 'p3_navbar_icons_section',
 				)
 			);
