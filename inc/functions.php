@@ -91,6 +91,7 @@ if (!function_exists('pipdig_p3_truncate')) {
 }
 
 // dns prefetch
+/*
 if (!function_exists('pipdig_p3_dns_prefetch')) {
 	function pipdig_p3_dns_prefetch() {
 		?>
@@ -100,9 +101,10 @@ if (!function_exists('pipdig_p3_dns_prefetch')) {
 	}
 	add_action('wp_head', 'pipdig_p3_dns_prefetch', 1, 1);
 }
-
+*/
 
 // use public CDNs for jquery
+/*
 if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')) {
 	function pipdig_p3_cdn() {
 		global $wp_scripts;
@@ -117,6 +119,8 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 	}
 	add_action('wp_enqueue_scripts', 'pipdig_p3_cdn', 9999);
 }
+*/
+
 
 include_once('functions/scrapey-scrapes.php');
 
@@ -224,14 +228,6 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
 }
 add_filter( 'jetpack_get_available_modules', 'pipdig_p3_kill_jetpack_modules', 20, 3 );
 
-// Heartbeat rate
-if ( !function_exists( 'heartbeat_control_menu' ) ) {
-	function pipdig_p3_heartbeat_settings( $settings ) {
-		$settings['interval'] = 60; // anything between 15-60
-		return $settings;
-	}
-	add_filter( 'heartbeat_settings', 'pipdig_p3_heartbeat_settings' );
-}
 
 
 // hide tabs on social count plus
