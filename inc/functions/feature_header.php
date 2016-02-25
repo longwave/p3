@@ -35,7 +35,7 @@ if (!function_exists('p3_feature_header')) {
 				.cycle-slideshow {height: auto} .cycle-slideshow li{display:none}.cycle-slideshow li.first{display:block}
 				#p3_feature_header .p3_trending_panel h4, #p3_feature_header .p3_feature_slide_banner, #p3_feature_header .p3_feature_slide_banner h2 {background:<?php echo esc_attr($text_bg_color); ?>;color:<?php echo esc_attr($text_color); ?>;}
 			</style>
-			<div id="p3_feature_header_big_this_month" class="col-md-6">
+			<div id="p3_feature_header_big_this_month" class="col-sm-6">
 
 				<div id="p3_big_this" class="nopin">
 					<h3 class="widget-title"><span><?php echo $big_this_month_title; ?></span></h3>
@@ -90,10 +90,11 @@ if (!function_exists('p3_feature_header')) {
 						</a>
 					</div>
 					<?php endwhile;?>
+					<div class="clearfix"></div>
 				</div>
 			</div>
 			
-			<div id="p3_feature_header_recent_posts" class="col-md-6">
+			<div id="p3_feature_header_recent_posts" class="col-sm-6">
 				<h3 class="widget-title"><span><?php echo $recent_posts_title; ?></span></h3>
 				<div data-starting-slide="1" data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
 					<ul>
