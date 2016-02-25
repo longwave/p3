@@ -49,6 +49,9 @@ function pipdig_p3_social_shares() {
 	if (get_theme_mod('p3_share_google_plus')) {
 		$output .= '<a href="//plus.google.com/share?url='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-google-plus"></i></a>';
 	}
+	if (get_theme_mod('p3_share_linkedin')) {
+		$output .= '<a href="//www.linkedin.com/shareArticle?mini=true&amp;url='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-linkedin"></i></a>';
+	}
 	if (get_theme_mod('p3_share_stumbleupon')) {
 		$output .= '<a href="//www.stumbleupon.com/submit?url='.$link.'&title='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-stumbleupon"></i></a>';
 	}
@@ -57,6 +60,12 @@ function pipdig_p3_social_shares() {
 	}
 	if (get_theme_mod('p3_share_digg')) {
 		$output .= '<a href="//www.digg.com/submit?url='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-digg"></i></a>';
+	}
+	if (get_theme_mod('p3_share_pocket')) {
+		$output .= '<a href="//getpocket.com/save?url='.$link.'&title='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-get-pocket"></i></a>';
+	}
+	if (get_theme_mod('p3_share_wordpress')) {
+		$output .= '<a href="//wordpress.com/press-this.php?u='.$link.'&t='.$title.'&s='.$summary.'" target="_blank" rel="nofollow"><i class="fa fa-wordpress"></i></a>';
 	}
 	
 	$share_title = __('Share:', 'p3');
@@ -194,7 +203,6 @@ if (!class_exists('pipdig_p3_social_shares_Customiser')) {
 			);
 
 			// linkedin
-			/*
 			$wp_customize->add_setting('p3_share_linkedin',
 				array(
 					'default' => 0,
@@ -208,7 +216,7 @@ if (!class_exists('pipdig_p3_social_shares_Customiser')) {
 					'section' => 'pipdig_p3_shares_section',
 				)
 			);
-			*/
+			
 			// stumbleupon
 			$wp_customize->add_setting('p3_share_stumbleupon',
 				array(
@@ -248,6 +256,34 @@ if (!class_exists('pipdig_p3_social_shares_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Digg',
+					'section' => 'pipdig_p3_shares_section',
+				)
+			);
+			
+			$wp_customize->add_setting('p3_share_wordpress',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_share_wordpress',
+				array(
+					'type' => 'checkbox',
+					'label' => 'WordPress.com',
+					'section' => 'pipdig_p3_shares_section',
+				)
+			);
+			
+			$wp_customize->add_setting('p3_share_pocket',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_share_pocket',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Pocket',
 					'section' => 'pipdig_p3_shares_section',
 				)
 			);
