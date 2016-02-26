@@ -304,7 +304,7 @@ max-width: 100%;
 }
 
 /* footer bar menu ======================== */
-/* CURRENTLY JUST IN VENTURE
+/* CURRENTLY JUST IN VENTURE, aquae
 .footer-menu-bar {
 	display: inline;
 	margin-left: 5px;
@@ -358,6 +358,22 @@ max-width: 100%;
 overflow: hidden;
 padding: 15px;
 }
+
+/* portfolio ====================== */
+
+.p3_grid_portfolio {
+text-align: center;
+}
+.pipdig-portfolio-grid-item {
+width: 30%;
+margin: 1.5%;
+display: inline-block;
+vertical-align: top;
+}
+.pipdig-grid-title {
+position: absolute;
+}
+
 
 /* Blogger ======================== */
 

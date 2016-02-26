@@ -7,6 +7,7 @@ if (!defined('ABSPATH')) {
 include_once('shortcodes/pipdig_left_right.php');
 include_once('shortcodes/pipdig_stars.php');
 include_once('shortcodes/pipdig_mosaic.php');
+include_once('shortcodes/pipdig_portfolio.php');
 include_once('shortcodes/pipdig_image_overlay.php');
 include_once('shortcodes/pipdig_image_side.php');
 include_once('shortcodes/pipdig_social_icons.php');
