@@ -16,11 +16,12 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		// PART 1: Extracting the arguments + getting the values
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
+		$hexadecimal = '';
 		if (isset($instance['channel_id'])) { 
-			$channel_id = $instance['channel_id'];
+			$channel_id = trim($instance['channel_id']);
+			$hexadecimal = 'za'.'Sy'.'CBY'.'yh'.'zMn'.'NNP';
 		}
-		$hexadecimal = 'za'.'Sy'.'CBY'.'yh'.'zMn'.'NNP';
-
+		
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
 	   
@@ -32,10 +33,11 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		}
 
 		if (!empty($channel_id)) {
-			//echo '<ifr' . 'ame src="http://www.youtube.com/embed?max-results=1&listType=user_uploads&list=' . $channel_id . '&showinfo=1" frameborder="0" width="300" height="169" allowfullscreen></ifra' . 'me>';
+			
 			if ( false === ( $output = get_transient( 'p3_youtube_widget' ) ) ) { // transient
+			
 				$json = wp_remote_fopen('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key=AI'.$hexadecimal.'8d0'.'tvL'.'dS'.'P8r'.'yT'.'lS'.'Dq'.'egN'.'5c&type=video&maxResults=1');
-				$listFromYouTube=json_decode($json);
+				$listFromYouTube = json_decode($json);
 				$video_title = $listFromYouTube->items[0]->snippet->title;
 				$video_id = $listFromYouTube->items[0]->id->videoId;
 				$max_res_url = "http://img.youtube.com/vi/".$video_id."/maxresdefault.jpg";
@@ -46,7 +48,9 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 					$thumbnail = "http://img.youtube.com/vi/".$video_id."/mqdefault.jpg";
 				}
 				$output = '<div style="position:relative"><a href="https://www.youtube.com/watch?v='.$video_id.'" title="'.esc_attr($video_title).'" target="_blank" rel="nofollow"><img src="'.esc_url($thumbnail).'" style="width:100%;height:auto" alt="'.esc_attr($video_title).'"/><div style="position:absolute;bottom:2px;right:7px;color:#d92524;opacity:.8;font-size:25px;"><i class="fa fa-youtube-play"></i></div></a></div><a href="https://www.youtube.com/watch?v='.$video_id.'" title="'.esc_attr($video_title).'" target="_blank" rel="nofollow">'.strip_tags($video_title).'</a>';
+				
 				set_transient('p3_youtube_widget', $output, 30 * MINUTE_IN_SECONDS);
+				
 			}
 			echo $output;
 			
@@ -63,7 +67,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		if (isset($instance['channel_id'])) { 
-			$channel_id =	$instance['channel_id'];
+			$channel_id = $instance['channel_id'];
 		}
 	   
 		// PART 2-3: Display the fields
@@ -95,7 +99,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['channel_id'] = strip_tags( $new_instance['channel_id'] );
+		$instance['channel_id'] = strip_tags(trim($new_instance['channel_id']));
 		delete_transient('p3_youtube_widget'); // delete transient
 		return $instance;
 	  }
