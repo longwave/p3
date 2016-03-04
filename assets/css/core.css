@@ -364,14 +364,52 @@ padding: 15px;
 .p3_grid_portfolio {
 text-align: center;
 }
-.pipdig-portfolio-grid-item {
+#pipdig_portfolio_filters {
+overflow: hidden;
+text-align: center;
+}
+#pipdig_portfolio_filters h6 {
+display: inline-block;
+padding: 5px 10px;
+margin: 6px;
+background: #f9f9f9;
+}
+#pipdig_portfolio_filters h6:hover, #pipdig_portfolio_filters h6.active {
+cursor: pointer;
+background: #222;
+color: #fff;
+}
+#pipdig_portfolio .mix{
+display: none;
+}
+.pipdig_portfolio_grid_item {
 width: 30%;
 margin: 1.5%;
 display: inline-block;
 vertical-align: top;
 }
-.pipdig-grid-title {
+.pipdig_portfolio_grid_item .p3_slide_img {
+position: relative;
+}
+.pipdig_portfolio_grid_title_box {
 position: absolute;
+text-align: center;
+margin: 0;
+padding: 15px;
+background: #fff;
+background: rgba(255, 255, 255, .8);
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+.pipdig_portfolio_grid_title_box .title {
+text-align: center;
+margin: 0;
+}
+.pipdig_portfolio_grid_title_box .read_more {
+font: 10px Arial, sans-serif;
+text-transform: uppercase;
+letter-spacing: 1px;
 }
 
 

@@ -20,6 +20,9 @@
 	#p3_full_width_slider_site_main .p3_slide_img, #p3_post_slider_posts_column .p3_slide_img {
 		height: 260px;
 	}
+	.pipdig_portfolio_grid_item {
+		width: 47%;
+	}
 }
 @media only screen and (max-width: 400px) {
 	#p3_feature_header_big_this_month {
@@ -37,6 +40,9 @@
 	}
 	#p3_full_width_slider_site_main h2{
 		font-size: 13px;
+	}
+	.pipdig_portfolio_grid_item {
+		width: 97%;
 	}
 	.site-credit {
 		padding-top: 8px;
