@@ -13,6 +13,11 @@ if (!function_exists('p3_related_posts')) {
 			return;
 		}
 		
+		$section_title = strip_tags(get_theme_mod('p3_related_posts_title'));
+		if (empty($section_title)) {
+			$section_title = __('You may also enjoy:', 'p3');
+		}
+		
 		$output = '';
 		global $post;
 		$date_range = get_theme_mod( 'related_posts_date', '1 year ago' );
@@ -56,7 +61,7 @@ if (!function_exists('p3_related_posts')) {
 				$output .= '<div class="clearfix"></div>';
 		
 					$output .= '<div class="pipdig_p3_related_posts">';
-					$output .= '<h3><span>'.get_theme_mod('p3_related_posts_title', __('You may also enjoy:', 'p3')).'</span></h3>';
+					$output .= '<h3><span>'.$section_title.'</span></h3>';
 					$output .= '<ul>';
 					
 					while( $query->have_posts() ) { $query->the_post();
