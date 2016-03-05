@@ -67,6 +67,8 @@ if ( ! class_exists( 'ZOOM_Customizer_Reset' ) ) {
 				if ( 'theme_mod' == $setting->type ) {
 					remove_theme_mod( $setting->id );
 					delete_option('p3_pinterest_theme_set');
+					delete_option('tt_font_theme_options'); // delete EGF settings
+					delete_transient('tt_font_theme_options'); // delete EGF settings
 				}
 			}
 		}

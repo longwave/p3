@@ -91,7 +91,7 @@ font-weight: 400 !important;
 #p3_instagram_page .p3_instagram_post {width: 20%;}
 .p3_instagram_post:hover {opacity:.7}
 .p3_instagram_post img {max-width:100%;height:auto;}
-.p3_instagram_post .p3_instagram_likes {font:10px Montserrat, Arial, sans-serif;color:#000;position:absolute;bottom:44%;width:100%;}
+.p3_instagram_post .p3_instagram_likes {font:10px Montserrat, Arial, sans-serif;color:#000;position:absolute;top:50%;width:100%;}
 .p3_instagram_post .p3_instagram_comments {color:#000;position:absolute;bottom:5%;left:5%}
 .p3_instagram_likes {
 display: none;

@@ -42,6 +42,7 @@ function p3_instagram_fetch() {
 		return false;
 	}
 }
+add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to avoid cache
 
 // add css to head depending on amount of images displayed
 function p3_instagram_css_to_head($width) {
@@ -77,7 +78,7 @@ if (!function_exists('p3_instagram_footer')) {
 		$images = p3_instagram_fetch(); // grab images
 			
 		if ($images) {
-			$meta = intval(get_theme_mod('p3_instagram_meta', 1));
+			$meta = intval(get_theme_mod('p3_instagram_meta'));
 			$num = intval(get_theme_mod('p3_instagram_number', 8));
 		?>
 			<div class="clearfix"></div>
@@ -119,7 +120,7 @@ if (!function_exists('p3_instagram_header')) {
 		$images = p3_instagram_fetch(); // grab images
 			
 		if ($images) {
-			$meta = intval(get_theme_mod('p3_instagram_meta', 1));
+			$meta = intval(get_theme_mod('p3_instagram_meta'));
 			$num = intval(get_theme_mod('p3_instagram_number', 8));
 		?>
 			<div class="clearfix"></div>
@@ -161,7 +162,7 @@ if (!function_exists('p3_instagram_top_of_posts')) {
 		$images = p3_instagram_fetch(); // grab images
 		
 		if ($images) {
-			$meta = intval(get_theme_mod('p3_instagram_meta', 1));
+			$meta = intval(get_theme_mod('p3_instagram_meta'));
 			//$num = intval(get_theme_mod('p3_instagram_number', 8));
 		?>
 			<div class="clearfix"></div>
@@ -280,7 +281,7 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 			// show likes/comments on hover
 			$wp_customize->add_setting('p3_instagram_meta',
 				array(
-					'default' => 1,
+					'default' => 0,
 					'sanitize_callback' => 'absint',
 				)
 			);

@@ -113,7 +113,7 @@ function pipdig_p3_scrapey_scrapes() {
 			->buildOauth($ta_url, $requestMethod)
 			->performRequest();
 			$data = json_decode($follow_count, true);
-			if ($data[0]['user']['followers_count']) {
+			if ($data) {
 				$followers_count = intval($data[0]['user']['followers_count']);
 				update_option('p3_twitter_count', $followers_count);
 			}
@@ -195,12 +195,5 @@ function pipdig_p3_scrapey_scrapes() {
 	}
 	
 }
-}
-
-// push scrape on login page to avoid cached pages
-if (!function_exists('pipdig_p3_scrapey_scrapes_pusher')) {
-	function pipdig_p3_scrapey_scrapes_pusher() {
-		pipdig_p3_scrapey_scrapes();
-	}
-	add_action('login_footer', 'pipdig_p3_scrapey_scrapes_pusher', 99);
+add_action('login_footer', 'pipdig_p3_scrapey_scrapes', 99); // push on login page to avoid cache
 }
