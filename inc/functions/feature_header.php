@@ -16,11 +16,11 @@ if (!function_exists('p3_feature_header')) {
 		
 		$post_cat_trending = get_theme_mod('p3_feature_header_trending_cat');
 		$post_cat_slider = get_theme_mod('p3_feature_header_slider_cat');
-		$big_this_month_title = get_theme_mod('p3_feature_header_pop_title');
+		$big_this_month_title = strip_tags(get_theme_mod('p3_feature_header_pop_title'));
 		if (empty($big_this_month_title)) {
 			$big_this_month_title = __('Big this Month', 'p3');
 		}
-		$recent_posts_title = get_theme_mod('p3_feature_header_slider_title');
+		$recent_posts_title = strip_tags(get_theme_mod('p3_feature_header_slider_title'));
 		if (empty($recent_posts_title)) {
 			$recent_posts_title = __('Recent Posts', 'p3');
 		}
