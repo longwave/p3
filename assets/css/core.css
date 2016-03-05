@@ -361,9 +361,6 @@ padding: 15px;
 
 /* portfolio ====================== */
 
-.p3_grid_portfolio {
-text-align: center;
-}
 #pipdig_portfolio_filters {
 overflow: hidden;
 text-align: center;
@@ -380,13 +377,15 @@ background: #222;
 color: #fff;
 }
 #pipdig_portfolio .mix{
-display: none;
+-webkit-backface-visibility: hidden;
+-webkit-transform-origin: 50% 0;
 }
 .pipdig_portfolio_grid_item {
 width: 30%;
 margin: 1.5%;
 display: inline-block;
 vertical-align: top;
+border: 1px solid #eee;
 }
 .pipdig_portfolio_grid_item .p3_slide_img {
 position: relative;
@@ -397,19 +396,21 @@ text-align: center;
 margin: 0;
 padding: 15px;
 background: #fff;
-background: rgba(255, 255, 255, .8);
+background: rgba(255, 255, 255, .9);
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 }
 .pipdig_portfolio_grid_title_box .title {
 text-align: center;
+line-height: 1.3;
 margin: 0;
 }
 .pipdig_portfolio_grid_title_box .read_more {
 font: 10px Arial, sans-serif;
 text-transform: uppercase;
 letter-spacing: 1px;
+margin-top: 8px;
 }
 
 

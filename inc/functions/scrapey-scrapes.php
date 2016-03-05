@@ -78,14 +78,14 @@ function pipdig_p3_scrapey_scrapes() {
 					$bloglovin_xpath = new DOMXPath($bloglovin_doc);
 					$bloglovin_row = $bloglovin_xpath->query('//div[@class="header-card"]/ol/li[2]');
 					if($bloglovin_row->length > 0){
-					foreach($bloglovin_row as $row){
-						$followers = $row->nodeValue;
-						$followers = str_replace(' ', '', $followers);
-						$followers_int = intval($followers);
-						update_option('p3_bloglovin_count', $followers_int);
+						foreach($bloglovin_row as $row){
+							$followers = $row->nodeValue;
+							$followers = str_replace(' ', '', $followers);
+							$followers_int = intval($followers);
+							update_option('p3_bloglovin_count', $followers_int);
+						}
 					}
 				}
-			}
 		} else {
 			delete_option('p3_bloglovin_count');
 		}		
@@ -113,8 +113,10 @@ function pipdig_p3_scrapey_scrapes() {
 			->buildOauth($ta_url, $requestMethod)
 			->performRequest();
 			$data = json_decode($follow_count, true);
-			$followers_count = intval($data[0]['user']['followers_count']);
-			update_option('p3_twitter_count', $followers_count);
+			if ($data[0]['user']['followers_count']) {
+				$followers_count = intval($data[0]['user']['followers_count']);
+				update_option('p3_twitter_count', $followers_count);
+			}
 		} else {
 			delete_option('p3_twitter_count');
 		}
@@ -141,8 +143,10 @@ function pipdig_p3_scrapey_scrapes() {
 			// use userid for second json
 			$instagram_count = wp_remote_fopen('https://api.instagram.com/v1/users/'.$userid.'?access_token='.$ig_token, $args);
 			$instagram_count = json_decode($instagram_count);
-			$instagram_count = intval($instagram_count->data->counts->followed_by);
-			update_option('p3_instagram_count', $instagram_count);
+			if ($instagram_count->data->counts->followed_by) {
+				$instagram_count = intval($instagram_count->data->counts->followed_by);
+				update_option('p3_instagram_count', $instagram_count);
+			}
 		} else {
 			delete_option('p3_instagram_count');
 		}
@@ -154,9 +158,11 @@ function pipdig_p3_scrapey_scrapes() {
 			$youtube_url = rawurlencode($youtube_url);
 			$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$youtube_url."%22%20AND%20xpath%3D%22%2Fhtml%2Fbody%2Fdiv%5B4%5D%2Fdiv%5B4%5D%2Fdiv%2Fdiv%5B5%5D%2Fdiv%2Fdiv%5B1%5D%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fspan%2Fspan%5B1%5D%22&format=json");
 			$youtube_yql = json_decode($youtube_yql);
-			$youtube_count = $youtube_yql->query->results->span->title;
-			$youtube_count = intval(str_replace(',', '', $youtube_count));
-			update_option('p3_youtube_count', $youtube_count);
+			if ($youtube_yql->query->results->span->title) {
+				$youtube_count = $youtube_yql->query->results->span->title;
+				$youtube_count = intval(str_replace(',', '', $youtube_count));
+				update_option('p3_youtube_count', $youtube_count);
+			}
 		} else {
 			delete_option('p3_youtube_count');
 		}

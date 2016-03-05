@@ -7,34 +7,52 @@ if (!defined('ABSPATH')) {
 
 
 
-// [pipdig_portfolio number="30" columns="3" type="slug" layout="mosaic"]
+// [pipdig_portfolio number="30" columns="3" filters="" shape="square/landscape/portrait"]
 function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 	extract(shortcode_atts(array(
 		'number' => '30',
 		'columns' => '3',
-		'type' => '',
-		'layout' => '',
+		'filters' => '',
+		'shape' => 'square',
 		//'comments' => 'yes'
 	), $atts));
 	
 	$output = '';
 	
-	wp_enqueue_script('pipdig-mixitup');
+	if ($shape == 'square') {
+		$shape_img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC';
+	} elseif ($shape == 'portrait') {
+		$shape_img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAHgAQMAAACyyGUjAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACxJREFUeNrtwTEBAAAAwiD7p7bGDmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkHVZAAAFam5MDAAAAAElFTkSuQmCC';
+	} elseif ($shape == 'landscape') {
+		$shape_img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC';
+	} else { // defailt to square
+		$shape_img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC';
+	}
 	
-	// filters for categories (types)
-	$output .= '<div id="pipdig_portfolio_filters">';
-		//$output .= '<ul>';
-			$output .= '<h6 id="filter--all" class="filter active" data-filter="*">'.__('View All', 'p3').'</h6>';
-				$tax_terms = get_terms('jetpack-portfolio-type');
-				foreach ($tax_terms as $tax_term) {
-					$output .= '<h6 class="filter" data-filter=".'. $tax_term->slug.'">' . $tax_term->slug .'</h6>';
-				}
-		//$output .= '</ul>';
-	$output .= '</div>';
+	
+	// filters for categories (types) only if shortcode is not set to filsters="no"
+	if ($filters != 'no') {
+	
+		wp_enqueue_script('pipdig-mixitup');
+		
+		$output .= '<div id="pipdig_portfolio_filters">';
+			//$output .= '<ul>';
+				$output .= '<h6 id="filter--all" class="filter active" data-filter="*">'.__('View All', 'p3').'</h6>';
+					$tax_terms = get_terms('jetpack-portfolio-type');
+					foreach ($tax_terms as $tax_term) {
+						$output .= '<h6 class="filter" data-filter=".'. $tax_term->slug.'">' . $tax_term->slug .'</h6>';
+					}
+			//$output .= '</ul>';
+		$output .= '</div>';
+		
+		$output .= '<style scoped>#pipdig_portfolio .mix{display: none;}</style>';
+	
+	}
 	
 	
 	// project items
 	$output .= '<div id="pipdig_portfolio">';
+	
 		
 		if (get_query_var('paged')) {
 			$paged = get_query_var('paged');
@@ -43,8 +61,13 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 		} else {
 			$paged = -1;
 		}
-	 
-		$posts_per_page = get_option('jetpack_portfolio_posts_per_page', '-1');
+		
+		if ($number) {
+			$posts_per_page = absint($number);
+		} else {
+			$posts_per_page = get_option('jetpack_portfolio_posts_per_page', '-1');
+		}
+		
 	
 		$args = array(
 			'post_type' => 'jetpack-portfolio',
@@ -72,28 +95,42 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 					$filtering = join( " ", $filtering_links );
 				
 					if (has_post_thumbnail() != '') {
-						$thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'p3_medium');
+						$thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
 						$img = $thumb['0'];
 					} else {
 						$img = pipdig_p3_catch_that_image();
 					}
 					$link = get_the_permalink();
 					
-					$output .= '<div class="pipdig_portfolio_grid_item mix '.$filtering.'">';
-						$output .= '<a href="'.$link.'" class="p3_slide_img" style="display: block; width: 100%; height: 100%;background-image:url('.$img.');">';
-							$output .= '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" alt="" class="p3_invisible" data-pin-nopin="true"/>';
-							$output .= '<div class="pipdig_portfolio_grid_title_box">';
-							$output .= '<h2 class="title" itemprop="name">'.get_the_title().'</h2>';
-							$output .= '<div class="read_more">'.__('Click to view', 'p3').'</div>';
-							$output .= '</div>';
-						$output .= '</a>';
-					$output .= '</div>';
-				
+					
+						$output .= '<div class="pipdig_portfolio_grid_item mix '.$filtering.'">';
+							$output .= '<a href="'.$link.'" class="p3_slide_img" style="display: block; width: 100%; height: 100%;background-image:url('.$img.');">';
+								$output .= '<img src="'.$shape_img.'" alt="" class="p3_invisible" data-pin-nopin="true"/>';
+								$output .= '<div class="pipdig_portfolio_grid_title_box">';
+								$output .= '<h2 class="title">'.get_the_title().'</h2>';
+								$output .= '<div class="read_more">'.__('Click to view', 'p3').'</div>';
+								$output .= '</div>';
+							$output .= '</a>';
+						$output .= '</div>';
+
 				}			
 				
 			endwhile;
+			
+			$output .= '<div class="clearfix"></div>';
+			
+			$output .= '<nav id="mosaic-nav" class="clearfix" role="navigation">';
+			
+			if (get_next_posts_link('',$project_query->max_num_pages) ) {
+				$output .= '<div class="nav-previous">'.get_next_posts_link( '<span class="meta-nav"><i class="fa fa-chevron-left"></i></span> '.__( 'Older projects', 'p3' ), $project_query->max_num_pages ).'</div>';
+			}
+
+			if ( get_previous_posts_link() ) {
+				$output .= '<div class="nav-next">'.get_previous_posts_link(__( 'Newer projects', 'p3' ).' <span class="meta-nav"><i class="fa fa-chevron-right"></i></span>').'</div>';
+			}
+			
+			$output .= '</nav>';
 	 
-			//wds_portfolio_paging_nav($project_query->max_num_pages);
 			wp_reset_postdata();
 	 
 		} else {
@@ -108,14 +145,22 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 		
 		$output .= '</div><!--// #pipdig_portfolio -->';
 		
-		$output .= '
-		<script>
-		jQuery(document).ready(function($) {
-			$("#pipdig_portfolio").mixItUp();
-		});
-		</script>
-		';
 	
+		if ($filters != 'no') {
+			$output .= '
+				<script>
+				jQuery(document).ready(function($) {
+					$("#pipdig_portfolio").mixItUp({
+						animation: {
+							animateResizeContainer: false,
+							effects: "fade rotateX(-10deg) translateY(-3%)"
+						}
+					});
+				});
+				</script>
+				';
+		}
+		
 	return $output;
 	
 }
