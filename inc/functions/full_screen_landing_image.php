@@ -15,7 +15,10 @@ if (!function_exists('p3_full_screen_landing')) {
 			return;
 		}
 		
-		$title = strip_tags(get_theme_mod('p3_full_screen_landing_title'));
+		$title = sanitize_text_field(get_theme_mod('p3_full_screen_landing_title'));
+		$summary = sanitize_text_field(get_theme_mod('p3_full_screen_landing_summary'));
+		$link = esc_url(get_theme_mod('p3_full_screen_landing_link'));
+		$color = sanitize_text_field(get_theme_mod('p3_full_screen_landing_text_color'));
 		
 		?>
 		<style scoped>
@@ -25,23 +28,32 @@ if (!function_exists('p3_full_screen_landing')) {
 				position: relative;
 				z-index: 99999999;
 			}
-
-			.header {
-				position:absolute;
-				top:50%;
-				text-align:center;
-				width:100%;
-				color:#fff;
-				font-size:36px;
+			.p3_full_screen_landing_panel {
+				position: absolute;
+				top: 50%;
+				text-align: center;
+				width: 100%;
+				color: <?php echo $color; ?>;
+				font-size: 15px;
 				-ms-transform: translate(0,-50%);
 				-webkit-transform: translate(0,-50%);
 				transform: translate(0,-50%);  
 			}
+			.p3_full_screen_landing_panel h1 {
+				color: <?php echo $color; ?>;
+			}
 		</style>
 		<div id="p3_full_screen_landing">
 			<?php if (!empty($title)) { ?>
-				<div class="header">
-					<h1><?php echo $title; ?></h1>
+				<div class="p3_full_screen_landing_panel">
+					<?php if (!empty($link)) { ?><a href="<?php echo $link; ?>"><?php } ?>
+						<h1><?php echo $title; ?></h1>
+					<?php if (!empty($link)) { ?></a><?php } ?>
+					<?php if (!empty($summary)) { ?>
+						<div><?php echo $summary; ?></div>
+					<?php } ?>
+					
+					
 				</div>
 			<?php } ?>
 		</div>
@@ -85,7 +97,7 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 					'description'=> __( 'Use this option to display a single, full screen landing image at the top of your homepage.', 'p3' ),
 					'capability' => 'edit_theme_options',
 					//'panel' => 'pipdig_features',
-					'priority' => 95,
+					'priority' => 168,
 				) 
 			);
 
@@ -144,6 +156,60 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 					*/
 				)
 			);
+			
+			// summary
+			$wp_customize->add_setting('p3_full_screen_landing_summary',
+				array(
+					'sanitize_callback' => 'sanitize_text_field',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_full_screen_landing_summary',
+				array(
+					'type' => 'text',
+					'label' => __( 'Summary:', 'p3' ),
+					'section' => 'p3_full_screen_landing',
+				)
+			);
+			
+			// link
+			$wp_customize->add_setting('p3_full_screen_landing_link',
+				array(
+					'sanitize_callback' => 'esc_url_raw',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_full_screen_landing_link',
+				array(
+					'type' => 'text',
+					'label' => __( 'Link title to URL:', 'p3' ),
+					'section' => 'p3_full_screen_landing',
+					/*
+					'input_attrs' => array(
+						'placeholder' => __('You may also enjoy:', 'p3'),
+					),
+					*/
+				)
+			);
+			
+			
+			// text color
+			$wp_customize->add_setting('p3_full_screen_landing_text_color',
+				array(
+					'default' => '#000000',
+					//'transport'=>'postMessage',
+					'sanitize_callback' => 'sanitize_hex_color',
+				)
+			);
+			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_full_screen_landing_text_color',
+				array(
+					'label' => __( 'Text color', 'pipdig-textdomain' ),
+					'section' => 'p3_full_screen_landing',
+					'settings' => 'p3_full_screen_landing_text_color',
+				)
+				)
+			);
+
 
 		}
 	}

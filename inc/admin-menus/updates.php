@@ -24,14 +24,27 @@ if (!function_exists('pipdig_updates_options_page')) {
 				
 					<div class="postbox">
 
-						<h3>Update 1.10 - Instagram and Pinterest Updates</h3>
+						<h3>Update 2.0 - Big update</h3>
 
 						<div class="inside">
 							<p>NOTE! You will need to re-authorize your Instagram account on <a href="<?php echo admin_url('admin.php?page=pipdig-instagram'); ?>">this page</a> after this update.</p>
-							<p>Many improvements to our Instagram features. You can now add an Instagram feed to the footer, header and any widget area of your site. Our Instagram widget can now also include 'Likes' and 'Comments' counts on hover.</p>
+							<p>Many improvements to our Instagram features. You can now add an Instagram feed to the footer, header and any widget area of your site. Our custom Instagram widget can now also include 'Likes' and 'Comments' counts on hover.</p>
+							<p>New dashboard widget! View a quick summary of your social media follower stats right from your WordPress dashboard.</p>
+							<p>Extra sharing icons for posts (look for the new "Sharing Icons" tab in the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>).</p>
+							<p>Extra social follow icons can be added to the navbar (Look for the "Navbar Icons" tab in the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>).</p>
+							<p>Many more tweaks and changes to various features via user requests.</p>
+						</div>
+
+					</div>
+					<!-- .postbox -->
+				
+					<div class="postbox">
+
+						<h3>Update 1.10 - Instagram and Pinterest Updates</h3>
+
+						<div class="inside">
 							<p>You can now setup a custom Pinterest Hover Button via the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>. This new feature allows you to upload any imag you like as a "Pin it" button, or use our prestyled button if you prefer.</p>
 							<p>New widget! Display your latest Tweets with "pipdig - Twitter Widget". We'll be adding more options to this widget soon...</p>
-							<p>New dashboard widget! View a quick summary of your social media follower stats right from your WordPress dashboard.</p>
 						</div>
 
 					</div>
