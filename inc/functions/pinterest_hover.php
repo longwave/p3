@@ -19,7 +19,7 @@ if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pintere
 if (!function_exists('p3_pinterest_hover')) {
 	function p3_pinterest_hover() {
 		
-		if (!get_theme_mod('p3_pinterest_hover_enable')) {
+		if (!get_theme_mod('p3_pinterest_hover_enable') || is_singular('jetpack-portfolio')) {
 			return;
 		}
 		
