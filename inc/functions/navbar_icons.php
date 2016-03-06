@@ -212,7 +212,7 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 			// tumblr
 			$wp_customize->add_setting('p3_navbar_tumblr',
 				array(
-					'default' =>  0,
+					'default' =>  1,
 					'sanitize_callback' => 'absint',
 				)
 			);
