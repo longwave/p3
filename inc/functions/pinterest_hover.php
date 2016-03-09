@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pinterest_hover_enable')) {
+if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pinterest_hover_enable') && !is_singular('jetpack-portfolio')) {
 	function p3_pinterest_hover_add_data($content) {
 		
 		$link = esc_url(get_the_permalink());

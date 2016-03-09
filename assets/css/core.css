@@ -394,6 +394,7 @@ position: relative;
 position: absolute;
 text-align: center;
 margin: 0;
+width: 75%;
 padding: 15px;
 background: #fff;
 background: rgba(255, 255, 255, .9);
