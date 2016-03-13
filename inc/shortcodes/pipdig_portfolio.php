@@ -10,11 +10,11 @@ if (!defined('ABSPATH')) {
 // [pipdig_portfolio number="30" columns="3" filters="" shape="square/landscape/portrait"]
 function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 	extract(shortcode_atts(array(
-		'number' => '30',
+		'number' => '18',
 		'columns' => '3',
 		'filters' => '',
 		'shape' => 'square',
-		//'comments' => 'yes'
+		//'lightbox' => 'no'
 	), $atts));
 	
 	$output = '';
