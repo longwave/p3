@@ -28,10 +28,15 @@ if (!function_exists('p3_post_slider_posts_column')) {
 		$posts_num = intval(get_theme_mod('p3_post_slider_posts_column_number', 4));
 		$title_trunc = intval(get_theme_mod('p3_post_slider_posts_column_title_truncate', 6));
 		
+		$instagram_compensate = '';
+		if (get_theme_mod('body_instagram')) {
+			$instagram_compensate = 'style="margin-bottom: 0;"';
+		}
+		
 		wp_enqueue_script( 'pipdig-cycle' );
 		
 	?>
-	<div id="p3_post_slider_posts_column" class="row">
+	<div id="p3_post_slider_posts_column" class="row" <?php echo $instagram_compensate; ?>>
 		<div class="col-xs-12">
 			<style scoped>
 				.cycle-slideshow {height: auto} .cycle-slideshow li{display:none;width:100%}.cycle-slideshow li.first{display:block}

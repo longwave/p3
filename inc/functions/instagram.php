@@ -5,44 +5,46 @@ if (!defined('ABSPATH')) {
 }
 
 // function to fetch images
-function p3_instagram_fetch() {
-	
-	$instagram_deets = get_option('pipdig_instagram');
-	
-	if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) { 
-	
-		$access_token = strip_tags($instagram_deets['access_token']);
-		$userid = absint($instagram_deets['user_id']);
+if (!function_exists('p3_instagram_fetch')) {
+	function p3_instagram_fetch() {
 		
-		if ( false === ( $result = get_transient( 'p3_instagram_feed' ) )) {
-			$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=30";
-			$result = wp_remote_fopen($url);
-			set_transient( 'p3_instagram_feed', $result, 20 * MINUTE_IN_SECONDS );
-		}
+		$instagram_deets = get_option('pipdig_instagram');
 		
-		$result = json_decode($result);
+		if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) { 
 		
-		//print_r($result);
-		
-		for ($i = 0; $i < 29; $i++) {
-			if (isset($result->data[$i])) {
-				$images[$i] = array (
-					'src' => esc_url($result->data[$i]->images->standard_resolution->url),
-					'link' => esc_url($result->data[$i]->link),
-					'likes' => intval($result->data[$i]->likes->count),
-					'comments' => intval($result->data[$i]->comments->count),
-					'caption' => strip_tags($result->data[$i]->caption->text),
-				);
+			$access_token = strip_tags($instagram_deets['access_token']);
+			$userid = absint($instagram_deets['user_id']);
+			
+			if ( false === ( $result = get_transient( 'p3_instagram_feed' ) )) {
+				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=30";
+				$result = wp_remote_fopen($url);
+				set_transient( 'p3_instagram_feed', $result, 20 * MINUTE_IN_SECONDS );
 			}
+			
+			$result = json_decode($result);
+			
+			//print_r($result);
+			
+			for ($i = 0; $i < 29; $i++) {
+				if (isset($result->data[$i])) {
+					$images[$i] = array (
+						'src' => esc_url($result->data[$i]->images->standard_resolution->url),
+						'link' => esc_url($result->data[$i]->link),
+						'likes' => intval($result->data[$i]->likes->count),
+						'comments' => intval($result->data[$i]->comments->count),
+						'caption' => strip_tags($result->data[$i]->caption->text),
+					);
+				}
+			}
+			
+			return $images;
+			
+		} else {
+			return false;
 		}
-		
-		return $images;
-		
-	} else {
-		return false;
 	}
+	add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to avoid cache
 }
-add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to avoid cache
 
 // add css to head depending on amount of images displayed
 function p3_instagram_css_to_head($width) {
@@ -165,7 +167,7 @@ if (!function_exists('p3_instagram_top_of_posts')) {
 			$meta = intval(get_theme_mod('p3_instagram_meta'));
 			//$num = intval(get_theme_mod('p3_instagram_number', 8));
 		?>
-			<div class="clearfix"></div>
+			<h3 class="widget-title"><span>Instagram</span></h3>
 			<div id="p3_instagram_top_of_posts">
 				<?php for ($x = 0; $x <= 4; $x++) {
 					$hide_class = '';

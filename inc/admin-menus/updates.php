@@ -27,12 +27,13 @@ if (!function_exists('pipdig_updates_options_page')) {
 						<h3>Update 2.0 - Big update</h3>
 
 						<div class="inside">
-							<p>NOTE! You will need to re-authorize your Instagram account on <a href="<?php echo admin_url('admin.php?page=pipdig-instagram'); ?>">this page</a> after this update.</p>
+							<p>NOTE! Please <a href="http://www.refreshyourcache.com/en/home/" target="_blank">clear your browser cache</a> and website cache (if you use a plugin such as WP Supercache or W3 Total Cache).</p>
 							<p>Many improvements to our Instagram features. You can now add an Instagram feed to the footer, header and any widget area of your site. Our custom Instagram widget can now also include 'Likes' and 'Comments' counts on hover.</p>
-							<p>New dashboard widget! View a quick summary of your social media follower stats right from your WordPress dashboard.</p>
+							<p>You may need to re-authorize your Instagram account on <a href="<?php echo admin_url('admin.php?page=pipdig-instagram'); ?>">this page</a> after this update.</p>
 							<p>Extra sharing icons for posts (look for the new "Sharing Icons" tab in the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>).</p>
 							<p>Extra social follow icons can be added to the navbar (Look for the "Navbar Icons" tab in the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>).</p>
 							<p>Many more tweaks and changes to various features via user requests.</p>
+							<p>...more extra features which we have forgotten to add to this list :)</p>
 						</div>
 
 					</div>

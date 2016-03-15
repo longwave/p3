@@ -59,7 +59,7 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 	function pipdig_p3_catch_that_image() {
 		global $post, $posts;
 		$first_img = '';
-		$default_img = 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg';
+		$default_img = '//pipdigz.co.uk/p3/img/catch-placeholder.jpg';
 		ob_start();
 		ob_end_clean();
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
@@ -68,13 +68,13 @@ if (!function_exists('pipdig_p3_catch_that_image')) {
 			return $default_img;
 		}
 		
-		$first_img = $matches [1] [0];
+		$first_img = esc_url($matches[1][0]);
 		
 		if (($first_img == 'http://assets.rewardstyle.com/images/search/350.gif') || ($first_img == '//assets.rewardstyle.com/images/search/350.gif')) {
 			return $default_img;
 		}
 		
-		return esc_url($first_img);
+		return $first_img;
 	}
 }
 
@@ -205,7 +205,7 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
 	// 'carousel',
 	'photon',
 	//'sharedaddy',
-	'omnisearch',
+	//'omnisearch',
 	'mobile-push',
 	// 'likes',
 	// 'videopress',

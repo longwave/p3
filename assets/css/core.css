@@ -85,7 +85,7 @@ font-weight: 400 !important;
 
 /* Instagram ================================== */
 #p3_instagram_header {margin-top: 25px;margin-bottom: 20px;}
-#p3_instagram_top_of_posts {margin-bottom: 25px;}
+#p3_instagram_top_of_posts {margin-bottom: 30px;}
 .p3_instagram_post {width:12.5%;position:relative;display:block;float:left;background-size:cover;background-repeat:no-repeat;background-position:center;-moz-transition:all 0.2s ease-out;-webkit-transition:all 0.2s ease-out;transition:all 0.2s ease-out;text-align:center}
 #p3_instagram_top_of_posts .p3_instagram_post {width: 19.5%;margin:0 .25%;}
 #p3_instagram_page .p3_instagram_post {width: 20%;}
@@ -341,6 +341,15 @@ width: 48%;
 .pipdig_right {
 float: right;
 width: 48%;
+}
+
+/* 3 columns */
+.pipdig_col1, .pipdig_col2, .pipdig_col3 {
+float: left;
+width: 32%;
+}
+.pipdig_col2, .pipdig_col3 {
+margin-left: 2%;
 }
 
 /* pipdig_image_overlay */

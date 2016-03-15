@@ -12,13 +12,6 @@ class pipdig_p3_intalled_xyz_2 {
 		
 		delete_option('pipdig_p3_version');
 	
-		update_option('jr_resizeupload_convertgif_yesno', 'no');
-		
-		if (get_theme_mod('show_slider') == 1) { // remove this in Jan
-			set_theme_mod('p3_post_slider_posts_column_enable', 1);
-		}
-		
-
 			// trackbacks
 			update_option('default_pingback_flag', '');
 			update_option('default_ping_status', 'closed');
@@ -98,7 +91,7 @@ class pipdig_p3_intalled_xyz_2 {
 				update_option( "pipdig_instagram", $pipdig_instagram );
 			}
 			
-			/*
+			
 			if (get_option('p3_instagram_transfer') != 1) {
 				if (get_theme_mod('footer_instagram')) {
 					set_theme_mod('p3_instagram_footer', 1);
@@ -114,9 +107,9 @@ class pipdig_p3_intalled_xyz_2 {
 				remove_theme_mod('header_instagram_num');
 				update_option('p3_instagram_transfer', 1);
 			}
-			*/
-			//remove_theme_mod('footer_instagram');
-			//remove_theme_mod('header_instagram');
+			
+			remove_theme_mod('footer_instagram');
+			remove_theme_mod('header_instagram');
 			
 			// set header if WP default used
 			if (!get_theme_mod('logo_image') && (get_option('pipdig_p3_header_set') != 1)) {
@@ -233,11 +226,9 @@ if (!function_exists('sar_remove_x_pingback_header')) {
 	add_filter( 'wp_headers', 'p3_remove_x_pingback_header' );
 }
 
-// updates
 require 'plugin-update-checker/plugin-update-checker.php';
-$MyUpdateChecker = new PluginUpdateChecker_2_0 (
-	'https://dl.dropboxusercontent.com/u/904435/updates/wordpress/theme-updates/p3.json',
-	__FILE__,
-	'p3'
+$myUpdateChecker = PucFactory::buildUpdateChecker(
+    'https://dl.dropboxusercontent.com/u/904435/updates/wordpress/theme-updates/p3.json',
+    __FILE__
 );
 
