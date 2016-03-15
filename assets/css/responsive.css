@@ -31,8 +31,9 @@
 	#p3_feature_header_recent_posts {
 		margin-top: 0;
 	}
-	.pipdig_left, .pipdig_right {
+	.pipdig_left, .pipdig_right, .pipdig_col1, .pipdig_col2, .pipdig_col3 {
 		width: 100%;
+		margin: 0;
 		float: none;
 	}
 	#p3_full_width_slider_site_main .p3_slide_img, #p3_post_slider_posts_column .p3_slide_img {
