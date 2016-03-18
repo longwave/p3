@@ -44,7 +44,7 @@ function p3_instagram_at_render() {
 	$instagram_deets = get_option('pipdig_instagram');
 	$access_token = '';
 	if (!empty($instagram_deets['access_token'])) { 
-		$access_token = strip_tags($instagram_deets['access_token']);
+		$access_token = sanitize_text_field($instagram_deets['access_token']);
 	}
 	?>
 	<input class='large-text' type='text' name='pipdig_instagram[access_token]' value="<?php echo $access_token; ?>"> <?php
@@ -54,7 +54,7 @@ function p3_instagram_userid_render() {
 	$instagram_deets = get_option('pipdig_instagram');
 	$user_id = '';
 	if (!empty($instagram_deets['user_id'])) { 
-		$user_id = intval($instagram_deets['user_id']);
+		$user_id = sanitize_text_field($instagram_deets['user_id']);
 	}
 	
 	?>
@@ -65,12 +65,7 @@ function p3_instagram_userid_render() {
 
 
 function pipdig_instagram_section_callback() {
-	//$instagram_deets = get_option('pipdig_instagram');
-	//if (empty($instagram_deets['access_token'])) { 
-		echo '<p><a href="http://www.pipdig.co/instagram/" target="_blank">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
-	//} else {
-		//echo '<a href="http://www.pipdig.co/instagram/">'.__('Click here to re-authorize your Instagram account', 'p3').'</a>';
-	//}
+	echo '<p><a href="http://www.pipdig.co/instagram/" target="_blank">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
 	echo '<p>Once you have authorized your account, copy and paste your information below:</p>';
 }
 
@@ -93,6 +88,8 @@ function pipdig_instagram_options_page() {
 		do_settings_sections('pipdig_instagram_options_page');
 		submit_button();
 		?>
+		
+		<p>After authorizing your account, you can setup our <a href="http://support.pipdig.co/articles/wordpress-how-to-create-and-use-widgets/" target="_blank">Instagram Widget</a> and <a href="http://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/" target="_blank">Instagram Feed</a> options</p>
 			
 	</form>
 	<?php

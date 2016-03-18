@@ -12,8 +12,8 @@ if (!function_exists('p3_instagram_fetch')) {
 		
 		if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) { 
 		
-			$access_token = strip_tags($instagram_deets['access_token']);
-			$userid = absint($instagram_deets['user_id']);
+			$access_token = sanitize_text_field($instagram_deets['access_token']);
+			$userid = sanitize_text_field($instagram_deets['user_id']);
 			
 			if ( false === ( $result = get_transient( 'p3_instagram_feed' ) )) {
 				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=30";
@@ -32,7 +32,7 @@ if (!function_exists('p3_instagram_fetch')) {
 						'link' => esc_url($result->data[$i]->link),
 						'likes' => intval($result->data[$i]->likes->count),
 						'comments' => intval($result->data[$i]->comments->count),
-						'caption' => strip_tags($result->data[$i]->caption->text),
+						'caption' => sanitize_text_field($result->data[$i]->caption->text),
 					);
 				}
 			}

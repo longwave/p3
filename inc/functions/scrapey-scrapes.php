@@ -9,7 +9,7 @@ function pipdig_p3_scrapey_scrapes() {
 	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
 	
-		set_transient('p3_stats_gen', true, 3 * HOUR_IN_SECONDS);
+		set_transient('p3_stats_gen', true, 2 * HOUR_IN_SECONDS);
 		
 		$links = get_option('pipdig_links');
 		
@@ -128,8 +128,8 @@ function pipdig_p3_scrapey_scrapes() {
 		if ($instagram_url) {
 			$instagram_deets = get_option('pipdig_instagram'); // from p3
 			if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) { 
-				$ig_token = strip_tags($instagram_deets['access_token']);
-				$userid = intval($instagram_deets['user_id']);
+				$ig_token = trim($instagram_deets['access_token']);
+				$userid = trim($instagram_deets['user_id']);
 			} else {
 				$ig_token = '21659'.'12485'.'.'.'ee7687e'.'.'.'b66a7b'.'1e71c8'.'4d30ae087f'.'963c7a3aaa';
 				// get the handle from url

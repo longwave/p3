@@ -133,7 +133,7 @@ function pipdig_p3_dashboard_social_count_func() {
 							"#333333",
 							"#000000",
 							"#57032A",
-							"#CA9726",
+							"#d11f1e",
 							"#990000",
 							"#4B0C25"
 						],
@@ -206,7 +206,8 @@ function pipdig_p3_dashboard_social_count_func() {
 				font-size: 0!important;
 			}
 			</style>
-			<p><a href="<?php echo admin_url('admin.php?page=pipdig-links'); ?>"><?php _e('Click here to add more accounts', 'p3'); ?></a>.</p>
+			<p><input class="button" type="button" value="<?php esc_attr_e('View more stats', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-stats'); ?>';" /></p>
+			<p><input class="button" type="button" value="<?php esc_attr_e('Add more accounts', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-links'); ?>';" /></p>
 		<?php
 		}
 

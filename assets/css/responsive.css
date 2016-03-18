@@ -6,7 +6,7 @@
 		display: none;
 	}
 }
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 759px) {
 	#p3_feature_header_recent_posts {
 		margin-top: 30px;
 	}

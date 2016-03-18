@@ -119,6 +119,14 @@ function pipdig_links_init() {
 		'pipdig_links_options_page_section' 
 	);
 	
+	add_settings_field( 
+		'twitch', 
+		'<i class="fa fa-twitch"></i>&nbsp;&nbsp;Twitch', 
+		'p3_twitch_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
 }
 add_action('admin_init', 'pipdig_links_init');
 
@@ -187,6 +195,10 @@ function p3_vk_field_render() {
 	<input class='large-text' type='url' name='pipdig_links[vk]' placeholder='https://vk.com/pipdig' value="<?php if (isset($links['vk'])) { echo $links['vk']; } ?>"> <?php
 }
 
+function p3_twitch_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[twitch]' placeholder='https://twitch.tv/dansgaming' value="<?php if (isset($links['twitch'])) { echo $links['twitch']; } ?>"> <?php
+}
 
 function pipdig_links_section_callback() { 
 	// description text
