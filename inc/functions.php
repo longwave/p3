@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 // load plugin check function, just in case theme hasn't
 if ( !function_exists( 'pipdig_plugin_check' ) ) {
 	function pipdig_plugin_check( $plugin_name ) {
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		include( ABSPATH . 'wp-admin/includes/plugin.php' );
 		if ( is_plugin_active($plugin_name) ) {
 			return true;
 		} else {
@@ -122,7 +122,7 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 */
 
 
-include_once('functions/scrapey-scrapes.php');
+include('functions/scrapey-scrapes.php');
 
 
 // Add Featured Image to feed if using excerpt mode, or just add the full content if not
@@ -276,9 +276,9 @@ function pipdig_p3_emmmm_heeey() {
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 			 if($(window).scrollTop() + $(window).height() == $(document).height()) {
-				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext").slideUp();
+				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice").slideUp();
 			 } else {
-				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext").slideDown()
+				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice").slideDown()
 			 }
 		});
 	});
@@ -313,27 +313,27 @@ if (!function_exists('pipdig_p3_comment_nav')) {
 	}
 }
 
-include_once('functions/full_screen_landing_image.php');
-include_once('functions/top_menu_bar.php');
-include_once('functions/post-options.php');
-include_once('functions/shares.php');
-include_once('functions/related-posts.php');
-include_once('functions/pinterest_hover.php');
-include_once('functions/instagram.php');
-include_once('functions/social_footer.php');
-include_once('functions/navbar_icons.php');
-include_once('functions/feature_header.php');
-include_once('functions/trending.php');
-include_once('functions/post_slider_site_main_width.php');
-//include_once('functions/post_slider_site_main_width_sq.php');
-include_once('functions/post_slider_posts_column.php');
-include_once('functions/width_customizer.php');
-//include_once('functions/popup.php');
+include('functions/full_screen_landing_image.php');
+include('functions/top_menu_bar.php');
+include('functions/post-options.php');
+include('functions/shares.php');
+include('functions/related-posts.php');
+include('functions/pinterest_hover.php');
+include('functions/instagram.php');
+include('functions/social_footer.php');
+include('functions/navbar_icons.php');
+include('functions/feature_header.php');
+include('functions/trending.php');
+include('functions/post_slider_site_main_width.php');
+//include('functions/post_slider_site_main_width_sq.php');
+include('functions/post_slider_posts_column.php');
+include('functions/width_customizer.php');
+//include('functions/popup.php');
 
 // bundled
-include_once('bundled/customizer-reset/customizer-reset.php');
+include('bundled/customizer-reset/customizer-reset.php');
 /*
 if (!class_exists('jQuery_Pin_It_Button_For_Images')) {
-	include_once('bundled/jquery-pin-it-button-for-images/jquery-pin-it-button-for-images.php');
+	include('bundled/jquery-pin-it-button-for-images/jquery-pin-it-button-for-images.php');
 }
 */

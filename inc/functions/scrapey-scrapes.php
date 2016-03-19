@@ -98,7 +98,7 @@ function pipdig_p3_scrapey_scrapes() {
 				$twitter_handle = str_replace('/', '', $twitter_handle);
 				//set_transient('p3_twitter_handle', $twitter_handle, 72 * HOUR_IN_SECONDS);
 			//}
-			include_once('TwitterAPIExchange.php');
+			include('TwitterAPIExchange.php');
 			$settings = array(
 				'oauth_access_token' => '986760666-NQx9i4Xja2NWKoOdxnRHjs2EuVIhayV7EO8ydISP',
 				'oauth_access_token_secret' => 'VM234GP3J4SnCocEPT1iEcqcTd2zprm0j5Mcw4htM196u',

@@ -18,8 +18,8 @@ define( 'PIPDIG_P3_V', '2.0.6' );
 //function p3_falcor() {
 	// Having a luck dragon with you is the only way to go on a quest.
 //}
+require('falcor.php');
 
-include_once 'falcor.php';
 /*
 function p3_update_notice_1() {
 	$currentScreen = get_current_screen();
