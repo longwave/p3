@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2016-03-18 12:35+0000\n"
-"PO-Revision-Date: 2016-03-18 12:37+0000\n"
+"POT-Creation-Date: 2016-03-20 22:07+0000\n"
+"PO-Revision-Date: 2016-03-20 22:07+0000\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: fr\n"
@@ -122,21 +122,21 @@ msgstr ""
 msgid "Click here for more information"
 msgstr ""
 
-#: ../inc/admin-menus/instagram.php:70
+#: ../inc/admin-menus/instagram.php:68
 msgid "Click here to authorize your Instagram account"
 msgstr ""
 
-#: ../inc/admin-menus/instagram.php:89
+#: ../inc/admin-menus/instagram.php:84
 msgid ""
 "You will need to sign in to Instagram to allow this theme's widgets to "
 "display our photos. Click the button below to do this:"
 msgstr ""
 
-#: ../inc/admin-menus/links.php:195
+#: ../inc/admin-menus/links.php:207
 msgid "Add the links to each social media page below:"
 msgstr ""
 
-#: ../inc/admin-menus/links.php:196
+#: ../inc/admin-menus/links.php:208
 #, php-format
 msgid ""
 "Any links added can then be used across your website, such as on <a href=\"%s"
@@ -190,7 +190,7 @@ msgstr "Thèmes"
 
 #: ../inc/functions.php:297
 msgid "Leave a comment"
-msgstr ""
+msgstr "Un commentaire ?"
 
 #: ../inc/functions.php:299
 msgid "1 Comment"
@@ -332,7 +332,7 @@ msgstr ""
 #: ../inc/widgets/pinterest.php:199 ../inc/widgets/popular-posts.php:39
 #: ../inc/widgets/post-slider.php:52 ../inc/widgets/profile.php:69
 #: ../inc/widgets/random-posts.php:39 ../inc/widgets/snapcode.php:56
-#: ../inc/widgets/socialz.php:183 ../inc/widgets/subscribe.php:72
+#: ../inc/widgets/socialz.php:190 ../inc/widgets/subscribe.php:72
 #: ../inc/widgets/twitter.php:80 ../inc/widgets/youtube.php:77
 msgid "Title:"
 msgstr "Titre:"
@@ -1003,11 +1003,11 @@ msgstr "Une manière simple d’afficher ses icônes de réseaux sociaux."
 msgid "Social Media Icons"
 msgstr "Icônes réseaux sociaux"
 
-#: ../inc/widgets/socialz.php:193
+#: ../inc/widgets/socialz.php:200
 msgid "Select a layout:"
 msgstr ""
 
-#: ../inc/widgets/socialz.php:203
+#: ../inc/widgets/socialz.php:210
 msgid "Add your links:"
 msgstr ""
 
