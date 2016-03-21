@@ -91,15 +91,21 @@ function pipdig_p3_dashboard_social_count_func() {
 	if (!is_admin()) {
 		return;
 	}
+	
 	pipdig_p3_scrapey_scrapes();
-	$bloglovin = absint(get_option('p3_bloglovin_count'));
-	$pinterest = absint(get_option('p3_pinterest_count'));
-	$twitter = absint(get_option('p3_twitter_count'));
-	$facebook = absint(get_option('p3_facebook_count'));
-	$instagram = absint(get_option('p3_instagram_count'));
-	$youtube = absint(get_option('p3_youtube_count'));
-	$google_plus = absint(get_option('p3_google_plus_count'));
-	$total = $bloglovin + $pinterest + $twitter + $facebook + $instagram + $youtube + $google_plus;
+	
+	$total_followers = $twitter = $instagram = $facebook = $youtube = $google_plus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $linkedin = $vimeo = $bloglovin = '';
+	
+	$bloglovin = sanitize_text_field(get_option('p3_bloglovin_count'));
+	$pinterest = sanitize_text_field(get_option('p3_pinterest_count'));
+	$twitter = sanitize_text_field(get_option('p3_twitter_count'));
+	$facebook = sanitize_text_field(get_option('p3_facebook_count'));
+	$instagram = sanitize_text_field(get_option('p3_instagram_count'));
+	$youtube = sanitize_text_field(get_option('p3_youtube_count'));
+	$google_plus = sanitize_text_field(get_option('p3_google_plus_count'));
+	$twitch = sanitize_text_field(get_option('p3_twitch_count'));
+	
+	$total = $bloglovin + $pinterest + $twitter + $facebook + $instagram + $youtube + $google_plus + $twitch;
 	if ($total < 1) {
 		?><p>This widget will display social media follower stats for any links added to <a href="<?php echo admin_url('admin.php?page=pipdig-links'); ?>">this page</a>.</p><?php
 	} else {
@@ -194,6 +200,10 @@ function pipdig_p3_dashboard_social_count_func() {
 
 					<?php if (!empty($linkedin)) { ?>
 						{channel: "LinkedIn", count: <?php echo $linkedin; ?>},
+					<?php } ?>
+					
+					<?php if (!empty($twitch)) { ?>
+						{channel: "Twitch", count: <?php echo $twitch; ?>},
 					<?php } ?>
 						]
 					}

@@ -29,7 +29,7 @@ function pipdig_p3_scrapey_scrapes() {
 			$json = wp_remote_fopen($json_url, $args);
 			$json_output = json_decode($json);
 			if($json_output->likes){
-				$likes = intval($json_output->likes);
+				$likes = sanitize_text_field($json_output->likes);
 				update_option('p3_facebook_count', $likes);
 			}
 		} else {
@@ -45,7 +45,7 @@ function pipdig_p3_scrapey_scrapes() {
 			$json = wp_remote_fopen($json_url, $args);
 			$json_output = json_decode($json);
 			if($json_output->data->pins[0]->pinner->follower_count){
-				$pinterest_followers = intval($json_output->data->pins[0]->pinner->follower_count);
+				$pinterest_followers = sanitize_text_field($json_output->data->pins[0]->pinner->follower_count);
 				update_option('p3_pinterest_count', $pinterest_followers);
 			}
 		} else {
@@ -59,7 +59,7 @@ function pipdig_p3_scrapey_scrapes() {
 			$pinterest_url = rawurlencode($pinterest_url);
 			$pinterest_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$pinterest_url."%22%20AND%20xpath%3D%22%2F%2Fmeta%5B%40property%3D'pinterestapp%3Afollowers'%5D%22&format=json", array( 'timeout' => 30 ));
 			$pinterest_yql = json_decode($pinterest_yql);
-			$pinterest_count = intval($pinterest_yql->query->results->meta->content);
+			$pinterest_count = sanitize_text_field($pinterest_yql->query->results->meta->content);
 			update_option('p3_pinterest_count', $pinterest_count);
 		} else {
 			delete_option('p3_pinterest_count');
@@ -81,7 +81,7 @@ function pipdig_p3_scrapey_scrapes() {
 						foreach($bloglovin_row as $row){
 							$followers = $row->nodeValue;
 							$followers = str_replace(' ', '', $followers);
-							$followers_int = intval($followers);
+							$followers_int = sanitize_text_field($followers);
 							update_option('p3_bloglovin_count', $followers_int);
 						}
 					}
@@ -114,7 +114,7 @@ function pipdig_p3_scrapey_scrapes() {
 			->performRequest();
 			$data = json_decode($follow_count, true);
 			if ($data) {
-				$followers_count = intval($data[0]['user']['followers_count']);
+				$followers_count = sanitize_text_field($data[0]['user']['followers_count']);
 				update_option('p3_twitter_count', $followers_count);
 			}
 		} else {
@@ -138,13 +138,13 @@ function pipdig_p3_scrapey_scrapes() {
 				//get the userid from json
 				$userid = wp_remote_fopen('https://api.instagram.com/v1/users/search?q=%22'.$instagram_handle.'%22&access_token='.$ig_token, $args);
 				$userid = json_decode($userid);
-				$userid = intval($userid->data[0]->id);
+				$userid = sanitize_text_field($userid->data[0]->id);
 			}
 			// use userid for second json
 			$instagram_count = wp_remote_fopen('https://api.instagram.com/v1/users/'.$userid.'?access_token='.$ig_token, $args);
 			$instagram_count = json_decode($instagram_count);
 			if ($instagram_count->data->counts->followed_by) {
-				$instagram_count = intval($instagram_count->data->counts->followed_by);
+				$instagram_count = sanitize_text_field($instagram_count->data->counts->followed_by);
 				update_option('p3_instagram_count', $instagram_count);
 			}
 		} else {
@@ -160,7 +160,7 @@ function pipdig_p3_scrapey_scrapes() {
 			$youtube_yql = json_decode($youtube_yql);
 			if ($youtube_yql->query->results->span->title) {
 				$youtube_count = $youtube_yql->query->results->span->title;
-				$youtube_count = intval(str_replace(',', '', $youtube_count));
+				$youtube_count = sanitize_text_field(str_replace(',', '', $youtube_count));
 				update_option('p3_youtube_count', $youtube_count);
 			}
 		} else {
@@ -171,7 +171,7 @@ function pipdig_p3_scrapey_scrapes() {
 		get channel id using? https://www.googleapis.com/youtube/v3/channels?key=AIzaSyAFwqQSW7MI7kKHQmrYL2jl1v9Shw1bMwE&forUsername=pipdigtv&part=id
 		$youtube_query = wp_remote_fopen('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=CHANNEL_ID&key=AIzaSyAFwqQSW7MI7kKHQmrYL2jl1v9Shw1bMwE'); // uses lemsey
 		$youtube_query = json_decode($youtube_query, true);
-		$youtube_count = intval($youtube_query['items'][0]['statistics']['subscriberCount']);
+		$youtube_count = sanitize_text_field($youtube_query['items'][0]['statistics']['subscriberCount']);
 		update_option('p3_youtube_count', $youtube_count);
 		*/
 			
@@ -185,12 +185,29 @@ function pipdig_p3_scrapey_scrapes() {
 			$google_plus_yql = json_decode($google_plus_yql);
 			if ($google_plus_yql->query->results->span[0]->content) {
 				$google_plus_count = $google_plus_yql->query->results->span[0]->content;
-				$google_plus_count = intval(str_replace(',', '', $google_plus_count));
+				$google_plus_count = sanitize_text_field(str_replace(',', '', $google_plus_count));
 				update_option('p3_google_plus_count', $google_plus_count);
 			}
 		} else {
 			delete_option('p3_google_plus_count');
 		}
+		
+		
+		$twitch_url = esc_url($links['twitch']);
+		if ($twitch_url) {
+			$twitch_user = parse_url($twitch_url, PHP_URL_PATH);
+			$twitch_user = str_replace('/', '', $twitch_user);
+			$twitch_request = wp_remote_fopen("https://api.twitch.tv/kraken/channels/".$twitch_user."/follows?limit=5");
+			$twitch_request = json_decode($twitch_request);
+			if ($twitch_request->_total) {
+				$twitch_count = $twitch_request->_total;
+				//$twitch_count = sanitize_text_field(str_replace(',', '', $twitch_count));
+				update_option('p3_twitch_count', sanitize_text_field($twitch_count));
+			}
+		} else {
+			delete_option('p3_twitch_count');
+		}
+		
 	
 	}
 	

@@ -32,8 +32,8 @@ if (!function_exists('pipdig_updates_options_page')) {
 							<p>You may need to re-authorize your Instagram account on <a href="<?php echo admin_url('admin.php?page=pipdig-instagram'); ?>">this page</a> after this update.</p>
 							<p>Extra sharing icons for posts (look for the new "Sharing Icons" tab in the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>).</p>
 							<p>Extra social follow icons can be added to the navbar (Look for the "Navbar Icons" tab in the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>).</p>
-							<p>Many more tweaks and changes to various features via user requests.</p>
-							<p>...more extra features which we have forgotten to add to this list :)</p>
+							<p>Added Twitch.tv support for social stats.</p>
+							<p>Various speed/styling improvements.</p>
 						</div>
 
 					</div>
