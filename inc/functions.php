@@ -276,9 +276,9 @@ function pipdig_p3_emmmm_heeey() {
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 			 if($(window).scrollTop() + $(window).height() == $(document).height()) {
-				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice").slideUp();
+				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar").slideUp();
 			 } else {
-				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice").slideDown()
+				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar").slideDown()
 			 }
 		});
 	});
