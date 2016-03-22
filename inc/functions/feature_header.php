@@ -28,6 +28,8 @@ if (!function_exists('p3_feature_header')) {
 		$text_color = get_theme_mod('p3_feature_header_text_color', '#000');
 		$text_bg_color = get_theme_mod('p3_feature_header_text_bg_color', '#fff');
 		
+		$truncate_title = absint(get_theme_mod('p3_feature_header_title_truncate', 7));
+		
 		wp_enqueue_script( 'pipdig-cycle' );
 		?>
 		<div id="p3_feature_header" class="row nopin">
@@ -86,7 +88,7 @@ if (!function_exists('p3_feature_header')) {
 							<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
 								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC" alt="<?php the_title_attribute(); ?>" class="p3_invisible" data-pin-nopin="true"/>
 							</div>
-							<h4><?php echo pipdig_p3_truncate(get_the_title(), 7); ?></h4>
+							<h4><?php echo pipdig_p3_truncate(get_the_title(), $truncate_title); ?></h4>
 						</a>
 					</div>
 					<?php endwhile;?>
@@ -312,6 +314,29 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 					'section' => 'p3_feature_header_section',
 					'input_attrs' => array(
 					'placeholder' => __('Recent Posts', 'p3'),
+					),
+				)
+			);
+			
+			// post title length
+			$wp_customize->add_setting('p3_feature_header_title_truncate',
+				array(
+					'default' => 7,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_feature_header_title_truncate',
+				array(
+					'type' => 'number',
+					'label' => __( 'Post title length (words)', 'p3' ),
+					'section' => 'p3_feature_header_title_truncate',
+					'input_attrs' => array(
+						'min'   => 1,
+						'max'   => 20,
+						'step'  => 1,
+						//'class' => 'test-class test',
+						//'style' => 'color: #0a0',
 					),
 				)
 			);

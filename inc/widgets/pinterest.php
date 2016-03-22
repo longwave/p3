@@ -53,6 +53,9 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		}
 
 		if (!empty($pinterestuser)) {
+			
+			$id = 'p3_pinterest_widget_'.rand(1, 999999999);
+			
 			/*
 			$p3_pinz = get_transient('p3_pinz');
 			
@@ -131,11 +134,11 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			*/
 			?>
 			<style scoped>
-				#p3_pinterest_widget .p3_pin_wrap {
+				.<?php echo $id; ?> .p3_pin_wrap {
 				width: <?php echo $width; ?>;
 				}
 			</style>
-			<div id="p3_pinterest_widget"></div>
+			<div id="p3_pinterest_widget" class="<?php echo $id; ?>"></div>
 			<script>
 			jQuery(document).ready(function($) {
 				$.getJSON("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fwww.pinterest.com%2F<?php echo $pinterestuser; ?>%2Ffeed.rss%22&format=json",
@@ -144,7 +147,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 							var pinData = data.query.results.body.rss.channel.item[i].description;
 							var pinImg = $(pinData).find('img').attr('src');
 							var pinnyOutput = '<div class="p3_pin_wrap"><a href="http://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" class="p3_pin" style="background-image:url('+pinImg+');"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" alt="" class="p3_invisible" data-pin-nopin="true"/></a></div>';
-							$('#p3_pinterest_widget').append(pinnyOutput);
+							$('.<?php echo $id; ?>').append(pinnyOutput);
 						}
 					}
 				);

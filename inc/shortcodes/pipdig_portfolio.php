@@ -13,6 +13,7 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 		'number' => '18',
 		'columns' => '3',
 		'filters' => '',
+		'filters_title' => '',
 		'shape' => 'square',
 		//'lightbox' => 'no'
 	), $atts));
@@ -36,13 +37,14 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 		wp_enqueue_script('pipdig-mixitup');
 		
 		$output .= '<div id="pipdig_portfolio_filters">';
-			//$output .= '<ul>';
-				$output .= '<h6 id="filter--all" class="filter active" data-filter="*">'.__('View All', 'p3').'</h6>';
-					$tax_terms = get_terms('jetpack-portfolio-type');
-					foreach ($tax_terms as $tax_term) {
-						$output .= '<h6 class="filter" data-filter=".'. $tax_term->slug.'">' . $tax_term->slug .'</h6>';
-					}
-			//$output .= '</ul>';
+			if ($filters_title) {
+				$output .= '<h6 style="background: none; color: #000;">'.$filters_title.'</h6>';
+			}
+			$output .= '<h6 id="filter--all" class="filter active" data-filter="*">'.__('View All', 'p3').'</h6>';
+			$tax_terms = get_terms('jetpack-portfolio-type');
+			foreach ($tax_terms as $tax_term) {
+				$output .= '<h6 class="filter" data-filter=".'. $tax_term->slug.'">' . $tax_term->slug .'</h6>';
+			}
 		$output .= '</div>';
 		
 		$output .= '<style scoped>#pipdig_portfolio .mix{display: none;}</style>';

@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-// [pipdig_image_overlay title="poop" image="" position="topleft"]
+// [pipdig_image_overlay title="" image="" position="topleft"]
 if (!function_exists('pipdig_p3_image_overlay')) {
 	function pipdig_p3_image_overlay( $atts, $content = null ) {
 		extract( shortcode_atts( array(

@@ -23,6 +23,15 @@
 	.pipdig_portfolio_grid_item {
 		width: 47%;
 	}
+	.p3_iwtb_image {
+		width: 100%;
+	}
+	.p3_iwtb_text_box {
+		margin: 0;
+		width: 100%;
+		top: auto;
+		position: relative;
+	}
 }
 @media only screen and (max-width: 400px) {
 	#p3_feature_header_big_this_month {

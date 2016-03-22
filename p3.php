@@ -18,7 +18,7 @@ define( 'PIPDIG_P3_V', '2.0.7' );
 //function p3_falcor() {
 	// Having a luck dragon with you is the only way to go on a quest.
 //}
-require('falcor.php');
+include('falcor.php');
 
 /*
 function p3_update_notice_1() {
@@ -100,11 +100,12 @@ class pipdig_p3_intalled_xyz_2 {
 			if ($tagline == 'My WordPress Blog' || $tagline == 'My WordPress Blog') {
 				update_option('blogdescription', '');
 			}
+			/*
 			if (get_option('pipdig_p3_show_on_front_set') != 1) {
 				update_option('show_on_front', 'post');
 				update_option('pipdig_p3_show_on_front_set', 1);
 			}
-			
+			*/
 			if (get_option('jr_resizeupload_width') == '1200' && (get_option('pipdig_p3_jr_resizeupload_width_set') != 1)) {
 				update_option('jr_resizeupload_width', 1920);
 				update_option('jr_resizeupload_quality', 75);
