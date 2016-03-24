@@ -7,14 +7,10 @@ if (!defined('ABSPATH')) {
 if (!function_exists('pipdig_p3_scrapey_scrapes')) {
 function pipdig_p3_scrapey_scrapes() {
 	
-	if ( false === ( $value = get_transient('p3_theme_checker') ) ) {
-		//delete_site_transient('update_themes');
-		set_site_transient( 'update_themes', null );
-		set_transient('p3_theme_checker', true, 6 * HOUR_IN_SECONDS);
-	}
-	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
-	
+		
+		set_site_transient( 'update_themes', null );
+		
 		set_transient('p3_stats_gen', true, 2 * HOUR_IN_SECONDS);
 		
 		$links = get_option('pipdig_links');

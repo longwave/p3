@@ -27,12 +27,18 @@ if (!function_exists('p3_instagram_fetch')) {
 			
 			for ($i = 0; $i < 29; $i++) {
 				if (isset($result->data[$i])) {
+					
+					$caption = '';
+					if ((!empty($result->data[$i]->caption->text))) {
+						$caption = sanitize_text_field($result->data[$i]->caption->text);
+					}
+					
 					$images[$i] = array (
 						'src' => esc_url($result->data[$i]->images->standard_resolution->url),
 						'link' => esc_url($result->data[$i]->link),
 						'likes' => intval($result->data[$i]->likes->count),
 						'comments' => intval($result->data[$i]->comments->count),
-						'caption' => sanitize_text_field($result->data[$i]->caption->text),
+						'caption' => $caption,
 					);
 				}
 			}

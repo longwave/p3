@@ -152,6 +152,12 @@ class pipdig_p3_intalled_xyz_2 {
 			}
 			
 			p3_flush_htacess();
+			
+			if ( false === ( $value = get_transient('p3_theme_checker') ) ) {
+				//delete_site_transient('update_themes');
+				set_site_transient( 'update_themes', null );
+				set_transient('p3_theme_checker', true, 6 * HOUR_IN_SECONDS);
+			}
 
 		
 		// live site check
