@@ -66,7 +66,7 @@ function p3_instagram_userid_render() {
 
 function pipdig_instagram_section_callback() {
 	echo '<p><a href="http://www.pipdig.co/instagram/" target="_blank">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
-	echo '<p>Once you have authorized your account, copy and paste your information below:</p>';
+	echo '<p>'.__('Once you have authorized your account, copy and paste your information below:', 'p3').'</p>';
 }
 
 
@@ -81,7 +81,7 @@ function pipdig_instagram_options_page() {
 			
 		<h1>Instagram Settings</h1>
 		
-		<p><?php _e("You will need to sign in to Instagram to allow this theme's widgets to display our photos. Click the button below to do this:", 'p3'); ?></p>
+		<p><?php _e("You will need to sign in to Instagram to allow this theme's widgets to display your images. Click the button below to do this:", 'p3'); ?></p>
 			
 		<?php
 		settings_fields('pipdig_instagram_options_page');
@@ -89,7 +89,7 @@ function pipdig_instagram_options_page() {
 		submit_button();
 		?>
 		
-		<p>After authorizing your account, you can setup our <a href="http://support.pipdig.co/articles/wordpress-how-to-create-and-use-widgets/" target="_blank">Instagram Widget</a> and <a href="http://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/" target="_blank">Instagram Feed</a> options</p>
+		<p>After connecting your account, you can setup our <a href="http://support.pipdig.co/articles/wordpress-how-to-create-and-use-widgets/" target="_blank">Instagram Widget</a> and <a href="http://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/" target="_blank">Instagram Feed</a> options</p>
 			
 	</form>
 	<?php
