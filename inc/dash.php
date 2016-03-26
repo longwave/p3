@@ -5,11 +5,11 @@ if (!defined('ABSPATH')) {
 }
 
 /*  Add credit to admin area --------------------------------------------------------*/
-if (!function_exists('pipdig_footer_admin')) {
-	function pipdig_footer_admin () {
+if (!function_exists('pipdig_p3_footer_admin')) {
+	function pipdig_p3_footer_admin () {
 		echo 'Powered by <a href="'.esc_url('http://www.wordpress.org/').'" target="_blank">WordPress</a>. Enhanced by <a href="'.esc_url('http://www.pipdig.co/?utm_source=wp-dashboard&utm_medium=footer&utm_campaign=wp-dashboard').'" target="_blank">pipdig</a>.';
 	}
-	add_filter('admin_footer_text', 'pipdig_footer_admin');
+	add_filter('admin_footer_text', 'pipdig_p3_footer_admin');
 }
 
 
