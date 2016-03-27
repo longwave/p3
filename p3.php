@@ -20,20 +20,42 @@ define( 'PIPDIG_P3_V', '2.0.7' );
 //}
 include('falcor.php');
 
-/*
+
 function p3_update_notice_1() {
+	/*
 	$currentScreen = get_current_screen();
 	if($currentScreen->id != 'widgets') {
 		return;
 	}
-    ?>
-    <div class="notice notice-warning is-dismissible">
-        <p><?php _e( 'The pipdig Power Pack (p3) has now been updated! Do you have missing widgets and features? Please check that your theme is updated to the latest version by going <a href="'.admin_url('themes.php').'">this page</a> and <a href="'.admin_url('update-core.php').'">this page</a>.', 'p3' ); ?></p>
-    </div>
-    <?php
+	*/
+	
+	if (current_user_can('manage_options')) {
+		if (isset($_POST['p3_update_notice_1_dismissed'])) {
+			update_option('p3_update_notice_1', 1);
+		}
+	}
+	
+	if (get_option('p3_update_notice_1') || !current_user_can('manage_options')) {
+		return;
+	}
+	
+	?>
+	<div class="notice notice-warning is-dismissible">
+		<p>If you have updated the "pipdig Power Pack (p3)" plugin and find that your homepage is blank or features are missing, this means that your theme is an older version.</p>
+		<p>Don't worry, it's easily fixed. You can update your theme to the latest version automatically by going to <a href="<?php echo admin_url('themes.php'); ?>">this page</a> in your dashboard.</p>
+		<p><a href="http://support.pipdig.co/articles/wordpress-how-to-update-your-theme/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">Click here</a> to read more about keeping your theme updated. If you need any help or have any questions, you are welcome to contact us via <a href="http://support.pipdig.co/articles/submit-ticket/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">pipdig.co/help</a>.</p>
+		<form action="index.php" method="post">
+			<?php wp_nonce_field('p3-update-notice-nonce'); ?>
+			<input type="hidden" value="true" name="p3_update_notice_1_dismissed" />
+			<p class="submit" style="margin-top: 5px; padding-top: 5px;">
+				<input name="submit" class="button" value="Hide this notice" type="submit" />
+			</p>
+		</form>
+	</div>
+	<?php
 }
 add_action( 'admin_notices', 'p3_update_notice_1' );
-*/
+
 
 
 class pipdig_p3_intalled_xyz_2 {
