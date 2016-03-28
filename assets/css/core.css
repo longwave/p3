@@ -153,6 +153,20 @@ left: 50%;
 top: 50%;
 }
 
+/* 
+v2
+.p3_pin_wrapper {
+position: relative;
+}
+.p3_pin_img {
+display: none;
+position: absolute;
+top: 20px;
+left: 20px;
+cursor: pointer;
+}
+*/
+
 /* popular posts ============================ */
 #pipdig-widget-popular-posts {
 padding: 0;

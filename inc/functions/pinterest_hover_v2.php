@@ -7,10 +7,6 @@ if (!defined('ABSPATH')) {
 if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pinterest_hover_enable')) {
 	function p3_pinterest_hover_add_data($content) {
 		
-		if (!is_singular('jetpack-portfolio')) {
-			return;
-		}
-		
 		$link = esc_url(get_the_permalink());
 		$title = rawurldecode(get_the_title());
 		$content = str_replace('<img','<img data-p3-pin-title="'.$title.'" data-p3-pin-link="'.$link.'"', $content);
@@ -30,75 +26,66 @@ if (!function_exists('p3_pinterest_hover')) {
 		$margin = intval(get_theme_mod('p3_pinterest_hover_margin', 0));
 
 		?>
-		<style>
-		.p3_pin_wrapper .left {left:<?php echo intval($margin); ?>px}
-		.p3_pin_wrapper .right {right:<?php echo intval($margin); ?>px}
-		.p3_pin_wrapper .bottom {bottom:<?php echo intval($margin); ?>px}
-		.p3_pin_wrapper .top {top:<?php echo intval($margin); ?>px}
-		</style>
-		<script>
-		(function( $ ){
-			$.fn.imgPin = function( options ) {
 
-			var defaults = {
-				pinImg : '<?php echo esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png')); ?>',
-				position: 'center',
-			};
-			var options = $.extend( {}, defaults, options );
-
-			var url = encodeURIComponent(document.URL),
-				pinImg = options.pinImg,
-				position = '';
-			<?php $position = strip_tags(get_theme_mod('p3_pinterest_hover_image_position', 'center')); ?>
-
-			this.each(function(){
-				var src = $(this).attr('src'),
-					shareURL = $(this).data('p3-pin-link');
-
-				// get image dimensions - if < 500 then return
-				var img = new Image();
-				img.src = src;
-
-				var description = $(this).data('p3-pin-title'),
-					imgURL = encodeURIComponent(src);
-
-				var link = 'https://www.pinterest.com/pin/create/button/';
-					link += '?url='+shareURL;
-					link += '&media='+imgURL;
-					link += '&description=<?php echo addslashes(get_theme_mod('p3_pinterest_hover_prefix_text', '')); ?>%20'+description;
-
-				$(this).wrap('<div class="p3_pin_wrapper_outer"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
-
-				<?php if ($position == 'center') { ?>
-				var img = new Image();
-				img.onload = function() {
-					var w = this.width;
-					h = this.height;
-					$('.p3_pin_wrapper .pin.center').css('margin-left', -w/2).css('margin-top', -h/2);
-				}
-				img.src = pinImg;
-				<?php } ?>
-
-
-				//set click events
-				$('.p3_pin_wrapper .pin').click(function(){
-				var w = 700, h = 400;
-				var left = (screen.width/2)-(w/2);
-				var top = (screen.height/2)-(h/2);
-				var imgPinWindow = window.open(this.href,'imgPngWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=400');
-				imgPinWindow.moveTo(left, top);
-				return false;
+	<script type="text/javascript">	
+		
+		(function( $ ) {
+			$.fn.pinterest = function(options) {
+				
+				var settings = $.extend( {
+					'button' : 'http://business.pinterest.com/assets/img/builder/builder_opt_1.png'
+				}, options);
+				
+				function getUrl(src){
+					var url = document.location.toString();
+					var http = /^https?:\/\//i;
+					if (!http.test(src)) {
+						if(src[0] == '/'){
+							url = url.substring(0, url.lastIndexOf('/')) + src;
+						} else {
+							url = url.substring(0, url.lastIndexOf('/')) + '/' + src;
+						}
+					} else {
+						url = src;
+					}
+					
+					return url;
+				};
+				
+				function on_click () {
+					img = $(this).siblings('img:first');
+					description = img.attr('title');
+					url = document.location;
+					media = getUrl( img.attr('src') );
+	
+					var pin_url = 'http://pinterest.com/pin/create/button/?url=' + url +
+						'&media=' + media +
+						'&description=' + description;
+					
+					window.open(pin_url, 'Pin - ' + description, 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+					$(this).hide(1000);
+				};
+				
+				function on_hover_in() {
+					$(this).siblings('img:first').show(500);
+				};
+					
+				return this.each(function() {    
+					img = $(this);
+					img.wrap('<span class="p3_pin_wrapper" />');
+					img.parent('span.p3_pin_wrapper').append('<img src="' + settings.button + '" class="p3_pin_img" />');
+					img.hover(on_hover_in);
+					img.siblings('img:first').on('click', on_click);
 				});
 
-			});
-
-			}
-			
-		})(jQuery);
-
-		jQuery('.entry-content p img:not(.wp-smiley), .entry-content .alignnone, .wp-post-image, .entry-content .separator img').imgPin();
-
-		</script>
+			};
+		})( jQuery );
+		
+		jQuery(document).ready(function($) {
+			$('.entry-content img').pinterest({ button: '//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png'});
+		});
+		
+	</script>	
 		<?php
 	}
 	add_action('wp_footer', 'p3_pinterest_hover', 999);
