@@ -5,7 +5,7 @@ Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: http://www.pipdig.co/
-Version: 2.0.7
+Version: 2.0.8
 Text Domain: p3
 */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '2.0.7' );
+define( 'PIPDIG_P3_V', '2.0.8' );
 
 //function p3_falcor() {
 	// Having a luck dragon with you is the only way to go on a quest.
@@ -189,14 +189,17 @@ class pipdig_p3_intalled_xyz_2 {
 			update_option('pipdig_live_site', 1);
 		}
 		
-		if (get_option('p3_amicorumi_set') != 1) {
+		if (get_option('p3_amicorumi_set_2') != 1) {
+			$piplink = esc_url('http://www.pipdig.co');
+			$piplink2 = esc_url('http://www.pipdig.co/');
 			$amicorum = array(
-				'WordPress themes by ',
-				'WordPress Theme by ',
-				'Powered by ',
+				'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+				'<a href="'.$piplink2.'" target="_blank">WordPress themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+				'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			);
-			update_option('p3_amicorumi', $amicorum[array_rand($amicorum)]);
-			update_option('pipdig_live_site', 1);
+			update_option('p3_amicorumi_2', $amicorum[array_rand($amicorum)]);
+			update_option('p3_amicorumi_set_2', 1);
 		}
 		
 	}
