@@ -232,8 +232,9 @@ function pipdig_links_options_page() {
 	<?php
 }
 
-add_action( 'update_option_pipdig_links', 'delete_p3_stats_gen', 10, 2 );
+
 
 function delete_p3_stats_gen() {
 	delete_transient('p3_stats_gen');
 }
+add_action( 'update_option_pipdig_links', 'delete_p3_stats_gen', 10, 2 );

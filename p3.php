@@ -5,7 +5,7 @@ Plugin URI: http://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: http://www.pipdig.co/
-Version: 2.0.8
+Version: 2.0.9
 Text Domain: p3
 */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '2.0.8' );
+define( 'PIPDIG_P3_V', '2.0.9' );
 
 //function p3_falcor() {
 	// Having a luck dragon with you is the only way to go on a quest.
@@ -35,7 +35,7 @@ function p3_update_notice_1() {
 		}
 	}
 	
-	if (get_option('p3_update_notice_1') || !current_user_can('manage_options')) {
+	if (get_option('p3_update_notice_1') || !current_user_can('manage_options') || get_option('pipdig_p3_comments_set')) {
 		return;
 	}
 	
@@ -43,7 +43,7 @@ function p3_update_notice_1() {
 	<div class="notice notice-warning is-dismissible">
 		<p>If you have updated the "pipdig Power Pack (p3)" plugin and find that your homepage is blank or features are missing, this means that your theme is an older version.</p>
 		<p>Don't worry, it's easily fixed. You can update your theme to the latest version automatically by going to <a href="<?php echo admin_url('themes.php'); ?>">this page</a> in your dashboard.</p>
-		<p><a href="http://support.pipdig.co/articles/wordpress-how-to-update-your-theme/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">Click here</a> to read more about keeping your theme updated. If you need any help or have any questions, you are welcome to contact us via <a href="http://support.pipdig.co/articles/submit-ticket/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">pipdig.co/help</a>.</p>
+		<p><a href="http://support.pipdig.co/articles/wordpress-how-to-update-your-theme/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">Click here</a> to read more about keeping your theme updated. If you need any help or have any questions, you are welcome to contact us via <a href="http://support.pipdig.co/submit-ticket/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">pipdig.co/help</a>.</p>
 		<form action="index.php" method="post">
 			<?php wp_nonce_field('p3-update-notice-nonce'); ?>
 			<input type="hidden" value="true" name="p3_update_notice_1_dismissed" />

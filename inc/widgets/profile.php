@@ -5,12 +5,12 @@ if (!defined('ABSPATH')) {
 }
 
 // add admin scripts
-if ( !function_exists( 'pipdig_enque_script' ) ) {
-	function pipdig_enque_script() {
+if ( !function_exists( 'pipdig_enqueue_widget_media' ) ) {
+	function pipdig_enqueue_widget_media() {
 		wp_enqueue_media();
 		wp_enqueue_script('p3-media-upload', plugin_dir_url( __FILE__ ) . '../../assets/js/pipdig-media-widget.js', false, '1.0', true);
 	}
-	add_action('admin_enqueue_scripts', 'pipdig_enque_script');
+	add_action('admin_enqueue_scripts', 'pipdig_enqueue_widget_media');
 }
 
 // widget class

@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
 if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pinterest_hover_enable')) {
 	function p3_pinterest_hover_add_data($content) {
 		
-		if (!is_singular('jetpack-portfolio')) {
+		if (is_singular('jetpack-portfolio')) {
 			return;
 		}
 		

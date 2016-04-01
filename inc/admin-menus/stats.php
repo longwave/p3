@@ -11,14 +11,14 @@ if (!function_exists('pipdig_stats_options_page')) {
 	
 	$total_followers = $twitter = $instagram = $facebook = $youtube = $google_plus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $linkedin = $vimeo = $bloglovin = '';
 
-	$bloglovin = sanitize_text_field(get_option('p3_bloglovin_count'));
-	$pinterest = sanitize_text_field(get_option('p3_pinterest_count'));
-	$twitter = sanitize_text_field(get_option('p3_twitter_count'));
-	$facebook = sanitize_text_field(get_option('p3_facebook_count'));
+	$bloglovin = absint(get_option('p3_bloglovin_count'));
+	$pinterest = absint(get_option('p3_pinterest_count'));
+	$twitter = absint(get_option('p3_twitter_count'));
+	$facebook = absint(get_option('p3_facebook_count'));
 	$instagram = sanitize_text_field(get_option('p3_instagram_count'));
-	$youtube = sanitize_text_field(get_option('p3_youtube_count'));
-	$google_plus = sanitize_text_field(get_option('p3_google_plus_count'));
-	$twitch = sanitize_text_field(get_option('p3_twitch_count'));
+	$youtube = absint(get_option('p3_youtube_count'));
+	$google_plus = absint(get_option('p3_google_plus_count'));
+	$twitch = absint(get_option('p3_twitch_count'));
 	
 	$total_followers = $twitter + $instagram + $facebook + $youtube + $google_plus + $soundcloud + $bloglovin + $pinterest + $twitch;
 	

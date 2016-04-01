@@ -32,10 +32,6 @@ function pipdig_instagram_init() {
 		'pipdig_instagram_options_page_section' 
 	);
 	
-
-	
-
-	
 }
 add_action('admin_init', 'pipdig_instagram_init');
 
@@ -94,3 +90,9 @@ function pipdig_instagram_options_page() {
 	</form>
 	<?php
 }
+
+
+function delete_instagram_gen() {
+	delete_transient('p3_instagram_feed');
+}
+add_action( 'update_option_pipdig_instagram', 'delete_instagram_gen', 10, 2 );
