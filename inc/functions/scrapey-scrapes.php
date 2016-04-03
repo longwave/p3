@@ -9,7 +9,7 @@ function pipdig_p3_scrapey_scrapes() {
 	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
 		
-		set_site_transient( 'update_themes', null );
+		delete_option('jpibfi_pro_ad');
 		
 		set_transient('p3_stats_gen', true, 2 * HOUR_IN_SECONDS);
 		

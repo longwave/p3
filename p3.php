@@ -66,8 +66,6 @@ class pipdig_p3_intalled_xyz_2 {
 
 	function pipdig_p3_activate() {
 		
-		delete_option('pipdig_p3_version');
-	
 			// trackbacks
 			update_option('default_pingback_flag', '');
 			update_option('default_ping_status', 'closed');
@@ -175,13 +173,7 @@ class pipdig_p3_intalled_xyz_2 {
 			
 			p3_flush_htacess();
 			
-			if ( false === ( $value = get_transient('p3_theme_checker') ) ) {
-				//delete_site_transient('update_themes');
-				set_site_transient( 'update_themes', null );
-				set_transient('p3_theme_checker', true, 6 * HOUR_IN_SECONDS);
-			}
-
-		
+	
 		// live site check
 		if (get_option('pipdig_live_site') != 1) {
 			// add this site
