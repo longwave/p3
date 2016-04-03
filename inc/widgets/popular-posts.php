@@ -28,6 +28,11 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		} else {
 			$category = 0;
 		}
+		if (isset($instance['category_exclude'])) { 
+			$category_exclude = $instance['category_exclude'];
+		} else {
+			$category_exclude = 0;
+		}
 		if (isset($instance['number_posts'])) { 
 			$number_posts = $instance['number_posts'];
 		} else {
@@ -42,8 +47,12 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			value="<?php echo esc_attr($title); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Select Category'); ?>:</label>
+			<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Include', 'p3'); ?>:</label>
 			<?php wp_dropdown_categories(array('name' => $this->get_field_name('category'), 'selected' => $category, 'orderby' => 'Name' , 'hierarchical' => 1, 'show_option_all' => __('All Categories'), 'hide_empty' => '0')); ?>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('category_exclude'); ?>"><?php _e('Exclude', 'p3'); ?>:</label>
+			<?php wp_dropdown_categories(array('name' => $this->get_field_name('category_exclude'), 'selected' => $category_exclude, 'orderby' => 'Name' , 'hierarchical' => 1, 'show_option_all' => __('None'), 'hide_empty' => '0')); ?>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('date_range_posts'); ?>"><?php _e('Date range for posts:', 'p3'); ?></label>
@@ -66,33 +75,36 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
 		$instance['category'] = absint($new_instance['category']);
+		$instance['category_exclude'] = absint($new_instance['category_exclude']);
 		$instance['date_range_posts'] =  strip_tags($new_instance['date_range_posts']);
 		$instance['number_posts'] = absint($new_instance['number_posts']);
 		return $instance;
 	  }
 	 
-	  function widget($args, $instance)
-	  {
+	  function widget($args, $instance) {
 		extract($args, EXTR_SKIP);
 	 
 		echo $before_widget;
 		if (isset($instance['title'])) { 
-			$title = $instance['title'];
+			$title = strip_tags($instance['title']);
 		}
 		if (isset($instance['number_posts'])) { 
-			$number_posts = $instance['number_posts'];
+			$number_posts = absint($instance['number_posts']);
 		} else {
 			$number_posts = 3;
 		}
 		if (isset($instance['date_range_posts'])) { 
-			$date_range_posts = $instance['date_range_posts'];
+			$date_range_posts = strip_tags($instance['date_range_posts']);
 		} else {
 			$date_range_posts = '';
 		}
 		if (isset($instance['category'])) { 
-			$category = $instance['category'];
+			$category = absint($instance['category']);
 		} else {
 			$category = '';
+		}
+		if (isset($instance['category_exclude'])) { 
+			$category .= ',-'.absint($instance['category_exclude']);
 		}
 		if (!empty($title))
 		  echo $before_title . $title . $after_title;;
@@ -115,7 +127,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 				),
 			),
 		) );
-		set_transient('pipdig_popular_posts_widget', $popular, 10 * HOUR_IN_SECONDS); // set transient value
+		set_transient('pipdig_popular_posts_widget', $popular, 6 * HOUR_IN_SECONDS); // set transient value
 	} ?>
 	<?php while ( $popular->have_posts() ): $popular->the_post();
 		if(has_post_thumbnail()){
@@ -127,10 +139,10 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		$title = esc_attr(get_the_title());
 	?>
 	<li>
-	<a href="<?php the_permalink() ?>">
-	<img src="<?php echo $bg; ?>" alt="<?php echo $title; ?>" />
-	<h4><?php echo pipdig_p3_truncate($title, 11); ?></h4>
-	</a>
+		<a href="<?php the_permalink() ?>">
+			<img src="<?php echo $bg; ?>" alt="<?php echo $title; ?>" />
+			<h4><?php echo pipdig_p3_truncate($title, 11); ?></h4>
+		</a>
 	</li>
 	<?php endwhile; wp_reset_query(); ?>
 	</ul>
