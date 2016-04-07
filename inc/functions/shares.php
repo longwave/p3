@@ -20,13 +20,13 @@ function pipdig_p3_social_shares() {
 	$title = rawurlencode(get_the_title());
 	$summary = rawurlencode(get_the_excerpt());
 	
-	if ( false === ( $twitter_handle = get_transient('p3_twitter_handle') ) ) {
+	//if ( false === ( $twitter_handle = get_transient('p3_twitter_handle') ) ) {
 		$links = get_option('pipdig_links');
 		$twitter_url = esc_url($links['twitter']);
 		$twitter_handle = parse_url($twitter_url, PHP_URL_PATH);
 		$twitter_handle = str_replace('/', '', $twitter_handle);
-		set_transient('p3_twitter_handle', $twitter_handle, 72 * HOUR_IN_SECONDS);
-	}
+		//set_transient('p3_twitter_handle', $twitter_handle, 72 * HOUR_IN_SECONDS);
+	//}
 	$via_handle = '';
 	if (!empty($twitter_handle)) {
 		$via_handle = '&via='.$twitter_handle;
