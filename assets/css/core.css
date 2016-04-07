@@ -465,4 +465,5 @@ margin-top: 8px;
 
 /* Blogger ======================== */
 
-.tr-caption-container {border:0}
+.tr-caption-container, .tr-caption-container tr, .tr-caption-container td {border:0}
+.tr-caption-container img {width: 100%}
