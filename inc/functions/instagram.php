@@ -6,19 +6,21 @@ if (!defined('ABSPATH')) {
 
 // function to fetch images
 if (!function_exists('p3_instagram_fetch')) {
-	function p3_instagram_fetch() {
+	function p3_instagram_fetch($userid) {
 		
 		$instagram_deets = get_option('pipdig_instagram');
 		
 		if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) { 
 		
 			$access_token = sanitize_text_field($instagram_deets['access_token']);
-			$userid = sanitize_text_field($instagram_deets['user_id']);
+			if (empty($userid)) {
+				$userid = sanitize_text_field($instagram_deets['user_id']);
+			}
 			
-			if ( false === ( $result = get_transient( 'p3_instagram_feed' ) )) {
+			if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
 				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=30";
 				$result = wp_remote_fopen($url);
-				set_transient( 'p3_instagram_feed', $result, 20 * MINUTE_IN_SECONDS );
+				set_transient( 'p3_instagram_feed_'.$userid, $result, 20 * MINUTE_IN_SECONDS );
 			}
 			
 			$result = json_decode($result);
@@ -43,7 +45,11 @@ if (!function_exists('p3_instagram_fetch')) {
 				}
 			}
 			
-			return $images;
+			if (!empty($images)) {
+				return $images;
+			} else {
+				return false;
+			}
 			
 		} else {
 			return false;
@@ -83,7 +89,7 @@ if (!function_exists('p3_instagram_footer')) {
 			return;
 		}
 		
-		$images = p3_instagram_fetch(); // grab images
+		$images = p3_instagram_fetch(''); // grab images
 			
 		if ($images) {
 			$meta = intval(get_theme_mod('p3_instagram_meta'));
@@ -125,7 +131,7 @@ if (!function_exists('p3_instagram_header')) {
 			return;
 		}
 		
-		$images = p3_instagram_fetch(); // grab images
+		$images = p3_instagram_fetch(''); // grab images
 			
 		if ($images) {
 			$meta = intval(get_theme_mod('p3_instagram_meta'));
@@ -167,7 +173,7 @@ if (!function_exists('p3_instagram_top_of_posts')) {
 			return;
 		}
 		
-		$images = p3_instagram_fetch(); // grab images
+		$images = p3_instagram_fetch(''); // grab images
 		
 		if ($images) {
 			$meta = intval(get_theme_mod('p3_instagram_meta'));
