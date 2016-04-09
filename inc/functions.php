@@ -318,8 +318,8 @@ include('functions/top_menu_bar.php');
 include('functions/post-options.php');
 include('functions/shares.php');
 include('functions/related-posts.php');
-include('functions/pinterest_hover.php');
 include('functions/instagram.php');
+include('functions/pinterest_hover.php');
 include('functions/social_footer.php');
 include('functions/navbar_icons.php');
 include('functions/feature_header.php');
@@ -334,6 +334,8 @@ include('functions/width_customizer.php');
 include('bundled/customizer-reset/customizer-reset.php');
 /*
 if (!class_exists('jQuery_Pin_It_Button_For_Images')) {
+	include('functions/pinterest_hover.php');
 	include('bundled/jquery-pin-it-button-for-images/jquery-pin-it-button-for-images.php');
 }
 */
+

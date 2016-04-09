@@ -52,10 +52,19 @@ if (!function_exists('p3_pinterest_hover')) {
 			<?php $position = strip_tags(get_theme_mod('p3_pinterest_hover_image_position', 'center')); ?>
 
 			this.each(function(){
-				var src = $(this).attr('src'),
-					shareURL = $(this).data('p3-pin-link');
-
-				// get image dimensions - if < 500 then return
+				var src = $(this).attr('src');
+				var shareURL = $(this).data('p3-pin-link');
+				
+				// account for floats
+				var pin_positon = '';
+				if ($(this).hasClass('alignleft')) {
+					var pin_positon = 'pin_align_left';
+				} else if ($(this).hasClass('alignright')) {
+					var pin_positon = 'pin_align_right';
+				} else if ($(this).hasClass('aligncenter')) {
+					var pin_positon = 'pin_align_center';
+				}
+				
 				var img = new Image();
 				img.src = src;
 
@@ -67,7 +76,7 @@ if (!function_exists('p3_pinterest_hover')) {
 					link += '&media='+imgURL;
 					link += '&description=<?php echo addslashes(get_theme_mod('p3_pinterest_hover_prefix_text', '')); ?>%20'+description;
 
-				$(this).wrap('<div class="p3_pin_wrapper_outer"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
+				$(this).wrap('<div class="p3_pin_wrapper_outer '+pin_positon+'"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
 
 				<?php if ($position == 'center') { ?>
 				var img = new Image();

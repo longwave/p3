@@ -124,8 +124,18 @@ opacity: .85;
 }
 .p3_pin_wrapper_outer {
 display: inline-block;
-max-width: 100%;
+}
+.p3_pin_wrapper_outer.pin_align_center {
+display: block;
 text-align: center;
+}
+.p3_pin_wrapper_outer.pin_align_left {
+float: left;
+margin-right: 10px;
+}
+.p3_pin_wrapper_outer.pin_align_right {
+float: right;
+margin-left: 10px;
 }
 .p3_pin_wrapper {
 position: relative;
@@ -151,6 +161,10 @@ opacity: 1;
 .p3_pin_wrapper .center {
 left: 50%;
 top: 50%;
+}
+
+.entry-content a {
+	position: relative;
 }
 
 /* 
