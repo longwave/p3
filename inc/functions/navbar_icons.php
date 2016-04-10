@@ -13,46 +13,46 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		
 		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $vk = $email = $twitch = $google_plus ='';
 		
-		if ($links['twitter']) {
+		if (!empty($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
 		}
-		if ($links['instagram']) {
+		if (!empty($links['instagram'])) {
 			$instagram = esc_url($links['instagram']);
 		}
-		if ($links['facebook']) {
+		if (!empty($links['facebook'])) {
 			$facebook = esc_url($links['facebook']);
 		}
-		if ($links['bloglovin']) {
+		if (!empty($links['bloglovin'])) {
 			$bloglovin = esc_url($links['bloglovin']);
 		}
-		if ($links['pinterest']) {
+		if (!empty($links['pinterest'])) {
 			$pinterest = esc_url($links['pinterest']);
 		}
-		if ($links['youtube']) {
+		if (!empty($links['youtube'])) {
 			$youtube = esc_url($links['youtube']);
 		}
-		if ($links['tumblr']) {
+		if (!empty($links['tumblr'])) {
 			$tumblr = esc_url($links['tumblr']);
 		}
-		if ($links['linkedin']) {
+		if (!empty($links['linkedin'])) {
 			$linkedin = esc_url($links['linkedin']);
 		}
-		if ($links['soundcloud']) {
+		if (!empty($links['soundcloud'])) {
 			$soundcloud = esc_url($links['soundcloud']);
 		}
-		if ($links['flickr']) {
+		if (!empty($links['flickr'])) {
 			$flickr = esc_url($links['flickr']);
 		}
-		if ($links['vk']) {
+		if (!empty($links['vk'])) {
 			$vk = esc_url($links['vk']);
 		}
-		if ($links['google_plus']) {
+		if (!empty($links['google_plus'])) {
 			$google_plus = esc_url($links['google_plus']);
 		}
-		if ($links['twitch']) {
+		if (!empty($links['twitch'])) {
 			$twitch = esc_url($links['twitch']);
 		}
-		if ($links['email']) {
+		if (!empty($links['email'])) {
 			$email = sanitize_email($links['email']);
 		}
 

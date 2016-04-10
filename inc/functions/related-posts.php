@@ -78,7 +78,8 @@ if (!function_exists('p3_related_posts')) {
 								$output .= '<a href="'.$link.'" title="'.$title_attr.'"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC" alt="'.$title_attr.'" class="p3_invisible" data-pin-nopin="true"/></a>';
 							$output .= '</div>';
 							$output .= '<div class="pipdig_p3_related_content">';
-								$output .= '<h4 class="pipdig_p3_related_title"><a href="'.$link.'" title="'.$title_attr.'">'.pipdig_p3_truncate(get_the_title(), 5).'</a></h4>';
+								$truncate_title = absint(get_theme_mod('p3_related_posts_post_title_limit', 7));
+								$output .= '<h4 class="pipdig_p3_related_title"><a href="'.$link.'" title="'.$title_attr.'">'.pipdig_p3_truncate(get_the_title(), $truncate_title).'</a></h4>';
 							$output .= '</div>';
 						$output .= '</li>';
 					} //endwhile 
@@ -132,6 +133,27 @@ if (!class_exists('pipdig_related_Customize')) {
 						'1 month ago' => __('1 Month', 'p3'),
 						'1 week ago' => __('1 Week', 'p3'),
 						'' => __('All Time', 'p3'),
+					),
+				)
+			);
+			
+			// post title length
+			$wp_customize->add_setting('p3_related_posts_post_title_limit',
+				array(
+					'default' => 7,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_related_posts_post_title_limit',
+				array(
+					'type' => 'number',
+					'label' => __( 'Post title length (words)', 'p3' ),
+					'section' => 'pipdig_related_posts_pop',
+					'input_attrs' => array(
+						'min'   => 1,
+						'max'   => 50,
+						'step'  => 1,
 					),
 				)
 			);
