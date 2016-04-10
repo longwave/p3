@@ -206,7 +206,6 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
 	'photon',
 	//'sharedaddy',
 	//'omnisearch',
-	'mobile-push',
 	// 'likes',
 	// 'videopress',
 	// 'sso',
@@ -216,7 +215,6 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
 	// 'verification-tools',
 	'related-posts',
 	// 'custom-content-types',
-	'site-icon',
 	// 'protect',
 	);
 	foreach ( $jp_mods_to_disable as $mod ) {
@@ -228,6 +226,14 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
 }
 add_filter( 'jetpack_get_available_modules', 'pipdig_p3_kill_jetpack_modules', 20, 3 );
 
+function pipdig_p3_force_deactivate_rp() {
+    if ( class_exists('Jetpack') ) {
+        Jetpack::deactivate_module( 'related-posts' );
+		Jetpack::deactivate_module( 'photon' );
+		Jetpack::deactivate_module( 'infinite-scroll' );
+    }
+}
+add_action( 'init', 'pipdig_p3_force_deactivate_rp' );
 
 
 // hide tabs on social count plus
