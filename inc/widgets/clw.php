@@ -53,13 +53,15 @@ if (!class_exists('pipdig_widget_clw')) {
 			if (!empty($title)) {
 				echo $before_title . $title . $after_title;
 			}
-		
+			
+			$map_id = 'map_id_'.rand(1, 999999999);
+			
 			if ($latitude && $longitude) {
 				
 				global $wp_customize; //used to check if we're in the customizer
 				if (!isset($wp_customize)) { // are we in the customizer? No we're not, so let's use transients:
 				
-					if ( false === ( $map = get_transient( 'pipdig_clw_map' ) ) ) { // check for transient value
+					//if ( false === ( $map = get_transient( 'pipdig_clw_map' ) ) ) { // check for transient value
 						$map_color = get_theme_mod( 'pipdig_clw_map_color', '#cccccc' );
 						$border_color = get_theme_mod( 'pipdig_clw_border_color', '#ffffff' );
 						$marker_color = get_theme_mod( 'pipdig_clw_marker_color', '#000000' );
@@ -116,15 +118,15 @@ if (!class_exists('pipdig_widget_clw')) {
 								zoomControl.zoomControlEnabled = false;
 								zoomControl.mouseEnabled = false;
 
-								map.write("mapdiv");
+								map.write("'.$map_id.'");
 
 							});
 						</script>
-						<div id="mapdiv" style="width: 100%;height: 170px;"></div>
+						<div id="'.$map_id.'" style="width: 100%;height: 170px;"></div>
 						<p>'.__('Current Location', 'p3').': '.$location.'</p>
-						<style scoped>#mapdiv a{display:none!important}</style>';
-						set_transient( 'pipdig_clw_map', $map, 24 * HOUR_IN_SECONDS ); // set transient
-					}
+						<style scoped>#'.$map_id.' a{display:none!important}</style>';
+						//set_transient( 'pipdig_clw_map', $map, 24 * HOUR_IN_SECONDS ); // set transient
+					//}
 					echo $map; // print the map (whether transient or not)
 					
 				} else { // are we in the customizer? yes we are, so let's not use transients:
@@ -185,13 +187,13 @@ if (!class_exists('pipdig_widget_clw')) {
 								zoomControl.zoomControlEnabled = false;
 								zoomControl.mouseEnabled = false;
 
-								map.write("mapdiv");
+								map.write("'.$map_id.'");
 
 							});
 						</script>
-						<div id="mapdiv" style="width: 100%;height: 170px;"></div>
+						<div id="'.$map_id.'" style="width: 100%;height: 170px;"></div>
 						<p>'.__('Current Location', 'p3').': '.$location.'</p>
-						<style scoped>#mapdiv a{display:none!important}</style>';
+						<style scoped>#'.$map_id.' a{display:none!important}</style>';
 				}
 				
 			} else { // no latitude/longitude set, so let's display a friendly reminder:
