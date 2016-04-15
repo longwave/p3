@@ -178,7 +178,7 @@ function pipdig_p3_themes_top_link() {
 add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
 
-function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) {
+function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) {
 	$jp_mods_to_disable = array(
 	// 'shortcodes',
 	// 'widget-visibility',
@@ -224,16 +224,25 @@ function pipdig_p3_kill_jetpack_modules( $modules, $min_version, $max_version ) 
 	}
 	return $modules;
 }
-add_filter( 'jetpack_get_available_modules', 'pipdig_p3_kill_jetpack_modules', 20, 3 );
+add_filter( 'jetpack_get_available_modules', 'pipdig_p3_hide_jetpack_modules', 20, 3 );
 
-function pipdig_p3_force_deactivate_rp() {
-    if ( class_exists('Jetpack') ) {
-        Jetpack::deactivate_module( 'related-posts' );
-		Jetpack::deactivate_module( 'photon' );
-		Jetpack::deactivate_module( 'infinite-scroll' );
-    }
+function pipdig_p3_disable_jetpack_modules() {
+	if ( class_exists( 'Jetpack' ) ) {
+		if (Jetpack::is_module_active('photon')) {
+			Jetpack::deactivate_module( 'photon' );
+		}
+		if (Jetpack::is_module_active('related-posts')) {
+			Jetpack::deactivate_module( 'related-posts' );
+		}
+		if (Jetpack::is_module_active('infinite-scroll')) {
+			Jetpack::deactivate_module( 'infinite-scroll' );
+		}
+		if (Jetpack::is_module_active('photon')) {
+			Jetpack::deactivate_module( 'photon' );
+		}
+	}
 }
-add_action( 'init', 'pipdig_p3_force_deactivate_rp' );
+add_action( 'init', 'pipdig_p3_disable_jetpack_modules' );
 
 
 // hide tabs on social count plus
@@ -282,9 +291,9 @@ function pipdig_p3_emmmm_heeey() {
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 			 if($(window).scrollTop() + $(window).height() == $(document).height()) {
-				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar").slideUp();
+				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar").css('opacity', '0').css('visibility', 'hidden');
 			 } else {
-				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar").slideDown()
+				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar").css('opacity', '1').css('visibility', 'visible');
 			 }
 		});
 	});
