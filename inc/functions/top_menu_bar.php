@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 $theme = get_option('pipdig_theme');
-if (($theme == 'aquae') || ($theme == 'venture') || ($theme == 'arubanights') || ($theme == 'styleandlight') || ($theme == 'tundra') || ($theme == 'ghostshell') || ($theme == 'kensington') || ($theme == 'ladygreys') || ($theme == 'firefly') || ($theme == 'cultureshock')) {
+if (($theme == 'aquae') || ($theme == 'venture') || ($theme == 'arubanights') || ($theme == 'styleandlight') || ($theme == 'tundra') || ($theme == 'ghostshell') || ($theme == 'kensington') || ($theme == 'ladygreys') || ($theme == 'firefly') || ($theme == 'cultureshock') || ($theme == 'willow')) {
 	return;
 }
 

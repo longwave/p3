@@ -17,10 +17,10 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		if (isset($instance['feed'])) { 
-			$feed =	$instance['feed'];
+			$feed =	sanitize_text_field($instance['feed']);
 		}
 		if (isset($instance['text'])) { 
-			$text = $instance['text'];
+			$text = wp_kses_post($instance['text']);
 		} else {
 			$text = __('Enter your email address to subscribe:', 'p3');
 		}
@@ -33,8 +33,16 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 		if (!empty($title)) {
 			echo $before_title . $title . $after_title;
 		}
+		
+
+		
+
 
 		if (!empty($feed)) {
+			if (filter_var($feed, FILTER_VALIDATE_URL)) {  // they've entered a flippin url
+				$feed = parse_url($feed, PHP_URL_PATH);
+				$feed = str_replace('/', '', $feed);
+			}
 			$lang = str_replace('-', '_', get_bloginfo('language'));
 			?>
 			
@@ -84,7 +92,7 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 			<label for="<?php echo $this->get_field_id('feed'); ?>">FeedBurner ID:</label>
 			<input class="widefat" id="<?php echo $this->get_field_id('feed'); ?>" 
 			name="<?php echo $this->get_field_name('feed'); ?>" type="text" 
-			value="<?php if (isset($instance['feed'])) { echo $instance['feed']; }; ?>" placeholder="TheLovecatsInc" />
+			value="<?php if (isset($instance['feed'])) { echo esc_attr($instance['feed']); }; ?>" placeholder="TheLovecatsInc" />
 		</p>
 		
 		<p>

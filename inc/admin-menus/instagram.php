@@ -61,7 +61,7 @@ function p3_instagram_userid_render() {
 
 
 function pipdig_instagram_section_callback() {
-	echo '<p><a href="http://www.pipdig.co/instagram/" target="_blank">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
+	echo '<p><a href="https://www.pipdig.co/instagram/" target="_blank">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
 	echo '<p>'.__('Once you have authorized your account, copy and paste your information below:', 'p3').'</p>';
 }
 

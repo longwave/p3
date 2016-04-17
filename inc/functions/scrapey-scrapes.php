@@ -24,8 +24,8 @@ function pipdig_p3_scrapey_scrapes() {
 		// Facebook --------------------
 		$facebook_url = esc_url($links['facebook']);
 		if($facebook_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('facebook') {
-				$likes = absint(get_scp_counter('facebook');
+			if (function_exists('get_scp_counter') && get_scp_counter('facebook')) {
+				$likes = absint(get_scp_counter('facebook'));
 				update_option('p3_facebook_count', $likes);
 			} else {
 				$facebook_id = parse_url($facebook_url, PHP_URL_PATH);
@@ -47,8 +47,8 @@ function pipdig_p3_scrapey_scrapes() {
 		// Pinterest ---------------------
 		$pinterest_url = esc_url($links['pinterest']);
 		if($pinterest_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('pinterest') {
-				$pinterest_followers = absint(get_scp_counter('pinterest');
+			if (function_exists('get_scp_counter') && get_scp_counter('pinterest')) {
+				$pinterest_followers = absint(get_scp_counter('pinterest'));
 				update_option('p3_pinterest_count', $pinterest_followers);
 			} else {
 				$pinterest_user = parse_url($pinterest_url, PHP_URL_PATH);
@@ -106,8 +106,8 @@ function pipdig_p3_scrapey_scrapes() {
 		// Twitter ---------------------
 		$twitter_url = esc_url($links['twitter']);
 		if ($twitter_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('twitter') {
-				$followers_count = absint(get_scp_counter('twitter');
+			if (function_exists('get_scp_counter') && get_scp_counter('twitter')) {
+				$followers_count = absint(get_scp_counter('twitter'));
 				update_option('p3_twitter_count', $followers_count);
 			} else {
 				//if ( false === ( $twitter_handle = get_transient( 'p3_twitter_handle' ) ) ) {
@@ -144,8 +144,8 @@ function pipdig_p3_scrapey_scrapes() {
 		// SELECT * from html where url="http://instagram.com/inthefrow" AND xpath="//li[2]/span"
 		$instagram_url = esc_url($links['instagram']);
 		if ($instagram_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('instagram') {
-				$instagram_count = absint(get_scp_counter('instagram');
+			if (function_exists('get_scp_counter') && get_scp_counter('instagram')) {
+				$instagram_count = absint(get_scp_counter('instagram'));
 				update_option('p3_instagram_count', $instagram_count);
 			} else {
 				$instagram_deets = get_option('pipdig_instagram'); // from p3
@@ -178,8 +178,8 @@ function pipdig_p3_scrapey_scrapes() {
 		// SELECT * from html where url="https://www.youtube.com/user/inthefrow" AND xpath="/html/body/div[4]/div[4]/div/div[5]/div/div[1]/div/div[2]/div/div/div[2]/div/span/span[1]"
 		$youtube_url = esc_url($links['youtube']);
 		if ($youtube_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('youtube') {
-				$youtube_count = absint(get_scp_counter('youtube');
+			if (function_exists('get_scp_counter') && get_scp_counter('youtube')) {
+				$youtube_count = absint(get_scp_counter('youtube'));
 				update_option('p3_youtube_count', $youtube_count);
 			} else {
 				$youtube_url = rawurlencode($youtube_url);
@@ -194,8 +194,8 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_youtube_count');
 		}
-		/* non yql 
 		
+		/* non yql 
 		get channel id using? https://www.googleapis.com/youtube/v3/channels?key=AIzaSyAFwqQSW7MI7kKHQmrYL2jl1v9Shw1bMwE&forUsername=pipdigtv&part=id
 		$youtube_query = wp_remote_fopen('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=CHANNEL_ID&key=AIzaSyAFwqQSW7MI7kKHQmrYL2jl1v9Shw1bMwE'); // uses lemsey
 		$youtube_query = json_decode($youtube_query, true);
@@ -208,8 +208,8 @@ function pipdig_p3_scrapey_scrapes() {
 		// SELECT * from html where url="https://plus.google.com/+Inthefrowpage/about" AND xpath="//div[@class='Zmjtc']/span"
 		$google_plus_url = esc_url($links['google_plus']);
 		if ($google_plus_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('googleplus') {
-				$google_plus_count = absint(get_scp_counter('googleplus');
+			if (function_exists('get_scp_counter') && get_scp_counter('googleplus')) {
+				$google_plus_count = absint(get_scp_counter('googleplus'));
 				update_option('p3_google_plus_count', $google_plus_count);
 			} else {
 				$google_plus_url = rawurlencode($google_plus_url);
@@ -228,8 +228,8 @@ function pipdig_p3_scrapey_scrapes() {
 		
 		$twitch_url = esc_url($links['twitch']);
 		if ($twitch_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('twitch') {
-				$twitch_count = absint(get_scp_counter('twitch');
+			if (function_exists('get_scp_counter') && get_scp_counter('twitch')) {
+				$twitch_count = absint(get_scp_counter('twitch'));
 				update_option('p3_twitch_count', $twitch_count);
 			} else {
 				$twitch_user = parse_url($twitch_url, PHP_URL_PATH);
@@ -249,8 +249,8 @@ function pipdig_p3_scrapey_scrapes() {
 		// backups...
 		$soundcloud_url = esc_url($links['soundcloud']);
 		if ($soundcloud_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('soundcloud') {
-				$soundcloud_count = absint(get_scp_counter('soundcloud');
+			if (function_exists('get_scp_counter') && get_scp_counter('soundcloud')) {
+				$soundcloud_count = absint(get_scp_counter('soundcloud'));
 				update_option('p3_soundcloud_count', $soundcloud_count);
 			}
 		} else {
@@ -259,8 +259,8 @@ function pipdig_p3_scrapey_scrapes() {
 		
 		$linkedin_url = esc_url($links['linkedin']);
 		if ($linkedin_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('linkedin') {
-				$linkedin_count = absint(get_scp_counter('linkedin');
+			if (function_exists('get_scp_counter') && get_scp_counter('linkedin')) {
+				$linkedin_count = absint(get_scp_counter('linkedin'));
 				update_option('p3_linkedin_count', $linkedin_count);
 			}
 		} else {
@@ -269,8 +269,8 @@ function pipdig_p3_scrapey_scrapes() {
 		
 		$tumblr_url = esc_url($links['tumblr']);
 		if ($tumblr_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('tumblr') {
-				$tumblr_count = absint(get_scp_counter('tumblr');
+			if (function_exists('get_scp_counter') && get_scp_counter('tumblr')) {
+				$tumblr_count = absint(get_scp_counter('tumblr'));
 				update_option('p3_tumblr_count', $tumblr_count);
 			}
 		} else {
