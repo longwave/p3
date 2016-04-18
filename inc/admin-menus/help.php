@@ -22,7 +22,7 @@ if (!function_exists('pipdig_help_options_page')) {
 
 				<div class="meta-box-sortables ui-sortable">
 				
-					<p>Need some help? <a href="http://support.pipdig.co/?utm_source=wordpress&utm_medium=p3&utm_campaign=supportpage" target="_blank">Click here</a> to access our Helpdesk.</p>
+					<p>Need some help? <a href="https://support.pipdig.co/?utm_source=wordpress&utm_medium=p3&utm_campaign=supportpage" target="_blank">Click here</a> to access our Helpdesk.</p>
 					
 					<h3>Please use the form below to search for topics:</h3>
 				

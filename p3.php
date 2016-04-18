@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: pipdig Power Pack (p3)
-Plugin URI: http://www.pipdig.co/
+Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
-Author URI: http://www.pipdig.co/
-Version: 2.1.5
+Author URI: https://www.pipdig.co/
+Version: 2.1.6
 Text Domain: p3
 */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '2.1.5' );
+define( 'PIPDIG_P3_V', '2.1.6' );
 
 //function p3_falcor() {
 	// Having a luck dragon with you is the only way to go on a quest.
@@ -43,7 +43,7 @@ function p3_update_notice_1() {
 	<div class="notice notice-warning is-dismissible">
 		<p>If you have updated the "pipdig Power Pack (p3)" plugin and find that your homepage is blank or features are missing, this means that your theme is an older version.</p>
 		<p>Don't worry, it's easily fixed. You can update your theme to the latest version automatically by going to <a href="<?php echo admin_url('themes.php'); ?>">this page</a> in your dashboard.</p>
-		<p><a href="http://support.pipdig.co/articles/wordpress-how-to-update-your-theme/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">Click here</a> to read more about keeping your theme updated. If you need any help or have any questions, you are welcome to contact us via <a href="http://support.pipdig.co/submit-ticket/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">pipdig.co/help</a>.</p>
+		<p><a href="https://support.pipdig.co/articles/wordpress-how-to-update-your-theme/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">Click here</a> to read more about keeping your theme updated. If you need any help or have any questions, you are welcome to contact us via <a href="https://support.pipdig.co/submit-ticket/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">pipdig.co/help</a>.</p>
 		<form action="index.php" method="post">
 			<?php wp_nonce_field('p3-update-notice-nonce'); ?>
 			<input type="hidden" value="true" name="p3_update_notice_1_dismissed" />
@@ -177,21 +177,29 @@ class pipdig_p3_intalled_xyz_2 {
 		// live site check
 		if (get_option('pipdig_live_site') != 1) {
 			// add this site
-			$submit_data = wp_remote_fopen('http://status.pipdig.co/?dcx15=15&action=1&site_url='.rawurldecode(get_site_url()));
+			$submit_data = wp_remote_fopen('https://status.pipdig.co/?dcx15=15&action=1&site_url='.rawurldecode(get_site_url()));
 			update_option('pipdig_live_site', 1);
 		}
 		
-		if (get_option('p3_amicorumi_set_2') != 1) {
-			$piplink = esc_url('http://www.pipdig.co');
-			$piplink2 = esc_url('http://www.pipdig.co/');
-			$amicorum = array(
-				'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-				'<a href="'.$piplink2.'" target="_blank">WordPress themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
-				'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-				'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-			);
-			update_option('p3_amicorumi_2', $amicorum[array_rand($amicorum)]);
-			update_option('p3_amicorumi_set_2', 1);
+		if (get_option('p3_amicorumi_set_3') != 1) {
+			delete_option('p3_amicorumi');
+			delete_option('p3_amicorumi_set');
+			delete_option('p3_amicorumi_set_2');
+			if (get_option('p3_amicorumi_2')) {
+				$new_amic_https = str_replace("http://", "https://", get_option('p3_amicorumi_2'));
+				update_option('p3_amicorumi_2', $new_amic_https);
+			} else {
+				$piplink = esc_url('https://www.pipdig.co');
+				$piplink2 = esc_url('https://www.pipdig.co/');
+				$amicorum = array(
+					'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+					'<a href="'.$piplink2.'" target="_blank">WordPress themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
+					'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+					'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+				);
+				update_option('p3_amicorumi_2', $amicorum[array_rand($amicorum)]);
+			}
+			update_option('p3_amicorumi_set_3', 1);
 		}
 		
 	}
@@ -206,7 +214,7 @@ function pipdig_p3_deactivate() {
     $plugin = isset( $_REQUEST['plugin'] ) ? $_REQUEST['plugin'] : '';
     check_admin_referer( "deactivate-plugin_{$plugin}" );
 	// delete this site
-	$remove_data = wp_remote_fopen('http://status.pipdig.co/?dcx15=15&action=2&site_url='.rawurldecode(get_site_url()));
+	$remove_data = wp_remote_fopen('https://status.pipdig.co/?dcx15=15&action=2&site_url='.rawurldecode(get_site_url()));
 	delete_option('pipdig_live_site');
 }
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );

@@ -141,7 +141,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			<div id="p3_pinterest_widget" class="<?php echo $id; ?>"></div>
 			<script>
 			jQuery(document).ready(function($) {
-				$.getJSON("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fwww.pinterest.com%2F<?php echo $pinterestuser; ?>%2Ffeed.rss%22&format=json",
+				$.getJSON("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fwww.pinterest.com%2F<?php echo $pinterestuser; ?>%2Ffeed.rss%22&format=json&pipbuster=<?php echo date('h'); ?>",
 					function(data) {
 						for (i = 0; i < <?php echo $images_num; ?>; i++) {
 							var pinData = data.query.results.body.rss.channel.item[i].description;

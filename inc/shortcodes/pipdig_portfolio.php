@@ -97,8 +97,8 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 					$filtering = join( " ", $filtering_links );
 				
 					if (has_post_thumbnail() != '') {
-						$thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-						$img = $thumb['0'];
+						$thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
+						$img = esc_url($thumb['0']);
 					} else {
 						$img = pipdig_p3_catch_that_image();
 					}
