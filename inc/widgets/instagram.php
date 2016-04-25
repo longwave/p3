@@ -41,7 +41,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 			$width = '50%';
 			$border = '2';
 		} elseif ($cols == 3) {
-			$width = '33%';
+			$width = '33.333333%';
 			$border = '1';
 		} elseif ($cols == 4) {
 			$width = '25%';

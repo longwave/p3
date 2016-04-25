@@ -216,6 +216,53 @@ function pipdig_p3_dashboard_social_count_func() {
 				font-size: 0!important;
 			}
 			</style>
+					<?php if (!empty($twitter)) { ?>
+						Twitter: <?php echo $twitter; ?><br />
+					<?php } ?>
+
+					<?php if (!empty($instagram)) { ?>
+						Instagram: <?php echo $instagram; ?><br />
+					<?php } ?>
+
+					<?php if (!empty($pinterest)) { ?>
+						Pinterest: <?php echo $pinterest; ?><br />
+					<?php } ?>
+
+					<?php if (!empty($bloglovin)) { ?>
+						Bloglovin: <?php echo $bloglovin; ?><br />
+					<?php } ?>
+
+					<?php if (!empty($google_plus)) { ?>
+						Google+: <?php echo $google_plus; ?><br />
+					<?php } ?>
+
+					<?php if (!empty($soundcloud)) { ?>
+						Soundcloud: <?php echo $soundcloud; ?><br />
+					<?php } ?>
+
+					<?php if (!empty($facebook)) { ?>
+						Facebook: <?php echo $facebook; ?><br />
+					<?php } ?>
+
+					<?php if (!empty($youtube)) { ?>
+						YouTube: <?php echo $youtube; ?><br />
+					<?php } ?>
+
+					<?php if (!empty($tumblr)) { ?>
+						Tumblr: <?php echo $tumblr; ?><br />
+					<?php } ?>
+
+					<?php if (!empty($linkedin)) { ?>
+						LinkedIn: <?php echo $linkedin; ?><br />
+					<?php } ?>
+					
+					<?php if (!empty($twitch)) { ?>
+						Twitch: <?php echo $twitch; ?><br />
+					<?php } ?>
+					
+					<?php if (!empty($total)) { ?>
+						<strong>Total: <?php echo $total; ?></strong>
+					<?php } ?>
 			<p><input class="button" type="button" value="<?php esc_attr_e('View more stats', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-stats'); ?>';" /></p>
 			<p><input class="button" type="button" value="<?php esc_attr_e('Add more accounts', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-links'); ?>';" /></p>
 		<?php

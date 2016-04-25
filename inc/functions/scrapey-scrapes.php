@@ -35,7 +35,7 @@ function pipdig_p3_scrapey_scrapes() {
 				$json_url ='https://graph.facebook.com/'.$facebook_id.'?access_token='.$appid.'|'.$apsec.'&fields=likes';
 				$json = wp_remote_fopen($json_url, $args);
 				$json_output = json_decode($json);
-				if($json_output->likes){
+				if(!empty($json_output->likes)){
 					$likes = absint($json_output->likes);
 					update_option('p3_facebook_count', $likes);
 				}
@@ -56,7 +56,7 @@ function pipdig_p3_scrapey_scrapes() {
 				$json_url ='http://api.pinterest.com/v3/pidgets/users/'.$pinterest_user.'/pins/';
 				$json = wp_remote_fopen($json_url, $args);
 				$json_output = json_decode($json);
-				if($json_output->data->pins[0]->pinner->follower_count){
+				if(!empty($json_output->data->pins[0]->pinner->follower_count)){
 					$pinterest_followers = absint($json_output->data->pins[0]->pinner->follower_count);
 					update_option('p3_pinterest_count', $pinterest_followers);
 				}
@@ -130,7 +130,7 @@ function pipdig_p3_scrapey_scrapes() {
 				->buildOauth($ta_url, $requestMethod)
 				->performRequest();
 				$data = json_decode($follow_count, true);
-				if ($data) {
+				if (!empty($data)) {
 					$followers_count = absint($data[0]['user']['followers_count']);
 					update_option('p3_twitter_count', $followers_count);
 				}
@@ -165,7 +165,7 @@ function pipdig_p3_scrapey_scrapes() {
 				// use userid for second json
 				$instagram_count = wp_remote_fopen('https://api.instagram.com/v1/users/'.$userid.'?access_token='.$ig_token, $args);
 				$instagram_count = json_decode($instagram_count);
-				if ($instagram_count->data->counts->followed_by) {
+				if (!empty($instagram_count->data->counts->followed_by)) {
 					$instagram_count = absint($instagram_count->data->counts->followed_by);
 					update_option('p3_instagram_count', $instagram_count);
 				}
@@ -185,7 +185,7 @@ function pipdig_p3_scrapey_scrapes() {
 				$youtube_url = rawurlencode($youtube_url);
 				$youtube_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$youtube_url."%22%20AND%20xpath%3D%22%2Fhtml%2Fbody%2Fdiv%5B4%5D%2Fdiv%5B4%5D%2Fdiv%2Fdiv%5B5%5D%2Fdiv%2Fdiv%5B1%5D%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fdiv%2Fdiv%5B2%5D%2Fdiv%2Fspan%2Fspan%5B1%5D%22&format=json");
 				$youtube_yql = json_decode($youtube_yql);
-				if ($youtube_yql->query->results->span->title) {
+				if (!empty($youtube_yql->query->results->span->title)) {
 					$youtube_count = $youtube_yql->query->results->span->title;
 					$youtube_count = absint(str_replace(',', '', $youtube_count));
 					update_option('p3_youtube_count', $youtube_count);
@@ -215,7 +215,7 @@ function pipdig_p3_scrapey_scrapes() {
 				$google_plus_url = rawurlencode($google_plus_url);
 				$google_plus_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$google_plus_url."%22%20AND%20xpath%3D%22%2F%2Fdiv%5B%40class%3D'Zmjtc'%5D%2Fspan%22&format=json");
 				$google_plus_yql = json_decode($google_plus_yql);
-				if ($google_plus_yql->query->results->span[0]->content) {
+				if (!empty($google_plus_yql->query->results->span[0]->content)) {
 					$google_plus_count = $google_plus_yql->query->results->span[0]->content;
 					$google_plus_count = absint(str_replace(',', '', $google_plus_count));
 					update_option('p3_google_plus_count', $google_plus_count);
@@ -236,7 +236,7 @@ function pipdig_p3_scrapey_scrapes() {
 				$twitch_user = str_replace('/', '', $twitch_user);
 				$twitch_request = wp_remote_fopen("https://api.twitch.tv/kraken/channels/".$twitch_user."/follows?limit=5");
 				$twitch_request = json_decode($twitch_request);
-				if ($twitch_request->_total) {
+				if (!empty($twitch_request->_total)) {
 					$twitch_count = absint($twitch_request->_total);
 					update_option('p3_twitch_count', $twitch_count);
 				}

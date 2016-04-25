@@ -5,7 +5,7 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.1.6
+Version: 2.1.7
 Text Domain: p3
 */
 
@@ -13,12 +13,17 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '2.1.6' );
+define( 'PIPDIG_P3_V', '2.1.7' );
 
-//function p3_falcor() {
-	// Having a luck dragon with you is the only way to go on a quest.
-//}
-include('falcor.php');
+$clasped = '';
+function p3_falcor() {
+	//Having a luck dragon with you is the only way to go on a quest.
+	$clasped = 1;
+}
+if (!$clasped) {
+	include('falcor.php');
+}
+
 
 
 function p3_update_notice_1() {

@@ -11,7 +11,8 @@ if (!function_exists('p3_full_screen_landing')) {
 		if (!get_theme_mod('p3_full_screen_landing_enable')) {
 			return;
 		}
-		if (!is_front_page() && !is_home()) {
+		
+		if (get_theme_mod('p3_full_screen_landing_home', 1) && (!is_front_page() && !is_home())) {
 			return;
 		}
 		
@@ -23,7 +24,7 @@ if (!function_exists('p3_full_screen_landing')) {
 		?>
 		<style scoped>
 			#p3_full_screen_landing {
-				background-image: url(<?php echo esc_url(get_theme_mod('p3_full_screen_landing_image_file', 'http://i.imgur.com/dfg1HQN.jpg')); ?>);
+				background-image: url(<?php echo esc_url(get_theme_mod('p3_full_screen_landing_image_file', 'https://i.imgur.com/dfg1HQN.jpg')); ?>);
 				background-size: cover;
 				position: relative;
 				z-index: 99999999;
@@ -100,8 +101,7 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 					'priority' => 168,
 				) 
 			);
-
-
+			
 			// enable
 			$wp_customize->add_setting('p3_full_screen_landing_enable',
 				array(
@@ -118,10 +118,26 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 				)
 			);
 			
+			// homepage only?
+			$wp_customize->add_setting('p3_full_screen_landing_home',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_full_screen_landing_home',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Display on homepage only', 'p3' ),
+					'section' => 'p3_full_screen_landing',
+				)
+			);
+			
 			// Image
 			$wp_customize->add_setting('p3_full_screen_landing_image_file',
 				array(
-					'default' => 'http://i.imgur.com/dfg1HQN.jpg',
+					'default' => 'https://i.imgur.com/dfg1HQN.jpg',
 					'sanitize_callback' => 'esc_url_raw',
 				)
 			);
@@ -209,7 +225,6 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 				)
 				)
 			);
-
 
 		}
 	}

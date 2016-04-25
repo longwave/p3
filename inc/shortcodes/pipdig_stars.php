@@ -15,8 +15,6 @@ function pipdig_p3_star_rating_shortcode( $atts, $content = null ) {
 
 	$post_id = get_the_ID();
 	
-	
-	
 	$output = '
 	<div class="rateyo-'.$post_id.'" style="margin-top:5px;margin-bottom:10px;"></div>
 	<script>

@@ -127,6 +127,14 @@ function pipdig_links_init() {
 		'pipdig_links_options_page_section' 
 	);
 	
+	add_settings_field( 
+		'stumbleupon', 
+		'<i class="fa fa-stumbleupon"></i>&nbsp;&nbsp;Stumbleupon', 
+		'p3_stumbleupon_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
 }
 add_action('admin_init', 'pipdig_links_init');
 
@@ -198,6 +206,11 @@ function p3_vk_field_render() {
 function p3_twitch_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[twitch]' placeholder='https://twitch.tv/dansgaming' value="<?php if (isset($links['twitch'])) { echo $links['twitch']; } ?>"> <?php
+}
+
+function p3_stumbleupon_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[stumbleupon]' placeholder='https://stumbleupon.com/stumbler/pipdig' value="<?php if (isset($links['stumbleupon'])) { echo $links['stumbleupon']; } ?>"> <?php
 }
 
 function pipdig_links_section_callback() { 
