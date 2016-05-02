@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2016-03-20 22:07+0000\n"
-"PO-Revision-Date: 2016-03-20 22:07+0000\n"
+"POT-Creation-Date: 2016-04-26 15:20+0100\n"
+"PO-Revision-Date: 2016-04-26 15:20+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: fr\n"
@@ -117,56 +117,61 @@ msgstr ""
 "ATTENTION: Ces options peuvent erroner votre site. Utilisez les avec "
 "précaution."
 
-#: ../inc/admin-menus/hooks.php:111 ../inc/functions/navbar_icons.php:98
+#: ../inc/admin-menus/hooks.php:111 ../inc/functions/navbar_icons.php:106
 #: ../inc/functions/top_menu_bar.php:49
 msgid "Click here for more information"
 msgstr ""
 
-#: ../inc/admin-menus/instagram.php:68
+#: ../inc/admin-menus/instagram.php:64
 msgid "Click here to authorize your Instagram account"
 msgstr ""
 
-#: ../inc/admin-menus/instagram.php:84
+#: ../inc/admin-menus/instagram.php:65
 msgid ""
-"You will need to sign in to Instagram to allow this theme's widgets to "
-"display our photos. Click the button below to do this:"
+"Once you have authorized your account, copy and paste your information below:"
 msgstr ""
 
-#: ../inc/admin-menus/links.php:207
+#: ../inc/admin-menus/instagram.php:80
+msgid ""
+"You will need to sign in to Instagram to allow this theme's widgets to "
+"display your images. Click the button below to do this:"
+msgstr ""
+
+#: ../inc/admin-menus/links.php:220
 msgid "Add the links to each social media page below:"
 msgstr ""
 
-#: ../inc/admin-menus/links.php:208
+#: ../inc/admin-menus/links.php:221
 #, php-format
 msgid ""
 "Any links added can then be used across your website, such as on <a href=\"%s"
 "\">this page</a>."
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:32
+#: ../inc/admin-menus/stats.php:33
 #, php-format
 msgid ""
 "This page will display your total social follower counts. Please add your "
 "links to <a href=\"%s\">this page</a> first."
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:112
+#: ../inc/admin-menus/stats.php:117
 msgid "Total followers:"
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:116
+#: ../inc/admin-menus/stats.php:121
 msgid "Follower Stats"
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:128
+#: ../inc/admin-menus/stats.php:133
 msgid "Click here to add more accounts"
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:129
+#: ../inc/admin-menus/stats.php:134
 msgid "Stats are refreshed every 12 hours"
 msgstr ""
 
-#: ../inc/admin-menus/stats.php:279
+#: ../inc/admin-menus/stats.php:284
 msgid "Social Sharing Stats (Homepage only)"
 msgstr ""
 
@@ -184,47 +189,44 @@ msgstr ""
 msgid "Your Followers"
 msgstr ""
 
-#: ../inc/functions.php:172
-msgid "Themes"
-msgstr "Thèmes"
-
-#: ../inc/functions.php:297
+#: ../inc/functions.php:312
 msgid "Leave a comment"
 msgstr "Un commentaire ?"
 
-#: ../inc/functions.php:299
+#: ../inc/functions.php:314
 msgid "1 Comment"
 msgstr "1 Commentaire"
 
-#: ../inc/functions.php:301
+#: ../inc/functions.php:316
 msgid "Comments"
 msgstr "Commentaires"
 
-#: ../inc/functions.php:311
+#: ../inc/functions.php:326
 msgid "Older Comments"
 msgstr "Commentaires précédents"
 
-#: ../inc/functions.php:312
+#: ../inc/functions.php:327
 msgid "Newer Comments"
 msgstr "Nouveaux commentaires"
 
 #: ../inc/functions/feature_header.php:21
-#: ../inc/functions/feature_header.php:297
+#: ../inc/functions/feature_header.php:299
 msgid "Big this Month"
 msgstr ""
 
 #: ../inc/functions/feature_header.php:25
-#: ../inc/functions/feature_header.php:314
+#: ../inc/functions/feature_header.php:316
 msgid "Recent Posts"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:150
+#: ../inc/functions/feature_header.php:152
 msgid "Feature Header"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:169
+#: ../inc/functions/feature_header.php:171
 #: ../inc/functions/full_screen_landing_image.php:116
-#: ../inc/functions/pinterest_hover.php:139 ../inc/functions/popup.php:107
+#: ../inc/functions/pinterest_hover.php:152
+#: ../inc/functions/pinterest_hover_v2.php:130 ../inc/functions/popup.php:107
 #: ../inc/functions/post_slider_posts_column.php:119
 #: ../inc/functions/post_slider_site_main_width.php:104
 #: ../inc/functions/post_slider_site_main_width_sq.php:104
@@ -232,62 +234,63 @@ msgstr ""
 msgid "Enable this feature"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:185
+#: ../inc/functions/feature_header.php:187
+#: ../inc/functions/full_screen_landing_image.php:132
 #: ../inc/functions/post_slider_site_main_width.php:120
 #: ../inc/functions/post_slider_site_main_width_sq.php:120
 #: ../inc/functions/trending.php:148
 msgid "Display on homepage only"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:201
+#: ../inc/functions/feature_header.php:203
 msgid "Date range for \"Big this Month\":"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:202
+#: ../inc/functions/feature_header.php:204
 msgid "This won't effect the Recent Posts section."
 msgstr ""
 
-#: ../inc/functions/feature_header.php:205
-#: ../inc/functions/related-posts.php:131 ../inc/functions/trending.php:206
-#: ../inc/widgets/popular-posts.php:53 ../inc/widgets/post-slider.php:64
+#: ../inc/functions/feature_header.php:207
+#: ../inc/functions/related-posts.php:132 ../inc/functions/trending.php:206
+#: ../inc/widgets/popular-posts.php:62 ../inc/widgets/post-slider.php:64
 #: ../inc/widgets/random-posts.php:53
 msgid "1 Year"
 msgstr "1 année"
 
-#: ../inc/functions/feature_header.php:206
-#: ../inc/functions/related-posts.php:132 ../inc/functions/trending.php:207
-#: ../inc/widgets/popular-posts.php:52 ../inc/widgets/post-slider.php:63
+#: ../inc/functions/feature_header.php:208
+#: ../inc/functions/related-posts.php:133 ../inc/functions/trending.php:207
+#: ../inc/widgets/popular-posts.php:61 ../inc/widgets/post-slider.php:63
 #: ../inc/widgets/random-posts.php:52
 msgid "1 Month"
 msgstr "1 mois"
 
-#: ../inc/functions/feature_header.php:207
-#: ../inc/functions/related-posts.php:133 ../inc/functions/trending.php:208
-#: ../inc/widgets/popular-posts.php:51 ../inc/widgets/post-slider.php:62
+#: ../inc/functions/feature_header.php:209
+#: ../inc/functions/related-posts.php:134 ../inc/functions/trending.php:208
+#: ../inc/widgets/popular-posts.php:60 ../inc/widgets/post-slider.php:62
 #: ../inc/widgets/random-posts.php:51
 msgid "1 Week"
 msgstr "1 semaine"
 
-#: ../inc/functions/feature_header.php:208
-#: ../inc/functions/related-posts.php:134 ../inc/functions/trending.php:209
-#: ../inc/widgets/popular-posts.php:54 ../inc/widgets/post-slider.php:65
+#: ../inc/functions/feature_header.php:210
+#: ../inc/functions/related-posts.php:135 ../inc/functions/trending.php:209
+#: ../inc/widgets/popular-posts.php:63 ../inc/widgets/post-slider.php:65
 #: ../inc/widgets/random-posts.php:54
 msgid "All Time"
 msgstr "Depuis la création de votre blog"
 
-#: ../inc/functions/feature_header.php:224 ../inc/functions/trending.php:225
+#: ../inc/functions/feature_header.php:226 ../inc/functions/trending.php:225
 msgid "Category for \"Big this Month\":"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:225 ../inc/functions/trending.php:226
+#: ../inc/functions/feature_header.php:227 ../inc/functions/trending.php:226
 msgid "Only display posts from:"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:243
+#: ../inc/functions/feature_header.php:245
 msgid "Category for \"Recent Posts\":"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:260
+#: ../inc/functions/feature_header.php:262
 #: ../inc/functions/post_slider_posts_column.php:215
 #: ../inc/functions/post_slider_site_main_width.php:154
 #: ../inc/functions/post_slider_site_main_width_sq.php:154
@@ -295,7 +298,7 @@ msgstr ""
 msgid "Background color"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:277
+#: ../inc/functions/feature_header.php:279
 #: ../inc/functions/post_slider_posts_column.php:232
 #: ../inc/functions/post_slider_site_main_width.php:171
 #: ../inc/functions/post_slider_site_main_width_sq.php:171
@@ -303,133 +306,151 @@ msgstr ""
 msgid "Title color"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:294
+#: ../inc/functions/feature_header.php:296
 msgid "\"Big this Month\" title"
 msgstr ""
 
-#: ../inc/functions/feature_header.php:311
+#: ../inc/functions/feature_header.php:313
 msgid "\"Recent Posts\" title"
 msgstr ""
 
-#: ../inc/functions/full_screen_landing_image.php:96
-msgid "Full Screen Landing"
+#: ../inc/functions/feature_header.php:332
+#: ../inc/functions/post_slider_posts_column.php:193
+#: ../inc/functions/related-posts.php:151
+msgid "Post title length (words)"
 msgstr ""
 
 #: ../inc/functions/full_screen_landing_image.php:97
+msgid "Full Screen Landing"
+msgstr ""
+
+#: ../inc/functions/full_screen_landing_image.php:98
 msgid ""
 "Use this option to display a single, full screen landing image at the top of "
 "your homepage."
 msgstr ""
 
-#: ../inc/functions/full_screen_landing_image.php:133
-#: ../inc/functions/pinterest_hover.php:156
+#: ../inc/functions/full_screen_landing_image.php:149
+#: ../inc/functions/pinterest_hover.php:169
+#: ../inc/functions/pinterest_hover_v2.php:147
 msgid "Upload a custom image"
 msgstr ""
 
-#: ../inc/functions/full_screen_landing_image.php:150
-#: ../inc/functions/related-posts.php:180 ../inc/functions/shares.php:121
-#: ../inc/widgets/clw.php:236 ../inc/widgets/facebook.php:86
-#: ../inc/widgets/pinterest.php:199 ../inc/widgets/popular-posts.php:39
-#: ../inc/widgets/post-slider.php:52 ../inc/widgets/profile.php:69
-#: ../inc/widgets/random-posts.php:39 ../inc/widgets/snapcode.php:56
-#: ../inc/widgets/socialz.php:190 ../inc/widgets/subscribe.php:72
-#: ../inc/widgets/twitter.php:80 ../inc/widgets/youtube.php:77
+#: ../inc/functions/full_screen_landing_image.php:166
+#: ../inc/functions/related-posts.php:202 ../inc/functions/shares.php:121
+#: ../inc/widgets/clw.php:238 ../inc/widgets/facebook.php:86
+#: ../inc/widgets/instagram.php:132 ../inc/widgets/pinterest.php:202
+#: ../inc/widgets/popular-posts.php:44 ../inc/widgets/post-slider.php:52
+#: ../inc/widgets/profile.php:69 ../inc/widgets/random-posts.php:39
+#: ../inc/widgets/snapcode.php:56 ../inc/widgets/socialz.php:197
+#: ../inc/widgets/subscribe.php:80 ../inc/widgets/twitter.php:80
+#: ../inc/widgets/youtube.php:77
 msgid "Title:"
 msgstr "Titre:"
 
-#: ../inc/functions/full_screen_landing_image.php:170
+#: ../inc/functions/full_screen_landing_image.php:186
 msgid "Summary:"
 msgstr ""
 
-#: ../inc/functions/full_screen_landing_image.php:185
+#: ../inc/functions/full_screen_landing_image.php:201
 msgid "Link title to URL:"
 msgstr ""
 
-#: ../inc/functions/full_screen_landing_image.php:206
+#: ../inc/functions/full_screen_landing_image.php:222
 msgid "Text color"
 msgstr ""
 
-#: ../inc/functions/instagram.php:205
+#: ../inc/functions/instagram.php:217
 #, php-format
 msgid ""
 "Before enabling these features, you will need to add your Instagram account "
 "to <a href=\"%s\">this page</a>."
 msgstr ""
 
-#: ../inc/functions/instagram.php:224
+#: ../inc/functions/instagram.php:236
 msgid "Display feed in the header"
 msgstr ""
 
-#: ../inc/functions/instagram.php:240
+#: ../inc/functions/instagram.php:252
 msgid "Display feed above posts on homepage"
 msgstr ""
 
-#: ../inc/functions/instagram.php:257
+#: ../inc/functions/instagram.php:269
 msgid "Display feed in the footer"
 msgstr ""
 
-#: ../inc/functions/instagram.php:272 ../inc/widgets/instagram.php:131
-#: ../inc/widgets/pinterest.php:219
+#: ../inc/functions/instagram.php:284 ../inc/widgets/instagram.php:153
+#: ../inc/widgets/pinterest.php:222
 msgid "Number of images to display:"
 msgstr "Nombre d’images à afficher:"
 
-#: ../inc/functions/instagram.php:294
+#: ../inc/functions/instagram.php:306
 msgid "Display Comments & Likes count on hover"
 msgstr ""
 
-#: ../inc/functions/navbar_icons.php:97
+#: ../inc/functions/navbar_icons.php:105
 msgid "Navbar Icons"
 msgstr ""
 
-#: ../inc/functions/navbar_icons.php:98
+#: ../inc/functions/navbar_icons.php:106
 msgid ""
 "You can display your social icons in the navbar using these options. Select "
 "the social icons you would like to add from below."
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:66
+#: ../inc/functions/pinterest_hover.php:79
 msgid "Pin this image on Pinterest"
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:121
+#: ../inc/functions/pinterest_hover.php:134
+#: ../inc/functions/pinterest_hover_v2.php:112
 msgid "Pinterest Hover Button"
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:122 ../inc/functions/popup.php:90
+#: ../inc/functions/pinterest_hover.php:135
+#: ../inc/functions/pinterest_hover_v2.php:113 ../inc/functions/popup.php:90
 msgid ""
 "When you hover your mouse over an image in a post/page, a Pinterest \"Pin it"
 "\" button will appear."
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:173
+#: ../inc/functions/pinterest_hover.php:186
+#: ../inc/functions/pinterest_hover_v2.php:164
 msgid "Image position"
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:176
+#: ../inc/functions/pinterest_hover.php:189
+#: ../inc/functions/pinterest_hover_v2.php:167
 msgid "Center"
 msgstr "Centre"
 
-#: ../inc/functions/pinterest_hover.php:177
+#: ../inc/functions/pinterest_hover.php:190
+#: ../inc/functions/pinterest_hover_v2.php:168
 msgid "Top left"
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:178
+#: ../inc/functions/pinterest_hover.php:191
+#: ../inc/functions/pinterest_hover_v2.php:169
 msgid "Top right"
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:179
+#: ../inc/functions/pinterest_hover.php:192
+#: ../inc/functions/pinterest_hover_v2.php:170
 msgid "Bottom right"
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:180
+#: ../inc/functions/pinterest_hover.php:193
+#: ../inc/functions/pinterest_hover_v2.php:171
 msgid "Bottom left"
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:195
+#: ../inc/functions/pinterest_hover.php:208
+#: ../inc/functions/pinterest_hover_v2.php:186
 msgid "Image margin"
 msgstr ""
 
-#: ../inc/functions/pinterest_hover.php:213
+#: ../inc/functions/pinterest_hover.php:226
+#: ../inc/functions/pinterest_hover_v2.php:204
 msgid "Prefix for \"Description\" field"
 msgstr ""
 
@@ -482,44 +503,40 @@ msgstr ""
 msgid "Display post title"
 msgstr ""
 
-#: ../inc/functions/post_slider_posts_column.php:193
-msgid "Post title length (words)"
-msgstr ""
-
 #: ../inc/functions/post_slider_site_main_width.php:85
 #: ../inc/functions/post_slider_site_main_width_sq.php:85
 msgid "Large Rectangle Slider"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:18 ../inc/functions/related-posts.php:183
+#: ../inc/functions/related-posts.php:18 ../inc/functions/related-posts.php:205
 msgid "You may also enjoy:"
 msgstr "Vous pourriez peut-être aimer :"
 
-#: ../inc/functions/related-posts.php:109
+#: ../inc/functions/related-posts.php:110
 msgid "Related Posts"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:110
+#: ../inc/functions/related-posts.php:111
 msgid "Related Posts are displayed from the same category."
 msgstr ""
 
-#: ../inc/functions/related-posts.php:128 ../inc/functions/trending.php:203
-#: ../inc/widgets/popular-posts.php:49 ../inc/widgets/post-slider.php:60
+#: ../inc/functions/related-posts.php:129 ../inc/functions/trending.php:203
+#: ../inc/widgets/popular-posts.php:58 ../inc/widgets/post-slider.php:60
 #: ../inc/widgets/random-posts.php:49
 msgid "Date range for posts:"
 msgstr "Période:"
 
-#: ../inc/functions/related-posts.php:150
+#: ../inc/functions/related-posts.php:172
 msgid "Don't display on homepage"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:166
+#: ../inc/functions/related-posts.php:188
 msgid "Don't display on posts"
 msgstr ""
 
 #: ../inc/functions/shares.php:71 ../inc/functions/shares.php:124
 msgid "Share:"
-msgstr "Partagez:"
+msgstr "Partager:"
 
 #: ../inc/functions/shares.php:89
 msgid "Sharing Icons"
@@ -626,29 +643,29 @@ msgstr "Articles anciens"
 msgid "Newer posts"
 msgstr "Articles récents"
 
-#: ../inc/shortcodes/pipdig_portfolio.php:40
+#: ../inc/shortcodes/pipdig_portfolio.php:43
 msgid "View All"
 msgstr ""
 
-#: ../inc/shortcodes/pipdig_portfolio.php:111
+#: ../inc/shortcodes/pipdig_portfolio.php:113
 msgid "Click to view"
 msgstr ""
 
-#: ../inc/shortcodes/pipdig_portfolio.php:125
+#: ../inc/shortcodes/pipdig_portfolio.php:127
 msgid "Older projects"
 msgstr ""
 
-#: ../inc/shortcodes/pipdig_portfolio.php:129
+#: ../inc/shortcodes/pipdig_portfolio.php:131
 msgid "Newer projects"
 msgstr ""
 
-#: ../inc/shortcodes/pipdig_portfolio.php:139
+#: ../inc/shortcodes/pipdig_portfolio.php:141
 #, php-format
 msgid ""
 "Ready to publish your first project? <a href=\"%s\">Get started here</a>."
 msgstr ""
 
-#: ../inc/shortcodes/pipdig_portfolio.php:141
+#: ../inc/shortcodes/pipdig_portfolio.php:143
 msgid "No portfolio items found."
 msgstr ""
 
@@ -669,8 +686,8 @@ msgid "Follow on Bloglovin'"
 msgstr "Suivre sur Bloglovin’"
 
 #: ../inc/widgets/bloglovin.php:56 ../inc/widgets/facebook.php:54
-#: ../inc/widgets/instagram.php:92 ../inc/widgets/pinterest.php:162
-#: ../inc/widgets/snapcode.php:35 ../inc/widgets/subscribe.php:52
+#: ../inc/widgets/instagram.php:96 ../inc/widgets/pinterest.php:165
+#: ../inc/widgets/snapcode.php:35 ../inc/widgets/subscribe.php:60
 #: ../inc/widgets/twitter.php:47 ../inc/widgets/youtube.php:58
 msgid "Setup not complete. Please check the widget options."
 msgstr ""
@@ -689,16 +706,16 @@ msgstr ""
 msgid "Proudly display where you are in the world."
 msgstr "Affichez fièrement où vous vous trouvez dans le monde."
 
-#: ../inc/widgets/clw.php:21 ../inc/widgets/clw.php:124
-#: ../inc/widgets/clw.php:193
+#: ../inc/widgets/clw.php:21 ../inc/widgets/clw.php:126
+#: ../inc/widgets/clw.php:195
 msgid "Current Location"
 msgstr "Lieu actuel"
 
-#: ../inc/widgets/clw.php:200 ../inc/widgets/clw.php:202
+#: ../inc/widgets/clw.php:202 ../inc/widgets/clw.php:204
 msgid "Please enter location data in the widget settings."
 msgstr "Entrez les données de votre position dans les paramètres du widget."
 
-#: ../inc/widgets/clw.php:242
+#: ../inc/widgets/clw.php:244
 #, php-format
 msgid ""
 "The information below will be used for the map marker. You can find the "
@@ -711,27 +728,27 @@ msgstr ""
 "french websites where you can find your latitude and longitude, just type: "
 "Trouver sa latitude et sa longitude in google and choose the one you prefer."
 
-#: ../inc/widgets/clw.php:246
+#: ../inc/widgets/clw.php:248
 msgid "Location Name:"
 msgstr "Nom du lieu:"
 
-#: ../inc/widgets/clw.php:247
+#: ../inc/widgets/clw.php:249
 msgid "London, UK"
 msgstr "Paris, France"
 
-#: ../inc/widgets/clw.php:250
+#: ../inc/widgets/clw.php:252
 msgid "Latitude:"
 msgstr ""
 
-#: ../inc/widgets/clw.php:254
+#: ../inc/widgets/clw.php:256
 msgid "Longitude:"
 msgstr ""
 
-#: ../inc/widgets/clw.php:287
+#: ../inc/widgets/clw.php:289
 msgid "Current Location Widget"
 msgstr "Widget Position Actuelle"
 
-#: ../inc/widgets/clw.php:290
+#: ../inc/widgets/clw.php:292
 #, php-format
 msgid ""
 "Use these options to style the Current Location Widget. You will need to set "
@@ -741,19 +758,19 @@ msgstr ""
 "aurez d’abord besoin de paramétrer votre position dans les <a href=\"%s"
 "\">options du widget</a>. "
 
-#: ../inc/widgets/clw.php:305
+#: ../inc/widgets/clw.php:307
 msgid "Map color"
 msgstr "Couleur de la carte"
 
-#: ../inc/widgets/clw.php:322
+#: ../inc/widgets/clw.php:324
 msgid "Border color"
 msgstr "Couleur de la bordure"
 
-#: ../inc/widgets/clw.php:339
+#: ../inc/widgets/clw.php:341
 msgid "Marker color"
 msgstr "Couleur du marqueur"
 
-#: ../inc/widgets/clw.php:359
+#: ../inc/widgets/clw.php:361
 msgid "Marker size"
 msgstr "Taille du marqueur"
 
@@ -797,30 +814,39 @@ msgstr "Afficher vos dernières publications Instagram."
 msgid "Instagram Widget"
 msgstr "Widget Instagram"
 
-#: ../inc/widgets/instagram.php:88
+#: ../inc/widgets/instagram.php:92
 msgid "Follow on Instagram"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:124
-msgid "This widget will display your recent Instagram photos."
+#: ../inc/widgets/instagram.php:141
+#, php-format
+msgid ""
+"By default, this widget will display recent images from your main <a href="
+"\"%s\">Instagram account</a>. If you would prefer to use a different "
+"Instagram account, you can add the <a href=\"%s\" target=\"_blank\">User ID "
+"Number</a> below:"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:126
+#: ../inc/widgets/instagram.php:143
 #, php-format
 msgid ""
 "You need to complete the settings on <a href=\"%s\">this page</a> before "
 "this widget will work."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:135 ../inc/widgets/pinterest.php:224
+#: ../inc/widgets/instagram.php:148
+msgid "User ID (optional)"
+msgstr ""
+
+#: ../inc/widgets/instagram.php:157 ../inc/widgets/pinterest.php:227
 msgid "Number of columns:"
 msgstr "Nombre de colonnes:"
 
-#: ../inc/widgets/instagram.php:140
+#: ../inc/widgets/instagram.php:162
 msgid "Display Comments & Likes count on hover."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:145 ../inc/widgets/pinterest.php:230
+#: ../inc/widgets/instagram.php:167 ../inc/widgets/pinterest.php:233
 msgid "Display a \"Follow\" link."
 msgstr "Afficher un lien « suivre »."
 
@@ -832,20 +858,20 @@ msgstr "Afficher vos derniers pins."
 msgid "Pinterest Widget"
 msgstr "Widget Pinterest"
 
-#: ../inc/widgets/pinterest.php:157
+#: ../inc/widgets/pinterest.php:160
 msgid "Follow on Pinterest"
 msgstr "Suivre sur Pinterest"
 
-#: ../inc/widgets/pinterest.php:206
+#: ../inc/widgets/pinterest.php:209
 msgid "Add your Pinterest account name to the box below."
 msgstr "Ajoutez votre nom d’utilisateur Pinterest dans l’encadré ci dessous."
 
-#: ../inc/widgets/pinterest.php:207 ../inc/widgets/subscribe.php:80
+#: ../inc/widgets/pinterest.php:210 ../inc/widgets/subscribe.php:88
 #: ../inc/widgets/youtube.php:85
 msgid "For example, the red part below:"
 msgstr "Par exemple, la partie rouge ci dessous:"
 
-#: ../inc/widgets/pinterest.php:211
+#: ../inc/widgets/pinterest.php:214
 msgid "Pinterest Account Name:"
 msgstr "Nom d’utilisateur de votre compte Pinterest:"
 
@@ -853,17 +879,24 @@ msgstr "Nom d’utilisateur de votre compte Pinterest:"
 msgid "Displays your most popular posts."
 msgstr "Affichez vos articles les plus populaires."
 
-#: ../inc/widgets/popular-posts.php:45 ../inc/widgets/post-slider.php:56
-#: ../inc/widgets/random-posts.php:45
-msgid "Select Category"
+#: ../inc/widgets/popular-posts.php:50
+msgid "Include"
 msgstr ""
 
-#: ../inc/widgets/popular-posts.php:46 ../inc/widgets/post-slider.php:57
+#: ../inc/widgets/popular-posts.php:51 ../inc/widgets/post-slider.php:57
 #: ../inc/widgets/random-posts.php:46
 msgid "All Categories"
 msgstr ""
 
-#: ../inc/widgets/popular-posts.php:58 ../inc/widgets/post-slider.php:69
+#: ../inc/widgets/popular-posts.php:54
+msgid "Exclude"
+msgstr ""
+
+#: ../inc/widgets/popular-posts.php:55
+msgid "None"
+msgstr ""
+
+#: ../inc/widgets/popular-posts.php:67 ../inc/widgets/post-slider.php:69
 #: ../inc/widgets/random-posts.php:58
 msgid "Number of posts to show:"
 msgstr "Nombre d’articles à afficher:"
@@ -878,6 +911,10 @@ msgstr ""
 
 #: ../inc/widgets/post-slider.php:49
 msgid "This widget is designed to be used in the sidebar."
+msgstr ""
+
+#: ../inc/widgets/post-slider.php:56 ../inc/widgets/random-posts.php:45
+msgid "Select Category"
 msgstr ""
 
 #: ../inc/widgets/post-slider.php:73
@@ -1003,11 +1040,11 @@ msgstr "Une manière simple d’afficher ses icônes de réseaux sociaux."
 msgid "Social Media Icons"
 msgstr "Icônes réseaux sociaux"
 
-#: ../inc/widgets/socialz.php:200
+#: ../inc/widgets/socialz.php:207
 msgid "Select a layout:"
 msgstr ""
 
-#: ../inc/widgets/socialz.php:210
+#: ../inc/widgets/socialz.php:217
 msgid "Add your links:"
 msgstr ""
 
@@ -1019,15 +1056,15 @@ msgstr "Permettre à vos lecteurs de souscrire à vote blog par email"
 msgid "Email Subscribe"
 msgstr "Inscription par email"
 
-#: ../inc/widgets/subscribe.php:25 ../inc/widgets/subscribe.php:92
+#: ../inc/widgets/subscribe.php:25 ../inc/widgets/subscribe.php:100
 msgid "Enter your email address to subscribe:"
 msgstr "Entrez votre adresse email pour souscrire à ce blog:"
 
-#: ../inc/widgets/subscribe.php:43
+#: ../inc/widgets/subscribe.php:51
 msgid "Enter your email"
 msgstr ""
 
-#: ../inc/widgets/subscribe.php:78
+#: ../inc/widgets/subscribe.php:86
 msgid ""
 "If you have not already setup FeedBurner with your site, you will need to by "
 "following <a href=\"http://goo.gl/udSrVR\" target=\"_blank\">this guide</a>."
@@ -1036,11 +1073,11 @@ msgstr ""
 "besoin de suivre <a href=\"http://goo.gl/udSrVR\" target=\"_blank\">ce  "
 "guide</a>."
 
-#: ../inc/widgets/subscribe.php:79
+#: ../inc/widgets/subscribe.php:87
 msgid "Add your FeedBurner ID to the box below."
 msgstr "Ajoutez votre identifiant FeedBurner dans l’encart ci-dessous."
 
-#: ../inc/widgets/subscribe.php:91
+#: ../inc/widgets/subscribe.php:99
 msgid "Text to display above the form:"
 msgstr "Texte à afficher au dessus du formulaire :"
 
@@ -1102,6 +1139,9 @@ msgstr ""
 #, php-format
 msgid "Unknown update checker status \"%s\""
 msgstr ""
+
+#~ msgid "Themes"
+#~ msgstr "Thèmes"
 
 #~ msgid ""
 #~ "Please install and activate <a href=\"%s\">this plugin</a> to add your "

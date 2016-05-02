@@ -5,7 +5,7 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.1.7
+Version: 2.1.8
 Text Domain: p3
 */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '2.1.7' );
+define( 'PIPDIG_P3_V', '2.1.8' );
 
 $clasped = '';
 function p3_falcor() {
@@ -98,7 +98,7 @@ class pipdig_p3_intalled_xyz_2 {
 			
 			update_option('medium_size_w', 800);
 			update_option('medium_size_h', 0);
-			update_option('large_size_w', 1600);
+			update_option('large_size_w', 1440);
 			update_option('large_size_h', 0);
 			
 			update_option('image_default_size', 'large');

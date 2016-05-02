@@ -4,9 +4,50 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+function p3_full_screen_landing_cookie() {
+	
+	if (!get_theme_mod('p3_full_screen_landing_enable')) {
+		return;
+	}
+	if (get_theme_mod('p3_full_screen_landing_home', 1) && (!is_front_page() && !is_home())) {
+		return;
+	}
+	
+	if (get_theme_mod('p3_full_screen_landing_cookie') && !is_customize_preview()) {
+		
+		?>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
+		<script>
+			jQuery(document).ready(function($) {
+				
+				if ($.cookie('p3_full_screen_landing')) {
+					$('#p3_full_screen_landing').hide();
+				}
+				window.setInterval(function(){
+					if ($.cookie('p3_full_screen_landing')) {
+						$('#p3_full_screen_landing').hide();
+					}
+				}, 1000);
+
+				$(window).scroll(function(){
+					var e=0;
+					var t=false;
+					var n=$(window).scrollTop();
+					if ($(".site-main").offset().top<n){
+						$.cookie('p3_full_screen_landing', '1', { expires: 1 });
+					}
+				});
+				
+			});
+		</script>
+	<?php
+	}
+}
+add_action( 'wp_footer', 'p3_full_screen_landing_cookie', 9999 );
+
+
 if (!function_exists('p3_full_screen_landing')) {
 	function p3_full_screen_landing() {
-		
 		
 		if (!get_theme_mod('p3_full_screen_landing_enable')) {
 			return;
@@ -15,13 +56,14 @@ if (!function_exists('p3_full_screen_landing')) {
 		if (get_theme_mod('p3_full_screen_landing_home', 1) && (!is_front_page() && !is_home())) {
 			return;
 		}
-		
+
 		$title = sanitize_text_field(get_theme_mod('p3_full_screen_landing_title'));
 		$summary = sanitize_text_field(get_theme_mod('p3_full_screen_landing_summary'));
 		$link = esc_url(get_theme_mod('p3_full_screen_landing_link'));
 		$color = sanitize_text_field(get_theme_mod('p3_full_screen_landing_text_color'));
 		
 		?>
+
 		<style scoped>
 			#p3_full_screen_landing {
 				background-image: url(<?php echo esc_url(get_theme_mod('p3_full_screen_landing_image_file', 'https://i.imgur.com/dfg1HQN.jpg')); ?>);
@@ -98,7 +140,7 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 					'description'=> __( 'Use this option to display a single, full screen landing image at the top of your homepage.', 'p3' ),
 					'capability' => 'edit_theme_options',
 					//'panel' => 'pipdig_features',
-					'priority' => 168,
+					'priority' => 37,
 				) 
 			);
 			
@@ -130,6 +172,23 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Display on homepage only', 'p3' ),
+					'section' => 'p3_full_screen_landing',
+				)
+			);
+			
+			// cookie?
+			$wp_customize->add_setting('p3_full_screen_landing_cookie',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_full_screen_landing_cookie',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Display once per day', 'p3' ),
+					'description' => __( 'The landing image will only appear once per person every 24 hours.', 'p3' ),
 					'section' => 'p3_full_screen_landing',
 				)
 			);

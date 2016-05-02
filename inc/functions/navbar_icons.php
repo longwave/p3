@@ -11,7 +11,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $vk = $email = $twitch = $google_plus ='';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $vk = $email = $twitch = $google_plus = $stumbleupon = '';
 		
 		if (!empty($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
@@ -338,13 +338,13 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 			);
 			
 			// stumbleupon
-			$wp_customize->add_setting('p3_navbar_stumbleuponch',
+			$wp_customize->add_setting('p3_navbar_stumbleupon',
 				array(
 					'default' => 1,
 					'sanitize_callback' => 'absint',
 				)
 			);
-			$wp_customize->add_control('p3_navbar_stumbleuponch',
+			$wp_customize->add_control('p3_navbar_stumbleupon',
 				array(
 					'type' => 'checkbox',
 					'label' => 'Stumbleupon',
