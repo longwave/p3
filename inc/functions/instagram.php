@@ -20,7 +20,7 @@ if (!function_exists('p3_instagram_fetch')) {
 			if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
 				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=30";
 				$result = wp_remote_fopen($url);
-				set_transient( 'p3_instagram_feed_'.$userid, $result, 20 * MINUTE_IN_SECONDS );
+				set_transient( 'p3_instagram_feed_'.$userid, $result, 15 * MINUTE_IN_SECONDS );
 			}
 			
 			$result = json_decode($result);
@@ -58,10 +58,26 @@ if (!function_exists('p3_instagram_fetch')) {
 	add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to avoid cache
 }
 
+
+// function to clear out transients
+if (!function_exists('p3_instagram_clear_transients')) {
+	function p3_instagram_clear_transients($userid) {
+		
+		$instagram_deets = get_option('pipdig_instagram');
+		
+		if (!empty($instagram_deets['user_id'])) { 
+			$userid = sanitize_text_field($instagram_deets['user_id']);
+			delete_transient( 'p3_instagram_feed_'.$userid );
+		}
+			
+	}
+	add_action('p3_instagram_save_action', 'p3_instagram_clear_transients');
+}
+
 // add css to head depending on amount of images displayed
 function p3_instagram_css_to_head($width) {
 	if (get_theme_mod('p3_instagram_header') || get_theme_mod('p3_instagram_footer')) {
-		$num = intval(get_theme_mod('p3_instagram_number', 8));
+		$num = absint(get_theme_mod('p3_instagram_number', 8));
 		$width = 100 / $num;
 		?>
 		<style>
@@ -183,9 +199,9 @@ if (!function_exists('p3_instagram_top_of_posts')) {
 			<div id="p3_instagram_top_of_posts">
 				<?php for ($x = 0; $x <= 4; $x++) {
 					$hide_class = '';
-					if ($x >= 4) {
-						$hide_class = ' p3_instagram_hide_mobile';
-					}
+					//if ($x >= 4) {
+						//$hide_class = ' p3_instagram_hide_mobile';
+					//}
 					?>
 					<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>

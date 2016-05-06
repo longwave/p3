@@ -81,6 +81,7 @@ function pipdig_instagram_options_page() {
 			
 		<?php
 		settings_fields('pipdig_instagram_options_page');
+		do_action('p3_instagram_save_action'); // to clear out transients on save - p3_instagram_clear_transients
 		do_settings_sections('pipdig_instagram_options_page');
 		submit_button();
 		?>
