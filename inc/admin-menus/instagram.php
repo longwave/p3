@@ -61,8 +61,9 @@ function p3_instagram_userid_render() {
 
 
 function pipdig_instagram_section_callback() {
-	echo '<p><a href="https://www.pipdig.co/instagram/" target="_blank">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
-	echo '<p>'.__('Once you have authorized your account, copy and paste your information below:', 'p3').'</p>';
+	echo '<p><a href="https://www.pipdig.co/instagram/" target="_blank" class="instagram-token-button">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
+	echo '<p>'.__('Once you have authorized your account, copy and paste your information below.', 'p3').'</p>';
+	echo '<p style="font-size: 80%;">(Note: If you find that the access token is not working, you can try to generate a new token via <a href="https://smashballoon.com/instagram-feed/token/" target="_blank">this page</a>. You can then copy this to the options below)</p>';
 }
 
 
@@ -72,6 +73,19 @@ function pipdig_instagram_options_page() {
 	?>
 	<style scoped>
 	.form-table th {width: 110px;}
+	.instagram-token-button {
+		background: #517fa4;
+		border-radius: 5px;
+		clear: both;
+		color: #fff;
+		display: inline-block;
+		margin: 0;
+		padding: 8px 12px;
+		text-decoration: none;
+	}
+	.instagram-token-button:hover {
+		background: #e89a2e;
+	}
 	</style>
 	<form action='options.php' method='post'>
 			
