@@ -72,6 +72,14 @@ function pipdig_links_init() {
 	);
 	
 	add_settings_field( 
+		'snapchat', 
+		'<i class="fa fa-snapchat-ghost"></i>&nbsp;&nbsp;Snapchat', 
+		'p3_snapchat_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
+	add_settings_field( 
 		'youtube', 
 		'<i class="fa fa-youtube-play"></i>&nbsp;&nbsp;YouTube', 
 		'p3_youtube_field_render', 
@@ -173,6 +181,11 @@ function p3_pinterest_field_render() {
 	<input class='large-text' type='url' name='pipdig_links[pinterest]' placeholder='https://pinterest.com/pipdig' value="<?php if (isset($links['pinterest'])) { echo $links['pinterest']; } ?>"> <?php
 }
 
+function p3_snapchat_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[snapchat]' placeholder='https://www.snapchat.com/add/pipdig.co' value="<?php if (isset($links['snapchat'])) { echo $links['snapchat']; } ?>"> <?php
+}
+
 function p3_youtube_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[youtube]' placeholder='https://www.youtube.com/user/pipdig' value="<?php if (isset($links['youtube'])) { echo $links['youtube']; } ?>"> <?php
@@ -227,7 +240,7 @@ function pipdig_links_section_callback() {
 
 function pipdig_links_options_page() { 
 	?>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 	<style scoped>
 	.form-table th {width: 120px;}
 	</style>

@@ -11,7 +11,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $vk = $email = $twitch = $google_plus = $stumbleupon = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = '';
 		
 		if (!empty($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
@@ -27,6 +27,9 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		}
 		if (!empty($links['pinterest'])) {
 			$pinterest = esc_url($links['pinterest']);
+		}
+		if (!empty($links['snapchat'])) {
+			$snapchat = esc_url($links['snapchat']);
 		}
 		if (!empty($links['youtube'])) {
 			$youtube = esc_url($links['youtube']);
@@ -64,6 +67,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 			if($facebook && get_theme_mod('p3_navbar_facebook', 1)) $navbar_icons .= '<a href="'.$facebook.'" target="_blank"><i class="fa fa-facebook"></i></a>';
 			if($bloglovin && get_theme_mod('p3_navbar_bloglovin', 1)) $navbar_icons .= '<a href="'.$bloglovin.'" target="_blank"><i class="fa fa-plus"></i></a>';
 			if($pinterest && get_theme_mod('p3_navbar_pinterest', 1)) $navbar_icons .= '<a href="'.$pinterest.'" target="_blank"><i class="fa fa-pinterest"></i></a>';
+			if($snapchat && get_theme_mod('p3_navbar_snapchat', 1)) $navbar_icons .= '<a href="'.$snapchat.'" target="_blank"><i class="fa fa-snapchat-ghost"></i></a>';
 			if($youtube && get_theme_mod('p3_navbar_youtube', 1)) $navbar_icons .= '<a href="'.$youtube.'" target="_blank"><i class="fa fa-youtube-play"></i></a>';
 			if($tumblr && get_theme_mod('p3_navbar_tumblr', 1)) $navbar_icons .= '<a href="'.$tumblr.'" target="_blank"><i class="fa fa-tumblr"></i></a>';
 			if($linkedin && get_theme_mod('p3_navbar_linkedin', 1)) $navbar_icons .= '<a href="'.$linkedin.'" target="_blank"><i class="fa fa-linkedin"></i></a>';
@@ -228,6 +232,21 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Tumblr',
+					'section' => 'p3_navbar_icons_section',
+				)
+			);
+			
+			// snapchat
+			$wp_customize->add_setting('p3_navbar_snapchat',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_navbar_snapchat',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Snapchat',
 					'section' => 'p3_navbar_icons_section',
 				)
 			);

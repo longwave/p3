@@ -34,6 +34,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$spotify = empty($instance['spotify']) ? '' : esc_url($instance['spotify']);
 		$medium = empty($instance['medium']) ? '' : esc_url($instance['medium']);
 		$stumbleupon = empty($instance['stumbleupon']) ? '' : esc_url($instance['stumbleupon']);
+		$snapchat = empty($instance['snapchat']) ? '' : esc_url($instance['snapchat']);
 		$rss = empty($instance['rss']) ? '' : strip_tags($instance['rss']);
 		//$style_select = empty($instance['style_select']) ? '' : $instance['style_select'];
 
@@ -59,6 +60,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($google)) $icons_output .= '<a href="'.$google.'" target="_blank"><i class="fa fa-google-plus"></i></a>';
 			if (!empty($bloglovin)) $icons_output .= '<a href="'.$bloglovin.'" target="_blank"><i class="fa fa-plus"></i></a>';
 			if (!empty($pinterest)) $icons_output .= '<a href="'.$pinterest.'" target="_blank"><i class="fa fa-pinterest"></i></a>';
+			if (!empty($snapchat)) $icons_output .= '<a href="'.$snapchat.'" target="_blank"><i class="fa fa-snapchat-ghost"></i></a>';
 			if (!empty($youtube)) $icons_output .= '<a href="'.$youtube.'" target="_blank"><i class="fa fa-youtube-play"></i></a>';
 			if (!empty($vine)) $icons_output .= '<a href="'.$vine.'" target="_blank"><i class="fa fa-vine"></i></a>';
 			if (!empty($tumblr)) $icons_output .= '<a href="'.$tumblr.'" target="_blank"><i class="fa fa-tumblr"></i></a>';
@@ -82,6 +84,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($google)) $icons_output .= '<a href="'.$google.'" target="_blank"><i class="fa fa-google-plus"></i><br /><span>Google+</span></a>';
 			if (!empty($bloglovin)) $icons_output .= '<a href="'.$bloglovin.'" target="_blank"><i class="fa fa-plus"></i><br /><span>Bloglovin</span></a>';
 			if (!empty($pinterest)) $icons_output .= '<a href="'.$pinterest.'" target="_blank"><i class="fa fa-pinterest"></i><br /><span>Pinterest</span></a>';
+			if (!empty($snapchat)) $icons_output .= '<a href="'.$snapchat.'" target="_blank"><i class="fa fa-snapchat-ghost"></i><br /><span>Snapchat</span></a>';
 			if (!empty($youtube)) $icons_output .= '<a href="'.$youtube.'" target="_blank"><i class="fa fa-youtube-play"></i><br /><span>YouTube</span></a>';
 			if (!empty($vine)) $icons_output .= '<a href="'.$vine.'" target="_blank"><i class="fa fa-vine"></i><br /><span>Vine</span></a>';
 			if (!empty($tumblr)) $icons_output .= '<a href="'.$tumblr.'" target="_blank"><i class="fa fa-tumblr"></i><br /><span>Tumblr</span></a>';
@@ -126,6 +129,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$spotify = empty($instance['spotify']) ? '' : esc_url($instance['spotify']);
 		$medium = empty($instance['medium']) ? '' : esc_url($instance['medium']);
 		$stumbleupon = empty($instance['stumbleupon']) ? '' : esc_url($instance['stumbleupon']);
+		$snapchat = empty($instance['snapchat']) ? '' : esc_url($instance['snapchat']);
 		$rss = empty($instance['rss']) ? '' : strip_tags($instance['rss']);
 		
 		$links = get_option('pipdig_links');
@@ -150,6 +154,9 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		}
 		if (empty($youtube)) {
 			$youtube = esc_url($links['youtube']);
+		}
+		if (empty($snapchat)) {
+			$snapchat = esc_url($links['snapchat']);
 		}
 		/* not on links page yet
 		if (empty($vine)) {
@@ -263,6 +270,14 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			value="<?php echo esc_url($pinterest); ?>" />
 			</label>
 		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('snapchat'); ?>">Snapchat (e.g. https://www.snapchat.com/add/pipdig.co) 
+			<input class="widefat" id="<?php echo $this->get_field_id('snapchat'); ?>" 
+			name="<?php echo $this->get_field_name('snapchat'); ?>" type="text" 
+			value="<?php echo esc_url($snapchat); ?>" />
+			</label>
+		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id('youtube'); ?>">YouTube (e.g. http://youtube.com/user/pipdig) 
@@ -373,6 +388,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$instance['google'] = esc_url($new_instance['google']);
 		$instance['bloglovin'] = esc_url($new_instance['bloglovin']);
 		$instance['pinterest'] = esc_url($new_instance['pinterest']);
+		$instance['snapchat'] = esc_url($new_instance['snapchat']);
 		$instance['youtube'] = esc_url($new_instance['youtube']);
 		$instance['vine'] = esc_url($new_instance['vine']);
 		$instance['tumblr'] = esc_url($new_instance['tumblr']);

@@ -237,9 +237,6 @@ function pipdig_p3_disable_jetpack_modules() {
 		if (Jetpack::is_module_active('infinite-scroll')) {
 			Jetpack::deactivate_module( 'infinite-scroll' );
 		}
-		if (Jetpack::is_module_active('photon')) {
-			Jetpack::deactivate_module( 'photon' );
-		}
 	}
 }
 add_action( 'init', 'pipdig_p3_disable_jetpack_modules' );
