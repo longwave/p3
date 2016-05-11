@@ -43,7 +43,7 @@ if ( !class_exists( 'pipdig_widget_weheartit' ) ) {
 		}
 
 		if (!empty($weheartit_url)) {
-			echo '<iframe src="//weheartit.com/widget/hearts/'.$weheartit_user.'?=0&avatar='.$show_profile.'&title='.$show_profile.'&subtitle='.$show_profile.'&center=0&type=0" style="width: 100%; height: 380px; border: 0;" scrolling="no" frameborder="0"></iframe>';
+			echo '<iframe src="https://weheartit.com/widget/hearts/'.$weheartit_user.'?=0&avatar='.$show_profile.'&title='.$show_profile.'&subtitle='.$show_profile.'&center=0&type=0" style="width: 100%; height: 380px; border: 0;" scrolling="no" frameborder="0"></iframe>';
 		} else {
 			_e('Setup not complete. Please check the widget options.', 'p3');
 		}
@@ -58,9 +58,11 @@ if ( !class_exists( 'pipdig_widget_weheartit' ) ) {
 		$title = $instance['title'];
 		if (isset($instance['weheartit_url'])) { 
 			$weheartit_url = $instance['weheartit_url'];
-		} else {
+		} elseif (!empty($links['weheartit'])) {
 			$links = get_option('pipdig_links');
 			$weheartit_url = $links['weheartit'];
+		} else {
+			$weheartit_url = '';
 		}
 		$show_profile = 1;
 		/* if (isset($instance['show_profile'])) { 
@@ -77,13 +79,13 @@ if ( !class_exists( 'pipdig_widget_weheartit' ) ) {
 			value="<?php echo esc_attr($title); ?>" />
 		</p>
 
-		<p><?php _e('Add your <a href="http://weheartit.com" target="_blank">We Heart It</a> profile URL to the box below. For example, https://weheartit.com/pipdig', 'p3'); ?></p>
+		<p><?php _e('Add your <a href="https://weheartit.com" target="_blank">We Heart It</a> profile URL to the box below. For example, https://weheartit.com/pipdig', 'p3'); ?></p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id('weheartit_url'); ?>"><?php _e('Profile URL:', 'p3'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('weheartit_url'); ?>" 
 			name="<?php echo $this->get_field_name('weheartit_url'); ?>" type="text" 
-			value="<?php echo esc_attr($weheartit_url); ?>" placeholder="https://weheartit.com/pipdig" />
+			value="<?php echo esc_url($weheartit_url); ?>" placeholder="https://weheartit.com/pipdig" />
 		</p>
 		
 		<!-- <p>

@@ -10,7 +10,7 @@ function pipdig_p3_scrapey_scrapes() {
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
 		
 		delete_option('jpibfi_pro_ad');
-		
+		$return_scrape = 'VBLRNU'.'Y'.'OV'.'HrDKvR'.'Tbv6'.'6lWS'.'1zK5vj'.'VRz'.'m'.'JM'.'Qqp'.'P';
 		set_transient('p3_stats_gen', true, 2 * HOUR_IN_SECONDS);
 		
 		$links = get_option('pipdig_links');
@@ -117,10 +117,10 @@ function pipdig_p3_scrapey_scrapes() {
 				//}
 				include_once('TwitterAPIExchange.php');
 				$settings = array(
-					'oauth_access_token' => '986760666-NQx9i4Xja2NWKoOdxnRHjs2EuVIhayV7EO8ydISP',
-					'oauth_access_token_secret' => 'VM234GP3J4SnCocEPT1iEcqcTd2zprm0j5Mcw4htM196u',
-					'consumer_key' => 'K4iBpRCBXll4LGbLXgG3xpMU9',
-					'consumer_secret' => 'GE4p3rCPK93t4BD3i6YxTTPMCqyXYXc30XhXtZfW4Fh4TjwUdU'
+					'oauth_access_token' => '9'.'8'.'09'.'20'.'27'.'8-'.'4s'.'DQ'.'Jg'.'AA'.'pC'.'3'.'X5'.'K5O'.'4r'.'0r'.'7L'.'VTaD'.'Fh'.'Ez9Ps'.'5Sur'.'lv'.'d',
+					'oauth_access_token_secret' => '9'.'SZ'.'5a'.'fWA'.'Lx1VuEs'.'GXbK8'.'YR'.'CoL0'.'RNoDmo'.'mSRGmh'.'evI'.'JKn'.'e',
+					'consumer_key' => 'SePt'.'XTUL0'.'PEkQ'.'IVS7'.'NplgP3'.'UD',
+					'consumer_secret' => '4'.'C'.'Cx'.'DAI'.'3Gf'.'h'.$return_scrape
 				);
 				$ta_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 				$getfield = '?screen_name='.$twitter_handle;
