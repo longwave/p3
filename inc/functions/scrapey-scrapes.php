@@ -24,7 +24,7 @@ function pipdig_p3_scrapey_scrapes() {
 		// Facebook --------------------
 		$facebook_url = esc_url($links['facebook']);
 		if($facebook_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('facebook')) {
+			if (function_exists('get_scp_counter') && !empty(get_scp_counter('facebook'))) {
 				$likes = absint(get_scp_counter('facebook'));
 				update_option('p3_facebook_count', $likes);
 			} else {
@@ -47,7 +47,7 @@ function pipdig_p3_scrapey_scrapes() {
 		// Pinterest ---------------------
 		$pinterest_url = esc_url($links['pinterest']);
 		if($pinterest_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('pinterest')) {
+			if (function_exists('get_scp_counter') && !empty(get_scp_counter('pinterest'))) {
 				$pinterest_followers = absint(get_scp_counter('pinterest'));
 				update_option('p3_pinterest_count', $pinterest_followers);
 			} else {
@@ -106,7 +106,7 @@ function pipdig_p3_scrapey_scrapes() {
 		// Twitter ---------------------
 		$twitter_url = esc_url($links['twitter']);
 		if ($twitter_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('twitter')) {
+			if (function_exists('get_scp_counter') && !empty(get_scp_counter('twitter'))) {
 				$followers_count = absint(get_scp_counter('twitter'));
 				update_option('p3_twitter_count', $followers_count);
 			} else {
@@ -144,7 +144,7 @@ function pipdig_p3_scrapey_scrapes() {
 		// SELECT * from html where url="http://instagram.com/inthefrow" AND xpath="//li[2]/span"
 		$instagram_url = esc_url($links['instagram']);
 		if ($instagram_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('instagram')) {
+			if (function_exists('get_scp_counter') && !empty(get_scp_counter('instagram'))) {
 				$instagram_count = absint(get_scp_counter('instagram'));
 				update_option('p3_instagram_count', $instagram_count);
 			} else {
@@ -153,7 +153,7 @@ function pipdig_p3_scrapey_scrapes() {
 					$ig_token = trim($instagram_deets['access_token']);
 					$userid = trim($instagram_deets['user_id']);
 				} else {
-					$ig_token = '21659'.'12485'.'.'.'ee7687e'.'.'.'b66a7b'.'1e71c8'.'4d30ae087f'.'963c7a3aaa';
+					$ig_token = '2165912485.cf0499d.a4946e0a8a6b430da5db3691cd4da738'; // sten
 					// get the handle from url
 					$instagram_handle = parse_url($instagram_url, PHP_URL_PATH);
 					$instagram_handle = str_replace('/', '', $instagram_handle);
@@ -178,7 +178,7 @@ function pipdig_p3_scrapey_scrapes() {
 		// SELECT * from html where url="https://www.youtube.com/user/inthefrow" AND xpath="/html/body/div[4]/div[4]/div/div[5]/div/div[1]/div/div[2]/div/div/div[2]/div/span/span[1]"
 		$youtube_url = esc_url($links['youtube']);
 		if ($youtube_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('youtube')) {
+			if (function_exists('get_scp_counter') && !empty(get_scp_counter('youtube'))) {
 				$youtube_count = absint(get_scp_counter('youtube'));
 				update_option('p3_youtube_count', $youtube_count);
 			} else {
@@ -208,7 +208,7 @@ function pipdig_p3_scrapey_scrapes() {
 		// SELECT * from html where url="https://plus.google.com/+Inthefrowpage/about" AND xpath="//div[@class='Zmjtc']/span"
 		$google_plus_url = esc_url($links['google_plus']);
 		if ($google_plus_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('googleplus')) {
+			if (function_exists('get_scp_counter') && !empty(get_scp_counter('googleplus'))) {
 				$google_plus_count = absint(get_scp_counter('googleplus'));
 				update_option('p3_google_plus_count', $google_plus_count);
 			} else {
@@ -228,7 +228,7 @@ function pipdig_p3_scrapey_scrapes() {
 		
 		$twitch_url = esc_url($links['twitch']);
 		if ($twitch_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('twitch')) {
+			if (function_exists('get_scp_counter') && !empty(get_scp_counter('twitch'))) {
 				$twitch_count = absint(get_scp_counter('twitch'));
 				update_option('p3_twitch_count', $twitch_count);
 			} else {
@@ -249,7 +249,7 @@ function pipdig_p3_scrapey_scrapes() {
 		// backups...
 		$soundcloud_url = esc_url($links['soundcloud']);
 		if ($soundcloud_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('soundcloud')) {
+			if (function_exists('get_scp_counter') && !empty(get_scp_counter('soundcloud'))) {
 				$soundcloud_count = absint(get_scp_counter('soundcloud'));
 				update_option('p3_soundcloud_count', $soundcloud_count);
 			}
@@ -259,7 +259,7 @@ function pipdig_p3_scrapey_scrapes() {
 		
 		$linkedin_url = esc_url($links['linkedin']);
 		if ($linkedin_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('linkedin')) {
+			if (function_exists('get_scp_counter') && !empty(get_scp_counter('linkedin'))) {
 				$linkedin_count = absint(get_scp_counter('linkedin'));
 				update_option('p3_linkedin_count', $linkedin_count);
 			}
@@ -269,7 +269,7 @@ function pipdig_p3_scrapey_scrapes() {
 		
 		$tumblr_url = esc_url($links['tumblr']);
 		if ($tumblr_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('tumblr')) {
+			if (function_exists('get_scp_counter') && !empty(get_scp_counter('tumblr'))) {
 				$tumblr_count = absint(get_scp_counter('tumblr'));
 				update_option('p3_tumblr_count', $tumblr_count);
 			}
