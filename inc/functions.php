@@ -132,7 +132,7 @@ if (!function_exists('pipdig_rss_post_thumbnail')) {
 		if (get_option('rss_use_excerpt')) {
 			global $post;
 			if(has_post_thumbnail($post->ID)) {
-				$content = '<p>' . get_the_post_thumbnail($post->ID) . '</p>' . get_the_excerpt();
+				$content = '<p>' . get_the_post_thumbnail($post->ID, 'large') . '</p>' . get_the_excerpt();
 			} elseif (pipdig_p3_catch_that_image()) {
 				$content = '<p><img src="'.pipdig_p3_catch_that_image().'" alt=""/></p>' . get_the_excerpt();
 			} else {
