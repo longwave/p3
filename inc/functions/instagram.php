@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 
 // function to fetch images
 if (!function_exists('p3_instagram_fetch')) {
-	function p3_instagram_fetch($userid) {
+	function p3_instagram_fetch($userid = '') {
 		
 		$instagram_deets = get_option('pipdig_instagram');
 		
@@ -20,7 +20,7 @@ if (!function_exists('p3_instagram_fetch')) {
 			if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
 				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=30";
 				$result = wp_remote_fopen($url);
-				set_transient( 'p3_instagram_feed_'.$userid, $result, 15 * MINUTE_IN_SECONDS );
+				set_transient( 'p3_instagram_feed_'.$userid, $result, 20 * MINUTE_IN_SECONDS );
 			}
 			
 			$result = json_decode($result);
@@ -42,6 +42,8 @@ if (!function_exists('p3_instagram_fetch')) {
 						'comments' => intval($result->data[$i]->comments->count),
 						'caption' => $caption,
 					);
+				} else {
+					break;
 				}
 			}
 			
