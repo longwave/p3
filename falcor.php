@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 //add_filter( 'max_srcset_image_width', create_function( '', 'return 1;' ) );
 
 // enqueue scripts and styles
@@ -40,21 +44,3 @@ require_once('inc/widgets.php');
 
 // shortcodes
 require_once('inc/shortcodes.php');
-
-if (!function_exists('sar_block_xmlrpc_attacks')) {
-	function p3_block_xmlrpc_attacks( $methods ) {
-	   unset( $methods['pingback.ping'] );
-	   unset( $methods['pingback.extensions.getPingbacks'] );
-	   unset( $methods['system.multicall'] );
-	   return $methods;
-	}
-	add_filter( 'xmlrpc_methods', 'p3_block_xmlrpc_attacks' );
-}
-
-if (!function_exists('sar_remove_x_pingback_header')) {
-	function p3_remove_x_pingback_header( $headers ) {
-	   unset( $headers['X-Pingback'] );
-	   return $headers;
-	}
-	add_filter( 'wp_headers', 'p3_remove_x_pingback_header' );
-}
