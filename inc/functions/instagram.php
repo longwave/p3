@@ -18,7 +18,7 @@ if (!function_exists('p3_instagram_fetch')) {
 			}
 			
 			if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
-				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=30";
+				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=20";
 				$result = wp_remote_fopen($url);
 				set_transient( 'p3_instagram_feed_'.$userid, $result, 20 * MINUTE_IN_SECONDS );
 			}
@@ -27,7 +27,7 @@ if (!function_exists('p3_instagram_fetch')) {
 			
 			//print_r($result);
 			
-			for ($i = 0; $i < 29; $i++) {
+			for ($i = 0; $i < 19; $i++) {
 				if (isset($result->data[$i])) {
 					
 					$caption = '';
@@ -112,6 +112,9 @@ if (!function_exists('p3_instagram_footer')) {
 		if ($images) {
 			$meta = intval(get_theme_mod('p3_instagram_meta'));
 			$num = intval(get_theme_mod('p3_instagram_number', 8));
+			if (get_theme_mod('p3_instagram_rows')) {
+				$num = $num*2;
+			}
 		?>
 			<div class="clearfix"></div>
 			<div id="p3_instagram_footer">
@@ -154,6 +157,9 @@ if (!function_exists('p3_instagram_header')) {
 		if ($images) {
 			$meta = intval(get_theme_mod('p3_instagram_meta'));
 			$num = intval(get_theme_mod('p3_instagram_number', 8));
+			if (get_theme_mod('p3_instagram_rows')) {
+				$num = $num*2;
+			}
 		?>
 			<div class="clearfix"></div>
 			<div id="p3_instagram_header">
@@ -234,7 +240,7 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 					'title' => 'Instagram',
 					'description' => sprintf(__('Before enabling these features, you will need to add your Instagram account to <a href="%s">this page</a>.', 'p3'), admin_url( 'admin.php?page=pipdig-instagram' )),
 					'capability' => 'edit_theme_options',
-					'priority' => 111,
+					'priority' => 39,
 				) 
 			);
 
@@ -306,6 +312,22 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 					'max' => 10,
 					'step' => 1,
 					),
+				)
+			);
+			
+			// 2 rows?
+			$wp_customize->add_setting('p3_instagram_rows',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_instagram_rows',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Display feed in 2 rows', 'p3' ),
+					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
 			
