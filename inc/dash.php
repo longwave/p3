@@ -121,27 +121,39 @@ function pipdig_p3_dashboard_social_count_func() {
 						"labelRadius": 5,
 						"startRadius": "25%",
 						"colors": [
+						<?php if (!empty($twitter)) { ?>
 							"#5ea9dd",
+						<?php } ?>
+						<?php if (!empty($instagram)) { ?>
 							"#447398",
+						<?php } ?>
+						<?php if (!empty($pinterest)) { ?>
 							"#cb2027",
+						<?php } ?>
+						<?php if (!empty($bloglovin)) { ?>
 							"#37aeed",
+						<?php } ?>
+						<?php if (!empty($google_plus)) { ?>
 							"#dd4c39",
+						<?php } ?>
+						<?php if (!empty($soundcloud)) { ?>
 							"#3b5998",
+						<?php } ?>
+						<?php if (!empty($facebook)) { ?>
 							"#ff7200",
+						<?php } ?>
+						<?php if (!empty($youtube)) { ?>
 							"#0D8ECF",
+						<?php } ?>
+						<?php if (!empty($tumblr)) { ?>
 							"#0D52D1",
+						<?php } ?>
+						<?php if (!empty($linkedin)) { ?>
 							"#2A0CD0",
+						<?php } ?>
+						<?php if (!empty($twitch)) { ?>
 							"#8A0CCF",
-							"#CD0D74",
-							"#754DEB",
-							"#DDDDDD",
-							"#999999",
-							"#333333",
-							"#000000",
-							"#57032A",
-							"#d11f1e",
-							"#990000",
-							"#4B0C25"
+						<?php } ?>
 						],
 						"hoverAlpha": 0.74,
 						"sequencedAnimation": false,

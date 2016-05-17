@@ -229,10 +229,8 @@ function p3_stumbleupon_field_render() {
 function pipdig_links_section_callback() { 
 	// description text
 	//pipdig_p3_scrapey_scrapes();
-	$social_stats_page = admin_url('admin.php?page=pipdig-stats');
 	echo '<p>'.__('Add the links to each social media page below:', 'p3').'</p>';
-	printf(__('Any links added can then be used across your website, such as on <a href="%s">this page</a>.', 'p3'), $social_stats_page);
-	
+	printf(__('Any links added can then be used across your website, such as on <a href="%s">this page</a>.', 'p3'), admin_url('admin.php?page=pipdig-stats'));
 }
 
 
@@ -253,7 +251,7 @@ function pipdig_links_options_page() {
 		do_settings_sections('pipdig_links_options_page');
 		submit_button();
 		?>
-			
+		<p><a href="https://support.pipdig.co/articles/wordpress-advanced-social-stats/" target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> <?php printf(__('If you find that certain social network counters are not working correctly, please see <a href="%s" target="_blank">this guide</a> for a possible solution.', 'p3'), esc_url('https://support.pipdig.co/articles/wordpress-advanced-social-stats/')); ?></p>
 	</form>
 	<?php
 }
