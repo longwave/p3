@@ -28,7 +28,8 @@ if (!function_exists('p3_pinterest_hover')) {
 		}
 		
 		$margin = intval(get_theme_mod('p3_pinterest_hover_margin', 0));
-
+		$position = strip_tags(get_theme_mod('p3_pinterest_hover_image_position', 'center'));
+		$pin_img = esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png'));
 		?>
 		<style>
 		.p3_pin_wrapper .left {left:<?php echo intval($margin); ?>px}
@@ -41,7 +42,7 @@ if (!function_exists('p3_pinterest_hover')) {
 			$.fn.imgPin = function( options ) {
 
 			var defaults = {
-				pinImg : '<?php echo esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png')); ?>',
+				pinImg : '<?php echo $pin_img; ?>',
 				position: 'center',
 			};
 			var options = $.extend( {}, defaults, options );
@@ -49,7 +50,6 @@ if (!function_exists('p3_pinterest_hover')) {
 			var url = encodeURIComponent(document.URL),
 				pinImg = options.pinImg,
 				position = '';
-			<?php $position = strip_tags(get_theme_mod('p3_pinterest_hover_image_position', 'center')); ?>
 
 			this.each(function(){
 				var src = $(this).attr('src');
@@ -88,7 +88,6 @@ if (!function_exists('p3_pinterest_hover')) {
 				img.src = pinImg;
 				<?php } ?>
 
-
 				//set click events
 				$('.p3_pin_wrapper .pin').click(function(){
 				var w = 700, h = 400;
@@ -105,7 +104,7 @@ if (!function_exists('p3_pinterest_hover')) {
 			
 		})(jQuery);
 
-		jQuery('.entry-content p img:not(.wp-smiley), .entry-content .alignnone, .wp-post-image, .entry-content .separator img, .entry-summary img').imgPin();
+		jQuery('.entry-content p img:not(.wp-smiley), .entry-content .alignnone, .wp-post-image, .entry-content .separator img, .entry-summary img:not(.pipdig_p3_related_posts img)').imgPin();
 
 		</script>
 		<?php

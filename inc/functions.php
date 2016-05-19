@@ -136,10 +136,10 @@ if (!function_exists('pipdig_rss_post_thumbnail')) {
 			} elseif (pipdig_p3_catch_that_image()) {
 				$content = '<p><img src="'.pipdig_p3_catch_that_image().'" alt=""/></p>' . get_the_excerpt();
 			} else {
-				$content = get_the_content();
+				$content = strip_shortcodes(get_the_content());
 			}
 		} else {
-			$content = get_the_content();
+			$content = strip_shortcodes(get_the_content());
 		}
 
 		return $content;
