@@ -68,6 +68,8 @@ if (!function_exists('p3_full_screen_landing')) {
 			#p3_full_screen_landing {
 				background-image: url(<?php echo esc_url(get_theme_mod('p3_full_screen_landing_image_file', 'https://i.imgur.com/dfg1HQN.jpg')); ?>);
 				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center;
 				position: relative;
 				z-index: 99999999;
 			}
@@ -95,8 +97,6 @@ if (!function_exists('p3_full_screen_landing')) {
 					<?php if (!empty($summary)) { ?>
 						<div><?php echo $summary; ?></div>
 					<?php } ?>
-					
-					
 				</div>
 			<?php } ?>
 		</div>
