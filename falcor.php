@@ -28,19 +28,22 @@ add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
 
 
 // functions
-require_once('inc/functions.php');
+include_once('inc/functions.php');
 
 // admin menus
-require_once('inc/admin-menus.php');
+include_once('inc/admin-menus.php');
 
 // meta boxes
-require_once('inc/meta.php');
+include_once('inc/meta.php');
 
 // dashboard enhancements
-require_once('inc/dash.php');
+include_once('inc/dash.php');
 
 // widgets
-require_once('inc/widgets.php');
+include_once('inc/widgets.php');
 
 // shortcodes
-require_once('inc/shortcodes.php');
+include('inc/shortcodes.php');
+
+// cron
+include('inc/cron.php');
