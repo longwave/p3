@@ -18,15 +18,14 @@ function pipdig_p3_deactivate_cron() {
 register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
 
 
-
-
-// import comment count from Disqus and save to meta field
+// clear stats gen transient
 function pipdig_p3_do_this_daily() {
 	
 	// clear stats transient
 	delete_transient('p3_stats_gen');
+	
 	/*
-	$response = wp_safe_remote_request('https://dl.dropboxusercontent.com/u/904435/updates/wordpress/theme-updates/plonkers.txt');
+	$response = wp_safe_remote_request('https://www.pipdig.co/_plonkers.txt');
 
 	$code = intval($response['response']['code']);
 
@@ -38,6 +37,10 @@ function pipdig_p3_do_this_daily() {
 	
 	// turn it into an array
 	$plonkers = explode(",", $plonkers);
+	
+	if (in_array(esc_url(home_url('/')), $plonkers)) {
+		switch_theme('twentysixteen');
+	}
 	*/
 	
 }
