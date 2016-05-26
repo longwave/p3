@@ -115,7 +115,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 	<ul id="pipdig-widget-popular-posts" class="nopin">
 	
 	<?php
-	if ( false === ( $popular = get_transient('pipdig_popular_posts_widget') ) ) { // check for transient value
+	//if ( false === ( $popular = get_transient('pipdig_popular_posts_widget') ) ) { // check for transient value
 		$popular = new WP_Query( array(
 			'showposts' => $number_posts,
 			'ignore_sticky_posts' => 1,
@@ -127,8 +127,8 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 				),
 			),
 		) );
-		set_transient('pipdig_popular_posts_widget', $popular, 6 * HOUR_IN_SECONDS); // set transient value
-	} ?>
+		//set_transient('pipdig_popular_posts_widget', $popular, 6 * HOUR_IN_SECONDS); // set transient value
+	//} ?>
 	<?php while ( $popular->have_posts() ): $popular->the_post();
 		if(has_post_thumbnail()){
 			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
