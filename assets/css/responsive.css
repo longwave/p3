@@ -35,6 +35,9 @@
 	.pipdig_p3_related_posts li {
 		width: 49%;
 	}
+	#p3_featured_cats h4 {
+		margin-bottom: 20px;
+	}
 }
 @media only screen and (max-width: 400px) {
 	#p3_feature_header_big_this_month {

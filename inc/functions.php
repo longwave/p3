@@ -17,32 +17,6 @@ if ( !function_exists( 'pipdig_plugin_check' ) ) {
 	}
 }
 
-
-
-/*
-if (!function_exists('pipdig_p3_mobile_detect')) {
-	function pipdig_p3_mobile_detect() {
-		if (!get_theme_mod('disable_responsive')) { // Check if responsive layout has been disabled in cust. If so, let's continue:
-			if (pipdig_plugin_check('wp-super-cache/wp-cache.php') || pipdig_plugin_check('w3-total-cache/w3-total-cache.php') || pipdig_plugin_check('quick-cache/quick-cache.php') || pipdig_plugin_check('wp-fastest-cache/wpFastestCache.php') || pipdig_plugin_check('hyper-cache/plugin.php')) {
-				// If there is a cache plugin active, let's jump ship:
-				return false;
-			} else {
-				// No obvious cache plugin, so let's check if it's a mobile:
-				require_once(dirname(__FILE__).'/third/Mobile_Detect.php');
-				$detect = new Mobile_Detect();
-				if($detect->isMobile() && !$detect->isTablet()) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-		} else {
-			return false;
-		}
-	}
-}
-*/
-
 // add data rel for lightbox (still in theme functions)
 /*
 if (!function_exists('p3_lightbox_rel')) {
@@ -113,7 +87,7 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 			$jquery_migrate_ver = $wp_scripts->registered['jquery-migrate']->ver;
 			wp_deregister_script('jquery');
 			wp_deregister_script('jquery-migrate');
-			wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/'.$jquery_ver.'/jquery.min.js', false, null, false);
+			wp_enqueue_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/'.$jquery_ver.'/jquery.min.js', false, null, false);
 			wp_enqueue_script('jquery-migrate', '//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/'.$jquery_migrate_ver.'/jquery-migrate.min.js', false, null, false);
 		}
 	}
@@ -242,18 +216,6 @@ function pipdig_p3_disable_jetpack_modules() {
 add_action( 'init', 'pipdig_p3_disable_jetpack_modules' );
 
 
-// hide tabs on social count plus
-/*
-if (pipdig_plugin_check('social-count-plus/social-count-plus.php')) {
-	function hide_complex_tabs_social_count_plus() {
-		$screen = get_current_screen();
-		if (is_object($screen) && $screen->id == 'settings_page_social-count-plus') {
-			echo '<style>.nav-tab-wrapper{display:none!important}</style>';
-		}
-	}
-	add_action('admin_footer', 'hide_complex_tabs_social_count_plus');
-}
-*/
 
 function p3_flush_htacess() {
 	global $wp_rewrite;
@@ -341,15 +303,10 @@ include('functions/post_slider_site_main_width.php');
 include('functions/post_slider_posts_column.php');
 include('functions/width_customizer.php');
 //include('functions/popup.php');
+include('functions/featured_cats.php');
 
 // bundled
-include('bundled/customizer-reset/customizer-reset.php');
-/*
-if (!class_exists('jQuery_Pin_It_Button_For_Images')) {
-	include('functions/pinterest_hover.php');
-	include('bundled/jquery-pin-it-button-for-images/jquery-pin-it-button-for-images.php');
-}
-*/
+//include('bundled/customizer-reset/customizer-reset.php');
 
 // hide tabs on social count plus
 if (class_exists('Social_Count_Plus')) {

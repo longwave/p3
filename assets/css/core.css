@@ -13,8 +13,16 @@ float: left;
 
 .p3_invisible {
 visibility: hidden;
+opacity: 0;
 width: 100%;
 height: auto;
+}
+.p3_cover_me {
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+display: block;
+position: relative;
 }
 
 .top-socialz {
@@ -329,6 +337,20 @@ background: #fff;
 opacity: .8;
 line-height: 1.2;
 font-size: 1em;
+}
+
+#p3_featured_cats {
+	margin-bottom: 40px;
+}
+#p3_featured_cats h4 {
+	font-size: 18px;
+	line-height: 1.2;
+	margin: 3px 0 0;
+	text-align: center;
+}
+
+#p3_featured_cats .entry-meta {
+	margin-top: 5px;
 }
 
 /* Post slider widget ========================== */
