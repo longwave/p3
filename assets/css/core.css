@@ -98,7 +98,7 @@ font-weight: 400 !important;
 #p3_instagram_page .p3_instagram_post {width: 20%;}
 .p3_instagram_post:hover {opacity:.7}
 .p3_instagram_post img {max-width:100%;height:auto;}
-.p3_instagram_post .p3_instagram_likes {font:10px Montserrat, Arial, sans-serif;color:#000;position:absolute;top:50%;width:100%;}
+.p3_instagram_post .p3_instagram_likes {font:10px Montserrat, Arial, sans-serif;letter-spacing:1px;color:#000;position:absolute;top:50%;width:100%;}
 .p3_instagram_post .p3_instagram_comments {color:#000;position:absolute;bottom:5%;left:5%}
 .p3_instagram_likes {
 display: none;
@@ -496,6 +496,41 @@ font: 10px Arial, sans-serif;
 text-transform: uppercase;
 letter-spacing: 1px;
 margin-top: 8px;
+}
+
+
+.entry-content .pipdig_category_section {
+text-align: center;
+margin-top: 10px;
+margin-bottom: 30px;
+}
+.entry-content .pipdig_category_section h2 {
+text-align: center;
+margin: 5px 0;
+}
+.entry-content .pipdig_category_section h2.pipdig_category_section_border {
+border-top: 1px solid #ddd;
+margin: 5px 1% -12px;
+}
+.entry-content .pipdig_category_section h2.pipdig_category_section_border span {
+position: relative;
+top: -15px;
+background: #fff;
+padding: 0 15px;
+}
+.entry-content .pipdig_category_section_item {
+width: 32%;
+margin: .5%;
+display: inline-block;
+vertical-align: top;
+text-align: center;
+}
+.entry-content .pipdig_category_section_item_title {
+margin: 0;
+text-align: center;
+}
+.pipdig_category_section_button a {
+	
 }
 
 

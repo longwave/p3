@@ -11,6 +11,7 @@ include('shortcodes/pipdig_portfolio.php');
 include('shortcodes/pipdig_image_overlay.php');
 include('shortcodes/pipdig_image_side.php');
 include('shortcodes/pipdig_social_icons.php');
+include('shortcodes/pipdig_category_section.php');
 
 // stop wpautop on shortcodes http://stackoverflow.com/questions/5940854/disable-automatic-formatting-inside-wordpress-shortcodes
 //remove_filter('the_content', 'wpautop');

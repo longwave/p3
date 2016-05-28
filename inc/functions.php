@@ -306,7 +306,7 @@ include('functions/width_customizer.php');
 include('functions/featured_cats.php');
 
 // bundled
-//include('bundled/customizer-reset/customizer-reset.php');
+include('bundled/customizer-reset/customizer-reset.php');
 
 // hide tabs on social count plus
 if (class_exists('Social_Count_Plus')) {

@@ -229,51 +229,51 @@ function pipdig_p3_dashboard_social_count_func() {
 			}
 			</style>
 					<?php if (!empty($twitter)) { ?>
-						Twitter: <?php echo number_format($twitter); ?><br />
+						Twitter: <?php echo number_format_i18n($twitter); ?><br />
 					<?php } ?>
 
 					<?php if (!empty($instagram)) { ?>
-						Instagram: <?php echo number_format($instagram); ?><br />
+						Instagram: <?php echo number_format_i18n($instagram); ?><br />
 					<?php } ?>
 
 					<?php if (!empty($pinterest)) { ?>
-						Pinterest: <?php echo number_format($pinterest); ?><br />
+						Pinterest: <?php echo number_format_i18n($pinterest); ?><br />
 					<?php } ?>
 
 					<?php if (!empty($bloglovin)) { ?>
-						Bloglovin: <?php echo number_format($bloglovin); ?><br />
+						Bloglovin: <?php echo number_format_i18n($bloglovin); ?><br />
 					<?php } ?>
 
 					<?php if (!empty($google_plus)) { ?>
-						Google+: <?php echo number_format($google_plus); ?><br />
+						Google+: <?php echo number_format_i18n($google_plus); ?><br />
 					<?php } ?>
 
 					<?php if (!empty($soundcloud)) { ?>
-						Soundcloud: <?php echo number_format($soundcloud); ?><br />
+						Soundcloud: <?php echo number_format_i18n($soundcloud); ?><br />
 					<?php } ?>
 
 					<?php if (!empty($facebook)) { ?>
-						Facebook: <?php echo number_format($facebook); ?><br />
+						Facebook: <?php echo number_format_i18n($facebook); ?><br />
 					<?php } ?>
 
 					<?php if (!empty($youtube)) { ?>
-						YouTube: <?php echo number_format($youtube); ?><br />
+						YouTube: <?php echo number_format_i18n($youtube); ?><br />
 					<?php } ?>
 
 					<?php if (!empty($tumblr)) { ?>
-						Tumblr: <?php echo number_format($tumblr); ?><br />
+						Tumblr: <?php echo number_format_i18n($tumblr); ?><br />
 					<?php } ?>
 
 					<?php if (!empty($linkedin)) { ?>
-						LinkedIn: <?php echo number_format($linkedin); ?><br />
+						LinkedIn: <?php echo number_format_i18n($linkedin); ?><br />
 					<?php } ?>
 					
 					<?php if (!empty($twitch)) { ?>
-						Twitch: <?php echo number_format($twitch); ?><br />
+						Twitch: <?php echo number_format_i18n($twitch); ?><br />
 					<?php } ?>
 					
 					<?php if (!empty($total)) { ?>
-						<strong>Total: <?php echo number_format($total); ?></strong>
+						<strong>Total: <?php echo number_format_i18n($total); ?></strong>
 					<?php } ?>
 			<p><input class="button" type="button" value="<?php esc_attr_e('View more stats', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-stats'); ?>';" /></p>
 			<p><input class="button" type="button" value="<?php esc_attr_e('Add more accounts', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-links'); ?>';" /></p>

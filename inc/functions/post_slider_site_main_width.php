@@ -4,6 +4,11 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+$theme = get_option('pipdig_theme');
+if (($theme == 'galvani')) {
+	return;
+}
+
 if (!function_exists('p3_full_width_slider_site_main')) {
 	function p3_full_width_slider_site_main() {
 		

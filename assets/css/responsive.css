@@ -38,6 +38,10 @@
 	#p3_featured_cats h4 {
 		margin-bottom: 20px;
 	}
+	.entry-content .pipdig_category_section_item {
+		width: 100%;
+		margin: 10px 0;
+	}
 }
 @media only screen and (max-width: 400px) {
 	#p3_feature_header_big_this_month {
