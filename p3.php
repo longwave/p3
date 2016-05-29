@@ -5,7 +5,7 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.2.0
+Version: 2.2.2
 Text Domain: p3
 */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '2.1.11' );
+define( 'PIPDIG_P3_V', '2.2.2' );
 
 $clasped = '';
 function p3_falcor() {
@@ -108,6 +108,8 @@ class pipdig_p3_intalled_xyz_2 {
 			if (get_option('posts_per_page') == 10 && (get_option('pipdig_p3_posts_per_page_set') != 1)) {
 				if (get_option('pipdig_theme') == 'aquae') {
 					update_option('posts_per_page', 13);
+				} elseif (get_option('pipdig_theme') == 'galvani') {
+					update_option('posts_per_page', 12);
 				} elseif (get_option('pipdig_theme') == 'thegrid') {
 					update_option('posts_per_page', 6);
 				} else {
@@ -122,7 +124,7 @@ class pipdig_p3_intalled_xyz_2 {
 				update_option('pipdig_p3_rss_use_excerpt_set', 1);
 			}
 			$tagline = get_option('blogdescription');
-			if ($tagline == 'My WordPress Blog' || $tagline == 'My WordPress Blog') {
+			if ($tagline == 'My WordPress Blog') {
 				update_option('blogdescription', '');
 			}
 			/*

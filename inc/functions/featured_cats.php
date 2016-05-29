@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
 
 function p3_featured_cats_puller($category) {
 	
-	$the_shape = intval(get_theme_mod('p3_featured_cats_shape'));
+	$the_shape = absint(get_theme_mod('p3_featured_cats_shape'));
 	
 	$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAHgAQMAAACyyGUjAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACxJREFUeNrtwTEBAAAAwiD7p7bGDmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkHVZAAAFam5MDAAAAAElFTkSuQmCC'; // portrait
 	
@@ -123,7 +123,7 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 				)
 			);
 			
-			// Number of images to display in slider
+			// image shape
 			$wp_customize->add_setting('p3_featured_cats_shape',
 				array(
 					'default' => '1',

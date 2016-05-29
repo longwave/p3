@@ -115,9 +115,22 @@ if (!function_exists('p3_instagram_footer')) {
 			if (get_theme_mod('p3_instagram_rows')) {
 				$num = $num*2;
 			}
+			$links = get_option('pipdig_links');
+			if (!empty($links['instagram'])) {
+				$instagram_url = esc_url($links['instagram']);
+				if (filter_var($instagram_url, FILTER_VALIDATE_URL)) {  // url to path
+					$instagram_user = parse_url($instagram_url, PHP_URL_PATH);
+					$instagram_user = str_replace('/', '', $instagram_user);
+				}
+			}
 		?>
 			<div class="clearfix"></div>
 			<div id="p3_instagram_footer">
+				<?php if (!empty($instagram_url) && !empty($instagram_user) && get_theme_mod('p3_instagram_footer_title')) { ?>
+					<div class="p3_instagram_footer_title_bar">
+						<h3><a href="<?php echo $instagram_url; ?>" target="_blank" rel="nofollow">Instagram <span style="text-transform:none">@<?php echo strip_tags($instagram_user); ?></span></a></h3>
+					</div>
+				<?php } ?>
 				<?php $num = $num-1; // account for array starting at 0 ?>
 				<?php for ($x = 0; $x <= $num; $x++) {
 					$hide_class = '';
@@ -283,7 +296,6 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 				array(
 					'default' => 0,
 					'sanitize_callback' => 'absint',
-					'transport' => 'refresh'
 				)
 			);
 			$wp_customize->add_control(
@@ -294,7 +306,7 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
-			
+
 			
 			// Number of images to display in instagram feed
 			$wp_customize->add_setting( 'p3_instagram_number', array(
@@ -327,6 +339,22 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Display feed in 2 rows', 'p3' ),
+					'section' => 'pipdig_p3_instagram_section',
+				)
+			);
+			
+			// footer feed title
+			$wp_customize->add_setting('p3_instagram_footer_title',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_instagram_footer_title',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Display title above footer feed', 'p3' ),
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);

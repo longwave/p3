@@ -109,7 +109,19 @@ display: block;
 .p3_instagram_likes:hover {
 display: block;
 }
-
+.p3_instagram_footer_title_bar {
+	width: 100%;
+	padding: 10px 0;
+	text-align: center;
+	background: #111;
+	color: #fff;
+}
+.p3_instagram_footer_title_bar h3 {
+	margin: 0;
+}
+.p3_instagram_footer_title_bar a, .p3_instagram_footer_title_bar a:hover, .p3_instagram_footer_title_bar a:focus, .p3_instagram_footer_title_bar a:visited {
+	color: #fff;
+}
 
 /* Pinterest ================================== */
 #p3_pinterest_widget {
