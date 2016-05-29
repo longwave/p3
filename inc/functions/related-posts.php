@@ -13,6 +13,19 @@ if (!function_exists('p3_related_posts')) {
 			return;
 		}
 		
+		$the_shape = absint(get_theme_mod('p3_related_posts_shape'));
+		
+		$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC'; // landscape
+	
+		
+		if ($the_shape == 2) {
+			
+			$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAHgAQMAAACyyGUjAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACxJREFUeNrtwTEBAAAAwiD7p7bGDmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkHVZAAAFam5MDAAAAAElFTkSuQmCC'; // portrait
+			
+		} elseif ($the_shape == 3) {
+			$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC'; // square
+		}
+		
 		$section_title = strip_tags(get_theme_mod('p3_related_posts_title'));
 		if (empty($section_title)) {
 			$section_title = __('You may also enjoy:', 'p3');
@@ -60,7 +73,7 @@ if (!function_exists('p3_related_posts')) {
 		
 				$output .= '<div class="clearfix"></div>';
 		
-					$output .= '<div class="pipdig_p3_related_posts">';
+					$output .= '<div class="pipdig_p3_related_posts nopin">';
 					$output .= '<h3><span>'.$section_title.'</span></h3>';
 					$output .= '<ul>';
 					
@@ -75,7 +88,7 @@ if (!function_exists('p3_related_posts')) {
 						}
 						$output .= '<li>';
 							$output .= '<div class="pipdig_p3_related_thumb" style="background-image:url('.$bg.');">';
-								$output .= '<a href="'.$link.'" title="'.$title_attr.'"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC" alt="'.$title_attr.'" class="p3_invisible" data-pin-nopin="true"/></a>';
+								$output .= '<a href="'.$link.'" title="'.$title_attr.'"><img src="'.$shape.'" alt="'.$title_attr.'" class="p3_invisible" data-pin-nopin="true"/></a>';
 							$output .= '</div>';
 							$output .= '<div class="pipdig_p3_related_content">';
 								$truncate_title = absint(get_theme_mod('p3_related_posts_post_title_limit', 7));
@@ -133,6 +146,26 @@ if (!class_exists('pipdig_related_Customize')) {
 						'1 month ago' => __('1 Month', 'p3'),
 						'1 week ago' => __('1 Week', 'p3'),
 						'' => __('All Time', 'p3'),
+					),
+				)
+			);
+			
+			// image shape
+			$wp_customize->add_setting('p3_related_posts_shape',
+				array(
+					'default' => '1',
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_related_posts_shape',
+				array(
+					'type' => 'select',
+					'label' => __('Image shape', 'p3'),
+					'section' => 'pipdig_related_posts_pop',
+					'choices' => array(
+						'1' => 'Landscape',
+						'2' => 'Portait',
+						'3' => 'Square',
 					),
 				)
 			);
