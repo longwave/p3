@@ -24,7 +24,32 @@ if (!function_exists('pipdig_updates_options_page')) {
 				
 					<div class="postbox">
 
-						<h3>Update 2.0 - Big update</h3>
+						<h3>Update 2.2</h3>
+
+						<div class="inside">
+							<p>New shortcode to display categories of posts. <a href='https://support.pipdig.co/articles/wordpress-featured-categories-shortcode/' target='_blank'>Click here</a> to read more.</p>
+							<p>Multiple images size options for <a href='https://support.pipdig.co/articles/wordpress-how-to-display-related-posts/' target='_blank'>Related Posts</a> feature.</p>
+							<p>New Instagram options in the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>.</p>
+						</div>
+
+					</div>
+					<!-- .postbox -->
+				
+					<div class="postbox">
+
+						<h3>Update 2.1</h3>
+
+						<div class="inside">
+							<p>Snapchat can now be added to social links.</p>
+							<p>New 'We Heart It' Widget.</p>
+						</div>
+
+					</div>
+					<!-- .postbox -->
+				
+					<div class="postbox">
+
+						<h3>Update 2.0</h3>
 
 						<div class="inside">
 							<p>NOTE! Please <a href="http://www.refreshyourcache.com/en/home/" target="_blank">clear your browser cache</a> and website cache (if you use a plugin such as WP Supercache or W3 Total Cache).</p>
@@ -41,7 +66,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 				
 					<div class="postbox">
 
-						<h3>Update 1.10 - Instagram and Pinterest Updates</h3>
+						<h3>Update 1.10</h3>
 
 						<div class="inside">
 							<p>You can now setup a custom Pinterest Hover Button via the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>. This new feature allows you to upload any imag you like as a "Pin it" button, or use our prestyled button if you prefer.</p>
@@ -53,7 +78,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 				
 					<div class="postbox">
 
-						<h3>Update 1.9 - Editorial Layouts</h3>
+						<h3>Update 1.9</h3>
 
 						<div class="inside">
 							<p>New <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a> feature - Add a "Popular Posts Bar" under your site's header.</p>
@@ -67,7 +92,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 				
 					<div id="hide-trav" class="postbox">
 
-						<h3>Update 1.8 - Customizer options and widgets</h3>
+						<h3>Update 1.8</h3>
 
 						<div class="inside">
 							<p>We're constantly monitoring the latest WordPress security threats to make your site safer. This plugin will now provide automatic protection from <a target="_blank" href="<?php esc_url('https://goo.gl/vfjunt'); ?>">XML-RPC based attacks</a>.</p>
@@ -81,7 +106,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 				
 					<div class="postbox">
 
-						<h3>Update 1.7 - Social Sharing</h3>
+						<h3>Update 1.7</h3>
 
 						<div class="inside">
 							<p>You can now control which social sharing icons you'd like to use for posts. You can find these options under the "Social Sharing" section of the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a>.</p>
@@ -93,7 +118,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 				
 					<div class="postbox">
 
-						<h3>Update 1.6 - Widgets, speed and security. Oh my.</h3>
+						<h3>Update 1.6</h3>
 
 						<div class="inside">
 							<p>Added Spotify to social media icons widget.</p>
@@ -108,7 +133,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 				
 					<div class="postbox">
 
-						<h3>Update 1.5 - Social Media Stats</h3>
+						<h3>Update 1.5</h3>
 
 						<div class="inside">
 							<p>We're working on a lot of new ways to optimise social engagement right across our themes.</p>
@@ -121,7 +146,7 @@ if (!function_exists('pipdig_updates_options_page')) {
 
 					<div class="postbox">
 
-						<h3>Update 1.4 - Shortcodes and Snapcodes</h3>
+						<h3>Update 1.4</h3>
 
 						<div class="inside">
 							<p>We'll be creating a new selection of shortcodes over the next few weeks.  To start things off, you can now use the shortcode [pipdig_stars] to automatically add a start rating. Perfect for anyone who writes product reviews. <a href="<?php echo admin_url('admin.php?page=pipdig-shortcodes'); ?>">Click here to read more</a>.</p>

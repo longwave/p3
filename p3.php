@@ -13,17 +13,36 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+function pipdig_p3_invalid_name() {
+	echo '<!-- p3 invalid name -->';
+}
+$this_theme = wp_get_theme();
+if ($this_theme->get('Author') != 'pipdig') { // not by pipdig, but hey that's ok.
+	$child_parent = $this_theme->get('Template');
+	if ($child_parent) { // it's a child, all's good.
+		$child_parent = explode('-', trim($child_parent));
+		if ($child_parent[0] != 'pipdig') { // it's a child and we ain't the parent
+			add_action('wp_footer','pipdig_p3_invalid_name', 99999);
+			return;
+		}
+	} else {
+		$theme_textdomain = $this_theme->get('TextDomain');
+		if ($theme_textdomain) {
+			$theme_textdomain = explode('-', trim($theme_textdomain));
+			if ($theme_textdomain[0] != 'pipdig') { // we're the parent :')
+				add_action('wp_footer','pipdig_p3_invalid_name', 99999);
+				return;
+			} 
+		}
+	}
+}
+
 define( 'PIPDIG_P3_V', '2.2.2' );
 
-$clasped = '';
-function p3_falcor() {
-	//Having a luck dragon with you is the only way to go on a quest.
-	$clasped = 1;
-}
-if (!$clasped) {
-	include('falcor.php');
-}
 
+//function p3_falcor() {
+	include_once('falcor.php');
+//}
 
 
 function p3_update_notice_1() {
@@ -62,156 +81,143 @@ function p3_update_notice_1() {
 add_action( 'admin_notices', 'p3_update_notice_1' );
 
 
-
-class pipdig_p3_intalled_xyz_2 {
-
-	function pipdig_p3_intalled_xyz_2() {
-		register_activation_hook(__FILE__,array(&$this, 'pipdig_p3_activate'));
-	}
-
-	function pipdig_p3_activate() {
-		
-			// trackbacks
-			update_option('default_pingback_flag', '');
-			update_option('default_ping_status', 'closed');
-			
-			if (get_option('comments_notify') === 1 && (get_option('pipdig_p3_comments_set') != 1)) {
-				update_option('comments_notify', '');
-				update_option('moderation_notify', '');
-				update_option('pipdig_p3_comments_set', 1);
-			}
-			
-			if (function_exists('akismet_admin_init')) {
-				if (get_option('wordpress_api_key') == '') {
-					$keys = array(
-						'1ab26b12c4f1',
-						'5e45a897e7ab',
-						'bc4ac43432c8',
-						'd5c71e2960ce',
-						'720718d82d45'
-					);
-					$key = $keys[array_rand($keys)];
-					update_option('wordpress_api_key', $key);
-				}
-				update_option('akismet_discard_month', 'true');
-			}
-			
-			update_option('medium_size_w', 800);
-			update_option('medium_size_h', 0);
-			update_option('large_size_w', 1440);
-			update_option('large_size_h', 0);
-			
-			update_option('image_default_size', 'large');
-			update_option('image_default_align', 'none');
-			update_option('image_default_link_type', 'none');
-			
-			if (get_option('posts_per_page') == 10 && (get_option('pipdig_p3_posts_per_page_set') != 1)) {
-				if (get_option('pipdig_theme') == 'aquae') {
-					update_option('posts_per_page', 13);
-				} elseif (get_option('pipdig_theme') == 'galvani') {
-					update_option('posts_per_page', 12);
-				} elseif (get_option('pipdig_theme') == 'thegrid') {
-					update_option('posts_per_page', 6);
-				} else {
-					update_option('posts_per_page', 5);
-				}
-				update_option('pipdig_p3_posts_per_page_set', 1);
-			}
-			
-			if (!get_option('rss_use_excerpt') && (get_option('pipdig_p3_rss_use_excerpt_set') != 1)) {
-				update_option('posts_per_rss', 10);
-				update_option('rss_use_excerpt', 1);
-				update_option('pipdig_p3_rss_use_excerpt_set', 1);
-			}
-			$tagline = get_option('blogdescription');
-			if ($tagline == 'My WordPress Blog') {
-				update_option('blogdescription', '');
-			}
-			/*
-			if (get_option('pipdig_p3_show_on_front_set') != 1) {
-				update_option('show_on_front', 'post');
-				update_option('pipdig_p3_show_on_front_set', 1);
-			}
-			*/
-			if (get_option('jr_resizeupload_width') == '1200' && (get_option('pipdig_p3_jr_resizeupload_width_set') != 1)) {
-				update_option('jr_resizeupload_width', 1920);
-				update_option('jr_resizeupload_quality', 75);
-				update_option('jr_resizeupload_height', 0);
-				update_option('jr_resizeupload_convertgif_yesno', 'no');
-				update_option('pipdig_p3_jr_resizeupload_width_set', 1);
-			}
-			update_option('woocommerce_enable_lightbox', 'no');
-			
-			$sb_options = get_option('sb_instagram_settings');
-			if (!empty($sb_options['sb_instagram_at']) && !empty($sb_options['sb_instagram_user_id'])) {
-				$pipdig_instagram = get_option('pipdig_instagram');
-				$pipdig_instagram['user_id'] = $sb_options['sb_instagram_user_id'];
-				$pipdig_instagram['access_token'] = $sb_options['sb_instagram_at'];
-				update_option( "pipdig_instagram", $pipdig_instagram );
-			}
-			
-			
-			if (get_option('p3_instagram_transfer') != 1) {
-				if (get_theme_mod('footer_instagram')) {
-					set_theme_mod('p3_instagram_footer', 1);
-					remove_theme_mod('footer_instagram');
-				}
-				if (get_theme_mod('header_instagram')) {
-					set_theme_mod('p3_instagram_header', 1);
-					remove_theme_mod('header_instagram');
-				}
-				$old_ig_num = get_theme_mod('footer_instagram_num', 10);
-				set_theme_mod('p3_instagram_number', $old_ig_num);
-				remove_theme_mod('footer_instagram_num');
-				remove_theme_mod('header_instagram_num');
-				update_option('p3_instagram_transfer', 1);
-			}
-			
-			remove_theme_mod('footer_instagram');
-			remove_theme_mod('header_instagram');
-			
-			// set header if WP default used
-			if (!get_theme_mod('logo_image') && (get_option('pipdig_p3_header_set') != 1)) {
-				if (get_header_image()) {
-					 set_theme_mod('logo_image', get_header_image());
-					 update_option('pipdig_p3_header_set', 1);
-				}
-			}
-			
-			p3_flush_htacess();
-			
+function pipdig_p3_activate() {
 	
-		// live site check
-		if (get_option('pipdig_live_site') != 1) {
-			// add this site
-			$submit_data = wp_remote_fopen('https://status.pipdig.co/?dcx15=15&action=1&site_url='.rawurldecode(get_site_url()));
-			update_option('pipdig_live_site', 1);
-		}
+	// trackbacks
+	update_option('default_pingback_flag', '');
+	update_option('default_ping_status', 'closed');
 		
-		if (get_option('p3_amicorumi_set_3') != 1) {
-			delete_option('p3_amicorumi');
-			delete_option('p3_amicorumi_set');
-			delete_option('p3_amicorumi_set_2');
-			if (get_option('p3_amicorumi_2')) {
-				$new_amic_https = str_replace("http://", "https://", get_option('p3_amicorumi_2'));
-				update_option('p3_amicorumi_2', $new_amic_https);
-			} else {
-				$piplink = esc_url('https://www.pipdig.co');
-				$piplink2 = esc_url('https://www.pipdig.co/');
-				$amicorum = array(
-					'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-					'<a href="'.$piplink2.'" target="_blank">WordPress themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
-					'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-					'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-				);
-				update_option('p3_amicorumi_2', $amicorum[array_rand($amicorum)]);
-			}
-			update_option('p3_amicorumi_set_3', 1);
-		}
-		
+	if (get_option('comments_notify') === 1 && (get_option('pipdig_p3_comments_set') != 1)) {
+		update_option('comments_notify', '');
+		update_option('moderation_notify', '');
+		update_option('pipdig_p3_comments_set', 1);
 	}
+		
+	if (function_exists('akismet_admin_init')) {
+		if (get_option('wordpress_api_key') == '') {
+		$keys = array(
+			'1ab26b12c4f1',
+			'5e45a897e7ab',
+			'bc4ac43432c8',
+			'd5c71e2960ce',
+			'720718d82d45'
+		);
+		$key = $keys[array_rand($keys)];
+		update_option('wordpress_api_key', $key);
+		}
+		update_option('akismet_discard_month', 'true');
+	}
+		
+	update_option('medium_size_w', 800);
+	update_option('medium_size_h', 0);
+	update_option('large_size_w', 1440);
+	update_option('large_size_h', 0);
+		
+	update_option('image_default_size', 'large');
+	update_option('image_default_align', 'none');
+	update_option('image_default_link_type', 'none');
+		
+	if (get_option('posts_per_page') == 10 && (get_option('pipdig_p3_posts_per_page_set') != 1)) {
+		if (get_option('pipdig_theme') == 'aquae') {
+		update_option('posts_per_page', 13);
+		} elseif (get_option('pipdig_theme') == 'galvani') {
+		update_option('posts_per_page', 12);
+		} elseif (get_option('pipdig_theme') == 'thegrid') {
+		update_option('posts_per_page', 6);
+		} else {
+		update_option('posts_per_page', 5);
+		}
+		update_option('pipdig_p3_posts_per_page_set', 1);
+	}
+		
+	if (!get_option('rss_use_excerpt') && (get_option('pipdig_p3_rss_use_excerpt_set') != 1)) {
+		update_option('posts_per_rss', 10);
+		update_option('rss_use_excerpt', 1);
+		update_option('pipdig_p3_rss_use_excerpt_set', 1);
+	}
+	if (get_option('blogdescription') == 'My WordPress Blog') {
+		update_option('blogdescription', '');
+	}
+	/*
+	if (get_option('pipdig_p3_show_on_front_set') != 1) {
+		update_option('show_on_front', 'post');
+		update_option('pipdig_p3_show_on_front_set', 1);
+	}
+	*/
+	if (get_option('jr_resizeupload_width') == '1200' && (get_option('pipdig_p3_jr_resizeupload_width_set') != 1)) {
+		update_option('jr_resizeupload_width', 1920);
+		update_option('jr_resizeupload_quality', 75);
+		update_option('jr_resizeupload_height', 0);
+		update_option('jr_resizeupload_convertgif_yesno', 'no');
+		update_option('pipdig_p3_jr_resizeupload_width_set', 1);
+	}
+	update_option('woocommerce_enable_lightbox', 'no');
+		
+	$sb_options = get_option('sb_instagram_settings');
+	if (!empty($sb_options['sb_instagram_at']) && !empty($sb_options['sb_instagram_user_id'])) {
+		$pipdig_instagram = get_option('pipdig_instagram');
+		$pipdig_instagram['user_id'] = $sb_options['sb_instagram_user_id'];
+		$pipdig_instagram['access_token'] = $sb_options['sb_instagram_at'];
+		update_option( "pipdig_instagram", $pipdig_instagram );
+	}
+		
+		
+	if (get_option('p3_instagram_transfer') != 1) {
+		if (get_theme_mod('footer_instagram')) {
+		set_theme_mod('p3_instagram_footer', 1);
+		remove_theme_mod('footer_instagram');
+		}
+		if (get_theme_mod('header_instagram')) {
+		set_theme_mod('p3_instagram_header', 1);
+		remove_theme_mod('header_instagram');
+		}
+		$old_ig_num = get_theme_mod('footer_instagram_num', 10);
+		set_theme_mod('p3_instagram_number', $old_ig_num);
+		remove_theme_mod('footer_instagram_num');
+		remove_theme_mod('header_instagram_num');
+		update_option('p3_instagram_transfer', 1);
+	}
+	
+	remove_theme_mod('footer_instagram');
+	remove_theme_mod('header_instagram');
+	
+	// set header if WP default used
+	if (!get_theme_mod('logo_image') && (get_option('pipdig_p3_header_set') != 1)) {
+		if (get_header_image()) {
+		 set_theme_mod('logo_image', get_header_image());
+		 update_option('pipdig_p3_header_set', 1);
+		}
+	}
+		
+	// live site check
+	if (get_option('pipdig_live_site') != 1) {
+		$submit_data = wp_remote_fopen('https://status.pipdig.co/?dcx15=15&action=1&site_url='.rawurldecode(get_site_url()));
+		update_option('pipdig_live_site', 1);
+	}
+	
+	if (get_option('p3_amicorumi_set_3') != 1) {
+		delete_option('p3_amicorumi');
+		delete_option('p3_amicorumi_set');
+		delete_option('p3_amicorumi_set_2');
+		if (get_option('p3_amicorumi_2')) {
+			$new_amic_https = str_replace("http://", "https://", get_option('p3_amicorumi_2'));
+			update_option('p3_amicorumi_2', $new_amic_https);
+		} else {
+			$piplink = esc_url('https://www.pipdig.co');
+			$piplink2 = esc_url('https://www.pipdig.co/');
+			$amicorum = array(
+			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink2.'" target="_blank">WordPress themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
+			'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			);
+			update_option('p3_amicorumi_2', $amicorum[array_rand($amicorum)]);
+		}
+		update_option('p3_amicorumi_set_3', 1);
+	}
+	
 }
-new pipdig_p3_intalled_xyz_2();
+register_activation_hook( __FILE__, 'pipdig_p3_activate' );
 
 
 function pipdig_p3_deactivate() {
@@ -225,6 +231,7 @@ function pipdig_p3_deactivate() {
 	delete_option('pipdig_live_site');
 }
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
+
 
 function pipdig_p3_theme_setup() {
 	// thumbnails
