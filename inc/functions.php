@@ -123,20 +123,6 @@ if (!function_exists('pipdig_rss_post_thumbnail')) {
 }
 
 
-// remove bad mojo
-if (function_exists('mm_load_updater')) {
-	function pipdig_p3_bad_mojo() {
-		remove_action( 'admin_menu', 'mm_main_menu' ); // remove mojo menu
-		remove_action( 'widgets_init', 'mm_register_widget' ); // remove mojo widget
-		remove_action( 'admin_head-themes.php', 'mm_add_theme_button' ); // remove mojo theme menu item
-		remove_action( 'admin_menu', 'mm_add_theme_page' ); // remove mojo themes link
-	}
-	add_action('plugins_loaded','pipdig_p3_bad_mojo', 99);
-	
-}
-
-
-
 // add pipdig link to themes section
 function pipdig_p3_themes_top_link() {
 	if(!isset($_GET['page'])) {
@@ -154,20 +140,11 @@ add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
 function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) {
 	$jp_mods_to_disable = array(
-	// 'shortcodes',
-	// 'widget-visibility',
 	// 'contact-form',
-	// 'shortlinks',
 	'infinite-scroll',
-	// 'wpcc',
-	//'tiled-gallery',
-	//'json-api',
-	// 'publicize',
-	// 'vaultpress',
 	'custom-css',
 	'post-by-email',
 	// 'widgets',
-	// 'comments',
 	'minileven',
 	'latex',
 	'gravatar-hovercards',
@@ -178,7 +155,6 @@ function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) 
 	// 'after-the-deadline',
 	// 'carousel',
 	'photon',
-	//'sharedaddy',
 	//'omnisearch',
 	// 'likes',
 	// 'videopress',
@@ -186,9 +162,7 @@ function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) 
 	// 'monitor',
 	'markdown',
 	// 'manage',
-	// 'verification-tools',
 	'related-posts',
-	// 'custom-content-types',
 	// 'protect',
 	);
 	foreach ( $jp_mods_to_disable as $mod ) {
