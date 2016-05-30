@@ -15,7 +15,7 @@ if (!function_exists('pipdig_add_admin_menu')) {
 		add_submenu_page( 'pipdig', __('Social Links', 'p3'), __('Social Links', 'p3'), 'delete_others_pages', 'pipdig-links', 'pipdig_links_options_page' );
 		add_submenu_page( 'pipdig', 'Instagram', 'Instagram', 'manage_options', 'pipdig-instagram', 'pipdig_instagram_options_page' );
 		add_submenu_page( 'pipdig', __('Custom CSS', 'p3'), __('Custom CSS', 'p3'), 'manage_options', 'pipdig-css', 'pipdig_css_options_page' );
-		add_submenu_page( 'pipdig', __('Theme', 'p3').' Hooks', __('Theme', 'p3').' Hooks', 'manage_options', 'pipdig-hooks', 'pipdig_hooks_options_page' );
+		add_submenu_page( 'pipdig', __('Theme').' Hooks', __('Theme').' Hooks', 'manage_options', 'pipdig-hooks', 'pipdig_hooks_options_page' );
 		
 		$submenu['pipdig'][0][0] = __('Updates', 'p3'); // http://wordpress.stackexchange.com/questions/98226/admin-menus-name-menu-different-from-first-submenu
 	}
