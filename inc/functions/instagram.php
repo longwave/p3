@@ -10,12 +10,22 @@ if (!function_exists('p3_instagram_fetch')) {
 		
 		$instagram_deets = get_option('pipdig_instagram');
 		
-		if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) { 
+		//if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) {
+		if (!empty($instagram_deets['access_token'])) { 
 		
 			$access_token = sanitize_text_field($instagram_deets['access_token']);
+			
 			if (empty($userid)) {
-				$userid = sanitize_text_field($instagram_deets['user_id']);
+				$user_id = explode('.', $access_token);
+				$userid = trim($user_id[0]);
 			}
+			
+			$access_token = '2165912485.3a81a9f.abb156bb2d7240239e1fbbfd515d018d'; //smash
+			// $access_token = '2165912485.d8d1d50.9f924d0c46e54bf297bffce4173cc86c'; //pixel
+			
+			//if (empty($userid)) {
+				//$userid = sanitize_text_field($instagram_deets['user_id']);
+			//}
 			
 			if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
 				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=20";
@@ -35,8 +45,20 @@ if (!function_exists('p3_instagram_fetch')) {
 						$caption = sanitize_text_field($result->data[$i]->caption->text);
 					}
 					
+					if ((!empty($result->data[$i]->images->thumbnail->url))) {
+						
+						$img_url = str_replace('s150x150/', 's640x640/', $result->data[$i]->images->thumbnail->url);
+						
+						$image_online = get_headers($img_url);
+						if (substr($image_online[0], 9, 3) === '404') {
+							$img_url = $result->data[$i]->images->thumbnail->url;
+						}
+						
+					}
+					
+					
 					$images[$i] = array (
-						'src' => esc_url($result->data[$i]->images->standard_resolution->url),
+						'src' => esc_url($img_url),
 						'link' => esc_url($result->data[$i]->link),
 						'likes' => intval($result->data[$i]->likes->count),
 						'comments' => intval($result->data[$i]->comments->count),
@@ -161,7 +183,13 @@ if (!function_exists('p3_instagram_footer')) {
 if (!function_exists('p3_instagram_header')) {
 	function p3_instagram_header() {
 		
-		if (!get_theme_mod('p3_instagram_header') || !is_front_page() || is_paged()) {
+		
+		
+		if (!get_theme_mod('p3_instagram_header')) {
+			return;
+		}
+		
+		if (!get_theme_mod('p3_instagram_header_all') && (!is_front_page() || !is_home()) ) {
 			return;
 		}
 		
@@ -263,14 +291,30 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 				array(
 					'default' => 0,
 					'sanitize_callback' => 'absint',
-					'transport' => 'refresh'
 				)
 			);
 			$wp_customize->add_control(
 				'p3_instagram_header',
 				array(
 					'type' => 'checkbox',
-					'label' => __( 'Display feed in the header', 'p3' ),
+					'label' => __( 'Display feed in the header (Homepage)', 'p3' ),
+					'section' => 'pipdig_p3_instagram_section',
+				)
+			);
+			
+			// header feed
+			$wp_customize->add_setting('p3_instagram_header_all',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_instagram_header_all',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Display header feed on all pages', 'p3' ),
+					'description' => __( 'By default, the header feed will only display on the homepage. If you want to display it on all pages, selec this option too.', 'p3' ),
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);

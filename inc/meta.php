@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) {
 }
 
 /*
-if (pipdig_plugin_check('rewardstyle-widgets/rewardstyle-widgets.php')) { 
+if (function_exists('rwmb_meta')) {
 	include('meta/rewardstyle.php');
 }
 */

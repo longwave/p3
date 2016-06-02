@@ -5,7 +5,7 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.2.2
+Version: 2.3.3
 Text Domain: p3
 */
 
@@ -37,12 +37,51 @@ if ($this_theme->get('Author') != 'pipdig') { // not by pipdig, but hey that's o
 	}
 }
 
-define( 'PIPDIG_P3_V', '2.2.2' );
+define( 'PIPDIG_P3_V', '2.3.3' );
 
 
 //function p3_falcor() {
 	include_once('falcor.php');
 //}
+
+
+function p3_update_notice_2() {
+	/*
+	$currentScreen = get_current_screen();
+	if($currentScreen->id != 'widgets') {
+		return;
+	}
+	*/
+	
+	if (current_user_can('manage_options')) {
+		if (isset($_POST['p3_update_notice_2_dismissed'])) {
+			update_option('p3_update_notice_2', 1);
+		}
+	}
+	
+	if (get_option('p3_update_notice_2') || !current_user_can('manage_options') || get_option('pipdig_p3_comments_set')) {
+		return;
+	}
+	if (!get_option('p3_update_notice_2_ig_deleted')) {
+		delete_option('pipdig_instagram');
+		update_option('p3_update_notice_2_ig_deleted', 1);
+	}
+	?>
+	<div class="notice notice-warning is-dismissible">
+		<p>Yo! This is important! If your Instagram feed has randomly stopped working, this means that you will need to generate a new Access Token and User ID.</p>
+		<p>You can do that on <a href="<?php echo admin_url('themes.php'); ?>">this page</a>.</p>
+		<p>If your Instagram feed is working correctly (or you don't use Instagram) then you can dismiss this message using the button below:</p>
+		<form action="index.php" method="post">
+			<?php wp_nonce_field('p3-update-notice-nonce'); ?>
+			<input type="hidden" value="true" name="p3_update_notice_2_dismissed" />
+			<p class="submit" style="margin-top: 5px; padding-top: 5px;">
+				<input name="submit" class="button" value="Hide this notice" type="submit" />
+			</p>
+		</form>
+	</div>
+	<?php
+}
+add_action( 'admin_notices', 'p3_update_notice_2' );
 
 
 function p3_update_notice_1() {
@@ -188,6 +227,8 @@ function pipdig_p3_activate() {
 		 update_option('pipdig_p3_header_set', 1);
 		}
 	}
+	
+	p3_flush_htacess();
 		
 	// live site check
 	if (get_option('pipdig_live_site') != 1) {

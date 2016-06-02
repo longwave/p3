@@ -152,7 +152,7 @@ function pipdig_p3_scrapey_scrapes() {
 					$ig_token = trim($instagram_deets['access_token']);
 					$userid = trim($instagram_deets['user_id']);
 				} else {
-					$ig_token = '2165912485.cf0499d.a4946e0a8a6b430da5db3691cd4da738'; // sten
+					$ig_token = '344758425.3a81a9f.e786d137eb5746b7b007bae026bdcb65';
 					// get the handle from url
 					$instagram_handle = parse_url($instagram_url, PHP_URL_PATH);
 					$instagram_handle = str_replace('/', '', $instagram_handle);

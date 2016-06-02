@@ -53,7 +53,7 @@ add_filter( 'rwmb_meta_boxes', 'pipdig_p3_meta_boxes_rs' );
 
 
 function pipdig_p3_post_footer_rs() {
-	if (pipdig_plugin_check('meta-box/meta-box.php')) {
+	if (function_exists('rwmb_meta')) {
 		$rs_shopthepost_id = rwmb_meta('pipdig_meta_rs_shopthepost');
 		if (empty($rs_id)) {
 			return;

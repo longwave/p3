@@ -14,7 +14,6 @@ function pipdig_instagram_init() {
 		'pipdig_instagram_section_callback', 
 		'pipdig_instagram_options_page'
 	);
-
 	
 	add_settings_field( 
 		'access_token', 
@@ -23,7 +22,7 @@ function pipdig_instagram_init() {
 		'pipdig_instagram_options_page', 
 		'pipdig_instagram_options_page_section' 
 	);
-	
+	/*
 	add_settings_field( 
 		'user_id', 
 		'User ID', 
@@ -31,6 +30,7 @@ function pipdig_instagram_init() {
 		'pipdig_instagram_options_page', 
 		'pipdig_instagram_options_page_section' 
 	);
+	*/
 	
 }
 add_action('admin_init', 'pipdig_instagram_init');
@@ -41,11 +41,13 @@ function p3_instagram_at_render() {
 	$access_token = '';
 	if (!empty($instagram_deets['access_token'])) { 
 		$access_token = sanitize_text_field($instagram_deets['access_token']);
+		//$user_id = explode('.', $access_token);
+		//echo $user_id[0];
 	}
 	?>
 	<input class='large-text' type='text' name='pipdig_instagram[access_token]' value="<?php echo $access_token; ?>"> <?php
 }
-
+/*
 function p3_instagram_userid_render() {
 	$instagram_deets = get_option('pipdig_instagram');
 	$user_id = '';
@@ -56,14 +58,19 @@ function p3_instagram_userid_render() {
 	?>
 	<input class='large-text' type='text' name='pipdig_instagram[user_id]' value="<?php echo $user_id; ?>"> <?php
 }
-
+*/
 
 
 
 function pipdig_instagram_section_callback() {
-	echo '<p><a href="https://www.pipdig.co/instagram/" target="_blank" class="instagram-token-button">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
-	echo '<p>'.__('Once you have authorized your account, copy and paste your information below.', 'p3').'</p>';
-	echo '<p style="font-size: 80%;">(Note: If you find that the access token is not working, you can try to generate a new token via <a href="https://smashballoon.com/instagram-feed/token/" target="_blank">this page</a>. You can then copy this to the options below)</p>';
+	//echo '<p><a href="https://www.pipdig.co/instagram/" target="_blank" class="instagram-token-button">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
+	//echo '<p>'.__('Once you have authorized your account, copy and paste your information below.', 'p3').'</p>';
+	//echo '<p style="font-size: 80%;">(Note: If you find that the access token is not working, you can try to generate a new token via <a href="https://smashballoon.com/instagram-feed/token/" target="_blank">this page</a>. You can then copy this to the options below)</p>';
+	
+	echo '<p>In order to display Instagram images on your site you will need to add your Access Token below.</p>';
+	echo '<p>You can get your Access Token from <a href="http://nullrefer.com/?https://www.maestrooo.com/instagram" target="_blank">this page</a>.';
+	//echo '<p>You can get your User Id from <a href="http://www.otzberg.net/iguserid/" target="_blank">this page</a>.';
+	//http://nullrefer.com/?http://instagram.pixelunion.net/
 }
 
 
@@ -90,9 +97,7 @@ function pipdig_instagram_options_page() {
 	<form action='options.php' method='post'>
 			
 		<h1>Instagram Settings</h1>
-		
-		<p><?php _e("You will need to sign in to Instagram to allow this theme's widgets to display your images. Click the button below to do this:", 'p3'); ?></p>
-			
+					
 		<?php
 		settings_fields('pipdig_instagram_options_page');
 		do_action('p3_instagram_save_action'); // to clear out transients on save - p3_instagram_clear_transients

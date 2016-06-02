@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 // load plugin check function, just in case theme hasn't
 if ( !function_exists( 'pipdig_plugin_check' ) ) {
 	function pipdig_plugin_check( $plugin_name ) {
-		include( ABSPATH . 'wp-admin/includes/plugin.php' );
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		if ( is_plugin_active($plugin_name) ) {
 			return true;
 		} else {
@@ -109,14 +109,11 @@ if (!function_exists('pipdig_rss_post_thumbnail')) {
 				$content = '<p>' . get_the_post_thumbnail($post->ID, 'large') . '</p>' . get_the_excerpt();
 			} elseif (pipdig_p3_catch_that_image()) {
 				$content = '<p><img src="'.pipdig_p3_catch_that_image().'" alt=""/></p>' . get_the_excerpt();
-			} else {
-				$content = strip_shortcodes(get_the_content());
-			}
-		} else {
-			$content = strip_shortcodes(get_the_content());
+			} 
 		}
 
-		return $content;
+		return strip_shortcodes($content);
+		
 	}
 	add_filter('the_excerpt_rss', 'pipdig_p3_rss_post_thumbnail');
 	add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');
@@ -140,7 +137,6 @@ add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
 function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) {
 	$jp_mods_to_disable = array(
-	// 'contact-form',
 	'infinite-scroll',
 	'custom-css',
 	'post-by-email',
@@ -148,22 +144,13 @@ function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) 
 	'minileven',
 	'latex',
 	'gravatar-hovercards',
-	// 'enhanced-distribution',
 	// 'notes',
-	// 'subscriptions',
-	// 'stats',
 	// 'after-the-deadline',
 	// 'carousel',
 	'photon',
 	//'omnisearch',
-	// 'likes',
-	// 'videopress',
-	// 'sso',
-	// 'monitor',
 	'markdown',
-	// 'manage',
 	'related-posts',
-	// 'protect',
 	);
 	foreach ( $jp_mods_to_disable as $mod ) {
 		if ( isset( $modules[$mod] ) ) {
@@ -198,19 +185,17 @@ function p3_flush_htacess() {
 
 function p3_htaccess_edit($rules) {
 $p3_rules = "
-# p3 gzip
+# p3
 <ifmodule mod_deflate.c>
 AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
 </ifmodule>
-# /p3 gzip
 
-# p3 Blogger
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteCond %{QUERY_STRING} ^m=1$
 RewriteRule ^(.*)$ /$1? [R=301,L]
 </IfModule>
-# /p3 Blogger
+# /p3
 
 ";
 return $p3_rules . $rules;
@@ -278,6 +263,8 @@ include('functions/post_slider_posts_column.php');
 include('functions/width_customizer.php');
 //include('functions/popup.php');
 include('functions/featured_cats.php');
+
+include('functions/schema.php');
 
 // bundled
 include('bundled/customizer-reset/customizer-reset.php');
