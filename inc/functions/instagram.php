@@ -29,13 +29,17 @@ if (!function_exists('p3_instagram_fetch')) {
 			
 			if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
 				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=20";
-				$result = wp_remote_fopen($url);
+				$args = array(
+				    'timeout' => 30,
+				);
+				$response = wp_remote_get($url, $args);
+				$result = json_decode($response['body']);
 				set_transient( 'p3_instagram_feed_'.$userid, $result, 30 * MINUTE_IN_SECONDS );
 			}
 			
-			$result = json_decode($result);
+			//$result = json_decode($result['body']);
 			
-			//print_r($result);
+			//print_r($result['body']);
 			
 			for ($i = 0; $i < 19; $i++) {
 				if (isset($result->data[$i])) {
@@ -54,11 +58,6 @@ if (!function_exists('p3_instagram_fetch')) {
 						} else {
 							$img_url = str_replace('s150x150/', 's320x320/', $result->data[$i]->images->thumbnail->url);
 						}						
-						
-						$image_online = get_headers($img_url);
-						if (substr($image_online[0], 9, 3) === '404') {
-							$img_url = $result->data[$i]->images->thumbnail->url;
-						}
 						
 					}
 					
@@ -187,8 +186,6 @@ if (!function_exists('p3_instagram_footer')) {
 // header feed
 if (!function_exists('p3_instagram_header')) {
 	function p3_instagram_header() {
-		
-		
 		
 		if (!get_theme_mod('p3_instagram_header')) {
 			return;

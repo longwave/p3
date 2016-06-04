@@ -222,7 +222,7 @@ if (!class_exists('p3_trending_bar_Customize')) {
 					$wp_customize,
 					'p3_trending_bar_trending_cat',
 					array(
-						'label' => __('Category for "Big this Month":', 'p3'),
+						'label' => __('Only include posts from:', 'p3'),
 						'description' => __('Only display posts from:', 'p3'),
 						'settings' => 'p3_trending_bar_trending_cat',
 						'section'  => 'pipdig_trending_section'
@@ -235,7 +235,6 @@ if (!class_exists('p3_trending_bar_Customize')) {
 			$wp_customize->add_setting('p3_trending_bar_text_bg_color',
 				array(
 					'default' => '#ffffff',
-					//'transport'=>'postMessage',
 					'sanitize_callback' => 'sanitize_hex_color',
 				)
 			);
@@ -252,7 +251,6 @@ if (!class_exists('p3_trending_bar_Customize')) {
 			$wp_customize->add_setting('p3_trending_bar_text_color',
 				array(
 					'default' => '#000000',
-					//'transport'=>'postMessage',
 					'sanitize_callback' => 'sanitize_hex_color',
 				)
 			);

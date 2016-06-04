@@ -5,13 +5,15 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.3.3
+Version: 2.3.5
 Text Domain: p3
 */
 
 if (!defined('ABSPATH')) {
 	exit;
 }
+
+define( 'PIPDIG_P3_V', '2.3.5' );
 
 function pipdig_p3_invalid_name() {
 	echo '<!-- p3 invalid name -->';
@@ -37,22 +39,55 @@ if ($this_theme->get('Author') != 'pipdig') { // not by pipdig, but hey that's o
 	}
 }
 
-define( 'PIPDIG_P3_V', '2.3.3' );
 
+//add_filter( 'max_srcset_image_width', create_function( '', 'return 1;' ) );
 
-//function p3_falcor() {
-	include_once('falcor.php');
-//}
-
-
-function p3_update_notice_2() {
-	/*
-	$currentScreen = get_current_screen();
-	if($currentScreen->id != 'widgets') {
-		return;
-	}
-	*/
+// enqueue scripts and styles
+function pipdig_p3_scripts_styles() {
+	wp_enqueue_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css', array(), PIPDIG_P3_V );
+	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', plugin_dir_url(__FILE__).'assets/css/responsive.css', array(), PIPDIG_P3_V ); }
 	
+	//wp_register_script( 'imagesloaded', '//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js', array('jquery'), false ); // I know, I know :(
+	//wp_register_script( 'bxslider', '//cdnjs.cloudflare.com/ajax/libs/bxslider/4.1.2/jquery.bxslider.min.js', array('jquery'), false );
+	wp_register_script( 'pipdig-cycle', '//cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), null, false );
+	wp_register_script( 'owl-carousel', '//cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js', array('jquery'), null, false );
+	wp_register_script( 'backstretch', '//cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js', array('jquery'), null, false );
+	wp_register_script( 'stellar', '//cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js', array('jquery'), null, true );
+	wp_register_script( 'rateyo', plugin_dir_url(__FILE__).'assets/js/rateyo.js', array('jquery'), null, true );
+	wp_enqueue_script( 'pipdig-fitvids', '//cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js', array( 'jquery' ), null, true );
+	wp_register_script( 'pipdig-mixitup', '//cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js', array( 'jquery' ), null, true );
+	//wp_register_script( 'pipdig-cookie', '//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js', array( 'jquery' ), null, true );
+	
+	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css' );
+}
+add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
+
+
+// functions
+include_once('inc/functions.php');
+
+// admin menus
+include_once('inc/admin-menus.php');
+
+// meta boxes
+include_once('inc/meta.php');
+
+// dashboard enhancements
+include_once('inc/dash.php');
+
+// widgets
+include_once('inc/widgets.php');
+
+// shortcodes
+include('inc/shortcodes.php');
+
+// cron
+include('inc/cron.php');
+
+
+/*
+function p3_update_notice_2() {
+
 	if (current_user_can('manage_options')) {
 		if (isset($_POST['p3_update_notice_2_dismissed'])) {
 			update_option('p3_update_notice_2', 1);
@@ -69,10 +104,10 @@ function p3_update_notice_2() {
 	?>
 	<div class="notice notice-warning is-dismissible">
 		<p>Howdy! This is important! If your Instagram feed has randomly stopped working, this means that you will need to generate a new Access Token.</p>
-		<p>You can do that on <a href="<?php echo admin_url('themes.php'); ?>">this page</a>.</p>
+		<p>You can do that on <a href="<?php echo admin_url('admin.php?page=pipdig-instagram'); ?>">this page</a>.</p>
 		<p>If your Instagram feed is working correctly (or you don't use Instagram) then you can dismiss this message using the button below:</p>
 		<form action="index.php" method="post">
-			<?php wp_nonce_field('p3-update-notice-nonce'); ?>
+			<?php wp_nonce_field('p3-update-notice-nonce-2'); ?>
 			<input type="hidden" value="true" name="p3_update_notice_2_dismissed" />
 			<p class="submit" style="margin-top: 5px; padding-top: 5px;">
 				<input name="submit" class="button" value="Hide this notice" type="submit" />
@@ -82,7 +117,7 @@ function p3_update_notice_2() {
 	<?php
 }
 add_action( 'admin_notices', 'p3_update_notice_2' );
-
+*/
 
 function p3_update_notice_1() {
 	/*
