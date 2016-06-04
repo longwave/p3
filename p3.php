@@ -68,7 +68,7 @@ function p3_update_notice_2() {
 	}
 	?>
 	<div class="notice notice-warning is-dismissible">
-		<p>Yo! This is important! If your Instagram feed has randomly stopped working, this means that you will need to generate a new Access Token and User ID.</p>
+		<p>Howdy! This is important! If your Instagram feed has randomly stopped working, this means that you will need to generate a new Access Token.</p>
 		<p>You can do that on <a href="<?php echo admin_url('themes.php'); ?>">this page</a>.</p>
 		<p>If your Instagram feed is working correctly (or you don't use Instagram) then you can dismiss this message using the button below:</p>
 		<form action="index.php" method="post">
