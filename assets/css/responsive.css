@@ -67,6 +67,14 @@
 	.site-credit {
 		padding-top: 8px;
 	}
+	.entry-content .pipdig_banner {
+		height: 400px;
+		left: auto;
+		width: 100%;
+	}
+	.entry-content .pipdig_banner_parallax {
+		background-attachment: scroll;
+	}
 }
 
 

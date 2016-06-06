@@ -455,6 +455,22 @@ right: auto;
 	margin-top: 0;
 }
 
+.pipdig_banner {
+position: relative;
+width: 100vw;
+left: calc(-50vw + 50%);
+height: 600px;
+margin-top: 20px;
+margin-bottom: 30px;
+background-size: cover;
+background-attachment: static;
+background-repeat: no-repeat;
+background-position: center;
+}
+.pipdig_banner_parallax {
+background-attachment: fixed;
+}
+
 /* portfolio ====================== */
 
 #pipdig_portfolio_filters {
