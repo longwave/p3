@@ -20,8 +20,8 @@ if (!function_exists('p3_instagram_fetch')) {
 				$userid = trim($user_id[0]);
 			}
 			
-			$access_token = '2165912485.3a81a9f.abb156bb2d7240239e1fbbfd515d018d'; //smash
-			// $access_token = '2165912485.d8d1d50.9f924d0c46e54bf297bffce4173cc86c'; //pixel
+			//$access_token = '2165912485.3a81a9f.abb156bb2d7240239e1fbbfd515d018d'; //smash
+			//$access_token = '2165912485.d8d1d50.9f924d0c46e54bf297bffce4173cc86c'; //pixel
 			
 			//if (empty($userid)) {
 				//$userid = sanitize_text_field($instagram_deets['user_id']);
@@ -33,7 +33,16 @@ if (!function_exists('p3_instagram_fetch')) {
 				    'timeout' => 30,
 				);
 				$response = wp_remote_get($url, $args);
-				$result = json_decode($response['body']);
+				
+				$code = intval(json_decode($response['response']['code']));
+				
+				if ($code === 200) {
+					$result = json_decode($response['body']);
+					update_option('p3_update_notice_3', 1); // get rid of dashboard nag for new API changes
+				} else {
+					$result = $code;
+				}
+				
 				set_transient( 'p3_instagram_feed_'.$userid, $result, 30 * MINUTE_IN_SECONDS );
 			}
 			
@@ -89,12 +98,19 @@ if (!function_exists('p3_instagram_fetch')) {
 
 // function to clear out transients
 if (!function_exists('p3_instagram_clear_transients')) {
-	function p3_instagram_clear_transients($userid) {
+	function p3_instagram_clear_transients($userid = '') {
+		
+		delete_transient( 'p3_instagram_feed_'.$userid );
 		
 		$instagram_deets = get_option('pipdig_instagram');
+		if (!empty($instagram_deets['access_token'])) {
 		
-		if (!empty($instagram_deets['user_id'])) { 
-			$userid = sanitize_text_field($instagram_deets['user_id']);
+			$access_token = sanitize_text_field($instagram_deets['access_token']);
+			
+			if (empty($userid)) {
+				$user_id = explode('.', $access_token);
+				$userid = trim($user_id[0]);
+			}
 			delete_transient( 'p3_instagram_feed_'.$userid );
 		}
 			

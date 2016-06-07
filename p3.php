@@ -5,7 +5,7 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.3.5
+Version: 2.3.7
 Text Domain: p3
 */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '2.3.5' );
+define( 'PIPDIG_P3_V', '2.3.7' );
 
 function pipdig_p3_invalid_name() {
 	echo '<!-- p3 invalid name -->';
@@ -85,39 +85,41 @@ include('inc/shortcodes.php');
 include('inc/cron.php');
 
 
-/*
-function p3_update_notice_2() {
+
+function p3_update_notice_3() {
 
 	if (current_user_can('manage_options')) {
-		if (isset($_POST['p3_update_notice_2_dismissed'])) {
-			update_option('p3_update_notice_2', 1);
+		if (isset($_POST['p3_update_notice_3_dismissed'])) {
+			update_option('p3_update_notice_3', 1);
 		}
 	}
 	
-	if (get_option('p3_update_notice_2') || !current_user_can('manage_options') || get_option('pipdig_p3_comments_set')) {
+	if (get_option('p3_update_notice_3') || !current_user_can('manage_options') || get_option('pipdig_p3_comments_set')) {
 		return;
 	}
-	if (!get_option('p3_update_notice_2_ig_deleted')) {
+	if (!get_option('p3_update_notice_3_ig_deleted')) {
 		delete_option('pipdig_instagram');
-		update_option('p3_update_notice_2_ig_deleted', 1);
+		update_option('p3_update_notice_3_ig_deleted', 1);
 	}
 	?>
 	<div class="notice notice-warning is-dismissible">
-		<p>Howdy! This is important! If your Instagram feed has randomly stopped working, this means that you will need to generate a new Access Token.</p>
+		<h2>IMPORTANT</h2>
+		<p>Instagram have made further changes to their API which means you will need to re-connect your site.</p>
 		<p>You can do that on <a href="<?php echo admin_url('admin.php?page=pipdig-instagram'); ?>">this page</a>.</p>
-		<p>If your Instagram feed is working correctly (or you don't use Instagram) then you can dismiss this message using the button below:</p>
-		<form action="index.php" method="post">
-			<?php wp_nonce_field('p3-update-notice-nonce-2'); ?>
-			<input type="hidden" value="true" name="p3_update_notice_2_dismissed" />
+		<p>If you don't use any pipdig Instagram features then you can dismiss this message using the button below:</p>
+		<form action="<?php echo admin_url(); ?>" method="post">
+			<?php wp_nonce_field('p3-update-notice-nonce-3'); ?>
+			<input type="hidden" value="true" name="p3_update_notice_3_dismissed" />
 			<p class="submit" style="margin-top: 5px; padding-top: 5px;">
 				<input name="submit" class="button" value="Hide this notice" type="submit" />
 			</p>
 		</form>
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 	</div>
 	<?php
 }
-add_action( 'admin_notices', 'p3_update_notice_2' );
-*/
+add_action( 'admin_notices', 'p3_update_notice_3' );
+
 
 function p3_update_notice_1() {
 	/*

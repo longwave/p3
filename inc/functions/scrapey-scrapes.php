@@ -148,9 +148,10 @@ function pipdig_p3_scrapey_scrapes() {
 				update_option('p3_instagram_count', $instagram_count);
 			} else {
 				$instagram_deets = get_option('pipdig_instagram'); // from p3
-				if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) { 
-					$ig_token = trim($instagram_deets['access_token']);
-					$userid = trim($instagram_deets['user_id']);
+				if (!empty($instagram_deets['access_token'])) { 
+					$ig_token = sanitize_text_field($instagram_deets['access_token']);
+					$user_id = explode('.', $ig_token);
+					$userid = trim($user_id[0]);
 				} else {
 					$ig_token = '344758425.3a81a9f.e786d137eb5746b7b007bae026bdcb65';
 					// get the handle from url

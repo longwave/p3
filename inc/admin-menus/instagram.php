@@ -63,12 +63,14 @@ function p3_instagram_userid_render() {
 
 
 function pipdig_instagram_section_callback() {
-	//echo '<p><a href="https://www.pipdig.co/instagram/" target="_blank" class="instagram-token-button">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
-	//echo '<p>'.__('Once you have authorized your account, copy and paste your information below.', 'p3').'</p>';
+	//echo '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">';
+	echo '<p>You will need to authorize your Instagram account to display your feed on this site. Click the button below to do this:</p>';
+	echo '<p><a href="https://www.pipdig.co/instagram/" target="_blank" class="instagram-token-button">'.__('Click here to authorize your Instagram account', 'p3').'</a></p>';
+	echo '<p>'.__('Once you have authorized your account, copy and paste your Access Token below:', 'p3').'</p>';
 	//echo '<p style="font-size: 80%;">(Note: If you find that the access token is not working, you can try to generate a new token via <a href="https://smashballoon.com/instagram-feed/token/" target="_blank">this page</a>. You can then copy this to the options below)</p>';
 	
-	echo '<p>In order to display Instagram images on your site you will need to add your Access Token below.</p>';
-	echo '<p>You can get your Access Token from <a href="http://nullrefer.com/?https://www.maestrooo.com/instagram" target="_blank">this page</a>.';
+	//echo '<p>In order to display Instagram images on your site you will need to add your Access Token below.</p>';
+	//echo '<p>You can get your Access Token from <a href="http://nullrefer.com/?https://www.maestrooo.com/instagram" target="_blank">this page</a>.';
 	//echo '<p>You can get your User Id from <a href="http://www.otzberg.net/iguserid/" target="_blank">this page</a>.';
 	//http://nullrefer.com/?http://instagram.pixelunion.net/
 }
@@ -92,6 +94,9 @@ function pipdig_instagram_options_page() {
 	}
 	.instagram-token-button:hover {
 		background: #e89a2e;
+	}
+	.notice-warning {
+		display: none;
 	}
 	</style>
 	<form action='options.php' method='post'>
