@@ -81,7 +81,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		
 		if(get_theme_mod('site_top_search')) $navbar_icons .= '<a class="toggle-search"><i class="fa fa-search"></i></a>'; // still need to p3 this.
 		
-		if (class_exists('Woocommerce') && get_theme_mod('p3_navbar_woocommerce')) {
+		if (class_exists('Woocommerce') && get_theme_mod('p3_navbar_woocommerce', 1)) {
 			global $woocommerce;
 			$navbar_icons .= '<a href="' . $woocommerce->cart->get_cart_url() . '" rel="nofollow"><i class="fa fa-shopping-cart"></i></a>';
 		}

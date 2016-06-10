@@ -6,19 +6,21 @@ if (!defined('ABSPATH')) {
 
 // function to fetch images
 if (!function_exists('p3_instagram_fetch')) {
-	function p3_instagram_fetch($userid = '') {
+	function p3_instagram_fetch($access_token = '') {
 		
 		$instagram_deets = get_option('pipdig_instagram');
 		
 		//if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) {
 		if (!empty($instagram_deets['access_token'])) { 
 		
-			$access_token = sanitize_text_field($instagram_deets['access_token']);
+			if (empty($access_token)) {
+				$access_token = sanitize_text_field($instagram_deets['access_token']);
+			}
 			
-			if (empty($userid)) {
+			//if (empty($userid)) {
 				$user_id = explode('.', $access_token);
 				$userid = trim($user_id[0]);
-			}
+			//}
 			
 			//$access_token = '2165912485.3a81a9f.abb156bb2d7240239e1fbbfd515d018d'; //smash
 			//$access_token = '2165912485.d8d1d50.9f924d0c46e54bf297bffce4173cc86c'; //pixel
@@ -149,7 +151,7 @@ if (!function_exists('p3_instagram_footer')) {
 			return;
 		}
 		
-		$images = p3_instagram_fetch(''); // grab images
+		$images = p3_instagram_fetch(); // grab images
 			
 		if ($images) {
 			$meta = intval(get_theme_mod('p3_instagram_meta'));
@@ -211,7 +213,7 @@ if (!function_exists('p3_instagram_header')) {
 			return;
 		}
 		
-		$images = p3_instagram_fetch(''); // grab images
+		$images = p3_instagram_fetch(); // grab images
 			
 		if ($images) {
 			$meta = intval(get_theme_mod('p3_instagram_meta'));
@@ -256,7 +258,7 @@ if (!function_exists('p3_instagram_top_of_posts')) {
 			return;
 		}
 		
-		$images = p3_instagram_fetch(''); // grab images
+		$images = p3_instagram_fetch(); // grab images
 		
 		if ($images) {
 			$meta = intval(get_theme_mod('p3_instagram_meta'));

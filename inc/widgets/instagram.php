@@ -20,9 +20,9 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		$cols = 2;
 		$follow = false;
 		$likes = false;
-		$user_id = '';
-		if (isset($instance['user_id'])) { 
-			$user_id = sanitize_text_field($instance['user_id']);
+		$access_token = '';
+		if (isset($instance['access_token'])) { 
+			$access_token = sanitize_text_field($instance['access_token']);
 		}
 		if (!empty($instance['likes'])) {
 			$likes = true;
@@ -62,7 +62,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 			echo $before_title . 'Instagram' . $after_title;
 		}
 		
-		$images = p3_instagram_fetch($user_id); // grab images
+		$images = p3_instagram_fetch($access_token); // grab images
 		
 		//print_r($images);
 		
@@ -109,9 +109,9 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		$cols = 2;
 		$follow = false;
 		$likes = false;
-		$user_id = '';
-		if (isset($instance['user_id'])) { 
-			$user_id = sanitize_text_field($instance['user_id']);
+		$access_token = '';
+		if (isset($instance['access_token'])) { 
+			$access_token = sanitize_text_field($instance['access_token']);
 		}
 		if (isset($instance['images_num'])) { 
 			$images_num = absint($instance['images_num']);
@@ -130,28 +130,26 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 	
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?>
-			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
-			name="<?php echo $this->get_field_name('title'); ?>" type="text" 
-			value="<?php echo esc_attr($title); ?>" />
+			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
 			</label>
 		</p>
 		
 		<p><?php
-		if (p3_instagram_fetch('')) {
-			printf(__('By default, this widget will display recent images from your main <a href="%s">Instagram account</a>. If you would prefer to use a different Instagram account, you can add the <a href="%s" target="_blank">User ID Number</a> below:', 'p3'), admin_url('admin.php?page=pipdig-instagram'), esc_url('http://www.otzberg.net/iguserid/'));
+		if (p3_instagram_fetch()) {
+			printf(__('By default, this widget will display recent images from your main <a href="%s">Instagram account</a>. If you would prefer to use a different Instagram account, you can include the <a href="%s" target="_blank">Access Token</a> below:', 'p3'), admin_url('admin.php?page=pipdig-instagram'), esc_url('https://go.pipdig.co/open.php?id=instagram'));
 		} else {
 			printf(__('You need to complete the settings on <a href="%s">this page</a> before this widget will work.', 'p3'), admin_url('admin.php?page=pipdig-instagram'));
 		}
 		?></p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('user_id'); ?>"><?php _e('User ID (optional)', 'p3'); ?></label><br />
-			<input type="number" min="1" max="20" step="1" id="<?php echo $this->get_field_id( 'user_id' ); ?>" name="<?php echo $this->get_field_name( 'user_id' ); ?>" value="<?php if ($user_id) { echo $user_id; } ?>" />
+			<label for="<?php echo $this->get_field_id('access_token'); ?>"><?php _e('Access Token (optional)', 'p3'); ?></label><br />
+			<input type="text" id="<?php echo $this->get_field_id( 'access_token' ); ?>" name="<?php echo $this->get_field_name( 'access_token' ); ?>" value="<?php if ($access_token) { echo $access_token; } ?>" class="widefat" />
 		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id('images_num'); ?>"><?php _e('Number of images to display:', 'p3'); ?></label><br />
-			<input type="number" min="1" max="20" step="1" id="<?php echo $this->get_field_id( 'images_num' ); ?>" name="<?php echo $this->get_field_name( 'images_num' ); ?>" value="<?php if ($images_num) { echo $images_num; } else { echo '4'; } ?>" />
+			<input type="number" min="1" max="20" id="<?php echo $this->get_field_id( 'images_num' ); ?>" name="<?php echo $this->get_field_name( 'images_num' ); ?>" value="<?php if ($images_num) { echo $images_num; } else { echo '4'; } ?>" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('cols'); ?>"><?php _e('Number of columns:', 'p3'); ?></label><br />
@@ -173,7 +171,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['title'] = sanitize_text_field($new_instance['title']);
-		$instance['user_id'] = sanitize_text_field($new_instance['user_id']);
+		$instance['access_token'] = sanitize_text_field($new_instance['access_token']);
 		$instance['images_num'] = absint($new_instance['images_num']);
 		$instance['cols'] = absint($new_instance['cols'] );
 		$instance['likes'] = strip_tags($new_instance['likes']);
