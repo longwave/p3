@@ -82,7 +82,7 @@ include_once('inc/widgets.php');
 include('inc/shortcodes.php');
 
 // cron
-include('inc/cron.php');
+//include('inc/cron.php');
 
 
 

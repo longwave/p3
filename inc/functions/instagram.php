@@ -22,6 +22,19 @@ if (!function_exists('p3_instagram_fetch')) {
 				$userid = trim($user_id[0]);
 			//}
 			
+			// store user ids so we can clear transients in cron
+			$instagram_users = get_option('pipdig_instagram_users');
+			
+			if (!empty($instagram_users)) {
+				$instagram_users = array_push($instagram_users, $userid);
+				update_option('pipdig_ig_transients', $instagram_users);
+			} else {
+				$instagram_users = array($userid);
+				update_option('pipdig_ig_transients', $instagram_users);
+			}
+			
+			
+			
 			//$access_token = '2165912485.3a81a9f.abb156bb2d7240239e1fbbfd515d018d'; //smash
 			//$access_token = '2165912485.d8d1d50.9f924d0c46e54bf297bffce4173cc86c'; //pixel
 			
@@ -45,7 +58,7 @@ if (!function_exists('p3_instagram_fetch')) {
 					$result = $code;
 				}
 				
-				set_transient( 'p3_instagram_feed_'.$userid, $result, 30 * MINUTE_IN_SECONDS );
+				set_transient( 'p3_instagram_feed_'.$userid, $result, 15 * MINUTE_IN_SECONDS );
 			}
 			
 			//$result = json_decode($result['body']);

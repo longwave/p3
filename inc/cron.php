@@ -18,12 +18,14 @@ function pipdig_p3_deactivate_cron() {
 register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
 
 
+
 // clear stats gen transient
 function pipdig_p3_do_this_daily() {
 	
 	// clear stats transient
 	delete_transient('p3_stats_gen');
 	
+	/*
 	$instagram_deets = get_option('pipdig_instagram');
 	
 	if (!empty($instagram_deets['access_token'])) { 
@@ -31,6 +33,15 @@ function pipdig_p3_do_this_daily() {
 		$user_id = explode('.', $access_token);
 		$userid = trim($user_id[0]);
 		delete_transient('p3_instagram_feed_'.$userid);
+	}
+	*/
+	
+	$instagram_users = get_option('pipdig_instagram_users');
+	
+	if (!empty($instagram_users)) {
+		foreach ($instagram_users as $instagram_user) {
+			delete_transient('p3_instagram_feed_'.$instagram_user);
+		}
 	}
 	
 	/*
