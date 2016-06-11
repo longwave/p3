@@ -38,10 +38,10 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 
 		if (!empty($twitter_handle)) { ?>
 			<?php $twitter_handle = str_replace('@', '', $twitter_handle); ?>
-			<a class="twitter-timeline" href="https://twitter.com/<?php echo $twitter_handle; ?>" data-tweet-limit="<?php echo $number; ?>">Tweets by <?php echo $twitter_handle; ?></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+			<a class="twitter-timeline" href="https://twitter.com/<?php echo $twitter_handle; ?>" data-dnt="true" data-chrome="nofooter" data-tweet-limit="<?php echo $number; ?>" data-link-color="<?php echo get_theme_mod( 'post_links_color', '#333333' ); ?>">Tweets by <?php echo $twitter_handle; ?></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 			<br />
 			<a href="https://twitter.com/<?php echo $twitter_handle; ?>" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @<?php echo $twitter_handle; ?></a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>		
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");</script>		
 		<?php } else {
 			_e('Setup not complete. Please check the widget options.', 'p3');
 		}
