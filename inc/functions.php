@@ -246,6 +246,7 @@ if (!function_exists('pipdig_p3_comment_nav')) {
 	}
 }
 
+//include('functions/social-sidebar.php');
 include('functions/full_screen_landing_image.php');
 include('functions/top_menu_bar.php');
 include('functions/post-options.php');
