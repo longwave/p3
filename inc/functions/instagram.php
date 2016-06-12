@@ -27,10 +27,10 @@ if (!function_exists('p3_instagram_fetch')) {
 			
 			if (!empty($instagram_users)) {
 				$instagram_users = array_push($instagram_users, $userid);
-				update_option('pipdig_ig_transients', $instagram_users);
+				update_option('pipdig_instagram_users', $instagram_users);
 			} else {
 				$instagram_users = array($userid);
-				update_option('pipdig_ig_transients', $instagram_users);
+				update_option('pipdig_instagram_users', $instagram_users);
 			}
 			
 			

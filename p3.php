@@ -5,7 +5,7 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.3.10
+Version: 2.3.11
 Text Domain: p3
 */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'PIPDIG_P3_V', '2.3.10' );
+define( 'PIPDIG_P3_V', '2.3.11' );
 
 function pipdig_p3_invalid_name() {
 	echo '<!-- p3 invalid name -->';
@@ -82,7 +82,7 @@ include_once('inc/widgets.php');
 include('inc/shortcodes.php');
 
 // cron
-//include('inc/cron.php');
+include('inc/cron.php');
 
 
 
