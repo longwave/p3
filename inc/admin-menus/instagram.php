@@ -22,7 +22,6 @@ function pipdig_instagram_init() {
 		'pipdig_instagram_options_page', 
 		'pipdig_instagram_options_page_section' 
 	);
-	/*
 	add_settings_field( 
 		'user_id', 
 		'User ID', 
@@ -30,7 +29,6 @@ function pipdig_instagram_init() {
 		'pipdig_instagram_options_page', 
 		'pipdig_instagram_options_page_section' 
 	);
-	*/
 	
 }
 add_action('admin_init', 'pipdig_instagram_init');
@@ -47,7 +45,7 @@ function p3_instagram_at_render() {
 	?>
 	<input class='large-text' type='text' name='pipdig_instagram[access_token]' value="<?php echo $access_token; ?>"> <?php
 }
-/*
+
 function p3_instagram_userid_render() {
 	$instagram_deets = get_option('pipdig_instagram');
 	$user_id = '';
@@ -58,7 +56,7 @@ function p3_instagram_userid_render() {
 	?>
 	<input class='large-text' type='text' name='pipdig_instagram[user_id]' value="<?php echo $user_id; ?>"> <?php
 }
-*/
+
 
 
 

@@ -17,10 +17,13 @@ if (!function_exists('p3_instagram_fetch')) {
 				$access_token = sanitize_text_field($instagram_deets['access_token']);
 			}
 			
-			//if (empty($userid)) {
+			if (!empty($instagram_deets['user_id'])) {
+				$userid = sanitize_text_field($instagram_deets['user_id']);
+			}
+			if (empty($userid)) {
 				$user_id = explode('.', $access_token);
 				$userid = trim($user_id[0]);
-			//}
+			}
 			
 			// store user ids so we can clear transients in cron
 			$instagram_users = get_option('pipdig_instagram_users');
@@ -35,14 +38,8 @@ if (!function_exists('p3_instagram_fetch')) {
 				update_option('pipdig_instagram_users', $instagram_users);
 			}
 			
-			
-			
 			//$access_token = '2165912485.3a81a9f.abb156bb2d7240239e1fbbfd515d018d'; //smash
-			//$access_token = '2165912485.d8d1d50.9f924d0c46e54bf297bffce4173cc86c'; //pixel
-			
-			//if (empty($userid)) {
-				//$userid = sanitize_text_field($instagram_deets['user_id']);
-			//}
+						
 			
 			if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
 				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=20";
@@ -130,7 +127,7 @@ if (!function_exists('p3_instagram_clear_transients')) {
 			}
 			delete_transient( 'p3_instagram_feed_'.$userid );
 		}
-			
+		
 	}
 	add_action('p3_instagram_save_action', 'p3_instagram_clear_transients');
 }
@@ -306,6 +303,55 @@ if (!function_exists('p3_instagram_top_of_posts')) {
 }
 
 
+// kensington feed
+if (!function_exists('p3_instagram_bottom_of_posts')) {
+	function p3_instagram_bottom_of_posts() {
+		
+		if (!get_theme_mod('p3_instagram_kensington') || (!is_front_page() || !is_home())) {
+			return;
+		}
+		
+		$images = p3_instagram_fetch(); // grab images
+			
+		if ($images) {
+			$meta = intval(get_theme_mod('p3_instagram_meta'));
+			$num = intval(get_theme_mod('p3_instagram_number', 8));
+			if (get_theme_mod('p3_instagram_rows')) {
+				$num = $num*2;
+			}
+		?>
+			<div class="clearfix"></div>
+			<div id="p3_instagram_kensington" class="row">
+				<div class="container">
+				<h3 class="widget-title"><span>Instagram</span></h3>
+				<?php $num = $num-1; // account for array starting at 0 ?>
+					<?php for ($x = 0; $x <= $num; $x++) {
+						$hide_class = '';
+						if ($x >= 4) {
+							$hide_class = ' p3_instagram_hide_mobile';
+						}
+						?>
+						<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
+							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
+							<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
+						</a>
+					<?php } ?>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<?php
+		} else { // no access token or user id, so error for admins:
+			if (current_user_can('manage_options')) {
+				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>.</p>';
+			}
+		}
+
+	}
+	add_action('p3_site_main_end', 'p3_instagram_bottom_of_posts', 99);
+}
+
+
 // customiser
 if (!class_exists('pipdig_p3_instagram_Customiser')) {
 	class pipdig_p3_instagram_Customiser {
@@ -332,12 +378,12 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 				'p3_instagram_header',
 				array(
 					'type' => 'checkbox',
-					'label' => __( 'Display feed in the header (Homepage)', 'p3' ),
+					'label' => __( 'Display feed across the header (Homepage)', 'p3' ),
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
 			
-			// header feed
+			// header feed on all pages?
 			$wp_customize->add_setting('p3_instagram_header_all',
 				array(
 					'default' => 0,
@@ -349,12 +395,12 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Display header feed on all pages', 'p3' ),
-					'description' => __( 'By default, the header feed will only display on the homepage. If you want to display it on all pages, selec this option too.', 'p3' ),
+					'description' => __( 'By default, the header feed will only display on the homepage. If you want to display it on all pages, select this option too.', 'p3' ),
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
 			
-			// Instagram footer
+			// style and light
 			$wp_customize->add_setting('body_instagram',
 				array(
 					'default' => 0,
@@ -366,6 +412,22 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __('Display feed above posts on homepage', 'p3'),
+					'section' => 'pipdig_p3_instagram_section',
+				)
+			);
+			
+			// kensington
+			$wp_customize->add_setting('p3_instagram_kensington',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_instagram_kensington',
+				array(
+					'type' => 'checkbox',
+					'label' => __('Display feed below posts on homepage', 'p3'),
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
@@ -381,7 +443,7 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 				'p3_instagram_footer',
 				array(
 					'type' => 'checkbox',
-					'label' => __( 'Display feed in the footer', 'p3' ),
+					'label' => __( 'Display feed across the footer', 'p3' ),
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);

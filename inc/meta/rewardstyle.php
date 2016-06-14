@@ -20,30 +20,7 @@ function pipdig_p3_meta_boxes_rs($meta_boxes) {
 				'desc'  => 'Copy the ID number from the shorcode provided by rewardStyle.',
 				'id'    => $prefix . 'rs_shopthepost',
 				'type'  => 'number',
-			),
-			/*
-			array(
-				'name'		=> 'Display widget on this post?',
-				'id'		=> $prefix . 'rs_shopthepost_post',
-				'clone'		=> false,
-				'type'		=> 'checkbox',
-				'std'		=> true
-			),
-			array(
-				'name'		=> 'Display when viewing the post on the homepage?',
-				'id'		=> $prefix . 'rs_shopthepost_home',
-				'clone'		=> false,
-				'type'		=> 'checkbox',
-				'std'		=> false
-			),
-			array(
-				'name'		=> 'Display when viewing the post in a category?',
-				'id'		=> $prefix . 'rs_shopthepost_cat',
-				'clone'		=> false,
-				'type'		=> 'checkbox',
-				'std'		=> false
-			),
-			*/
+			)
 		)
 	);
 	
@@ -55,12 +32,9 @@ add_filter( 'rwmb_meta_boxes', 'pipdig_p3_meta_boxes_rs' );
 function pipdig_p3_post_footer_rs() {
 	if (function_exists('rwmb_meta')) {
 		$rs_shopthepost_id = rwmb_meta('pipdig_meta_rs_shopthepost');
-		if (empty($rs_id)) {
+		if (empty($rs_shopthepost_id)) {
 			return;
 		}
-		//$rs_shopthepost_post = rwmb_meta('pipdig_meta_rs_shopthepost_post');
-		//$rs_shopthepost_home = rwmb_meta('pipdig_meta_rs_shopthepost_home');
-		//$rs_shopthepost_cat = rwmb_meta('pipdig_meta_rs_shopthepost_cat');
 	} else {
 		return;
 	}
