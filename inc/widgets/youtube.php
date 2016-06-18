@@ -38,10 +38,10 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 			
 			if ( false === ( $output = get_transient( 'p3_youtube_widget_'.$channel_id ) ) ) { // transient
 			
-				$json = wp_remote_fopen('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key=AI'.$hexadecimal.'8d0'.'tvL'.'dS'.'P8r'.'yT'.'lS'.'Dq'.'egN'.'5c&type=video&maxResults=1');
+				$json = wp_remote_fopen(esc_url('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key=AI'.$hexadecimal.'8d0'.'tvL'.'dS'.'P8r'.'yT'.'lS'.'Dq'.'egN'.'5c&type=video&maxResults=1'));
 				$listFromYouTube = json_decode($json);
 				$video_title = $listFromYouTube->items[0]->snippet->title;
-				$video_id = $listFromYouTube->items[0]->id->videoId;
+				$video_id = strip_tags($listFromYouTube->items[0]->id->videoId);
 				$max_res_url = "https://img.youtube.com/vi/".$video_id."/maxresdefault.jpg";
 				$max = get_headers($max_res_url);
 				if (substr($max[0], 9, 3) !== '404') {
