@@ -24,7 +24,7 @@ if ($this_theme->get('Author') != 'pipdig') { // not by pipdig, but hey that's o
 	if ($child_parent) { // it's a child, all's good.
 		$child_parent = explode('-', trim($child_parent));
 		if ($child_parent[0] != 'pipdig') { // it's a child and we ain't the parent
-			add_action('wp_footer','pipdig_p3_invalid_name', 99999);
+			add_action('wp_footer', 'pipdig_p3_invalid_name', 99999);
 			return;
 		}
 	} else {
@@ -32,7 +32,7 @@ if ($this_theme->get('Author') != 'pipdig') { // not by pipdig, but hey that's o
 		if ($theme_textdomain) {
 			$theme_textdomain = explode('-', trim($theme_textdomain));
 			if ($theme_textdomain[0] != 'pipdig') { // we're the parent :')
-				add_action('wp_footer','pipdig_p3_invalid_name', 99999);
+				add_action('wp_footer', 'pipdig_p3_invalid_name', 99999);
 				return;
 			} 
 		}
@@ -285,6 +285,8 @@ function pipdig_p3_activate() {
 			$piplink2 = esc_url('https://www.pipdig.co/');
 			$amicorum = array(
 			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink2.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform: lowercase;letter-spacing: 1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">WordPress themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
 			'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',

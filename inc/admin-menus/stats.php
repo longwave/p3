@@ -190,6 +190,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 				// Restore original Post Data
 				wp_reset_postdata();
 				*/
+				/*
 				if ( false === ( $sharedcount = get_transient('p3_stats_sharedcount_home') ) ) {
 					$url = 'http://www.inthefrow.com'; // just for testing
 					//$url = home_url();
@@ -207,6 +208,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 				$Diggs_shares = intval($sharedcount['Diggs']);
 				$Pinterest_shares = intval($sharedcount['Pinterest']);
 				$LinkedIn_shares = intval($sharedcount['LinkedIn']);
+				*/
 			?>
 
 			<script>
