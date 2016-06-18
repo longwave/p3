@@ -9,19 +9,14 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 	 
 	  public function __construct() {
 		 $widget_ops = array('classname' => 'pipdig_widget_latest_youtube', 'description' => __('Automatically displays your latest YouTube video.', 'p3') );
-		 parent::__construct('pipdig_widget_latest_youtube', 'pipdig - ' . __('Latest YouTube', 'p3'), $widget_ops);
+		 parent::__construct('pipdig_widget_latest_youtube', 'pipdig - ' . __('YouTube Videos', 'p3'), $widget_ops);
 	  }
 	  
 	  function widget($args, $instance) {
 		// PART 1: Extracting the arguments + getting the values
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
-		$hexadecimal = '';
-		if (isset($instance['channel_id'])) { 
-			$channel_id = trim($instance['channel_id']);
-			$hexadecimal = 'za'.'Sy'.'CBY'.'yh'.'zMn'.'NNP';
-		}
-		
+
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
 	   
@@ -31,35 +26,50 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		} else {
 			echo $before_title . 'YouTube' . $after_title;
 		}
+		
+		if (isset($instance['channel_id'])) { 
+			$channel_id = strip_tags($instance['channel_id']);
+		}
 
 		if (!empty($channel_id)) {
 			
-			$output = '';
-			
-			if ( false === ( $output = get_transient( 'p3_youtube_widget_'.$channel_id ) ) ) { // transient
-			
-				$json = wp_remote_fopen(esc_url('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key=AI'.$hexadecimal.'8d0'.'tvL'.'dS'.'P8r'.'yT'.'lS'.'Dq'.'egN'.'5c&type=video&maxResults=1'));
-				$listFromYouTube = json_decode($json);
-				$video_title = $listFromYouTube->items[0]->snippet->title;
-				$video_id = strip_tags($listFromYouTube->items[0]->id->videoId);
-				$max_res_url = "https://img.youtube.com/vi/".$video_id."/maxresdefault.jpg";
-				$max = get_headers($max_res_url);
-				if (substr($max[0], 9, 3) !== '404') {
-					$thumbnail = $max_res_url;   
-				} else {
-					$thumbnail = "https://img.youtube.com/vi/".$video_id."/mqdefault.jpg";
-				}
-				
-				$output .= '<div style="position:relative"><a href="https://www.youtube.com/watch?v='.$video_id.'" title="'.esc_attr($video_title).'" target="_blank" rel="nofollow"><img src="'.esc_url($thumbnail).'" style="width:100%;height:auto" alt="'.esc_attr($video_title).'"/><div style="position:absolute;bottom:2px;right:7px;color:#d92524;opacity:.8;font-size:25px;"><i class="fa fa-youtube-play"></i></div></a></div>';
-				
-				if (!empty($instance['show_title'])) {
-					$output .= '<a href="https://www.youtube.com/watch?v='.$video_id.'" title="'.esc_attr($video_title).'" target="_blank" rel="nofollow">'.strip_tags($video_title).'</a>';
-				}
-				
-				set_transient('p3_youtube_widget_'.$channel_id, $output, 30 * MINUTE_IN_SECONDS);
-				
+			if (isset($instance['number'])) { 
+				$number = absint($instance['number']);
+			} else {
+				$number = 1;
 			}
-			echo $output;
+			
+			$videos = p3_youtube_fetch($channel_id, $number); // grab videos
+			
+			//print_r($videos);
+				
+			if ($videos) { ?>
+			
+				<?php $i = 1; // just for margin counter below ?>
+			
+				<?php foreach($videos as $video) { ?>
+				
+					<?php
+					// margin for all except first in series
+					$margin = '';
+					if (($number > 1) && ($i != 1)) {
+						$margin = 'margin-top:15px;';
+					}
+					$i++;
+					?>
+				
+					<div class="p3_cover_me" style="background-image:url(<?php echo $video['thumbnail']; ?>);<?php echo $margin; ?>">
+						<a href="<?php echo $video['link']; ?>" target="_blank" rel="nofollow">
+							<img class="p3_invisible" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=" alt="<?php echo esc_attr($video['title']); ?>"/>
+						</a>
+					</div>
+					<?php if (!empty($instance['show_title'])) { ?>
+						<a href="<?php echo $video['link']; ?>" target="_blank" rel="nofollow"><?php echo $video['title']; ?></a>
+					<?php } ?>
+				<?php } ?>
+				
+			<?php
+			}
 			
 		} else {
 			_e('Setup not complete. Please check the widget options.', 'p3');
@@ -78,6 +88,9 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		}
 		if (empty($instance['show_title'])) {
 			$show_title = true;
+		}
+		if (isset($instance['number'])) { 
+			$number = absint($instance['number']);
 		}
 	   
 		// PART 2-3: Display the fields
@@ -103,8 +116,13 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		</p>
 		
 		<p>
+			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of videos to display:', 'p3'); ?></label><br />
+			<input type="number" min="1" max="10" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" value="<?php if (!empty($number)) { echo $number; } else { echo '1'; } ?>" /> (max 10)
+		</p>
+		
+		<p>
 			<label for="<?php echo $this->get_field_id('show_title'); ?>">
-			<input type="checkbox" id="<?php echo $this->get_field_id('show_title'); ?>" name="<?php echo $this->get_field_name('show_title'); ?>" <?php if (isset($instance['show_title'])) { checked( (bool) $instance['show_title'], true ); } ?> /><?php _e('Display the video title.', 'p3'); ?></label>
+			<input type="checkbox" id="<?php echo $this->get_field_id('show_title'); ?>" name="<?php echo $this->get_field_name('show_title'); ?>" <?php if (isset($instance['show_title'])) { checked( (bool) $instance['show_title'], true ); } ?> /><?php _e('Display the video title', 'p3'); ?></label>
 			<br />
 		</p>
 
@@ -116,6 +134,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		$instance = $old_instance;
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		$instance['channel_id'] = strip_tags(trim($new_instance['channel_id']));
+		$instance['number'] = absint($new_instance['number']);
 		$instance['show_title'] = strip_tags($new_instance['show_title']);
 		delete_transient('p3_youtube_widget_'.$instance['channel_id']); // delete transient
 		return $instance;

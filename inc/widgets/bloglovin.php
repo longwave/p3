@@ -9,7 +9,7 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 	 
 	  public function __construct() {
 		  $widget_ops = array('classname' => 'pipdig_theme_bloglovin_widget', 'description' => __("Display your Bloglovin' follower count.", 'p3') );
-		  parent::__construct('pipdig_theme_bloglovin_widget', 'pipdig - ' . __("Bloglovin' Widget", 'p3'), $widget_ops);
+		  parent::__construct('pipdig_theme_bloglovin_widget', 'pipdig - ' . __("Bloglovin' Button", 'p3'), $widget_ops);
 	  }
 	  
 	  function widget($args, $instance) {

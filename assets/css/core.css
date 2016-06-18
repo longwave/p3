@@ -24,6 +24,9 @@ background-position: center;
 display: block;
 position: relative;
 }
+.p3_cover_me a {
+display: block;
+}
 
 .top-socialz {
 float: right;

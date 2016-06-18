@@ -44,6 +44,14 @@ function pipdig_p3_do_this_daily() {
 		}
 	}
 	
+	$youtube_channels = get_option('pipdig_youtube_channels');
+	
+	if (!empty($youtube_channels)) {
+		foreach ($youtube_channels as $channel_id) {
+			delete_transient('p3_instagram_feed_'.$channel_id);
+		}
+	}
+	
 	/*
 	$response = wp_safe_remote_request('https://www.pipdig.co/_plonkers.txt');
 

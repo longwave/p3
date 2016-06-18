@@ -9,7 +9,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 	 
 	  public function __construct() {
 		  $widget_ops = array('classname' => 'pipdig_widget_pinterest', 'description' => __('Displays your latest Pinterest pins.', 'p3') );
-		  parent::__construct('pipdig_widget_pinterest', 'pipdig - ' . __('Pinterest Widget', 'p3'), $widget_ops);
+		  parent::__construct('pipdig_widget_pinterest', 'pipdig - ' . __('Pinterest Pins', 'p3'), $widget_ops);
 	  }
 	  
 	  function widget($args, $instance) {

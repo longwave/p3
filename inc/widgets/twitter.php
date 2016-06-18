@@ -9,7 +9,7 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 	 
 	  public function __construct() {
 		  $widget_ops = array('classname' => 'pipdig_widget_twitter', 'description' => __('Display your Twitter timeline.', 'p3') );
-		  parent::__construct('pipdig_widget_twitter', 'pipdig - ' . __('Twitter Widget', 'p3'), $widget_ops);
+		  parent::__construct('pipdig_widget_twitter', 'pipdig - ' . __('Twitter Timeline', 'p3'), $widget_ops);
 	  }
 	  
 	  function widget($args, $instance) {

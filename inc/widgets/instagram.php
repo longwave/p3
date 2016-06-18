@@ -9,7 +9,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 	 
 	  public function __construct() {
 		  $widget_ops = array('classname' => 'pipdig_widget_instagram', 'description' => __('Displays your latest Instagram photos', 'p3') );
-			parent::__construct('pipdig_widget_instagram', 'pipdig - ' . __('Instagram Widget', 'p3'), $widget_ops);
+			parent::__construct('pipdig_widget_instagram', 'pipdig - ' . __('Instagram Feed', 'p3'), $widget_ops);
 	  }
 	  
 	  function widget($args, $instance) {
