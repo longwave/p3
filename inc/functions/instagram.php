@@ -134,7 +134,7 @@ if (!function_exists('p3_instagram_clear_transients')) {
 
 // add css to head depending on amount of images displayed
 function p3_instagram_css_to_head($width) {
-	if (get_theme_mod('p3_instagram_header') || get_theme_mod('p3_instagram_footer')) {
+	if (get_theme_mod('p3_instagram_header') || get_theme_mod('p3_instagram_footer') || get_theme_mod('p3_instagram_kensington')) {
 		$num = absint(get_theme_mod('p3_instagram_number', 8));
 		$width = 100 / $num;
 		?>
