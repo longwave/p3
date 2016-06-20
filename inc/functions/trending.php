@@ -4,6 +4,11 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+$theme = get_option('pipdig_theme');
+if ($theme == 'londoncalling') {
+	return;
+}
+
 if (!function_exists('p3_trending_bar')) {
 	function p3_trending_bar() {
 		
