@@ -269,7 +269,8 @@ include('functions/featured_cats.php');
 include('functions/schema.php');
 
 // bundled
-include('bundled/customizer-reset/customizer-reset.php');
+include_once('bundled/mb-term-meta/mb-term-meta.php');
+include_once('bundled/customizer-reset/customizer-reset.php');
 
 // hide tabs on social count plus
 if (class_exists('Social_Count_Plus')) {
