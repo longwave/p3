@@ -20,6 +20,7 @@ if (!function_exists('p3_instagram_fetch')) {
 			if (!empty($instagram_deets['user_id'])) {
 				$userid = sanitize_text_field($instagram_deets['user_id']);
 			}
+			
 			if (empty($userid)) {
 				$user_id = explode('.', $access_token);
 				$userid = trim($user_id[0]);
@@ -42,7 +43,7 @@ if (!function_exists('p3_instagram_fetch')) {
 						
 			
 			if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
-				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=20";
+				$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=25";
 				$args = array(
 				    'timeout' => 30,
 				);
@@ -64,8 +65,8 @@ if (!function_exists('p3_instagram_fetch')) {
 			
 			//print_r($result['body']);
 			
-			for ($i = 0; $i < 19; $i++) {
-				if (isset($result->data[$i])) {
+			for ($i = 0; $i < 20; $i++) {
+				if (!empty($result->data[$i])) {
 					
 					$caption = '';
 					if ((!empty($result->data[$i]->caption->text))) {

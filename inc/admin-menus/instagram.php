@@ -22,6 +22,7 @@ function pipdig_instagram_init() {
 		'pipdig_instagram_options_page', 
 		'pipdig_instagram_options_page_section' 
 	);
+	
 	add_settings_field( 
 		'user_id', 
 		'User ID', 
@@ -29,6 +30,7 @@ function pipdig_instagram_init() {
 		'pipdig_instagram_options_page', 
 		'pipdig_instagram_options_page_section' 
 	);
+	
 	
 }
 add_action('admin_init', 'pipdig_instagram_init');
@@ -78,6 +80,7 @@ function pipdig_instagram_section_callback() {
 
 function pipdig_instagram_options_page() { 
 	?>
+	<div class="wrap">
 	<style scoped>
 	.form-table th {width: 110px;}
 	.instagram-token-button {
@@ -100,6 +103,8 @@ function pipdig_instagram_options_page() {
 	<form action='options.php' method='post'>
 			
 		<h1>Instagram Settings</h1>
+		
+		<div class="card">
 					
 		<?php
 		settings_fields('pipdig_instagram_options_page');
@@ -109,8 +114,12 @@ function pipdig_instagram_options_page() {
 		?>
 		
 		<p>After connecting your account, you can setup our <a href="https://support.pipdig.co/articles/wordpress-how-to-create-and-use-widgets/" target="_blank">Instagram Widget</a> and <a href="https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/" target="_blank">Instagram Feed</a> options</p>
+		
+		</div><!--// .card -->
 			
 	</form>
+	
+	</div><!--// .wrap -->
 	<?php
 }
 
