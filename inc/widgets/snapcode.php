@@ -15,21 +15,22 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
     // PART 1: Extracting the arguments + getting the values
     extract($args, EXTR_SKIP);
     $title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
-    $snapchat_account = empty($instance['snapchat_account']) ? '' : $instance['snapchat_account'];
+    $snapchat_account = empty($instance['snapchat_account']) ? '' : trim($instance['snapchat_account']);
 	$snapcode = empty($instance['snapcode']) ? '' : $instance['snapcode'];
+	$snap_url = esc_url('https://www.snapchat.com/add/'.$snapchat_account);
 	
     // Before widget code, if any
     echo (isset($before_widget)?$before_widget:'');
    
     // PART 2: The title and the text output
     if (!empty($title)) {
-		echo $before_title . $title . $after_title;
+		echo $before_title . esc_html($title) . $after_title;
 	}
 	
     if (!empty($snapcode)) { ?>
-		<img src="<?php echo $snapcode; ?>" style="min-width: 1in; max-width: 1.2in; height: auto;" alt="Snapchat" />
+		<a href="<?php echo $snap_url; ?>" target="_blank" rel="nofollow"><img src="<?php echo esc_url($snapcode); ?>" style="min-width: 1in; max-width: 1.2in; height: auto;" alt="<?php echo esc_attr($snapchat_account); ?> on Snapchat" /></a>
 		<?php if (!empty($snapchat_account)) { ?>
-			<p><?php printf( __('Follow <b>%s</b> on Snapchat!', 'p3'), $snapchat_account ); ?></p>
+			<p><?php printf( __('Follow <b>%s</b> on Snapchat!', 'p3'), esc_html($snapchat_account) ); ?></p>
 		<?php } ?>
 	<?php } else {
 		_e("Setup not complete. Please check the widget options.", 'p3');
