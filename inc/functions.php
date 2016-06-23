@@ -28,6 +28,10 @@ if (!function_exists('p3_lightbox_rel')) {
 }
 */
 
+function pipdig_strip($data) {
+	return strip_tags(trim($data));
+}
+
 // load image catch function, just in case theme hasn't
 if (!function_exists('pipdig_p3_catch_that_image')) {
 	function pipdig_p3_catch_that_image() {

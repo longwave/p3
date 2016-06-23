@@ -57,7 +57,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 	   
 		// PART 2: The title and the text output
 		if (!empty($title)) {
-			echo $before_title . $title . $after_title;
+			echo $before_title . esc_html($title) . $after_title;
 		} else {
 			echo $before_title . 'Instagram' . $after_title;
 		}

@@ -13,7 +13,11 @@ if (!function_exists('p3_related_posts')) {
 			return;
 		}
 		
-		$the_shape = absint(get_theme_mod('p3_related_posts_shape'));
+		$the_shape = absint(get_theme_mod('p3_related_posts_shape', 1));
+		$number = absint(get_theme_mod('p3_related_posts_number', 4));
+		if ($number > 4) {
+			$number = 4;
+		}
 		
 		$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC'; // landscape
 	
@@ -58,7 +62,7 @@ if (!function_exists('p3_related_posts')) {
 				$query = new wp_query( array(
 					'category__in' => $category_ids,
 					'post__not_in' => array($post_id),
-					'posts_per_page'=> 4,
+					'posts_per_page'=> $number,
 					'orderby' => 'rand',
 					'date_query' => array(
 						array(
@@ -150,10 +154,32 @@ if (!class_exists('pipdig_related_Customize')) {
 				)
 			);
 			
+			// number of posts
+			$wp_customize->add_setting('p3_related_posts_number',
+				array(
+					'default' => 4,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_related_posts_number',
+				array(
+					'type' => 'number',
+					'label' => __( 'Number of posts to display', 'p3' ),
+					'description' => __( 'Maximum = 4', 'p3' ),
+					'section' => 'pipdig_related_posts_pop',
+					'input_attrs' => array(
+						'min'   => 1,
+						'max'   => 4,
+						'step'  => 1,
+					),
+				)
+			);
+			
 			// image shape
 			$wp_customize->add_setting('p3_related_posts_shape',
 				array(
-					'default' => '1',
+					'default' => 1,
 					'sanitize_callback' => 'absint',
 				)
 			);

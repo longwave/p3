@@ -15,14 +15,6 @@ function pipdig_p3_meta_boxes_page($meta_boxes) {
 		'context'  => 'normal',
 		'priority' => 'high',
 		'fields' => array(
-		/*
-			array(
-				'name'  => 'rewardStyle "Shop the Post" widget ID:',
-				'desc'  => 'Copy the ID number from the shorcode provided by rewardStyle.',
-				'id'    => $prefix . '_custom_page_title',
-				'type'  => 'number',
-			),
-		*/
 			array(
 				'name'		=> __('Hide the page title', 'p3'),
 				'id'		=> $prefix . 'hide_page_title',
@@ -30,22 +22,6 @@ function pipdig_p3_meta_boxes_page($meta_boxes) {
 				'type'		=> 'checkbox',
 				'std'		=> false
 			),
-		/*
-			array(
-				'name'		=> 'Display when viewing the post on the homepage?',
-				'id'		=> $prefix . 'rs_shopthepost_home',
-				'clone'		=> false,
-				'type'		=> 'checkbox',
-				'std'		=> false
-			),
-			array(
-				'name'		=> 'Display when viewing the post in a category?',
-				'id'		=> $prefix . 'rs_shopthepost_cat',
-				'clone'		=> false,
-				'type'		=> 'checkbox',
-				'std'		=> false
-			),
-		*/
 		)
 	);
 	
