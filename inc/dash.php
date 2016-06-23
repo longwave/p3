@@ -51,6 +51,7 @@ if (!function_exists('pipdig_p3_pipdig_remove_dashboard_meta')) {
 		remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
 		remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
 		remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
+		remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'normal' );
 		//remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
 	}
 	add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
