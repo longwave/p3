@@ -57,10 +57,10 @@ if (!function_exists('p3_full_screen_landing')) {
 			return;
 		}
 
-		$title = sanitize_text_field(get_theme_mod('p3_full_screen_landing_title'));
-		$summary = sanitize_text_field(get_theme_mod('p3_full_screen_landing_summary'));
+		$title = pipdig_strip(get_theme_mod('p3_full_screen_landing_title'));
+		$summary = pipdig_strip(get_theme_mod('p3_full_screen_landing_summary'));
 		$link = esc_url(get_theme_mod('p3_full_screen_landing_link'));
-		$color = sanitize_text_field(get_theme_mod('p3_full_screen_landing_text_color'));
+		$color = pipdig_strip(get_theme_mod('p3_full_screen_landing_text_color'));
 		
 		?>
 
@@ -215,7 +215,7 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 			// title
 			$wp_customize->add_setting('p3_full_screen_landing_title',
 				array(
-					'sanitize_callback' => 'sanitize_text_field',
+					'sanitize_callback' => 'pipdig_strip',
 				)
 			);
 			$wp_customize->add_control(
@@ -235,7 +235,7 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 			// summary
 			$wp_customize->add_setting('p3_full_screen_landing_summary',
 				array(
-					'sanitize_callback' => 'sanitize_text_field',
+					'sanitize_callback' => 'pipdig_strip',
 				)
 			);
 			$wp_customize->add_control(

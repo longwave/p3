@@ -15,7 +15,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 	$pinterest = absint(get_option('p3_pinterest_count'));
 	$twitter = absint(get_option('p3_twitter_count'));
 	$facebook = absint(get_option('p3_facebook_count'));
-	$instagram = sanitize_text_field(get_option('p3_instagram_count'));
+	$instagram = pipdig_strip(get_option('p3_instagram_count'));
 	$youtube = absint(get_option('p3_youtube_count'));
 	$google_plus = absint(get_option('p3_google_plus_count'));
 	$twitch = absint(get_option('p3_twitch_count'));

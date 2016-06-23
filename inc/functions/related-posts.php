@@ -137,7 +137,7 @@ if (!class_exists('pipdig_related_Customize')) {
 			$wp_customize->add_setting('related_posts_date',
 				array(
 					'default' => '1 year ago',
-					'sanitize_callback' => 'sanitize_text_field',
+					'sanitize_callback' => 'pipdig_strip',
 				)
 			);
 			$wp_customize->add_control('related_posts_date',
@@ -251,7 +251,7 @@ if (!class_exists('pipdig_related_Customize')) {
 			
 			$wp_customize->add_setting('p3_related_posts_title',
 				array(
-					'sanitize_callback' => 'sanitize_text_field',
+					'sanitize_callback' => 'pipdig_strip',
 				)
 			);
 			$wp_customize->add_control(

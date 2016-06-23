@@ -17,7 +17,7 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		if (isset($instance['feed'])) { 
-			$feed =	sanitize_text_field($instance['feed']);
+			$feed =	pipdig_strip($instance['feed']);
 		}
 		if (isset($instance['text'])) { 
 			$text = wp_kses_post($instance['text']);

@@ -149,7 +149,7 @@ function pipdig_p3_scrapey_scrapes() {
 			} else {
 				$instagram_deets = get_option('pipdig_instagram'); // from p3
 				if (!empty($instagram_deets['access_token'])) { 
-					$ig_token = sanitize_text_field($instagram_deets['access_token']);
+					$ig_token = pipdig_strip($instagram_deets['access_token']);
 					$user_id = explode('.', $ig_token);
 					$userid = trim($user_id[0]);
 				} else {
@@ -160,7 +160,7 @@ function pipdig_p3_scrapey_scrapes() {
 					//get the userid from json
 					$userid = wp_remote_fopen('https://api.instagram.com/v1/users/search?q=%22'.$instagram_handle.'%22&access_token='.$ig_token, $args);
 					$userid = json_decode($userid);
-					$userid = sanitize_text_field($userid->data[0]->id);
+					$userid = pipdig_strip($userid->data[0]->id);
 				}
 				// use userid for second json
 				$instagram_count = wp_remote_fopen('https://api.instagram.com/v1/users/'.$userid.'?access_token='.$ig_token, $args);

@@ -40,7 +40,7 @@ function p3_instagram_at_render() {
 	$instagram_deets = get_option('pipdig_instagram');
 	$access_token = '';
 	if (!empty($instagram_deets['access_token'])) { 
-		$access_token = sanitize_text_field($instagram_deets['access_token']);
+		$access_token = pipdig_strip($instagram_deets['access_token']);
 		//$user_id = explode('.', $access_token);
 		//echo $user_id[0];
 	}
@@ -52,7 +52,7 @@ function p3_instagram_userid_render() {
 	$instagram_deets = get_option('pipdig_instagram');
 	$user_id = '';
 	if (!empty($instagram_deets['user_id'])) { 
-		$user_id = sanitize_text_field($instagram_deets['user_id']);
+		$user_id = pipdig_strip($instagram_deets['user_id']);
 	}
 	
 	?>

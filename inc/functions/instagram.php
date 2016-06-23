@@ -11,7 +11,7 @@ if (!function_exists('p3_instagram_fetch')) {
 		$instagram_deets = get_option('pipdig_instagram');
 		
 		if (empty($access_token)) {
-			$access_token = sanitize_text_field($instagram_deets['access_token']);
+			$access_token = pipdig_strip($instagram_deets['access_token']);
 		}
 		
 		if (empty($access_token)) {
@@ -19,7 +19,7 @@ if (!function_exists('p3_instagram_fetch')) {
 		}
 		
 		if (!empty($instagram_deets['user_id'])) {
-			$userid = sanitize_text_field($instagram_deets['user_id']);
+			$userid = pipdig_strip($instagram_deets['user_id']);
 		}
 		
 		if (empty($userid)) {
@@ -51,15 +51,18 @@ if (!function_exists('p3_instagram_fetch')) {
 			$response = wp_remote_get($url, $args);
 				
 			$code = intval(json_decode($response['response']['code']));
-				
+			
+			$save_for = 20; // minutes for transient
+			
 			if ($code === 200) {
 				$result = json_decode($response['body']);
 				update_option('p3_update_notice_3', 1); // get rid of dashboard nag for new API changes
 			} else {
 				$result = $code;
+				$save_for = 5; // minutes for transient
 			}
-				
-			set_transient( 'p3_instagram_feed_'.$userid, $result, 15 * MINUTE_IN_SECONDS );
+			
+			set_transient( 'p3_instagram_feed_'.$userid, $result, $save_for * MINUTE_IN_SECONDS );
 		}
 			
 		//$result = json_decode($result['body']);
@@ -76,7 +79,7 @@ if (!function_exists('p3_instagram_fetch')) {
 					
 				$caption = '';
 				if ((!empty($result->data[$i]->caption->text))) {
-					$caption = sanitize_text_field($result->data[$i]->caption->text);
+					$caption = pipdig_strip($result->data[$i]->caption->text);
 				}
 					
 				if ((!empty($result->data[$i]->images->thumbnail->url))) {
@@ -124,7 +127,7 @@ if (!function_exists('p3_instagram_clear_transients')) {
 		$instagram_deets = get_option('pipdig_instagram');
 		if (!empty($instagram_deets['access_token'])) {
 		
-			$access_token = sanitize_text_field($instagram_deets['access_token']);
+			$access_token = pipdig_strip($instagram_deets['access_token']);
 			
 			if (empty($userid)) {
 				$user_id = explode('.', $access_token);

@@ -194,7 +194,7 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 			$wp_customize->add_setting('p3_feature_header_trending_dates',
 				array(
 					'default' => '1 month ago',
-					'sanitize_callback' => 'sanitize_text_field',
+					'sanitize_callback' => 'pipdig_strip',
 				)
 			);
 			$wp_customize->add_control('p3_feature_header_trending_dates',
@@ -286,7 +286,7 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 			
 			$wp_customize->add_setting('p3_feature_header_pop_title',
 				array(
-					'sanitize_callback' => 'sanitize_text_field',
+					'sanitize_callback' => 'pipdig_strip',
 				)
 			);
 			$wp_customize->add_control(
@@ -303,7 +303,7 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 			
 			$wp_customize->add_setting('p3_feature_header_slider_title',
 				array(
-					'sanitize_callback' => 'sanitize_text_field',
+					'sanitize_callback' => 'pipdig_strip',
 				)
 			);
 			$wp_customize->add_control(

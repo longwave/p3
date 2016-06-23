@@ -151,7 +151,7 @@ if (!class_exists('p3_width_customizer_Customize')) {
 			$wp_customize->add_setting('p3_width_customizer',
 				array(
 					'default' => 72,
-					'sanitize_callback' => 'sanitize_text_field',
+					'sanitize_callback' => 'pipdig_strip',
 				)
 			);
 			$wp_customize->add_control( 'p3_width_customizer', array(

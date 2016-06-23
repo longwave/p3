@@ -132,7 +132,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 	 
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		$instance['title'] = sanitize_text_field( $new_instance['title'] );
+		$instance['title'] = pipdig_strip( $new_instance['title'] );
 		$instance['channel_id'] = strip_tags(trim($new_instance['channel_id']));
 		$instance['number'] = absint($new_instance['number']);
 		$instance['show_title'] = strip_tags($new_instance['show_title']);

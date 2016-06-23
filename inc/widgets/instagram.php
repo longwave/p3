@@ -22,7 +22,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		$likes = false;
 		$access_token = '';
 		if (isset($instance['access_token'])) { 
-			$access_token = sanitize_text_field($instance['access_token']);
+			$access_token = pipdig_strip($instance['access_token']);
 		}
 		if (!empty($instance['likes'])) {
 			$likes = true;
@@ -104,14 +104,14 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 	   
 		// PART 1: Extract the data from the instance variable
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
-		$title = sanitize_text_field($instance['title']);
+		$title = pipdig_strip($instance['title']);
 		$images_num = 4;
 		$cols = 2;
 		$follow = false;
 		$likes = false;
 		$access_token = '';
 		if (isset($instance['access_token'])) { 
-			$access_token = sanitize_text_field($instance['access_token']);
+			$access_token = pipdig_strip($instance['access_token']);
 		}
 		if (isset($instance['images_num'])) { 
 			$images_num = absint($instance['images_num']);
@@ -170,8 +170,8 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 	 
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		$instance['title'] = sanitize_text_field($new_instance['title']);
-		$instance['access_token'] = sanitize_text_field($new_instance['access_token']);
+		$instance['title'] = pipdig_strip($new_instance['title']);
+		$instance['access_token'] = pipdig_strip($new_instance['access_token']);
 		$instance['images_num'] = absint($new_instance['images_num']);
 		$instance['cols'] = absint($new_instance['cols'] );
 		$instance['likes'] = strip_tags($new_instance['likes']);

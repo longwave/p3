@@ -100,7 +100,7 @@ if ( !class_exists( 'pipdig_widget_weheartit' ) ) {
 	 
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		$instance['title'] = sanitize_text_field($new_instance['title']);
+		$instance['title'] = pipdig_strip($new_instance['title']);
 		$instance['weheartit_url'] = esc_url($new_instance['weheartit_url']);
 		//$instance['show_profile'] = intval($new_instance['show_profile']);
 

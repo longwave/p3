@@ -70,7 +70,7 @@ function pipdig_p3_social_shares() {
 	
 	$share_title = __('Share:', 'p3');
 	if (get_theme_mod('p3_share_title')) {
-		$share_title = sanitize_text_field(get_theme_mod('p3_share_title'));
+		$share_title = pipdig_strip(get_theme_mod('p3_share_title'));
 	}
 	
 	echo '<div class="addthis_toolbox">'.$share_title.' '.$output.'</div>';
@@ -111,7 +111,7 @@ if (!class_exists('pipdig_p3_social_shares_Customiser')) {
 			
 			$wp_customize->add_setting('p3_share_title',
 				array(
-					'sanitize_callback' => 'sanitize_text_field',
+					'sanitize_callback' => 'pipdig_strip',
 				)
 			);
 			$wp_customize->add_control(

@@ -29,7 +29,7 @@ function pipdig_p3_do_this_daily() {
 	$instagram_deets = get_option('pipdig_instagram');
 	
 	if (!empty($instagram_deets['access_token'])) { 
-		$access_token = sanitize_text_field($instagram_deets['access_token']);
+		$access_token = pipdig_strip($instagram_deets['access_token']);
 		$user_id = explode('.', $access_token);
 		$userid = trim($user_id[0]);
 		delete_transient('p3_instagram_feed_'.$userid);
