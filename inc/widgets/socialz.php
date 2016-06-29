@@ -1,8 +1,6 @@
 <?php 
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 	class pipdig_widget_social_icons extends WP_Widget {

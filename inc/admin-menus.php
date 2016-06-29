@@ -1,8 +1,6 @@
 <?php
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if (!function_exists('pipdig_add_admin_menu')) {
 	function pipdig_add_admin_menu() {

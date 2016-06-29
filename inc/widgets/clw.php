@@ -1,8 +1,6 @@
 <?php
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if (!function_exists('pipdig_clw_enqueue_scripts')) {
 	function pipdig_clw_enqueue_scripts($hook) {

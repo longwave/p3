@@ -1,8 +1,6 @@
 <?php 
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 	class pipdig_widget_twitter extends WP_Widget {

@@ -1,8 +1,6 @@
 <?php
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 function p3_display_featured_image_in_post() {
 	if (get_the_post_thumbnail() != '' && get_theme_mod('display_featured_image')) { // if thumbnail is set in post

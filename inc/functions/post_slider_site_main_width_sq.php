@@ -1,8 +1,6 @@
 <?php
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if (!function_exists('p3_post_slider_site_main_width_sq')) {
 	function p3_post_slider_site_main_width_sq() {

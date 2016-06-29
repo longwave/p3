@@ -1,8 +1,6 @@
 <?php
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if (!function_exists('pipdig_help_options_page')) {
 	function pipdig_help_options_page() { 

@@ -1,8 +1,6 @@
 <?php
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 function p3_schema_publisher() {
 	if ( get_theme_mod('custom_logo') ) {

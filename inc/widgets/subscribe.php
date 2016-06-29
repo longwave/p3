@@ -1,8 +1,6 @@
 <?php 
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 	class pipdig_widget_subscribe extends WP_Widget {

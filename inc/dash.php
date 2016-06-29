@@ -1,8 +1,6 @@
 <?php 
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /*  Add credit to admin area --------------------------------------------------------*/
 if (!function_exists('pipdig_p3_footer_admin')) {

@@ -1,8 +1,6 @@
 <?php 
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( !class_exists( 'pipdig_widget_weheartit' ) ) {
 	class pipdig_widget_weheartit extends WP_Widget {

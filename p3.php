@@ -9,9 +9,7 @@ Version: 2.4.1
 Text Domain: p3
 */
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 define( 'PIPDIG_P3_V', '2.4.1' );
 

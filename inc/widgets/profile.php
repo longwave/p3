@@ -1,8 +1,6 @@
 <?php 
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 // add admin scripts
 if ( !function_exists( 'pipdig_enqueue_widget_media' ) ) {
@@ -45,7 +43,7 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 				<img src="<?php echo esc_url($instance['image_uri']); ?>" <?php echo $circle; ?> alt="" />
 				</div>
 					<?php if ($description) {  ?>
-						<p><?php echo $description; ?></p>
+						<p><?php echo wpautop($description); ?></p>
 					<?php } //endif ?>
 			<?php } //endif ?>
 	<?php

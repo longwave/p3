@@ -1,8 +1,6 @@
 <?php 
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 include('shortcodes/pipdig_left_right.php');
 include('shortcodes/pipdig_stars.php');

@@ -1,8 +1,6 @@
 <?php 
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if (!class_exists( 'pipdig_widget_instagram')) {
 	class pipdig_widget_instagram extends WP_Widget {
@@ -93,7 +91,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 				<?php }
 			}
 		} else {
-			_e('Setup not complete. Please check the widget options.', 'p3');
+			echo 'Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private.';
 		}
 		
 		// After widget code, if any  

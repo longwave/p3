@@ -1,8 +1,6 @@
 <?php 
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 // [pipdig_banner image=""]
 function parallax_section_func( $atts, $content = null ) {

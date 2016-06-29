@@ -1,8 +1,6 @@
 <?php
 
-if (!defined('ABSPATH')) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 // function to fetch images
 if (!function_exists('p3_instagram_fetch')) {
@@ -213,7 +211,7 @@ if (!function_exists('p3_instagram_footer')) {
 			<?php
 		} else { // no access token or user id, so error for admins:
 			if (current_user_can('manage_options')) {
-				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>.</p>';
+				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private.</p>';
 			}
 		}
 	}
@@ -262,7 +260,7 @@ if (!function_exists('p3_instagram_header')) {
 			<?php
 		} else { // no access token or user id, so error for admins:
 			if (current_user_can('manage_options')) {
-				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>.</p>';
+				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private.</p>';
 			}
 		}
 	}
@@ -303,7 +301,7 @@ if (!function_exists('p3_instagram_top_of_posts')) {
 			<?php
 		} else { // no access token or user id, so error for admins:
 			if (current_user_can('manage_options')) {
-				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>.</p>';
+				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private.</p>';
 			}
 		}
 	}
@@ -351,7 +349,7 @@ if (!function_exists('p3_instagram_bottom_of_posts')) {
 			<?php
 		} else { // no access token or user id, so error for admins:
 			if (current_user_can('manage_options')) {
-				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>.</p>';
+				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private.</p>';
 			}
 		}
 
