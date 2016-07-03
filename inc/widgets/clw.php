@@ -194,7 +194,7 @@ if (!class_exists('pipdig_widget_clw')) {
 				<input type="number" id="<?php echo $this->get_field_id( 'longitude' ); ?>" name="<?php echo $this->get_field_name( 'longitude' ); ?>" value="<?php if ($longitude) { echo $longitude; } ?>" placeholder="e.g. -1.546873" />
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id('url'); ?>"><?php _e('Link map to a url when clicked: (optional)', 'p3'); ?></label><br />
+				<label for="<?php echo $this->get_field_id('url'); ?>"><?php _e('Link the map to a url when clicked: (optional)', 'p3'); ?></label><br />
 				<input type="url" id="<?php echo $this->get_field_id( 'url' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'url' ); ?>" value="<?php if ($url) { echo $url; } ?>" placeholder="e.g. http://example.com" />
 			</p>
 			<?php
