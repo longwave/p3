@@ -16,7 +16,7 @@ if (!class_exists('pipdig_widget_clw')) {
 	 
 		public function __construct() {
 			$widget_ops = array('classname' => 'pipdig_widget_clw', 'description' => __('Proudly display where you are in the world.', 'p3') );
-			parent::__construct('pipdig_widget_clw', 'pipdig - ' . __('Current Location', 'p3'), $widget_ops);
+			parent::__construct('pipdig_widget_clw', 'pipdig - ' . __('Current Location (map)', 'p3'), $widget_ops);
 				
 			//enqueue JS on frontend only if widget is active on page:
 			if(is_active_widget(false, false, $this->id_base)) {
@@ -30,19 +30,24 @@ if (!class_exists('pipdig_widget_clw')) {
 			$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		
 			if (isset($instance['location'])) { 
-				$location = $instance['location'];
+				$location = esc_attr($instance['location']);
 			} else {
 				$location = 'None :(';
 			}
 			if (isset($instance['latitude'])) { 
-				$latitude = $instance['latitude'];
+				$latitude = esc_attr($instance['latitude']);
 			} else {
 				$latitude = '';
 			}
 			if (isset($instance['longitude'])) { 
-				$longitude = $instance['longitude'];
+				$longitude = esc_attr($instance['longitude']);
 			} else {
 				$longitude = '';
+			}
+			if (isset($instance['url'])) { 
+				$url = 'url: "'.esc_url($instance['url']).'",';
+			} else {
+				$url = '';
 			}
 
 			// Before widget code, if any
@@ -56,20 +61,16 @@ if (!class_exists('pipdig_widget_clw')) {
 			
 			if ($latitude && $longitude) {
 				
-				global $wp_customize; //used to check if we're in the customizer
-				if (!isset($wp_customize)) { // are we in the customizer? No we're not, so let's use transients:
-				
 					//if ( false === ( $map = get_transient( 'pipdig_clw_map' ) ) ) { // check for transient value
-						$map_color = get_theme_mod( 'pipdig_clw_map_color', '#cccccc' );
-						$border_color = get_theme_mod( 'pipdig_clw_border_color', '#ffffff' );
-						$marker_color = get_theme_mod( 'pipdig_clw_marker_color', '#000000' );
-						$marker_size = get_theme_mod( 'pipdig_clw_marker_size', '6' );
+						$map_color = esc_attr(get_theme_mod( 'pipdig_clw_map_color', '#dddddd' ));
+						$border_color = esc_attr(get_theme_mod( 'pipdig_clw_border_color', '#ffffff' ));
+						$marker_color = esc_attr(get_theme_mod( 'pipdig_clw_marker_color', '#000000' ));
+						$marker_size = absint(get_theme_mod( 'pipdig_clw_marker_size', 6 ));
 						$map = '<script>
 						var map;
 
 						AmCharts.ready(function() {
 							var map;
-							//svg path for target icon (used for dot on map for location images below)
 							var targetSVG = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
 
 							map = new AmCharts.AmMap();
@@ -89,25 +90,26 @@ if (!class_exists('pipdig_widget_clw')) {
 								outlineColor: "'.$border_color.'",
 								outlineThickness: 2,
 								color: "'.$map_color.'",
+								balloonText: false,
 							};
 								
 							map.dataProvider = {
 								mapVar: AmCharts.maps.continentsLow,
 									areas: [{
-										"id": "africa",
+										"id": "africa", '.$url.'
 									}, {
-										"id": "asia",
+										"id": "asia", '.$url.'
 									}, {
-										"id": "australia",
+										"id": "australia", '.$url.'
 									}, {
-										"id": "europe",
+										"id": "europe", '.$url.'
 									}, {
-										"id": "north_america",
+										"id": "north_america", '.$url.'
 									}, {
-										"id": "south_america",
+										"id": "south_america", '.$url.'
 									}],
 									images: [
-										{svgPath:targetSVG, color: "'.$marker_color.'", scale:.'.$marker_size.', title:"'.$location.'", latitude:'.$latitude.', longitude:'.$longitude.'},
+										{svgPath:targetSVG, color: "'.$marker_color.'", scale:.'.$marker_size.', title:"'.$location.'", latitude:'.$latitude.', longitude:'.$longitude.', '.$url.'},
 									]
 
 								};
@@ -125,75 +127,8 @@ if (!class_exists('pipdig_widget_clw')) {
 						<style scoped>#'.$map_id.' a{display:none!important}</style>';
 						//set_transient( 'pipdig_clw_map', $map, 24 * HOUR_IN_SECONDS ); // set transient
 					//}
-					echo $map; // print the map (whether transient or not)
+					echo $map; // print the map
 					
-				} else { // are we in the customizer? yes we are, so let's not use transients:
-				
-					$map_color = get_theme_mod( 'pipdig_clw_map_color', '#dddddd' );
-					$border_color = get_theme_mod( 'pipdig_clw_border_color', '#ffffff' );
-					$marker_color = get_theme_mod( 'pipdig_clw_marker_color', '#000000' );
-					$marker_size = get_theme_mod( 'pipdig_clw_marker_size', '6' );
-					echo '<script>
-						var map;
-
-						AmCharts.ready(function() {
-							var map;
-							//svg path for target icon (used for dot on map for location images below)
-							var targetSVG = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
-
-							map = new AmCharts.AmMap();
-							map.handDrawn = false;
-							map.fontFamily = "Georgia";
-							map.fontSize = 12;
-							map.useObjectColorForBalloon = false;
-							map.dragMap = false;
-							map.color = "#ffffff";
-
-							map.areasSettings = {
-								autoZoom: false,
-								rollOverOutlineColor: "'.$border_color.'",
-								selectedColor: "'.$map_color.'",
-								rollOverColor: "'.$map_color.'",
-								outlineAlpha: 1,
-								outlineColor: "'.$border_color.'",
-								outlineThickness: 2,
-								color: "'.$map_color.'",
-							};
-								
-							map.dataProvider = {
-								mapVar: AmCharts.maps.continentsLow,
-									areas: [{
-										"id": "africa",
-									}, {
-										"id": "asia",
-									}, {
-										"id": "australia",
-									}, {
-										"id": "europe",
-									}, {
-										"id": "north_america",
-									}, {
-										"id": "south_america",
-									}],
-									images: [
-										{svgPath:targetSVG, color: "'.$marker_color.'", scale:.'.$marker_size.', title:"'.$location.'", latitude:'.$latitude.', longitude:'.$longitude.'},
-									]
-
-								};
-								var zoomControl = map.zoomControl;
-								zoomControl.panControlEnabled = false;
-								zoomControl.zoomControlEnabled = false;
-								zoomControl.mouseEnabled = false;
-
-								map.write("'.$map_id.'");
-
-							});
-						</script>
-						<div id="'.$map_id.'" style="width: 100%;height: 170px;"></div>
-						<p>'.__('Current Location', 'p3').': '.$location.'</p>
-						<style scoped>#'.$map_id.' a{display:none!important}</style>';
-				}
-				
 			} else { // no latitude/longitude set, so let's display a friendly reminder:
 				
 				if (current_user_can('manage_options')) {
@@ -213,22 +148,27 @@ if (!class_exists('pipdig_widget_clw')) {
 			$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 			
 			if (isset($instance['location'])) { 
-				$location = $instance['location'];
+				$location = esc_attr($instance['location']);
 			} else {
 				$location = '';
 			}
 			if (isset($instance['title'])) { 
-				$title = $instance['title'];
+				$title = esc_attr($instance['title']);
 			}
 			if (isset($instance['latitude'])) { 
-				$latitude = $instance['latitude'];
+				$latitude = esc_attr($instance['latitude']);
 			} else {
 				$latitude = '';
 			}
 			if (isset($instance['longitude'])) { 
-				$longitude = $instance['longitude'];
+				$longitude = esc_attr($instance['longitude']);
 			} else {
 				$longitude = '';
+			}
+			if (isset($instance['url'])) { 
+				$url = esc_url($instance['url']);
+			} else {
+				$url = '';
 			}
 			?>
 			
@@ -238,8 +178,7 @@ if (!class_exists('pipdig_widget_clw')) {
 			</p>
 			
 			<p><?php
-			$plugin_url = esc_url('http://www.latlong.net/');
-			printf(__('The information below will be used for the map marker. You can find the Latitude and Longitude of any location by <a href="%s" target="_blank">clicking here</a>.', 'p3'), $plugin_url );
+			printf(__('The information below will be used for the map marker. You can find the Latitude and Longitude of any location by <a href="%s" target="_blank">clicking here</a>.', 'p3'), 'http://www.latlong.net/' );
 			?></p>
 
 			<p>
@@ -254,15 +193,20 @@ if (!class_exists('pipdig_widget_clw')) {
 				<label for="<?php echo $this->get_field_id('longitude'); ?>"><?php _e('Longitude:', 'p3'); ?></label><br />
 				<input type="number" id="<?php echo $this->get_field_id( 'longitude' ); ?>" name="<?php echo $this->get_field_name( 'longitude' ); ?>" value="<?php if ($longitude) { echo $longitude; } ?>" placeholder="e.g. -1.546873" />
 			</p>
+			<p>
+				<label for="<?php echo $this->get_field_id('url'); ?>"><?php _e('Link map to a url when clicked: (optional)', 'p3'); ?></label><br />
+				<input type="url" id="<?php echo $this->get_field_id( 'url' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'url' ); ?>" value="<?php if ($url) { echo $url; } ?>" placeholder="e.g. http://example.com" />
+			</p>
 			<?php
 		}
 	 
 		function update($new_instance, $old_instance) {
 			$instance = $old_instance;
 			$instance['title'] = strip_tags( $new_instance['title'] );
-			$instance['location'] = strip_tags( $new_instance['location'] );
-			$instance['latitude'] = strip_tags( $new_instance['latitude'] );
-			$instance['longitude'] = strip_tags( $new_instance['longitude'] );
+			$instance['location'] = esc_attr( $new_instance['location'] );
+			$instance['latitude'] = esc_attr( $new_instance['latitude'] );
+			$instance['longitude'] = esc_attr( $new_instance['longitude'] );
+			$instance['url'] = esc_url( $new_instance['url'] );
 			
 			pipdig_clw_delete_transients(); // delete transients on widget save
 			
