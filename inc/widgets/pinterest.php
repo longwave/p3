@@ -15,7 +15,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		if (isset($instance['pinterestuser'])) { 
-			$pinterestuser = $instance['pinterestuser'];
+			$pinterestuser = pipdig_strip($instance['pinterestuser']);
 			$pinterestuser = str_replace('/', '', $pinterestuser);
 		}
 		if (isset($instance['images_num'])) { 
@@ -53,83 +53,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		if (!empty($pinterestuser)) {
 			
 			$id = 'p3_pinterest_widget_'.rand(1, 999999999);
-			
-			/*
-			$p3_pinz = get_transient('p3_pinz');
-			
-			if ( false === ( $value = get_transient('p3_pinz') ) ) {
-		
-				$pinterest_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fwww.pinterest.com%2F".$pinterestuser."%2Ffeed.rss%22&format=json", array( 'timeout' => 30 ));
-				$pinterest_yql = json_decode($pinterest_yql);
-				
-				// yowza! Loop this in future release plx
-				
-				$pinterest_pin_1 = $pinterest_yql->query->results->body->rss->channel->item[0]->description;
-				$pinterest_pin_1 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_1, $result);
-				$pinterest_pin_1 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_1 = str_replace('"', '', $pinterest_pin_1);
-				
-				$pinterest_pin_2 = $pinterest_yql->query->results->body->rss->channel->item[1]->description;
-				$pinterest_pin_2 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_2, $result);
-				$pinterest_pin_2 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_2 = str_replace('"', '', $pinterest_pin_2);
-				
-				$pinterest_pin_3 = $pinterest_yql->query->results->body->rss->channel->item[2]->description;
-				$pinterest_pin_3 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_3, $result);
-				$pinterest_pin_3 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_3 = str_replace('"', '', $pinterest_pin_3);
 
-				$pinterest_pin_4 = $pinterest_yql->query->results->body->rss->channel->item[3]->description;
-				$pinterest_pin_4 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_4, $result);
-				$pinterest_pin_4 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_4 = str_replace('"', '', $pinterest_pin_4);
-				
-				$pinterest_pin_5 = $pinterest_yql->query->results->body->rss->channel->item[4]->description;
-				$pinterest_pin_5 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_5, $result);
-				$pinterest_pin_5 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_5 = str_replace('"', '', $pinterest_pin_5);
-				
-				$pinterest_pin_6 = $pinterest_yql->query->results->body->rss->channel->item[5]->description;
-				$pinterest_pin_6 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_6, $result);
-				$pinterest_pin_6 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_6 = str_replace('"', '', $pinterest_pin_6);
-				
-				$pinterest_pin_7 = $pinterest_yql->query->results->body->rss->channel->item[6]->description;
-				$pinterest_pin_7 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_7, $result);
-				$pinterest_pin_7 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_7 = str_replace('"', '', $pinterest_pin_7);
-
-				$pinterest_pin_8 = $pinterest_yql->query->results->body->rss->channel->item[7]->description;
-				$pinterest_pin_8 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_8, $result);
-				$pinterest_pin_8 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_8 = str_replace('"', '', $pinterest_pin_8);
-				
-				$pinterest_pin_9 = $pinterest_yql->query->results->body->rss->channel->item[8]->description;
-				$pinterest_pin_9 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_9, $result);
-				$pinterest_pin_9 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_9 = str_replace('"', '', $pinterest_pin_9);
-				
-				$pinterest_pin_10 = $pinterest_yql->query->results->body->rss->channel->item[9]->description;
-				$pinterest_pin_10 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_10, $result);
-				$pinterest_pin_10 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_10 = str_replace('"', '', $pinterest_pin_10);
-
-				$pinterest_pin_11 = $pinterest_yql->query->results->body->rss->channel->item[10]->description;
-				$pinterest_pin_11 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_11, $result);
-				$pinterest_pin_11 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_11 = str_replace('"', '', $pinterest_pin_11);
-				
-				$pinterest_pin_12 = $pinterest_yql->query->results->body->rss->channel->item[11]->description;
-				$pinterest_pin_12 = preg_match_all('@src="([^"]+)"@', $pinterest_pin_12, $result);
-				$pinterest_pin_12 = str_replace('src="', '', $result[0][0]);
-				$pinterest_pin_12 = str_replace('"', '', $pinterest_pin_12);
-				
-				$p3_pinz = array($pinterest_pin_1, $pinterest_pin_2, $pinterest_pin_3, $pinterest_pin_4, $pinterest_pin_5, $pinterest_pin_6, $pinterest_pin_7, $pinterest_pin_8, $pinterest_pin_9, $pinterest_pin_10, $pinterest_pin_11, $pinterest_pin_12);
-				
-				set_transient('p3_pinz', $p3_pinz, 30 * MINUTE_IN_SECONDS);
-				
-			}
-			*/
 			?>
 			<style scoped>
 				.<?php echo $id; ?> .p3_pin_wrap {
@@ -172,7 +96,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		if (isset($instance['pinterestuser'])) {
-			$pinterestuser = $instance['pinterestuser'];
+			$pinterestuser = pipdig_strip($instance['pinterestuser']);
 		} else {
 			$links = get_option('pipdig_links');
 			$pinterest_url = esc_url($links['pinterest']);

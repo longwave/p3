@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
 "POT-Creation-Date: 2016-06-18 14:37+0100\n"
-"PO-Revision-Date: 2016-06-18 14:37+0100\n"
+"PO-Revision-Date: 2016-06-30 13:52+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: fr\n"
@@ -186,7 +186,7 @@ msgstr ""
 
 #: inc/functions.php:230
 msgid "Leave a comment"
-msgstr "Un commentaire ?"
+msgstr "0 Commentaire"
 
 #: inc/functions.php:232
 msgid "1 Comment"

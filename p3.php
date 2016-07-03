@@ -32,7 +32,7 @@ if ($this_theme->get('Author') != 'pipdig') { // not by pipdig, but hey that's o
 			if ($theme_textdomain[0] != 'pipdig') { // we're the parent :')
 				add_action('wp_footer', 'pipdig_p3_invalid_name', 99999);
 				return;
-			} 
+			}
 		}
 	}
 }
@@ -45,8 +45,7 @@ function pipdig_p3_scripts_styles() {
 	wp_enqueue_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css', array(), PIPDIG_P3_V );
 	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', plugin_dir_url(__FILE__).'assets/css/responsive.css', array(), PIPDIG_P3_V ); }
 	
-	//wp_register_script( 'imagesloaded', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js', array('jquery'), false ); // I know, I know :(
-	//wp_register_script( 'bxslider', 'https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.1.2/jquery.bxslider.min.js', array('jquery'), false );
+	//wp_register_script( 'imagesloaded', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js', array('jquery'), false );
 	wp_register_script( 'pipdig-cycle', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), null, false );
 	wp_register_script( 'owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js', array('jquery'), null, false );
 	wp_register_script( 'backstretch', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js', array('jquery'), null, false );
@@ -56,33 +55,17 @@ function pipdig_p3_scripts_styles() {
 	wp_register_script( 'pipdig-mixitup', 'https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js', array( 'jquery' ), null, true );
 	//wp_register_script( 'pipdig-cookie', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js', array( 'jquery' ), null, true );
 	
-	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css' );
+	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' );
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
 
-
-// functions
 include_once('inc/functions.php');
-
-// admin menus
 include_once('inc/admin-menus.php');
-
-// meta boxes
 include_once('inc/meta.php');
-
-// dashboard enhancements
 include_once('inc/dash.php');
-
-// widgets
 include_once('inc/widgets.php');
-
-// shortcodes
 include('inc/shortcodes.php');
-
-// cron
 include('inc/cron.php');
-
-
 
 function p3_update_notice_3() {
 
@@ -181,9 +164,13 @@ function pipdig_p3_activate() {
 		}
 		update_option('akismet_discard_month', 'true');
 	}
-		
+	
+	update_option('thumbnail_size_h', 150);
+	update_option('thumbnail_size_w', 150);
 	update_option('medium_size_w', 800);
 	update_option('medium_size_h', 0);
+	update_option('medium_large_size_w', 800);
+	update_option('medium_large_size_h', 0);
 	update_option('large_size_w', 1440);
 	update_option('large_size_h', 0);
 		
