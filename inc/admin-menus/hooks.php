@@ -174,7 +174,7 @@ if (!function_exists('pipdig_after_first_post_stuff')) {
 		$output = '';
 		$options = get_option( 'pipdig_settings', '' );
 		if (!empty($options['pipdig_textarea_after_first_post'])) {
-			$output .= '<div class="hook_after-first-post"><!-- pipdig p3 custom code after first post -->' . $options['pipdig_textarea_after_first_post'] . '<!-- // pipdig p3 custom code after first post --></div>';
+			$output .= '<div class="hook_after-first-post"><!-- pipdig p3 custom code after first post -->' . do_shortcode($options['pipdig_textarea_after_first_post']) . '<!-- // pipdig p3 custom code after first post --></div>';
 		}
 		echo $output;
 	}
