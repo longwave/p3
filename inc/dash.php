@@ -93,7 +93,7 @@ function pipdig_p3_dashboard_social_count_func() {
 	
 	pipdig_p3_scrapey_scrapes();
 	
-	$total_followers = $twitter = $instagram = $facebook = $youtube = $google_plus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $linkedin = $vimeo = $bloglovin = '';
+	$total_followers = $twitter = $instagram = $facebook = $youtube = $google_plus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $vimeo = $bloglovin = '';
 	
 	$bloglovin = absint(get_option('p3_bloglovin_count'));
 	$pinterest = absint(get_option('p3_pinterest_count'));

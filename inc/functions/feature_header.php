@@ -12,6 +12,14 @@ if (!function_exists('p3_feature_header')) {
 			return;
 		}
 		
+		$class_1 = 'col-sm-6';
+		$class_2 = 'col-sm-6';
+		
+		if (get_theme_mod('p3_feature_header_swap')) {
+			$class_1 = 'col-sm-6 col-sm-push-6';
+			$class_2 = 'col-sm-6 col-sm-pull-6';
+		}
+		
 		$post_cat_trending = get_theme_mod('p3_feature_header_trending_cat');
 		$post_cat_slider = get_theme_mod('p3_feature_header_slider_cat');
 		$big_this_month_title = strip_tags(get_theme_mod('p3_feature_header_pop_title'));
@@ -35,7 +43,7 @@ if (!function_exists('p3_feature_header')) {
 				.feature-header-cycle {height: auto} .cycle-slideshow li{display:none}.cycle-slideshow li.first{display:block}
 				#p3_feature_header .p3_trending_panel h4, #p3_feature_header .p3_feature_slide_banner, #p3_feature_header .p3_feature_slide_banner h2 {background:<?php echo esc_attr($text_bg_color); ?>;color:<?php echo esc_attr($text_color); ?>;}
 			</style>
-			<div id="p3_feature_header_big_this_month" class="col-sm-6">
+			<div id="p3_feature_header_big_this_month" class="<?php echo $class_1; ?>">
 
 				<div id="p3_big_this" class="nopin">
 					<h3 class="widget-title"><span><?php echo $big_this_month_title; ?></span></h3>
@@ -94,7 +102,7 @@ if (!function_exists('p3_feature_header')) {
 				</div>
 			</div>
 			
-			<div id="p3_feature_header_recent_posts" class="col-sm-6">
+			<div id="p3_feature_header_recent_posts" class="<?php echo $class_2; ?>">
 				<h3 class="widget-title"><span><?php echo $recent_posts_title; ?></span></h3>
 				<div data-starting-slide="1" data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow feature-header-cycle nopin">
 					<ul>
@@ -183,7 +191,24 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Display on homepage only', 'p3' ),
-					'description' => '<hr>',
+					//'description' => '<hr>',
+					'section' => 'p3_feature_header_section',
+				)
+			);
+			
+			// swap sides
+			$wp_customize->add_setting('p3_feature_header_swap',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_feature_header_swap',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Switch sides', 'p3' ),
+					'description' => '<hr style="margin-top: 20px;">',
 					'section' => 'p3_feature_header_section',
 				)
 			);
