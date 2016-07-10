@@ -174,7 +174,7 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 			$wp_customize->add_setting('p3_pinterest_hover_image_position',
 				array(
 					'default' => 'center',
-					'sanitize_callback' => 'pipdig_strip',
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 			$wp_customize->add_control('p3_pinterest_hover_image_position',
@@ -213,7 +213,7 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 			
 			$wp_customize->add_setting('p3_pinterest_hover_prefix_text',
 				array(
-					'sanitize_callback' => 'pipdig_strip',
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 			$wp_customize->add_control(

@@ -213,7 +213,7 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 			// title
 			$wp_customize->add_setting('p3_full_screen_landing_title',
 				array(
-					'sanitize_callback' => 'pipdig_strip',
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 			$wp_customize->add_control(
@@ -233,7 +233,7 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 			// summary
 			$wp_customize->add_setting('p3_full_screen_landing_summary',
 				array(
-					'sanitize_callback' => 'pipdig_strip',
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 			$wp_customize->add_control(

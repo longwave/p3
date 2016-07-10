@@ -8,6 +8,10 @@ if (!function_exists('pipdig_shortcodes_options_page')) {
 	?>
 	<div class="wrap">
 	
+	<script>
+		window.location.replace("https://support.pipdig.co/article-topics/wordpress-shortcodes/");
+	</script>
+	
 		<h1>Shortcodes</h1>
 		
 		<p>A shortcode is a special tag that you can enter into a post that gets replaced with different content when actually viewing the post on the website.</p>

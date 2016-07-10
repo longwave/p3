@@ -217,7 +217,7 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 			$wp_customize->add_setting('p3_feature_header_trending_dates',
 				array(
 					'default' => '1 month ago',
-					'sanitize_callback' => 'pipdig_strip',
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 			$wp_customize->add_control('p3_feature_header_trending_dates',
@@ -227,9 +227,11 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 					'description' => __("This won't effect the Recent Posts section.", 'p3'),
 					'section' => 'p3_feature_header_section',
 					'choices' => array(
-						'1 year ago' => __('1 Year', 'p3'),
-						'1 month ago' => __('1 Month', 'p3'),
 						'1 week ago' => __('1 Week', 'p3'),
+						'1 month ago' => __('1 Month', 'p3'),
+						'3 months ago' => __('3 Months', 'p3'),
+						'6 months ago' => __('6 Months', 'p3'),
+						'1 year ago' => __('1 Year', 'p3'),
 						'' => __('All Time', 'p3'),
 					),
 				)
@@ -309,7 +311,7 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 			
 			$wp_customize->add_setting('p3_feature_header_pop_title',
 				array(
-					'sanitize_callback' => 'pipdig_strip',
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 			$wp_customize->add_control(
@@ -326,7 +328,7 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 			
 			$wp_customize->add_setting('p3_feature_header_slider_title',
 				array(
-					'sanitize_callback' => 'pipdig_strip',
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 			$wp_customize->add_control(

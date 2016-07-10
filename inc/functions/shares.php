@@ -109,7 +109,7 @@ if (!class_exists('pipdig_p3_social_shares_Customiser')) {
 			
 			$wp_customize->add_setting('p3_share_title',
 				array(
-					'sanitize_callback' => 'pipdig_strip',
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 			$wp_customize->add_control(

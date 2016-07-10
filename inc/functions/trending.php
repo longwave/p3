@@ -157,7 +157,7 @@ if (!class_exists('p3_trending_bar_Customize')) {
 			
 			$wp_customize->add_setting('p3_trending_bar_slider_title',
 				array(
-					'sanitize_callback' => 'pipdig_strip',
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 			$wp_customize->add_control(
@@ -197,7 +197,7 @@ if (!class_exists('p3_trending_bar_Customize')) {
 			$wp_customize->add_setting('p3_trending_bar_trending_dates',
 				array(
 					'default' => '1 month ago',
-					'sanitize_callback' => 'pipdig_strip',
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 			$wp_customize->add_control('p3_trending_bar_trending_dates',
