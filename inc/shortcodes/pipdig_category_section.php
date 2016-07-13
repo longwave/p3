@@ -7,13 +7,19 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'title' => '',
 		'border' => '',
+		'excerpt' => '',
 		'category' => '',
 		'shape' => '',
 		'view_all_button' => '',
 		'number' => '3',
+		'columns' => '3',
 	), $atts ) );
 	
-	$output = $border_class = '';
+	$output = $border_class = $col_class = '';
+	
+	if ($columns == '2') {
+		$col_class = '_2_cols';
+	}
 	
 	$the_shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAGQAQMAAABI+4zbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADRJREFUeNrtwQENAAAAwiD7p7bHBwwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgKQDdsAAAWZeCiIAAAAASUVORK5CYII='; // landscape 600x400
 	
@@ -60,13 +66,26 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 					$comments_out = '<i class="fa fa-comments"></i> '.$comment_count;
 				}
 						
-				$output .= '<div class="pipdig_category_section_item">';
+				$output .= '<div class="pipdig_category_section_item'.$col_class.'">';
 						
 				$output .= '<a href="'.$link.'" class="p3_cover_me" style="background-image:url('.$img.');"><img src="'.$the_shape.'" alt="'.esc_attr(get_the_title()).'" class="p3_invisible" data-pin-nopin="true"/></a>';
 						
-				$output .= '<h3 class="pipdig_category_section_item_title">'.esc_html(get_the_title()).'</h3>';
-						
+				$output .= '<h3 class="pipdig_category_section_item_title">'.strip_tags(get_the_title()).'</h3>';
+				
+				if ($excerpt != 'no') {
+					if (absint($excerpt) < 1) {
+						$excerpt = 25;
+					}
+					$output .= '<div class="pipdig_category_section_item_summary">'.pipdig_truncate(strip_shortcodes(strip_tags(get_the_excerpt())), $excerpt).'</div>';
+				}
+				
 				$output .= '</div>'; //.pipdig_category_section_item
+				
+				
+				// clearfix and margin if 2 columns
+				if (($columns == '2') && ($query->current_post % 2)) {
+					$output .= '<div class="clearfix" style="margin-bottom: 20px;"></div>';
+				}
 						
 			endwhile; wp_reset_query();
 			

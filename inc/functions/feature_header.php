@@ -83,7 +83,7 @@ if (!function_exists('p3_feature_header')) {
 						}
 						
 						if(has_post_thumbnail()){
-							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_small' ); // 640 x 360
+							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
 							$bg = esc_url($thumb['0']);
 						} else {
 							$bg = pipdig_p3_catch_that_image();
@@ -116,7 +116,7 @@ if (!function_exists('p3_feature_header')) {
 							while ($the_query -> have_posts()) : $the_query -> the_post();
 
 								if(has_post_thumbnail()){
-									$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_medium' ); // 800 x 450
+									$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
 									$bg = esc_url($thumb['0']);
 								} else {
 									$bg = pipdig_p3_catch_that_image();

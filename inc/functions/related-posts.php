@@ -82,7 +82,7 @@ if (!function_exists('p3_related_posts')) {
 					while( $query->have_posts() ) { $query->the_post();
 						$title_attr = esc_attr(get_the_title());
 						$link = esc_url(get_the_permalink());
-						$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_small' );
+						$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
 						if ($thumb) {
 							$bg = esc_url($thumb['0']);
 						} else {

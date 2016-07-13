@@ -80,7 +80,7 @@ if (!function_exists('p3_trending_bar')) {
 					?>
 					<?php while ( $popular->have_posts() ): $popular->the_post();			
 						if(has_post_thumbnail()){
-							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_small' ); // 640 x 360
+							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
 							$bg = esc_url($thumb['0']);
 						} else {
 							$bg = pipdig_p3_catch_that_image();

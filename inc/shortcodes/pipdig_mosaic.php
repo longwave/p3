@@ -35,17 +35,17 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 	$query = new WP_Query( array(
-			//'meta_key'			=> '_thumbnail_id',
-			//'showposts'			=> 30,
-			'post_type' => 'post',
-			'post_status' => 'publish',
-			'posts_per_page' => $number,
-			'category_name' => $category,
-			'ignore_sticky_posts' => true,
-			'pagination' => true,
-			'paged' => $paged,
-			)
-		);
+		//'meta_key'			=> '_thumbnail_id',
+		//'showposts'			=> 30,
+		'post_type' => 'post',
+		'post_status' => 'publish',
+		'posts_per_page' => $number,
+		'category_name' => $category,
+		'ignore_sticky_posts' => true,
+		'pagination' => true,
+		'paged' => $paged,
+		)
+	);
 				
 	if ( $query->have_posts() ) {
 		
@@ -54,7 +54,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 				while ( $query->have_posts() ) : $query->the_post();
 					if (has_post_thumbnail() != '') {
 						$thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-						$img = $thumb['0'];
+						$img = esc_url($thumb['0']);
 					} else {
 						$img = pipdig_p3_catch_that_image();
 					}

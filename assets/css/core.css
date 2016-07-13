@@ -575,9 +575,19 @@ display: inline-block;
 vertical-align: top;
 text-align: center;
 }
+.entry-content .pipdig_category_section_item_2_cols {
+width: 48%;
+margin: 1%;
+display: inline-block;
+vertical-align: top;
+text-align: center;
+}
 .entry-content .pipdig_category_section_item_title {
 margin: 0;
 text-align: center;
+}
+.entry-content .pipdig_category_section_item_2_cols .pipdig_category_section_item_title {
+margin: 5px 0 0;
 }
 .pipdig_category_section_button a {
 	

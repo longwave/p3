@@ -57,7 +57,7 @@ if (!function_exists('p3_post_slider_posts_column')) {
 							while ($the_query -> have_posts()) : $the_query -> the_post();
 
 								if(has_post_thumbnail()){
-									$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'p3_large' );
+									$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
 									$bg = esc_url($thumb['0']);
 								} else {
 									$bg = pipdig_p3_catch_that_image();

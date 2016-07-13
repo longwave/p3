@@ -5,13 +5,13 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.5.0
+Version: 2.5.1
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.5.0' );
+define( 'PIPDIG_P3_V', '2.5.1' );
 
 function pipdig_p3_invalid_name() {
 	echo '<!-- p3 invalid name -->';
@@ -268,12 +268,14 @@ function pipdig_p3_activate() {
 		} else {
 			$piplink = esc_url('https://www.pipdig.co');
 			$piplink2 = esc_url('https://www.pipdig.co/');
+			$piplink3 = esc_url('https://www.pipdig.co/products/wordpress-themes/');
 			$amicorum = array(
 			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform: lowercase;letter-spacing: 1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">WordPress themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
-			'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink3.'" target="_blank">WordPress Themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
+			//'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			);
 			update_option('p3_amicorumi_2', $amicorum[array_rand($amicorum)]);
@@ -304,7 +306,7 @@ function pipdig_p3_theme_setup() {
 	add_image_size( 'p3_medium', 800, 450, array( 'center', 'center' ) );
 	add_image_size( 'p3_large', 1280, 720, array( 'center', 'center' ) );
 }
-add_action( 'after_setup_theme', 'pipdig_p3_theme_setup' );
+//add_action( 'after_setup_theme', 'pipdig_p3_theme_setup' );
 
 // Load text domain for languages
 function pipdig_p3_textdomain() {
