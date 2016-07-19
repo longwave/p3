@@ -119,9 +119,9 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
 		$instance['facebook_url'] = strip_tags($new_instance['facebook_url']);
-		$instance['hide_cover'] = $new_instance['hide_cover'];
-		$instance['show_posts'] = $new_instance['show_posts'];
-		$instance['show_faces'] = $new_instance['show_faces'];
+		$instance['hide_cover'] = strip_tags($new_instance['hide_cover']);
+		$instance['show_posts'] = strip_tags($new_instance['show_posts']);
+		$instance['show_faces'] = strip_tags($new_instance['show_faces']);
 
 		return $instance;
 	  }

@@ -96,7 +96,18 @@ font-weight: 400 !important;
 /* Instagram ================================== */
 #p3_instagram_header {margin-top: 25px;margin-bottom: 20px;}
 #p3_instagram_top_of_posts {margin-bottom: 30px;}
-.p3_instagram_post {width:12.5%;position:relative;display:block;float:left;background-size:cover;background-repeat:no-repeat;background-position:center;-moz-transition:all 0.2s ease-out;-webkit-transition:all 0.2s ease-out;transition:all 0.2s ease-out;text-align:center}
+.p3_instagram_post {
+width:12.5%;
+position:relative;
+display:block;
+float:left;
+text-align:center;
+line-height:0;
+background-size:cover;
+background-repeat:no-repeat;
+background-position:center;
+-moz-transition:all 0.2s ease-out;-webkit-transition:all 0.2s ease-out;transition:all 0.2s ease-out;
+}
 #p3_instagram_top_of_posts .p3_instagram_post {width: 19.5%;margin:0 .25%;}
 #p3_instagram_page .p3_instagram_post {width: 20%;}
 .p3_instagram_post:hover {opacity:.7}
@@ -113,21 +124,24 @@ display: block;
 display: block;
 }
 .p3_instagram_footer_title_bar {
-	width: 100%;
-	padding: 10px 0;
-	text-align: center;
-	background: #111;
-	color: #fff;
+width: 100%;
+padding: 10px 0;
+text-align: center;
+background: #111;
+color: #fff;
 }
 .p3_instagram_footer_title_bar h3 {
-	margin: 0;
+margin: 0;
 }
 .p3_instagram_footer_title_bar a, .p3_instagram_footer_title_bar a:hover, .p3_instagram_footer_title_bar a:focus, .p3_instagram_footer_title_bar a:visited {
-	color: #fff;
+color: #fff;
 }
 
 #p3_instagram_kensington {
-	margin-bottom: 20px;
+margin-bottom: 20px;
+}
+#p3_instagram_kensington .p3_instagram_post {
+border: 2px solid #fff;
 }
 
 /* Pinterest ================================== */
@@ -247,22 +261,22 @@ opacity: .75;
 .cycle-prev:hover, .cycle-next:hover { opacity: .8; -moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out;}
 
 .p3_slide_link_box {
-	display: block;
-	width: 100%;
-	height: 100%;
+display: block;
+width: 100%;
+height: 100%;
 }
 #p3_full_width_slider_site_main .p3_slide_img {
-	display: block;
-	width: 100%;
-	height: 380px;
+display: block;
+width: 100%;
+height: 380px;
 }
 #p3_post_slider_posts_column .p3_slide_img {
-	display: block;
-	width: 100%;
-	height: 380px;
+display: block;
+width: 100%;
+height: 380px;
 }
 #p3_post_slider_posts_column {
-	margin-bottom: 35px;
+margin-bottom: 35px;
 }
 .p3_slide_img {
 background-size: cover;
@@ -297,7 +311,7 @@ width: 100%;
 z-index: 8;
 }
 #p3_full_width_slider_site_main .p3_feature_slide {
-	bottom: 10%;
+bottom: 10%;
 }
 #p3_full_width_slider_site_main .p3_feature_slide h2, #p3_feature_header .p3_feature_slide_banner h2 {
 display: block;
@@ -474,7 +488,7 @@ left: 0;
 right: auto;
 }
 .p3_iwtb_text_box h2, .p3_iwtb_text_box h3 {
-	margin-top: 0;
+margin-top: 0;
 }
 
 .pipdig_banner {
@@ -590,7 +604,7 @@ text-align: center;
 margin: 5px 0 0;
 }
 .pipdig_category_section_button a {
-	
+
 }
 
 

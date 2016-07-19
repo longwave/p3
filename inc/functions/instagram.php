@@ -458,7 +458,6 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 			// Number of images to display in instagram feed
 			$wp_customize->add_setting( 'p3_instagram_number', array(
 				'default' => 8,
-				'capability' => 'edit_theme_options',
 				'sanitize_callback' => 'absint',
 				)
 			);

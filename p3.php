@@ -85,9 +85,9 @@ function p3_update_notice_3() {
 	?>
 	<div class="notice notice-warning is-dismissible">
 		<h2>IMPORTANT</h2>
-		<p>Instagram have made further changes to their API which means you will need to re-connect your site.</p>
+		<p>Instagram have made changes to their API which means you will need to re-connect your site.</p>
 		<p>You can do that on <a href="<?php echo admin_url('admin.php?page=pipdig-instagram'); ?>">this page</a>.</p>
-		<p>If you don't use any pipdig Instagram features then you can dismiss this message using the button below:</p>
+		<p>If you don't use any pipdig Instagram features then you can dismiss this message using the button below :)</p>
 		<form action="<?php echo admin_url(); ?>" method="post">
 			<?php wp_nonce_field('p3-update-notice-nonce-3'); ?>
 			<input type="hidden" value="true" name="p3_update_notice_3_dismissed" />
@@ -232,8 +232,6 @@ function pipdig_p3_activate() {
 		set_theme_mod('p3_instagram_header', 1);
 		remove_theme_mod('header_instagram');
 		}
-		$old_ig_num = get_theme_mod('footer_instagram_num', 10);
-		set_theme_mod('p3_instagram_number', $old_ig_num);
 		remove_theme_mod('footer_instagram_num');
 		remove_theme_mod('header_instagram_num');
 		update_option('p3_instagram_transfer', 1);
@@ -272,11 +270,13 @@ function pipdig_p3_activate() {
 			$amicorum = array(
 			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink2.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform: lowercase;letter-spacing: 1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">WordPress themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
 			'<a href="'.$piplink3.'" target="_blank">WordPress Themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
 			//'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			);
 			update_option('p3_amicorumi_2', $amicorum[array_rand($amicorum)]);
 		}

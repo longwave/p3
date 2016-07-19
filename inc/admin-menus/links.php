@@ -141,87 +141,100 @@ function pipdig_links_init() {
 		'pipdig_links_options_page_section' 
 	);
 	
+	add_settings_field( 
+		'rss', 
+		'<i class="fa fa-rss"></i>&nbsp;&nbsp;RSS Feed', 
+		'p3_rss_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
 }
 add_action('admin_init', 'pipdig_links_init');
 
 function p3_email_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='email' name='pipdig_links[email]' placeholder='yourname@gmail.com' value="<?php if (isset($links['email'])) { echo $links['email']; } ?>"> <?php
+	<input class='large-text' type='email' name='pipdig_links[email]' placeholder='e.g. yourname@gmail.com' value="<?php if (isset($links['email'])) { echo $links['email']; } ?>"> <?php
 }
 
 function p3_twitter_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[twitter]' placeholder='https://twitter.com/pipdig' value="<?php if (isset($links['twitter'])) { echo $links['twitter']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[twitter]' placeholder='e.g. https://twitter.com/pipdig' value="<?php if (isset($links['twitter'])) { echo $links['twitter']; } ?>"> <?php
 }
 
 function p3_instagram_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[instagram]' placeholder='https://instagram.com/pipdig' value="<?php if (isset($links['instagram'])) { echo $links['instagram']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[instagram]' placeholder='e.g. https://instagram.com/pipdig' value="<?php if (isset($links['instagram'])) { echo $links['instagram']; } ?>"> <?php
 }
 
 function p3_facebook_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[facebook]' placeholder='https://facebook.com/pipdig' value="<?php if (isset($links['facebook'])) { echo $links['facebook']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[facebook]' placeholder='e.g. https://facebook.com/pipdig' value="<?php if (isset($links['facebook'])) { echo $links['facebook']; } ?>"> <?php
 }
 
 function p3_google_plus_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[google_plus]' placeholder='https://plus.google.com/+pipdig' value="<?php if (isset($links['google_plus'])) { echo $links['google_plus']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[google_plus]' placeholder='e.g. https://plus.google.com/+pipdig' value="<?php if (isset($links['google_plus'])) { echo $links['google_plus']; } ?>"> <?php
 }
 
 function p3_bloglovin_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[bloglovin]' placeholder='https://www.bloglovin.com/blogs/pipdig-3890264' value="<?php if (isset($links['bloglovin'])) { echo $links['bloglovin']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[bloglovin]' placeholder='e.g. https://www.bloglovin.com/blogs/pipdig-3890264' value="<?php if (isset($links['bloglovin'])) { echo $links['bloglovin']; } ?>"> <?php
 }
 
 function p3_pinterest_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[pinterest]' placeholder='https://pinterest.com/pipdig' value="<?php if (isset($links['pinterest'])) { echo $links['pinterest']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[pinterest]' placeholder='e.g. https://pinterest.com/pipdig' value="<?php if (isset($links['pinterest'])) { echo $links['pinterest']; } ?>"> <?php
 }
 
 function p3_snapchat_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[snapchat]' placeholder='https://www.snapchat.com/add/pipdig.co' value="<?php if (isset($links['snapchat'])) { echo $links['snapchat']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[snapchat]' placeholder='e.g. https://www.snapchat.com/add/pipdig.co' value="<?php if (isset($links['snapchat'])) { echo $links['snapchat']; } ?>"> <?php
 }
 
 function p3_youtube_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[youtube]' placeholder='https://www.youtube.com/user/pipdig' value="<?php if (isset($links['youtube'])) { echo $links['youtube']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[youtube]' placeholder='e.g. https://www.youtube.com/user/pipdig' value="<?php if (isset($links['youtube'])) { echo $links['youtube']; } ?>"> <?php
 }
 
 function p3_tumblr_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[tumblr]' placeholder='https://pipdig.tumblr.com' value="<?php if (isset($links['tumblr'])) { echo $links['tumblr']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[tumblr]' placeholder='e.g. https://pipdig.tumblr.com' value="<?php if (isset($links['tumblr'])) { echo $links['tumblr']; } ?>"> <?php
 }
 
 function p3_linkedin_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[linkedin]' placeholder='https://linkedin.com/pipdig' value="<?php if (isset($links['linkedin'])) { echo $links['linkedin']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[linkedin]' placeholder='e.g. https://linkedin.com/pipdig' value="<?php if (isset($links['linkedin'])) { echo $links['linkedin']; } ?>"> <?php
 }
 
 function p3_soundcloud_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[soundcloud]' placeholder='https://soundcloud.com/pipdig' value="<?php if (isset($links['soundcloud'])) { echo $links['soundcloud']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[soundcloud]' placeholder='e.g. https://soundcloud.com/pipdig' value="<?php if (isset($links['soundcloud'])) { echo $links['soundcloud']; } ?>"> <?php
 }
 
 function p3_flickr_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[flickr]' placeholder='https://flickr.com/pipdig' value="<?php if (isset($links['flickr'])) { echo $links['flickr']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[flickr]' placeholder='e.g. https://flickr.com/pipdig' value="<?php if (isset($links['flickr'])) { echo $links['flickr']; } ?>"> <?php
 }
 
 function p3_vk_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[vk]' placeholder='https://vk.com/pipdig' value="<?php if (isset($links['vk'])) { echo $links['vk']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[vk]' placeholder='e.g. https://vk.com/pipdig' value="<?php if (isset($links['vk'])) { echo $links['vk']; } ?>"> <?php
 }
 
 function p3_twitch_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[twitch]' placeholder='https://twitch.tv/dansgaming' value="<?php if (isset($links['twitch'])) { echo $links['twitch']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[twitch]' placeholder='e.g. https://twitch.tv/dansgaming' value="<?php if (isset($links['twitch'])) { echo $links['twitch']; } ?>"> <?php
 }
 
 function p3_stumbleupon_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[stumbleupon]' placeholder='https://stumbleupon.com/stumbler/pipdig' value="<?php if (isset($links['stumbleupon'])) { echo $links['stumbleupon']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[stumbleupon]' placeholder='e.g. https://stumbleupon.com/stumbler/pipdig' value="<?php if (isset($links['stumbleupon'])) { echo $links['stumbleupon']; } ?>"> <?php
+}
+
+function p3_rss_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[rss]' placeholder='e.g. <?php echo esc_url(get_site_url());?>/feed' value="<?php if (isset($links['rss'])) { echo $links['rss']; } ?>"> <?php
 }
 
 function pipdig_links_section_callback() { 

@@ -179,6 +179,9 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		if (empty($stumbleupon)) {
 			$stumbleupon = esc_url($links['stumbleupon']);
 		}
+		if (empty($rss)) {
+			$rss = esc_url($links['rss']);
+		}
 		/* not on links page yet
 		if (empty($spotify)) {
 			$spotify = esc_url($links['spotify']);

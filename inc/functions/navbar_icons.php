@@ -9,7 +9,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = '';
 		
 		if (!empty($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
@@ -59,23 +59,27 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		if (!empty($links['email'])) {
 			$email = sanitize_email($links['email']);
 		}
+		if (!empty($links['rss'])) {
+			$rss = esc_url($links['rss']);
+		}
 
-			if($twitter && get_theme_mod('p3_navbar_twitter', 1)) $navbar_icons .= '<a href="'.$twitter.'" target="_blank"><i class="fa fa-twitter"></i></a>';
-			if($instagram && get_theme_mod('p3_navbar_instagram', 1)) $navbar_icons .= '<a href="'.$instagram.'" target="_blank"><i class="fa fa-instagram"></i></a>';
-			if($facebook && get_theme_mod('p3_navbar_facebook', 1)) $navbar_icons .= '<a href="'.$facebook.'" target="_blank"><i class="fa fa-facebook"></i></a>';
-			if($bloglovin && get_theme_mod('p3_navbar_bloglovin', 1)) $navbar_icons .= '<a href="'.$bloglovin.'" target="_blank"><i class="fa fa-plus"></i></a>';
-			if($pinterest && get_theme_mod('p3_navbar_pinterest', 1)) $navbar_icons .= '<a href="'.$pinterest.'" target="_blank"><i class="fa fa-pinterest"></i></a>';
-			if($snapchat && get_theme_mod('p3_navbar_snapchat', 1)) $navbar_icons .= '<a href="'.$snapchat.'" target="_blank"><i class="fa fa-snapchat-ghost"></i></a>';
-			if($youtube && get_theme_mod('p3_navbar_youtube', 1)) $navbar_icons .= '<a href="'.$youtube.'" target="_blank"><i class="fa fa-youtube-play"></i></a>';
-			if($tumblr && get_theme_mod('p3_navbar_tumblr', 1)) $navbar_icons .= '<a href="'.$tumblr.'" target="_blank"><i class="fa fa-tumblr"></i></a>';
-			if($linkedin && get_theme_mod('p3_navbar_linkedin', 1)) $navbar_icons .= '<a href="'.$linkedin.'" target="_blank"><i class="fa fa-linkedin"></i></a>';
-			if($soundcloud && get_theme_mod('p3_navbar_soundcloud', 1)) $navbar_icons .= '<a href="'.$soundcloud.'" target="_blank"><i class="fa fa-soundcloud"></i></a>';
-			if($flickr && get_theme_mod('p3_navbar_flickr', 1)) $navbar_icons .= '<a href="'.$flickr.'" target="_blank"><i class="fa fa-flickr"></i></a>';
-			if($twitch && get_theme_mod('p3_navbar_twitch', 1)) $navbar_icons .= '<a href="'.$twitch.'" target="_blank"><i class="fa fa-twitch"></i></a>';
-			if($stumbleupon && get_theme_mod('p3_navbar_stumbleupon', 1)) $navbar_icons .= '<a href="'.$stumbleupon.'" target="_blank"><i class="fa fa-stumbleupon"></i></a>';
-			if($vk && get_theme_mod('p3_navbar_vk', 1)) $navbar_icons .= '<a href="'.$vk.'" target="_blank"><i class="fa fa-vk"></i></a>';
-			if($google_plus && get_theme_mod('p3_navbar_google_plus', 1)) $navbar_icons .= '<a href="'.$google_plus.'" target="_blank"><i class="fa fa-google-plus"></i></a>';
-			if($email && get_theme_mod('p3_navbar_email', 1)) $navbar_icons .= '<a href="mailto:'.$email.'" target="_blank"><i class="fa fa-envelope"></i></a>';
+		if($twitter && get_theme_mod('p3_navbar_twitter', 1)) $navbar_icons .= '<a href="'.$twitter.'" target="_blank"><i class="fa fa-twitter"></i></a>';
+		if($instagram && get_theme_mod('p3_navbar_instagram', 1)) $navbar_icons .= '<a href="'.$instagram.'" target="_blank"><i class="fa fa-instagram"></i></a>';
+		if($facebook && get_theme_mod('p3_navbar_facebook', 1)) $navbar_icons .= '<a href="'.$facebook.'" target="_blank"><i class="fa fa-facebook"></i></a>';
+		if($bloglovin && get_theme_mod('p3_navbar_bloglovin', 1)) $navbar_icons .= '<a href="'.$bloglovin.'" target="_blank"><i class="fa fa-plus"></i></a>';
+		if($pinterest && get_theme_mod('p3_navbar_pinterest', 1)) $navbar_icons .= '<a href="'.$pinterest.'" target="_blank"><i class="fa fa-pinterest"></i></a>';
+		if($snapchat && get_theme_mod('p3_navbar_snapchat', 1)) $navbar_icons .= '<a href="'.$snapchat.'" target="_blank"><i class="fa fa-snapchat-ghost"></i></a>';
+		if($youtube && get_theme_mod('p3_navbar_youtube', 1)) $navbar_icons .= '<a href="'.$youtube.'" target="_blank"><i class="fa fa-youtube-play"></i></a>';
+		if($tumblr && get_theme_mod('p3_navbar_tumblr', 1)) $navbar_icons .= '<a href="'.$tumblr.'" target="_blank"><i class="fa fa-tumblr"></i></a>';
+		if($linkedin && get_theme_mod('p3_navbar_linkedin', 1)) $navbar_icons .= '<a href="'.$linkedin.'" target="_blank"><i class="fa fa-linkedin"></i></a>';
+		if($soundcloud && get_theme_mod('p3_navbar_soundcloud', 1)) $navbar_icons .= '<a href="'.$soundcloud.'" target="_blank"><i class="fa fa-soundcloud"></i></a>';
+		if($flickr && get_theme_mod('p3_navbar_flickr', 1)) $navbar_icons .= '<a href="'.$flickr.'" target="_blank"><i class="fa fa-flickr"></i></a>';
+		if($twitch && get_theme_mod('p3_navbar_twitch', 1)) $navbar_icons .= '<a href="'.$twitch.'" target="_blank"><i class="fa fa-twitch"></i></a>';
+		if($stumbleupon && get_theme_mod('p3_navbar_stumbleupon', 1)) $navbar_icons .= '<a href="'.$stumbleupon.'" target="_blank"><i class="fa fa-stumbleupon"></i></a>';
+		if($vk && get_theme_mod('p3_navbar_vk', 1)) $navbar_icons .= '<a href="'.$vk.'" target="_blank"><i class="fa fa-vk"></i></a>';
+		if($google_plus && get_theme_mod('p3_navbar_google_plus', 1)) $navbar_icons .= '<a href="'.$google_plus.'" target="_blank"><i class="fa fa-google-plus"></i></a>';
+		if($rss && get_theme_mod('p3_navbar_rss', 1)) $navbar_icons .= '<a href="'.$rss.'" target="_blank"><i class="fa fa-rss"></i></a>';
+		if($email && get_theme_mod('p3_navbar_email', 1)) $navbar_icons .= '<a href="mailto:'.$email.'" target="_blank"><i class="fa fa-envelope"></i></a>';
 		
 		if(get_theme_mod('site_top_search')) $navbar_icons .= '<a class="toggle-search"><i class="fa fa-search"></i></a>'; // still need to p3 this.
 		
@@ -365,6 +369,21 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Stumbleupon',
+					'section' => 'p3_navbar_icons_section',
+				)
+			);
+			
+			// rss
+			$wp_customize->add_setting('p3_navbar_rss',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_navbar_rss',
+				array(
+					'type' => 'checkbox',
+					'label' => 'RSS Feed',
 					'section' => 'p3_navbar_icons_section',
 				)
 			);
