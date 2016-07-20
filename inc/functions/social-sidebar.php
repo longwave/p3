@@ -68,6 +68,10 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 			
 			$social_sidebar .= '<div id="p3_social_sidebar">';
 			
+			if (get_theme_mod('p3_social_sidebar_icon_color')) {
+				$social_sidebar .= '<style scoped>#p3_social_sidebar a {color:'.get_theme_mod('p3_social_sidebar_icon_color').'}</style>';
+			}
+			
 			if($twitter && get_theme_mod('p3_social_sidebar_twitter', 1)) $social_sidebar .= '<a href="'.$twitter.'" target="_blank"><i class="fa fa-twitter"></i></a>';
 			if($instagram && get_theme_mod('p3_social_sidebar_instagram', 1)) $social_sidebar .= '<a href="'.$instagram.'" target="_blank"><i class="fa fa-instagram"></i></a>';
 			if($facebook && get_theme_mod('p3_social_sidebar_facebook', 1)) $social_sidebar .= '<a href="'.$facebook.'" target="_blank"><i class="fa fa-facebook"></i></a>';
@@ -124,6 +128,23 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 					'type' => 'checkbox',
 					'label' => __('Enable this feature', 'p3'),
 					'section' => 'p3_social_sidebar_section',
+				)
+			);
+			
+			// icon color
+			$wp_customize->add_setting('p3_social_sidebar_icon_color',
+				array(
+					'default' => '#000000',
+					//'transport'=>'postMessage',
+					'sanitize_callback' => 'sanitize_hex_color',
+				)
+			);
+			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_social_sidebar_icon_color',
+				array(
+					'label' => __( 'Icon color', 'p3' ),
+					'settings' => 'p3_social_sidebar_icon_color',
+					'section' => 'p3_social_sidebar_section',
+				)
 				)
 			);
 			
