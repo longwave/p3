@@ -137,8 +137,8 @@ margin: 0;
 color: #fff;
 }
 
-#p3_instagram_kensington {
-margin-bottom: 20px;
+#p3_instagram_kensington .container {
+padding-bottom: 20px;
 }
 #p3_instagram_kensington .p3_instagram_post {
 border: 2px solid #fff;
