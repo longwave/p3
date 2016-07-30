@@ -9,10 +9,10 @@ if (!function_exists('p3_popup_modal')) {
 			return;
 		}
 		
-		$img = esc_url(get_theme_mod('p3_popup_image', ''));
+		$img = esc_url(get_theme_mod('p3_popup_image'));
 		$link = esc_url(get_theme_mod('p3_popup_link', 'https://twitter.com/pipdig'));
 		
-		if (!img || !$link) {
+		if (!$img || !$link) {
 			return;
 		}
 		
@@ -41,7 +41,7 @@ if (!function_exists('p3_popup_modal')) {
 			#p3_modal {display: none;}
 		</style>
 		
-		<script src="//cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.11/ouibounce.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.11/ouibounce.min.js"></script>
 		<script>
 		jQuery(document).ready(function($) {
 			

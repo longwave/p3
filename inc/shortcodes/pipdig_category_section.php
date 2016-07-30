@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'title' => '',
+		'title_link' => '',
 		'border' => '',
 		'excerpt' => '',
 		'category' => '',
@@ -15,7 +16,7 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 		'columns' => '3',
 	), $atts ) );
 	
-	$output = $border_class = $col_class = '';
+	$output = $border_class = $col_class = $title_link_start = $title_link_end = '';
 	
 	if ($columns == '2') {
 		$col_class = '_2_cols';
@@ -35,7 +36,11 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 			if ($border) {
 				$border_class = 'class="pipdig_category_section_border"';
 			}
-			$output .= '<h2 '.$border_class.'><span>'.esc_html($title).'</span></h2>';
+			if ($title_link) {
+				$title_link_start = '<a href="'.esc_url($title_link).'">';
+				$title_link_end = '</a>';
+			}
+			$output .= '<h2 '.$border_class.'><span>'.$title_link_start . esc_html($title) . $title_link_end.'</span></h2>';
 		}
 		
 		$query = new WP_Query(

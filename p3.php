@@ -55,7 +55,7 @@ function pipdig_p3_scripts_styles() {
 	wp_register_script( 'pipdig-mixitup', 'https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js', array( 'jquery' ), null, true );
 	//wp_register_script( 'pipdig-cookie', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js', array( 'jquery' ), null, true );
 	
-	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' );
+	wp_enqueue_style( 'font-awesome', 'https://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' );
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
 

@@ -24,6 +24,10 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 
 		if (!empty($bloglovin_url)) {
 			if ($bloglovin_official) { //use official widget
+				// strip queries from url
+				if ($url = parse_url($bloglovin_url)) {
+					$bloglovin_url =  '//'.$url['host'].$url['path'];
+				}
 				$bloglovin_widget_output = '<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"><div style="text-align:center;margin:0 auto"><a target="_blank" rel="nofollow" href="'.$bloglovin_url.'" style="background: #000; border: 0; border-radius: 2px; display: block; height: 20px; overflow: hidden; padding: 0 5px; position: relative; width: 110px; display: inline-block"><div style="background: url(https://static.blovcdn.com/images/widget/follow.svg) no-repeat; display: inline-block; height: 14px; left: 4px; position: absolute; top: 3px; width: 15px;"></div><div style="background: url(https://static.blovcdn.com/images/widget/logo-2-white.svg) no-repeat; display: inline-block; height: 10px; left: 21px; position: absolute; top: 5px; width: 84px;"></div></a><a href="'.$bloglovin_url.'" rel="nofollow" target="_blank" style="padding:0 4px;height:20px;display:inline-block;text-align:center;border:1px solid #cfcfcf;border-radius:2px;background-color:white;overflow:hidden;position:relative;left:3px;font:13px Open Sans,sans-serif;line-height:18px;color:#000!important;text-decoration:none!important">'.$bloglovin_count.'</a></div>';
 			} else { // use customizer
 				$icon_type = get_theme_mod('pipdig_bloglovin_widget_icon', 'heart');

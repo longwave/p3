@@ -26,9 +26,11 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 	}
 	
     if (!empty($snapcode)) { ?>
-		<a href="<?php echo $snap_url; ?>" target="_blank" rel="nofollow"><img src="<?php echo esc_url($snapcode); ?>" style="min-width: 1in; max-width: 1.2in; height: auto;" alt="<?php echo esc_attr($snapchat_account); ?> on Snapchat" /></a>
-		<?php if (!empty($snapchat_account)) { ?>
-			<p><?php printf( __('Follow <b>%s</b> on Snapchat!', 'p3'), esc_html($snapchat_account) ); ?></p>
+		
+		<?php if (!empty($snapchat_account)) { ?><a href="<?php echo $snap_url; ?>" target="_blank" rel="nofollow"><?php } ?>
+			<img src="<?php echo esc_url($snapcode); ?>" style="min-width: 1in; max-width: 1.2in; height: auto;" alt="<?php echo esc_attr($snapchat_account); ?> on Snapchat" />
+		<?php if (!empty($snapchat_account)) { ?></a>
+			<p><?php printf( __('Follow <b>%s</b> on Snapchat!', 'p3'), strip_tags($snapchat_account) ); ?></p>
 		<?php } ?>
 	<?php } else {
 		_e("Setup not complete. Please check the widget options.", 'p3');

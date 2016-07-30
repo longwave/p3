@@ -104,16 +104,20 @@ include('functions/scrapey-scrapes.php');
 
 
 // Add Featured Image to feed if using excerpt mode, or just add the full content if not
-if (!function_exists('pipdig_rss_post_thumbnail')) {
+if (!class_exists('Rss_Image_Feed') && !function_exists('pipdig_rss_post_thumbnail')) {
 	function pipdig_p3_rss_post_thumbnail($content) {
 		
 		if (get_option('rss_use_excerpt')) {
+			
 			global $post;
-			if(has_post_thumbnail($post->ID)) {
-				$content = '<p>' . get_the_post_thumbnail($post->ID, 'large') . '</p>' . get_the_excerpt();
-			} elseif (pipdig_p3_catch_that_image()) {
-				$content = '<p><img src="'.pipdig_p3_catch_that_image().'" alt=""/></p>' . get_the_excerpt();
-			} 
+			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' );
+			if ($thumb) {
+				$bg = esc_url($thumb['0']);
+			} else {
+				$bg = pipdig_p3_catch_that_image();
+			}
+			$content = '<p><img src="'.$bg.'" alt="'.esc_attr($post->post_title).'" style="max-width:100%;height:auto;"/></p><p>'.get_the_excerpt().'</p>';
+
 		}
 
 		return strip_shortcodes($content);
@@ -167,6 +171,9 @@ add_filter( 'jetpack_get_available_modules', 'pipdig_p3_hide_jetpack_modules', 2
 
 function pipdig_p3_disable_jetpack_modules() {
 	if ( class_exists( 'Jetpack' ) ) {
+		if (Jetpack::is_module_active('minileven')) {
+			Jetpack::deactivate_module( 'minileven' );
+		}
 		if (Jetpack::is_module_active('photon')) {
 			Jetpack::deactivate_module( 'photon' );
 		}
@@ -190,6 +197,8 @@ function p3_flush_htacess() {
 function p3_htaccess_edit($rules) {
 $p3_rules = "
 # p3
+redirect 301 /feeds/posts/default /feed
+
 <ifmodule mod_deflate.c>
 AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
 </ifmodule>
@@ -220,7 +229,7 @@ function pipdig_p3_emmmm_heeey() {
 		});
 	});
 	</script>
-	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> -->
+	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | Theme v<?php echo wp_get_theme()->get('Version'); ?> | P v<?php echo PHP_VERSION; ?> -->
 	<?php
 }
 add_action('wp_footer','pipdig_p3_emmmm_heeey', 99);

@@ -5,6 +5,9 @@
 	#trendingz, #home-sliderz, .top-socialz, #p3_social_sidebar {
 		display: none;
 	}
+	.mc-modal {
+		top: 95px; /* mailchimp */
+	}
 }
 @media only screen and (max-width: 759px) {
 	#p3_feature_header_recent_posts {

@@ -11,10 +11,19 @@ if (!function_exists('pipdig_p3_footer_admin')) {
 }
 
 
-
 /*	Remove pointless front end widgets ----------------------------------------------*/
 if (!function_exists('pipdig_p3_unregister_widgets')) {
 	function pipdig_p3_unregister_widgets() {
+		
+		if (get_option('p3_widget_override')) {
+			return;
+		}
+		
+		if (isset($_GET['p3_widget_override'])) { // if peeps want it got to homepage?p3_widget_override
+			update_option('p3_widget_override', 1);
+			return;
+		}
+		
 		unregister_widget('WP_Widget_Pages');
 		unregister_widget('WP_Widget_Links');
 		unregister_widget('WP_Widget_Meta');

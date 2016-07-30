@@ -20,8 +20,8 @@ if (!function_exists('p3_feature_header')) {
 			$class_2 = 'col-sm-6 col-sm-pull-6';
 		}
 		
-		$post_cat_trending = get_theme_mod('p3_feature_header_trending_cat');
-		$post_cat_slider = get_theme_mod('p3_feature_header_slider_cat');
+		$post_cat_trending = intval(get_theme_mod('p3_feature_header_trending_cat'));
+		$post_cat_slider = intval(get_theme_mod('p3_feature_header_slider_cat'));
 		$big_this_month_title = strip_tags(get_theme_mod('p3_feature_header_pop_title'));
 		if (empty($big_this_month_title)) {
 			$big_this_month_title = __('Big this Month', 'p3');
@@ -30,9 +30,9 @@ if (!function_exists('p3_feature_header')) {
 		if (empty($recent_posts_title)) {
 			$recent_posts_title = __('Recent Posts', 'p3');
 		}
-		$date_range = get_theme_mod( 'p3_feature_header_trending_dates', '1 month ago' );
-		$text_color = get_theme_mod('p3_feature_header_text_color', '#000');
-		$text_bg_color = get_theme_mod('p3_feature_header_text_bg_color', '#fff');
+		$date_range = get_theme_mod('p3_feature_header_trending_dates', '1 month ago');
+		$text_color = strip_tags(get_theme_mod('p3_feature_header_text_color', '#000'));
+		$text_bg_color = strip_tags(get_theme_mod('p3_feature_header_text_bg_color', '#fff'));
 		
 		$truncate_title = absint(get_theme_mod('p3_feature_header_title_truncate', 7));
 		
@@ -82,8 +82,8 @@ if (!function_exists('p3_feature_header')) {
 								break;
 						}
 						
-						if(has_post_thumbnail()){
-							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+						$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+						if ($thumb) {
 							$bg = esc_url($thumb['0']);
 						} else {
 							$bg = pipdig_p3_catch_that_image();
@@ -115,8 +115,8 @@ if (!function_exists('p3_feature_header')) {
 								
 							while ($the_query -> have_posts()) : $the_query -> the_post();
 
-								if(has_post_thumbnail()){
-									$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+								$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+								if ($thumb) {
 									$bg = esc_url($thumb['0']);
 								} else {
 									$bg = pipdig_p3_catch_that_image();

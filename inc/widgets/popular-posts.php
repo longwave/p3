@@ -130,8 +130,8 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		//set_transient('pipdig_popular_posts_widget', $popular, 6 * HOUR_IN_SECONDS); // set transient value
 	//} ?>
 	<?php while ( $popular->have_posts() ): $popular->the_post();
-		if(has_post_thumbnail()){
-			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+		if ($thumb) {
 			$bg = esc_url($thumb['0']);
 		} else {
 			$bg = pipdig_p3_catch_that_image();
