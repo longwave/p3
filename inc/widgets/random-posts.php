@@ -135,6 +135,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 	if ( false === ( $popular = get_transient( 'pipdig_random_posts_widget' ) ) ) { // check for transient value
 		$popular = new WP_Query( array(
 			'showposts' => $number_posts,
+			'cat' => $category,
 			'ignore_sticky_posts' => 1,
 			'orderby' => 'rand',
 			'date_query' => array(

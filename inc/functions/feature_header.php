@@ -357,9 +357,9 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 					'label' => __( 'Post title length (words)', 'p3' ),
 					'section' => 'p3_feature_header_section',
 					'input_attrs' => array(
-						'min'   => 1,
-						'max'   => 20,
-						'step'  => 1,
+						'min' => 1,
+						'max' => 20,
+						'step' => 1,
 						//'class' => 'test-class test',
 						//'style' => 'color: #0a0',
 					),

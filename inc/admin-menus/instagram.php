@@ -43,7 +43,7 @@ function p3_instagram_at_render() {
 		//echo $user_id[0];
 	}
 	?>
-	<input class='large-text' type='text' name='pipdig_instagram[access_token]' value="<?php echo $access_token; ?>"> <?php
+	<input class='large-text' id="p3_access_token" type='text' name='pipdig_instagram[access_token]' value="<?php echo $access_token; ?>"> <?php
 }
 
 function p3_instagram_userid_render() {
@@ -54,7 +54,7 @@ function p3_instagram_userid_render() {
 	}
 	
 	?>
-	<input class='large-text' type='text' name='pipdig_instagram[user_id]' value="<?php echo $user_id; ?>"> <?php
+	<input class='large-text' id="p3_user_id" type='text' name='pipdig_instagram[user_id]' value="<?php echo $user_id; ?>"> <?php
 }
 
 
@@ -111,6 +111,36 @@ function pipdig_instagram_options_page() {
 		submit_button();
 		?>
 		
+		<button type="button" class="button" id="p3_test_connection">Click here to test connection</button>
+		<p id="p3_test_connection_result"></p>
+		
+		<script>
+		jQuery(document).ready(function($) {
+			
+			$('#p3_test_connection').click(function(e) {
+				
+				var token = $("#p3_access_token").val();
+				var user = $("#p3_user_id").val();
+				
+				$(this).html('Testing, please wait...').prop( "disabled", true );
+				
+				var data = {
+					action: 'p3_ig_connection_tester',
+					'token': token,
+					'user': user,
+				};
+				
+				$.post(ajaxurl, data, function(response) {
+					//alert(response);
+					$('#p3_test_connection_result').html(response);
+					$('#p3_test_connection').html('Click here to test connection').removeAttr('disabled');
+				});
+				
+			});
+		
+		});
+		</script>
+		
 		<p>After connecting your account, you can setup our <a href="https://support.pipdig.co/articles/wordpress-how-to-create-and-use-widgets/" target="_blank">Instagram Widget</a> and <a href="https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/" target="_blank">Instagram Feed</a> options</p>
 		
 		</div><!--// .card -->
@@ -120,6 +150,55 @@ function pipdig_instagram_options_page() {
 	</div><!--// .wrap -->
 	<?php
 }
+
+function p3_ig_connection_tester_callback() {
+	
+	$token = sanitize_text_field($_POST['token']);
+	$user = sanitize_text_field($_POST['user']);
+	
+	if (empty($token)) {
+		echo '<span class="dashicons dashicons-no"></span> Error! Please check you have entered your Access Token above.';
+		wp_die();
+	}
+	if (empty($user)) {
+		echo '<span class="dashicons dashicons-no"></span> Error! Please check you have entered your User ID above.';
+		wp_die();
+	}
+	
+	$url = esc_url('https://'.$zendesk_domain.'.zendesk.com/api/v2/tickets.json');
+
+	$headers = array(
+		'Authorization' => 'Basic '.base64_encode($zendesk_user.'/token:'.$zendesk_token)
+	);
+	
+	$args = array(
+		'method' => 'GET',
+		'timeout' => 15,
+		'redirection' => 10,
+		'blocking' => true,
+	);
+	
+	$url = "https://api.instagram.com/v1/users/".$user."/media/recent/?access_token=".$token."&count=1";
+	
+	$result_msg = 'Unknown error, sorry :(';
+	
+	$response = wp_safe_remote_get($url, $args);
+	if (is_array($response)) {
+		$code = intval($response['response']['code']);
+		if ($code === 200) {
+			$result_msg = '<span class="dashicons dashicons-yes"></span> Success! You are connected to Instagram. Save your settings :)';
+		} else {
+			$result_msg = '<span class="dashicons dashicons-no"></span> Error! Response code from Instagram: '.$code.'.<br />Have you posted any content to Instagram yet? If not, you may need to upload an image first to test the connection.<br />Is your Instagram account set to Public rather than <a href="https://help.instagram.com/116024195217477/" target="_blank">Private</a>?<br />Please double check that your Access Token and User ID are correct.';
+		}
+	} else {
+		$result_msg = '<span class="dashicons dashicons-no"></span> Error! Could not connect to Instagram. Please try creating a new Access Token and User ID on <a href="https://www.pipdig.co/instagram" target="_blank">this page</a>.';
+	}
+	
+	echo $result_msg;
+
+	wp_die();
+}
+add_action( 'wp_ajax_p3_ig_connection_tester', 'p3_ig_connection_tester_callback' );
 
 
 function delete_instagram_gen() {

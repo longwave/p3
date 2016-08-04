@@ -5,28 +5,28 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.5.2
+Version: 2.5.4
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.5.2' );
+define( 'PIPDIG_P3_V', '2.5.4' );
 
 function pipdig_p3_invalid_name() {
 	echo '<!-- p3 invalid name -->';
 }
 $this_theme = wp_get_theme();
+$theme_textdomain = $this_theme->get('TextDomain');
 if ($this_theme->get('Author') != 'pipdig') { // not by pipdig, but hey that's ok.
 	$child_parent = $this_theme->get('Template');
-	if ($child_parent) { // it's a child, all's good.
+	if ($child_parent) { // it's a child, s'all good.
 		$child_parent = explode('-', trim($child_parent));
 		if ($child_parent[0] != 'pipdig') { // it's a child and we ain't the parent
 			add_action('wp_footer', 'pipdig_p3_invalid_name', 99999);
 			return;
 		}
 	} else {
-		$theme_textdomain = $this_theme->get('TextDomain');
 		if ($theme_textdomain) {
 			$theme_textdomain = explode('-', trim($theme_textdomain));
 			if ($theme_textdomain[0] != 'pipdig') { // we're the parent :')
@@ -95,7 +95,7 @@ function p3_update_notice_3() {
 				<input name="submit" class="button" value="Hide this notice" type="submit" />
 			</p>
 		</form>
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 	</div>
 	<?php
 }
@@ -135,7 +135,7 @@ function p3_update_notice_1() {
 	</div>
 	<?php
 }
-add_action( 'admin_notices', 'p3_update_notice_1' );
+//add_action( 'admin_notices', 'p3_update_notice_1' );
 
 
 function pipdig_p3_activate() {
@@ -177,18 +177,20 @@ function pipdig_p3_activate() {
 	update_option('image_default_size', 'large');
 	update_option('image_default_align', 'none');
 	update_option('image_default_link_type', 'none');
-		
-	if (get_option('posts_per_page') == 10 && (get_option('pipdig_p3_posts_per_page_set') != 1)) {
-		if (get_option('pipdig_theme') == 'aquae') {
-		update_option('posts_per_page', 13);
-		} elseif (get_option('pipdig_theme') == 'galvani') {
-		update_option('posts_per_page', 12);
-		} elseif (get_option('pipdig_theme') == 'thegrid') {
-		update_option('posts_per_page', 6);
-		} else {
-		update_option('posts_per_page', 5);
+	
+	if (get_option('pipdig_p3_posts_per_page_set') != 1) { // legacy check
+		if (get_option('posts_per_page') == 10 && (get_option('pipdig_p3_posts_per_page_set'.$theme_textdomain) != 1)) {
+			if (get_option('pipdig_theme') == 'aquae') {
+			update_option('posts_per_page', 13);
+			} elseif (get_option('pipdig_theme') == 'galvani') {
+			update_option('posts_per_page', 12);
+			} elseif (get_option('pipdig_theme') == 'thegrid') {
+			update_option('posts_per_page', 6);
+			} else {
+			update_option('posts_per_page', 5);
+			}
+			update_option('pipdig_p3_posts_per_page_set'.$theme_textdomain, 1);
 		}
-		update_option('pipdig_p3_posts_per_page_set', 1);
 	}
 		
 	if (!get_option('rss_use_excerpt') && (get_option('pipdig_p3_rss_use_excerpt_set') != 1)) {
@@ -221,8 +223,7 @@ function pipdig_p3_activate() {
 		$pipdig_instagram['access_token'] = $sb_options['sb_instagram_at'];
 		update_option( "pipdig_instagram", $pipdig_instagram );
 	}
-		
-		
+	
 	if (get_option('p3_instagram_transfer') != 1) {
 		if (get_theme_mod('footer_instagram')) {
 		set_theme_mod('p3_instagram_footer', 1);
@@ -249,7 +250,7 @@ function pipdig_p3_activate() {
 	}
 	
 	p3_flush_htacess();
-		
+	
 	// live site check
 	if (get_option('pipdig_live_site') != 1) {
 		$submit_data = wp_remote_fopen('https://status.pipdig.co/?dcx15=15&action=1&site_url='.rawurldecode(get_site_url()));
@@ -299,14 +300,15 @@ function pipdig_p3_deactivate() {
 }
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
 
-
+/*
 function pipdig_p3_theme_setup() {
 	// thumbnails
 	add_image_size( 'p3_small', 640, 360, array( 'center', 'center' ) );
 	add_image_size( 'p3_medium', 800, 450, array( 'center', 'center' ) );
 	add_image_size( 'p3_large', 1280, 720, array( 'center', 'center' ) );
 }
-//add_action( 'after_setup_theme', 'pipdig_p3_theme_setup' );
+add_action( 'after_setup_theme', 'pipdig_p3_theme_setup' );
+*/
 
 // Load text domain for languages
 function pipdig_p3_textdomain() {

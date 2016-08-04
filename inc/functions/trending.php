@@ -25,6 +25,8 @@ if (!function_exists('p3_trending_bar')) {
 			remove_theme_mod('trending_dates');
 		}
 		
+		$truncate_title = absint(get_theme_mod('p3_trending_bar_title_truncate', 7));
+		
 		// ----
 		
 		if (!get_theme_mod('p3_trending_bar_enable')) {
@@ -91,7 +93,7 @@ if (!function_exists('p3_trending_bar')) {
 							<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
 								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC" alt="<?php the_title_attribute(); ?>" class="p3_invisible" data-pin-nopin="true"/>
 							</div>
-							<h4><?php echo pipdig_p3_truncate(get_the_title(), 7); ?></h4>
+							<h4><?php echo pipdig_p3_truncate(get_the_title(), $truncate_title); ?></h4>
 						</a>
 					</div>
 					<?php endwhile;?>
@@ -281,6 +283,30 @@ if (!class_exists('p3_trending_bar_Customize')) {
 					'section' => 'pipdig_trending_section',
 				)
 			);
+			
+			// post title length
+			$wp_customize->add_setting('p3_trending_bar_title_truncate',
+				array(
+					'default' => 7,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_trending_bar_title_truncate',
+				array(
+					'type' => 'number',
+					'label' => __( 'Post title length (words)', 'p3' ),
+					'section' => 'pipdig_trending_section',
+					'input_attrs' => array(
+						'min' => 1,
+						'max' => 20,
+						'step' => 1,
+						//'class' => 'test-class test',
+						//'style' => 'color: #0a0',
+					),
+				)
+			);
+
 
 
 

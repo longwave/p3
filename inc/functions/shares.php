@@ -15,16 +15,13 @@ function pipdig_p3_social_shares() {
 		$img = pipdig_p3_catch_that_image();
 	}
 	$link = esc_url(get_the_permalink());
-	$title = rawurlencode(get_the_title());
-	$summary = rawurlencode(get_the_excerpt());
+	$title = esc_attr(get_the_title());
+	$summary = esc_attr(get_the_excerpt());
 	
-	//if ( false === ( $twitter_handle = get_transient('p3_twitter_handle') ) ) {
-		$links = get_option('pipdig_links');
-		$twitter_url = esc_url($links['twitter']);
-		$twitter_handle = parse_url($twitter_url, PHP_URL_PATH);
-		$twitter_handle = str_replace('/', '', $twitter_handle);
-		//set_transient('p3_twitter_handle', $twitter_handle, 72 * HOUR_IN_SECONDS);
-	//}
+	$links = get_option('pipdig_links');
+	$twitter_url = esc_url($links['twitter']);
+	$twitter_handle = parse_url($twitter_url, PHP_URL_PATH);
+	$twitter_handle = str_replace('/', '', $twitter_handle);
 	$via_handle = '';
 	if (!empty($twitter_handle)) {
 		$via_handle = '&via='.$twitter_handle;
@@ -43,6 +40,9 @@ function pipdig_p3_social_shares() {
 	}
 	if (get_theme_mod('p3_share_tumblr', 1)) {
 		$output .= '<a href="//www.tumblr.com/widgets/share/tool?canonicalUrl='.$link.'&title='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-tumblr"></i></a>';
+	}
+	if (get_theme_mod('p3_share_vk')) {
+		$output .= '<a href="//vk.com/share.php?url='.$link.'&title='.$title.'&image='.$img.'&description='.$summary.'" target="_blank" rel="nofollow"><i class="fa fa-vk"></i></a>';
 	}
 	if (get_theme_mod('p3_share_google_plus')) {
 		$output .= '<a href="//plus.google.com/share?url='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-google-plus"></i></a>';
@@ -181,6 +181,21 @@ if (!class_exists('pipdig_p3_social_shares_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Pinterest',
+					'section' => 'pipdig_p3_shares_section',
+				)
+			);
+			
+			// pinterest
+			$wp_customize->add_setting('p3_share_vk',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_share_vk',
+				array(
+					'type' => 'checkbox',
+					'label' => 'VKontakte (VK)',
 					'section' => 'pipdig_p3_shares_section',
 				)
 			);

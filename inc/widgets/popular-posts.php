@@ -118,8 +118,8 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 	//if ( false === ( $popular = get_transient('pipdig_popular_posts_widget') ) ) { // check for transient value
 		$popular = new WP_Query( array(
 			'showposts' => $number_posts,
-			'ignore_sticky_posts' => 1,
 			'cat' => $category,
+			'ignore_sticky_posts' => 1,
 			'orderby' => 'comment_count',
 			'date_query' => array(
 				array(

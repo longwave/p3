@@ -11,15 +11,15 @@ if (!function_exists('p3_related_posts')) {
 			return;
 		}
 		
-		$the_shape = absint(get_theme_mod('p3_related_posts_shape', 1));
 		$number = absint(get_theme_mod('p3_related_posts_number', 4));
 		if ($number > 4) {
 			$number = 4;
 		}
 		
+		$the_shape = absint(get_theme_mod('p3_related_posts_shape', 1));
+		
 		$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC'; // landscape
 	
-		
 		if ($the_shape == 2) {
 			
 			$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAHgAQMAAACyyGUjAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACxJREFUeNrtwTEBAAAAwiD7p7bGDmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkHVZAAAFam5MDAAAAAElFTkSuQmCC'; // portrait
@@ -187,9 +187,9 @@ if (!class_exists('pipdig_related_Customize')) {
 					'label' => __('Image shape', 'p3'),
 					'section' => 'pipdig_related_posts_pop',
 					'choices' => array(
-						'1' => 'Landscape',
-						'2' => 'Portait',
-						'3' => 'Square',
+						1 => 'Landscape',
+						2 => 'Portait',
+						3 => 'Square',
 					),
 				)
 			);
