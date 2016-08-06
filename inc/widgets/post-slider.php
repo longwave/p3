@@ -44,7 +44,7 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 		
 	?>
 		<p>
-			<?php _e('This widget is designed to be used in the sidebar.', 'p3'); ?>
+			NOTE: This widget is designed to be used in the sidebar. If you would like to display a slider under the header or in any other location, please use the options in the <a href="<?php echo admin_url( 'customize.php' ); ?>">Customizer</a>.
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label><br />

@@ -46,7 +46,7 @@ function pipdig_p3_do_this_daily() {
 	
 	if (!empty($youtube_channels)) {
 		foreach ($youtube_channels as $channel_id) {
-			delete_transient('p3_instagram_feed_'.$channel_id);
+			delete_transient('p3_youtube_'.$channel_id);
 		}
 	}
 	

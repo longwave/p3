@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 // function to fetch videos
-function p3_youtube_fetch($channel_id, $number = 5, $hexadecimal = 'zaSyCBYyhzMnNNP') {
+function p3_youtube_fetch($channel_id, $hexadecimal = 'zaSyCBYyhzMnNNP') {
 	
 		$videos = array();
 		
@@ -16,24 +16,24 @@ function p3_youtube_fetch($channel_id, $number = 5, $hexadecimal = 'zaSyCBYyhzMn
 		if (!empty($youtube_channels)) {
 			if (is_array($youtube_channels)) {
 				$youtube_channels = array_push($youtube_channels, $channel_id);
-				update_option('pipdig_instagram_users', $youtube_channels);
+				update_option('pipdig_youtube_channels', $youtube_channels);
 			}
 		} else {
 			$youtube_channels = array($channel_id);
-			update_option('pipdig_instagram_users', $youtube_channels);
+			update_option('pipdig_youtube_channels', $youtube_channels);
 		}
 	
 		$key = 'AIzaSyAttqQSW7MI7kKcdmrYL2jl1t9Shw1bMwE'; // red marker
 		
 		if ( false === ( $youtube_data = get_transient( 'p3_youtube_'.$channel_id ) ) ) {
-			$youtube_data = wp_remote_fopen('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key=AI'.$hexadecimal.'8d0'.'tvL'.'dS'.'P8r'.'yT'.'lS'.'Dq'.'egN'.'5c&type=video&maxResults=10');
+			$youtube_data = wp_remote_fopen('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key=AI'.$hexadecimal.'8d0'.'tvL'.'dS'.'P8r'.'yT'.'lS'.'Dq'.'egN'.'5c&type=video&maxResults=20');
 			$youtube_data=json_decode($youtube_data);
 			set_transient('p3_youtube_'.$channel_id, $youtube_data, 60 * MINUTE_IN_SECONDS);
 		}
 		
 		//print_r($youtube_data);
 		
-		for ($i = 0; $i < $number; $i++) {
+		for ($i = 0; $i < 20; $i++) {
 			if (isset($youtube_data->items[$i])) {
 				
 				$id = strip_tags($youtube_data->items[$i]->id->videoId);
