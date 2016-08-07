@@ -45,9 +45,9 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 		
 		$query = new WP_Query(
 			array(
-				'posts_per_page'		=> $number,
-				'category_name'			=> $category,
-				'ignore_sticky_posts'	=> true,
+				'posts_per_page' => $number,
+				'category_name' => $category,
+				'ignore_sticky_posts' => true,
 			)
 		);
 		

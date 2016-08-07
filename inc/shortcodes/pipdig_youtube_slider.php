@@ -10,6 +10,7 @@ function pipdig_p3_youtube_slider_shortcode($atts, $content = null) {
 		'columns' => '3',
 		'title' => '',
 		'title_link' => '',
+		'video_titles' => '',
 	), $atts));
 	
 	$output = $title_link_start = $title_link_end = '';
@@ -35,10 +36,15 @@ function pipdig_p3_youtube_slider_shortcode($atts, $content = null) {
 			
 			for ($x = 0; $x <= $number; $x++) {
 				if (!empty($videos[$x]['thumbnail'])) {
-					$output .= '<div class="p3_cover_me" style="background-image:url('.$videos[$x]['thumbnail'].');">';
-						$output .= '<a href="'.$videos[$x]['link'].'" target="_blank" rel="nofollow">';
-							$output .= '<img class="p3_invisible" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=" alt="'.$videos[$x]['title'].'"/>';
-						$output .= '</a>';
+					$output .= '<div>';
+						$output .= '<div class="p3_cover_me" style="background-image:url('.$videos[$x]['thumbnail'].');">';
+							$output .= '<a href="'.$videos[$x]['link'].'" target="_blank" rel="nofollow">';
+								$output .= '<img class="p3_invisible" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=" alt="'.$videos[$x]['title'].'"/>';
+							$output .= '</a>';
+						$output .= '</div>';
+						if ($video_titles != 'no') {
+							$output .= '<h5 class="p3_youtube_slider_shortcode_video_title">'.$videos[$x]['title'].'</h5>';
+						}
 					$output .= '</div>';
 				}
 			}

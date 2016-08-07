@@ -613,8 +613,14 @@ margin: 5px 0 0;
 
 #p3_youtube_slider_shortcode.owl-carousel .owl-item {
 	display: inline-block;
+	vertical-align: top;
 	float: none;
 	padding: 0 5px;
+}
+.entry-content h5.p3_youtube_slider_shortcode_video_title {
+	text-align: center;
+	width: 90%;
+	margin: 0 auto;
 }
 
 /* Blogger ======================== */

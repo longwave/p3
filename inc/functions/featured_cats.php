@@ -39,7 +39,7 @@ function p3_featured_cats_puller($category) {
 		}
 		?>
 		<div class="col-sm-3">
-			<h3 class="widget-title"><?php echo get_cat_name($category); ?></h3>
+			<h3 class="widget-title"><span><?php echo get_cat_name($category); ?></span></h3>
 			<a href="<?php the_permalink(); ?>" class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
 				<img src="<?php echo $shape; ?>" class="p3_invisible" />
 			</a>

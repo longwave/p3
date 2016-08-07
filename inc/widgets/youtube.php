@@ -40,6 +40,8 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 			$videos = p3_youtube_fetch($channel_id, $number); // grab videos
 			
 			//print_r($videos);
+			
+			//echo '<h1>'.$number.'</h1>';
 				
 			if ($videos) { ?>
 			
@@ -64,6 +66,11 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 					<?php if (!empty($instance['show_title'])) { ?>
 						<a href="<?php echo $video['link']; ?>" target="_blank" rel="nofollow"><?php echo $video['title']; ?></a>
 					<?php } ?>
+					
+					<?php if ($i == $number+1) {
+						break;
+					} ?>
+					
 				<?php } ?>
 				
 			<?php
