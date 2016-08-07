@@ -165,8 +165,6 @@ function p3_ig_connection_tester_callback() {
 		wp_die();
 	}
 	
-	$url = esc_url('https://'.$zendesk_domain.'.zendesk.com/api/v2/tickets.json');
-
 	$headers = array(
 		'Authorization' => 'Basic '.base64_encode($zendesk_user.'/token:'.$zendesk_token)
 	);
@@ -188,7 +186,9 @@ function p3_ig_connection_tester_callback() {
 		if ($code === 200) {
 			$result_msg = '<span class="dashicons dashicons-yes"></span> Success! You are connected to Instagram. Save your settings :)';
 		} else {
-			$result_msg = '<span class="dashicons dashicons-no"></span> Error! Response code from Instagram: '.$code.'.<br />Have you posted any content to Instagram yet? If not, you may need to upload an image first to test the connection.<br />Is your Instagram account set to Public rather than <a href="https://help.instagram.com/116024195217477/" target="_blank">Private</a>?<br />Please double check that your Access Token and User ID are correct.';
+			$data = json_decode($response['body']);
+			$error_message = strip_tags($data->meta->error_message);
+			$result_msg = '<span class="dashicons dashicons-no"></span> Error! Response from Instagram: "'.$error_message.'"';
 		}
 	} else {
 		$result_msg = '<span class="dashicons dashicons-no"></span> Error! Could not connect to Instagram. Please try creating a new Access Token and User ID on <a href="https://www.pipdig.co/instagram" target="_blank">this page</a>.';
