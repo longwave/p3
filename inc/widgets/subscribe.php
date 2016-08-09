@@ -32,10 +32,6 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 			echo $before_title . $title . $after_title;
 		}
 		
-
-		
-
-
 		if (!empty($feed)) {
 			if (filter_var($feed, FILTER_VALIDATE_URL)) {  // they've entered a flippin url
 				$feed = parse_url($feed, PHP_URL_PATH);
