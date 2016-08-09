@@ -8,6 +8,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		'number' => '30',
 		'columns' => '3',
 		'category' => '',
+		'type' => 'post',
 		//'comments' => 'yes'
 	), $atts ) );
 	
@@ -32,12 +33,12 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 	}
 	
 	$output = '';
-		
+	
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+	// use $paged = (get_query_var('page')) ? get_query_var('page') : 1; if this feature is ona  static homepage https://wordpress.org/support/topic/get_query_varpaged-doesnt-seem-to-work-on-page-templates
+	
 	$query = new WP_Query( array(
-		//'meta_key'			=> '_thumbnail_id',
-		//'showposts'			=> 30,
-		'post_type' => 'post',
+		'post_type' => $type,
 		'post_status' => 'publish',
 		'posts_per_page' => $number,
 		'category_name' => $category,
