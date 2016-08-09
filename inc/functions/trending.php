@@ -2,10 +2,12 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/*
 $theme = get_option('pipdig_theme');
 if ($theme == 'londoncalling') {
 	return;
 }
+*/
 
 if (!function_exists('p3_trending_bar')) {
 	function p3_trending_bar() {
@@ -58,7 +60,7 @@ if (!function_exists('p3_trending_bar')) {
 		}
 		
 		?>
-		<div id="p3_trending_bar" class="row nopin">
+		<div id="p3_trending_bar" class="clearfix nopin">
 			<style scoped>
 				.p3_trending_panel h4 {background:<?php echo esc_attr($text_bg_color); ?>;color:<?php echo esc_attr($text_color); ?>;<?php echo $overlay; ?>}
 			</style>
