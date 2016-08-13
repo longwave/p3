@@ -41,6 +41,9 @@ function pipdig_p3_social_shares() {
 	if (get_theme_mod('p3_share_tumblr', 1)) {
 		$output .= '<a href="//www.tumblr.com/widgets/share/tool?canonicalUrl='.$link.'&title='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-tumblr"></i></a>';
 	}
+	if (get_theme_mod('p3_share_whatsapp')) {
+		$output .= '<a href="whatsapp://send?text='.$link.'" target="_blank" rel="nofollow" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>';
+	}
 	if (get_theme_mod('p3_share_vk')) {
 		$output .= '<a href="//vk.com/share.php?url='.$link.'&title='.$title.'&image='.$img.'&description='.$summary.'" target="_blank" rel="nofollow"><i class="fa fa-vk"></i></a>';
 	}
@@ -181,6 +184,21 @@ if (!class_exists('pipdig_p3_social_shares_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Pinterest',
+					'section' => 'pipdig_p3_shares_section',
+				)
+			);
+			
+			// whatsapp
+			$wp_customize->add_setting('p3_share_whatsapp',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_share_whatsapp',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Whatsapp',
 					'section' => 'pipdig_p3_shares_section',
 				)
 			);

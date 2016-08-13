@@ -27,7 +27,7 @@ function p3_youtube_fetch($channel_id) {
 		$key = 'AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c';
 		
 		if ( false === ( $youtube_data = get_transient( 'p3_youtube_'.$channel_id ) ) ) {
-			$youtube_data = wp_remote_fopen('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key='.$key);
+			$youtube_data = wp_remote_fopen('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key='.$key.'&maxResults=20');
 			$youtube_data = json_decode($youtube_data);
 			set_transient('p3_youtube_'.$channel_id, $youtube_data, 60 * MINUTE_IN_SECONDS);
 		}

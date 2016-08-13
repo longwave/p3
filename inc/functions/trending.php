@@ -210,9 +210,11 @@ if (!class_exists('p3_trending_bar_Customize')) {
 					'label' => __('Date range for posts:', 'p3'),
 					'section' => 'pipdig_trending_section',
 					'choices' => array(
-						'1 year ago' => __('1 Year', 'p3'),
-						'1 month ago' => __('1 Month', 'p3'),
 						'1 week ago' => __('1 Week', 'p3'),
+						'1 month ago' => __('1 Month', 'p3'),
+						'3 months ago' => __('3 Months', 'p3'),
+						'6 months ago' => __('6 Months', 'p3'),
+						'1 year ago' => __('1 Year', 'p3'),
 						'' => __('All Time', 'p3'),
 					),
 				)

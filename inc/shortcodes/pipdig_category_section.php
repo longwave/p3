@@ -55,11 +55,11 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 			
 			while ( $query->have_posts() ) : $query->the_post();
 			
-				if (has_post_thumbnail() != '') {
-					$thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
-					$img = esc_url($thumb['0']);
+				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+				if ($thumb) {
+					$bg = esc_url($thumb['0']);
 				} else {
-					$img = pipdig_p3_catch_that_image();
+					$bg = pipdig_p3_catch_that_image();
 				}
 				
 				$link = esc_url(get_the_permalink());
@@ -73,7 +73,7 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 						
 				$output .= '<div class="pipdig_category_section_item'.$col_class.'">';
 						
-				$output .= '<a href="'.$link.'" class="p3_cover_me" style="background-image:url('.$img.');"><img src="'.$the_shape.'" alt="'.esc_attr(get_the_title()).'" class="p3_invisible" data-pin-nopin="true"/></a>';
+				$output .= '<a href="'.$link.'" class="p3_cover_me" style="background-image:url('.$bg.');"><img src="'.$the_shape.'" alt="'.esc_attr(get_the_title()).'" class="p3_invisible" data-pin-nopin="true"/></a>';
 						
 				$output .= '<h3 class="pipdig_category_section_item_title">'.strip_tags(get_the_title()).'</h3>';
 				

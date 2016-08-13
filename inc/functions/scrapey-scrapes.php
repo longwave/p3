@@ -86,7 +86,7 @@ function pipdig_p3_scrapey_scrapes() {
 					$bloglovin_doc->loadHTML($bloglovin);
 					libxml_clear_errors();
 					$bloglovin_xpath = new DOMXPath($bloglovin_doc);
-					$bloglovin_row = $bloglovin_xpath->query('/html/body/div[5]/div[1]/div/div/div[2]/ol/li[2]');
+					$bloglovin_row = $bloglovin_xpath->query('/html/body/div[5]/div[1]/div/div/div[3]/ol/li[2]/a');
 					if($bloglovin_row->length > 0){
 						foreach($bloglovin_row as $row){
 							$followers = $row->nodeValue;

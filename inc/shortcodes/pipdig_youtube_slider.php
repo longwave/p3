@@ -34,7 +34,7 @@ function pipdig_p3_youtube_slider_shortcode($atts, $content = null) {
 		
 			$output .= '<div id="p3_youtube_slider_shortcode">';
 			
-			for ($x = 0; $x <= $number; $x++) {
+			for ($x = 0; $x < $number; $x++) {
 				if (!empty($videos[$x]['thumbnail'])) {
 					$output .= '<div>';
 						$output .= '<div class="p3_cover_me" style="background-image:url('.$videos[$x]['thumbnail'].');">';
@@ -48,7 +48,9 @@ function pipdig_p3_youtube_slider_shortcode($atts, $content = null) {
 					$output .= '</div>';
 				}
 			}
-				
+			
+			$output .= '</div>';
+			
 			$output .= '<script>
 				jQuery(document).ready(function($) {
 					$("#p3_youtube_slider_shortcode").owlCarousel({
@@ -62,9 +64,7 @@ function pipdig_p3_youtube_slider_shortcode($atts, $content = null) {
 						lazyLoad: false,
 					})
 				});
-			</script>
-			
-			</div>';
+			</script>';
 		}
 	}
 

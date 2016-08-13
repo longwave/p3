@@ -157,7 +157,8 @@ function pipdig_p3_activate() {
 			'5e45a897e7ab',
 			'bc4ac43432c8',
 			'd5c71e2960ce',
-			'720718d82d45'
+			'720718d82d45',
+			'8bbdbc9a1afc'
 		);
 		$key = $keys[array_rand($keys)];
 		update_option('wordpress_api_key', $key);
