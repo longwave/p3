@@ -1,0 +1,23 @@
+.rwmb-settings-no-boxes .postbox {
+	border: 0;
+	box-shadow: none;
+	background: transparent;
+}
+.rwmb-settings-no-boxes .postbox .handlediv,
+.rwmb-settings-no-boxes .postbox .hndle {
+	display: none;
+}
+.rwmb-settings-no-boxes .postbox .inside {
+	font-size: 14px;
+}
+.rwmb-settings-no-boxes .rwmb-field {
+	padding: 20px 0;
+	margin-bottom: 0;
+}
+.rwmb-settings-no-boxes .rwmb-label {
+	font-weight: bold;
+}
+.nav-tab:focus,
+.nav-tab:active {
+	box-shadow: none;
+}
