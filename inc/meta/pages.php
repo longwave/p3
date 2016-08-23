@@ -20,6 +20,13 @@ function pipdig_p3_meta_boxes_page($meta_boxes) {
 				'type'		=> 'checkbox',
 				'std'		=> false
 			),
+			array(
+				'name'		=> __('Hide the website header/logo', 'p3'),
+				'id'		=> $prefix . 'hide_page_header',
+				'clone'		=> false,
+				'type'		=> 'checkbox',
+				'std'		=> false
+			),
 		)
 	);
 	

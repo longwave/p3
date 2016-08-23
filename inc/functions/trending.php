@@ -12,31 +12,27 @@ if ($theme == 'londoncalling') {
 if (!function_exists('p3_trending_bar')) {
 	function p3_trending_bar() {
 		
-		// copy old options - remove at end of jan
-		
-		if (get_theme_mod('show_trending')) {
-			set_theme_mod('p3_trending_bar_enable', 1);
-			remove_theme_mod('show_trending');
-		}
-		if (get_theme_mod('trending_section_title')) {
-			set_theme_mod('p3_trending_bar_slider_title', get_theme_mod('trending_section_title'));
-			remove_theme_mod('trending_section_title');
-		}
-		if (get_theme_mod('trending_dates')) {
-			set_theme_mod('p3_trending_bar_trending_dates', get_theme_mod('trending_dates'));
-			remove_theme_mod('trending_dates');
-		}
-		
-		$truncate_title = absint(get_theme_mod('p3_trending_bar_title_truncate', 7));
-		
-		// ----
-		
 		if (!get_theme_mod('p3_trending_bar_enable')) {
 			return;
 		}
 		if (!is_front_page() && get_theme_mod('p3_trending_bar_home', 1)) {
 			return;
 		}
+		
+		$the_shape = absint(get_theme_mod('p3_trending_bar_shape'));
+		
+		$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC'; // landscape
+		
+		if ($the_shape == 2) {
+			
+			$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAHgAQMAAACyyGUjAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACxJREFUeNrtwTEBAAAAwiD7p7bGDmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkHVZAAAFam5MDAAAAAElFTkSuQmCC'; // portrait
+			
+		} elseif ($the_shape == 3) {
+			$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC'; // square
+		}
+		
+		$truncate_title = absint(get_theme_mod('p3_trending_bar_title_truncate', 7));
+		
 		$popular_title = strip_tags(get_theme_mod('p3_trending_bar_slider_title'));
 		if (empty($popular_title)) {
 			$popular_title = __('Popular Posts', 'p3');
@@ -48,10 +44,12 @@ if (!function_exists('p3_trending_bar')) {
 		$text_color = get_theme_mod('p3_trending_bar_text_color', '#000');
 		$text_bg_color = get_theme_mod('p3_trending_bar_text_bg_color', '#fff');
 		
-		if ($order_by == 2) {
+		if ($order_by == 1) {
+			$orderby = 'comment_count';
+		} elseif ($order_by == 2) {
 			$orderby = 'rand';
 		} else {
-			$orderby = 'comment_count';
+			$orderby = 'date';
 		}
 		
 		$overlay = '';
@@ -89,15 +87,15 @@ if (!function_exists('p3_trending_bar')) {
 						} else {
 							$bg = pipdig_p3_catch_that_image();
 						}
-					?>
-					<div class="p3_trending_panel">
-						<a href="<?php the_permalink() ?>">
-							<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
-								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC" alt="<?php the_title_attribute(); ?>" class="p3_invisible" data-pin-nopin="true"/>
-							</div>
-							<h4><?php echo pipdig_p3_truncate(get_the_title(), $truncate_title); ?></h4>
-						</a>
-					</div>
+						?>
+						<div class="p3_trending_panel">
+							<a href="<?php the_permalink() ?>">
+								<div class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
+									<img src="<?php echo $shape; ?>" alt="<?php the_title_attribute(); ?>" class="p3_invisible" data-pin-nopin="true"/>
+								</div>
+								<h4><?php echo pipdig_p3_truncate(get_the_title(), $truncate_title); ?></h4>
+							</a>
+						</div>
 					<?php endwhile;?>
 
 				</div>
@@ -176,6 +174,26 @@ if (!class_exists('p3_trending_bar_Customize')) {
 				)
 			);
 			
+			// image shape
+			$wp_customize->add_setting('p3_trending_bar_shape',
+				array(
+					'default' => '1',
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_trending_bar_shape',
+				array(
+					'type' => 'select',
+					'label' => __('Image shape', 'p3'),
+					'section' => 'pipdig_trending_section',
+					'choices' => array(
+						1 => 'Landscape',
+						2 => 'Portait',
+						3 => 'Square',
+					),
+				)
+			);
+			
 			// popular or random
 			$wp_customize->add_setting('p3_trending_bar_orderby',
 				array(
@@ -188,10 +206,11 @@ if (!class_exists('p3_trending_bar_Customize')) {
 					'type' => 'radio',
 					'label' => __('Type of posts', 'p3'),
 					'section' => 'pipdig_trending_section',
-					'description' => __('If you use Disqus comments then you may need to change this to "Random".', 'p3'),
+					'description' => __('If you use Disqus comments then you may need to change this to Random/Recent.', 'p3'),
 					'choices' => array(
 						1 => __('Popular', 'p3'),
-						2 => __('Random', 'p3')
+						2 => __('Random', 'p3'),
+						3 => __('Recent', 'p3'),
 					),
 				)
 			);

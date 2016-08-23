@@ -122,7 +122,7 @@ if (!class_exists('pipdig_widget_clw')) {
 
 							});
 						</script>
-						<div id="'.$map_id.'" style="width: 100%;height: 170px;"></div>
+						<div id="'.$map_id.'" style="max-width: 300px; width: 100%; height: 170px; margin: 0 auto;"></div>
 						<p>'.__('Current Location', 'p3').': '.$location.'</p>
 						<style scoped>#'.$map_id.' a{display:none!important}</style>';
 						//set_transient( 'pipdig_clw_map', $map, 24 * HOUR_IN_SECONDS ); // set transient
