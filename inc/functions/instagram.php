@@ -88,7 +88,7 @@ if (!function_exists('p3_instagram_fetch')) {
 						$img_url = str_replace('s150x150/', 's640x640/', $result->data[$i]->images->thumbnail->url);
 					} else {
 						$img_url = str_replace('s150x150/', 's320x320/', $result->data[$i]->images->thumbnail->url);
-					}						
+					}
 						
 				}
 					
