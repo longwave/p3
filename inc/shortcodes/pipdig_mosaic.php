@@ -53,11 +53,11 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 	$output .= '<div class="grid p3_grid_mosaic">';
 
 				while ( $query->have_posts() ) : $query->the_post();
-					if (has_post_thumbnail() != '') {
-						$thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-						$img = esc_url($thumb['0']);
+					$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+					if ($thumb) {
+						$bg = esc_url($thumb['0']);
 					} else {
-						$img = pipdig_p3_catch_that_image();
+						$bg = pipdig_p3_catch_that_image();
 					}
 					$link = get_the_permalink();
 					$comment_count = get_comments_number();
@@ -68,7 +68,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 					}
 				$output .= '<div class="pipdig-masonry-post grid-item">';
 					//$output .= '<a href="'.$link.'" class="moasic-hover" >';
-						$output .= '<img src="'.$img.'" alt="" />';
+						$output .= '<img src="'.$bg.'" alt="" />';
 						//$output .= '</a>';
 						$output .= '<a href="'.$link.'" class="mosaic-meta">';
 							$output .= '<span class="date"><time itemprop="datePublished">'.get_the_date().'</time></span>';
