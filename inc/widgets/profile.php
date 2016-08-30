@@ -43,7 +43,7 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 				<img src="<?php echo esc_url($instance['image_uri']); ?>" <?php echo $circle; ?> alt="" />
 				</div>
 					<?php if ($description) {  ?>
-						<p><?php echo wpautop($description); ?></p>
+						<p><?php echo wpautop(do_shortcode($description)); ?></p>
 					<?php } //endif ?>
 			<?php } //endif ?>
 	<?php

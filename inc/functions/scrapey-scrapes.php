@@ -5,18 +5,21 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if (!function_exists('pipdig_p3_scrapey_scrapes')) {
 function pipdig_p3_scrapey_scrapes() {
 	
+	$links = get_option('pipdig_links');
+	
+	if (empty($links)) {
+		return;
+	}
+	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
 		
 		delete_option('jpibfi_pro_ad');
-		set_transient('p3_stats_gen', true, 12 * HOUR_IN_SECONDS);
-		
-		$links = get_option('pipdig_links');
+		set_transient('p3_stats_gen', true, 6 * HOUR_IN_SECONDS);
 		
 		$args = array(
 			'timeout' => 30,
 			'headers' => array('user_agent' => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'),
 		);
-		
 		
 		// Facebook --------------------
 		$facebook_url = esc_url($links['facebook']);

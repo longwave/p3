@@ -102,8 +102,6 @@ function pipdig_p3_dashboard_social_count_func() {
 	
 	pipdig_p3_scrapey_scrapes();
 	
-	$total_followers = $twitter = $instagram = $facebook = $youtube = $google_plus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $vimeo = $bloglovin = '';
-	
 	$bloglovin = absint(get_option('p3_bloglovin_count'));
 	$pinterest = absint(get_option('p3_pinterest_count'));
 	$twitter = absint(get_option('p3_twitter_count'));
@@ -113,7 +111,12 @@ function pipdig_p3_dashboard_social_count_func() {
 	$google_plus = absint(get_option('p3_google_plus_count'));
 	$twitch = absint(get_option('p3_twitch_count'));
 	
-	$total = $bloglovin + $pinterest + $twitter + $facebook + $instagram + $youtube + $google_plus + $twitch;
+	// scp
+	$linkedin = absint(get_option('p3_linkedin_count'));
+	$tumblr = absint(get_option('p3_tumblr_count'));
+	$soundcloud = absint(get_option('p3_soundcloud_count'));
+	
+	$total = $twitter + $instagram + $facebook + $youtube + $google_plus + $soundcloud + $bloglovin + $pinterest + $twitch + $linkedin + $tumblr + $soundcloud;
 	if ($total < 1) {
 		?><p>This widget will display social media follower stats for any links added to <a href="<?php echo admin_url('admin.php?page=pipdig-links'); ?>">this page</a>.</p><?php
 	} else {

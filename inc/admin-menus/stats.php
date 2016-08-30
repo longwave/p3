@@ -4,11 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 if (!function_exists('pipdig_stats_options_page')) {
 	function pipdig_stats_options_page() {
-		
+	
 	pipdig_p3_scrapey_scrapes();
 	
-	$total_followers = $twitter = $instagram = $facebook = $youtube = $google_plus = $soundcloud = $pinterest = $linkedin = $twitch = $tumblr = $linkedin = $vimeo = $bloglovin = '';
-
 	$bloglovin = absint(get_option('p3_bloglovin_count'));
 	$pinterest = absint(get_option('p3_pinterest_count'));
 	$twitter = absint(get_option('p3_twitter_count'));
@@ -18,7 +16,12 @@ if (!function_exists('pipdig_stats_options_page')) {
 	$google_plus = absint(get_option('p3_google_plus_count'));
 	$twitch = absint(get_option('p3_twitch_count'));
 	
-	$total_followers = $twitter + $instagram + $facebook + $youtube + $google_plus + $soundcloud + $bloglovin + $pinterest + $twitch;
+	// scp
+	$linkedin = absint(get_option('p3_linkedin_count'));
+	$tumblr = absint(get_option('p3_tumblr_count'));
+	$soundcloud = absint(get_option('p3_soundcloud_count'));
+	
+	$total_followers = $twitter + $instagram + $facebook + $youtube + $google_plus + $soundcloud + $bloglovin + $pinterest + $twitch + $linkedin + $tumblr + $soundcloud;
 	
 	?>
 	
