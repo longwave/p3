@@ -25,6 +25,11 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 		} else {
 			$number = 3;
 		}
+		
+		$follow = false;
+		if (!empty($instance['follow'])) {
+			$follow = true;
+		}
 
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
@@ -38,8 +43,14 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 			<?php $twitter_handle = str_replace('@', '', $twitter_handle); ?>
 			<a class="twitter-timeline" href="https://twitter.com/<?php echo $twitter_handle; ?>" data-dnt="true" data-chrome="nofooter" data-tweet-limit="<?php echo $number; ?>" data-link-color="<?php echo get_theme_mod( 'post_links_color', '#333333' ); ?>">Tweets by <?php echo $twitter_handle; ?></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 			<br />
-			<a href="https://twitter.com/<?php echo $twitter_handle; ?>" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @<?php echo $twitter_handle; ?></a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");</script>		
+			<?php
+			if (isset($instance['follow'])) {
+				if ($follow) { ?>
+					<div class="clearfix"></div>
+					<p style="margin: 10px 0"><a href="https://twitter.com/<?php echo $twitter_handle; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-twitter" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Twitter', 'p3'); ?></a></p>
+				<?php }
+			}
+			?>
 		<?php } else {
 			_e('Setup not complete. Please check the widget options.', 'p3');
 		}
@@ -70,6 +81,11 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 		} else {
 			$number = 3;
 		}
+		
+		$follow = false;
+		if (!empty($instance['follow'])) {
+			$follow = true;
+		}
 
 		// PART 2-3: Display the fields
 		?>
@@ -86,6 +102,11 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of Tweets', 'p3'); ?></label>
 			<input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="number" min="1" max="10" value="<?php echo absint($number); ?>" />
 		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('follow'); ?>">
+			<input type="checkbox" id="<?php echo $this->get_field_id('follow'); ?>" name="<?php echo $this->get_field_name('follow'); ?>" <?php if (isset($instance['follow'])) { checked( (bool) $instance['follow'], true ); } ?> /><?php _e('Display a "Follow" link.', 'p3'); ?></label>
+			<br />
+		</p>
 		<p><a href="//support.pipdig.co/articles/wordpress-twitter-widget/?utm_source=wordpress&utm_medium=p3&utm_campaign=widget" target="_blank"><?php _e('Click here for information', 'p3'); ?></a></p>
 		
 		<?php
@@ -97,6 +118,7 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 		$instance['title'] = esc_attr($new_instance['title']);
 		$instance['twitter_handle'] = esc_attr($new_instance['twitter_handle']);
 		$instance['number'] = absint($new_instance['number']);
+		$instance['follow'] = strip_tags($new_instance['follow']);
 		return $instance;
 	  }
 
