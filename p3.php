@@ -318,9 +318,9 @@ function pipdig_p3_textdomain() {
 add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 
 
-require 'plugin-update-checker/plugin-update-checker.php';
+require_once 'plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = PucFactory::buildUpdateChecker(
-    'https://dl.dropboxusercontent.com/u/904435/updates/wordpress/theme-updates/p3.json',
+    'https://www.wpupdateserver.com/p3.json',
     __FILE__
 );
 
