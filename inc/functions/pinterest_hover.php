@@ -2,10 +2,10 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if (!function_exists('p3_pinterest_hover_add_data')) {
+if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pinterest_hover_enable')) {
 	function p3_pinterest_hover_add_data($content) {
 		
-		if (!get_theme_mod('p3_pinterest_hover_enable') || is_singular('jetpack-portfolio')) {
+		if (is_singular('jetpack-portfolio')) {
 			return;
 		}
 		
