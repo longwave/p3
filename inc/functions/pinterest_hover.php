@@ -2,10 +2,10 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pinterest_hover_enable')) {
+if (!function_exists('p3_pinterest_hover_add_data')) {
 	function p3_pinterest_hover_add_data($content) {
 		
-		if (is_singular('jetpack-portfolio')) {
+		if (!get_theme_mod('p3_pinterest_hover_enable') || is_singular('jetpack-portfolio')) {
 			return;
 		}
 		
@@ -18,6 +18,7 @@ if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pintere
 	add_filter('the_content','p3_pinterest_hover_add_data');
 }
 
+
 if (!function_exists('p3_pinterest_hover')) {
 	function p3_pinterest_hover() {
 		
@@ -26,8 +27,13 @@ if (!function_exists('p3_pinterest_hover')) {
 		}
 		
 		$margin = intval(get_theme_mod('p3_pinterest_hover_margin', 0));
-		$position = strip_tags(get_theme_mod('p3_pinterest_hover_image_position', 'center'));
+		$position = esc_attr(get_theme_mod('p3_pinterest_hover_image_position', 'center'));
 		$pin_img = esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png'));
+		$dec_prefix = '';
+		if (get_theme_mod('p3_pinterest_hover_prefix_text')) {
+			$dec_prefix = '%20'.esc_attr(get_theme_mod('p3_pinterest_hover_prefix_text'));
+		}
+		
 		?>
 		<style>
 		.p3_pin_wrapper .left {left:<?php echo intval($margin); ?>px}
@@ -68,11 +74,15 @@ if (!function_exists('p3_pinterest_hover')) {
 
 				var description = $(this).data('p3-pin-title'),
 					imgURL = encodeURIComponent(src);
+					
+				if (description == null){
+					var description = $(this).attr("alt");
+				}
 
 				var link = 'https://www.pinterest.com/pin/create/button/';
 					link += '?url='+shareURL;
 					link += '&media='+imgURL;
-					link += '&description=<?php echo addslashes(get_theme_mod('p3_pinterest_hover_prefix_text', '')); ?>%20'+description;
+					link += '&description=<?php echo addslashes($dec_prefix); ?>'+description;
 
 				$(this).wrap('<div class="p3_pin_wrapper_outer '+pin_positon+'"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
 
@@ -211,6 +221,7 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 				)
 			);
 			
+			// preix description text
 			$wp_customize->add_setting('p3_pinterest_hover_prefix_text',
 				array(
 					'sanitize_callback' => 'sanitize_text_field',
