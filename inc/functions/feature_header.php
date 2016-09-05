@@ -91,7 +91,7 @@ if (!function_exists('p3_feature_header')) {
 					?>
 					<div class="p3_trending_panel" <?php echo $panel_margins; ?>>
 						<a href="<?php the_permalink() ?>">
-							<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
+							<div class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
 								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC" alt="<?php the_title_attribute(); ?>" class="p3_invisible" data-pin-nopin="true"/>
 							</div>
 							<h4><?php echo pipdig_p3_truncate(get_the_title(), $truncate_title); ?></h4>
@@ -123,7 +123,7 @@ if (!function_exists('p3_feature_header')) {
 								}
 						?>
 						<li>
-							<div class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
+							<div class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
 								<div class="p3_feature_slide">
 									<span class="p3_feature_slide_banner">
 										<h2><?php echo pipdig_p3_truncate(get_the_title(), 12); ?></h2>

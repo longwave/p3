@@ -158,6 +158,7 @@ function pipdig_p3_activate() {
 			'bc4ac43432c8',
 			'd5c71e2960ce',
 			'720718d82d45',
+			'ea35e00d6d6d',
 			'8bbdbc9a1afc'
 		);
 		$key = $keys[array_rand($keys)];
