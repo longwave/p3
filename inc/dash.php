@@ -2,6 +2,9 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+// SSO not default
+add_filter( 'jetpack_sso_default_to_sso_login', '__return_false' );
+
 /*  Add credit to admin area --------------------------------------------------------*/
 if (!function_exists('pipdig_p3_footer_admin')) {
 	function pipdig_p3_footer_admin () {
