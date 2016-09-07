@@ -74,7 +74,7 @@ function pipdig_p3_social_shares() {
 		$share_title = pipdig_strip(get_theme_mod('p3_share_title'));
 	}
 	
-	echo '<div class="addthis_toolbox">'.$share_title.' '.$output.'</div>';
+	echo '<div class="addthis_toolbox"><span class="p3_share_title">'.$share_title.' </span>'.$output.'</div>';
 }
 
 
