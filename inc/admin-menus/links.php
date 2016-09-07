@@ -179,7 +179,8 @@ function p3_google_plus_field_render() {
 
 function p3_bloglovin_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[bloglovin]' placeholder='e.g. https://www.bloglovin.com/blogs/pipdig-3890264' value="<?php if (isset($links['bloglovin'])) { echo $links['bloglovin']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[bloglovin]' placeholder='e.g. https://www.bloglovin.com/blogs/pipdig-3890264' value="<?php if (isset($links['bloglovin'])) { echo $links['bloglovin']; } ?>"><br />
+<div style="font-size: 90%;">Note: this should be a link to your Blog's Bloglovin profile. NOT your Bloglovin user profile. If the link includes the word "people" in it, then this is not the correct link.</div>	<?php
 }
 
 function p3_pinterest_field_render() { 
