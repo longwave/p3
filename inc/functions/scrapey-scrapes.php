@@ -90,18 +90,34 @@ function pipdig_p3_scrapey_scrapes() {
 					libxml_clear_errors();
 					$bloglovin_xpath = new DOMXPath($bloglovin_doc);
 					$bloglovin_row = $bloglovin_xpath->query('/html/body/div[5]/div[1]/div/div/div[3]/ol/li[2]/a');
+					//print_r($bloglovin_row->length);
 					if($bloglovin_row->length > 0){
 						foreach($bloglovin_row as $row){
 							$followers = $row->nodeValue;
 							$followers = str_replace(' ', '', $followers);
 							$followers_int = absint($followers);
-							update_option('p3_bloglovin_count', $followers_int);
+							//print_r($followers_int);
+							if ($followers_int) {
+								update_option('p3_bloglovin_count', $followers_int);
+							}
 						}
-					}
+					} else {
+						$bloglovin_row = $bloglovin_xpath->query('/html/body/div[5]/div[1]/div/div/div[2]/ol/li[2]/a');
+							if($bloglovin_row->length > 0){
+								foreach($bloglovin_row as $row){
+									$followers = $row->nodeValue;
+									$followers = str_replace(' ', '', $followers);
+									$followers_int = absint($followers);
+									if ($followers_int) {
+										update_option('p3_bloglovin_count', $followers_int);
+									}
+								}
+							}
+						}
 				}
 		} else {
 			delete_option('p3_bloglovin_count');
-		}		
+		}	
 		
 		// Twitter ---------------------
 		$twitter_url = esc_url($links['twitter']);
