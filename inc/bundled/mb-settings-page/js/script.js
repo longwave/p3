@@ -1,5 +1,4 @@
-jQuery( function ( $ )
-{
+jQuery( function ( $ ) {
 	'use strict';
 
 	var $boxes = $( '.wrap .postbox' );
@@ -7,10 +6,8 @@ jQuery( function ( $ )
 	/**
 	 * Setup tab data for all meta boxes
 	 */
-	function setupTabData()
-	{
-		$boxes.each( function ()
-		{
+	function setupTabData() {
+		$boxes.each( function () {
 			$( this ).data( 'tab', $( this ).find( '.rwmb-settings-tab' ).data( 'tab' ) );
 		} );
 	}
@@ -18,8 +15,7 @@ jQuery( function ( $ )
 	/**
 	 * Toggle meta boxes.
 	 */
-	function toggleMetaBox()
-	{
+	function toggleMetaBox() {
 		$( '.if-js-closed' ).removeClass( 'if-js-closed' ).addClass( 'closed' );
 		postboxes.add_postbox_toggles( MBSettingsPage.pageHook );
 	}
@@ -27,16 +23,13 @@ jQuery( function ( $ )
 	/**
 	 * Switch tab.
 	 */
-	function switchTab()
-	{
+	function switchTab() {
 		setupTabData();
-		$( '.nav-tab-wrapper' ).on( 'click', 'a', function ( e )
-		{
+		$( '.nav-tab-wrapper' ).on( 'click', 'a', function ( e ) {
 			var $this = $( this ),
 				tab = $this.attr( 'href' ).substr( 5 );
 			$this.siblings().removeClass( 'nav-tab-active' ).end().addClass( 'nav-tab-active' );
-			$boxes.each( function ()
-			{
+			$boxes.each( function () {
 				$( this )[tab === $( this ).data( 'tab' ) ? 'show' : 'hide']();
 			} );
 		} );
@@ -45,8 +38,7 @@ jQuery( function ( $ )
 	/**
 	 * Detect active tab when page is loaded
 	 */
-	function detectActiveTab()
-	{
+	function detectActiveTab() {
 		$( '.nav-tab:first' ).trigger( 'click' );
 		$( '.nav-tab' ).filter( '[href="' + location.hash + '"]' ).trigger( 'click' );
 	}

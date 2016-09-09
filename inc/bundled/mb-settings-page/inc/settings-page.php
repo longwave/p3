@@ -9,8 +9,7 @@
 /**
  * Class for creating settings page and setup meta boxes placeholder
  */
-class MB_Settings_Page
-{
+class MB_Settings_Page {
 	/**
 	 * @var array Settings page arguments.
 	 */
@@ -23,10 +22,10 @@ class MB_Settings_Page
 
 	/**
 	 * Constructor
+	 *
 	 * @param array $args Page options like ID page_title, menu_title, capability...
 	 */
-	public function __construct( $args = array() )
-	{
+	public function __construct( $args = array() ) {
 		$this->args = $this->normalize( $args );
 
 		// Add hooks
@@ -36,11 +35,12 @@ class MB_Settings_Page
 
 	/**
 	 * Normalize settings page arguments
+	 *
 	 * @param array $args Settings page arguments
+	 *
 	 * @return array
 	 */
-	public function normalize( $args )
-	{
+	public function normalize( $args ) {
 		$args = wp_parse_args( $args, array(
 			'id'            => '', // Page ID. Required. Will be used as slug in URL and option name (if missed).
 			'option_name'   => '', // Option name. Optional. Takes 'id' if missed.
@@ -58,29 +58,25 @@ class MB_Settings_Page
 		) );
 
 		// Setup optional parameters
-		if ( ! $args['option_name'] )
-		{
+		if ( ! $args['option_name'] ) {
 			$args['option_name'] = $args['id'];
 		}
-		if ( ! $args['menu_title'] )
-		{
+		if ( ! $args['menu_title'] ) {
 			$args['menu_title'] = $args['page_title'];
 		}
-		if ( ! $args['page_title'] )
-		{
+		if ( ! $args['page_title'] ) {
 			$args['page_title'] = $args['menu_title'];
 		}
+
 		return $args;
 	}
 
 	/**
 	 * Add top level menu or sub-menu. Depend on page options
 	 */
-	public function admin_menu()
-	{
+	public function admin_menu() {
 		// Add top level menu
-		if ( ! $this->args['parent'] )
-		{
+		if ( ! $this->args['parent'] ) {
 			$this->page_hook = add_menu_page(
 				$this->args['page_title'],
 				$this->args['menu_title'],
@@ -92,8 +88,7 @@ class MB_Settings_Page
 			);
 
 			// If this menu has a default sub-menu
-			if ( $this->args['submenu_title'] )
-			{
+			if ( $this->args['submenu_title'] ) {
 				add_submenu_page(
 					$this->args['id'],
 					$this->args['page_title'],
@@ -103,10 +98,8 @@ class MB_Settings_Page
 					array( $this, 'show' )
 				);
 			}
-		}
-		// Add sub-menu
-		else
-		{
+		} // Add sub-menu
+		else {
 			$this->page_hook = add_submenu_page(
 				$this->args['parent'],
 				$this->args['page_title'],
@@ -127,8 +120,7 @@ class MB_Settings_Page
 	/**
 	 * Output the main admin page
 	 */
-	public function show()
-	{
+	public function show() {
 		$class = 'boxes' == $this->args['style'] ? '' : ' class="rwmb-settings-' . esc_attr( $this->args['style'] ) . '"';
 		?>
 		<div class="wrap">
@@ -169,8 +161,7 @@ class MB_Settings_Page
 	/**
 	 * Enqueue scripts and styles for settings page
 	 */
-	public function admin_print_styles()
-	{
+	public function admin_print_styles() {
 		list( , $url ) = RWMB_Loader::get_path( dirname( dirname( __FILE__ ) ) );
 		wp_enqueue_style( 'mb-settings-page', $url . 'css/style.css', '', '1.1.2' );
 
@@ -190,10 +181,10 @@ class MB_Settings_Page
 	/**
 	 * Register the meta boxes via a custom hook
 	 */
-	public function load()
-	{
+	public function load() {
 		/**
 		 * Custom hook runs when current page loads. Use this to add meta boxes and filters.         *
+		 *
 		 * @param array $page_args The page arguments
 		 */
 		do_action( 'mb_settings_page_load', $this->args );
@@ -211,10 +202,8 @@ class MB_Settings_Page
 	/**
 	 * Save settings when submit
 	 */
-	public function save()
-	{
-		if ( empty( $_POST['submit'] ) )
-		{
+	public function save() {
+		if ( empty( $_POST['submit'] ) ) {
 			return;
 		}
 		$data = get_option( $this->args['option_name'], array() );
@@ -228,26 +217,21 @@ class MB_Settings_Page
 	 * Display notices
 	 * Use add_settings_error() to add notices
 	 */
-	public function admin_notices()
-	{
+	public function admin_notices() {
 		settings_errors( $this->args['id'] );
 	}
 
 	/**
 	 * Add help tabs
 	 */
-	public function add_help_tabs()
-	{
-		if ( ! $this->args['help_tabs'] || ! is_array( $this->args['help_tabs'] ) )
-		{
+	public function add_help_tabs() {
+		if ( ! $this->args['help_tabs'] || ! is_array( $this->args['help_tabs'] ) ) {
 			return;
 		}
 		$screen = get_current_screen();
-		foreach ( $this->args['help_tabs'] as $k => $help_tab )
-		{
+		foreach ( $this->args['help_tabs'] as $k => $help_tab ) {
 			// Auto generate help tab ID if missed.
-			if ( empty( $help_tab['id'] ) )
-			{
+			if ( empty( $help_tab['id'] ) ) {
 				$help_tab['id'] = "{$this->args['id']}-help-tab-$k";
 			}
 			$screen->add_help_tab( $help_tab );
@@ -256,12 +240,11 @@ class MB_Settings_Page
 
 	/**
 	 * Show tab id of meta box
+	 *
 	 * @param RW_Meta_Box $obj
 	 */
-	public function show_meta_box_tab( $obj )
-	{
-		if ( ! empty( $obj->meta_box['tab'] ) )
-		{
+	public function show_meta_box_tab( $obj ) {
+		if ( ! empty( $obj->meta_box['tab'] ) ) {
 			echo '<script type="text/html" class="rwmb-settings-tab" data-tab="', esc_attr( $obj->meta_box['tab'] ), '"></script>';
 		}
 	}

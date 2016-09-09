@@ -3,33 +3,37 @@
  * Plugin Name: MB Settings Page
  * Plugin URI: https://metabox.io/plugins/mb-settings-page/
  * Description: Add-on for meta box plugin which helps you create settings pages easily.
- * Version: 1.1.2
+ * Version: 1.1.4
  * Author: Rilwis
  * Author URI: http://www.deluxeblogtips.com
  * License: GPL2+
  * Text Domain: mb-settings-page
- * Domain Path: /lang/
+ * Domain Path: /languages/
  */
 
 // Prevent loading this file directly.
 defined( 'ABSPATH' ) || exit;
 
-if ( ! function_exists( 'mb_settings_page_load' ) )
-{
-	add_action( 'init', 'mb_settings_page_load' );
+if ( ! function_exists( 'mb_settings_page_load' ) ) {
+	/**
+	 * Hook to 'init' with priority 5 to make sure all actions are registered before Meta Box 4.9.0 runs
+	 */
+	add_action( 'init', 'mb_settings_page_load', 5 );
 
 	/**
 	 * Load plugin files after Meta Box is loaded
 	 */
-	function mb_settings_page_load()
-	{
-		if ( ! class_exists( 'RW_Meta_Box' ) || class_exists( 'MB_Settings_Page' ) )
-		{
+	function mb_settings_page_load() {
+		if ( ! defined( 'RWMB_VER' ) || class_exists( 'MB_Settings_Page' ) ) {
 			return;
 		}
 
-		require plugin_dir_path( __FILE__ ) . 'inc/settings-page.php';
-		require plugin_dir_path( __FILE__ ) . 'inc/settings-page-meta-box.php';
-		require plugin_dir_path( __FILE__ ) . 'inc/init.php';
+		require dirname( __FILE__ ) . '/inc/settings-page.php';
+		require dirname( __FILE__ ) . '/inc/settings-page-meta-box.php';
+		require dirname( __FILE__ ) . '/inc/loader.php';
+		$loader = new MB_Settings_Page_Loader();
+		$loader->init();
+
+		load_plugin_textdomain( 'mb-settings-page', false, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 }

@@ -9,8 +9,7 @@
 /**
  * Class for handling meta boxes for settings page
  */
-class MB_Settings_Page_Meta_Box extends RW_Meta_Box
-{
+class MB_Settings_Page_Meta_Box extends RW_Meta_Box {
 	/**
 	 * @var string Current settings page ID. It will be set when page loads.
 	 */
@@ -19,19 +18,13 @@ class MB_Settings_Page_Meta_Box extends RW_Meta_Box
 	/**
 	 * Constructor
 	 * Call parent constructor and add specific hooks
+	 *
 	 * @param array $meta_box
 	 */
-	public function __construct( $meta_box )
-	{
-		// Allow to set 'settings_pages' param by string
-		if ( isset( $meta_box['settings_pages'] ) && is_string( $meta_box['settings_pages'] ) )
-		{
-			$meta_box['settings_pages'] = array( $meta_box['settings_pages'] );
-		}
+	public function __construct( $meta_box ) {
 		parent::__construct( $meta_box );
+		$this->meta_box['settings_pages'] = (array) $this->meta_box['settings_pages'];
 
-		// Prevent adding meta box to post
-		$this->meta_box['post_types'] = $this->meta_box['pages'] = array();
 		remove_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 		remove_action( 'save_post_post', array( $this, 'save_post' ) );
 
@@ -40,17 +33,15 @@ class MB_Settings_Page_Meta_Box extends RW_Meta_Box
 
 	/**
 	 * Add hooks for current settings page
+	 *
 	 * @param array $page_args Settings page arguments
 	 */
-	public function load( $page_args )
-	{
+	public function load( $page_args ) {
 		$this->page_args = $page_args;
 
 		// Add meta boxes
-		foreach ( $this->meta_box['settings_pages'] as $settings_page )
-		{
-			if ( $settings_page == $this->page_args['id'] )
-			{
+		foreach ( $this->meta_box['settings_pages'] as $settings_page ) {
+			if ( $settings_page == $this->page_args['id'] ) {
 				add_meta_box(
 					$this->meta_box['id'],
 					$this->meta_box['title'],
@@ -71,38 +62,32 @@ class MB_Settings_Page_Meta_Box extends RW_Meta_Box
 
 	/**
 	 * Get field meta value
-	 * @param mixed $meta  Meta value
+	 *
+	 * @param mixed $meta Meta value
 	 * @param array $field Field parameters
+	 *
 	 * @return mixed
 	 */
-	public function field_meta( $meta, $field )
-	{
-		if ( ! $this->is_edit_screen() )
-		{
+	public function field_meta( $meta, $field ) {
+		if ( ! $this->is_edit_screen() ) {
 			return $meta;
 		}
 
 		$option_name = sanitize_text_field( $this->page_args['option_name'] );
 		$data        = get_option( $option_name );
-		if ( empty( $data ) )
-		{
+		if ( empty( $data ) ) {
 			$data = array();
 		}
-		if ( ! is_array( $data ) )
-		{
-			$data = (array) $data;
-		}
+		$data = (array) $data;
 
-		$meta = isset( $data[$field['id']] ) ? $data[$field['id']] : $field['std'];
+		$meta = isset( $data[ $field['id'] ] ) ? $data[ $field['id'] ] : $field['std'];
 
 		// Escape attributes
-		$meta = call_user_func( array( self::get_class_name( $field ), 'esc_meta' ), $meta );
+		$meta = RWMB_Field::call( $field, 'esc_meta', $meta );
 
 		// Make sure meta value is an array for clonable and multiple fields
-		if ( $field['clone'] || $field['multiple'] )
-		{
-			if ( empty( $meta ) || ! is_array( $meta ) )
-			{
+		if ( $field['clone'] || $field['multiple'] ) {
+			if ( empty( $meta ) || ! is_array( $meta ) ) {
 				/**
 				 * Note: if field is clonable, $meta must be an array with values
 				 * so that the foreach loop in self::show() runs properly
@@ -117,24 +102,23 @@ class MB_Settings_Page_Meta_Box extends RW_Meta_Box
 
 	/**
 	 * Save settings fields
+	 *
 	 * @param array $data Array of settings options
+	 *
 	 * @return array
 	 */
-	public function save( $data )
-	{
+	public function save( $data ) {
 		$nonce = (string) filter_input( INPUT_POST, "nonce_{$this->meta_box['id']}" );
-		if ( ! wp_verify_nonce( $nonce, "rwmb-save-{$this->meta_box['id']}" ) )
-		{
+		if ( ! wp_verify_nonce( $nonce, "rwmb-save-{$this->meta_box['id']}" ) ) {
 			return $data;
 		}
 
-		foreach ( $this->fields as $field )
-		{
+		foreach ( $this->fields as $field ) {
 			$name = $field['id'];
 
-			$old = isset( $data[$name] ) ? $data[$name] : false;
+			$old = isset( $data[ $name ] ) ? $data[ $name ] : false;
 
-			$new = isset( $_POST[$name] ) ? $_POST[$name] : ( $field['multiple'] ? array() : '' );
+			$new = isset( $_POST[ $name ] ) ? $_POST[ $name ] : ( $field['multiple'] ? array() : '' );
 			/**
 			 * WordPress automatically adds slashes to $_POST. This function remove slashes.
 			 * Note: for post meta we don't need to do this because WordPress does automatically in update_post_meta().
@@ -142,9 +126,10 @@ class MB_Settings_Page_Meta_Box extends RW_Meta_Box
 			$new = wp_unslash( $new );
 
 			// Allow field class change the value
-			$new = call_user_func( array( self::get_class_name( $field ), 'value' ), $new, $old, 0, $field );
+			$new = RWMB_Field::call( $field, 'value', $new, $old, 0 );
+			$new = RWMB_Field::filter( 'value', $new, $field, $old );
 
-			$data[$name] = $new;
+			$data[ $name ] = $new;
 		}
 
 		return $data;
@@ -154,27 +139,26 @@ class MB_Settings_Page_Meta_Box extends RW_Meta_Box
 	 * Check if settings page is saved.
 	 * @return bool
 	 */
-	public function is_saved()
-	{
+	public function is_saved() {
 		$option_name = sanitize_text_field( $this->page_args['option_name'] );
 		$data        = get_option( $option_name );
-		foreach ( $this->fields as $field )
-		{
-			if ( isset( $data[$field['id']] ) )
-			{
+		foreach ( $this->fields as $field ) {
+			if ( isset( $data[ $field['id'] ] ) ) {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
 	/**
 	 * Check if we're on the right edit screen.
+	 *
 	 * @param WP_Screen $screen Screen object. Optional. Use current screen object by default.
+	 *
 	 * @return bool
 	 */
-	public function is_edit_screen( $screen = null )
-	{
+	public function is_edit_screen( $screen = null ) {
 		return in_array( $this->page_args['id'], $this->meta_box['settings_pages'] );
 	}
 }

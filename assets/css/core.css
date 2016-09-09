@@ -608,19 +608,23 @@ margin: 5px 0 0;
 }
 
 .entry-content .p3_youtube_slider_shortcode_title {
-	text-align: center;
+text-align: center;
 }
 
 #p3_youtube_slider_shortcode.owl-carousel .owl-item {
-	display: inline-block;
-	vertical-align: top;
-	float: none;
-	padding: 0 5px;
+display: inline-block;
+vertical-align: top;
+float: none;
+padding: 0 5px;
 }
 .entry-content h5.p3_youtube_slider_shortcode_video_title {
-	text-align: center;
-	width: 90%;
-	margin: 0 auto;
+text-align: center;
+width: 90%;
+margin: 0 auto;
+}
+
+.wpcf7-form label {
+width: 100%;
 }
 
 /* Blogger ======================== */

@@ -285,7 +285,7 @@ include('functions/schema.php');
 include_once('bundled/mb-settings-page/mb-settings-page.php');
 include_once('bundled/meta-box-include-exclude/meta-box-include-exclude.php');
 include_once('bundled/mb-term-meta/mb-term-meta.php');
-include_once('bundled/customizer-reset/customizer-reset.php');
+//include_once('bundled/customizer-reset/customizer-reset.php');
 
 // hide tabs on social count plus
 if (class_exists('Social_Count_Plus')) {
