@@ -31,8 +31,26 @@ if (!function_exists('pipdig_textarea_css_render')) {
 	function pipdig_textarea_css_render() { 
 
 		$options = get_option( 'pipdig_css' );
+		
 		?>
-		<textarea style="width:90%;height: 400px;" name="pipdig_css[pipdig_textarea_css]" placeholder="body {color: #000000; background: #ffffff}"><?php if (isset($options['pipdig_textarea_css'])) { echo $options['pipdig_textarea_css']; } ?></textarea>
+		
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.18.2/codemirror.min.css" rel="stylesheet" />
+		<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.18.2/theme/hopscotch.css" rel="stylesheet" /> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.18.2/codemirror.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.18.2/mode/css/css.min.js"></script>
+		
+		<textarea style="width:90%;height: 500px;" id="pipdig_custom_css" name="pipdig_css[pipdig_textarea_css]" placeholder="body {color: #000000; background: #ffffff}"><?php if (isset($options['pipdig_textarea_css'])) { echo $options['pipdig_textarea_css']; } ?></textarea>
+		
+		<script>
+		jQuery(document).ready(function() {
+            var editor = CodeMirror.fromTextArea(document.getElementById("pipdig_custom_css"), {
+                lineNumbers: true,
+                mode: "text/css",
+                //theme: "hopscotch"
+            });
+        })
+		</script>
+		
 		<?php
 
 	}
