@@ -9,7 +9,11 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 			return;
 		}
 		
-		$social_sidebar = '';
+		$social_sidebar = $position_class = '';
+		
+		if (absint(get_theme_mod('p3_social_sidebar_position', 1)) === 2) {
+			$position_class = 'p3_social_sidebar_right';
+		}
 		
 		$links = get_option('pipdig_links');
 		
@@ -66,7 +70,7 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 		
 		if ($twitter || $instagram || $facebook || $bloglovin || $pinterest || $youtube || $tumblr || $linkedin || $soundcloud || $flickr || $snapchat || $vk || $email || $twitch || $google_plus || $stumbleupon) {
 			
-			$social_sidebar .= '<div id="p3_social_sidebar">';
+			$social_sidebar .= '<div id="p3_social_sidebar" class="'.$position_class.'">';
 			
 			if (get_theme_mod('p3_social_sidebar_icon_color')) {
 				$social_sidebar .= '<style scoped>#p3_social_sidebar a {color:'.get_theme_mod('p3_social_sidebar_icon_color').'}</style>';
@@ -131,6 +135,25 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 				)
 			);
 			
+			// position
+			$wp_customize->add_setting('p3_social_sidebar_position',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_social_sidebar_position',
+				array(
+					'type' => 'select',
+					'label' => __('Position', 'pipdig-textdomain'),
+					'section' => 'p3_social_sidebar_section',
+					'choices' => array(
+						1 => __('Left', 'p3'),
+						2 => __('Right', 'p3'),
+					),
+				)
+			);
+			
 			// icon color
 			$wp_customize->add_setting('p3_social_sidebar_icon_color',
 				array(
@@ -147,6 +170,24 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 				)
 				)
 			);
+			
+			/*
+			// icon size
+			$wp_customize->add_setting('p3_social_sidebar_icon_size',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_social_sidebar_icon_size',
+				array(
+					'type' => 'number',
+					'label' => __( 'Icon size', 'p3' ),
+					'section' => 'p3_social_sidebar_section',
+				)
+			);
+			*/
 			
 			// twitter
 			$wp_customize->add_setting('p3_social_sidebar_twitter',

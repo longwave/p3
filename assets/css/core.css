@@ -393,6 +393,10 @@ top: 50%;
 transform: translate(0, -50%);
 z-index: 500;
 }
+#p3_social_sidebar.p3_social_sidebar_right {
+	left: auto;
+	right: 10px;
+}
 #p3_social_sidebar a {
 display: block;
 padding: 5px;
