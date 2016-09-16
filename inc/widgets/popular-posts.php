@@ -42,12 +42,22 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			$image_shape = '';
 		}
 		
+		$style_select = ( isset( $instance['style_select'] ) && is_numeric( $instance['style_select'] ) ) ? (int) $instance['style_select'] : 1;
+		
 	?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
 			name="<?php echo $this->get_field_name('title'); ?>" type="text" 
 			value="<?php echo esc_attr($title); ?>" />
+		</p>
+		<p>
+			<legend><h3><?php _e('Select a layout:', 'p3'); ?></h3></legend>
+			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-1') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="1" <?php checked( $style_select == 1, true) ?>>
+			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-1' ) ?>"><img src="https://pipdigz.co.uk/p3/img/widgets/pop_1.png" style="position:relative;top:5px;border:1px solid #ddd; width: 100px;" /></label>
+			<br /><br />
+			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-2') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="2" <?php checked( $style_select == 2, true) ?>>
+			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-2' ) ?>"><img src="https://pipdigz.co.uk/p3/img/widgets/pop_2.png" style="position:relative;top:5px;border:1px solid #ddd; width: 100px;" /></label>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Include', 'p3'); ?>:</label>
@@ -93,6 +103,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		$instance['date_range_posts'] =  strip_tags($new_instance['date_range_posts']);
 		$instance['number_posts'] = absint($new_instance['number_posts']);
 		$instance['image_shape'] = absint($new_instance['image_shape']);
+		$instance['style_select'] = ( isset( $new_instance['style_select'] ) && $new_instance['style_select'] > 0 && $new_instance['style_select'] < 3 ) ? (int) $new_instance['style_select'] : 0; // 3 is total radio +1
 		return $instance;
 	  }
 	 
@@ -125,6 +136,11 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			$image_shape = strip_tags($instance['image_shape']);
 		} else {
 			$image_shape = '';
+		}
+		if (isset($instance['style_select'])) { 
+			$style_select = $instance['style_select'];
+		} else {
+			$style_select = 1;
 		}
 		if (!empty($title))
 		  echo $before_title . $title . $after_title;;
@@ -164,19 +180,35 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			$bg = pipdig_p3_catch_that_image();
 		}
 		$title = get_the_title();
-	?>
-	<li>
-		<a href="<?php the_permalink() ?>">
-			<?php if ($image_shape == 4) { ?>
-				<img src="<?php echo $bg; ?>" alt="<?php echo esc_attr($title); ?>" />
-			<?php } else { ?>
-				<div class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>)">
-					<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
-				</div>
-			<?php } ?>
-			<h4><?php echo pipdig_p3_truncate($title, 11); ?></h4>
-		</a>
-	</li>
+		
+		if ($style_select === 1) { ?>
+			<li>
+				<a href="<?php the_permalink() ?>">
+					<?php if ($image_shape == 4) { ?>
+						<img src="<?php echo $bg; ?>" alt="<?php echo esc_attr($title); ?>" />
+					<?php } else { ?>
+						<div class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>)">
+							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
+						</div>
+					<?php } ?>
+					<h4><?php echo pipdig_p3_truncate($title, 11); ?></h4>
+				</a>
+			</li>
+		<?php } else { ?>
+			<li class="p3_pop_left clearfix">
+				<a href="<?php the_permalink() ?>">
+					<?php if ($image_shape == 4) { ?>
+						<img src="<?php echo $bg; ?>" alt="<?php echo esc_attr($title); ?>" />
+					<?php } else { ?>
+						<div class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>)">
+							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
+						</div>
+					<?php } ?>
+				</a>
+				<h4><?php echo pipdig_p3_truncate($title, 11); ?></h4>
+			</li>
+		<?php } ?>
+
 	<?php endwhile; wp_reset_query(); ?>
 	</ul>
 	 
