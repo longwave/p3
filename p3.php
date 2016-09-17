@@ -18,18 +18,18 @@ function pipdig_p3_invalid_name() {
 }
 $this_theme = wp_get_theme();
 $theme_textdomain = $this_theme->get('TextDomain');
-if ($this_theme->get('Author') != 'pipdig') { // not by pipdig, but hey that's ok.
+if ($this_theme->get('Author') != 'pipdig') {
 	$child_parent = $this_theme->get('Template');
-	if ($child_parent) { // it's a child, s'all good.
+	if ($child_parent) {
 		$child_parent = explode('-', trim($child_parent));
-		if ($child_parent[0] != 'pipdig') { // it's a child and we ain't the parent
+		if ($child_parent[0] != 'pipdig') {
 			add_action('wp_footer', 'pipdig_p3_invalid_name', 99999);
 			return;
 		}
 	} else {
 		if ($theme_textdomain) {
 			$theme_textdomain = explode('-', trim($theme_textdomain));
-			if ($theme_textdomain[0] != 'pipdig') { // we're the parent :')
+			if ($theme_textdomain[0] != 'pipdig') {
 				add_action('wp_footer', 'pipdig_p3_invalid_name', 99999);
 				return;
 			}
