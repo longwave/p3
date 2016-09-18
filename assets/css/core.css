@@ -441,8 +441,10 @@ position: relative;
 left: 0;
 top: 0;
 padding: 0;
+/*
 width: 100%;
 max-width: 100%;
+*/
 }
 
 /* shortcodes ======================== */

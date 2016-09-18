@@ -38,10 +38,40 @@ if (!function_exists('pipdig_settings_init')) {
 			'pipdig_pipdig_hooks_page_section' 
 		);
 		
+		
+		
+		// conntent hooks from here
+		add_settings_field( 
+			'pipdig_content_desc', '<h2>Content Based Hooks</h2>', 
+			'pipdig_content_desc_render', 
+			'pipdig_hooks_page', 
+			'pipdig_pipdig_hooks_page_section' 
+		);
+		
+		
+		// after first post on homepage/archives
 		add_settings_field( 
 			'pipdig_textarea_after_first_post', 
-			__( 'Code to add directly after the first post on the home page or any archive', 'p3' ).'<p style="font-style:normal;font-weight:normal;">'.__( 'For example, you may wish to place a banner ad after the first post', 'p3' ).'</p>', 
+			__( 'After the first blog post on the homepage or archive', 'p3' ).'<p style="font-style:normal;font-weight:normal;">'.__( 'For example, you may wish to place a banner ad after the first post', 'p3' ).'</p>', 
 			'pipdig_textarea_after_first_post_render', 
+			'pipdig_hooks_page', 
+			'pipdig_pipdig_hooks_page_section' 
+		);
+		
+		// beginning of each blog post content
+		add_settings_field( 
+			'pipdig_textarea_p3_content_start', 
+			__( 'Beginning of blog post content', 'p3' ), 
+			'pipdig_textarea_p3_content_start_render', 
+			'pipdig_hooks_page', 
+			'pipdig_pipdig_hooks_page_section' 
+		);
+		
+		// end of each blog post content
+		add_settings_field( 
+			'pipdig_textarea_p3_content_end', 
+			__( 'End of blog post content', 'p3' ), 
+			'pipdig_textarea_p3_content_end_render', 
 			'pipdig_hooks_page', 
 			'pipdig_pipdig_hooks_page_section' 
 		);
@@ -52,12 +82,22 @@ if (!function_exists('pipdig_settings_init')) {
 }
 
 
+if (!function_exists('pipdig_content_desc_render')) {
+		function pipdig_content_desc_render() { 
+			?>
+			<hr style="margin-bottom: 20px;">
+			<p style="max-width: 600px;">Use the fields below to add content to various positions on your site.<br />For example, you may wish to add an affiliate code/disclaimer to the beginning of all blog pots via the "Beginning of blog post content" section.</p>
+			<?php
+		}
+}
+
+
 if (!function_exists('pipdig_textarea_scripts_render')) {
 	function pipdig_textarea_scripts_render() { 
 
 		$options = get_option( 'pipdig_settings' );
 		?>
-		<textarea cols='60' rows='7' name='pipdig_settings[pipdig_textarea_scripts]' placeholder='if adding javascript you will need to wrap the code in <script> tags'><?php if (isset($options['pipdig_textarea_scripts'])) { echo $options['pipdig_textarea_scripts']; } ?></textarea>
+		<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_scripts'])) { echo $options['pipdig_textarea_scripts']; } ?></textarea>
 		<?php
 
 	}
@@ -69,7 +109,7 @@ if (!function_exists('pipdig_textarea_footer_scripts_render')) {
 
 			$options = get_option( 'pipdig_settings' );
 			?>
-			<textarea cols='60' rows='7' name='pipdig_settings[pipdig_textarea_footer_scripts]' placeholder='if adding javascript you will need to wrap the code in <script> tags'><?php if (isset($options['pipdig_textarea_footer_scripts'])) { echo $options['pipdig_textarea_footer_scripts']; } ?></textarea>
+			<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_footer_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_footer_scripts'])) { echo $options['pipdig_textarea_footer_scripts']; } ?></textarea>
 			<?php
 
 		}
@@ -81,7 +121,7 @@ if (!function_exists('pipdig_textarea_body_scripts_render')) {
 
 			$options = get_option( 'pipdig_settings' );
 			?>
-			<textarea cols='60' rows='7' name='pipdig_settings[pipdig_textarea_body_scripts]' placeholder='if adding javascript you will need to wrap the code in <script> tags'><?php if (isset($options['pipdig_textarea_body_scripts'])) { echo $options['pipdig_textarea_body_scripts']; } ?></textarea>
+			<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_body_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_body_scripts'])) { echo $options['pipdig_textarea_body_scripts']; } ?></textarea>
 			<?php
 
 		}
@@ -93,7 +133,30 @@ if (!function_exists('pipdig_textarea_after_first_post_render')) {
 
 		$options = get_option( 'pipdig_settings' );
 		?>
-		<textarea cols='60' rows='7' name='pipdig_settings[pipdig_textarea_after_first_post]' placeholder='if adding javascript you will need to wrap the code in <script> tags'><?php if (isset($options['pipdig_textarea_after_first_post'])) { echo $options['pipdig_textarea_after_first_post']; } ?></textarea>
+		<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_after_first_post]' placeholder=''><?php if (isset($options['pipdig_textarea_after_first_post'])) { echo $options['pipdig_textarea_after_first_post']; } ?></textarea>
+		<?php
+
+	}
+}
+
+
+if (!function_exists('pipdig_textarea_p3_content_start_render')) {
+	function pipdig_textarea_p3_content_start_render() { 
+
+		$options = get_option( 'pipdig_settings' );
+		?>
+		<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_p3_content_start]' placeholder=''><?php if (isset($options['pipdig_textarea_p3_content_start'])) { echo $options['pipdig_textarea_p3_content_start']; } ?></textarea>
+		<?php
+
+	}
+}
+
+if (!function_exists('pipdig_textarea_p3_content_end_render')) {
+	function pipdig_textarea_p3_content_end_render() { 
+
+		$options = get_option( 'pipdig_settings' );
+		?>
+		<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_p3_content_end]' placeholder=''><?php if (isset($options['pipdig_textarea_p3_content_end'])) { echo $options['pipdig_textarea_p3_content_end']; } ?></textarea>
 		<?php
 
 	}
@@ -106,7 +169,7 @@ if (!function_exists('pipdig_settings_section_callback')) {
 		// description text
 		echo '<p>'.__( 'Use the fields below to add custom code to the Head, Body or Footer of your site.', 'p3' ).'</p>
 		<p>'.__( 'These settings will be carried over if you install any other pipdig theme.', 'p3' ).'</p>
-		<p>'.__( 'WARNING: these options can break your site. Use with caution.', 'p3' ).' <a href="https://support.pipdig.co/articles/wordpress-theme-hooks/?utm_source=wordpress&utm_medium=p3&utm_campaign=themehooks" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a></p>		';
+		<p>'.__( 'WARNING: these options can break your site. Use with caution.', 'p3' ).' <a href="https://support.pipdig.co/articles/wordpress-theme-hooks/?utm_source=wordpress&utm_medium=p3&utm_campaign=themehooks" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a></p>';
 
 	}
 }
@@ -180,6 +243,32 @@ if (!function_exists('pipdig_after_first_post_stuff')) {
 	}
 	add_action('after_first_post','pipdig_after_first_post_stuff');
 }
+
+
+if (!function_exists('pipdig_textarea_p3_content_start_stuff')) {
+	function pipdig_textarea_p3_content_start_stuff() { // top of post content
+		$output = '';
+		$options = get_option( 'pipdig_settings', '' );
+		if (!empty($options['pipdig_textarea_p3_content_start'])) {
+			$output .= do_shortcode($options['pipdig_textarea_p3_content_start']);
+		}
+		echo $output;
+	}
+	add_action('p3_content_start','pipdig_textarea_p3_content_start_stuff');
+}
+
+if (!function_exists('pipdig_textarea_p3_content_end_stuff')) {
+	function pipdig_textarea_p3_content_end_stuff() { // end of post content
+		$output = '';
+		$options = get_option( 'pipdig_settings', '' );
+		if (!empty($options['pipdig_textarea_p3_content_end'])) {
+			$output .= do_shortcode($options['pipdig_textarea_p3_content_end']);
+		}
+		echo $output;
+	}
+	add_action('p3_content_end','pipdig_textarea_p3_content_end_stuff', 1);
+}
+
 /*
 Required theme styling for the above hook:
 
