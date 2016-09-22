@@ -142,7 +142,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 				'showposts' => $number_posts,
 				'cat' => $category,
 				'ignore_sticky_posts' => 1,
-				'orderby' => 'comment_count',
+				'orderby' => 'rand',
 				'date_query' => array(
 					array(
 						'after' => $date_range_posts,

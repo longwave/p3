@@ -86,7 +86,7 @@ if (!function_exists('pipdig_content_desc_render')) {
 		function pipdig_content_desc_render() { 
 			?>
 			<hr style="margin-bottom: 20px;">
-			<p style="max-width: 600px;">Use the fields below to add content to various positions on your site.<br />For example, you may wish to add an affiliate code/disclaimer to the beginning of all blog pots via the "Beginning of blog post content" section.</p>
+			<p style="width:1000px; max-width: 100%;">Use the fields below to add content to various positions on your site.<br />For example, you may wish to add an affiliate code/disclaimer to the beginning of all blog posts via the "Beginning of blog post content" section.</p>
 			<?php
 		}
 }
@@ -97,7 +97,7 @@ if (!function_exists('pipdig_textarea_scripts_render')) {
 
 		$options = get_option( 'pipdig_settings' );
 		?>
-		<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_scripts'])) { echo $options['pipdig_textarea_scripts']; } ?></textarea>
+		<textarea style='width:1000px; max-width: 100%;' rows='8' name='pipdig_settings[pipdig_textarea_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_scripts'])) { echo $options['pipdig_textarea_scripts']; } ?></textarea>
 		<?php
 
 	}
@@ -109,7 +109,7 @@ if (!function_exists('pipdig_textarea_footer_scripts_render')) {
 
 			$options = get_option( 'pipdig_settings' );
 			?>
-			<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_footer_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_footer_scripts'])) { echo $options['pipdig_textarea_footer_scripts']; } ?></textarea>
+			<textarea style='width:1000px; max-width: 100%;' rows='8' name='pipdig_settings[pipdig_textarea_footer_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_footer_scripts'])) { echo $options['pipdig_textarea_footer_scripts']; } ?></textarea>
 			<?php
 
 		}
@@ -121,7 +121,7 @@ if (!function_exists('pipdig_textarea_body_scripts_render')) {
 
 			$options = get_option( 'pipdig_settings' );
 			?>
-			<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_body_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_body_scripts'])) { echo $options['pipdig_textarea_body_scripts']; } ?></textarea>
+			<textarea style='width:1000px; max-width: 100%;' rows='8' name='pipdig_settings[pipdig_textarea_body_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_body_scripts'])) { echo $options['pipdig_textarea_body_scripts']; } ?></textarea>
 			<?php
 
 		}
@@ -133,7 +133,7 @@ if (!function_exists('pipdig_textarea_after_first_post_render')) {
 
 		$options = get_option( 'pipdig_settings' );
 		?>
-		<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_after_first_post]' placeholder=''><?php if (isset($options['pipdig_textarea_after_first_post'])) { echo $options['pipdig_textarea_after_first_post']; } ?></textarea>
+		<textarea style='width:1000px; max-width: 100%;' rows='8' name='pipdig_settings[pipdig_textarea_after_first_post]' placeholder=''><?php if (isset($options['pipdig_textarea_after_first_post'])) { echo $options['pipdig_textarea_after_first_post']; } ?></textarea>
 		<?php
 
 	}
@@ -145,7 +145,7 @@ if (!function_exists('pipdig_textarea_p3_content_start_render')) {
 
 		$options = get_option( 'pipdig_settings' );
 		?>
-		<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_p3_content_start]' placeholder=''><?php if (isset($options['pipdig_textarea_p3_content_start'])) { echo $options['pipdig_textarea_p3_content_start']; } ?></textarea>
+		<textarea style='width:1000px; max-width: 100%;' rows='8' name='pipdig_settings[pipdig_textarea_p3_content_start]' placeholder=''><?php if (isset($options['pipdig_textarea_p3_content_start'])) { echo $options['pipdig_textarea_p3_content_start']; } ?></textarea>
 		<?php
 
 	}
@@ -156,7 +156,7 @@ if (!function_exists('pipdig_textarea_p3_content_end_render')) {
 
 		$options = get_option( 'pipdig_settings' );
 		?>
-		<textarea cols='60' rows='8' name='pipdig_settings[pipdig_textarea_p3_content_end]' placeholder=''><?php if (isset($options['pipdig_textarea_p3_content_end'])) { echo $options['pipdig_textarea_p3_content_end']; } ?></textarea>
+		<textarea style='width:1000px; max-width: 100%;' rows='8' name='pipdig_settings[pipdig_textarea_p3_content_end]' placeholder=''><?php if (isset($options['pipdig_textarea_p3_content_end'])) { echo $options['pipdig_textarea_p3_content_end']; } ?></textarea>
 		<?php
 
 	}

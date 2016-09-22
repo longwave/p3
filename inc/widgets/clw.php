@@ -4,8 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 if (!function_exists('pipdig_clw_enqueue_scripts')) {
 	function pipdig_clw_enqueue_scripts($hook) {
-		wp_enqueue_script( 'ammap', '//cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/ammap.js' );
-		wp_enqueue_script( 'continentsLow', '//cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/maps/js/continentsLow.js' );
+		wp_enqueue_script( 'ammap', 'https://cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/ammap.js' );
+		wp_enqueue_script( 'continentsLow', 'https://cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/maps/js/continentsLow.js' );
 	}
 }
 
