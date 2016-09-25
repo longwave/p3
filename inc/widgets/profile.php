@@ -15,7 +15,7 @@ if ( !function_exists( 'pipdig_enqueue_widget_media' ) ) {
 if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 	class pipdig_widget_profile_function extends WP_Widget {
 
-		function pipdig_widget_profile_function() {
+		public function __construct() {
 			$widget_ops = array('classname' => 'pipdig_widget_profile', 'description' => __('Show off your profile photo!', 'p3') );
 			parent::__construct('pipdig_widget_profile', 'pipdig - ' . __('Profile Photo', 'p3') , $widget_ops);
 		}
