@@ -17,3 +17,4 @@ include('widgets/snapcode.php');
 include('widgets/post-slider.php');
 include('widgets/twitter.php');
 include('widgets/we-heart-it.php');
+include('widgets/depop.php');
