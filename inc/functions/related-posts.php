@@ -112,6 +112,7 @@ if (!function_exists('p3_related_posts')) {
 
 	}
 	add_action('p3_content_end', 'p3_related_posts');
+	add_action('p3_summary_end', 'p3_related_posts');
 }
 
 

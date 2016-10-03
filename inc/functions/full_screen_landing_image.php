@@ -60,6 +60,13 @@ if (!function_exists('p3_full_screen_landing')) {
 		$link = esc_url(get_theme_mod('p3_full_screen_landing_link'));
 		$color = pipdig_strip(get_theme_mod('p3_full_screen_landing_text_color'));
 		
+		$scroll_text = __('Scroll down','p3');
+		if (get_theme_mod('p3_full_screen_landing_scroll_text')) {
+			$scroll_text = pipdig_strip(get_theme_mod('p3_full_screen_landing_scroll_text'));
+		}
+		$scroll_color = pipdig_strip(get_theme_mod('p3_full_screen_landing_scroll_color'));
+		
+		
 		?>
 
 		<style scoped>
@@ -85,6 +92,19 @@ if (!function_exists('p3_full_screen_landing')) {
 			.p3_full_screen_landing_panel h1 {
 				color: <?php echo $color; ?>;
 			}
+			.p3_full_screen_landing_panel_scroll {
+				position: absolute;
+				bottom: 50px;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				font-size: 30px;
+				line-height: 1;
+				color: <?php echo $scroll_color; ?>;
+			}
+			.p3_full_screen_landing_panel_scroll .fa {
+				display: block;
+			}
 		</style>
 		<div id="p3_full_screen_landing">
 			<?php if (!empty($title)) { ?>
@@ -96,6 +116,9 @@ if (!function_exists('p3_full_screen_landing')) {
 						<div><?php echo $summary; ?></div>
 					<?php } ?>
 				</div>
+			<?php } ?>
+			<?php if (get_theme_mod('p3_full_screen_landing_scroll')) { ?>
+				<div class="p3_full_screen_landing_panel_scroll"><i class="fa fa-chevron-down"></i><?php echo $scroll_text; ?></div>
 			<?php } ?>
 		</div>
 		<script>
@@ -279,6 +302,57 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 					'label' => __( 'Text color', 'pipdig-textdomain' ),
 					'section' => 'p3_full_screen_landing',
 					'settings' => 'p3_full_screen_landing_text_color',
+				)
+				)
+			);
+			
+			// scroll down button
+			$wp_customize->add_setting('p3_full_screen_landing_scroll',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_full_screen_landing_scroll',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Display "Scroll down" text at the bottom', 'p3' ),
+					'section' => 'p3_full_screen_landing',
+				)
+			);
+			
+			// scroll down text
+			$wp_customize->add_setting('p3_full_screen_landing_scroll_text',
+				array(
+					'sanitize_callback' => 'sanitize_text_field',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_full_screen_landing_scroll_text',
+				array(
+					'type' => 'text',
+					'label' => __( '"Scroll down" text:', 'p3' ),
+					'section' => 'p3_full_screen_landing',
+					'input_attrs' => array(
+						'placeholder' => __('Scroll down', 'p3'),
+					),
+				)
+			);
+			
+			// scroll color
+			$wp_customize->add_setting('p3_full_screen_landing_scroll_color',
+				array(
+					'default' => '#000000',
+					//'transport'=>'postMessage',
+					'sanitize_callback' => 'sanitize_hex_color',
+				)
+			);
+			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_full_screen_landing_scroll_color',
+				array(
+					'label' => __( 'Text color', 'pipdig-textdomain' ),
+					'section' => 'p3_full_screen_landing',
+					'settings' => 'p3_full_screen_landing_scroll_color',
 				)
 				)
 			);
