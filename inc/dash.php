@@ -295,3 +295,15 @@ function pipdig_p3_dashboard_social_count_func() {
 		}
 
 }
+
+
+// hide tabs on social count plus
+if (class_exists('Social_Count_Plus')) {
+	function p3_hide_complex_tabs_social_count_plus() {
+		$screen = get_current_screen();
+		if (is_object($screen) && $screen->id == 'settings_page_social-count-plus') {
+			echo '<style>.nav-tab-wrapper{display:none!important}</style>';
+		}
+	}
+	add_action('admin_footer', 'p3_hide_complex_tabs_social_count_plus');
+}

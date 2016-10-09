@@ -26,34 +26,43 @@ function p3_youtube_fetch($channel_id) {
 		$key = 'AIzaSyAttqQSW7MI7kKcdmrYL2jl1t9Shw1bMwE'; // red marker
 		$key = 'AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c';
 		
-		if ( false === ( $youtube_data = get_transient( 'p3_youtube_'.$channel_id ) ) ) {
-			$youtube_data = wp_remote_fopen('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key='.$key.'&maxResults=20');
-			$youtube_data = json_decode($youtube_data);
-			set_transient('p3_youtube_'.$channel_id, $youtube_data, 60 * MINUTE_IN_SECONDS);
-		}
-		
-		//print_r($youtube_data);
-		
-		for ($i = 0; $i < 20; $i++) {
-			if (isset($youtube_data->items[$i])) {
+		if ( false === ( $videos = get_transient( 'p3_youtube_'.$channel_id ) )) {
+			$url = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key='.$key.'&maxResults=20';
+			$args = array(
+			    'timeout' => 30,
+			);
+			$response = wp_remote_get($url, $args);
 				
-				$id = strip_tags($youtube_data->items[$i]->id->videoId);
+			$code = intval(json_decode($response['response']['code']));
+			
+			if ($code === 200) {
+				$response = json_decode($response['body']);
+				//print_r($response);
 				
-				$max_res_url = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
-				$max = get_headers($max_res_url);
-				if (substr($max[0], 9, 3) !== '404') {
-					$thumbnail = $max_res_url;   
-				} else {
-					$thumbnail = "https://img.youtube.com/vi/".$id."/mqdefault.jpg";
+				for ($i = 0; $i < 20; $i++) {
+					if (isset($response->items[$i])) {
+						
+						$id = strip_tags($response->items[$i]->id->videoId);
+						
+						$max_res_url = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
+						$max = get_headers($max_res_url);
+						if (substr($max[0], 9, 3) !== '404') {
+							$thumbnail = $max_res_url;   
+						} else {
+							$thumbnail = "https://img.youtube.com/vi/".$id."/mqdefault.jpg";
+						}
+						
+						$videos[$i] = array (
+							'id' => $id,
+							'title' => strip_tags($response->items[$i]->snippet->title),
+							'thumbnail' => esc_url($thumbnail),
+							'link' => esc_url('https://www.youtube.com/watch?v='.$id),
+						);
+					}
 				}
-				
-				$videos[$i] = array (
-					'id' => $id,
-					'title' => strip_tags($youtube_data->items[$i]->snippet->title),
-					'thumbnail' => esc_url($thumbnail),
-					'link' => esc_url('https://www.youtube.com/watch?v='.$id),
-				);
 			}
+			
+			set_transient( 'p3_youtube_'.$channel_id, $videos, 60 * MINUTE_IN_SECONDS );
 		}
 		
 		return $videos;

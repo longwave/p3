@@ -286,14 +286,3 @@ include_once('bundled/mb-settings-page/mb-settings-page.php');
 include_once('bundled/meta-box-include-exclude/meta-box-include-exclude.php');
 include_once('bundled/mb-term-meta/mb-term-meta.php');
 //include_once('bundled/customizer-reset/customizer-reset.php');
-
-// hide tabs on social count plus
-if (class_exists('Social_Count_Plus')) {
-	function p3_hide_complex_tabs_social_count_plus() {
-		$screen = get_current_screen();
-		if (is_object($screen) && $screen->id == 'settings_page_social-count-plus') {
-			echo '<style>.nav-tab-wrapper{display:none!important}</style>';
-		}
-	}
-	add_action('admin_footer', 'p3_hide_complex_tabs_social_count_plus');
-}

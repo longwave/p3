@@ -5,17 +5,15 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.6.4
+Version: 2.6.5
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.6.4' );
+define( 'PIPDIG_P3_V', '2.6.5' );
 
-function pipdig_p3_invalid_name() {
-	echo '<!-- p3 invalid name -->';
-}
+// bootstrap
 $this_theme = wp_get_theme();
 $theme_textdomain = $this_theme->get('TextDomain');
 if ($this_theme->get('Author') != 'pipdig') {
@@ -23,20 +21,17 @@ if ($this_theme->get('Author') != 'pipdig') {
 	if ($child_parent) {
 		$child_parent = explode('-', trim($child_parent));
 		if ($child_parent[0] != 'pipdig') {
-			add_action('wp_footer', 'pipdig_p3_invalid_name', 99999);
 			return;
 		}
 	} else {
 		if ($theme_textdomain) {
 			$theme_textdomain = explode('-', trim($theme_textdomain));
 			if ($theme_textdomain[0] != 'pipdig') {
-				add_action('wp_footer', 'pipdig_p3_invalid_name', 99999);
 				return;
 			}
 		}
 	}
 }
-
 
 //add_filter( 'max_srcset_image_width', create_function( '', 'return 1;' ) );
 
