@@ -58,7 +58,10 @@ if (!function_exists('p3_pinterest_hover')) {
 			this.each(function(){
 				var src = $(this).attr('src');
 				var shareURL = $(this).data('p3-pin-link');
-				
+				// if data attribute not found
+				if (typeof shareURL == 'undefined'){
+					shareURL = window.location.href;
+				}
 				// account for floats
 				var pin_positon = '';
 				if ($(this).hasClass('alignleft')) {
