@@ -224,7 +224,6 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 				array(
 					'type' => 'select',
 					'label' => __('Date range for "Big this Month":', 'p3'),
-					'description' => __("This won't effect the Recent Posts section.", 'p3'),
 					'section' => 'p3_feature_header_section',
 					'choices' => array(
 						'1 week ago' => __('1 Week', 'p3'),
