@@ -38,15 +38,17 @@ if (!function_exists('p3_instagram_fetch')) {
 			update_option('pipdig_instagram_users', $instagram_users);
 		}
 			
-		//$access_token = '2165912485.3a81a9f.abb156bb2d7240239e1fbbfd515d018d'; //smash
-						
-			
+		
 		if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
 			$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=25";
 			$args = array(
-			    'timeout' => 30,
+			    'timeout' => 40,
 			);
 			$response = wp_remote_get($url, $args);
+			
+			if (is_wp_error($response)) {
+				return false;
+			}
 				
 			$code = intval(json_decode($response['response']['code']));
 			
