@@ -3,7 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 $theme = get_option('pipdig_theme');
-if (($theme == 'galvani')) {
+if (($theme == 'galvani') || ($theme == 'hollyandweave')) {
 	return;
 }
 

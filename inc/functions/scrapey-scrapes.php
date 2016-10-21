@@ -13,7 +13,6 @@ function pipdig_p3_scrapey_scrapes() {
 	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
 		
-		delete_option('jpibfi_pro_ad');
 		set_transient('p3_stats_gen', true, 6 * HOUR_IN_SECONDS);
 		
 		$args = array(

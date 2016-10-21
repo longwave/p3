@@ -41,6 +41,8 @@ padding: 0 !important;
 cursor: pointer;
 }
 
+.stp-outer {max-width: 100% !important; width: 100% !important;} /* make RS shop the post widgets full width */
+
 /* Jetpack Carousel */
 .slideshow-window{background:transparent;border:0}
 
@@ -284,6 +286,7 @@ height: 380px;
 }
 #p3_post_slider_posts_column .p3_slide_img {
 display: block;
+position: relative;
 width: 100%;
 height: 380px;
 }
@@ -523,6 +526,35 @@ background-position: center;
 }
 .pipdig_banner_parallax {
 background-attachment: fixed;
+}
+
+/* Featuredpanels ================= */
+
+.p3_featured_panel {
+position: relative;
+margin-bottom: 30px;
+}
+.p3_featured_panel a {
+-moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out;
+}
+.p3_featured_panel a:hover {
+opacity: .68;
+}
+.p3_feature_panel_overlay {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 60%;
+padding: 13px 0;
+text-align: center;
+color: #000;
+background: rgba(255,255,255,.85);
+border: 1px solid #fff;
+box-sizing: border-box;
+}
+.p3_feature_panel_overlay h3 {
+margin: 0;
 }
 
 /* portfolio ====================== */

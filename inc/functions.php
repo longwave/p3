@@ -145,7 +145,7 @@ add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
 function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) {
 	$jp_mods_to_disable = array(
-	'infinite-scroll',
+	//'infinite-scroll',
 	'custom-css',
 	'post-by-email',
 	// 'widgets',
@@ -278,6 +278,7 @@ include('functions/post_slider_posts_column.php');
 include('functions/width_customizer.php');
 //include('functions/popup.php');
 include('functions/featured_cats.php');
+include('functions/featured_panels.php');
 
 include('functions/schema.php');
 

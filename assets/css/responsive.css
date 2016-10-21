@@ -47,7 +47,7 @@
 	}
 }
 @media only screen and (max-width: 400px) {
-	#p3_feature_header_big_this_month {
+	#p3_feature_header_big_this_month, #p3_featured_panels {
 		display: none;
 	}
 	#p3_feature_header_recent_posts {

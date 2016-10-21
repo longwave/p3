@@ -59,7 +59,7 @@ if (!function_exists('p3_pinterest_hover')) {
 				var src = $(this).attr('src');
 				var shareURL = $(this).data('p3-pin-link');
 				// if data attribute not found
-				if (typeof shareURL == 'undefined'){
+				if (typeof shareURL == 'undefined') {
 					shareURL = window.location.href;
 				}
 				// account for floats
@@ -176,7 +176,7 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 						 $wp_customize,
 						 'p3_pinterest_hover_image_file',
 						 array(
-							 'label'			=> __( 'Upload a custom image', 'p3' ),
+							 'label'			=> __( 'Upload a custom image (optional)', 'p3' ),
 							 'section'		=> 'pipdig_pinterest_hover',
 							 'settings'	 => 'p3_pinterest_hover_image_file',
 						 )
