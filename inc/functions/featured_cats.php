@@ -44,7 +44,7 @@ function p3_featured_cats_puller($category) {
 				<img src="<?php echo $shape; ?>" class="p3_invisible" />
 			</a>
 			<div class="entry-meta">
-				<?php the_date(); ?>
+				<?php echo get_the_date(); ?>
 			</div>
 			<h4><?php the_title(); ?></h4>
 		</div>
