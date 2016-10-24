@@ -19,7 +19,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			$pinterestuser = str_replace('/', '', $pinterestuser);
 		}
 		if (isset($instance['images_num'])) { 
-			$images_num = intval($instance['images_num']);
+			$images_num = intval($instance['images_num'])-1;
 		} else {
 			$images_num = 4;
 		}
@@ -28,12 +28,18 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		} else {
 			$cols = 2;
 		}
-		if ($cols == 2) {
-			$width = '50%';
-		} elseif ($cols == 3) {
-			$width = '33%';
-		} else {
+		if ($cols == 3) {
+			$width = '33.333333%';
+			$border = '1';
+		} elseif ($cols == 4) {
+			$width = '25%';
+			$border = '1';
+		} elseif ($cols == 1) {
 			$width = '100%';
+			$border = '0';
+		} else {
+			$width = '50%';
+			$border = '2';
 		}
 		if (isset($instance['follow'])) { 
 			$follow = $instance['follow'];
@@ -53,42 +59,41 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		if (!empty($pinterestuser)) {
 			
 			$id = 'p3_pinterest_widget_'.rand(1, 999999999);
-
+			$images = p3_pinterest_fetch($pinterestuser); // grab images
+		
+			//print_r($images);
+			
+			if ($images) {
 			?>
-			<style scoped>
-				.<?php echo $id; ?> .p3_pin_wrap {
-				width: <?php echo $width; ?>;
-				}
-			</style>
-			<div id="p3_pinterest_widget" class="<?php echo $id; ?>"></div>
-			<script>
-			jQuery(document).ready(function($) {
-				$.getJSON("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fwww.pinterest.com%2F<?php echo $pinterestuser; ?>%2Ffeed.rss%22&format=json&pipbuster=<?php echo date('h'); ?>",
-					function(data) {
-						for (i = 0; i < <?php echo $images_num; ?>; i++) {
-							var pinData = data.query.results.body.rss.channel.item[i].description;
-							var pinImg = $(pinData).find('img').attr('src');
-							var pinnyOutput = '<div class="p3_pin_wrap"><a href="http://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" class="p3_pin" style="background-image:url('+pinImg+');"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" alt="" class="p3_invisible" data-pin-nopin="true"/></a></div>';
-							$('.<?php echo $id; ?>').append(pinnyOutput);
-						}
+				<div id="<?php echo $id; ?>" class="p3_pinterest_widget">
+				<style scoped>
+					#<?php echo $id; ?> .p3_pinterest_post {
+						width: <?php echo $width; ?>;
+						border: <?php echo $border; ?>px solid <?php echo get_theme_mod('content_background_color', '#fff'); ?>
 					}
-				);
-			});
-			</script>
-			<?php
-			if (isset($instance['follow'])) {
+				</style>
+				<?php for ($x = 0; $x <= $images_num; $x++) { ?>
+					<a href="<?php echo $images[$x]['link']; ?>" class="p3_pinterest_post" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
+						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_invisible" alt=""/>
+					</a>
+				<?php } ?>
+				</div>
+				<div class="clearfix"></div>
+				<?php
+				if (isset($instance['follow'])) {
 				if (!empty($pinterestuser) && $follow) { ?>
 					<div class="clearfix"></div>
-					<p style="margin: 10px 0"><a href="http://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-pinterest" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Pinterest', 'p3'); ?></a></p>
+					<p style="margin: 10px 0"><a href="http://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-pinterest" style="font-size: 15px;"></i> <?php _e('Follow on Pinterest', 'p3'); ?></a></p>
 				<?php }
 			}
-
-		} else {
-			_e('Setup not complete. Please check the widget options.', 'p3');
-		}
+			
+			} else {
+				_e('Setup not complete. Please check the widget options.', 'p3');
+			}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');
-	  }
+	}
+	}
 	 
 	  public function form( $instance ) {
 	   
@@ -147,7 +152,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('cols'); ?>"><?php _e('Number of columns:', 'p3'); ?></label><br />
-			<input type="number" min="1" max="3" id="<?php echo $this->get_field_id( 'cols' ); ?>" name="<?php echo $this->get_field_name( 'cols' ); ?>" value="<?php if ($cols) { echo $cols; } else { echo '2'; } ?>" />
+			<input type="number" min="1" max="4" id="<?php echo $this->get_field_id( 'cols' ); ?>" name="<?php echo $this->get_field_name( 'cols' ); ?>" value="<?php if ($cols) { echo $cols; } else { echo '2'; } ?>" />
 		</p>
 
 		<p>

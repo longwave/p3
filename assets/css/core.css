@@ -147,6 +147,21 @@ border: 2px solid #fff;
 }
 
 /* Pinterest ================================== */
+.p3_pinterest_post {
+width:50%;
+position:relative;
+display:block;
+float:left;
+text-align:center;
+line-height:0;
+background-size:cover;
+background-repeat:no-repeat;
+background-position:center;
+-moz-transition:all 0.2s ease-out;-webkit-transition:all 0.2s ease-out;transition:all 0.2s ease-out;
+}
+.p3_pinterest_post:hover {opacity:.7}
+.p3_pinterest_post img {max-width:100%;height:auto;}
+
 #p3_pinterest_widget {
 overflow: auto;
 width: 100%;

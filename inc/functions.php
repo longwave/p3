@@ -267,6 +267,7 @@ include('functions/shares.php');
 include('functions/related-posts.php');
 include('functions/instagram.php');
 include('functions/youtube.php');
+include('functions/pinterest.php');
 include('functions/pinterest_hover.php');
 include('functions/social_footer.php');
 include('functions/navbar_icons.php');
