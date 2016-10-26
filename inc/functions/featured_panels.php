@@ -30,6 +30,8 @@ if (!function_exists('p3_featured_panels')) {
 		
 			$img_1 = $title_1 = $link_1 = $img_2 = $title_2 = $link_2 = $img_3 = $title_3 = $link_3 = '';
 			
+			$show = true;
+			
 			if (is_customize_preview()) {
 				$default_link = 'https://www.pipdig.co';
 				$default_title = 'Title Text';
@@ -40,6 +42,7 @@ if (!function_exists('p3_featured_panels')) {
 				} else {
 					$default_link = 'https://www.pipdig.co';
 					$default_title = 'Title Text';
+					$show = false;
 				}
 			}
 			
@@ -56,53 +59,54 @@ if (!function_exists('p3_featured_panels')) {
 			$link_3 = get_theme_mod('p3_featured_panels_3_link', $default_link);
 			
 			
+			if ($show) {
+			?>
+			<div id="p3_featured_panels" class="row nopin">
+				
+				<?php if ($img_1 && $title_1 && $link_1) { ?>
+				<div class="col-sm-4 p3_featured_panel">
+					<a href="<?php echo esc_url($link_1); ?>">
+						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_1); ?>)">
+							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_1); ?>" class="p3_invisible" />
+						</div>
+						<div class='p3_feature_panel_overlay'>
+							<h3><?php echo esc_html($title_1); ?></h3>
+						</div>
+					</a>
+				</div>
+				<?php } ?>
 
-		?>
-		<div id="p3_featured_panels" class="row nopin">
-			
-			<?php if ($img_1 && $title_1 && $link_1) { ?>
-			<div class="col-sm-4 p3_featured_panel">
-				<a href="<?php echo esc_url($link_1); ?>">
-					<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_1); ?>)">
-						<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_1); ?>" class="p3_invisible" />
-					</div>
-					<div class='p3_feature_panel_overlay'>
-						<h3><?php echo esc_html($title_1); ?></h3>
-					</div>
-				</a>
-			</div>
-			<?php } ?>
+				<?php if ($img_2 && $title_2 && $link_2) { ?>
+				<div class="col-sm-4 p3_featured_panel">
+					<a href="<?php echo esc_url($link_2); ?>">
+						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_2); ?>)">
+							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_2); ?>" class="p3_invisible" />
+						</div>
+						<div class='p3_feature_panel_overlay'>
+							<h3><?php echo esc_html($title_2); ?></h3>
+						</div>
+					</a>
+				</div>
+				<?php } ?>
+				
+				<?php if ($img_3 && $title_3 && $link_3) { ?>
+				<div class="col-sm-4 p3_featured_panel">
+					<a href="<?php echo esc_url($link_3); ?>">
+						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_3); ?>)">
+							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_3); ?>" class="p3_invisible" />
+						</div>
+						<div class='p3_feature_panel_overlay'>
+							<h3><?php echo esc_html($title_3); ?></h3>
+						</div>
+					</a>
+				</div>
+				<?php } ?>
+				
+				<div class="clearfix"></div>
 
-			<?php if ($img_2 && $title_2 && $link_2) { ?>
-			<div class="col-sm-4 p3_featured_panel">
-				<a href="<?php echo esc_url($link_2); ?>">
-					<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_2); ?>)">
-						<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_2); ?>" class="p3_invisible" />
-					</div>
-					<div class='p3_feature_panel_overlay'>
-						<h3><?php echo esc_html($title_2); ?></h3>
-					</div>
-				</a>
 			</div>
-			<?php } ?>
-			
-			<?php if ($img_3 && $title_3 && $link_3) { ?>
-			<div class="col-sm-4 p3_featured_panel">
-				<a href="<?php echo esc_url($link_3); ?>">
-					<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_3); ?>)">
-						<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_3); ?>" class="p3_invisible" />
-					</div>
-					<div class='p3_feature_panel_overlay'>
-						<h3><?php echo esc_html($title_3); ?></h3>
-					</div>
-				</a>
-			</div>
-			<?php } ?>
-			
-			<div class="clearfix"></div>
-
-		</div>
-	<?php
+			<?php
+			} // endif $show
 	}
 	add_action('p3_top_site_main_container', 'p3_featured_panels', 4);
 }
