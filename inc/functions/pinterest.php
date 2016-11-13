@@ -57,22 +57,22 @@ if (!function_exists('p3_pinterest_fetch')) {
 		$xml = simplexml_load_string($body);
 		
 		for ($i = 0; $i < 20; $i++) {
-			if (!empty($xml->channel->item[$i]->description)) {
-					
-				$img_url = '';				
-				$pin_desc = $xml->channel->item[$i]->description;
-				preg_match('@src="([^"]+)"@' , $pin_desc, $match);
-				$img_url = array_pop($match);
-
-				$images[$i] = array (
-					'src' => esc_url($img_url),
-					'link' => esc_url($xml->channel->item[$i]->link),
-					'title' => strip_tags($xml->channel->item[$i]->title),
-				);
-					
-			} else {
+			
+			if (empty($xml->channel->item[$i]->description)) {
 				break;
 			}
+					
+			$img_url = '';				
+			$pin_desc = $xml->channel->item[$i]->description;
+			preg_match('@src="([^"]+)"@' , $pin_desc, $match);
+			$img_url = array_pop($match);
+
+			$images[$i] = array (
+				'src' => esc_url($img_url),
+				'link' => esc_url($xml->channel->item[$i]->link),
+				'title' => strip_tags($xml->channel->item[$i]->title),
+			);
+			
 		}
 			
 		if (!empty($images)) {
