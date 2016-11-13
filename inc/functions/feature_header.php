@@ -30,7 +30,7 @@ if (!function_exists('p3_feature_header')) {
 		if (empty($recent_posts_title)) {
 			$recent_posts_title = __('Recent Posts', 'p3');
 		}
-		$date_range = get_theme_mod('p3_feature_header_trending_dates', '1 month ago');
+		$date_range = get_theme_mod('p3_feature_header_trending_dates', '3 months ago');
 		$text_color = strip_tags(get_theme_mod('p3_feature_header_text_color', '#000'));
 		$text_bg_color = strip_tags(get_theme_mod('p3_feature_header_text_bg_color', '#fff'));
 		
@@ -216,7 +216,7 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 			// Date range for popular/trending posts
 			$wp_customize->add_setting('p3_feature_header_trending_dates',
 				array(
-					'default' => '1 month ago',
+					'default' => '3 months ago',
 					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);

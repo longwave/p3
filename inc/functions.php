@@ -26,6 +26,9 @@ if (!function_exists('p3_lightbox_rel')) {
 }
 */
 
+// remove default gallery shortcode styling
+add_filter( 'use_default_gallery_style', '__return_false' );
+
 if ( !function_exists( 'pipdig_strip' ) ) {
 	function pipdig_strip($data, $tags = '') {
 		return strip_tags(trim($data), $tags);

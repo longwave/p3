@@ -5,13 +5,13 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.6.8
+Version: 2.6.10
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.6.8' );
+define( 'PIPDIG_P3_V', '2.6.10' );
 
 // bootstrap
 $this_theme = wp_get_theme();
@@ -62,67 +62,31 @@ include_once('inc/widgets.php');
 include('inc/shortcodes.php');
 include('inc/cron.php');
 
-function p3_update_notice_3() {
+function p3_new_install_notice() {
 
 	if (current_user_can('manage_options')) {
-		if (isset($_POST['p3_update_notice_3_dismissed'])) {
-			update_option('p3_update_notice_3', 1);
+		if (isset($_POST['p3_new_install_notice_dismissed'])) {
+			update_option('p3_new_install_notice', 1);
 		}
 	}
 	
-	if (get_option('p3_update_notice_3') || !current_user_can('manage_options') || get_option('pipdig_p3_comments_set')) {
+	if (get_option('p3_new_install_notice') || !current_user_can('manage_options')) {
 		return;
 	}
-	if (!get_option('p3_update_notice_3_ig_deleted')) {
-		delete_option('pipdig_instagram');
-		update_option('p3_update_notice_3_ig_deleted', 1);
-	}
+	
+	$this_theme = wp_get_theme();
+	$theme_name_full = $this_theme->get('Name');
+	$theme_name = str_replace(' (pipdig)', '', $theme_name_full);
+	
 	?>
 	<div class="notice notice-warning is-dismissible">
-		<h2>IMPORTANT</h2>
-		<p>Instagram have made changes to their API which means you will need to re-connect your site.</p>
-		<p>You can do that on <a href="<?php echo admin_url('admin.php?page=pipdig-instagram'); ?>">this page</a>.</p>
-		<p>If you don't use any pipdig Instagram features then you can dismiss this message using the button below :)</p>
+		<h2><?php _e('Howdy!', 'p3'); ?></h2>
+		<p>Thank you for installing <strong><?php echo $theme_name ?></strong>!</p>
+		<p>So that you can get the most out of your new theme, we highly recommend looking at our <a href="https://go.pipdig.co/open.php?id=wp-quickstart" target="_blank">Quickstart Guide</a>.</p>
+		<p>Already setup? Click the button below to hide this notice:</p>
 		<form action="<?php echo admin_url(); ?>" method="post">
-			<?php wp_nonce_field('p3-update-notice-nonce-3'); ?>
-			<input type="hidden" value="true" name="p3_update_notice_3_dismissed" />
-			<p class="submit" style="margin-top: 5px; padding-top: 5px;">
-				<input name="submit" class="button" value="Hide this notice" type="submit" />
-			</p>
-		</form>
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-	</div>
-	<?php
-}
-add_action( 'admin_notices', 'p3_update_notice_3' );
-
-
-function p3_update_notice_1() {
-	/*
-	$currentScreen = get_current_screen();
-	if($currentScreen->id != 'widgets') {
-		return;
-	}
-	*/
-	
-	if (current_user_can('manage_options')) {
-		if (isset($_POST['p3_update_notice_1_dismissed'])) {
-			update_option('p3_update_notice_1', 1);
-		}
-	}
-	
-	if (get_option('p3_update_notice_1') || !current_user_can('manage_options') || get_option('pipdig_p3_comments_set')) {
-		return;
-	}
-	
-	?>
-	<div class="notice notice-warning is-dismissible">
-		<p>If you have updated the "pipdig Power Pack (p3)" plugin and find that your homepage is blank or features are missing, this means that your theme is an older version.</p>
-		<p>Don't worry, it's easily fixed. You can update your theme to the latest version automatically by going to <a href="<?php echo admin_url('themes.php'); ?>">this page</a> in your dashboard.</p>
-		<p><a href="https://support.pipdig.co/articles/wordpress-how-to-update-your-theme/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">Click here</a> to read more about keeping your theme updated. If you need any help or have any questions, you are welcome to contact us via <a href="https://support.pipdig.co/submit-ticket/?utm_source=wordpress&utm_medium=notice&utm_campaign=p3update" target="_blank">pipdig.co/help</a>.</p>
-		<form action="index.php" method="post">
-			<?php wp_nonce_field('p3-update-notice-nonce'); ?>
-			<input type="hidden" value="true" name="p3_update_notice_1_dismissed" />
+			<?php wp_nonce_field('p3-new-install-notice-nonce'); ?>
+			<input type="hidden" value="true" name="p3_new_install_notice_dismissed" />
 			<p class="submit" style="margin-top: 5px; padding-top: 5px;">
 				<input name="submit" class="button" value="Hide this notice" type="submit" />
 			</p>
@@ -130,7 +94,8 @@ function p3_update_notice_1() {
 	</div>
 	<?php
 }
-//add_action( 'admin_notices', 'p3_update_notice_1' );
+add_action( 'admin_notices', 'p3_new_install_notice' );
+
 
 
 function pipdig_p3_activate() {
@@ -198,12 +163,10 @@ function pipdig_p3_activate() {
 	if (get_option('blogdescription') == 'My WordPress Blog') {
 		update_option('blogdescription', '');
 	}
-	/*
 	if (get_option('pipdig_p3_show_on_front_set') != 1) {
-		update_option('show_on_front', 'post');
+		update_option('show_on_front', 'posts');
 		update_option('pipdig_p3_show_on_front_set', 1);
 	}
-	*/
 	if (get_option('jr_resizeupload_width') == '1200' && (get_option('pipdig_p3_jr_resizeupload_width_set') != 1)) {
 		update_option('jr_resizeupload_width', 1920);
 		update_option('jr_resizeupload_quality', 75);
@@ -239,12 +202,14 @@ function pipdig_p3_activate() {
 	remove_theme_mod('header_instagram');
 	
 	// set header if WP default used
+	/*
 	if (!get_theme_mod('logo_image') && (get_option('pipdig_p3_header_set') != 1)) {
 		if (get_header_image()) {
 		 set_theme_mod('logo_image', get_header_image());
 		 update_option('pipdig_p3_header_set', 1);
 		}
 	}
+	*/
 	
 	p3_flush_htacess();
 	
@@ -272,9 +237,9 @@ function pipdig_p3_activate() {
 			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform: lowercase;letter-spacing: 1px;">pipdig</span></a>',
-			'<a href="'.$piplink2.'" target="_blank">WordPress themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
+			'<a href="'.$piplink2.'" target="_blank">WP theme by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
 			'<a href="'.$piplink3.'" target="_blank">WordPress Themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
-			//'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			);
 			update_option('p3_amicorumi_2', $amicorum[array_rand($amicorum)]);
 		}

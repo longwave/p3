@@ -42,7 +42,10 @@ if (!function_exists('p3_featured_panels')) {
 				} else {
 					$default_link = 'https://www.pipdig.co';
 					$default_title = 'Title Text';
-					$show = false;
+					if (!get_theme_mod('p3_featured_panels_1_img')) {
+						$show = false;
+					}
+					
 				}
 			}
 			
@@ -57,6 +60,7 @@ if (!function_exists('p3_featured_panels')) {
 			$img_3 = get_theme_mod('p3_featured_panels_3_img', 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg');
 			$title_3 = get_theme_mod('p3_featured_panels_3_title', $default_title);
 			$link_3 = get_theme_mod('p3_featured_panels_3_link', $default_link);
+			
 			
 			
 			if ($show) {

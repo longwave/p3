@@ -142,7 +142,7 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 			$wp_customize->add_section( 'pipdig_pinterest_hover', 
 				array(
 					'title' => __( 'Pinterest Hover Button', 'p3' ),
-					'description'=> __( 'When you hover your mouse over an image in a post/page, a Pinterest "Pin it" button will appear.', 'p3' ),
+					'description'=> __( 'When you hover your mouse over an image in a post/page, a Pinterest "Pin it" button will appear.', 'p3' ). ' You can download some of our custom Pinterest Hover Images on <a href="https://www.dropbox.com/sh/k8myt2vd8lgoz6a/AAD4w2WGe99Nr9wXpJl5T-TQa?dl=0" target="_blank">this page</a>',
 					'capability' => 'edit_theme_options',
 					//'panel' => 'pipdig_features',
 					'priority' => 64,

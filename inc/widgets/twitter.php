@@ -107,7 +107,6 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 			<input type="checkbox" id="<?php echo $this->get_field_id('follow'); ?>" name="<?php echo $this->get_field_name('follow'); ?>" <?php if (isset($instance['follow'])) { checked( (bool) $instance['follow'], true ); } ?> /><?php _e('Display a "Follow" link.', 'p3'); ?></label>
 			<br />
 		</p>
-		<p><a href="//support.pipdig.co/articles/wordpress-twitter-widget/?utm_source=wordpress&utm_medium=p3&utm_campaign=widget" target="_blank"><?php _e('Click here for information', 'p3'); ?></a></p>
 		
 		<?php
 	   

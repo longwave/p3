@@ -33,13 +33,20 @@ if (!function_exists('pipdig_textarea_css_render')) {
 		$options = get_option( 'pipdig_css' );
 		
 		?>
-		
+
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.18.2/codemirror.min.css" rel="stylesheet" />
 		<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.18.2/theme/hopscotch.css" rel="stylesheet" /> -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.18.2/codemirror.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.18.2/mode/css/css.min.js"></script>
 		
-		<textarea style="width:90%;height: 900px;" id="pipdig_custom_css" name="pipdig_css[pipdig_textarea_css]" placeholder="body {color: #000000; background: #ffffff}"><?php if (isset($options['pipdig_textarea_css'])) { echo $options['pipdig_textarea_css']; } ?></textarea>
+		<style scoped>
+		.CodeMirror {
+			height: 600px;
+			width: 95%;
+		}
+		</style>
+		
+		<textarea style="" id="pipdig_custom_css" name="pipdig_css[pipdig_textarea_css]" placeholder="body {color: #000000; background: #ffffff}"><?php if (isset($options['pipdig_textarea_css'])) { echo $options['pipdig_textarea_css']; } ?></textarea>
 		
 		<script>
 		jQuery(document).ready(function() {

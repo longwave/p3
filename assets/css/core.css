@@ -41,7 +41,7 @@ padding: 0 !important;
 cursor: pointer;
 }
 
-.stp-outer {max-width: 100% !important; width: 100% !important;} /* make RS shop the post widgets full width */
+.stp-outer, .bo-garden {max-width: 100% !important; width: 100% !important;} /* make RS shop the post widgets full width */
 
 /* Jetpack Carousel */
 .slideshow-window{background:transparent;border:0}
@@ -220,24 +220,6 @@ opacity: 1;
 left: 50%;
 top: 50%;
 }
-/*
-.entry-content a {
-position: relative;
-}
-*/
-/* 
-v2
-.p3_pin_wrapper {
-position: relative;
-}
-.p3_pin_img {
-display: none;
-position: absolute;
-top: 20px;
-left: 20px;
-cursor: pointer;
-}
-*/
 
 /* popular posts ============================ */
 #pipdig-widget-popular-posts {
@@ -421,7 +403,7 @@ position: fixed;
 left: 10px;
 top: 50%;
 transform: translate(0, -50%);
-z-index: 500;
+z-index: 500000;
 }
 #p3_social_sidebar.p3_social_sidebar_right {
 	left: auto;
@@ -690,6 +672,50 @@ margin: 0 auto;
 
 .wpcf7-form label {
 width: 100%;
+}
+
+/* Goodreads ====================== */
+div[class^="gr_custom_container"] {
+	border: 1px solid #eee;
+	border-radius: 0;
+	padding: 10px 5px 10px 5px;
+	background-color: #fff;
+	color: #000;
+}
+
+div[class^="gr_custom_container"] a {
+	color: #000;
+}
+
+.gr_custom_widget h2 {
+	display: none;
+}
+div[class^="gr_custom_each_container"] {
+	width: 100%;
+	clear: both;
+	margin-bottom: 6px;
+	overflow: auto;
+	padding-bottom: 4px;
+	border-bottom: 1px solid #eee;
+}
+div[class^="gr_custom_book_container"] {
+	float: right;
+	overflow: hidden;
+	height: 60px;
+	margin-left: 4px;
+	width: 39px;
+}
+div[class^="gr_custom_author"] {
+	font-size: 10px;
+}
+div[class^="gr_custom_tags"] {
+	font-size: 10px;
+	color: gray;
+}
+div[class^="gr_custom_review"] {
+}
+div[class^="gr_custom_rating"] {
+	display: none;
 }
 
 /* Blogger ======================== */
