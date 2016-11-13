@@ -61,6 +61,7 @@ include_once('inc/dash.php');
 include_once('inc/widgets.php');
 include('inc/shortcodes.php');
 include('inc/cron.php');
+//include('inc/beaver.php');
 
 function p3_new_install_notice() {
 

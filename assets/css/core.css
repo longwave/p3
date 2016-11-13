@@ -718,7 +718,11 @@ div[class^="gr_custom_rating"] {
 	display: none;
 }
 
-/* Blogger ======================== */
+/* Beaver ========================= */
+.fl-builder-modules-cta, .fl-builder-bar-title img {
+	display: none !important;
+}
 
+/* Blogger ======================== */
 .tr-caption-container, .tr-caption-container tr, .tr-caption-container td {border:0}
 .tr-caption-container img {width: 100%}
