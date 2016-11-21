@@ -19,7 +19,7 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 		pipdig_p3_scrapey_scrapes();
 		$links = get_option('pipdig_links');
 		$bloglovin_url = esc_url($links['bloglovin']);
-		$bloglovin_count = intval(get_option('p3_bloglovin_count'));
+		$bloglovin_count = strip_tags(get_option('p3_bloglovin_count'));
 		$bloglovin_official = get_theme_mod('pipdig_bloglovin_widget_official', false);
 
 		if (!empty($bloglovin_url)) {
@@ -69,13 +69,11 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 		?>
 		<p><?php _e("This widget will display your total Bloglovin' follower count.", 'p3'); ?></p>
 		<?php if ($bloglovin_count) { ?>
-			<p><?php echo $bloglovin_count.' '. __("Followers on Bloglovin'", 'p3'); ?>.</p>
-			<?php //echo '<div style="text-align:center;margin:0 auto"><a target="_blank" rel="nofollow" href="'.$bloglovin_url.'" style="background: #000; border: 0; border-radius: 2px; display: block; height: 20px; overflow: hidden; padding: 0 5px; position: relative; width: 110px; display: inline-block"><div style="background: url(//static.blovcdn.com/assets/gfx/follow.svg) no-repeat; display: inline-block; height: 14px; left: 4px; position: absolute; top: 3px; width: 15px;"></div><div style="background: url(//static.blovcdn.com/assets/gfx/logo-2-white.svg) no-repeat; display: inline-block; height: 10px; left: 21px; position: absolute; top: 5px; width: 84px;"></div></a><a href="'.$bloglovin_url.'" style="padding:0 3px;height:20px;display:inline-block;text-align:center;border:1px solid #cfcfcf;border-radius:2px;background-color:white;overflow:hidden;position:relative;left:2px;font:13px Open Sans,sans-serif;line-height:18px;color:#000!important;text-decoration:none!important">'.$bloglovin_count.'</a></div>'; ?>
+			<p><?php echo strip_tags($bloglovin_count).' '. __("Followers on Bloglovin'", 'p3'); ?>.</p>
 		<?php } ?>
 		<p><?php
 		if (empty($bloglovin_url)) {
-			$cust_url = admin_url( 'admin.php?page=pipdig-links' );
-			printf(__("You will need to <a href='%s'>add the link</a> to your Bloglovin' page first.", 'p3'), $cust_url );
+			printf(__("You will need to <a href='%s'>add the link</a> to your Bloglovin' page first.", 'p3'), admin_url('admin.php?page=pipdig-links') );
 		}
 		?></p>
 		

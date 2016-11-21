@@ -27,7 +27,7 @@ if (!function_exists('p3_lightbox_rel')) {
 */
 
 // remove default gallery shortcode styling
-add_filter( 'use_default_gallery_style', '__return_false' );
+//add_filter( 'use_default_gallery_style', '__return_false' );
 
 if ( !function_exists( 'pipdig_strip' ) ) {
 	function pipdig_strip($data, $tags = '') {
@@ -129,21 +129,6 @@ if (!class_exists('Rss_Image_Feed') && !function_exists('pipdig_rss_post_thumbna
 	add_filter('the_excerpt_rss', 'pipdig_p3_rss_post_thumbnail');
 	add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');
 }
-
-
-// add pipdig link to themes section
-function pipdig_p3_themes_top_link() {
-	if(!isset($_GET['page'])) {
-	?>
-	<script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$('.page-title-action').before('<a class="add-new-h2" href="https://www.pipdig.co/products/wordpress-themes?utm_source=wpmojo&utm_medium=wpmojo&utm_campaign=wpmojo" target="_blank">pipdig.co Themes</a>');
-	});
-	</script>
-	<?php
-	}
-}
-add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
 
 function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) {
@@ -261,6 +246,14 @@ if (!function_exists('pipdig_p3_comment_nav')) {
 		echo '<div class="nav-next">'.next_comments_link(__('Newer Comments', 'p3').' <i class="fa fa-arrow-right"></i>').'</div>';
 	}
 }
+
+// allow 'text-transorm' in wp_kses http://wordpress.stackexchange.com/questions/173526/why-is-wp-kses-not-keeping-style-attributes-as-expected
+function p3_safe_styles($styles) {
+	array_push($styles, 'text-transform');
+	return $styles;
+}
+add_filter('safe_style_css','p3_safe_styles');
+
 
 include('functions/social-sidebar.php');
 include('functions/full_screen_landing_image.php');

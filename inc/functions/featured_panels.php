@@ -61,14 +61,17 @@ if (!function_exists('p3_featured_panels')) {
 			$title_3 = get_theme_mod('p3_featured_panels_3_title', $default_title);
 			$link_3 = get_theme_mod('p3_featured_panels_3_link', $default_link);
 			
-			
+			$sm = 'sm';
+			if (get_theme_mod('disable_responsive')) {
+				$sm = 'xs';
+			}
 			
 			if ($show) {
 			?>
 			<div id="p3_featured_panels" class="row nopin">
 				
 				<?php if ($img_1 && $title_1 && $link_1) { ?>
-				<div class="col-sm-4 p3_featured_panel">
+				<div class="col-<?php echo $sm; ?>-4 p3_featured_panel">
 					<a href="<?php echo esc_url($link_1); ?>">
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_1); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_1); ?>" class="p3_invisible" />
@@ -81,7 +84,7 @@ if (!function_exists('p3_featured_panels')) {
 				<?php } ?>
 
 				<?php if ($img_2 && $title_2 && $link_2) { ?>
-				<div class="col-sm-4 p3_featured_panel">
+				<div class="col-<?php echo $sm; ?>-4 p3_featured_panel">
 					<a href="<?php echo esc_url($link_2); ?>">
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_2); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_2); ?>" class="p3_invisible" />
@@ -94,7 +97,7 @@ if (!function_exists('p3_featured_panels')) {
 				<?php } ?>
 				
 				<?php if ($img_3 && $title_3 && $link_3) { ?>
-				<div class="col-sm-4 p3_featured_panel">
+				<div class="col-<?php echo $sm; ?>-4 p3_featured_panel">
 					<a href="<?php echo esc_url($link_3); ?>">
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_3); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_3); ?>" class="p3_invisible" />

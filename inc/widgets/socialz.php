@@ -32,6 +32,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$spotify = empty($instance['spotify']) ? '' : esc_url($instance['spotify']);
 		$medium = empty($instance['medium']) ? '' : esc_url($instance['medium']);
 		$stumbleupon = empty($instance['stumbleupon']) ? '' : esc_url($instance['stumbleupon']);
+		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
 		$snapchat = empty($instance['snapchat']) ? '' : esc_url($instance['snapchat']);
 		$rss = empty($instance['rss']) ? '' : esc_attr($instance['rss']);
 		//$style_select = empty($instance['style_select']) ? '' : $instance['style_select'];
@@ -69,6 +70,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($medium)) $icons_output .= '<a href="'.$medium.'" target="_blank"><i class="fa fa-medium"></i></a>';
 			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank"><i class="fa fa-twitch"></i></a>';
 			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank"><i class="fa fa-stumbleupon"></i></a>';
+			if (!empty($etsy)) $icons_output .= '<a href="'.$etsy.'" target="_blank"><i class="fa fa-etsy"></i></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'"><i class="fa fa-envelope"></i></a>';
 			if (!empty($rss)) $icons_output .= '<a href="'.$rss.'" target="_blank"><i class="fa fa-rss"></i></a>';
 			
@@ -93,6 +95,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($medium)) $icons_output .= '<a href="'.$medium.'" target="_blank"><i class="fa fa-medium"></i><br /><span>Medium</span></a>';
 			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank"><i class="fa fa-twitch"></i><br /><span>Twitch</span></a>';
 			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank"><i class="fa fa-stumbleupon"></i><br /><span>Stumble</span></a>';
+			if (!empty($etsy)) $icons_output .= '<a href="'.$etsy.'" target="_blank"><i class="fa fa-etsy"></i><br /><span>Etsy</span></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'"><i class="fa fa-envelope"></i><br /><span>Email</span></a>';
 			if (!empty($rss)) $icons_output .= '<a href="'.$rss.'" target="_blank"><i class="fa fa-rss"></i><br /><span>RSS</span></a>';
 			$id = 'p3_socialz_'.rand(1, 999999999);
@@ -128,6 +131,8 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$spotify = empty($instance['spotify']) ? '' : esc_url($instance['spotify']);
 		$medium = empty($instance['medium']) ? '' : esc_url($instance['medium']);
 		$stumbleupon = empty($instance['stumbleupon']) ? '' : esc_url($instance['stumbleupon']);
+		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
+		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
 		$snapchat = empty($instance['snapchat']) ? '' : esc_url($instance['snapchat']);
 		$rss = empty($instance['rss']) ? '' : strip_tags($instance['rss']);
 		
@@ -179,6 +184,9 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		}
 		if (empty($stumbleupon)) {
 			$stumbleupon = esc_url($links['stumbleupon']);
+		}
+		if (empty($etsy)) {
+			$etsy = esc_url($links['etsy']);
 		}
 		if (empty($rss)) {
 			$rss = esc_url($links['rss']);
@@ -362,6 +370,14 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		</p>
 		
 		<p>
+			<label for="<?php echo $this->get_field_id('etsy'); ?>">Etsy (e.g. https://etsy.com/pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('etsy'); ?>" 
+			name="<?php echo $this->get_field_name('etsy'); ?>" type="text" 
+			value="<?php echo esc_url($etsy); ?>" />
+			</label>
+		</p>
+		
+		<p>
 			<label for="<?php echo $this->get_field_id('email'); ?>">Email Address (e.g. yourname@gmail.com) 
 			<input class="widefat" id="<?php echo $this->get_field_id('email'); ?>" 
 			name="<?php echo $this->get_field_name('email'); ?>" type="text" 
@@ -401,6 +417,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$instance['medium'] = esc_url($new_instance['medium']);
 		$instance['twitch'] = esc_url($new_instance['twitch']);
 		$instance['stumbleupon'] = esc_url($new_instance['stumbleupon']);
+		$instance['etsy'] = esc_url($new_instance['etsy']);
 		$instance['email'] = sanitize_email($new_instance['email']);
 		$instance['rss'] = strip_tags($new_instance['rss']);
 		

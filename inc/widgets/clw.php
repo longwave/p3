@@ -197,6 +197,7 @@ if (!class_exists('pipdig_widget_clw')) {
 				<label for="<?php echo $this->get_field_id('url'); ?>"><?php _e('Link the map to a url when clicked: (optional)', 'p3'); ?></label><br />
 				<input type="url" id="<?php echo $this->get_field_id( 'url' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'url' ); ?>" value="<?php if ($url) { echo $url; } ?>" placeholder="e.g. http://example.com" />
 			</p>
+			<p>You can also edit the styling of this widget in the <a href="<?php echo admin_url('customize.php?autofocus[section]=pipdig_clw'); ?>" target="_blank">Customizer</a>.</p>
 			<?php
 		}
 	 

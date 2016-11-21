@@ -1,21 +1,20 @@
 <?php 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/*
-include_once (ABSPATH.'wp-admin/includes/plugin.php');
-if (!is_plugin_active('beaver-builder-lite-version/fl-builder.php')) {
+
+if (!class_exists('FLBuilder')) {
 	return;
 }
-*/
 
-function pipdig_beaver_post_types( $post_types ) {
+
+function p3_beaver_post_types( $post_types ) {
     $post_types[] = 'post';
     return $post_types;
 }
-add_filter( 'fl_builder_post_types', 'pipdig_beaver_post_types' );
+add_filter( 'fl_builder_post_types', 'p3_beaver_post_types' );
 
 
-function pipdig_beaver_modules( $enabled, $instance ) {
+function p3_beaver_modules( $enabled, $instance ) {
 
     $disable = array( 'sidebar', 'widget' );
 
@@ -25,4 +24,4 @@ function pipdig_beaver_modules( $enabled, $instance ) {
 
     return $enabled;
 }
-add_filter( 'fl_builder_register_module', 'pipdig_beaver_modules', 10, 2 );
+add_filter( 'fl_builder_register_module', 'p3_beaver_modules', 10, 2 );

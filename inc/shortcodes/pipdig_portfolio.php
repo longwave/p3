@@ -41,7 +41,7 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 			$output .= '<h6 id="filter--all" class="filter active" data-filter="*">'.__('View All', 'p3').'</h6>';
 			$tax_terms = get_terms('jetpack-portfolio-type');
 			foreach ($tax_terms as $tax_term) {
-				$output .= '<h6 class="filter" data-filter=".'. $tax_term->slug.'">' . $tax_term->slug .'</h6>';
+				$output .= '<h6 class="filter" data-filter=".pipdig_portfolio_filter-'. $tax_term->slug.'">' . $tax_term->slug .'</h6>';
 			}
 		$output .= '</div>';
 		
@@ -75,7 +75,7 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 			'posts_per_page' => $posts_per_page,
 		);
 
-		$project_query = new WP_Query ($args);
+		$project_query = new WP_Query($args);
 	 
 		if (post_type_exists('jetpack-portfolio') && $project_query -> have_posts()) {
 	 
@@ -89,7 +89,7 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 					$filtering_links = array();
 				 
 					foreach ( $terms as $term ) {
-						$filtering_links[] = $term->slug;
+						$filtering_links[] = 'pipdig_portfolio_filter-'.$term->slug;
 					}
 										
 					$filtering = join( " ", $filtering_links );

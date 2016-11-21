@@ -9,7 +9,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = $etsy = '';
 		
 		if (!empty($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
@@ -56,6 +56,9 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		if (!empty($links['stumbleupon'])) {
 			$stumbleupon = esc_url($links['stumbleupon']);
 		}
+		if (!empty($links['etsy'])) {
+			$etsy = esc_url($links['etsy']);
+		}
 		if (!empty($links['email'])) {
 			$email = sanitize_email($links['email']);
 		}
@@ -76,6 +79,7 @@ if (!function_exists('add_socialz_to_menu')) { // change this check to pipdig_p3
 		if($flickr && get_theme_mod('p3_navbar_flickr', 1)) $navbar_icons .= '<a href="'.$flickr.'" target="_blank"><i class="fa fa-flickr"></i></a>';
 		if($twitch && get_theme_mod('p3_navbar_twitch', 1)) $navbar_icons .= '<a href="'.$twitch.'" target="_blank"><i class="fa fa-twitch"></i></a>';
 		if($stumbleupon && get_theme_mod('p3_navbar_stumbleupon', 1)) $navbar_icons .= '<a href="'.$stumbleupon.'" target="_blank"><i class="fa fa-stumbleupon"></i></a>';
+		if($etsy && get_theme_mod('p3_navbar_etsy', 1)) $navbar_icons .= '<a href="'.$etsy.'" target="_blank"><i class="fa fa-etsy"></i></a>';
 		if($vk && get_theme_mod('p3_navbar_vk', 1)) $navbar_icons .= '<a href="'.$vk.'" target="_blank"><i class="fa fa-vk"></i></a>';
 		if($google_plus && get_theme_mod('p3_navbar_google_plus', 1)) $navbar_icons .= '<a href="'.$google_plus.'" target="_blank"><i class="fa fa-google-plus"></i></a>';
 		if($rss && get_theme_mod('p3_navbar_rss', 1)) $navbar_icons .= '<a href="'.$rss.'" target="_blank"><i class="fa fa-rss"></i></a>';
@@ -369,6 +373,21 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Stumbleupon',
+					'section' => 'p3_navbar_icons_section',
+				)
+			);
+			
+			// etsy
+			$wp_customize->add_setting('p3_navbar_etsy',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_navbar_etsy',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Etsy',
 					'section' => 'p3_navbar_icons_section',
 				)
 			);

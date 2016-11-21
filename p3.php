@@ -5,13 +5,26 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.6.10
+Version: 2.6.14
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.6.10' );
+define( 'PIPDIG_P3_V', '2.6.14' );
+
+function pipdig_p3_themes_top_link() {
+	if(!isset($_GET['page'])) {
+	?>
+	<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$('.page-title-action').before('<a class="add-new-h2" href="https://www.pipdig.co/products/wordpress-themes?utm_source=wpmojo&utm_medium=wpmojo&utm_campaign=wpmojo" target="_blank">pipdig.co Themes</a>');
+	});
+	</script>
+	<?php
+	}
+}
+add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
 // bootstrap
 $this_theme = wp_get_theme();
@@ -50,7 +63,7 @@ function pipdig_p3_scripts_styles() {
 	wp_register_script( 'pipdig-mixitup', 'https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js', array( 'jquery' ), null, true );
 	//wp_register_script( 'pipdig-cookie', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js', array( 'jquery' ), null, true );
 	
-	wp_enqueue_style( 'font-awesome', 'https://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' );
+	wp_enqueue_style( 'font-awesome', 'https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
 
@@ -61,7 +74,7 @@ include_once('inc/dash.php');
 include_once('inc/widgets.php');
 include('inc/shortcodes.php');
 include('inc/cron.php');
-//include('inc/beaver.php');
+include('inc/beaver.php');
 
 function p3_new_install_notice() {
 
@@ -142,7 +155,9 @@ function pipdig_p3_activate() {
 	update_option('image_default_link_type', 'none');
 	
 	if (get_option('pipdig_p3_posts_per_page_set') != 1) { // legacy check
-		if (get_option('posts_per_page') == 10 && (get_option('pipdig_p3_posts_per_page_set'.$theme_textdomain) != 1)) {
+		$this_theme = wp_get_theme();
+		$theme_textdomain = $this_theme->get('TextDomain');
+		if (get_option('pipdig_p3_posts_per_page_set'.$theme_textdomain) != 1) {
 			if (get_option('pipdig_theme') == 'aquae') {
 			update_option('posts_per_page', 13);
 			} elseif (get_option('pipdig_theme') == 'galvani') {

@@ -142,6 +142,14 @@ function pipdig_links_init() {
 	);
 	
 	add_settings_field( 
+		'etsy', 
+		'<i class="fa fa-etsy"></i>&nbsp;&nbsp;Etsy', 
+		'p3_etsy_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
+	add_settings_field( 
 		'rss', 
 		'<i class="fa fa-rss"></i>&nbsp;&nbsp;RSS Feed', 
 		'p3_rss_field_render', 
@@ -233,6 +241,11 @@ function p3_stumbleupon_field_render() {
 	<input class='large-text' type='url' name='pipdig_links[stumbleupon]' placeholder='e.g. https://stumbleupon.com/stumbler/pipdig' value="<?php if (isset($links['stumbleupon'])) { echo $links['stumbleupon']; } ?>"> <?php
 }
 
+function p3_etsy_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[etsy]' placeholder='e.g. https://etsy.com/pipdig' value="<?php if (isset($links['etsy'])) { echo $links['etsy']; } ?>"> <?php
+}
+
 function p3_rss_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[rss]' placeholder='e.g. <?php echo esc_url(get_site_url());?>/feed' value="<?php if (isset($links['rss'])) { echo $links['rss']; } ?>"> <?php
@@ -250,7 +263,7 @@ function pipdig_links_section_callback() {
 
 function pipdig_links_options_page() { 
 	?>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<style scoped>
 	.form-table th {width: 120px;}
 	</style>

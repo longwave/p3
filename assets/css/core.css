@@ -41,6 +41,10 @@ padding: 0 !important;
 cursor: pointer;
 }
 
+.gallery img {
+border-color: transparent !important;
+}
+
 .stp-outer, .bo-garden {max-width: 100% !important; width: 100% !important;} /* make RS shop the post widgets full width */
 
 /* Jetpack Carousel */
@@ -520,6 +524,7 @@ background-size: cover;
 background-attachment: static;
 background-repeat: no-repeat;
 background-position: center;
+display: block;
 }
 .pipdig_banner_parallax {
 background-attachment: fixed;
