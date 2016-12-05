@@ -38,7 +38,9 @@ if (!function_exists('p3_popup_modal')) {
 				margin-top: 100px;
 				box-shadow: 0 0 20px rgba(0,0,0, .35);
 			}
-			#p3_modal {display: none;}
+			#p3_modal {
+				display: none;
+			}
 		</style>
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.11/ouibounce.min.js"></script>

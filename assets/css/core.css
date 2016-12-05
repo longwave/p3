@@ -101,6 +101,7 @@ font-weight: 400 !important;
 
 /* Instagram ================================== */
 #p3_instagram_header {margin-top: 25px;margin-bottom: 20px;}
+#p3_instagram_site_main_container {margin-bottom: 40px;}
 #p3_instagram_top_of_posts {margin-bottom: 30px;}
 .p3_instagram_post {
 width:12.5%;
@@ -731,3 +732,7 @@ div[class^="gr_custom_rating"] {
 /* Blogger ======================== */
 .tr-caption-container, .tr-caption-container tr, .tr-caption-container td {border:0}
 .tr-caption-container img {width: 100%}
+
+.p3_social_feed_title {
+	text-align: center;
+}

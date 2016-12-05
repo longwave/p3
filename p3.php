@@ -26,6 +26,18 @@ function pipdig_p3_themes_top_link() {
 }
 add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
+function pipdig_p3_deactivate() {
+    if (!current_user_can('activate_plugins')) {
+        return;
+	}
+    $plugin = isset( $_REQUEST['plugin'] ) ? $_REQUEST['plugin'] : '';
+    check_admin_referer( "deactivate-plugin_{$plugin}" );
+	// delete this site
+	$remove_data = wp_remote_fopen('https://status.pipdig.co/?dcx15=15&action=2&site_url='.rawurldecode(get_site_url()));
+	delete_option('pipdig_live_site');
+}
+register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
+
 // bootstrap
 $this_theme = wp_get_theme();
 $theme_textdomain = $this_theme->get('TextDomain');
@@ -42,6 +54,9 @@ if ($this_theme->get('Author') != 'pipdig') {
 			if ($theme_textdomain[0] != 'pipdig') {
 				return;
 			}
+		} elseif ($this_theme->get('Author') == 'Kotryna Bass Design') { // monitored asset cloner
+			return;
+			$track_usage = wp_remote_fopen('https://status.pipdig.co/?d415=50&target=kbd');
 		}
 	}
 }
@@ -50,9 +65,8 @@ if ($this_theme->get('Author') != 'pipdig') {
 
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
-	wp_enqueue_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css', array(), PIPDIG_P3_V );
+	wp_register_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css', array(), PIPDIG_P3_V );
 	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', plugin_dir_url(__FILE__).'assets/css/responsive.css', array(), PIPDIG_P3_V ); }
-	
 	//wp_register_script( 'imagesloaded', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js', array('jquery'), false );
 	wp_register_script( 'pipdig-cycle', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), null, false );
 	wp_register_script( 'pipdig-owl', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js', array('jquery'), null, false );
@@ -89,6 +103,23 @@ function p3_new_install_notice() {
 	}
 	
 	$this_theme = wp_get_theme();
+	$theme_textdomain = $this_theme->get('TextDomain');
+	if ($this_theme->get('Author') != 'pipdig') {
+		$child_parent = $this_theme->get('Template');
+		if ($child_parent) {
+			$child_parent = explode('-', trim($child_parent));
+			if ($child_parent[0] != 'pipdig') {
+				return;
+			}
+		} else {
+			if ($theme_textdomain) {
+				$theme_textdomain = explode('-', trim($theme_textdomain));
+				if ($theme_textdomain[0] != 'pipdig') {
+					return;
+				}
+			}
+		}
+	}
 	$theme_name_full = $this_theme->get('Name');
 	$theme_name = str_replace(' (pipdig)', '', $theme_name_full);
 	
@@ -149,10 +180,17 @@ function pipdig_p3_activate() {
 	update_option('medium_large_size_h', 0);
 	update_option('large_size_w', 1440);
 	update_option('large_size_h', 0);
-		
+	
 	update_option('image_default_size', 'large');
 	update_option('image_default_align', 'none');
 	update_option('image_default_link_type', 'none');
+	
+	update_option('imsanity_bmp_to_jpg', 0);
+	update_option('imsanity_max_height', 0);
+	update_option('imsanity_max_height_library', 0);
+	update_option('imsanity_max_height_other', 0);
+	update_option('imsanity_quality', 80);
+	update_option('imsanity_bmp_to_jpg', 0);
 	
 	if (get_option('pipdig_p3_posts_per_page_set') != 1) { // legacy check
 		$this_theme = wp_get_theme();
@@ -247,13 +285,13 @@ function pipdig_p3_activate() {
 			$piplink2 = esc_url('https://www.pipdig.co/');
 			$piplink3 = esc_url('https://www.pipdig.co/products/wordpress-themes/');
 			$amicorum = array(
-			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink2.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink2.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink.'" target="_blank">WordPress Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink3.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink.'" target="_blank">WordPress Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink2.'" target="_blank">Theme Designed by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform: lowercase;letter-spacing: 1px;">pipdig</span></a>',
-			'<a href="'.$piplink2.'" target="_blank">WP theme by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
+			'<a href="'.$piplink3.'" target="_blank">WP theme by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
 			'<a href="'.$piplink3.'" target="_blank">WordPress Themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
 			'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			);
@@ -266,17 +304,7 @@ function pipdig_p3_activate() {
 register_activation_hook( __FILE__, 'pipdig_p3_activate' );
 
 
-function pipdig_p3_deactivate() {
-    if (!current_user_can('activate_plugins')) {
-        return;
-	}
-    $plugin = isset( $_REQUEST['plugin'] ) ? $_REQUEST['plugin'] : '';
-    check_admin_referer( "deactivate-plugin_{$plugin}" );
-	// delete this site
-	$remove_data = wp_remote_fopen('https://status.pipdig.co/?dcx15=15&action=2&site_url='.rawurldecode(get_site_url()));
-	delete_option('pipdig_live_site');
-}
-register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
+
 
 /*
 function pipdig_p3_theme_setup() {

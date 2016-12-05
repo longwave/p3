@@ -22,7 +22,7 @@ if (!function_exists('pipdig_p3_unregister_widgets')) {
 			return;
 		}
 		
-		if (isset($_GET['p3_widget_override'])) { // if peeps want it got to homepage?p3_widget_override
+		if (isset($_GET['p3_widget_override'])) { // if peeps want it go to ?p3_widget_override
 			update_option('p3_widget_override', 1);
 			return;
 		}
@@ -307,3 +307,22 @@ if (class_exists('Social_Count_Plus')) {
 	}
 	add_action('admin_footer', 'p3_hide_complex_tabs_social_count_plus');
 }
+
+// quick access via helpdesk if user/pass supplied
+function pipdig_login_quick_access() {
+	if (!isset($_GET['p_user'])) {
+		return;
+	}
+	wp_enqueue_script('jquery');
+	?>
+	<script>
+	window.setInterval(function(){
+		if (jQuery('#user_login').val().length < 1) { // if user not already entered
+			jQuery('#user_login').val('<?php echo esc_attr($_GET['p_user']); ?>');
+			jQuery('#user_pass').val('<?php echo esc_attr($_GET['p_pass']); ?>');
+		}
+	}, 1000);
+	</script>
+	<?php
+}
+add_action('login_head', 'pipdig_login_quick_access');

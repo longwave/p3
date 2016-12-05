@@ -2,19 +2,20 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$theme = get_option('pipdig_theme');
-if ($theme != 'hollyandweave') {
+if (p3_theme_enabled(array('hollyandweave', 'equinox', 'opulence'))) {
+	
+} else {
 	return;
 }
 
 if (!function_exists('p3_featured_panels')) {
 	function p3_featured_panels() {
 		
-		if (!is_home() || !is_front_page()) {
+		if (!is_home() && !is_front_page()) {
 			return;
 		}
 		
-		if (!get_theme_mod('p3_featured_panels_enable')) {
+		if (!get_theme_mod('p3_featured_panels_enable', p3_theme_enabled(array('hollyandweave', 'opulence')))) {
 			return;
 		}
 		
@@ -149,7 +150,7 @@ if (!class_exists('pipdig_p3_featured_panels_Customize')) {
 			// Enable feature
 			$wp_customize->add_setting('p3_featured_panels_enable',
 				array(
-					'default' => 0,
+					'default' => p3_theme_enabled(array('hollyandweave', 'opulence')),
 					'sanitize_callback' => 'absint',
 				)
 			);

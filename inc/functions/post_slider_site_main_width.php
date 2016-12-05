@@ -10,7 +10,7 @@ if (($theme == 'galvani') || ($theme == 'hollyandweave')) {
 if (!function_exists('p3_full_width_slider_site_main')) {
 	function p3_full_width_slider_site_main() {
 		
-		if (!get_theme_mod('p3_full_width_slider_site_main_enable')) {
+		if (!get_theme_mod('p3_full_width_slider_site_main_enable', p3_theme_enabled(array('opulence')))) {
 			return;
 		}
 		if (!is_front_page() && get_theme_mod('p3_full_width_slider_site_main_home', 1)) {
@@ -75,7 +75,31 @@ if (!function_exists('p3_full_width_slider_site_main')) {
 	add_action('p3_top_site_main_container', 'p3_full_width_slider_site_main', 1);
 }
 
+// add class to body for styling .p3_full_width_slider_site_main_home_false .site-main .container
+add_filter( 'body_class', function( $classes ) {
+	if (get_theme_mod('p3_full_width_slider_site_main_home', 1) == false) {
+		return array_merge( $classes, array( 'p3_full_width_slider_site_main_home_false' ) );
+	}
+	return $classes;
+} );
 
+
+// indicate if this feature is enabled
+/*
+function p3_full_width_slider_site_main_customizer_styles() {
+	
+	if (!get_theme_mod('p3_full_width_slider_site_main_enable')) {
+		return;
+	}
+	
+	?>
+	<style>
+		#accordion-section-p3_full_width_slider_site_main_section {border-left: 5px solid green !important;}
+	</style>
+	<?php
+}
+add_action( 'customize_controls_print_styles', 'p3_full_width_slider_site_main_customizer_styles', 999 );
+*/
 
 // customiser
 if (!class_exists('pipdig_full_width_slider_site_main_Customize')) {
@@ -96,7 +120,7 @@ if (!class_exists('pipdig_full_width_slider_site_main_Customize')) {
 			// Enable feature
 			$wp_customize->add_setting('p3_full_width_slider_site_main_enable',
 				array(
-					'default' => 0,
+					'default' => p3_theme_enabled(array('opulence')),
 					'sanitize_callback' => 'absint',
 				)
 			);

@@ -57,7 +57,7 @@ function p3_featured_cats_puller($category) {
 if (!function_exists('p3_featured_cats')) {
 	function p3_featured_cats() {
 		
-		if (!is_home() || !is_front_page()) {
+		if (!is_home() && !is_front_page()) {
 			return;
 		}
 		

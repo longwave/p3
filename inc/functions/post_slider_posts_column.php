@@ -2,8 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$theme = get_option('pipdig_theme');
-if (($theme == 'galvani')) {
+if (p3_theme_enabled(array('galvani', 'opulence'))) {
 	return;
 }
 

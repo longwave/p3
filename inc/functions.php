@@ -35,6 +35,18 @@ if ( !function_exists( 'pipdig_strip' ) ) {
 	}
 }
 
+// check if this feature is enabled for this theme
+// any enabled themes are passed in via array
+function p3_theme_enabled($enabled_themes) {
+	$this_theme = get_option('pipdig_theme');
+	foreach($enabled_themes as $enabled_theme) {
+		if ($this_theme == $enabled_theme) {
+			return 1;
+		} 
+	}
+	return 0;
+}
+
 // load image catch function, just in case theme hasn't
 if (!function_exists('pipdig_p3_catch_that_image')) {
 	function pipdig_p3_catch_that_image() {

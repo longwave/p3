@@ -1,10 +1,14 @@
 <?php 
 
 if ( ! defined( 'ABSPATH' ) ) exit;
-$theme = get_option('pipdig_theme');
-if (($theme == 'aquae') || ($theme == 'galvani') || ($theme == 'venture') || ($theme == 'arubanights') || ($theme == 'styleandlight') || ($theme == 'tundra') || ($theme == 'ghostshell') || ($theme == 'kensington') || ($theme == 'ladygreys') || ($theme == 'firefly') || ($theme == 'cultureshock') || ($theme == 'willow') || ($theme == 'hollyandweave') || ($theme == 'opulence')) {
+
+$this_theme = get_option('pipdig_theme');
+$themes = array('aquae', 'galvani', 'venture', 'arubanights', 'styleandlight', 'tundra', 'ghostshell', 'kensington', 'ladygreys', 'firefly', 'cultureshock', 'willow', 'hollyandweave', 'opulence');
+if (in_array($this_theme, $themes)) {
 	return;
 }
+
+
 
 if (get_theme_mod('p3_top_bar_enable')) {
 
