@@ -40,7 +40,7 @@ function p3_youtube_fetch($channel_id) {
 				//print_r($response);
 				
 				for ($i = 0; $i < 20; $i++) {
-					if (isset($response->items[$i])) {
+					if (isset($response->items[$i]->id->videoId)) {
 						
 						$id = strip_tags($response->items[$i]->id->videoId);
 						
