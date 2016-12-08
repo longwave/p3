@@ -134,7 +134,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		
 		<p><?php
 		if (p3_instagram_fetch()) {
-			printf(__('By default, this widget will display recent images from your main <a href="%s">Instagram account</a>. If you would prefer to use a different Instagram account, you can include the <a href="%s" target="_blank">Access Token</a> below:', 'p3'), admin_url('admin.php?page=pipdig-instagram'), esc_url('https://go.pipdig.co/open.php?id=instagram'));
+			printf(__('By default, this widget will display recent images from your main <a href="%s">Instagram account</a>. If you would prefer to use a different Instagram account, you can include the <a href="%s" target="_blank">Access Token</a> below:', 'p3'), admin_url('admin.php?page=pipdig-instagram'), esc_url('https://www.pipdig.co/ig'));
 		} else {
 			printf(__('You need to complete the settings on <a href="%s">this page</a> before this widget will work.', 'p3'), admin_url('admin.php?page=pipdig-instagram'));
 		}
