@@ -76,12 +76,13 @@ if (!function_exists('p3_full_width_slider_site_main')) {
 }
 
 // add class to body for styling .p3_full_width_slider_site_main_home_false .site-main .container
-add_filter( 'body_class', function( $classes ) {
+function p3_full_width_slider_site_main_home_body_class($classes) {
 	if (get_theme_mod('p3_full_width_slider_site_main_home', 1) == false) {
 		return array_merge( $classes, array( 'p3_full_width_slider_site_main_home_false' ) );
 	}
 	return $classes;
-} );
+}
+add_filter( 'body_class', 'p3_full_width_slider_site_main_home_body_class' );
 
 
 // indicate if this feature is enabled
