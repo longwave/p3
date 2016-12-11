@@ -41,10 +41,9 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			$width = '50%';
 			$border = '2';
 		}
-		if (isset($instance['follow'])) { 
-			$follow = $instance['follow'];
-		} else {
-			$follow = false;
+		$follow = false;
+		if (!empty($instance['follow'])) {
+			$follow = true;
 		}
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
@@ -69,7 +68,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 				<style scoped>
 					#<?php echo $id; ?> .p3_pinterest_post {
 						width: <?php echo $width; ?>;
-						border: <?php echo $border; ?>px solid <?php echo get_theme_mod('content_background_color', '#fff'); ?>
+						border: <?php echo $border; ?>px solid <?php echo strip_tags(get_theme_mod('content_background_color', '#fff')); ?>
 					}
 				</style>
 				<?php for ($x = 0; $x <= $images_num; $x++) { ?>
@@ -79,13 +78,10 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 				<?php } ?>
 				</div>
 				<div class="clearfix"></div>
-				<?php
-				if (isset($instance['follow'])) {
-				if (!empty($pinterestuser) && $follow) { ?>
+				<?php if (!empty($pinterestuser) && $follow) { ?>
 					<div class="clearfix"></div>
-					<p style="margin: 10px 0"><a href="http://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-pinterest" style="font-size: 15px;"></i> <?php _e('Follow on Pinterest', 'p3'); ?></a></p>
+					<p style="margin: 10px 0"><a href="https://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-pinterest" style="font-size: 15px;"></i> <?php _e('Follow on Pinterest', 'p3'); ?></a></p>
 				<?php }
-			}
 			
 			} else {
 				_e('Setup not complete. Please check the widget options.', 'p3');

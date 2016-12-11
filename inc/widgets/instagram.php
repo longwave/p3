@@ -70,7 +70,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 			<style scoped>
 				.p3_instagram_widget .p3_instagram_post {
 					width: <?php echo $width; ?>;
-					border: <?php echo $border; ?>px solid <?php echo get_theme_mod('content_background_color', '#fff'); ?>
+					border: <?php echo $border; ?>px solid <?php echo strip_tags(get_theme_mod('content_background_color', '#fff')); ?>
 				}
 			</style>
 			<?php for ($x = 0; $x <= $images_num; $x++) { ?>
@@ -84,14 +84,14 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 			<?php
 			$links = get_option('pipdig_links');
 			$instagram_url = esc_url($links['instagram']);
-			if (isset($instance['follow'])) {
-				if (!empty($instagram_url) && $follow) { ?>
-					<div class="clearfix"></div>
-					<p style="margin: 10px 0"><a href="<?php echo $instagram_url; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-instagram" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Instagram', 'p3'); ?></a></p>
-				<?php }
-			}
+			if (!empty($instagram_url) && $follow) { ?>
+				<div class="clearfix"></div>
+				<p style="margin: 10px 0"><a href="<?php echo $instagram_url; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-instagram" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Instagram', 'p3'); ?></a></p>
+			<?php }
 		} else {
-			echo 'Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private.';
+			if (current_user_can('manage_options')) {
+				echo 'Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private.';
+			}
 		}
 		
 		// After widget code, if any  

@@ -6,23 +6,29 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if (!function_exists('p3_instagram_fetch')) {
 	function p3_instagram_fetch($access_token = '') {
 		
-		$instagram_deets = get_option('pipdig_instagram');
-		
-		if (empty($access_token)) {
-			$access_token = pipdig_strip($instagram_deets['access_token']);
-		}
-		
-		if (empty($access_token)) {
-			return false;
-		}
-		
-		if (!empty($instagram_deets['user_id'])) {
-			$userid = pipdig_strip($instagram_deets['user_id']);
-		}
-		
-		if (empty($userid)) {
+		if ($access_token) {
+			
 			$user_id = explode('.', $access_token);
 			$userid = trim($user_id[0]);
+			
+		} else { // no access token passed, so let's use site default
+			
+			$instagram_deets = get_option('pipdig_instagram');
+			$access_token = pipdig_strip($instagram_deets['access_token']);
+			
+			if (empty($access_token)) {
+				return false;
+			}
+			
+			if (!empty($instagram_deets['user_id'])) {
+				$userid = pipdig_strip($instagram_deets['user_id']);
+			}
+			
+			if (empty($userid)) {
+				$user_id = explode('.', $access_token);
+				$userid = trim($user_id[0]);
+			}
+			
 		}
 		
 		// store user ids so we can clear transients in cron

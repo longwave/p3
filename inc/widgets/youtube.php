@@ -58,9 +58,10 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 					$i++;
 					?>
 				
-					<div class="p3_cover_me" style="background-image:url(<?php echo $video['thumbnail']; ?>);<?php echo $margin; ?>">
+					<div class="p3_youtube_widget p3_cover_me" style="background-image:url(<?php echo $video['thumbnail']; ?>);<?php echo $margin; ?>">
 						<a href="<?php echo $video['link']; ?>" target="_blank" rel="nofollow">
 							<img class="p3_invisible" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=" alt="<?php echo esc_attr($video['title']); ?>"/>
+							<i class="fa fa-youtube-play"></i>
 						</a>
 					</div>
 					<?php if (!empty($instance['show_title'])) { ?>
