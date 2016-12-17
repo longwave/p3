@@ -34,7 +34,7 @@ function p3_post_signature() {
 			<img src="<?php echo esc_url(get_theme_mod('post_signature_image')); ?>" data-pin-nopin="true" alt="" />
 		<?php } //endif ?>
 		<?php if(get_theme_mod('p3_signature_socialz')){ ?>
-			<h6><?php _e( 'Follow:', 'pipdig-textdomain' ) ?></h6>
+			<h6><?php _e( 'Follow:', 'p3' ) ?></h6>
 			<?php if($twitter) { ?><a href="<?php echo esc_url($twitter); ?>" target="_blank"><i class="fa fa-twitter"></i></a> <?php } ?>
 			<?php if($instagram) { ?><a href="<?php echo esc_url($instagram); ?>" target="_blank"><i class="fa fa-instagram"></i></a> <?php } ?>
 			<?php if($facebook) { ?><a href="<?php echo esc_url($facebook); ?>" target="_blank"><i class="fa fa-facebook"></i></a> <?php } ?>
@@ -113,8 +113,8 @@ if (!class_exists('pipdig_p3_post_options_Customiser')) {
 					$wp_customize,
 					'signature_image',
 					array(
-						'label' => __( 'Post signature image', 'pipdig-textdomain' ),
-						'description' => __( 'This image will be shown in the footer of your posts', 'pipdig-textdomain' ),
+						'label' => __( 'Post signature image', 'p3' ),
+						'description' => __( 'This image will be shown in the footer of your posts', 'p3' ),
 						'section' => 'pipdig_posts',
 						'settings' => 'post_signature_image',
 					)

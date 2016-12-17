@@ -5,13 +5,13 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.7.1
+Version: 2.7.2
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.7.1' );
+define( 'PIPDIG_P3_V', '2.7.2' );
 
 function pipdig_p3_themes_top_link() {
 	if(!isset($_GET['page'])) {
@@ -65,7 +65,7 @@ if ($this_theme->get('Author') != 'pipdig') {
 
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
-	wp_register_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css', array(), PIPDIG_P3_V );
+	wp_enqueue_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css', array(), PIPDIG_P3_V );
 	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', plugin_dir_url(__FILE__).'assets/css/responsive.css', array(), PIPDIG_P3_V ); }
 	//wp_register_script( 'imagesloaded', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js', array('jquery'), false );
 	wp_register_script( 'pipdig-cycle', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), null, false );

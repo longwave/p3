@@ -89,7 +89,7 @@ if (!function_exists('p3_related_posts')) {
 							$bg = pipdig_p3_catch_that_image();
 						}
 						$output .= '<li>';
-							$output .= '<div class="pipdig_p3_related_thumb" style="background-image:url('.$bg.');">';
+							$output .= '<div class="p3_cover_me pipdig_p3_related_thumb" style="background-image:url('.$bg.');">';
 								$output .= '<a href="'.$link.'" title="'.$title_attr.'"><img src="'.$shape.'" alt="'.$title_attr.'" class="p3_invisible" data-pin-nopin="true"/></a>';
 							$output .= '</div>';
 							$output .= '<div class="pipdig_p3_related_content">';

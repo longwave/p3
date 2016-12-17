@@ -299,7 +299,7 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 			);
 			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_full_screen_landing_text_color',
 				array(
-					'label' => __( 'Text color', 'pipdig-textdomain' ),
+					'label' => __( 'Text color', 'p3' ),
 					'section' => 'p3_full_screen_landing',
 					'settings' => 'p3_full_screen_landing_text_color',
 				)
@@ -350,7 +350,7 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 			);
 			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_full_screen_landing_scroll_color',
 				array(
-					'label' => __( 'Text color', 'pipdig-textdomain' ),
+					'label' => __( 'Text color', 'p3' ),
 					'section' => 'p3_full_screen_landing',
 					'settings' => 'p3_full_screen_landing_scroll_color',
 				)

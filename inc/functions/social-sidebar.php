@@ -145,7 +145,7 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 			$wp_customize->add_control('p3_social_sidebar_position',
 				array(
 					'type' => 'select',
-					'label' => __('Position', 'pipdig-textdomain'),
+					'label' => __('Position', 'p3'),
 					'section' => 'p3_social_sidebar_section',
 					'choices' => array(
 						1 => __('Left', 'p3'),

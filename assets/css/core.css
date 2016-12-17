@@ -71,9 +71,7 @@ vertical-align: top;
 }
 .pipdig_p3_related_thumb {
 overflow: hidden;
-background-size: cover;
-background-repeat: no-repeat;
-background-position: center;
+line-height: 1;
 -moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out;
 }
 .pipdig_p3_related_thumb:hover {opacity: .7}
