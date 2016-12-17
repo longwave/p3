@@ -77,7 +77,7 @@ if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
 					$circle = '';
 				}
 				if (!empty($instance['image_uri'])) {
-					echo '<img class="pipdig-profile-photo-img"  src="' . esc_url($instance['image_uri']) . '" style="margin:0;padding:0;max-width:150px;height:auto;'.$circle.'" /><br />';
+					echo '<img class="pipdig-profile-photo-img" src="' . esc_url($instance['image_uri']) . '" style="margin:0;padding:0;max-width:150px;height:auto;'.$circle.'" /><br />';
 				}
 			?>
 
