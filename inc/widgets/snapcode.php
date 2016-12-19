@@ -15,13 +15,12 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 		$this->defaults = array(
 			'title' => '',
 			'snapcode' => '',
-			'link' => '',
-			'target' => '',
+			'snapchat_account' => '',
 		);
 
 		$widget_ops = array(
 			'classname' => 'pipdig_p3_snapchat_snapcode',
-			'description' => __('Display your Snapchat Snapcode.', 'wpshed'),
+			'description' => __('Display your Snapchat Snapcode.', 'p3'),
 		);
 
 		$control_ops = array(
@@ -52,7 +51,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 			}
 
 			if (!empty($instance['snapcode'])) {
-				echo $link_open.'<img src="'.esc_url($instance['snapcode']).'" alt="Snapchat" style="min-width: 1.1in; max-width: 1.3in; height: auto;"  />'.$link_close;
+				echo $link_open.'<img src="'.esc_url($instance['snapcode']).'" alt="Snapchat" style="min-width: 1.2in; max-width: 1.5in; height: auto;"  />'.$link_close;
 				if (!empty($instance['snapchat_account'])) {
 					echo '<p>'.sprintf( __('Follow <b>%s</b> on Snapchat!', 'p3'), strip_tags($instance['snapchat_account']) ).'</p>';
 				}
@@ -82,7 +81,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
-			<input type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr($instance['title']); ?>" class="widefat" />
+			<input type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php if (isset($instance['title'])) echo esc_attr($instance['title']); ?>" class="widefat" />
 		</p>
 		
 		<p>1. Download your Snapcode PNG image from <a href="https://accounts.snapchat.com/accounts/snapcodes?type=png" target="_blank">this link</a></p>
@@ -92,7 +91,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 			<div class="pipdig-media-container">
 				<div class="pipdig-media-inner">
 					<?php $img_style = ($instance[ 'snapcode' ] != '') ? '' : 'display:none;'; ?>
-					<img id="<?php echo $this->get_field_id('snapcode'); ?>-preview" src="<?php echo esc_attr($instance['snapcode']); ?>" style="margin:5px 0;padding:0;max-width:150px;height:auto;<?php echo $img_style; ?>" />
+					<img id="<?php echo $this->get_field_id('snapcode'); ?>-preview" src="<?php echo esc_attr($instance['snapcode']); ?>" style="margin:5px 0;padding:0;max-width:180px;height:auto;<?php echo $img_style; ?>" />
 					<?php $no_img_style = ($instance[ 'snapcode' ] != '') ? 'style="display:none;"' : ''; ?>
 				</div>
 			
@@ -106,7 +105,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('snapchat_account'); ?>"><?php _e('Snapchat Account Name:', 'wpshed'); ?></label>
+			<label for="<?php echo $this->get_field_id('snapchat_account'); ?>"><?php _e('Snapchat Account Name:', 'p3'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id('snapchat_account'); ?>" name="<?php echo $this->get_field_name('snapchat_account'); ?>" value="<?php if (isset($instance['snapchat_account'])) echo esc_attr($instance['snapchat_account']); ?>" class="widefat" placeholder="<?php _e("For example:", 'p3'); ?> mileyxxcyrus" />
 		</p>
 

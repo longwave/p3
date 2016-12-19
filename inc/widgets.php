@@ -2,6 +2,16 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+// used in image, profile and snapcode widget
+function pipdig_image_upload_script() {
+	global $pagenow, $wp_customize;
+	if ('widgets.php' === $pagenow || isset($wp_customize)) {
+		wp_enqueue_media();
+		wp_enqueue_script('pipdig-image-upload', plugin_dir_url( __FILE__ ) . '../assets/js/image-upload.js', array('jquery'));
+	}
+}
+add_action('admin_enqueue_scripts', 'pipdig_image_upload_script');
+
 include('widgets/bloglovin.php');
 include('widgets/socialz.php');
 include('widgets/pinterest.php');

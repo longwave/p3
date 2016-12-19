@@ -1,106 +1,142 @@
-<?php 
-
+<?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// add admin scripts
-if ( !function_exists( 'pipdig_enqueue_widget_media' ) ) {
-	function pipdig_enqueue_widget_media() {
-		wp_enqueue_media();
-		wp_enqueue_script('p3-media-upload', plugin_dir_url( __FILE__ ) . '../../assets/js/pipdig-media-widget.js', false, '1.0', true);
+/**
+ * Image Upload Widget
+ */
+class pipdig_widget_profile_function extends WP_Widget {
+
+	// Holds widget settings defaults, populated in constructor.
+	protected $defaults;
+
+	// Constructor. Set the default widget options and create widget.
+	function __construct() {
+
+		$this->defaults = array(
+			'title' => '',
+			'image_uri' => '',
+			'description' => '',
+			'circle' => '',
+		);
+
+		$widget_ops = array(
+			'classname' => 'pipdig_widget_profile',
+			'description' => __('Show a profile photo and some "About Me" text.', 'p3'),
+		);
+
+		$control_ops = array(
+			'id_base' => 'pipdig_widget_profile',
+			'width'   => 200,
+			'height'  => 250,
+		);
+
+		parent::__construct('pipdig_widget_profile', 'pipdig - '.__('Profile Photo', 'p3'), $widget_ops, $control_ops);
+
 	}
-	add_action('admin_enqueue_scripts', 'pipdig_enqueue_widget_media');
-}
 
-// widget class
-if ( !class_exists( 'pipdig_widget_profile_function' ) ) {
-	class pipdig_widget_profile_function extends WP_Widget {
+	// The widget content.
+	function widget($args, $instance) {
 
-		public function __construct() {
-			$widget_ops = array('classname' => 'pipdig_widget_profile', 'description' => __('Show off your profile photo!', 'p3') );
-			parent::__construct('pipdig_widget_profile', 'pipdig - ' . __('Profile Photo', 'p3') , $widget_ops);
-		}
+		//* Merge with defaults
+		$instance = wp_parse_args((array) $instance, $this->defaults);
 
-		function widget($args, $instance) {
-			extract($args);
-			if (isset($instance['title'])) { 
-				$title = strip_tags($instance['title']);
-			}
-			if (isset($instance['circle'])) { 
+		echo $args['before_widget'];
+
+			if (! empty($instance['title']))
+				echo $args['before_title'] . apply_filters('widget_title', $instance['title'], $instance, $this->id_base) . $args['after_title'];
+			
+			$circle = '';
+			if (!empty($instance['circle'])) {
 				$circle = 'style="-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;"';
-			} else {
-				$circle = '';
 			}
-			if (isset($instance['description'])) { 
-				$description = wp_kses_post($instance['description']);
+
+			if (!empty($instance['image_uri'])) {
+				$image_src = $instance['image_uri'];
+				$image_data = pipdig_get_attachment_id($instance['image_uri']); // use the medium thumbnail if we can find it
+				if ($image_data) {
+					$image_src = wp_get_attachment_image_src($image_data, 'medium')[0];
+				}
+				echo '<div class="nopin"><img src="'.esc_url($image_src).'" alt="" '.$circle.' /></div>';
 			}
 			
-			// widget content
-			echo $before_widget;
-			if (!empty($title)) echo $before_title . $title . $after_title;
-	?>
-			<?php if (isset($instance['image_uri'])) {  ?>
-				<div class="nopin">
-				<img src="<?php echo esc_url($instance['image_uri']); ?>" <?php echo $circle; ?> alt="" />
-				</div>
-					<?php if ($description) {  ?>
-						<p><?php echo wpautop(do_shortcode($description)); ?></p>
-					<?php } //endif ?>
-			<?php } //endif ?>
-	<?php
-			echo $after_widget;
+			if (!empty($instance['description'])) {
+				echo wpautop(do_shortcode($instance['description']));
+			}
 
-		}
-		
-		function update($new_instance, $old_instance) {
-			$instance = $old_instance;
-			$instance['title'] = strip_tags($new_instance['title']);
-			$instance['image_uri'] = strip_tags($new_instance['image_uri']);
-			$instance['circle'] = $new_instance['circle'];
-			$instance['description'] = wp_kses_post($new_instance['description']);
-			return $instance;
-		}
+		echo $args['after_widget'];
 
-		function form($instance) {
-	?>
+	}
+
+	// Update a particular instance.
+	function update($new_instance, $old_instance) {
+
+		$new_instance['title'] = strip_tags($new_instance['title']);
+		$new_instance['image_uri'] = strip_tags($new_instance['image_uri']);
+		$new_instance['description'] = wp_kses_post($new_instance['description']);
+		$new_instance['circle'] = strip_tags($new_instance['circle']);
+
+		return $new_instance;
+
+	}
+
+	// The settings update form.
+	function form($instance) {
+
+		// Merge with defaults
+		$instance = wp_parse_args((array) $instance, $this->defaults);
+
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+			<input type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php if (isset($instance['title'])) echo esc_attr($instance['title']); ?>" class="widefat" />
+		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label><br />
-			<input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php if (isset($instance['title'])) { echo $instance['title']; } ?>" class="widefat" />
-		</p>
-		<p style="display:none">
-			<label for="<?php echo $this->get_field_id('image_uri'); ?>"><?php _e('Image', 'p3'); ?></label><br />
-			<p style="font-weight:bold"><?php _e('Step 1 - Click the button below to select a photo:', 'p3'); ?></p>
-			<?php
-				if (isset($instance['circle'])) { 
-					$circle = '-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;';
-				} else {
+			<div class="pipdig-media-container">
+				<div class="pipdig-media-inner">
+					<?php $img_style = ($instance[ 'image_uri' ] != '') ? '' : 'display:none;'; ?>
+					<?php
 					$circle = '';
-				}
-				if (!empty($instance['image_uri'])) {
-					echo '<img class="pipdig-profile-photo-img" src="' . esc_url($instance['image_uri']) . '" style="margin:0;padding:0;max-width:150px;height:auto;'.$circle.'" /><br />';
-				}
-			?>
-
-			<input type="text" style="display:none" class="widefat custom_media_url" name="<?php echo $this->get_field_name('image_uri'); ?>" id="<?php echo $this->get_field_id('image_uri'); ?>" value="<?php if (isset($instance['image_uri'])) { echo $instance['image_uri']; } ?>" style="margin-top:5px;">
-
-			<input type="button" class="button button-primary custom_media_button" id="custom_media_button" name="<?php echo $this->get_field_name('image_uri'); ?>" value="<?php _e('Upload Photo', 'p3'); ?>" style="margin-top:0;" />
-			<p style="font-weight:bold"><?php _e('Step 2 - Optional extras:', 'p3'); ?></p>
-			<p>
-				<label for="<?php echo $this->get_field_id( 'circle' ); ?>">
-				<input type="checkbox" id="<?php echo $this->get_field_id( 'circle' ); ?>" name="<?php echo $this->get_field_name( 'circle' ); ?>" <?php if (isset($instance['circle'])) { checked( (bool) $instance['circle'], true ); } ?> /><?php _e('Change image to a circle', 'p3'); ?></label>
-				<?php $picmonkey_url = esc_url( 'http://www.picmonkey.com' ); ?>
-				<br /><span style="font-size:80%;font-style:italic;"><?php printf(__("To make a perfect circle you should upload a square image. For example, 300px wide by 300px high. You can use free websites like <a href='%s' target='_blank'>picmonkey.com</a> to edit your image.", 'p3'), $picmonkey_url ); ?></span>
-			</p>
+					if (!empty($instance['circle'])) {
+						$circle = '-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;';
+					}
+					?>
+					<img id="<?php echo $this->get_field_id('image_uri'); ?>-preview" src="<?php echo esc_attr($instance['image_uri']); ?>" style="max-width: 100%; height: auto;<?php echo $circle.$img_style; ?>" />
+					<?php $no_img_style = ($instance[ 'image_uri' ] != '') ? 'style="display:none;"' : ''; ?>
+				</div>
 			
-			<p>
-				<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e('Add some text below the photo:', 'p3'); ?></label>
-				<textarea id="<?php echo $this->get_field_id( 'description' ); ?>" name="<?php echo $this->get_field_name( 'description' ); ?>" style="width:95%;" rows="4"><?php if (isset($instance['description'])) { echo $instance['description']; } ?></textarea>
-			</p>
-			<p style="text-align:right;font-weight:bold"><?php _e('Step 3 - Click the save button:', 'p3'); ?></p>
+				<input type="text" id="<?php echo $this->get_field_id('image_uri'); ?>" name="<?php echo $this->get_field_name('image_uri'); ?>" value="<?php echo esc_attr($instance['image_uri']); ?>" class="pipdig-media-url" style="display: none" />
+
+				<input type="button" value="<?php echo esc_attr(__('Remove', 'p3')); ?>" class="button pipdig-media-remove" id="<?php echo $this->get_field_id('image_uri'); ?>-remove" style="<?php echo $img_style; ?>" />
+
+				<input type="button" value="<?php echo esc_attr(__('Select Image', 'p3')); ?>" class="button pipdig-media-upload" id="<?php echo $this->get_field_id('image_uri'); ?>-button" />
+				<br class="clear">
+			</div>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('circle'); ?>">
+			<input type="checkbox" id="<?php echo $this->get_field_id('circle'); ?>" name="<?php echo $this->get_field_name('circle'); ?>" <?php if (isset($instance['circle'])) { checked((bool) $instance['circle'], true); } ?> /><?php _e('Change image to a circle', 'p3'); ?></label>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('description'); ?>"><?php _e('Add some text below the photo: (optional)', 'p3'); ?></label>
+			<textarea id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" class="widefat"><?php if (isset($instance['description'])) echo wp_kses_post($instance['description']); ?></textarea>
 		</p>
 
-	<?php
-		}
+
+		
+		<?php
+
 	}
-	add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_widget_profile_function");') );
+
 }
+
+
+/**
+ * Register Widget
+ */
+function register_pipdig_widget_profile() { 
+	register_widget('pipdig_widget_profile_function');
+}
+add_action('widgets_init', 'register_pipdig_widget_profile');

@@ -1,16 +1,6 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-function pipdig_image_upload_script() {
-	global $pagenow, $wp_customize;
-	if ('widgets.php' === $pagenow || isset($wp_customize)) {
-		wp_enqueue_media();
-		wp_enqueue_script('pipdig-image-upload', plugin_dir_url( __FILE__ ) . '../../assets/js/image-upload.js', array('jquery'));
-	}
-}
-add_action('admin_enqueue_scripts', 'pipdig_image_upload_script');
-
-
 /**
  * Image Upload Widget
  */
@@ -30,17 +20,17 @@ class pipdig_Image_Widget extends WP_Widget {
 		);
 
 		$widget_ops = array(
-			'classname' => 'pipdig-media-widget',
-			'description' => __('Upload a single image with an optional link.', 'wpshed'),
+			'classname' => 'pipdig_image_widget',
+			'description' => __('Upload a single image with an optional link.', 'p3'),
 		);
 
 		$control_ops = array(
-			'id_base' => 'pipdig-media-widget',
+			'id_base' => 'pipdig_image_widget',
 			'width'   => 200,
 			'height'  => 250,
 		);
 
-		parent::__construct('pipdig-media-widget', 'pipdig - '.__('Image Widget', 'p3'), $widget_ops, $control_ops);
+		parent::__construct('pipdig_image_widget', 'pipdig - '.__('Image Widget', 'p3'), $widget_ops, $control_ops);
 
 	}
 
@@ -65,7 +55,12 @@ class pipdig_Image_Widget extends WP_Widget {
 			}
 
 			if (!empty($instance['image_uri'])) {
-				echo $link_open.'<img src="'.esc_url($instance['image_uri']).'" alt="" />'.$link_close;
+				$image_src = $instance['image_uri'];
+				$image_data = pipdig_get_attachment_id($instance['image_uri']); // use the medium thumbnail if we can find it
+				if ($image_data) {
+					$image_src = wp_get_attachment_image_src($image_data, 'large')[0];
+				}
+				echo $link_open.'<img src="'.esc_url($image_src).'" alt="" />'.$link_close;
 			}
 
 		echo $args['after_widget'];
@@ -114,8 +109,8 @@ class pipdig_Image_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Link/URL: (optional)', 'wpshed'); ?></label>
-			<input type="text" id="<?php echo $this->get_field_id('link'); ?>" name="<?php echo $this->get_field_name('link'); ?>" value="<?php echo esc_attr($instance['link']); ?>" class="widefat" />
+			<label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Link to open when clicked: (optional)', 'p3'); ?></label>
+			<input type="url" id="<?php echo $this->get_field_id('link'); ?>" name="<?php echo $this->get_field_name('link'); ?>" value="<?php echo esc_attr($instance['link']); ?>" class="widefat" />
 		</p>
 
 		<p>
