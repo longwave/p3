@@ -165,6 +165,11 @@ function p3_ig_connection_tester_callback() {
 		wp_die();
 	}
 	
+	if (!function_exists('curl_version')) {
+		echo '<span class="dashicons dashicons-no"></span> Error! Your web hosting server does not have cURL enabled. Please contact your web host so that they can fix that.';
+		wp_die();
+	}
+	
 	$headers = array(
 		'Authorization' => 'Basic '.base64_encode($zendesk_user.'/token:'.$zendesk_token)
 	);
@@ -191,7 +196,7 @@ function p3_ig_connection_tester_callback() {
 			$result_msg = '<span class="dashicons dashicons-no"></span> Error! Response from Instagram: "'.$error_message.'"';
 		}
 	} else {
-		$result_msg = '<span class="dashicons dashicons-no"></span> Error! Could not connect to Instagram. Please try creating a new Access Token and User ID on <a href="https://www.pipdig.co/instagram" target="_blank">this page</a>.';
+		$result_msg = '<span class="dashicons dashicons-no"></span> Error! Could not connect to Instagram. Please try creating a new Access Token and User ID on <a href="https://www.pipdig.co/ig" target="_blank">this page</a>. If you continue to see this message, please contact your web host so that they can check if the connection is being blocked.';
 	}
 	
 	echo $result_msg;
