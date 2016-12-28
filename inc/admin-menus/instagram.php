@@ -187,7 +187,6 @@ function p3_ig_connection_tester_callback() {
 	
 	$response = wp_safe_remote_get($url, $args);
 	if (is_wp_error($response)) {
-		$result_msg = '<span class="dashicons dashicons-no"></span> Error! Message: ' . strip_tags($response->errors->http_request_failed[0]) . '. Please contact your web host for a fix.';
 		$error_message = strip_tags($response->get_error_message());
 		$result_msg = '<span class="dashicons dashicons-no"></span> Error! Response from your server: "'.$error_message.'". Please contact your web host for assistance.';
 	} elseif (is_array($response)) {
