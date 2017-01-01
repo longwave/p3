@@ -60,6 +60,7 @@ class pipdig_Image_Widget extends WP_Widget {
 				if ($image_data) {
 					$image_src = wp_get_attachment_image_src($image_data, 'large');
 					$image_src = reset($image_src); // php <5.4 way to get [0] value of array
+					$image_src = str_replace('http:', '', $image_src);
 				}
 				echo $link_open.'<img src="'.esc_url($image_src).'" alt="" />'.$link_close;
 			}
