@@ -183,10 +183,13 @@ function p3_ig_connection_tester_callback() {
 	
 	$url = "https://api.instagram.com/v1/users/".$user."/media/recent/?access_token=".$token."&count=1";
 	
-	$result_msg = 'Unknown error, sorry :(';
+	$result_msg = 'Unknown error! Please try again.';
 	
 	$response = wp_safe_remote_get($url, $args);
-	if (is_array($response)) {
+	if (is_wp_error($response)) {
+		$error_message = strip_tags($response->get_error_message());
+		$result_msg = '<span class="dashicons dashicons-no"></span> Error! Response from your server: "'.$error_message.'". Please contact your web host for assistance.';
+	} elseif (is_array($response)) {
 		$code = intval($response['response']['code']);
 		if ($code === 200) {
 			$result_msg = '<span class="dashicons dashicons-yes"></span> Success! You are connected to Instagram. Save your settings :)';
