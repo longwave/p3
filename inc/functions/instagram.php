@@ -189,7 +189,8 @@ if (!function_exists('p3_instagram_footer')) {
 			$meta = intval(get_theme_mod('p3_instagram_meta'));
 			$num = intval(get_theme_mod('p3_instagram_number', 8));
 			if (get_theme_mod('p3_instagram_rows')) {
-				$num = $num*2;
+				$rows = apply_filters('p3_instagram_rows_number', 2);
+				$num = $num*$rows;
 			}
 			$links = get_option('pipdig_links');
 			if (!empty($links['instagram'])) {
