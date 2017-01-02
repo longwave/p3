@@ -35,21 +35,21 @@ function pipdig_p3_do_this_daily() {
 	*/
 	
 	$instagram_users = get_option('pipdig_instagram_users');
-	if (!empty($instagram_users)) {
+	if (is_array($instagram_users)) {
 		foreach ($instagram_users as $instagram_user) {
 			delete_transient('p3_instagram_feed_'.$instagram_user);
 		}
 	}
 	
 	$pinterest_users = get_option('pipdig_pinterest_users');
-	if (!empty($pinterest_users)) {
+	if (is_array($pinterest_users)) {
 		foreach ($pinterest_users as $pinterest_user) {
 			delete_transient('p3_pinterest_feed_'.$pinterest_user);
 		}
 	}
 	
 	$youtube_channels = get_option('pipdig_youtube_channels');
-	if (!empty($youtube_channels)) {
+	if (is_array($youtube_channels)) {
 		foreach ($youtube_channels as $channel_id) {
 			delete_transient('p3_youtube_'.$channel_id);
 		}

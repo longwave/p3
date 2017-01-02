@@ -29,7 +29,6 @@ function pipdig_instagram_init() {
 		'pipdig_instagram_options_page_section' 
 	);
 	
-	
 }
 add_action('admin_init', 'pipdig_instagram_init');
 
@@ -109,6 +108,15 @@ function pipdig_instagram_options_page() {
 		do_action('p3_instagram_save_action'); // to clear out transients on save - p3_instagram_clear_transients
 		do_settings_sections('pipdig_instagram_options_page');
 		submit_button();
+		
+		// clear transients when this settings page is accessed
+		$instagram_users = get_option('pipdig_instagram_users');
+		if (is_array($instagram_users)) {
+			foreach ($instagram_users as $instagram_user) {
+				delete_transient('p3_instagram_feed_'.$instagram_user);
+			}
+		}
+		
 		?>
 		
 		<button type="button" class="button" id="p3_test_connection">Click here to test connection</button>

@@ -188,7 +188,7 @@ function pipdig_p3_activate() {
 	update_option('imsanity_max_height', 0);
 	update_option('imsanity_max_height_library', 0);
 	update_option('imsanity_max_height_other', 0);
-	update_option('imsanity_quality', 80);
+	update_option('imsanity_quality', 78);
 	update_option('imsanity_bmp_to_jpg', 0);
 	
 	if (get_option('pipdig_p3_posts_per_page_set') != 1) { // legacy check
