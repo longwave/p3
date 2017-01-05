@@ -44,6 +44,7 @@ function p3_youtube_fetch($channel_id) {
 						
 						$id = strip_tags($response->items[$i]->id->videoId);
 						
+						/*
 						$max_res_url = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
 						$max = get_headers($max_res_url);
 						if (substr($max[0], 9, 3) !== '404') {
@@ -51,6 +52,9 @@ function p3_youtube_fetch($channel_id) {
 						} else {
 							$thumbnail = "https://img.youtube.com/vi/".$id."/mqdefault.jpg";
 						}
+						*/
+						
+						$thumbnail = "https://img.youtube.com/vi/".$id."/0.jpg";
 						
 						$videos[$i] = array (
 							'id' => $id,

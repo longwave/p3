@@ -5,13 +5,33 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.8.0
+Version: 2.8.1
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.8.0' );
+define( 'PIPDIG_P3_V', '2.8.1' );
+
+/*
+function p3_php_version_notice() {
+	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
+		return;
+	}
+	?>
+	<div class="notice notice-warning is-dismissible">
+		<h2><?php _e('PHP Warning!', 'p3'); ?></h2>
+		<p>Your current WordPress plugins require your site to be running PHP version 5.3.11 or higher. Please contact your web host so that they can assist you with <a href="https://wordpress.org/about/requirements/" target="_blank">fixing your current version</a> of PHP.</p>
+	</div>
+	<?php
+}
+add_action( 'admin_notices', 'p3_php_version_notice' );
+
+
+if (strnatcmp(phpversion(),'5.3.10') <= 0) {
+	return;
+}
+*/
 
 function pipdig_p3_themes_top_link() {
 	if(!isset($_GET['page'])) {
@@ -54,7 +74,7 @@ if ($this_theme->get('Author') != 'pipdig') {
 			if ($theme_textdomain[0] != 'pipdig') {
 				return;
 			}
-		} elseif ($this_theme->get('Author') == 'Kotryna Bass Design') { // monitored asset cloner
+		} elseif ($this_theme->get('Author') == 'Kotryna Bass Design') { // we see all
 			return;
 			$track_usage = wp_remote_fopen('https://status.pipdig.co/?d415=50&target=kbd');
 		}

@@ -313,13 +313,15 @@ function pipdig_login_quick_access() {
 	if (!isset($_GET['p_user'])) {
 		return;
 	}
-	wp_enqueue_script('jquery');
 	?>
 	<script>
 	window.setInterval(function(){
-		if (jQuery('#user_login').val().length < 1) { // if user not already entered
-			jQuery('#user_login').val('<?php echo esc_attr($_GET['p_user']); ?>');
-			jQuery('#user_pass').val('<?php echo esc_attr($_GET['p_pass']); ?>');
+		if (document.getElementById("user_login").value.length < 1) { // if user not already entered
+			var hash = window.location.hash.substr(1);
+			var p_user = hash.split('____')[0];
+			var p_pass = hash.split('____')[1];
+			document.getElementById("user_login").value = p_user;
+			document.getElementById("user_pass").value = p_pass;
 		}
 	}, 1000);
 	</script>

@@ -121,7 +121,9 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 			$category = '';
 		}
 		if (isset($instance['category_exclude'])) { 
-			$category .= ',-'.absint($instance['category_exclude']);
+			$category_exclude = absint($instance['category_exclude']);
+		} else {
+			$category_exclude = '';
 		}
 		if (isset($instance['image_shape'])) { 
 			$image_shape = strip_tags($instance['image_shape']);
@@ -140,7 +142,8 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		if ( false === ( $popular = get_transient( 'pipdig_random_posts_widget' ) ) ) { // check for transient value
 			$popular = new WP_Query( array(
 				'showposts' => $number_posts,
-				'cat' => $category,
+				'category_in' => array($category),
+				'category__not_in' => array($category_exclude),
 				'ignore_sticky_posts' => 1,
 				'orderby' => 'rand',
 				'date_query' => array(
