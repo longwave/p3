@@ -81,7 +81,6 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 				<option <?php if ( '4' == $image_shape ) echo 'selected="selected"'; ?> value="4"><?php _e('Original size', 'p3') ?></option>
 			</select>
 		</p>
-		<p style="font-style:italic;"><?php _e('Posts will be refreshed every 30 minutes', 'p3'); ?></p>
 	<?php
 	  }
 	 
@@ -120,10 +119,11 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		} else {
 			$category = '';
 		}
-		if (isset($instance['category_exclude'])) { 
-			$category_exclude = absint($instance['category_exclude']);
-		} else {
-			$category_exclude = '';
+		if (isset($instance['category_exclude'])) {
+			if (isset($instance['category'])) { 
+				$category .= ',';
+			}
+			$category .= '-'.absint($instance['category_exclude']);
 		}
 		if (isset($instance['image_shape'])) { 
 			$image_shape = strip_tags($instance['image_shape']);
@@ -139,21 +139,18 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 	<ul id="pipdig-widget-popular-posts" class="nopin">
 	
 	<?php
-		if ( false === ( $popular = get_transient( 'pipdig_random_posts_widget' ) ) ) { // check for transient value
-			$popular = new WP_Query( array(
-				'showposts' => $number_posts,
-				'category_in' => array($category),
-				'category__not_in' => array($category_exclude),
-				'ignore_sticky_posts' => 1,
-				'orderby' => 'rand',
-				'date_query' => array(
-					array(
-						'after' => $date_range_posts,
-					),
+		$popular = new WP_Query( array(
+			'showposts' => $number_posts,
+			'cat' => $category,
+			'ignore_sticky_posts' => 1,
+			'orderby' => 'rand',
+			'date_query' => array(
+				array(
+					'after' => $date_range_posts,
 				),
-			) );
-			set_transient( 'pipdig_random_posts_widget', $popular, 30 * MINUTE_IN_SECONDS ); // set transient value
-		}
+			),
+		) );
+
 		$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC'; // landscape
 		
 		if ($image_shape == 2) {

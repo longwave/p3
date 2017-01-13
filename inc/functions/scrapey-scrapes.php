@@ -13,7 +13,7 @@ function pipdig_p3_scrapey_scrapes() {
 	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
 		
-		set_transient('p3_stats_gen', true, 6 * HOUR_IN_SECONDS);
+		set_transient('p3_stats_gen', true, 12 * HOUR_IN_SECONDS);
 		
 		$args = array(
 			'timeout' => 30,
@@ -63,21 +63,7 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_pinterest_count');
 		}
-		// <meta property="pinterestapp:followers" name="pinterestapp:followers" content="106168" data-app>
-		// SELECT * from html where url="https://www.pinterest.com/thelovecatsinc" AND xpath="//meta[@property='pinterestapp:followers']"
-		/*
-		$pinterest_url = esc_url($links['pinterest']);
-		if ($pinterest_url) {
-			$pinterest_url = rawurlencode($pinterest_url);
-			$pinterest_yql = wp_remote_fopen("https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20from%20html%20where%20url%3D%22".$pinterest_url."%22%20AND%20xpath%3D%22%2F%2Fmeta%5B%40property%3D'pinterestapp%3Afollowers'%5D%22&format=json", array( 'timeout' => 30 ));
-			$pinterest_yql = json_decode($pinterest_yql);
-			$pinterest_count = absint($pinterest_yql->query->results->meta->content);
-			update_option('p3_pinterest_count', $pinterest_count);
-		} else {
-			delete_option('p3_pinterest_count');
-		}
-		*/
-		
+
 		// Bloglovin --------------------
 		$bloglovin_url = esc_url($links['bloglovin']);
 		if($bloglovin_url) {
@@ -123,7 +109,7 @@ function pipdig_p3_scrapey_scrapes() {
 									}
 								}
 							} else {
-								$bloglovin_row = $bloglovin_xpath->query('/html/body/div[5]/div[1]/div/div/div[5]/ol/li[2]/a'); // oh how I wish Bloglovin had a flippin' API.
+								$bloglovin_row = $bloglovin_xpath->query('/html/body/div[5]/div[1]/div/div/div[5]/ol/li[2]/a'); // oh how I wish Bloglovin had an API.
 								if($bloglovin_row->length > 0){
 									foreach($bloglovin_row as $row){
 										$followers = $row->nodeValue;
@@ -169,7 +155,7 @@ function pipdig_p3_scrapey_scrapes() {
 				->buildOauth($ta_url, $requestMethod)
 				->performRequest();
 				$data = json_decode($follow_count, true);
-				if (!empty($data)) {
+				if (!empty($data[0]['user']['followers_count'])) {
 					$followers_count = absint($data[0]['user']['followers_count']);
 					update_option('p3_twitter_count', $followers_count);
 				}
@@ -234,14 +220,7 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_youtube_count');
 		}
-		
-		/* non yql 
-		get channel id using? https://www.googleapis.com/youtube/v3/channels?key=AIzaSyAFwqQSW7MI7kKHQmrYL2jl1v9Shw1bMwE&forUsername=pipdigtv&part=id
-		$youtube_query = wp_remote_fopen('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=CHANNEL_ID&key=AIzaSyAFwqQSW7MI7kKHQmrYL2jl1v9Shw1bMwE'); // uses lemsey
-		$youtube_query = json_decode($youtube_query, true);
-		$youtube_count = absint($youtube_query['items'][0]['statistics']['subscriberCount']);
-		update_option('p3_youtube_count', $youtube_count);
-		*/
+
 			
 		// Google Plus ---------------------
 		// https://www.googleapis.com/plus/v1/people/102904094379339545145?key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c		OR YQL below:
@@ -286,7 +265,7 @@ function pipdig_p3_scrapey_scrapes() {
 		}
 		
 		
-		// backups...
+		// backups
 		$soundcloud_url = esc_url($links['soundcloud']);
 		if ($soundcloud_url) {
 			if (function_exists('get_scp_counter') && get_scp_counter('soundcloud')) {

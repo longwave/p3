@@ -5,13 +5,13 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.8.1
+Version: 2.9.0
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.8.1' );
+define( 'PIPDIG_P3_V', '2.8.2' );
 
 /*
 function p3_php_version_notice() {
@@ -174,7 +174,7 @@ function pipdig_p3_activate() {
 		update_option('moderation_notify', '');
 		update_option('pipdig_p3_comments_set', 1);
 	}
-		
+	/*
 	if (function_exists('akismet_admin_init')) {
 		if (get_option('wordpress_api_key') == '') {
 		$keys = array(
@@ -190,7 +190,7 @@ function pipdig_p3_activate() {
 		}
 		update_option('akismet_discard_month', 'true');
 	}
-	
+	*/
 	update_option('thumbnail_size_h', 150);
 	update_option('thumbnail_size_w', 150);
 	update_option('medium_size_w', 800);

@@ -16,6 +16,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
 		if (isset($instance['pinterestuser'])) { 
 			$pinterestuser = pipdig_strip($instance['pinterestuser']);
+			$pinterestuser = parse_url($pinterestuser, PHP_URL_PATH);
 			$pinterestuser = str_replace('/', '', $pinterestuser);
 		}
 		if (isset($instance['images_num'])) { 

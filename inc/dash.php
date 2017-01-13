@@ -8,7 +8,7 @@ add_filter( 'jetpack_sso_default_to_sso_login', '__return_false' );
 /*  Add credit to admin area --------------------------------------------------------*/
 if (!function_exists('pipdig_p3_footer_admin')) {
 	function pipdig_p3_footer_admin () {
-		echo 'Powered by <a href="'.esc_url('https://www.wordpress.org/').'" target="_blank">WordPress</a>. Enhanced by <a href="'.esc_url('https://www.pipdig.co/?utm_source=wp-dashboard&utm_medium=footer&utm_campaign=wp-dashboard').'" target="_blank">pipdig</a>.<style>.jpibfi-pro-notice{display:none!important}</style>';
+		echo 'Powered by <a href="'.esc_url('https://www.wordpress.org/').'" target="_blank">WordPress</a>. Enhanced by <a href="'.esc_url('https://www.pipdig.co/?utm_source=wp-dashboard&utm_medium=footer&utm_campaign=wp-dashboard').'" target="_blank">pipdig</a>.';
 	}
 	add_filter('admin_footer_text', 'pipdig_p3_footer_admin', 99);
 }
@@ -297,16 +297,26 @@ function pipdig_p3_dashboard_social_count_func() {
 }
 
 
-// hide tabs on social count plus
-if (class_exists('Social_Count_Plus')) {
-	function p3_hide_complex_tabs_social_count_plus() {
-		$screen = get_current_screen();
-		if (is_object($screen) && $screen->id == 'settings_page_social-count-plus') {
-			echo '<style>.nav-tab-wrapper{display:none!important}</style>';
-		}
+// disable siteurl settings
+function p3_disable_site_url_settings() {
+	if (!is_super_admin()) {
+		return;
 	}
-	add_action('admin_footer', 'p3_hide_complex_tabs_social_count_plus');
+	global $pagenow;
+	if ($pagenow != 'options-general.php') {
+		return;
+	}
+	?>
+	<script>
+		jQuery(document).ready(function($) {
+			$('.options-general-php #siteurl').attr( 'readonly', true );
+			$('.options-general-php #home').attr( 'readonly', true );			
+		});
+	</script>
+	<?php
 }
+add_action('admin_footer', 'p3_disable_site_url_settings', 9999);
+
 
 // quick access via helpdesk if user/pass supplied
 function pipdig_login_quick_access() {

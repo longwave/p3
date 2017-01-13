@@ -15,7 +15,7 @@ if (!function_exists('p3_featured_panels')) {
 			return;
 		}
 		
-		if (!get_theme_mod('p3_featured_panels_enable', p3_theme_enabled(array('hollyandweave', 'opulence')))) {
+		if (!get_theme_mod('p3_featured_panels_enable', p3_theme_enabled(array('hollyandweave')))) {
 			return;
 		}
 		
@@ -150,7 +150,7 @@ if (!class_exists('pipdig_p3_featured_panels_Customize')) {
 			// Enable feature
 			$wp_customize->add_setting('p3_featured_panels_enable',
 				array(
-					'default' => p3_theme_enabled(array('hollyandweave', 'opulence')),
+					'default' => p3_theme_enabled(array('hollyandweave')),
 					'sanitize_callback' => 'absint',
 				)
 			);

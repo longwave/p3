@@ -614,7 +614,7 @@ margin-top: 8px;
 }
 
 
-.entry-content .pipdig_category_section {
+.pipdig_category_section, .entry-content .pipdig_category_section {
 text-align: center;
 margin-top: 10px;
 margin-bottom: 30px;
@@ -623,35 +623,35 @@ margin-bottom: 30px;
 text-align: center;
 margin: 5px 0;
 }
-.entry-content .pipdig_category_section h2.pipdig_category_section_border {
+.pipdig_category_section h2.pipdig_category_section_border , .entry-content .pipdig_category_section h2.pipdig_category_section_border {
 border-top: 1px solid #ddd;
 margin: 5px 1% -12px;
 }
-.entry-content .pipdig_category_section h2.pipdig_category_section_border span {
+.pipdig_category_section h2.pipdig_category_section_border span, .entry-content .pipdig_category_section h2.pipdig_category_section_border span {
 position: relative;
 top: -15px;
 background: #fff;
 padding: 0 15px;
 }
-.entry-content .pipdig_category_section_item {
+.pipdig_category_section_item, .entry-content .pipdig_category_section_item {
 width: 32%;
 margin: .5%;
 display: inline-block;
 vertical-align: top;
 text-align: center;
 }
-.entry-content .pipdig_category_section_item_2_cols {
+.pipdig_category_section_item_2_cols, .entry-content .pipdig_category_section_item_2_cols {
 width: 48%;
 margin: 1%;
 display: inline-block;
 vertical-align: top;
 text-align: center;
 }
-.entry-content .pipdig_category_section_item_title {
+.pipdig_category_section_item_title, .entry-content .pipdig_category_section_item_title {
 margin: 0;
 text-align: center;
 }
-.entry-content .pipdig_category_section_item_2_cols .pipdig_category_section_item_title {
+.pipdig_category_section_item_2_cols .pipdig_category_section_item_title, .entry-content .pipdig_category_section_item_2_cols .pipdig_category_section_item_title {
 margin: 5px 0 0;
 }
 .pipdig_category_section_button a {
@@ -661,7 +661,7 @@ margin: 5px 0 0;
 .p3_youtube_widget .fa {
 	position: absolute;
 	font-size: 48px;
-	color: #000;
+	color: #db2824;
 	opacity: .75;
 	left: 50%;
 	top: 50%;

@@ -222,9 +222,9 @@ function pipdig_p3_emmmm_heeey() {
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 			 if($(window).scrollTop() + $(window).height() == $(document).height()) {
-				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper").css('opacity', '0').css('visibility', 'hidden');
+				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box").css('opacity', '0').css('visibility', 'hidden');
 			 } else {
-				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper").css('opacity', '1').css('visibility', 'visible');
+				$("#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box").css('opacity', '1').css('visibility', 'visible');
 			 }
 		});
 	});
@@ -310,6 +310,15 @@ function pipdig_get_attachment_id( $url ) {
 
 	return $attachment_id;
 }
+
+// no pages in search
+function p3_no_pages_search($query) {
+	if ($query->is_search) {
+	$query->set('post_type', 'post');
+	}
+	return $query;
+}
+add_filter('pre_get_posts', 'p3_no_pages_search');
 
 
 include('functions/social-sidebar.php');

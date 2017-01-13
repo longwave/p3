@@ -108,7 +108,7 @@ if (!function_exists('p3_feature_header')) {
 					<ul>
 						<?php
 							$args = array(
-								'showposts' => 4,
+								'showposts' => absint(get_theme_mod('p3_feature_header_slider_num', 4)),
 								'cat' => $post_cat_slider,
 							);
 							$the_query = new WP_Query( $args );
@@ -273,6 +273,27 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 				)
 			);
 			
+			// number of slides
+			$wp_customize->add_setting('p3_feature_header_slider_num',
+				array(
+					'default' => 4,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_feature_header_slider_num',
+				array(
+					'type' => 'number',
+					'label' => __( 'Number of slides for "Recent Posts"', 'p3' ),
+					'section' => 'p3_feature_header_section',
+					'input_attrs' => array(
+						'min' => 2,
+						'max' => 10,
+						'step' => 1,
+					),
+				)
+			);
+			
 			// title backgroud color
 			$wp_customize->add_setting('p3_feature_header_text_bg_color',
 				array(
@@ -353,7 +374,7 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 				'p3_feature_header_title_truncate',
 				array(
 					'type' => 'number',
-					'label' => __( 'Post title length (words)', 'p3' ),
+					'label' => __( 'Limit post title length (words)', 'p3' ),
 					'section' => 'p3_feature_header_section',
 					'input_attrs' => array(
 						'min' => 1,
