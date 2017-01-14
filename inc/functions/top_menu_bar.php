@@ -2,9 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$this_theme = get_option('pipdig_theme');
-$themes = array('aquae', 'galvani', 'venture', 'arubanights', 'styleandlight', 'tundra', 'ghostshell', 'kensington', 'ladygreys', 'firefly', 'cultureshock', 'willow', 'hollyandweave', 'opulence');
-if (in_array($this_theme, $themes)) {
+if (p3_theme_enabled(array('aquae', 'galvani', 'venture', 'arubanights', 'styleandlight', 'tundra', 'ghostshell', 'kensington', 'ladygreys', 'firefly', 'cultureshock', 'willow', 'hollyandweave', 'opulence'))) {
 	return;
 }
 

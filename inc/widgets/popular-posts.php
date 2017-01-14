@@ -129,10 +129,11 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		} else {
 			$category = '';
 		}
-		if (isset($instance['category_exclude'])) { 
-			$category_exclude = absint($instance['category_exclude']);
-		} else {
-			$category_exclude = '';
+		if (isset($instance['category_exclude'])) {
+			if (isset($instance['category'])) { 
+				$category .= ',';
+			}
+			$category .= '-'.absint($instance['category_exclude']);
 		}
 		if (isset($instance['image_shape'])) { 
 			$image_shape = strip_tags($instance['image_shape']);
@@ -155,8 +156,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 	<?php
 		$popular = new WP_Query( array(
 			'showposts' => $number_posts,
-			'category_in' => array($category),
-			'category__not_in' => array($category_exclude),
+			'cat' => $category,
 			'ignore_sticky_posts' => 1,
 			'orderby' => 'comment_count',
 			'date_query' => array(
