@@ -132,7 +132,7 @@ if (!function_exists('pipdig_stats_options_page')) {
 			}
 			</style>
 			<p><a href="<?php echo admin_url('admin.php?page=pipdig-links'); ?>"><?php _e('Click here to add more accounts', 'p3'); ?></a>.</p>
-			<p><?php _e('Stats are refreshed every 12 hours', 'p3'); ?>.</p>
+			<p><?php _e('Stats are refreshed every 24 hours', 'p3'); ?>.</p>
 		</div>
 		
 		<!--

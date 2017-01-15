@@ -5,13 +5,13 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.9.0
+Version: 2.9.1
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.8.2' );
+define( 'PIPDIG_P3_V', '2.9.1' );
 
 /*
 function p3_php_version_notice() {

@@ -13,7 +13,7 @@ function pipdig_p3_scrapey_scrapes() {
 	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
 		
-		set_transient('p3_stats_gen', true, 12 * HOUR_IN_SECONDS);
+		set_transient('p3_stats_gen', true, 24 * HOUR_IN_SECONDS);
 		
 		$request_array = array();
 		
@@ -58,9 +58,7 @@ function pipdig_p3_scrapey_scrapes() {
 		if($bloglovin_url) {
 			$bloglovin_url_test = get_headers($bloglovin_url);
 			if (substr($bloglovin_url_test[0], 9, 3) !== '404') {
-				// take path of url only (so we don't include the ?query args by accident in the split)
 				$bloglovin_url_path = parse_url($bloglovin_url, PHP_URL_PATH);
-				// split string by - char. Last entry is the bloglovin ID number
 				$bloglovin_url_split = explode("-", $bloglovin_url_path);
 				$bloglovin_id = end($bloglovin_url_split);
 				$request_array['bloglovin'] = $bloglovin_id;
@@ -89,7 +87,6 @@ function pipdig_p3_scrapey_scrapes() {
 
 
 		// Instagram ---------------------
-		// SELECT * from html where url="http://instagram.com/inthefrow" AND xpath="//li[2]/span"
 		$instagram_url = esc_url($links['instagram']);
 		if ($instagram_url) {
 			if (function_exists('get_scp_counter') && get_scp_counter('instagram')) {
@@ -107,7 +104,6 @@ function pipdig_p3_scrapey_scrapes() {
 		}
 			
 		// YouTube ---------------------
-		// SELECT * from html where url="https://www.youtube.com/user/inthefrow" AND xpath="/html/body/div[4]/div[4]/div/div[5]/div/div[1]/div/div[2]/div/div/div[2]/div/span/span[1]"
 		$youtube_url = esc_url($links['youtube']);
 		if ($youtube_url) {
 			if (function_exists('get_scp_counter') && get_scp_counter('youtube')) {
@@ -123,44 +119,60 @@ function pipdig_p3_scrapey_scrapes() {
 			delete_option('p3_youtube_count');
 		}
 
+		if (!empty($request_array)) {
 			
-		// Google Plus ---------------------
-		// https://www.googleapis.com/plus/v1/people/102904094379339545145?key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c		OR YQL below:
-		// SELECT * from html where url="https://plus.google.com/+Inthefrowpage/about" AND xpath="//div[@class='Zmjtc']/span"
-		$gplus_url = esc_url($links['google_plus']);
-		if ($gplus_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('googleplus')) {
-				$google_plus_count = absint(get_scp_counter('googleplus'));
-				update_option('p3_google_plus_count', $google_plus_count);
-			} else {
-				$gplus_url_test = get_headers($gplus_url);
-				if (substr($gplus_url_test[0], 9, 3) !== '404') {
-					$request_array['gplus'] = $gplus_url;
-				}
+			$request_array['site_url'] = get_site_url();
+			$request_array['tempToken'] = 'dcx15';
+			
+			$url = add_query_arg($request_array, 'https://pipdig.rocks/c');
+			
+			$args = array(
+				//'body' => json_encode($request_array),
+				'timeout' => '28',
+				'redirection' => '5',
+				//'httpversion' => '1.0',
+				'blocking' => true,
+			);
+
+			$response = wp_remote_get( $url, $args );
+
+			$response_body = wp_remote_retrieve_body($response);
+
+			if ($response_body == "500 error") {
+				// 500, let's try again in 3 seconds
+				sleep(3);
+				$response = wp_remote_get( $url, $args );
+				$response_body = wp_remote_retrieve_body($response);
 			}
-		} else {
-			delete_option('p3_google_plus_count');
-		}
-		
-		
-		$twitch_url = esc_url($links['twitch']);
-		if ($twitch_url) {
-			if (function_exists('get_scp_counter') && get_scp_counter('twitch')) {
-				$twitch_count = absint(get_scp_counter('twitch'));
-				update_option('p3_twitch_count', $twitch_count);
-			} else {
-				$twitch_url_test = get_headers($twitch_url);
-				if (substr($twitch_url_test[0], 9, 3) !== '404') {
-					$request_array['twitch'] = $twitch_url;
+			
+			if (!is_wp_error($response)) {
+				
+				$response_data = json_decode($response_body);
+			
+				if (isset($response_data->items->pinterest)) {
+					update_option('p3_pinterest_count', $response_data->items->pinterest);
 				}
+				if (isset($response_data->items->facebook)) {
+					update_option('p3_facebook_count', $response_data->items->facebook);
+				}
+				if (isset($response_data->items->twitter)) {
+					update_option('p3_twitter_count', $response_data->items->twitter);
+				}
+				if (isset($response_data->items->instagram)) {
+					update_option('p3_instagram_count', $response_data->items->instagram);
+				}
+				if (isset($response_data->items->youtube)) {
+					update_option('p3_youtube_count', $response_data->items->youtube);
+				}
+				if (isset($response_data->items->bloglovin)) {
+					update_option('p3_bloglovin_count', $response_data->items->bloglovin);
+				}
+				
 			}
-		} else {
-			delete_option('p3_twitch_count');
 		}
-		
-		
-		
-		
+
+
+		// need to add gplus and twitch...
 		
 		// backups
 		$soundcloud_url = esc_url($links['soundcloud']);

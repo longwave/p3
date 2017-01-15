@@ -115,8 +115,8 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 */
 
 
-include('functions/scrapey-scrapes.php');
-
+//include('functions/scrapey-scrapes.php');
+include('functions/api.php');
 
 // Add Featured Image to feed if using excerpt mode, or just add the full content if not
 if (!class_exists('Rss_Image_Feed') && !function_exists('pipdig_rss_post_thumbnail')) {
