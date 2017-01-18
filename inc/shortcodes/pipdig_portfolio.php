@@ -103,17 +103,17 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 					$link = get_the_permalink();
 					
 					
-						$output .= '<div class="pipdig_portfolio_grid_item mix '.$filtering.'">';
-							$output .= '<a href="'.$link.'" class="p3_slide_img" style="display: block; width: 100%; height: 100%;background-image:url('.$bg.');">';
-								$output .= '<img src="'.$shape_img.'" alt="" class="p3_invisible" data-pin-nopin="true"/>';
-								$output .= '<div class="pipdig_portfolio_grid_title_box">';
-								$output .= '<h2 class="title">'.get_the_title().'</h2>';
-								$output .= '<div class="read_more">'.__('Click to view', 'p3').'</div>';
-								$output .= '</div>';
-							$output .= '</a>';
-						$output .= '</div>';
+					$output .= '<div class="pipdig_portfolio_grid_item mix '.$filtering.'">';
+						$output .= '<a href="'.$link.'" class="p3_cover_me" style="display: block; width: 100%; height: 100%;background-image:url('.$bg.');">';
+							$output .= '<img src="'.$shape_img.'" alt="" class="p3_invisible" data-pin-nopin="true"/>';
+							$output .= '<div class="pipdig_portfolio_grid_title_box">';
+							$output .= '<h2 class="title">'.get_the_title().'</h2>';
+							$output .= '<div class="read_more">'.__('Click to view', 'p3').'</div>';
+							$output .= '</div>';
+						$output .= '</a>';
+					$output .= '</div>';
 
-				}			
+				}
 				
 			endwhile;
 			

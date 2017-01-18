@@ -23,6 +23,7 @@ background-repeat: no-repeat;
 background-position: center;
 display: block;
 position: relative;
+line-height: 0;
 }
 .p3_cover_me a {
 display: block;
