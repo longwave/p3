@@ -23,7 +23,6 @@ background-repeat: no-repeat;
 background-position: center;
 display: block;
 position: relative;
-line-height: 0;
 }
 .p3_cover_me a {
 display: block;
@@ -150,6 +149,19 @@ padding-bottom: 20px;
 border: 2px solid #fff;
 }
 
+.p3_youtube_widget {
+line-height: 0;
+}
+.p3_youtube_widget .fa {
+position: absolute;
+font-size: 48px;
+color: #db2824;
+opacity: .75;
+left: 50%;
+top: 50%;
+transform: translate(-50%,-50%);
+}
+
 /* Pinterest ================================== */
 .p3_pinterest_post {
 width:50%;
@@ -256,16 +268,16 @@ opacity: .75;
 }
 
 #pipdig-widget-popular-posts .p3_pop_left h4 {
-	position: relative;
-	width: 60%;
-	float: right;
-	text-align: left;
+position: relative;
+width: 60%;
+float: right;
+text-align: left;
 }
 #pipdig-widget-popular-posts .p3_pop_left  a {
-	float: left;
-	width: 39%;
-	margin-right: 1%;
-	line-height: 0;
+float: left;
+width: 39%;
+margin-right: 1%;
+line-height: 0;
 }
 
 /* various sliders ============================ */
@@ -657,16 +669,6 @@ margin: 5px 0 0;
 }
 .pipdig_category_section_button a {
 
-}
-
-.p3_youtube_widget .fa {
-	position: absolute;
-	font-size: 48px;
-	color: #db2824;
-	opacity: .75;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%,-50%);
 }
 
 .entry-content .p3_youtube_slider_shortcode_title {

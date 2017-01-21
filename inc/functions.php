@@ -313,6 +313,9 @@ function pipdig_get_attachment_id( $url ) {
 
 // no pages in search
 function p3_no_pages_search($query) {
+	if (is_admin()) {
+		return;
+	}
 	if ($query->is_search) {
 	$query->set('post_type', 'post');
 	}
