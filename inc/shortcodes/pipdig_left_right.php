@@ -4,16 +4,35 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // [pipdig_left] [/pipdig_left]
 function pipdig_p3_shortcode_left( $atts, $content = null ) {
-	return '<div class="clearfix"></div><div class="pipdig_left">'.do_shortcode($content).'</div>';
+	extract( shortcode_atts( array(
+		'border' => '',
+	), $atts ) );
+	
+	$border_css_class = '';
+	if ($border == 'yes') {
+		$border_css_class = 'pipdig_col_border';
+	}
+	
+	return '<div class="clearfix"></div><div class="pipdig_left '.$border_css_class.'">'.do_shortcode($content).'</div>';
 }
 add_shortcode( 'pipdig_left', 'pipdig_p3_shortcode_left' );
+add_shortcode( 'left', 'pipdig_p3_shortcode_left' );
 
 // [pipdig_right] [/pipdig_right]
 function pipdig_p3_shortcode_right( $atts, $content = null ) {
-	return '<div class="pipdig_right">'.do_shortcode($content).'</div><div class="clearfix"></div>';
+	extract( shortcode_atts( array(
+		'border' => '',
+	), $atts ) );
+	
+	$border_css_class = '';
+	if ($border == 'yes') {
+		$border_css_class = 'pipdig_col_border';
+	}
+	
+	return '<div class="pipdig_right '.$border_css_class.'">'.do_shortcode($content).'</div><div class="clearfix"></div>';
 }
 add_shortcode( 'pipdig_right', 'pipdig_p3_shortcode_right' );
-
+add_shortcode( 'right', 'pipdig_p3_shortcode_right' );
 
 
 
