@@ -29,50 +29,85 @@ if (!function_exists('p3_featured_panels')) {
 			$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC'; // square
 		}
 		
-			$img_1 = $title_1 = $link_1 = $img_2 = $title_2 = $link_2 = $img_3 = $title_3 = $link_3 = '';
+		$img_1 = $title_1 = $link_1 = $img_2 = $title_2 = $link_2 = $img_3 = $title_3 = $link_3 = '';
 			
-			$show = true;
+		$show = true;
 			
-			if (is_customize_preview()) {
+		if (is_customize_preview()) {
+			$default_link = 'https://www.pipdig.co';
+			$default_title = 'Title Text';
+		} else {
+			if (current_user_can('manage_options')) {
+				$default_link = admin_url('customize.php?autofocus[section]=p3_featured_panels_section');
+				$default_title = 'Click here to edit';
+			} else {
 				$default_link = 'https://www.pipdig.co';
 				$default_title = 'Title Text';
-			} else {
-				if (current_user_can('manage_options')) {
-					$default_link = admin_url('customize.php?autofocus[section]=p3_featured_panels_section');
-					$default_title = 'Click here to edit';
-				} else {
-					$default_link = 'https://www.pipdig.co';
-					$default_title = 'Title Text';
-					if (!get_theme_mod('p3_featured_panels_1_img')) {
-						$show = false;
-					}
-					
+				if (!get_theme_mod('p3_featured_panels_1_img')) {
+					$show = false;
 				}
+				
 			}
+		}
 			
-			$img_1 = get_theme_mod('p3_featured_panels_1_img', 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg');
-			$title_1 = get_theme_mod('p3_featured_panels_1_title', $default_title);
-			$link_1 = get_theme_mod('p3_featured_panels_1_link', $default_link);
-			
-			$img_2 = get_theme_mod('p3_featured_panels_2_img', 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg');
-			$title_2 = get_theme_mod('p3_featured_panels_2_title', $default_title);
-			$link_2 = get_theme_mod('p3_featured_panels_2_link', $default_link);
-			
-			$img_3 = get_theme_mod('p3_featured_panels_3_img', 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg');
-			$title_3 = get_theme_mod('p3_featured_panels_3_title', $default_title);
-			$link_3 = get_theme_mod('p3_featured_panels_3_link', $default_link);
-			
-			$sm = 'sm';
-			if (get_theme_mod('disable_responsive')) {
-				$sm = 'xs';
-			}
-			
-			if ($show) {
-			?>
+		$img_1 = get_theme_mod('p3_featured_panels_1_img', 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg');
+		$title_1 = get_theme_mod('p3_featured_panels_1_title', $default_title);
+		$link_1 = get_theme_mod('p3_featured_panels_1_link', $default_link);
+		
+		$img_2 = get_theme_mod('p3_featured_panels_2_img', 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg');
+		$title_2 = get_theme_mod('p3_featured_panels_2_title', $default_title);
+		$link_2 = get_theme_mod('p3_featured_panels_2_link', $default_link);
+		
+		$img_3 = get_theme_mod('p3_featured_panels_3_img', 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg');
+		$title_3 = get_theme_mod('p3_featured_panels_3_title', $default_title);
+		$link_3 = get_theme_mod('p3_featured_panels_3_link', $default_link);
+		
+		$img_4 = get_theme_mod('p3_featured_panels_4_img');
+		$title_4 = get_theme_mod('p3_featured_panels_4_title', $default_title);
+		$link_4 = get_theme_mod('p3_featured_panels_4_link', $default_link);
+		
+		$sm = 'sm';
+		$col = '4';
+		if (get_theme_mod('disable_responsive')) {
+			$sm = 'xs';
+		}
+		
+		$count = 0;
+		if (!empty($img_1)) {
+			$count++;
+		}
+		if (!empty($img_2)) {
+			$count++;
+		}
+		if (!empty($img_3)) {
+			$count++;
+		}
+		if (!empty($img_4)) {
+			$count++;
+		}
+		
+		switch ( $count ) {
+			case 1:
+				$col = '12';
+				break;
+			case 2:
+				$col = '6';
+				break;
+			case 3:
+				$col = '4';
+				break;
+			case 4:
+				$col = '3';
+				break;
+		}
+		
+		
+		if ($show) {
+		?>
 			<div id="p3_featured_panels" class="row nopin">
 				
 				<?php if ($img_1 && $title_1 && $link_1) { ?>
-				<div class="col-<?php echo $sm; ?>-4 p3_featured_panel">
+				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 					<a href="<?php echo esc_url($link_1); ?>">
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_1); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_1); ?>" class="p3_invisible" />
@@ -85,7 +120,7 @@ if (!function_exists('p3_featured_panels')) {
 				<?php } ?>
 
 				<?php if ($img_2 && $title_2 && $link_2) { ?>
-				<div class="col-<?php echo $sm; ?>-4 p3_featured_panel">
+				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 					<a href="<?php echo esc_url($link_2); ?>">
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_2); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_2); ?>" class="p3_invisible" />
@@ -98,13 +133,26 @@ if (!function_exists('p3_featured_panels')) {
 				<?php } ?>
 				
 				<?php if ($img_3 && $title_3 && $link_3) { ?>
-				<div class="col-<?php echo $sm; ?>-4 p3_featured_panel">
+				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 					<a href="<?php echo esc_url($link_3); ?>">
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_3); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_3); ?>" class="p3_invisible" />
 						</div>
 						<div class='p3_feature_panel_overlay'>
 							<h3><?php echo esc_html($title_3); ?></h3>
+						</div>
+					</a>
+				</div>
+				<?php } ?>
+				
+				<?php if ($img_4 && $title_4 && $link_4) { ?>
+				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
+					<a href="<?php echo esc_url($link_4); ?>">
+						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_4); ?>)">
+							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_4); ?>" class="p3_invisible" />
+						</div>
+						<div class='p3_feature_panel_overlay'>
+							<h3><?php echo esc_html($title_4); ?></h3>
 						</div>
 					</a>
 				</div>
@@ -185,7 +233,7 @@ if (!class_exists('pipdig_p3_featured_panels_Customize')) {
 			
 			for ($x = 1; $x <= 3; $x++) {
 			
-			// Image 1
+			// Image
 			$wp_customize->add_setting('p3_featured_panels_'.$x.'_img',
 				array(
 					'default' => 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg',
@@ -204,7 +252,7 @@ if (!class_exists('pipdig_p3_featured_panels_Customize')) {
 					)
 			);
 			
-			// Title 1
+			// Title
 			$wp_customize->add_setting('p3_featured_panels_'.$x.'_title',
 				array(
 					'default' => 'Title text',
@@ -220,7 +268,7 @@ if (!class_exists('pipdig_p3_featured_panels_Customize')) {
 				)
 			);
 			
-			// Link 1
+			// Link
 			$wp_customize->add_setting('p3_featured_panels_'.$x.'_link',
 				array(
 					'default' => 'https://www.pipdig.co',
@@ -237,6 +285,58 @@ if (!class_exists('pipdig_p3_featured_panels_Customize')) {
 			);
 			
 			} // close loop
+			
+			
+			// Image 4
+			$wp_customize->add_setting('p3_featured_panels_4_img',
+				array(
+					'default' => '',
+					'sanitize_callback' => 'esc_url_raw',
+				)
+			);
+			$wp_customize->add_control(
+					new WP_Customize_Image_Control(
+						$wp_customize,
+						'p3_featured_panels_4_img',
+						array(
+							'label' => 'Panel #4 Image',
+							'section' => 'p3_featured_panels_section',
+							'settings' => 'p3_featured_panels_4_img',
+						)
+					)
+			);
+			
+			// Title 4
+			$wp_customize->add_setting('p3_featured_panels_4_title',
+				array(
+					'default' => 'Title text',
+					'sanitize_callback' => 'sanitize_text_field',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_featured_panels_4_title',
+				array(
+					'type' => 'text',
+					'label' => 'Panel #4 Title Text field',
+					'section' => 'p3_featured_panels_section'
+				)
+			);
+			
+			// Link 4
+			$wp_customize->add_setting('p3_featured_panels_4_link',
+				array(
+					'default' => 'https://www.pipdig.co',
+					'sanitize_callback' => 'esc_url_raw',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_featured_panels_4_link',
+				array(
+					'type' => 'text',
+					'label' => 'Panel #4 Link',
+					'section' => 'p3_featured_panels_section'
+				)
+			);
 
 	
 		}
