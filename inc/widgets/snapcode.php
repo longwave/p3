@@ -1,9 +1,8 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/**
- * Image Upload Widget
- */
+// https://feelinsonice-hrd.appspot.com/web/deeplink/snapcode?username=pipdig.co&type=PNG
+
 class pipdig_p3_snapchat_snapcode extends WP_Widget {
 
 	// Holds widget settings defaults, populated in constructor.
@@ -40,6 +39,11 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 		$instance = wp_parse_args((array) $instance, $this->defaults);
 
 		echo $args['before_widget'];
+		
+			$greyscale = '';
+			if (!empty($instance['greyscale'])) {
+				$greyscale = '-webkit-filter: grayscale(100%); filter: grayscale(100%);';
+			}
 
 			if (! empty($instance['title']))
 				echo $args['before_title'] . apply_filters('widget_title', $instance['title'], $instance, $this->id_base) . $args['after_title'];
@@ -52,7 +56,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 
 			if (!empty($instance['snapcode'])) {
 				$image_src = str_replace('http:', '', $instance['snapcode']);
-				echo $link_open.'<img src="'.esc_url($image_src).'" alt="Snapchat" style="min-width: 1.2in; max-width: 1.5in; height: auto;"  />'.$link_close;
+				echo $link_open.'<img src="'.esc_url($image_src).'" alt="Snapchat" style="min-width: 1.2in; max-width: 1.5in; height: auto;'.$greyscale.'" />'.$link_close;
 				if (!empty($instance['snapchat_account'])) {
 					echo '<p>'.sprintf( __('Follow <b>%s</b> on Snapchat!', 'p3'), strip_tags($instance['snapchat_account']) ).'</p>';
 				}
@@ -68,6 +72,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 		$new_instance['title'] = strip_tags($new_instance['title']);
 		$new_instance['snapcode'] = strip_tags($new_instance['snapcode']);
 		$new_instance['snapchat_account'] = strip_tags($new_instance['snapchat_account']);
+		$new_instance['greyscale'] = strip_tags($new_instance['greyscale']);
 
 		return $new_instance;
 
@@ -78,6 +83,11 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 
 		// Merge with defaults
 		$instance = wp_parse_args((array) $instance, $this->defaults);
+		
+		$greyscale = '';
+		if (!empty($instance['greyscale'])) {
+			$greyscale = '-webkit-filter: grayscale(100%); filter: grayscale(100%);';
+		}
 
 		?>
 		<p>
@@ -92,7 +102,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 			<div class="pipdig-media-container">
 				<div class="pipdig-media-inner">
 					<?php $img_style = ($instance[ 'snapcode' ] != '') ? '' : 'display:none;'; ?>
-					<img id="<?php echo $this->get_field_id('snapcode'); ?>-preview" src="<?php echo esc_attr($instance['snapcode']); ?>" style="margin:5px 0;padding:0;max-width:180px;height:auto;<?php echo $img_style; ?>" />
+					<img id="<?php echo $this->get_field_id('snapcode'); ?>-preview" src="<?php echo esc_attr($instance['snapcode']); ?>" style="margin:5px 0;padding:0;max-width:180px;height:auto;<?php echo $img_style.$greyscale; ?>" />
 					<?php $no_img_style = ($instance[ 'snapcode' ] != '') ? 'style="display:none;"' : ''; ?>
 				</div>
 			
@@ -108,6 +118,12 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('snapchat_account'); ?>"><?php _e('Snapchat Account Name:', 'p3'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id('snapchat_account'); ?>" name="<?php echo $this->get_field_name('snapchat_account'); ?>" value="<?php if (isset($instance['snapchat_account'])) echo esc_attr($instance['snapchat_account']); ?>" class="widefat" placeholder="<?php _e("For example:", 'p3'); ?> mileyxxcyrus" />
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('greyscale'); ?>">
+			<input type="checkbox" id="<?php echo $this->get_field_id('greyscale'); ?>" name="<?php echo $this->get_field_name('greyscale'); ?>" <?php if (isset($instance['greyscale'])) { checked( (bool) $instance['greyscale'], true ); } ?> /><?php _e('Display in grayscale', 'p3'); ?></label>
+			<br />
 		</p>
 
 		<?php

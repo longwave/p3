@@ -47,8 +47,18 @@ border-color: transparent !important;
 
 .stp-outer, .bo-garden {max-width: 100% !important; width: 100% !important;} /* make RS shop the post widgets full width */
 
-/* Jetpack Carousel */
+/* Jetpack */
+
+/* carousel */
 .slideshow-window{background:transparent;border:0}
+
+/* blog stats widget */
+.blog-stats.widget ul, .blog-stats.widget li {
+list-style: none;
+padding: 0;
+margin: 0;
+font-size: 1.25rem;
+}
 
 /* related posts ============================= */
 .pipdig_p3_related_posts ul {

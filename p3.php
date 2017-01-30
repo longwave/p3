@@ -5,13 +5,13 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.9.3
+Version: 2.9.5
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.9.3' );
+define( 'PIPDIG_P3_V', '2.9.5' );
 
 /*
 function p3_php_version_notice() {
@@ -174,23 +174,7 @@ function pipdig_p3_activate() {
 		update_option('moderation_notify', '');
 		update_option('pipdig_p3_comments_set', 1);
 	}
-	/*
-	if (function_exists('akismet_admin_init')) {
-		if (get_option('wordpress_api_key') == '') {
-		$keys = array(
-			'1ab26b12c4f1',
-			'bc4ac43432c8',
-			'd5c71e2960ce',
-			'720718d82d45',
-			'ea35e00d6d6d',
-			'8bbdbc9a1afc'
-		);
-		$key = $keys[array_rand($keys)];
-		update_option('wordpress_api_key', $key);
-		}
-		update_option('akismet_discard_month', 'true');
-	}
-	*/
+	
 	update_option('thumbnail_size_h', 150);
 	update_option('thumbnail_size_w', 150);
 	update_option('medium_size_w', 800);
@@ -212,19 +196,17 @@ function pipdig_p3_activate() {
 	update_option('imsanity_bmp_to_jpg', 0);
 	
 	if (get_option('pipdig_p3_posts_per_page_set') != 1) { // legacy check
-		$this_theme = wp_get_theme();
-		$theme_textdomain = $this_theme->get('TextDomain');
-		if (get_option('pipdig_p3_posts_per_page_set'.$theme_textdomain) != 1) {
+		if (get_option('pipdig_p3_posts_per_page_set_'.get_template()) != 1) {
 			if (get_option('pipdig_theme') == 'aquae') {
-			update_option('posts_per_page', 13);
+				update_option('posts_per_page', 13);
 			} elseif (get_option('pipdig_theme') == 'galvani') {
-			update_option('posts_per_page', 12);
+				update_option('posts_per_page', 12);
 			} elseif (get_option('pipdig_theme') == 'thegrid') {
-			update_option('posts_per_page', 6);
+				update_option('posts_per_page', 6);
 			} else {
-			update_option('posts_per_page', 5);
+				update_option('posts_per_page', 5);
 			}
-			update_option('pipdig_p3_posts_per_page_set'.$theme_textdomain, 1);
+			update_option('pipdig_p3_posts_per_page_set_'.get_template(), 1);
 		}
 	}
 		
@@ -240,6 +222,7 @@ function pipdig_p3_activate() {
 		update_option('show_on_front', 'posts');
 		update_option('pipdig_p3_show_on_front_set', 1);
 	}
+	/*
 	if (get_option('jr_resizeupload_width') == '1200' && (get_option('pipdig_p3_jr_resizeupload_width_set') != 1)) {
 		update_option('jr_resizeupload_width', 1920);
 		update_option('jr_resizeupload_quality', 75);
@@ -247,6 +230,8 @@ function pipdig_p3_activate() {
 		update_option('jr_resizeupload_convertgif_yesno', 'no');
 		update_option('pipdig_p3_jr_resizeupload_width_set', 1);
 	}
+	*/
+	
 	update_option('woocommerce_enable_lightbox', 'no');
 		
 	$sb_options = get_option('sb_instagram_settings');

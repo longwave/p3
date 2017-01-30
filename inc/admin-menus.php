@@ -15,7 +15,10 @@ if (!function_exists('pipdig_add_admin_menu')) {
 		add_submenu_page( 'pipdig', __('Custom CSS', 'p3'), __('Custom CSS', 'p3'), 'manage_options', 'pipdig-css', 'pipdig_css_options_page' );
 		add_submenu_page( 'pipdig', __('Theme').' Hooks', __('Theme').' Hooks', 'manage_options', 'pipdig-hooks', 'pipdig_hooks_options_page' );
 		
-		$submenu['pipdig'][0][0] = __('Help / Support', 'p3'); // http://wordpress.stackexchange.com/questions/98226/admin-menus-name-menu-different-from-first-submenu
+		if (current_user_can('delete_others_pages')) {
+			$submenu['pipdig'][0][0] = __('Help / Support', 'p3'); // http://wordpress.stackexchange.com/questions/98226/admin-menus-name-menu-different-from-first-submenu
+		}
+		
 	}
 	add_action( 'admin_menu', 'pipdig_add_admin_menu' );
 }
