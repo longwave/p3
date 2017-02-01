@@ -2,12 +2,12 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// add scheduled event when plugin activated
-function pipdig_p3_activate_cron() {
-	wp_schedule_event( current_time( 'timestamp' ), 'daily', 'pipdig_p3_daily_event');
+function pipdig_setup_schedule() {
+	if ( !wp_next_scheduled('pipdig_p3_daily_event') ) {
+		wp_schedule_event( time(), 'daily', 'pipdig_p3_daily_event'); // hourly, twicedaily or daily
+	}
 }
-register_activation_hook(__FILE__, 'pipdig_p3_activate_cron');
-
+add_action( 'wp', 'pipdig_setup_schedule' );
 
 // Remove scheduled event on plugin deactivation
 function pipdig_p3_deactivate_cron() {

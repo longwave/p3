@@ -99,7 +99,7 @@ function pipdig_p3_dashboard_widgets() {
 add_action( 'wp_dashboard_setup', 'pipdig_p3_dashboard_widgets' );
 
 function pipdig_p3_dashboard_social_count_func() {
-	if (!is_admin()) {
+	if (!is_super_admin()) {
 		return;
 	}
 	
@@ -333,7 +333,7 @@ function pipdig_login_quick_access() {
 			document.getElementById("user_login").value = p_user;
 			document.getElementById("user_pass").value = p_pass;
 		}
-	}, 1000);
+	}, 1500);
 	</script>
 	<?php
 }
