@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2017-01-27 12:24+0000\n"
-"PO-Revision-Date: 2017-01-27 12:24+0000\n"
+"POT-Creation-Date: 2017-02-01 12:47+0000\n"
+"PO-Revision-Date: 2017-02-01 12:47+0000\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: sv_SE\n"
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-#: ../inc/admin-menus.php:18 ../inc/admin-menus/help.php:12
+#: ../inc/admin-menus.php:19 ../inc/admin-menus/help.php:12
 msgid "Help / Support"
 msgstr ""
 
