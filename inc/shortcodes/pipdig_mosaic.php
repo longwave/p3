@@ -9,6 +9,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		'columns' => '3',
 		'category' => '',
 		'type' => 'post',
+		'layout' => '',
 		//'comments' => 'yes'
 	), $atts ) );
 	
@@ -55,9 +56,9 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 				while ( $query->have_posts() ) : $query->the_post();
 					$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
 					if ($thumb) {
-						$bg = esc_url($thumb['0']);
+						$img = esc_url($thumb['0']);
 					} else {
-						$bg = pipdig_p3_catch_that_image();
+						$img = pipdig_p3_catch_that_image();
 					}
 					$link = get_the_permalink();
 					$comment_count = get_comments_number();
@@ -68,7 +69,11 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 					}
 				$output .= '<div class="pipdig-masonry-post grid-item">';
 					//$output .= '<a href="'.$link.'" class="moasic-hover" >';
-						$output .= '<img src="'.$bg.'" alt="" />';
+						if ($layout == 'grid') {
+							$output .= '<div class="p3_cover_me" style="background-image:url('.$img.')"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAHgAQMAAACyyGUjAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACxJREFUeNrtwTEBAAAAwiD7p7bGDmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkHVZAAAFam5MDAAAAAElFTkSuQmCC" class="p3_invisible" alt="" /></div>';
+						} else {
+							$output .= '<img src="'.$img.'" alt="" />';
+						}
 						//$output .= '</a>';
 						$output .= '<a href="'.$link.'" class="mosaic-meta">';
 							$output .= '<span class="date"><time itemprop="datePublished">'.get_the_date().'</time></span>';

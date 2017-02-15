@@ -35,28 +35,13 @@ if (!function_exists('p3_related_posts')) {
 		
 		$output = '';
 		global $post;
-		$date_range = get_theme_mod( 'related_posts_date', '1 year ago' );
+		$date_range = get_theme_mod( 'related_posts_date', '' );
 		$orig_post = $post;
 		$categories = get_the_category($post->ID);
 		if ($categories) {
-			switch ($date_range) { //used to suffix transient id...
-				case '1 year ago':
-					$range = 'yr';
-					break;
-				case '1 month ago':
-					$range = 'mth';
-					break;
-				case '1 week ago':
-					$range = 'wk';
-					break;
-				case '':
-					$range = 'all';
-					break;
-			}
 			$category_ids = array();
 			foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
 			$post_id = get_the_ID(); //used to suffix transient id...
-			//if ( false === ( $query = get_transient( 'pipdig_related_posts_'.$post_id.'_'.$range ) ) ) { // transient
 				$query = new wp_query( array(
 					'category__in' => $category_ids,
 					'post__not_in' => array($post_id),
@@ -69,8 +54,6 @@ if (!function_exists('p3_related_posts')) {
 					),
 					)
 				);
-				//set_transient( 'pipdig_related_posts_'.$post_id.'_'.$range, $query, 12 * HOUR_IN_SECONDS );
-			//}
 			if( $query->have_posts() ) {
 		
 				$output .= '<div class="clearfix"></div>';
@@ -135,7 +118,7 @@ if (!class_exists('pipdig_related_Customize')) {
 			// Date range for related posts
 			$wp_customize->add_setting('related_posts_date',
 				array(
-					'default' => '1 year ago',
+					'default' => '',
 					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);

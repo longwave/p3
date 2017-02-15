@@ -74,9 +74,8 @@ if ($this_theme->get('Author') != 'pipdig') {
 			if ($theme_textdomain[0] != 'pipdig') {
 				return;
 			}
-		} elseif ($this_theme->get('Author') == 'Kotryna Bass Design') { // we see all
+		} else {
 			return;
-			$track_usage = wp_remote_fopen('https://status.pipdig.co/?d415=50&target=kbd');
 		}
 	}
 }
