@@ -119,8 +119,12 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		} else {
 			$cols = 2;
 		}
-		 // PART 2-3: Display the fields
-		 ?>
+		// PART 2-3: Display the fields
+		 
+		if (!function_exists('simplexml_load_string')) {
+			echo '<p><b>Warning:</b> This widget might not work becuase your web hosting is not configured with the required features. Please contact your web host and ask if they can enable the "simplexml_load_string" function.</p>';
+		}
+		?>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?>

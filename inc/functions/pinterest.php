@@ -6,6 +6,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if (!function_exists('p3_pinterest_fetch')) {
 	function p3_pinterest_fetch($user) {
 		
+		if (!function_exists('simplexml_load_string')) {
+			return false;
+		}
+		
 		if (empty($user)) {
 			return false;
 		}

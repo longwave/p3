@@ -13,6 +13,7 @@ include('shortcodes/pipdig_category_section.php');
 include('shortcodes/pipdig_banner.php');
 include('shortcodes/pipdig_youtube_slider.php');
 include('shortcodes/pipdig_total_followers.php');
+include('shortcodes/pipdig_instagram_feed.php');
 
 // stop wpautop on shortcodes http://stackoverflow.com/questions/5940854/disable-automatic-formatting-inside-wordpress-shortcodes
 //remove_filter('the_content', 'wpautop');
