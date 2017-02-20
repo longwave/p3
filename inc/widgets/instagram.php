@@ -6,7 +6,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 	class pipdig_widget_instagram extends WP_Widget {
 	 
 	  public function __construct() {
-		  $widget_ops = array('classname' => 'pipdig_widget_instagram', 'description' => __('Displays your latest Instagram photos', 'p3') );
+		  $widget_ops = array('classname' => 'pipdig_widget_instagram', 'description' => __('Displays your latest Instagram photos.', 'p3') );
 			parent::__construct('pipdig_widget_instagram', 'pipdig - ' . __('Instagram Feed', 'p3'), $widget_ops);
 	  }
 	  

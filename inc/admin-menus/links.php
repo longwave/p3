@@ -110,6 +110,14 @@ function pipdig_links_init() {
 	);
 	
 	add_settings_field( 
+		'spotify', 
+		'<i class="fa fa-spotify"></i>&nbsp;&nbsp;Spotify', 
+		'p3_spotify_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
+	add_settings_field( 
 		'flickr', 
 		'<i class="fa fa-flickr"></i>&nbsp;&nbsp;Flickr', 
 		'p3_flickr_field_render', 
@@ -219,6 +227,11 @@ function p3_linkedin_field_render() {
 function p3_soundcloud_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[soundcloud]' placeholder='e.g. https://soundcloud.com/pipdig' value="<?php if (isset($links['soundcloud'])) { echo $links['soundcloud']; } ?>"> <?php
+}
+
+function p3_spotify_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[spotify]' placeholder='e.g. https://spotify.com/pipdig' value="<?php if (isset($links['spotify'])) { echo $links['spotify']; } ?>"> <?php
 }
 
 function p3_flickr_field_render() { 

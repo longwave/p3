@@ -749,6 +749,14 @@ div[class^="gr_custom_rating"] {
 	display: none;
 }
 
+/* Featured Post widget =========== */
+.p3_featured_post_widget_post_title {
+	margin: 5px 0 7px;
+}
+.p3_featured_post_widget_post_excerpt {
+	margin: 0;
+}
+
 /* Beaver ========================= */
 .fl-builder-modules-cta, .fl-builder-bar-title img {
 	display: none !important;

@@ -20,7 +20,7 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 		if (isset($instance['text'])) { 
 			$text = wp_kses_post($instance['text']);
 		} else {
-			$text = __('Enter your email address to subscribe:', 'p3');
+			$text = __('Enter your email address to receive notifications of new posts by email.', 'p3');
 		}
 
 

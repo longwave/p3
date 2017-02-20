@@ -17,7 +17,7 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $spotify = '';
 		
 		if (!empty($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
@@ -49,6 +49,9 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 		if (!empty($links['soundcloud'])) {
 			$soundcloud = esc_url($links['soundcloud']);
 		}
+		if (!empty($links['spotify'])) {
+			$spotify = esc_url($links['spotify']);
+		}
 		if (!empty($links['flickr'])) {
 			$flickr = esc_url($links['flickr']);
 		}
@@ -68,12 +71,12 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 			$email = sanitize_email($links['email']);
 		}
 		
-		if ($twitter || $instagram || $facebook || $bloglovin || $pinterest || $youtube || $tumblr || $linkedin || $soundcloud || $flickr || $snapchat || $vk || $email || $twitch || $google_plus || $stumbleupon) {
+		if ($twitter || $instagram || $facebook || $bloglovin || $pinterest || $youtube || $tumblr || $linkedin || $soundcloud || $flickr || $snapchat || $vk || $email || $twitch || $google_plus || $stumbleupon || $spotify) {
 			
 			$social_sidebar .= '<div id="p3_social_sidebar" class="'.$position_class.'">';
 			
 			if (get_theme_mod('p3_social_sidebar_icon_color')) {
-				$social_sidebar .= '<style scoped>#p3_social_sidebar a {color:'.get_theme_mod('p3_social_sidebar_icon_color').'}</style>';
+				$social_sidebar .= '<style scoped>#p3_social_sidebar a {color:'.strip_tags(get_theme_mod('p3_social_sidebar_icon_color')).'}</style>';
 			}
 			
 			if($twitter && get_theme_mod('p3_social_sidebar_twitter', 1)) $social_sidebar .= '<a href="'.$twitter.'" target="_blank"><i class="fa fa-twitter"></i></a>';
@@ -86,6 +89,7 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 			if($tumblr && get_theme_mod('p3_social_sidebar_tumblr', 1)) $social_sidebar .= '<a href="'.$tumblr.'" target="_blank"><i class="fa fa-tumblr"></i></a>';
 			if($linkedin && get_theme_mod('p3_social_sidebar_linkedin', 1)) $social_sidebar .= '<a href="'.$linkedin.'" target="_blank"><i class="fa fa-linkedin"></i></a>';
 			if($soundcloud && get_theme_mod('p3_social_sidebar_soundcloud', 1)) $social_sidebar .= '<a href="'.$soundcloud.'" target="_blank"><i class="fa fa-soundcloud"></i></a>';
+			if($spotify && get_theme_mod('p3_social_sidebar_spotify', 1)) $social_sidebar .= '<a href="'.$spotify.'" target="_blank"><i class="fa fa-spotify"></i></a>';
 			if($flickr && get_theme_mod('p3_social_sidebar_flickr', 1)) $social_sidebar .= '<a href="'.$flickr.'" target="_blank"><i class="fa fa-flickr"></i></a>';
 			if($twitch && get_theme_mod('p3_social_sidebar_twitch', 1)) $social_sidebar .= '<a href="'.$twitch.'" target="_blank"><i class="fa fa-twitch"></i></a>';
 			if($stumbleupon && get_theme_mod('p3_social_sidebar_stumbleupon', 1)) $social_sidebar .= '<a href="'.$stumbleupon.'" target="_blank"><i class="fa fa-stumbleupon"></i></a>';
@@ -351,6 +355,21 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'SoundCloud',
+					'section' => 'p3_social_sidebar_section',
+				)
+			);
+			
+			// spotify
+			$wp_customize->add_setting('p3_social_sidebar_spotify',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_social_sidebar_spotify',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Spotify',
 					'section' => 'p3_social_sidebar_section',
 				)
 			);
