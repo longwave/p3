@@ -769,3 +769,44 @@ div[class^="gr_custom_rating"] {
 .p3_social_feed_title {
 	text-align: center;
 }
+
+
+/* Mosaic shortcode =============== */
+.pipdig-masonry-post-style-2 {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+text-align: center;
+width: 75%;
+}
+.pipdig-masonry-post-style-2 .mosaic-comments {
+position: relative;
+bottom: auto;
+}
+.entry-content .pipdig-masonry-post-style-2 h2 {
+text-align: center;
+margin: 5px 0 10px;
+}
+#mosaic-nav {
+margin-top: 20px;
+}
+#mosaic-nav .nav-previous {
+float: left;
+text-align: center;
+width: 50%;
+}
+#mosaic-nav a {
+display: inline-block;
+padding: 10px 15px;
+background: #eee;
+font: 12px Montserrat, sans-serif;
+text-transform: uppercase;
+letter-spacing: 1px;
+color: #000;
+}
+#mosaic-nav .nav-next {
+float: right;
+text-align: center;
+width: 50%;
+}

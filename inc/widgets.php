@@ -30,4 +30,4 @@ include('widgets/we-heart-it.php');
 //include('widgets/depop.php');
 include('widgets/image.php');
 //include('widgets/goodreads.php');
-include('widgets/featured-post.php');
+//include('widgets/featured-post.php');

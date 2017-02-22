@@ -10,7 +10,9 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		'category' => '',
 		'type' => 'post',
 		'layout' => '',
-		//'comments' => 'yes'
+		'style' => '1',
+		'show_date' => '1',
+		'show_comments' => '1'
 	), $atts ) );
 	
 	//wp_enqueue_script( 'imagesloaded' ); // I know, I know :(
@@ -32,6 +34,10 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 			$percent = '47';
 		break;
 	}
+	
+	// http://wordpress.stackexchange.com/questions/119294/pass-boolean-value-in-shortcode
+	$show_date = filter_var( $show_date, FILTER_VALIDATE_BOOLEAN );
+	$show_comments = filter_var( $show_comments, FILTER_VALIDATE_BOOLEAN );
 	
 	$output = '';
 	
@@ -75,11 +81,23 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 							$output .= '<img src="'.$img.'" alt="" />';
 						}
 						//$output .= '</a>';
+						
 						$output .= '<a href="'.$link.'" class="mosaic-meta">';
-							$output .= '<span class="date"><time itemprop="datePublished">'.get_the_date().'</time></span>';
-							$output .= '<h2 class="title moasic-title" itemprop="name">'.get_the_title().'</h2>';
-							$output .= '<div class="mosaic-comments">'.$comments_out.'</div>';
+							if (absint($style) === 2) {
+								$output .= '<div class="pipdig-masonry-post-style-2">';
+							} else {
+								$output .= '<div>';
+							}
+								if ($show_date) {
+									$output .= '<span class="date"><time itemprop="datePublished">'.get_the_date().'</time></span>';
+								}
+								$output .= '<h2 class="title moasic-title" itemprop="name">'.get_the_title().'</h2>';
+								if ($show_comments) {
+									$output .= '<div class="mosaic-comments">'.$comments_out.'</div>';
+								}
+							$output .= '</div>';
 						$output .= '</a>';
+						
 					$output .= '</div>';		
 
 				endwhile; wp_reset_query();
@@ -102,7 +120,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		.grid-item { width: '.$percent.'%; margin: 1%; }
 		.grid-item img {max-width: 100%; height: auto;}
 		.grid-item .hentry {margin-bottom: 0;}
-		.mosaic-meta {
+		.entry-content .mosaic-meta {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -115,24 +133,15 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		opacity: 0;
 		-moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out;
 		}
+		.entry-content .mosaic-meta:hover{opacity: 1;}
+		.entry-content .mosaic-meta .date, .entry-content .mosaic-meta .mosaic-comments {font: 11px Montserrat, sans-serif; text-transform:uppercase;letter-spacing:1px;}
 		.moasic-title {margin: 0; letter-spacing: 0; line-height: 1.2;}
 		.mosaic-comments {position: absolute; bottom: 5%;}
-		.mosaic-meta:hover{opacity: 1;}
-		#mosaic-nav .nav-previous {
-		float: left;
-		text-align: center;
-		width: 50%;
-		}
-		#mosaic-nav .nav-next {
-		float: right;
-		text-align: center;
-		width: 50%;
-		}
 		@media screen and (max-width: 769px) {
 			.grid-item {width: 48%}
 		}
 	</style>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
 	<script>
 	jQuery(document).ready(function($) {
 		$(".entry-content").imagesLoaded( function(){
