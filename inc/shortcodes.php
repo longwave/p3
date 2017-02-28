@@ -2,6 +2,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+
+
 include('shortcodes/pipdig_left_right.php');
 include('shortcodes/pipdig_stars.php');
 include('shortcodes/pipdig_mosaic.php');

@@ -2,6 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+
 // SSO not default
 add_filter( 'jetpack_sso_default_to_sso_login', '__return_false' );
 
@@ -44,7 +45,7 @@ if (!function_exists('pipdig_p3_unregister_widgets')) {
 		
 		unregister_widget('Akismet_Widget');
 		unregister_widget('SocialCountPlus');
-		unregister_widget('GADWP_Frontend_Widget');
+		//unregister_widget('GADWP_Frontend_Widget');
 		
 	}
 	add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
@@ -54,6 +55,11 @@ if (!function_exists('pipdig_p3_unregister_widgets')) {
 /*	Remove pointless dashboard widgets ----------------------------------------------*/
 if (!function_exists('pipdig_p3_pipdig_remove_dashboard_meta')) {
 	function pipdig_p3_pipdig_remove_dashboard_meta() {
+		
+		if (get_option('p3_widget_override')) {
+			return;
+		}
+		
 		remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
 		remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
 		remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
@@ -87,6 +93,11 @@ add_action('admin_menu','pipdig_p3_remove_default_metaboxes');
 
 /*  Dashboard widgets ----------------------------------------------------------------*/
 function pipdig_p3_dashboard_widgets() {
+	
+	if (!current_user_can('delete_others_pages')) {
+		return;
+	}
+	
 	add_meta_box( 
 		'pipdig_p3_dashboard_social_count',
 		'pipdig - '.__('Your Followers', 'p3'),
@@ -99,7 +110,8 @@ function pipdig_p3_dashboard_widgets() {
 add_action( 'wp_dashboard_setup', 'pipdig_p3_dashboard_widgets' );
 
 function pipdig_p3_dashboard_social_count_func() {
-	if (!is_super_admin()) {
+	
+	if (!current_user_can('delete_others_pages')) {
 		return;
 	}
 	
@@ -292,6 +304,12 @@ function pipdig_p3_dashboard_social_count_func() {
 			<p><input class="button" type="button" value="<?php esc_attr_e('View more stats', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-stats'); ?>';" /></p>
 			<p><input class="button" type="button" value="<?php esc_attr_e('Add more accounts', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-links'); ?>';" /></p>
 		<?php
+		/*
+		$p3_stats_data = get_option('p3_stats_data');
+		echo '<pre>';
+		print_r($p3_stats_data);
+		echo '</pre>';
+		*/
 		}
 
 }
@@ -299,9 +317,15 @@ function pipdig_p3_dashboard_social_count_func() {
 
 // disable siteurl settings
 function p3_disable_site_url_settings() {
+	
 	if (!is_super_admin()) {
 		return;
 	}
+	
+	if (isset($_GET['safety_off'])) {
+		return;
+	}
+	
 	global $pagenow;
 	if ($pagenow != 'options-general.php') {
 		return;

@@ -98,7 +98,7 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 			$wp_customize->add_section( 'p3_featured_cats_section', 
 				array(
 					'title' => __( 'Featured Categories', 'p3' ),
-					'description'=> __( 'Display 4 featured post categories at the top of your homepage. Each category will display the latest post from that topic.', 'p3' ),
+					'description'=> __( 'Display 4 featured post categories at the top of your homepage. Each category will display the latest post from that topic.', 'p3' ).' <a href="https://support.pipdig.co/articles/wordpress-featured-categories/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
 					'capability' => 'edit_theme_options',
 					//'panel' => 'pipdig_features',
 					'priority' => 59,

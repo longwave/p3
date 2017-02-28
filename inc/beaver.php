@@ -1,11 +1,9 @@
 <?php 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 if (!class_exists('FLBuilder')) {
 	return;
 }
-
 
 function p3_beaver_post_types( $post_types ) {
     $post_types[] = 'post';

@@ -761,6 +761,9 @@ div[class^="gr_custom_rating"] {
 .fl-builder-modules-cta, .fl-builder-bar-title img {
 	display: none !important;
 }
+.fl-builder-bar {
+	z-index: 999999999;
+}
 
 /* Blogger ======================== */
 .tr-caption-container, .tr-caption-container tr, .tr-caption-container td {border:0}

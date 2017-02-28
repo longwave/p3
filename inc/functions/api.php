@@ -204,6 +204,57 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_tumblr_count');
 		}
+		
+		$today = array();
+		
+		if (get_option('p3_pinterest_count')) {
+			$today['pinterest'] = absint(get_option('p3_pinterest_count'));
+		}
+		if (get_option('p3_twitter_count')) {
+			$today['twitter'] = absint(get_option('p3_twitter_count'));
+		}
+		if (get_option('p3_facebook_count')) {
+			$today['facebook'] = absint(get_option('p3_facebook_count'));
+		}
+		if (get_option('p3_instagram_count')) {
+			$today['instagram'] = absint(get_option('p3_instagram_count'));
+		}
+		if (get_option('p3_youtube_count')) {
+			$today['youtube'] = absint(get_option('p3_youtube_count'));
+		}
+		if (get_option('p3_google_plus_count')) {
+			$today['google_plus'] = absint(get_option('p3_google_plus_count'));
+		}
+		if (get_option('p3_twitch_count')) {
+			$today['twitch'] = absint(get_option('p3_twitch_count'));
+		}
+		
+		// scp
+		if (get_option('p3_linkedin_count')) {
+			$today['linkedin'] = absint(get_option('p3_linkedin_count'));
+		}
+		if (get_option('p3_tumblr_count')) {
+			$today['tumblr'] = absint(get_option('p3_tumblr_count'));
+		}
+		if (get_option('p3_soundcloud_count')) {
+			$today['soundcloud'] = absint(get_option('p3_soundcloud_count'));
+		}
+		
+		
+		if (empty($today)) {
+			return;
+		}
+		
+		if (is_array(get_option('p3_stats_data'))) {
+			$p3_stats_data = get_option('p3_stats_data');
+		} else {
+			$p3_stats_data = array();
+		}
+		
+		$todays_date = date('Ymd'); // http://codepad.org/PYcR13C2
+		$p3_stats_data[$todays_date] = $today;
+		$today['date'] = $todays_date;
+		update_option('p3_stats_data', $p3_stats_data);
 	
 	}
 	

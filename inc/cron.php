@@ -2,12 +2,10 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-function pipdig_setup_schedule() {
-	if ( !wp_next_scheduled('pipdig_p3_daily_event') ) {
-		wp_schedule_event( time(), 'daily', 'pipdig_p3_daily_event'); // hourly, twicedaily or daily
-	}
+if ( !wp_next_scheduled('pipdig_p3_daily_event') ) {
+	wp_schedule_event( time(), 'twicedaily', 'pipdig_p3_daily_event'); // hourly, twicedaily or daily
 }
-add_action( 'wp', 'pipdig_setup_schedule' );
+
 
 // Remove scheduled event on plugin deactivation
 function pipdig_p3_deactivate_cron() {
@@ -21,8 +19,11 @@ register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
 function pipdig_p3_do_this_daily() {
 	
 	// clear stats transient
-	delete_transient('p3_stats_gen');
+	//delete_transient('p3_stats_gen');
 	
+	// do a scrape
+	pipdig_p3_scrapey_scrapes();
+
 	/*
 	$instagram_deets = get_option('pipdig_instagram');
 	
@@ -55,24 +56,7 @@ function pipdig_p3_do_this_daily() {
 		}
 	}
 	
-	/*
-	$response = wp_safe_remote_request('https://www.pipdig.co/_plonkers.txt');
-
-	$code = intval($response['response']['code']);
-
-	if ($code !== 200) {
-		return;
-	}
-	
-	$plonkers = strip_tags($response['body']);
-	
-	// turn it into an array
-	$plonkers = explode(",", $plonkers);
-	
-	if (in_array(esc_url(home_url('/')), $plonkers)) {
-		switch_theme('twentysixteen');
-	}
-	*/
+	delete_option('jpibfi_pro_ad');
 	
 }
 add_action('pipdig_p3_daily_event', 'pipdig_p3_do_this_daily');

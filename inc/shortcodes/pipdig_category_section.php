@@ -8,7 +8,8 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 		'title' => '',
 		'title_link' => '',
 		'border' => '',
-		'excerpt' => '',
+		'excerpt' => true,
+		'excerpt_length' => '25',
 		'category' => '',
 		'shape' => '',
 		'view_all_button' => '',
@@ -77,11 +78,11 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 						
 				$output .= '<h3 class="pipdig_category_section_item_title">'.strip_tags(get_the_title()).'</h3>';
 				
-				if ($excerpt != 'no') {
-					if (absint($excerpt) < 1) {
-						$excerpt = 25;
-					}
-					$output .= '<div class="pipdig_category_section_item_summary">'.pipdig_truncate(strip_shortcodes(strip_tags(get_the_excerpt())), $excerpt).'</div>';
+				// http://wordpress.stackexchange.com/questions/119294/pass-boolean-value-in-shortcode
+				$excerpt = filter_var( $excerpt, FILTER_VALIDATE_BOOLEAN );
+				
+				if ($excerpt) {
+					$output .= '<div class="pipdig_category_section_item_summary">'.pipdig_truncate(strip_shortcodes(strip_tags(get_the_excerpt())), $excerpt_length).'</div>';
 				}
 				
 				$output .= '</div>'; //.pipdig_category_section_item

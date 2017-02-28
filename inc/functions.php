@@ -2,7 +2,6 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 // load plugin check function, just in case theme hasn't
 if ( !function_exists( 'pipdig_plugin_check' ) ) {
 	function pipdig_plugin_check( $plugin_name ) {

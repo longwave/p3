@@ -46,7 +46,7 @@ if (!function_exists('p3_instagram_fetch')) {
 			
 		
 		if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
-			$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=25";
+			$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=35";
 			$args = array(
 			    'timeout' => 40,
 			);
@@ -78,11 +78,16 @@ if (!function_exists('p3_instagram_fetch')) {
 		if ($result === 400) {
 			return false;
 		}
+		
+		$images = array();
 			
-			
-		for ($i = 0; $i < 20; $i++) {
+		for ($i = 0; $i < 30; $i++) {
 			if (!empty($result->data[$i])) {
-					
+				
+				if (!empty($result->data[$i]->type) && ($result->data[$i]->type !== 'image')) {
+					continue; // skip this one if it ain't an image
+				}
+				
 				$caption = '';
 				if ((!empty($result->data[$i]->caption->text))) {
 					$caption = $result->data[$i]->caption->text;
@@ -106,13 +111,15 @@ if (!function_exists('p3_instagram_fetch')) {
 					
 				}
 					
-				$images[$i] = array (
+				$new_image = array (
 					'src' => esc_url($img_url),
 					'link' => esc_url($result->data[$i]->link),
 					'likes' => intval($result->data[$i]->likes->count),
 					'comments' => intval($result->data[$i]->comments->count),
 					'caption' => strip_tags($caption),
 				);
+				
+				array_push($images, $new_image);
 					
 			} else {
 				break;

@@ -107,7 +107,7 @@ if (!class_exists('pipdig_related_Customize')) {
 			$wp_customize->add_section( 'pipdig_related_posts_pop', 
 				array(
 					'title' => __( 'Related Posts', 'p3' ),
-					'description'=> __( 'Related Posts are displayed from the same category.', 'p3' ),
+					'description'=> __( 'Related Posts are displayed from the same category.', 'p3' ).' <a href="https://support.pipdig.co/articles/wordpress-how-to-display-related-posts/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
 					'capability' => 'edit_theme_options',
 					//'panel' => 'pipdig_features',
 					'priority' => 95,

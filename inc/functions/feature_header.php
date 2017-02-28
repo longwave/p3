@@ -156,7 +156,7 @@ if (!class_exists('pipdig_feature_header_Customize')) {
 			$wp_customize->add_section( 'p3_feature_header_section', 
 				array(
 					'title' => __( 'Feature Header', 'p3' ),
-					//'description'=> __( 'Display recent/popular posts at the top of your site.', 'p3' ),
+					'description'=> __( 'Display recent/popular posts at the top of your site.', 'p3' ).' <a href="https://support.pipdig.co/articles/wordpress-feature-header/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
 					'capability' => 'edit_theme_options',
 					//'panel' => 'pipdig_features',
 					'priority' => 58,

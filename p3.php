@@ -5,15 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.9.5
+Version: 2.10.1
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.9.5' );
+define( 'PIPDIG_P3_V', '2.10.1' );
 
-/*
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
 		return;
@@ -27,11 +26,9 @@ function p3_php_version_notice() {
 }
 add_action( 'admin_notices', 'p3_php_version_notice' );
 
-
 if (strnatcmp(phpversion(),'5.3.10') <= 0) {
 	return;
 }
-*/
 
 function pipdig_p3_themes_top_link() {
 	if(!isset($_GET['page'])) {
@@ -79,6 +76,17 @@ if ($this_theme->get('Author') != 'pipdig') {
 		}
 	}
 }
+
+/*
+$theme_name = explode('-', trim(get_template()));
+if ($theme_name[0] != 'pipdig') {
+	return;
+} else {
+	function pipdig_bootstrap_active() {
+		$pipdig_bootstrap_active = 1;
+	}
+}
+*/
 
 //add_filter( 'max_srcset_image_width', create_function( '', 'return 1;' ) );
 
