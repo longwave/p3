@@ -298,9 +298,35 @@ function pipdig_p3_dashboard_social_count_func() {
 						Twitch: <?php echo number_format_i18n($twitch); ?><br />
 					<?php } ?>
 					
-					<?php if (!empty($total)) { ?>
-						<strong>Total: <?php echo number_format_i18n($total); ?></strong>
-					<?php } ?>
+					<?php
+					$p3_stats_data = get_option('p3_stats_data');
+					
+					$diff_output = '';
+					$last_total = $second_last_total = 0;
+					
+					if (is_array($p3_stats_data)) {
+						
+						ksort($p3_stats_data, SORT_NUMERIC);
+						end($p3_stats_data);
+						$second_last = prev($p3_stats_data);
+						$second_last['date'] = 0;
+						$second_last_total = array_sum($second_last);
+						
+						$last = end($p3_stats_data);
+						$last['date'] = 0;
+						$last_total = array_sum($last);
+							
+						$diff = $last_total - $second_last_total;
+							
+						if ($diff > 0) {
+							$diff_output = ' <span style="color: green">+'.number_format_i18n($diff).' since yesterday</span>';
+						}
+
+					}
+					?>
+					
+					<strong>Total: <?php echo number_format_i18n($total).$diff_output; ?></strong>
+					
 			<p><input class="button" type="button" value="<?php esc_attr_e('View more stats', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-stats'); ?>';" /></p>
 			<p><input class="button" type="button" value="<?php esc_attr_e('Add more accounts', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-links'); ?>';" /></p>
 		<?php
