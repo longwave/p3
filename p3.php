@@ -19,8 +19,8 @@ function p3_php_version_notice() {
 	}
 	?>
 	<div class="notice notice-warning is-dismissible">
-		<h2><?php _e('PHP Warning!', 'p3'); ?></h2>
-		<p>Your current WordPress plugins require your site to be running PHP version 5.3.11 or higher. Please contact your web host so that they can assist you with <a href="https://wordpress.org/about/requirements/" target="_blank">fixing your current version</a> of PHP.</p>
+		<h2>PHP Warning</h2>
+		<p>Your web server is using an old, insecure version of PHP. Please contact your web host so that they can update your server to PHP version 5.6 or higher. If your host is unable to do this, you may wish to move to a <a href="https://goo.gl/AgzJjp" target="_blank">better WordPress host</a>.</p>
 	</div>
 	<?php
 }
