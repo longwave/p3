@@ -58,7 +58,7 @@ if (!function_exists('p3_instagram_fetch')) {
 				
 			$code = intval(json_decode($response['response']['code']));
 			
-			$save_for = 20; // minutes for transient
+			$save_for = 30; // minutes for transient
 			
 			if ($code === 200) {
 				$result = json_decode($response['body']);
