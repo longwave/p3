@@ -1,3 +1,21 @@
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
 @media only screen and (max-width: 992px) {
 	#p3_instagram_page {
 		padding-bottom: 15px;
@@ -46,7 +64,7 @@
 		margin: 10px 0;
 	}
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
 	#p3_feature_header_big_this_month, #p3_featured_panels {
 		display: none;
 	}
@@ -78,29 +96,6 @@
 	.entry-content .pipdig_banner_parallax {
 		background-attachment: scroll;
 	}
-}
-
-
-
-@media (min-width: 768px) {
-    .col-sm-5ths {
-        width: 20%;
-        float: left;
-    }
-}
-
-@media (min-width: 992px) {
-    .col-md-5ths {
-        width: 20%;
-        float: left;
-    }
-}
-
-@media (min-width: 1200px) {
-    .col-lg-5ths {
-        width: 20%;
-        float: left;
-    }
 }
 
 /* rs */
