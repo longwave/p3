@@ -75,8 +75,8 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 			
 			$social_sidebar .= '<div id="p3_social_sidebar" class="'.$position_class.'">';
 			
-			if (get_theme_mod('p3_social_sidebar_icon_color')) {
-				$social_sidebar .= '<style scoped>#p3_social_sidebar a {color:'.strip_tags(get_theme_mod('p3_social_sidebar_icon_color')).'}</style>';
+			if (get_theme_mod('p3_social_sidebar_icon_color') || get_theme_mod('p3_social_sidebar_icon_color_hover')) {
+				$social_sidebar .= '<style scoped>#p3_social_sidebar a {color:'.strip_tags(get_theme_mod('p3_social_sidebar_icon_color')).'}#p3_social_sidebar a:hover {color:'.strip_tags(get_theme_mod('p3_social_sidebar_icon_color_hover')).'}</style>';
 			}
 			
 			if($twitter && get_theme_mod('p3_social_sidebar_twitter', 1)) $social_sidebar .= '<a href="'.$twitter.'" target="_blank"><i class="fa fa-twitter"></i></a>';
@@ -170,6 +170,23 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 				array(
 					'label' => __( 'Icon color', 'p3' ),
 					'settings' => 'p3_social_sidebar_icon_color',
+					'section' => 'p3_social_sidebar_section',
+				)
+				)
+			);
+			
+			// icon color
+			$wp_customize->add_setting('p3_social_sidebar_icon_color_hover',
+				array(
+					'default' => '#999999',
+					//'transport'=>'postMessage',
+					'sanitize_callback' => 'sanitize_hex_color',
+				)
+			);
+			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_social_sidebar_icon_color_hover',
+				array(
+					'label' => __( 'Icon hover color', 'p3' ),
+					'settings' => 'p3_social_sidebar_icon_color_hover',
 					'section' => 'p3_social_sidebar_section',
 				)
 				)

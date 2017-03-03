@@ -122,8 +122,8 @@ class pipdig_widget_profile_function extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('description'); ?>"><?php _e('Add some text below the photo: (optional)', 'p3'); ?></label>
-			<textarea id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" class="widefat"><?php if (isset($instance['description'])) echo wp_kses_post($instance['description']); ?></textarea>
+			<label for="<?php echo $this->get_field_id('description'); ?>"><?php _e('Text to show below the photo: (optional)', 'p3'); ?></label>
+			<textarea id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" class="widefat" rows="4"><?php if (isset($instance['description'])) echo wp_kses_post($instance['description']); ?></textarea>
 		</p>
 
 
