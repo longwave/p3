@@ -6,7 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function pipdig_p3_instagram_shortcode( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'shape' => '',
-		//'comments' => 'yes'
+		'token' => '',
+		//'comments' => 'yes',
 	), $atts ) );
 	
 	//wp_enqueue_script( 'imagesloaded' ); // I know, I know :(
@@ -14,7 +15,7 @@ function pipdig_p3_instagram_shortcode( $atts, $content = null ) {
 	
 	$output = '';
 	
-	$images = p3_instagram_fetch(''); // grab images
+	$images = p3_instagram_fetch($token); // grab images
 	
 	if ($images) {
 		$output .= '
