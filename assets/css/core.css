@@ -44,8 +44,11 @@ cursor: pointer;
 .gallery img {
 border-color: transparent !important;
 }
+.wp-caption-text {
+line-height: 1.2;
+}
 
-.stp-outer, .bo-garden {max-width: 100% !important; width: 100% !important;} /* make RS shop the post widgets full width */
+.stp-outer, .bo-garden {max-width: 100% !important; width: 100% !important;}
 
 /* Jetpack */
 
