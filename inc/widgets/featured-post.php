@@ -90,7 +90,7 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 		$new_instance['hide_title'] = strip_tags($new_instance['hide_title']);
 		$new_instance['hide_excerpt'] = strip_tags($new_instance['hide_excerpt']);
 		$new_instance['hide_button'] = strip_tags($new_instance['hide_button']);
-		$new_instance['hide_button'] = strip_tags($new_instance['hide_label']);
+		$new_instance['hide_label'] = strip_tags($new_instance['hide_label']);
 		$new_instance['the_post'] = absint($new_instance['the_post']);
 
 		return $new_instance;
