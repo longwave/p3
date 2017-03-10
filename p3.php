@@ -5,13 +5,13 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.11.0
+Version: 2.11.1
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.11.0' );
+define( 'PIPDIG_P3_V', '2.11.1' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -336,10 +336,7 @@ add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 
 
 require_once 'plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = PucFactory::buildUpdateChecker(
-    'https://www.wpupdateserver.com/p3.json',
-    __FILE__
-);
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker('https://www.wpupdateserver.com/p3.json',__FILE__,'p3');
 
 // 1280 x 720
 // data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=

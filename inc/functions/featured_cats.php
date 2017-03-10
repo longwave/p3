@@ -3,7 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 
-function p3_featured_cats_puller($category) {
+function p3_featured_cats_puller($category, $col = 3) {
 	
 	$the_shape = absint(get_theme_mod('p3_featured_cats_shape'));
 	
@@ -38,7 +38,7 @@ function p3_featured_cats_puller($category) {
 			$post_cat = '';
 		}
 		?>
-		<div class="col-sm-3">
+		<div class="col-sm-<?php echo strip_tags($col); ?>">
 			<h3 class="widget-title"><span><?php echo get_cat_name($category); ?></span></h3>
 			<a href="<?php the_permalink(); ?>" class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
 				<img src="<?php echo $shape; ?>" class="p3_invisible" />
@@ -73,13 +73,52 @@ if (!function_exists('p3_featured_cats')) {
 		$text_color = get_theme_mod('p3_featured_cats_text_color', '#000');
 		$text_bg_color = get_theme_mod('p3_featured_cats_text_bg_color', '#fff');
 		
+		$count = 0;
+		if (!empty($post_cat_1)) {
+			$count++;
+		}
+		if (!empty($post_cat_2)) {
+			$count++;
+		}
+		if (!empty($post_cat_3)) {
+			$count++;
+		}
+		if (!empty($post_cat_4)) {
+			$count++;
+		}
+		
+		switch ( $count ) {
+			case 1:
+				$col = '12';
+				break;
+			case 2:
+				$col = '6';
+				break;
+			case 3:
+				$col = '4';
+				break;
+			case 4:
+				$col = '3';
+				break;
+		}
+		
 		?>
 		<div id="p3_featured_cats" class="row nopin">
 			
-			<?php p3_featured_cats_puller($post_cat_1); ?>
-			<?php p3_featured_cats_puller($post_cat_2); ?>
-			<?php p3_featured_cats_puller($post_cat_3); ?>
-			<?php p3_featured_cats_puller($post_cat_4); ?>
+			<?php
+			if (!empty($post_cat_1)) {
+				p3_featured_cats_puller($post_cat_1, $col);
+			}
+			if (!empty($post_cat_2)) {
+				p3_featured_cats_puller($post_cat_2, $col);
+			}
+			if (!empty($post_cat_3)) {
+				p3_featured_cats_puller($post_cat_3, $col);
+			}
+			if (!empty($post_cat_4)) {
+				p3_featured_cats_puller($post_cat_4, $col);
+			}
+			?>
 			
 			<div class="clearfix"></div>
 
@@ -117,6 +156,7 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Enable this feature', 'p3' ),
+					'description' => "Please note, you must select at least one category below",
 					'section' => 'p3_featured_cats_section',
 				)
 			);
@@ -130,7 +170,7 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 			);
 			$wp_customize->add_control('p3_featured_cats_shape',
 				array(
-					'type' => 'select',
+					'type' => 'radio',
 					'label' => __('Image shape', 'p3'),
 					'section' => 'p3_featured_cats_section',
 					'choices' => array(

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2017-02-24 16:55+0000\n"
+"POT-Creation-Date: 2017-03-07 14:05+0000\n"
 "PO-Revision-Date: 2015-09-07 12:44-0000\n"
 "Last-Translator: \n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
@@ -189,7 +189,7 @@ msgstr ""
 msgid "Settings saved."
 msgstr ""
 
-#: ../inc/dash.php:96
+#: ../inc/dash.php:103
 msgid "Your Followers"
 msgstr ""
 
@@ -699,6 +699,10 @@ msgstr ""
 msgid "Icon color"
 msgstr ""
 
+#: ../inc/functions/social-sidebar.php:188
+msgid "Icon hover color"
+msgstr ""
+
 #: ../inc/functions/top_menu_bar.php:14
 msgid "Top Menu Bar"
 msgstr ""
@@ -793,7 +797,7 @@ msgstr ""
 msgid "Hide the website header/logo"
 msgstr ""
 
-#: ../inc/shortcodes/pipdig_category_section.php:104
+#: ../inc/shortcodes/pipdig_category_section.php:109
 #: ../inc/shortcodes/pipdig_portfolio.php:41
 msgid "View All"
 msgstr ""
@@ -1235,7 +1239,7 @@ msgid "Change image to a circle"
 msgstr ""
 
 #: ../inc/widgets/profile.php:125
-msgid "Add some text below the photo: (optional)"
+msgid "Text to show below the photo: (optional)"
 msgstr ""
 
 #: ../inc/widgets/random-posts.php:9
@@ -1294,6 +1298,10 @@ msgstr ""
 
 #: ../inc/widgets/subscribe.php:45
 msgid "Enter your email"
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:48
+msgid "Subscribe"
 msgstr ""
 
 #: ../inc/widgets/subscribe.php:80
@@ -1382,11 +1390,7 @@ msgstr ""
 msgid "Display the video title"
 msgstr ""
 
-#: ../p3.php:22
-msgid "PHP Warning!"
-msgstr ""
-
-#: ../p3.php:133
+#: ../p3.php:156
 msgid "Howdy!"
 msgstr ""
 

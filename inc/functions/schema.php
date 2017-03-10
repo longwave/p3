@@ -8,33 +8,43 @@ function p3_schema_publisher() {
 		$logo_src = esc_url($logo['0']);
 		$logo_width = intval($logo['1']);
 		$logo_height = intval($logo['2']);
-		?>
-		<div itemprop='publisher' itemscope='itemscope' itemtype='https://schema.org/Organization'>
-			<div itemprop='logo' itemscope='itemscope' itemtype='https://schema.org/ImageObject'>
-				<img style='display:none;' src='<?php echo $logo_src; ?>'/>
-				<meta itemprop='url' content='<?php echo $logo_src; ?>'/>
-				<meta itemprop='width' content='<?php echo $logo_width; ?>'/>
-				<meta itemprop='height' content='<?php echo $logo_height; ?>'/>
-			</div>
-			<meta itemprop='name' content='<?php echo esc_attr(get_bloginfo('name')); ?>'/>
-		</div>
-	<?php
+	} else {
+		$logo_src = 'https://i.imgur.com/f85XGXL.png';
+		$logo_width = 600;
+		$logo_height = 60;
 	}
-	if ( has_post_thumbnail() ) {
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+	?>
+	<span class="vcard author show-author" style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+		<span class="fn" itemprop="name"><?php the_author_posts_link(); ?></span>
+	</span>
+	<div itemprop="publisher" itemscope="itemscope" itemtype="https://schema.org/Organization">
+		<div itemprop="logo" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
+			<img style="display:none" src="<?php echo $logo_src; ?>"/>
+			<meta itemprop="url" content="<?php echo $logo_src; ?>"/>
+			<meta itemprop="width" content="<?php echo $logo_width; ?>"/>
+			<meta itemprop="height" content="<?php echo $logo_height; ?>"/>
+		</div>
+		<meta itemprop="name" content="<?php echo esc_attr(get_bloginfo('name')); ?>"/>
+	</div>
+	<?php
+	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+	if ($thumb) {
 		$thumb_src = esc_url($thumb['0']);
 		$thumb_width = intval($thumb['1']);
 		$thumb_height = intval($thumb['2']);
-		?>
-		<div itemprop="image" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
-			<img style="display:none;" src="<?php echo $thumb_src; ?>"/>
-			<meta itemprop="url" content="<?php echo $thumb_src; ?>"/>
-			<meta itemprop="width" content="<?php echo $thumb_width; ?>"/>
-			<meta itemprop="height" content="<?php echo $thumb_height; ?>"/>
-		</div>
-	<?php
+	} else {
+		$thumb_src = 'https://pipdigz.co.uk/p3/img/placeholder-square.png';
+		$thumb_width = 500;
+		$thumb_height = 500;
 	}
-
+	?>
+	<div itemprop="image" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
+		<img style="display:none" src="<?php echo $thumb_src; ?>"/>
+		<meta itemprop="url" content="<?php echo $thumb_src; ?>"/>
+		<meta itemprop="width" content="<?php echo $thumb_width; ?>"/>
+		<meta itemprop="height" content="<?php echo $thumb_height; ?>"/>
+	</div>
+	<?php
 }
 add_action('p3_content_end', 'p3_schema_publisher');
 

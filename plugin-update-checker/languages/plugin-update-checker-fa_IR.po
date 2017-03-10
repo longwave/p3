@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugin-update-checker\n"
 "POT-Creation-Date: 2016-02-17 14:21+0100\n"
-"PO-Revision-Date: 2016-08-04 21:08+0200\n"
+"PO-Revision-Date: 2016-10-28 14:30+0330\n"
 "Last-Translator: studio RVOLA <hello@rvola.com>\n"
-"Language-Team: studio RVOLA <http://www.rvola.com>\n"
-"Language: fr_FR\n"
+"Language-Team: Pro Style <info@prostyle.ir>\n"
+"Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,21 +18,21 @@ msgstr ""
 
 #: github-checker.php:120
 msgid "There is no changelog available."
-msgstr "Il n’y a aucun journal de mise à jour disponible."
+msgstr "شرحی برای تغییرات  یافت نشد"
 
 #: plugin-update-checker.php:637
 msgid "Check for updates"
-msgstr "Vérifier les mises à jour"
+msgstr "بررسی برای بروزرسانی "
 
 #: plugin-update-checker.php:681
 msgid "This plugin is up to date."
-msgstr "Cette extension est à jour."
+msgstr "شما از آخرین نسخه استفاده میکنید . به‌روز باشید"
 
 #: plugin-update-checker.php:683
 msgid "A new version of this plugin is available."
-msgstr "Une nouvelle version de cette extension est disponible."
+msgstr "نسخه جدیدی برای افزونه ارائه شده است ."
 
 #: plugin-update-checker.php:685
 #, php-format
 msgid "Unknown update checker status \"%s\""
-msgstr "Un problème inconnu est survenu \"%s\""
+msgstr "وضعیت ناشناخته برای بروزرسانی \"%s\""

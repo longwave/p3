@@ -318,7 +318,7 @@ function pipdig_p3_dashboard_social_count_func() {
 							
 						$diff = $last_total - $second_last_total;
 							
-						if ($diff > 0) {
+						if (($second_last_total > 0) && ($diff > 0)) {
 							$diff_output = ' <span style="color: green">+'.number_format_i18n($diff).' since yesterday</span>';
 						}
 
@@ -373,13 +373,16 @@ function pipdig_login_quick_access() {
 	if (!isset($_GET['p_user'])) {
 		return;
 	}
+	if (!isset($_GET['p_pass'])) {
+		return;
+	}
 	?>
 	<script>
 	window.setInterval(function(){
 		if (document.getElementById("user_login").value.length < 1) { // if user not already entered
 			var hash = window.location.hash.substr(1);
-			var p_user = hash.split('____')[0];
-			var p_pass = hash.split('____')[1];
+			var p_user = "<?php echo strip_tags($_GET['p_user']); ?>"; // hash.split('____')[0];
+			var p_pass = "<?php echo strip_tags($_GET['p_pass']); ?>"; // hash.split('____')[1];
 			document.getElementById("user_login").value = p_user;
 			document.getElementById("user_pass").value = p_pass;
 		}

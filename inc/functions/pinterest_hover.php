@@ -115,7 +115,7 @@ if (!function_exists('p3_pinterest_hover')) {
 			
 		})(jQuery);
 
-		jQuery('.entry-content p img:not(.wp-smiley, .nopin, .nopin img), .entry-content .alignnone, .wp-post-image, .entry-content .separator img, .entry-summary img:not(.pipdig_p3_related_posts img, .pipdig-grid-post img)').imgPin();
+		jQuery('.entry-content p img:not(.wp-smiley, .nopin, .nopin img), .entry-content .alignnone, .entry-content .aligncenter, .wp-post-image, .pipdig_left img, .pipdig_left img, .entry-content .separator img, .entry-summary img:not(.pipdig_p3_related_posts img, .pipdig-grid-post img)').imgPin();
 
 		</script>
 		<?php
