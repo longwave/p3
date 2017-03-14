@@ -35,7 +35,6 @@ if (!function_exists('p3_related_posts')) {
 		
 		$output = '';
 		global $post;
-		$date_range = get_theme_mod( 'related_posts_date', '' );
 		$orig_post = $post;
 		$categories = get_the_category($post->ID);
 		if ($categories) {
@@ -49,7 +48,7 @@ if (!function_exists('p3_related_posts')) {
 					'orderby' => 'rand',
 					'date_query' => array(
 						array(
-							'after' => $date_range,
+							'after' => get_theme_mod( 'related_posts_date', '1 year ago' ),
 						),
 					),
 					)
