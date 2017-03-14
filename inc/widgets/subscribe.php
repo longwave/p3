@@ -77,8 +77,8 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 			value="<?php echo esc_attr($title); ?>" />
 		</p>
 		
-		<p>1. <?php _e('If you have not already setup FeedBurner with your site, you will need to by following <a href="http://goo.gl/udSrVR" target="_blank">this guide</a>.', 'p3'); ?></p>
-		<p>2. <?php _e('Add your FeedBurner ID to the box below.', 'p3'); ?></p>
+		<p>Please see <a href="https://support.pipdig.co/articles/wordpress-email-subscribe-widget/" target="_blank">this page</a> for information on how to setup this FeedBurner and this widget.</p>
+		<p>If you have alredy connected your site to FeedBurner, you can add your FeedBurner ID to the box below.</p>
 		<p><?php _e('For example, the red part below:', 'p3'); ?><br />
 		http://feeds.feedburner.com/<span style="color:red;">TheLovecatsInc</span></p>
 
