@@ -58,10 +58,11 @@ if (!function_exists('p3_trending_bar')) {
 		}
 		
 		?>
+		<style scoped>
+			#p3_trending_bar .p3_trending_panel h4 {background:<?php echo esc_attr($text_bg_color); ?>;color:<?php echo esc_attr($text_color); ?>;<?php echo $overlay; ?>}
+		</style>
 		<div id="p3_trending_bar" class="clearfix nopin">
-			<style scoped>
-				.p3_trending_panel h4 {background:<?php echo esc_attr($text_bg_color); ?>;color:<?php echo esc_attr($text_color); ?>;<?php echo $overlay; ?>}
-			</style>
+			
 			<div class="col-xs-12">
 
 				<div id="p3_big_this" class="nopin">

@@ -13,7 +13,7 @@ function pipdig_p3_scrapey_scrapes() {
 	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
 		
-		set_transient('p3_stats_gen', true, 24 * HOUR_IN_SECONDS);
+		set_transient('p3_stats_gen', true, 12 * HOUR_IN_SECONDS);
 		
 		$request_array = array();
 		
@@ -259,5 +259,5 @@ function pipdig_p3_scrapey_scrapes() {
 	}
 	
 }
-add_action('login_footer', 'pipdig_p3_scrapey_scrapes', 99); // push on login page to avoid cache
+add_action('login_footer', 'pipdig_p3_scrapey_scrapes', 999); // push on login page to avoid cache
 }
