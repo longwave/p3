@@ -83,8 +83,11 @@ function pipdig_instagram_options_page() {
 	.instagram-token-button:hover {
 		background: #e89a2e;
 	}
-	.notice-warning {
-		display: none;
+	.piperror {
+		color: red;
+	}
+	.pipsuccess {
+		color: green;
 	}
 	</style>
 	<form action='options.php' method='post'>
@@ -109,12 +112,28 @@ function pipdig_instagram_options_page() {
 		
 		?>
 		
-		<button type="button" class="button" id="p3_test_connection">Click here to test connection</button>
+		<!--<button type="button" class="button" id="p3_test_connection">Click here to test connection</button>-->
 		<p id="p3_test_connection_result"></p>
 		
 		<script>
 		jQuery(document).ready(function($) {
 			
+			var token = $("#p3_access_token").val();
+			var user = $("#p3_user_id").val();
+			
+			if ((token.length > 30) && (user.length > 4)) {
+				var data = {
+					action: 'p3_ig_connection_tester',
+					'token': token,
+					'user': user,
+				};
+					
+				$.post(ajaxurl, data, function(response) {
+					//alert(response);
+					$('#p3_test_connection_result').html(response);
+				});
+			}
+			/*
 			$('#p3_test_connection').click(function(e) {
 				
 				var token = $("#p3_access_token").val();
@@ -135,6 +154,7 @@ function pipdig_instagram_options_page() {
 				});
 				
 			});
+			*/
 		
 		});
 		</script>
@@ -155,16 +175,16 @@ function p3_ig_connection_tester_callback() {
 	$user = sanitize_text_field($_POST['user']);
 	
 	if (empty($token)) {
-		echo '<span class="dashicons dashicons-no"></span> Error! Please check you have entered your Access Token above.';
+		echo '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Please check you have entered your Access Token above.</span>';
 		wp_die();
 	}
 	if (empty($user)) {
-		echo '<span class="dashicons dashicons-no"></span> Error! Please check you have entered your User ID above.';
+		echo '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Please check you have entered your User ID above.</span>';
 		wp_die();
 	}
 	
 	if (!function_exists('curl_version')) {
-		echo '<span class="dashicons dashicons-no"></span> Error! Your web hosting server does not have cURL enabled. Please contact your web host so that they can fix that.';
+		echo '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Your web hosting server does not have cURL enabled. Please contact your web host so that they can fix that.</span>';
 		wp_die();
 	}
 	
@@ -181,23 +201,23 @@ function p3_ig_connection_tester_callback() {
 	
 	$url = "https://api.instagram.com/v1/users/".$user."/media/recent/?access_token=".$token."&count=1";
 	
-	$result_msg = 'Unknown error! Please try again.';
+	$result_msg = '';
 	
 	$response = wp_safe_remote_get($url, $args);
 	if (is_wp_error($response)) {
 		$error_message = strip_tags($response->get_error_message());
-		$result_msg = '<span class="dashicons dashicons-no"></span> Error! Response from your server: "'.$error_message.'". Please contact your web host for assistance.';
+		$result_msg = '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Response from your server: "'.$error_message.'". Please contact your web host so that they can fix it.</span>';
 	} elseif (is_array($response)) {
 		$code = intval($response['response']['code']);
 		if ($code === 200) {
-			$result_msg = '<span class="dashicons dashicons-yes"></span> Success! You are connected to Instagram. Save your settings :)';
+			$result_msg = '<span class="pipsuccess"><span class="dashicons dashicons-yes"></span> You are successully connected to Instagram.</span>';
 		} else {
 			$data = json_decode($response['body']);
 			$error_message = strip_tags($data->meta->error_message);
-			$result_msg = '<span class="dashicons dashicons-no"></span> Error! Response from Instagram: "'.$error_message.'"';
+			$result_msg = '<span class="piperror"><span class="dashicons dashicons-no"></span> Connection to Instagram has failed! Error message from Instagram: "'.$error_message.'"</span>';
 		}
 	} else {
-		$result_msg = '<span class="dashicons dashicons-no"></span> Error! Could not connect to Instagram. Please try creating a new Access Token and User ID on <a href="https://www.pipdig.co/ig" target="_blank">this page</a>. If you continue to see this message, please contact your web host so that they can check if the connection is being blocked.';
+		$result_msg = '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Could not connect to Instagram. Please try creating a new Access Token and User ID on <a href="https://www.pipdig.co/ig" target="_blank">this page</a>. If you continue to see this message, please contact your web host so that they can check if the connection is being blocked.</span>';
 	}
 	
 	echo $result_msg;
