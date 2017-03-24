@@ -20,7 +20,7 @@ function p3_php_version_notice() {
 	?>
 	<div class="notice notice-warning is-dismissible">
 		<h2>PHP Warning</h2>
-		<p>Your web server is using an old, insecure version of PHP. Please contact your web host so that they can update your server to PHP version 5.6 or higher. If your host is unable to do this, you may wish to move to a <a href="https://goo.gl/AgzJjp" target="_blank">better WordPress host</a>.</p>
+		<p>Your web server is using an insecure version of PHP. Please contact your web host so that they can update your server to PHP 5.6 or higher.</p>
 	</div>
 	<?php
 }
@@ -118,6 +118,28 @@ include('inc/shortcodes.php');
 include('inc/cron.php');
 include('inc/beaver.php');
 
+
+function pipdig_change_posts_number_theme() {
+if (get_option('pipdig_p3_posts_per_page_set') != 1) { // legacy check
+	if (get_option('pipdig_p3_posts_per_page_set_'.get_template()) != 1) {
+		if (get_option('pipdig_theme') == 'aquae') {
+			update_option('posts_per_page', 13);
+		} elseif (get_option('pipdig_theme') == 'hollyandweave') {
+			update_option('posts_per_page', 8);
+		} elseif (get_option('pipdig_theme') == 'galvani') {
+			update_option('posts_per_page', 12);
+		} elseif (get_option('pipdig_theme') == 'thegrid') {
+			update_option('posts_per_page', 6);
+		} else {
+			update_option('posts_per_page', 5);
+		}
+		update_option('pipdig_p3_posts_per_page_set_'.get_template(), 1);
+	}
+}
+}
+add_action( 'plugins_loaded', 'pipdig_change_posts_number_theme');
+
+
 function p3_new_install_notice() {
 
 	if (current_user_can('manage_options')) {
@@ -203,21 +225,6 @@ function pipdig_p3_activate() {
 	update_option('imsanity_quality', 78);
 	update_option('imsanity_bmp_to_jpg', 0);
 	
-	if (get_option('pipdig_p3_posts_per_page_set') != 1) { // legacy check
-		if (get_option('pipdig_p3_posts_per_page_set_'.get_template()) != 1) {
-			if (get_option('pipdig_theme') == 'aquae') {
-				update_option('posts_per_page', 13);
-			} elseif (get_option('pipdig_theme') == 'galvani') {
-				update_option('posts_per_page', 12);
-			} elseif (get_option('pipdig_theme') == 'thegrid') {
-				update_option('posts_per_page', 6);
-			} else {
-				update_option('posts_per_page', 5);
-			}
-			update_option('pipdig_p3_posts_per_page_set_'.get_template(), 1);
-		}
-	}
-		
 	if (!get_option('rss_use_excerpt') && (get_option('pipdig_p3_rss_use_excerpt_set') != 1)) {
 		update_option('posts_per_rss', 10);
 		update_option('rss_use_excerpt', 1);

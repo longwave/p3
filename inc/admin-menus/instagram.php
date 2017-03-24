@@ -112,8 +112,12 @@ function pipdig_instagram_options_page() {
 		
 		?>
 		
+		<p>After connecting your account, you can setup our <a href="https://support.pipdig.co/articles/wordpress-how-to-create-and-use-widgets/" target="_blank">Instagram Widget</a> and <a href="https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/" target="_blank">Instagram Feed</a> options</p>
+		
 		<!--<button type="button" class="button" id="p3_test_connection">Click here to test connection</button>-->
-		<p id="p3_test_connection_result"></p>
+		
+		<h2 style="border-top: 2px dotted #ccc; margin-top: 20px; padding-top: 20px;">Connection Status</h2>
+		<p id="p3_test_connection_result">This section will show your current connection status to Instagram.</p>
 		
 		<script>
 		jQuery(document).ready(function($) {
@@ -159,8 +163,6 @@ function pipdig_instagram_options_page() {
 		});
 		</script>
 		
-		<p>After connecting your account, you can setup our <a href="https://support.pipdig.co/articles/wordpress-how-to-create-and-use-widgets/" target="_blank">Instagram Widget</a> and <a href="https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/" target="_blank">Instagram Feed</a> options</p>
-		
 		</div><!--// .card -->
 			
 	</form>
@@ -180,6 +182,10 @@ function p3_ig_connection_tester_callback() {
 	}
 	if (empty($user)) {
 		echo '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Please check you have entered your User ID above.</span>';
+		wp_die();
+	}
+	if (!is_numeric($user)) {
+		echo '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Your User ID should be a number.</span>';
 		wp_die();
 	}
 	

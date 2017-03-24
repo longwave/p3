@@ -37,7 +37,6 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$rss = empty($instance['rss']) ? '' : esc_attr($instance['rss']);
 		//$style_select = empty($instance['style_select']) ? '' : $instance['style_select'];
 
-	
 		if (isset($instance['style_select'])) { 
 			$style_select = $instance['style_select'];
 		} else {
@@ -228,6 +227,18 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		</p>
 
 		<hr style="margin: 25px 0 10px;">
+		
+		<!--
+		<button type="button" class="button" id="p3_import_socialz_btn">Copy social links</button>
+		
+		<script>
+		jQuery(document).ready(function($) {
+			$('#p3_import_socialz_btn').click(function(e) {
+				alert('tt');
+			});
+		});
+		</script>
+		-->
 		
 		<h3><?php _e('Add your links:', 'p3'); ?></h3>
 		

@@ -37,7 +37,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 				$number = 1;
 			}
 			
-			$videos = p3_youtube_fetch($channel_id, $number); // grab videos
+			$videos = p3_youtube_fetch($channel_id); // grab videos
 			
 			//print_r($videos);
 			

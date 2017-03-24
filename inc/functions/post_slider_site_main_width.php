@@ -47,11 +47,21 @@ if (!function_exists('p3_full_width_slider_site_main')) {
 								
 							while ($the_query -> have_posts()) : $the_query -> the_post();
 
-								$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
-								if ($thumb) {
-									$bg = esc_url($thumb['0']);
-								} else {
-									$bg = pipdig_p3_catch_that_image();
+								$images = '';
+								if (function_exists('rwmb_meta')) {
+									$images = rwmb_meta( 'pipdig_meta_rectangle_slider_image', 'type=image&size=full' );
+								}
+								if ($images){ // if an image has been added via meta box
+									foreach ( $images as $image ) {
+										$bg = esc_url($image['url']);
+									}
+								} else { // if no meta box image, use featured as fallback
+									$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
+									if ($thumb) {
+										$bg = esc_url($thumb['0']);
+									} else {
+										$bg = pipdig_catch_that_image();
+									}
 								}
 						?>
 						<li>

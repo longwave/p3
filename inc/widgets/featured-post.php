@@ -60,7 +60,7 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 				$link = esc_url(get_permalink());
 				
 				$featured_text = '';
-				if (empty($instance['hide_title'])) {
+				if (empty($instance['hide_label'])) {
 					$featured_text = '<div style="position: absolute; left: 0; top: 15px; background: #fff; color: #000; padding: 2px 5px;">'.__('Featured', 'p3').'</div>';
 				}
 				if (empty($instance['hide_image'])) {

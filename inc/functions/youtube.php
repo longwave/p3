@@ -23,8 +23,8 @@ function p3_youtube_fetch($channel_id) {
 			update_option('pipdig_youtube_channels', $youtube_channels);
 		}
 	
-		$key = 'AIzaSyAttqQSW7MI7kKcdmrYL2jl1t9Shw1bMwE'; // red marker
-		$key = 'AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c';
+		$key = 'AIzaSyAttqQSW7MI7kKcdmrYL2jl1t9Shw1bMwE'; // red marker for interna use
+		$key = 'AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c'; // blue marker
 		
 		if ( false === ( $videos = get_transient( 'p3_youtube_'.$channel_id ) )) {
 			$url = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key='.$key.'&maxResults=20';
@@ -44,17 +44,15 @@ function p3_youtube_fetch($channel_id) {
 						
 						$id = strip_tags($response->items[$i]->id->videoId);
 						
-						/*
-						$max_res_url = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
-						$max = get_headers($max_res_url);
-						if (substr($max[0], 9, 3) !== '404') {
-							$thumbnail = $max_res_url;   
-						} else {
-							$thumbnail = "https://img.youtube.com/vi/".$id."/mqdefault.jpg";
-						}
-						*/
-						
 						$thumbnail = "https://img.youtube.com/vi/".$id."/0.jpg";
+						
+						if ($i < 5) { // First 4 get special treatment. Open the red carpet.
+							$max_res_url = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
+							$max = get_headers($max_res_url);
+							if (substr($max[0], 9, 3) !== '404') {
+								$thumbnail = $max_res_url;
+							}
+						}
 						
 						$videos[$i] = array (
 							'id' => $id,

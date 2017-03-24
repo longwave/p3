@@ -27,6 +27,15 @@ position: relative;
 .p3_cover_me a {
 display: block;
 }
+.p3_hide_me {
+visibility: hidden;
+opacity: 0;
+-moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out;
+}
+.p3_show_me {
+visibility: visible !important;
+opacity: 1 !important;
+}
 
 .top-socialz {
 float: right;
