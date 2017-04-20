@@ -112,9 +112,11 @@ if (!function_exists('p3_featured_panels')) {
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_1); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_1); ?>" class="p3_invisible" />
 						</div>
+						<?php if (!empty($title_1)) { ?>
 						<div class='p3_feature_panel_overlay'>
 							<h3><?php echo esc_html($title_1); ?></h3>
 						</div>
+						<?php } ?>
 					</a>
 				</div>
 				<?php } ?>
@@ -125,9 +127,11 @@ if (!function_exists('p3_featured_panels')) {
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_2); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_2); ?>" class="p3_invisible" />
 						</div>
+						<?php if (!empty($title_2)) { ?>
 						<div class='p3_feature_panel_overlay'>
 							<h3><?php echo esc_html($title_2); ?></h3>
 						</div>
+						<?php } ?>
 					</a>
 				</div>
 				<?php } ?>
@@ -138,9 +142,11 @@ if (!function_exists('p3_featured_panels')) {
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_3); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_3); ?>" class="p3_invisible" />
 						</div>
+						<?php if (!empty($title_3)) { ?>
 						<div class='p3_feature_panel_overlay'>
 							<h3><?php echo esc_html($title_3); ?></h3>
 						</div>
+						<?php } ?>
 					</a>
 				</div>
 				<?php } ?>
@@ -151,9 +157,11 @@ if (!function_exists('p3_featured_panels')) {
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_4); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_4); ?>" class="p3_invisible" />
 						</div>
+						<?php if (!empty($title_4)) { ?>
 						<div class='p3_feature_panel_overlay'>
 							<h3><?php echo esc_html($title_4); ?></h3>
 						</div>
+						<?php } ?>
 					</a>
 				</div>
 				<?php } ?>

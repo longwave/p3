@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if (p3_theme_enabled(array('galvani', 'opulence', 'thegrid', 'blossom'))) {
+if (p3_theme_enabled(array('galvani', 'opulence', 'thegrid', 'blossom', 'crystal'))) {
 	return;
 }
 
@@ -100,7 +100,7 @@ if (!class_exists('pipdig_post_slider_posts_column_Customize')) {
 			$wp_customize->add_section( 'p3_post_slider_posts_column_section', 
 				array(
 					'title' => __( 'Small Posts Slider', 'p3' ),
-					'description'=> __( 'Display 4 recent posts in a slider at the top of your homepage posts section.', 'p3' ),
+					'description'=> 'Display a slidre of recent posts at the top of your homepage posts section. Works best when there is also a sidebar on the homepage.',
 					'capability' => 'edit_theme_options',
 					//'panel' => 'pipdig_features',
 					'priority' => 106,

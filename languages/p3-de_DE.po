@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2017-02-01 12:47+0000\n"
-"PO-Revision-Date: 2017-04-19 12:16+0100\n"
+"POT-Creation-Date: 2017-02-22 12:56+0000\n"
+"PO-Revision-Date: 2017-04-11 11:55+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
-"Language: pl_PL\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -104,33 +104,32 @@ msgstr ""
 msgid "WARNING: these options can break your site. Use with caution."
 msgstr ""
 
-#: ../inc/admin-menus/hooks.php:172 ../inc/functions/navbar_icons.php:116
-#: ../inc/functions/social-sidebar.php:117 ../inc/functions/top_menu_bar.php:49
+#: ../inc/admin-menus/hooks.php:172 ../inc/functions/navbar_icons.php:120
+#: ../inc/functions/social-sidebar.php:121 ../inc/functions/top_menu_bar.php:49
 msgid "Click here for more information"
 msgstr ""
 
 #: ../inc/admin-menus/instagram.php:65
-msgid "Click here to authorize your Instagram account"
+msgid "Click here to connect your Instagram account"
 msgstr ""
 
 #: ../inc/admin-menus/instagram.php:66
 msgid ""
-"Once you have authorized your account, copy and paste your Access Token "
-"below:"
+"Once you have connected your account, copy and paste your Access Token below:"
 msgstr ""
 
-#: ../inc/admin-menus/links.php:257
+#: ../inc/admin-menus/links.php:270
 msgid "Add the links to each social media page below:"
 msgstr ""
 
-#: ../inc/admin-menus/links.php:258
+#: ../inc/admin-menus/links.php:271
 #, php-format
 msgid ""
 "Any links added can then be used across your website, such as on <a href=\"%s"
 "\">this page</a>."
 msgstr ""
 
-#: ../inc/admin-menus/links.php:279
+#: ../inc/admin-menus/links.php:292
 #, php-format
 msgid ""
 "If you find that certain social network counters are not working correctly, "
@@ -193,15 +192,15 @@ msgstr ""
 
 #: ../inc/functions.php:243
 msgid "Leave a comment"
-msgstr "Skomentuj"
+msgstr ""
 
 #: ../inc/functions.php:245
 msgid "1 Comment"
-msgstr "1 komentarz"
+msgstr ""
 
 #: ../inc/functions.php:247
 msgid "Comments"
-msgstr "Komentarze"
+msgstr ""
 
 #: ../inc/functions.php:257
 msgid "Older Comments"
@@ -233,7 +232,7 @@ msgstr ""
 #: ../inc/functions/post_slider_posts_column.php:121
 #: ../inc/functions/post_slider_site_main_width.php:132
 #: ../inc/functions/post_slider_site_main_width_sq.php:102
-#: ../inc/functions/social-sidebar.php:133 ../inc/functions/trending.php:137
+#: ../inc/functions/social-sidebar.php:137 ../inc/functions/trending.php:137
 msgid "Enable this feature"
 msgstr ""
 
@@ -254,14 +253,14 @@ msgid "Date range for \"Big this Month\":"
 msgstr ""
 
 #: ../inc/functions/feature_header.php:229
-#: ../inc/functions/related-posts.php:150 ../inc/functions/trending.php:232
+#: ../inc/functions/related-posts.php:133 ../inc/functions/trending.php:232
 #: ../inc/widgets/popular-posts.php:73 ../inc/widgets/post-slider.php:60
 #: ../inc/widgets/random-posts.php:63
 msgid "1 Week"
 msgstr ""
 
 #: ../inc/functions/feature_header.php:230
-#: ../inc/functions/related-posts.php:149 ../inc/functions/trending.php:233
+#: ../inc/functions/related-posts.php:132 ../inc/functions/trending.php:233
 #: ../inc/widgets/popular-posts.php:74 ../inc/widgets/post-slider.php:61
 #: ../inc/widgets/random-posts.php:64
 msgid "1 Month"
@@ -278,14 +277,14 @@ msgid "6 Months"
 msgstr ""
 
 #: ../inc/functions/feature_header.php:233
-#: ../inc/functions/related-posts.php:148 ../inc/functions/trending.php:236
+#: ../inc/functions/related-posts.php:131 ../inc/functions/trending.php:236
 #: ../inc/widgets/popular-posts.php:77 ../inc/widgets/post-slider.php:62
 #: ../inc/widgets/random-posts.php:67
 msgid "1 Year"
 msgstr ""
 
 #: ../inc/functions/feature_header.php:234
-#: ../inc/functions/related-posts.php:151 ../inc/functions/trending.php:237
+#: ../inc/functions/related-posts.php:134 ../inc/functions/trending.php:237
 #: ../inc/widgets/popular-posts.php:78 ../inc/widgets/post-slider.php:63
 #: ../inc/widgets/random-posts.php:68
 msgid "All Time"
@@ -351,7 +350,7 @@ msgstr ""
 
 #: ../inc/functions/featured_cats.php:134
 #: ../inc/functions/featured_panels.php:224
-#: ../inc/functions/related-posts.php:188 ../inc/functions/trending.php:187
+#: ../inc/functions/related-posts.php:171 ../inc/functions/trending.php:187
 msgid "Image shape"
 msgstr ""
 
@@ -401,15 +400,16 @@ msgid "Upload a custom image"
 msgstr ""
 
 #: ../inc/functions/full_screen_landing_image.php:246
-#: ../inc/functions/related-posts.php:260 ../inc/functions/shares.php:125
+#: ../inc/functions/related-posts.php:243 ../inc/functions/shares.php:125
 #: ../inc/widgets/clw.php:176 ../inc/widgets/depop.php:66
-#: ../inc/widgets/facebook.php:84 ../inc/widgets/image.php:92
-#: ../inc/widgets/instagram.php:130 ../inc/widgets/pinterest.php:126
-#: ../inc/widgets/popular-posts.php:49 ../inc/widgets/post-slider.php:50
-#: ../inc/widgets/profile.php:92 ../inc/widgets/random-posts.php:47
-#: ../inc/widgets/snapcode.php:94 ../inc/widgets/socialz.php:214
-#: ../inc/widgets/subscribe.php:74 ../inc/widgets/twitter.php:94
-#: ../inc/widgets/we-heart-it.php:74 ../inc/widgets/youtube.php:106
+#: ../inc/widgets/facebook.php:84 ../inc/widgets/featured-post.php:108
+#: ../inc/widgets/image.php:92 ../inc/widgets/instagram.php:130
+#: ../inc/widgets/pinterest.php:130 ../inc/widgets/popular-posts.php:49
+#: ../inc/widgets/post-slider.php:50 ../inc/widgets/profile.php:92
+#: ../inc/widgets/random-posts.php:47 ../inc/widgets/snapcode.php:94
+#: ../inc/widgets/socialz.php:212 ../inc/widgets/subscribe.php:74
+#: ../inc/widgets/twitter.php:94 ../inc/widgets/we-heart-it.php:74
+#: ../inc/widgets/youtube.php:106
 msgid "Title:"
 msgstr ""
 
@@ -472,7 +472,7 @@ msgid "Display feed across the footer"
 msgstr ""
 
 #: ../inc/functions/instagram.php:544 ../inc/widgets/instagram.php:149
-#: ../inc/widgets/pinterest.php:146
+#: ../inc/widgets/pinterest.php:150
 msgid "Number of images to display:"
 msgstr ""
 
@@ -488,11 +488,11 @@ msgstr ""
 msgid "Display Comments & Likes count on hover"
 msgstr ""
 
-#: ../inc/functions/navbar_icons.php:115
+#: ../inc/functions/navbar_icons.php:119
 msgid "Navbar Icons"
 msgstr ""
 
-#: ../inc/functions/navbar_icons.php:116
+#: ../inc/functions/navbar_icons.php:120
 msgid ""
 "You can display your social icons in the navbar using these options. Select "
 "the social icons you would like to add from below."
@@ -602,7 +602,7 @@ msgid "Display post title"
 msgstr ""
 
 #: ../inc/functions/post_slider_posts_column.php:195
-#: ../inc/functions/related-posts.php:209 ../inc/functions/trending.php:321
+#: ../inc/functions/related-posts.php:192 ../inc/functions/trending.php:321
 msgid "Post title length (words)"
 msgstr ""
 
@@ -611,37 +611,37 @@ msgstr ""
 msgid "Large Rectangle Slider"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:33 ../inc/functions/related-posts.php:263
+#: ../inc/functions/related-posts.php:33 ../inc/functions/related-posts.php:246
 msgid "You may also enjoy:"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:126
+#: ../inc/functions/related-posts.php:109
 msgid "Related Posts"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:127
+#: ../inc/functions/related-posts.php:110
 msgid "Related Posts are displayed from the same category."
 msgstr ""
 
-#: ../inc/functions/related-posts.php:145 ../inc/functions/trending.php:229
+#: ../inc/functions/related-posts.php:128 ../inc/functions/trending.php:229
 #: ../inc/widgets/popular-posts.php:71 ../inc/widgets/post-slider.php:58
 #: ../inc/widgets/random-posts.php:61
 msgid "Date range for posts:"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:167
+#: ../inc/functions/related-posts.php:150
 msgid "Number of posts to display"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:168
+#: ../inc/functions/related-posts.php:151
 msgid "Maximum = 4"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:230
+#: ../inc/functions/related-posts.php:213
 msgid "Don't display on homepage"
 msgstr ""
 
-#: ../inc/functions/related-posts.php:246
+#: ../inc/functions/related-posts.php:229
 msgid "Don't display on posts"
 msgstr ""
 
@@ -666,29 +666,29 @@ msgstr ""
 msgid "Select this option to completely remove this feature."
 msgstr ""
 
-#: ../inc/functions/social-sidebar.php:116
+#: ../inc/functions/social-sidebar.php:120
 msgid "Social Sidebar"
 msgstr ""
 
-#: ../inc/functions/social-sidebar.php:117
+#: ../inc/functions/social-sidebar.php:121
 msgid ""
 "This feature will display a social follow section to the left/right of your "
 "site. Select the social icons you would like to add from below."
 msgstr ""
 
-#: ../inc/functions/social-sidebar.php:148
+#: ../inc/functions/social-sidebar.php:152
 msgid "Position"
 msgstr ""
 
-#: ../inc/functions/social-sidebar.php:151
+#: ../inc/functions/social-sidebar.php:155
 msgid "Left"
 msgstr ""
 
-#: ../inc/functions/social-sidebar.php:152
+#: ../inc/functions/social-sidebar.php:156
 msgid "Right"
 msgstr ""
 
-#: ../inc/functions/social-sidebar.php:167
+#: ../inc/functions/social-sidebar.php:171
 msgid "Icon color"
 msgstr ""
 
@@ -792,14 +792,14 @@ msgid "View All"
 msgstr ""
 
 #: ../inc/shortcodes/pipdig_grid_square.php:82
-#: ../inc/shortcodes/pipdig_mosaic.php:86
+#: ../inc/shortcodes/pipdig_mosaic.php:109
 msgid "Older posts"
-msgstr "Starsze wpisy"
+msgstr ""
 
 #: ../inc/shortcodes/pipdig_grid_square.php:86
-#: ../inc/shortcodes/pipdig_mosaic.php:90
+#: ../inc/shortcodes/pipdig_mosaic.php:113
 msgid "Newer posts"
-msgstr "Nowsze wpisy"
+msgstr ""
 
 #: ../inc/shortcodes/pipdig_portfolio.php:111
 msgid "Click to view"
@@ -882,7 +882,7 @@ msgstr ""
 
 #: ../inc/widgets/clw.php:186
 msgid "London, UK"
-msgstr ""
+msgstr "Berlin, Germany"
 
 #: ../inc/widgets/clw.php:189
 msgid "Latitude:"
@@ -965,6 +965,46 @@ msgstr ""
 msgid "Show Posts"
 msgstr ""
 
+#: ../inc/widgets/featured-post.php:24
+msgid "Displays a featured post of your choice."
+msgstr ""
+
+#: ../inc/widgets/featured-post.php:31
+msgid "Featured Post"
+msgstr ""
+
+#: ../inc/widgets/featured-post.php:64
+msgid "Featured"
+msgstr ""
+
+#: ../inc/widgets/featured-post.php:76 ../inc/widgets/post-slider.php:178
+msgid "View Post"
+msgstr "Beitrag ansehen"
+
+#: ../inc/widgets/featured-post.php:130
+msgid "Post to feature:"
+msgstr ""
+
+#: ../inc/widgets/featured-post.php:140
+msgid "Hide the post image"
+msgstr ""
+
+#: ../inc/widgets/featured-post.php:157
+msgid "Hide the \"Featured\" label"
+msgstr ""
+
+#: ../inc/widgets/featured-post.php:162
+msgid "Hide the post title"
+msgstr ""
+
+#: ../inc/widgets/featured-post.php:167
+msgid "Hide the post excerpt"
+msgstr ""
+
+#: ../inc/widgets/featured-post.php:172
+msgid "Hide the \"View Post\" button"
+msgstr ""
+
 #: ../inc/widgets/goodreads.php:42
 msgid "Display your books from Goodreads"
 msgstr ""
@@ -1020,7 +1060,7 @@ msgid "Open link in a new window"
 msgstr ""
 
 #: ../inc/widgets/instagram.php:9
-msgid "Displays your latest Instagram photos"
+msgid "Displays your latest Instagram photos."
 msgstr ""
 
 #: ../inc/widgets/instagram.php:10
@@ -1051,7 +1091,7 @@ msgstr ""
 msgid "Access Token (optional)"
 msgstr ""
 
-#: ../inc/widgets/instagram.php:153 ../inc/widgets/pinterest.php:151
+#: ../inc/widgets/instagram.php:153 ../inc/widgets/pinterest.php:155
 msgid "Number of columns:"
 msgstr ""
 
@@ -1059,7 +1099,7 @@ msgstr ""
 msgid "Display Comments & Likes count on hover."
 msgstr ""
 
-#: ../inc/widgets/instagram.php:163 ../inc/widgets/pinterest.php:157
+#: ../inc/widgets/instagram.php:163 ../inc/widgets/pinterest.php:161
 #: ../inc/widgets/twitter.php:107
 msgid "Display a \"Follow\" link."
 msgstr ""
@@ -1076,16 +1116,16 @@ msgstr ""
 msgid "Follow on Pinterest"
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:133
+#: ../inc/widgets/pinterest.php:137
 msgid "Add your Pinterest account name to the box below."
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:134 ../inc/widgets/subscribe.php:82
+#: ../inc/widgets/pinterest.php:138 ../inc/widgets/subscribe.php:82
 #: ../inc/widgets/youtube.php:114
 msgid "For example, the red part below:"
 msgstr ""
 
-#: ../inc/widgets/pinterest.php:138
+#: ../inc/widgets/pinterest.php:142
 msgid "Pinterest Account Name:"
 msgstr ""
 
@@ -1093,7 +1133,7 @@ msgstr ""
 msgid "Displays your most popular posts."
 msgstr ""
 
-#: ../inc/widgets/popular-posts.php:55 ../inc/widgets/socialz.php:224
+#: ../inc/widgets/popular-posts.php:55 ../inc/widgets/socialz.php:222
 msgid "Select a layout:"
 msgstr ""
 
@@ -1165,19 +1205,15 @@ msgstr ""
 
 #: ../inc/widgets/post-slider.php:78
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: ../inc/widgets/post-slider.php:79
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: ../inc/widgets/post-slider.php:80
 msgid "On hover"
 msgstr ""
-
-#: ../inc/widgets/post-slider.php:178
-msgid "View Post"
-msgstr "Czytaj dalej"
 
 #: ../inc/widgets/profile.php:24
 msgid "Show a profile photo and some \"About Me\" text."
@@ -1232,7 +1268,7 @@ msgstr ""
 msgid "Social Media Icons"
 msgstr ""
 
-#: ../inc/widgets/socialz.php:234
+#: ../inc/widgets/socialz.php:232
 msgid "Add your links:"
 msgstr ""
 
@@ -1244,8 +1280,9 @@ msgstr ""
 msgid "Email Subscribe"
 msgstr ""
 
-#: ../inc/widgets/subscribe.php:23 ../inc/widgets/subscribe.php:94
-msgid "Enter your email address to subscribe:"
+#: ../inc/widgets/subscribe.php:23
+msgid ""
+"Enter your email address to receive notifications of new posts by email."
 msgstr ""
 
 #: ../inc/widgets/subscribe.php:45
@@ -1264,6 +1301,10 @@ msgstr ""
 
 #: ../inc/widgets/subscribe.php:93
 msgid "Text to display above the form:"
+msgstr ""
+
+#: ../inc/widgets/subscribe.php:94
+msgid "Enter your email address to subscribe:"
 msgstr ""
 
 #: ../inc/widgets/twitter.php:9
@@ -1358,6 +1399,16 @@ msgstr ""
 #, php-format
 msgid "Unknown update checker status \"%s\""
 msgstr ""
+
+#~ msgid "Click here to authorize your Instagram account"
+#~ msgstr "Click here to authorise your Instagram account"
+
+#~ msgid ""
+#~ "Once you have authorized your account, copy and paste your information "
+#~ "below:"
+#~ msgstr ""
+#~ "Once you have authorised your account, copy and paste your information "
+#~ "below:"
 
 #~ msgid ""
 #~ "This widget will show your latest Instagram photos. You will need to "

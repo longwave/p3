@@ -14,6 +14,7 @@ function p3_schema_publisher() {
 		$logo_height = 60;
 	}
 	?>
+	<meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage' itemid="<?php the_permalink(); ?>" content="<?php the_permalink(); ?>"/>
 	<span class="vcard author show-author" style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
 		<span class="fn" itemprop="name"><?php the_author_posts_link(); ?></span>
 	</span>
@@ -44,9 +45,12 @@ function p3_schema_publisher() {
 		<meta itemprop="width" content="<?php echo $thumb_width; ?>"/>
 		<meta itemprop="height" content="<?php echo $thumb_height; ?>"/>
 	</div>
+	<meta itemprop="datePublished" content="<?php echo get_the_modified_date('Y-m-d'); ?>"/>
+	<meta itemprop="dateModified" content="<?php echo get_the_date('Y-m-d'); ?>"/>
 	<?php
 }
 add_action('p3_content_end', 'p3_schema_publisher');
+add_action('p3_summary_end', 'p3_schema_publisher');
 
 function p3_declare_custom_logo_support() {
 	add_theme_support( 'custom-logo' );

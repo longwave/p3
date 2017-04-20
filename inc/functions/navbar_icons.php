@@ -9,7 +9,7 @@ if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_socia
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = $etsy = $spotify = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = $etsy = $spotify = $itunes = '';
 		
 		if (!empty($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
@@ -43,6 +43,9 @@ if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_socia
 		}
 		if (!empty($links['spotify'])) {
 			$spotify = esc_url($links['spotify']);
+		}
+		if (!empty($links['itunes'])) {
+			$itunes = esc_url($links['itunes']);
 		}
 		if (!empty($links['flickr'])) {
 			$flickr = esc_url($links['flickr']);
@@ -80,6 +83,7 @@ if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_socia
 		if($linkedin && get_theme_mod('p3_navbar_linkedin', 1)) $navbar_icons .= '<a href="'.$linkedin.'" target="_blank"><i class="fa fa-linkedin"></i></a>';
 		if($soundcloud && get_theme_mod('p3_navbar_soundcloud', 1)) $navbar_icons .= '<a href="'.$soundcloud.'" target="_blank"><i class="fa fa-soundcloud"></i></a>';
 		if($spotify && get_theme_mod('p3_navbar_spotify', 1)) $navbar_icons .= '<a href="'.$spotify.'" target="_blank"><i class="fa fa-spotify"></i></a>';
+		if($itunes && get_theme_mod('p3_navbar_itunes', 1)) $navbar_icons .= '<a href="'.$itunes.'" target="_blank"><i class="fa fa-apple"></i></a>';
 		if($flickr && get_theme_mod('p3_navbar_flickr', 1)) $navbar_icons .= '<a href="'.$flickr.'" target="_blank"><i class="fa fa-flickr"></i></a>';
 		if($twitch && get_theme_mod('p3_navbar_twitch', 1)) $navbar_icons .= '<a href="'.$twitch.'" target="_blank"><i class="fa fa-twitch"></i></a>';
 		if($stumbleupon && get_theme_mod('p3_navbar_stumbleupon', 1)) $navbar_icons .= '<a href="'.$stumbleupon.'" target="_blank"><i class="fa fa-stumbleupon"></i></a>';
@@ -317,6 +321,21 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Spotify',
+					'section' => 'p3_navbar_icons_section',
+				)
+			);
+			
+			// itunes
+			$wp_customize->add_setting('p3_navbar_itunes',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_navbar_itunes',
+				array(
+					'type' => 'checkbox',
+					'label' => 'iTunes',
 					'section' => 'p3_navbar_icons_section',
 				)
 			);

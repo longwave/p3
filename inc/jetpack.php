@@ -1,0 +1,55 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+// SSO not default
+add_filter( 'jetpack_sso_default_to_sso_login', '__return_false' );
+
+function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) {
+	if (!class_exists('Jetpack')) {
+		return;
+	}
+	$jp_mods_to_disable = array(
+	'custom-css',
+	'post-by-email',
+	'minileven',
+	'latex',
+	'gravatar-hovercards',
+	//'notes',
+	//'carousel',
+	'omnisearch',
+	'photon',
+	'markdown',
+	'related-posts',
+	);
+	foreach ( $jp_mods_to_disable as $mod ) {
+		if ( isset( $modules[$mod] ) ) {
+			unset( $modules[$mod] );
+		}
+	}
+	return $modules;
+}
+add_filter( 'jetpack_get_available_modules', 'pipdig_p3_hide_jetpack_modules', 20, 3 );
+
+function pipdig_p3_disable_jetpack_modules() {
+	if (!class_exists('Jetpack')) {
+		return;
+	}
+	if (Jetpack::is_module_active('custom-css')) {
+		Jetpack::deactivate_module( 'custom-css' );
+	}
+	if (Jetpack::is_module_active('minileven')) {
+		Jetpack::deactivate_module( 'minileven' );
+	}
+	if (Jetpack::is_module_active('photon')) {
+		Jetpack::deactivate_module( 'photon' );
+	}
+	if (Jetpack::is_module_active('related-posts')) {
+		Jetpack::deactivate_module( 'related-posts' );
+	}
+	if (!get_option('pipdig_jetpack_carousel_set') && Jetpack::is_module_active('carousel')) {
+		Jetpack::deactivate_module( 'carousel' );
+		update_option('pipdig_jetpack_carousel_set', 1);
+	}
+}
+add_action( 'init', 'pipdig_p3_disable_jetpack_modules' );

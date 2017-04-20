@@ -114,7 +114,6 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 */
 
 
-//include('functions/scrapey-scrapes.php');
 include('functions/api.php');
 
 // Add Featured Image to feed if using excerpt mode, or just add the full content if not
@@ -142,52 +141,6 @@ if (!class_exists('Rss_Image_Feed') && !function_exists('pipdig_rss_post_thumbna
 }
 
 
-function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) {
-	$jp_mods_to_disable = array(
-	//'infinite-scroll',
-	'custom-css',
-	'post-by-email',
-	// 'widgets',
-	'minileven',
-	'latex',
-	'gravatar-hovercards',
-	// 'notes',
-	// 'after-the-deadline',
-	// 'carousel',
-	'photon',
-	//'omnisearch',
-	'markdown',
-	'related-posts',
-	);
-	foreach ( $jp_mods_to_disable as $mod ) {
-		if ( isset( $modules[$mod] ) ) {
-			unset( $modules[$mod] );
-		}
-	}
-	return $modules;
-}
-add_filter( 'jetpack_get_available_modules', 'pipdig_p3_hide_jetpack_modules', 20, 3 );
-
-function pipdig_p3_disable_jetpack_modules() {
-	if ( class_exists( 'Jetpack' ) ) {
-		if (Jetpack::is_module_active('minileven')) {
-			Jetpack::deactivate_module( 'minileven' );
-		}
-		if (Jetpack::is_module_active('photon')) {
-			Jetpack::deactivate_module( 'photon' );
-		}
-		if (Jetpack::is_module_active('related-posts')) {
-			Jetpack::deactivate_module( 'related-posts' );
-		}
-		if (Jetpack::is_module_active('infinite-scroll')) {
-			Jetpack::deactivate_module( 'infinite-scroll' );
-		}
-	}
-}
-add_action( 'init', 'pipdig_p3_disable_jetpack_modules' );
-
-
-
 function p3_flush_htacess() {
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
@@ -196,7 +149,7 @@ function p3_flush_htacess() {
 function p3_htaccess_edit($rules) {
 $p3_rules = "
 # p3
-redirect 301 /feeds/posts/default /feed
+Redirect 301 /feeds/posts/default /feed
 
 <ifmodule mod_deflate.c>
 AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
@@ -244,6 +197,9 @@ if (!function_exists('pipdig_p3_comment_count')) {
 				$comments_text = __('1 Comment', 'p3');
 			} else {
 				$comments_text = number_format_i18n($comment_count).' '.__('Comments', 'p3');
+				if (get_locale() == 'pl_PL') {
+					$comments_text = 'Komentarzy: '.number_format_i18n($comment_count);
+				}
 			}
 			echo $comments_text;
 		}

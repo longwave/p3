@@ -48,7 +48,7 @@ if (!function_exists('p3_instagram_fetch')) {
 		if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
 			$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=35";
 			$args = array(
-			    'timeout' => 40,
+			    'timeout' => 12,
 			);
 			$response = wp_remote_get($url, $args);
 			

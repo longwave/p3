@@ -66,7 +66,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			if ($images) {
 			?>
 				<div id="<?php echo $id; ?>" class="p3_pinterest_widget">
-				<style scoped>
+				<style>
 					#<?php echo $id; ?> .p3_pinterest_post {
 						width: <?php echo $width; ?>;
 						border: <?php echo $border; ?>px solid <?php echo strip_tags(get_theme_mod('content_background_color', '#fff')); ?>

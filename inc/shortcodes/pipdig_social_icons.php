@@ -51,7 +51,7 @@ function pipdig_p3_social_icons_shortcode( $atts, $content = null ) {
 			$output .= '<a href="'.esc_url($links['vk']).'" target="_blank"><i class="fa fa-vk"></i></a>';
 		}
 		if (!empty($links['email'])) {
-			$output .= '<a href="mailto:'.sanitize_email($links['facebook']).'"><i class="fa fa-envelope"></i></a>';
+			$output .= '<a href="mailto:'.sanitize_email($links['email']).'"><i class="fa fa-envelope"></i></a>';
 		}
 
 	$output .= '</div>';

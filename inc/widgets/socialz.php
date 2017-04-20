@@ -30,6 +30,8 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$flickr = empty($instance['flickr']) ? '' : esc_url($instance['flickr']);
 		$twitch = empty($instance['twitch']) ? '' : esc_url($instance['twitch']);
 		$spotify = empty($instance['spotify']) ? '' : esc_url($instance['spotify']);
+		$soundcloud = empty($instance['soundcloud']) ? '' : esc_url($instance['soundcloud']);
+		$itunes = empty($instance['itunes']) ? '' : esc_url($instance['itunes']);
 		$medium = empty($instance['medium']) ? '' : esc_url($instance['medium']);
 		$stumbleupon = empty($instance['stumbleupon']) ? '' : esc_url($instance['stumbleupon']);
 		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
@@ -66,6 +68,8 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($vk)) $icons_output .= '<a href="'.$vk.'" target="_blank"><i class="fa fa-vk"></i></a>';
 			if (!empty($flickr)) $icons_output .= '<a href="'.$flickr.'" target="_blank"><i class="fa fa-flickr"></i></a>';
 			if (!empty($spotify)) $icons_output .= '<a href="'.$spotify.'" target="_blank"><i class="fa fa-spotify"></i></a>';
+			if (!empty($itunes)) $icons_output .= '<a href="'.$itunes.'" target="_blank"><i class="fa fa-apple"></i></a>';
+			if (!empty($soundcloud)) $icons_output .= '<a href="'.$soundcloud.'" target="_blank"><i class="fa fa-soundcloud"></i></a>';
 			if (!empty($medium)) $icons_output .= '<a href="'.$medium.'" target="_blank"><i class="fa fa-medium"></i></a>';
 			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank"><i class="fa fa-twitch"></i></a>';
 			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank"><i class="fa fa-stumbleupon"></i></a>';
@@ -91,6 +95,8 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($vk)) $icons_output .= '<a href="'.$vk.'" target="_blank"><i class="fa fa-vk"></i><br /><span>VKontakte</span></a>';
 			if (!empty($flickr)) $icons_output .= '<a href="'.$flickr.'" target="_blank"><i class="fa fa-flickr"></i><br /><span>Flickr</span></a>';
 			if (!empty($spotify)) $icons_output .= '<a href="'.$spotify.'" target="_blank"><i class="fa fa-spotify"></i><br /><span>Spotify</span></a>';
+			if (!empty($itunes)) $icons_output .= '<a href="'.$itunes.'" target="_blank"><i class="fa fa-apple"></i><br /><span>iTunes</span></a>';
+			if (!empty($soundcloud)) $icons_output .= '<a href="'.$soundcloud.'" target="_blank"><i class="fa fa-soundcloud"></i><br /><span>Soundcloud</span></a>';
 			if (!empty($medium)) $icons_output .= '<a href="'.$medium.'" target="_blank"><i class="fa fa-medium"></i><br /><span>Medium</span></a>';
 			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank"><i class="fa fa-twitch"></i><br /><span>Twitch</span></a>';
 			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank"><i class="fa fa-stumbleupon"></i><br /><span>Stumble</span></a>';
@@ -98,7 +104,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'"><i class="fa fa-envelope"></i><br /><span>Email</span></a>';
 			if (!empty($rss)) $icons_output .= '<a href="'.$rss.'" target="_blank"><i class="fa fa-rss"></i><br /><span>RSS</span></a>';
 			$id = 'p3_socialz_'.rand(1, 999999999);
-			echo '<style scoped>.pipdig_widget_social_icons #'.$id.' a {line-height:.9; display: inline-block; width: 25%; padding: 2px; margin: 10px;} .pipdig_widget_social_icons #'.$id.' a span {font: 10px montserrat, arial, sans-serif;text-transform: uppercase; letter-spacing: 1px}</style>';
+			echo '<style scoped>.pipdig_widget_social_icons #'.$id.' a {line-height:.9; display: inline-block; width: 32%; padding: 2px; margin: 10px 0;} .pipdig_widget_social_icons #'.$id.' a span {font: 10px montserrat, arial, sans-serif;text-transform: uppercase; letter-spacing: 1px}</style>';
 			echo '<div id="'.$id.'" class="socialz">'.$icons_output.'</div>';
 
 		}
@@ -128,6 +134,8 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$flickr = empty($instance['flickr']) ? '' : esc_url($instance['flickr']);
 		$twitch = empty($instance['twitch']) ? '' : esc_url($instance['twitch']);
 		$spotify = empty($instance['spotify']) ? '' : esc_url($instance['spotify']);
+		$itunes = empty($instance['itunes']) ? '' : esc_url($instance['itunes']);
+		$soundcloud = empty($instance['soundcloud']) ? '' : esc_url($instance['soundcloud']);
 		$medium = empty($instance['medium']) ? '' : esc_url($instance['medium']);
 		$stumbleupon = empty($instance['stumbleupon']) ? '' : esc_url($instance['stumbleupon']);
 		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
@@ -161,11 +169,9 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		if (empty($snapchat)) {
 			$snapchat = esc_url($links['snapchat']);
 		}
-		/* not on links page yet
-		if (empty($vine)) {
-				$vine = esc_url($links['vine']);
+		if (empty($soundcloud)) {
+				$soundcloud = esc_url($links['soundcloud']);
 		}
-		*/
 		if (empty($tumblr)) {
 			$tumblr = esc_url($links['tumblr']);
 		}
@@ -243,6 +249,14 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		<h3><?php _e('Add your links:', 'p3'); ?></h3>
 		
 		<p>
+			<label for="<?php echo $this->get_field_id('email'); ?>">Email Address (e.g. yourname@gmail.com) 
+			<input class="widefat" id="<?php echo $this->get_field_id('email'); ?>" 
+			name="<?php echo $this->get_field_name('email'); ?>" type="text" 
+			value="<?php echo sanitize_email($email); ?>" />
+			</label>
+		</p>
+		
+		<p>
 			<label for="<?php echo $this->get_field_id('twitter'); ?>">Twitter (e.g. http://twitter.com/pipdig) 
 			<input class="widefat" id="<?php echo $this->get_field_id('twitter'); ?>" 
 			name="<?php echo $this->get_field_name('twitter'); ?>" type="url" 
@@ -307,10 +321,10 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('vine'); ?>">Vine (e.g. http://vine.co/pipdig) 
-			<input class="widefat" id="<?php echo $this->get_field_id('vine'); ?>" 
-			name="<?php echo $this->get_field_name('vine'); ?>" type="text" 
-			value="<?php echo esc_url($vine); ?>" />
+			<label for="<?php echo $this->get_field_id('rss'); ?>">RSS Feed (e.g. http://mydomain.com/feed) 
+			<input class="widefat" id="<?php echo $this->get_field_id('rss'); ?>" 
+			name="<?php echo $this->get_field_name('rss'); ?>" type="text" 
+			value="<?php echo esc_attr($rss); ?>" />
 			</label>
 		</p>
 
@@ -337,38 +351,6 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			value="<?php echo esc_url($vk); ?>" />
 			</label>
 		</p>
-
-		<p>
-			<label for="<?php echo $this->get_field_id('flickr'); ?>">Flickr (e.g. http://flickr.com/user/pipdig) 
-			<input class="widefat" id="<?php echo $this->get_field_id('flickr'); ?>" 
-			name="<?php echo $this->get_field_name('flickr'); ?>" type="text" 
-			value="<?php echo esc_url($flickr); ?>" />
-			</label>
-		</p>
-		
-		<p>
-			<label for="<?php echo $this->get_field_id('spotify'); ?>">Spotify (e.g. http://open.spotify.com/user/pipdig) 
-			<input class="widefat" id="<?php echo $this->get_field_id('spotify'); ?>" 
-			name="<?php echo $this->get_field_name('spotify'); ?>" type="text" 
-			value="<?php echo esc_url($spotify); ?>" />
-			</label>
-		</p>
-		
-		<p>
-			<label for="<?php echo $this->get_field_id('medium'); ?>">Medium (e.g. https://medium.com/@pipdig) 
-			<input class="widefat" id="<?php echo $this->get_field_id('medium'); ?>" 
-			name="<?php echo $this->get_field_name('medium'); ?>" type="text" 
-			value="<?php echo esc_url($medium); ?>" />
-			</label>
-		</p>
-		
-		<p>
-			<label for="<?php echo $this->get_field_id('twitch'); ?>">Twitch (e.g. https://twitch.tv/dansgaming) 
-			<input class="widefat" id="<?php echo $this->get_field_id('twitch'); ?>" 
-			name="<?php echo $this->get_field_name('twitch'); ?>" type="text" 
-			value="<?php echo esc_url($twitch); ?>" />
-			</label>
-		</p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('stumbleupon'); ?>">Stumbleupon (e.g. https://stumbleupon.com/pipdig) 
@@ -387,18 +369,58 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('email'); ?>">Email Address (e.g. yourname@gmail.com) 
-			<input class="widefat" id="<?php echo $this->get_field_id('email'); ?>" 
-			name="<?php echo $this->get_field_name('email'); ?>" type="text" 
-			value="<?php echo sanitize_email($email); ?>" />
+			<label for="<?php echo $this->get_field_id('flickr'); ?>">Flickr (e.g. http://flickr.com/user/pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('flickr'); ?>" 
+			name="<?php echo $this->get_field_name('flickr'); ?>" type="text" 
+			value="<?php echo esc_url($flickr); ?>" />
 			</label>
 		</p>
-
+		
 		<p>
-			<label for="<?php echo $this->get_field_id('rss'); ?>">RSS Feed (e.g. http://mydomain.com/feed) 
-			<input class="widefat" id="<?php echo $this->get_field_id('rss'); ?>" 
-			name="<?php echo $this->get_field_name('rss'); ?>" type="text" 
-			value="<?php echo esc_attr($rss); ?>" />
+			<label for="<?php echo $this->get_field_id('spotify'); ?>">Spotify (e.g. http://open.spotify.com/user/pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('spotify'); ?>" 
+			name="<?php echo $this->get_field_name('spotify'); ?>" type="text" 
+			value="<?php echo esc_url($spotify); ?>" />
+			</label>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('soundcloud'); ?>">Soundcloud (e.g. http://soundcloud.com/pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('soundcloud'); ?>" 
+			name="<?php echo $this->get_field_name('soundcloud'); ?>" type="text" 
+			value="<?php echo esc_url($soundcloud); ?>" />
+			</label>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('itunes'); ?>">iTunes (e.g. http://itunes.com/pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('itunes'); ?>" 
+			name="<?php echo $this->get_field_name('itunes'); ?>" type="text" 
+			value="<?php echo esc_url($itunes); ?>" />
+			</label>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('vine'); ?>">Vine (e.g. http://vine.co/pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('vine'); ?>" 
+			name="<?php echo $this->get_field_name('vine'); ?>" type="text" 
+			value="<?php echo esc_url($vine); ?>" />
+			</label>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('medium'); ?>">Medium (e.g. https://medium.com/@pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('medium'); ?>" 
+			name="<?php echo $this->get_field_name('medium'); ?>" type="text" 
+			value="<?php echo esc_url($medium); ?>" />
+			</label>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('twitch'); ?>">Twitch (e.g. https://twitch.tv/dansgaming) 
+			<input class="widefat" id="<?php echo $this->get_field_id('twitch'); ?>" 
+			name="<?php echo $this->get_field_name('twitch'); ?>" type="text" 
+			value="<?php echo esc_url($twitch); ?>" />
 			</label>
 		</p>
 
@@ -423,6 +445,8 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$instance['vk'] = esc_url($new_instance['vk']);
 		$instance['flickr'] = esc_url($new_instance['flickr']);
 		$instance['spotify'] = esc_url($new_instance['spotify']);
+		$instance['itunes'] = esc_url($new_instance['itunes']);
+		$instance['soundcloud'] = esc_url($new_instance['soundcloud']);
 		$instance['medium'] = esc_url($new_instance['medium']);
 		$instance['twitch'] = esc_url($new_instance['twitch']);
 		$instance['stumbleupon'] = esc_url($new_instance['stumbleupon']);

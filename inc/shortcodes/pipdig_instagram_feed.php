@@ -7,7 +7,7 @@ function pipdig_p3_instagram_shortcode( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'shape' => '',
 		'token' => '',
-		//'comments' => 'yes',
+		'number' => '',
 	), $atts ) );
 	
 	//wp_enqueue_script( 'imagesloaded' ); // I know, I know :(
@@ -43,7 +43,11 @@ function pipdig_p3_instagram_shortcode( $atts, $content = null ) {
 		</style>
 		';
 		$output .= '<div class="p3_instagram_feed_shortcode">';
+		
+			$i = 1;
+			
 			foreach ($images as $x) {
+				
 				$img = str_replace('/c0.134.1080.1080', '', $x['src']); // http://stackoverflow.com/questions/32260896/instagram-square-photos-api
 				$output .= '<a href="'.esc_url($x['link']).'" target="_blank" title="'.esc_attr($x['caption']).'" class="p3_instagram_feed_shortcode_item">';
 				if ($shape == 'original') {
@@ -52,7 +56,17 @@ function pipdig_p3_instagram_shortcode( $atts, $content = null ) {
 					$output .= '<div class="p3_cover_me" style="background-image:url('.esc_url($img).')"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_invisible" alt="" /></div>';
 				}
 				$output .= '</a>';
+				
+				if (absint($number) > 1) {
+					if ($i == $number) {
+						break;
+					}
+				}
+				
+				$i++;
+				
 			}
+			
 		$output .= '</div>';
 	}
 	

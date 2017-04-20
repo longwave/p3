@@ -8,6 +8,7 @@ function parallax_section_func( $atts, $content = null ) {
 		'image' => '',
 		'link' => '',
 		'parallax' => '',
+		'size' => '',
 	), $atts ) );
 	
 	if (empty($image)) {
@@ -27,7 +28,11 @@ function parallax_section_func( $atts, $content = null ) {
 		$tag_2 = '</a>';
 	}
 	
-	$output .= $tag_1.' class="pipdig_banner'.$parallax_class.'" style="background-image:url('.esc_url($image).');" '.$stellar.'>'.$tag_2;
+	if ($size == 'original') {
+		$output .= $tag_1.' class="pipdig_banner'.$parallax_class.'" style="height:auto"><img src="'.esc_url($image).'" alt=""/>'.$tag_2;
+	} else {
+		$output .= $tag_1.' class="pipdig_banner'.$parallax_class.'" style="background-image:url('.esc_url($image).');" '.$stellar.'>'.$tag_2;
+	}
 	
 	return $output;
 }

@@ -3,9 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 
-// SSO not default
-add_filter( 'jetpack_sso_default_to_sso_login', '__return_false' );
-
 /*  Add credit to admin area --------------------------------------------------------*/
 if (!function_exists('pipdig_p3_footer_admin')) {
 	function pipdig_p3_footer_admin () {
@@ -15,7 +12,7 @@ if (!function_exists('pipdig_p3_footer_admin')) {
 }
 
 
-/*	Remove pointless front end widgets ----------------------------------------------*/
+/*	Remove front end widgets ----------------------------------------------*/
 if (!function_exists('pipdig_p3_unregister_widgets')) {
 	function pipdig_p3_unregister_widgets() {
 		
@@ -36,23 +33,26 @@ if (!function_exists('pipdig_p3_unregister_widgets')) {
 
 		unregister_widget('Jetpack_Gravatar_Profile_Widget');
 		unregister_widget('WPCOM_Widget_Facebook_LikeBox');
+		unregister_widget('Jetpack_Twitter_Timeline_Widget');
 		unregister_widget('Jetpack_Gallery_Widget');
 		unregister_widget('Jetpack_RSS_Links_Widget');
 		unregister_widget('wpcom_social_media_icons_widget');
 		unregister_widget('Jetpack_Display_Posts_Widget');
 		unregister_widget('Jetpack_Top_Posts_Widget');
 		unregister_widget('Jetpack_Contact_Info_Widget');
+		unregister_widget('Milestone_Widget');
+		unregister_widget('Jetpack_Widget_Authors');
 		
 		unregister_widget('Akismet_Widget');
 		unregister_widget('SocialCountPlus');
-		//unregister_widget('GADWP_Frontend_Widget');
+		unregister_widget('GADWP_Frontend_Widget');
 		
 	}
 	add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 }
 
 
-/*	Remove pointless dashboard widgets ----------------------------------------------*/
+/*	Remove dashboard widgets ----------------------------------------------*/
 if (!function_exists('pipdig_p3_pipdig_remove_dashboard_meta')) {
 	function pipdig_p3_pipdig_remove_dashboard_meta() {
 		
@@ -74,7 +74,7 @@ if (!function_exists('pipdig_p3_pipdig_remove_dashboard_meta')) {
 }
 
 
-/*	Remove pointless meta boxes on posts --------------------------------------------*/
+/*	Remove meta boxes on posts --------------------------------------------*/
 function pipdig_p3_remove_default_metaboxes() {
 	// posts:
 	remove_meta_box( 'trackbacksdiv','post','normal' );
@@ -98,6 +98,43 @@ function pipdig_p3_dashboard_widgets() {
 		return;
 	}
 	
+	if (absint(get_option('p3_stop_news')) != 1) {
+		$box_title = $box_id = false;
+	
+		if ( false === ( $results = get_transient( 'p3_get_news' ) )) {
+			$url = 'https://www.wpupdateserver.com/p3_news.json';
+			$response = wp_remote_get($url);
+			$results = '';
+			if (!is_wp_error($response)) {
+				$code = intval(json_decode($response['response']['code']));
+				if ($code === 200) {
+					$results = json_decode($response['body']);
+				}
+			}
+			set_transient( 'p3_get_news', $results, 1 * DAY_IN_SECONDS );
+		}
+		
+		if (is_array($results) && (count($results) > 0)) {
+			if (!empty($results[0]->id)) {
+				$box_id = esc_attr($results[0]->id);
+			}
+			if (!empty($results[0]->title)) {
+				$box_title = esc_attr($results[0]->title);
+			}
+		}
+		
+		if ($box_id && $box_title && !empty($results[0]->content)) {
+			add_meta_box( 
+				$box_id,
+				$box_title,
+				'pipdig_p3_dashboard_news_func',
+				'dashboard',
+				'side',
+				'high'
+			);
+		}
+	}
+	
 	add_meta_box( 
 		'pipdig_p3_dashboard_social_count',
 		'pipdig - '.__('Your Followers', 'p3'),
@@ -106,8 +143,46 @@ function pipdig_p3_dashboard_widgets() {
 		'side',
 		'high'
 	);
+	
 }
 add_action( 'wp_dashboard_setup', 'pipdig_p3_dashboard_widgets' );
+
+function pipdig_p3_dashboard_news_func() {
+	
+	if (isset($_POST['p3_stop_the_news'])) {
+		update_option('p3_stop_news', 1);
+	}
+	
+	if ( false === ( $results = get_transient( 'p3_get_news' ) )) {
+		$url = 'https://www.wpupdateserver.com/p3_news.json';
+		$response = wp_remote_get($url);
+		$results = '';
+		if (!is_wp_error($response)) {
+			$code = intval(json_decode($response['response']['code']));
+			if ($code === 200) {
+				$results = json_decode($response['body']);
+			}
+		}
+		set_transient( 'p3_get_news', $results, 3 * DAY_IN_SECONDS );
+	}
+	if (!empty($results[0]->content)) {
+		echo wp_kses_post($results[0]->content);
+	} else {
+		return;
+	}
+	?>
+	
+	<div style="margin-top: 20px"></div>
+	
+	<form action="index.php" method="post">
+		<?php wp_nonce_field('p3_stop_the_news_nonce'); ?>
+		<input type="hidden" value="true" name="p3_stop_the_news" />
+		<p class="submit">
+			<input name="submit" class="button" value="<?php _e('Never show messages like this again', 'raptor'); ?>" type="submit" />
+		</p>
+	</form>
+	<?php
+}
 
 function pipdig_p3_dashboard_social_count_func() {
 	
@@ -329,13 +404,8 @@ function pipdig_p3_dashboard_social_count_func() {
 					
 			<p><input class="button" type="button" value="<?php esc_attr_e('View more stats', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-stats'); ?>';" /></p>
 			<p><input class="button" type="button" value="<?php esc_attr_e('Add more accounts', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-links'); ?>';" /></p>
+			
 		<?php
-		/*
-		$p3_stats_data = get_option('p3_stats_data');
-		echo '<pre>';
-		print_r($p3_stats_data);
-		echo '</pre>';
-		*/
 		}
 
 }

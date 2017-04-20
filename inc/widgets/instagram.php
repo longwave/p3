@@ -64,11 +64,13 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		
 		//print_r($images);
 		
+		$id = 'p3_instagram_widget_'.rand(1, 999999999);
+		
 		if ($images) {
 		?>
-			<div class="p3_instagram_widget">
-			<style scoped>
-				.p3_instagram_widget .p3_instagram_post {
+			<div id="<?php echo $id; ?>" class="p3_instagram_widget">
+			<style>
+				#<?php echo $id; ?> .p3_instagram_post {
 					width: <?php echo $width; ?>;
 					border: <?php echo $border; ?>px solid <?php echo strip_tags(get_theme_mod('content_background_color', '#fff')); ?>
 				}
@@ -137,9 +139,10 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 			printf(__('By default, this widget will display recent images from your main <a href="%s">Instagram account</a>. If you would prefer to use a different Instagram account, you can include the <a href="%s" target="_blank">Access Token</a> below:', 'p3'), admin_url('admin.php?page=pipdig-instagram'), esc_url('https://www.pipdig.co/ig'));
 		} else {
 			printf(__('You need to complete the settings on <a href="%s">this page</a> before this widget will work.', 'p3'), admin_url('admin.php?page=pipdig-instagram'));
+			//echo '<style>.p3_instagram_widget_options{opacity:.2}</style>'; // not working since function returns false if no images in account.
 		}
 		?></p>
-		
+		<div class="p3_instagram_widget_options">
 		<p>
 			<label for="<?php echo $this->get_field_id('access_token'); ?>"><?php _e('Access Token (optional)', 'p3'); ?></label><br />
 			<input type="text" id="<?php echo $this->get_field_id( 'access_token' ); ?>" name="<?php echo $this->get_field_name( 'access_token' ); ?>" value="<?php if ($access_token) { echo $access_token; } ?>" class="widefat" />
@@ -163,6 +166,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 			<input type="checkbox" id="<?php echo $this->get_field_id('follow'); ?>" name="<?php echo $this->get_field_name('follow'); ?>" <?php if (isset($instance['follow'])) { checked( (bool) $instance['follow'], true ); } ?> /><?php _e('Display a "Follow" link.', 'p3'); ?></label>
 			<br />
 		</p>
+		</div>
 		<?php
 	}
 	 

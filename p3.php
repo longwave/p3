@@ -5,13 +5,13 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.11.1
+Version: 2.11.6
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.11.1' );
+define( 'PIPDIG_P3_V', '2.11.6' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -113,6 +113,7 @@ include_once('inc/functions.php');
 include_once('inc/admin-menus.php');
 include_once('inc/meta.php');
 include_once('inc/dash.php');
+include_once('inc/jetpack.php');
 include_once('inc/widgets.php');
 include('inc/shortcodes.php');
 include('inc/cron.php');
@@ -130,6 +131,8 @@ if (get_option('pipdig_p3_posts_per_page_set') != 1) { // legacy check
 			update_option('posts_per_page', 12);
 		} elseif (get_option('pipdig_theme') == 'thegrid') {
 			update_option('posts_per_page', 6);
+		} elseif (get_option('pipdig_theme') == 'crystal') {
+			update_option('posts_per_page', 9);
 		} else {
 			update_option('posts_per_page', 5);
 		}
@@ -151,7 +154,7 @@ function p3_new_install_notice() {
 	if (get_option('p3_new_install_notice') || !current_user_can('manage_options')) {
 		return;
 	}
-	
+	/*
 	$this_theme = wp_get_theme();
 	$theme_textdomain = $this_theme->get('TextDomain');
 	if ($this_theme->get('Author') != 'pipdig') {
@@ -172,13 +175,13 @@ function p3_new_install_notice() {
 	}
 	$theme_name_full = $this_theme->get('Name');
 	$theme_name = str_replace(' (pipdig)', '', $theme_name_full);
-	
+	*/
 	?>
 	<div class="notice notice-warning is-dismissible">
 		<h2><?php _e('Howdy!', 'p3'); ?></h2>
-		<p>Thank you for installing <strong><?php echo $theme_name ?></strong>!</p>
-		<p>So that you can get the most out of your new theme, we highly recommend looking at our <a href="https://go.pipdig.co/open.php?id=wp-quickstart" target="_blank">Quickstart Guide</a>.</p>
-		<p>Already setup? Click the button below to hide this notice:</p>
+		<p>Thank you for installing a pipdig theme!</p>
+		<p>You can now setup all of our custom widgets, options and features by using our <a href="https://go.pipdig.co/open.php?id=wp-quickstart" target="_blank">Quickstart Guide</a>.</p>
+		<p>Already setup? Click the button below to remove this notice:</p>
 		<form action="<?php echo admin_url(); ?>" method="post">
 			<?php wp_nonce_field('p3-new-install-notice-nonce'); ?>
 			<input type="hidden" value="true" name="p3_new_install_notice_dismissed" />
@@ -222,7 +225,7 @@ function pipdig_p3_activate() {
 	update_option('imsanity_max_height', 0);
 	update_option('imsanity_max_height_library', 0);
 	update_option('imsanity_max_height_other', 0);
-	update_option('imsanity_quality', 78);
+	update_option('imsanity_quality', 80);
 	update_option('imsanity_bmp_to_jpg', 0);
 	
 	if (!get_option('rss_use_excerpt') && (get_option('pipdig_p3_rss_use_excerpt_set') != 1)) {
@@ -304,9 +307,9 @@ function pipdig_p3_activate() {
 			$piplink2 = 'https://www.pipdig.co/';
 			$piplink3 = 'https://www.pipdig.co/products/wordpress-themes/';
 			$amicorum = array(
-			'<a href="'.$piplink.'" target="_blank">WordPress Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink3.'" target="_blank">WordPress Theme by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink.'" target="_blank">WordPress Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink2.'" target="_blank">Theme Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink3.'" target="_blank">WP Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink.'" target="_blank">Site Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
 			//'<a href="'.$piplink2.'" target="_blank">Theme Designed by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform: lowercase;letter-spacing: 1px;">pipdig</span></a>',

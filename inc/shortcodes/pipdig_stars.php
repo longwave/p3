@@ -20,13 +20,13 @@ function pipdig_p3_star_rating_shortcode( $atts, $content = null ) {
 	
 	wp_enqueue_script( 'rateyo' );
 
-	$post_id = rand(1, 999999999);
+	$instance_id = rand(1, 999999999);
 	
 	$output = '
-	<div class="rateyo-'.$post_id.'" style="margin-top:5px;margin-bottom:10px;'.$alignment.'"></div>
+	<div class="rateyo-'.$instance_id.'" style="margin-top:5px;margin-bottom:10px;'.$alignment.'"></div>
 	<script>
 		jQuery(document).ready(function($) {
-			$(".rateyo-'.$post_id.'").rateYo({
+			$(".rateyo-'.$instance_id.'").rateYo({
 				rating: '.strip_tags($rating).',
 				normalFill: "#e8e8e8",
 				ratedFill: "'.strip_tags($color).'",
