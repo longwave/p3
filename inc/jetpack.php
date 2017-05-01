@@ -16,7 +16,7 @@ function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) 
 	'latex',
 	'gravatar-hovercards',
 	//'notes',
-	//'carousel',
+	'carousel',
 	'omnisearch',
 	'photon',
 	'markdown',
@@ -47,9 +47,8 @@ function pipdig_p3_disable_jetpack_modules() {
 	if (Jetpack::is_module_active('related-posts')) {
 		Jetpack::deactivate_module( 'related-posts' );
 	}
-	if (!get_option('pipdig_jetpack_carousel_set') && Jetpack::is_module_active('carousel')) {
+	if (Jetpack::is_module_active('carousel')) {
 		Jetpack::deactivate_module( 'carousel' );
-		update_option('pipdig_jetpack_carousel_set', 1);
 	}
 }
 add_action( 'init', 'pipdig_p3_disable_jetpack_modules' );

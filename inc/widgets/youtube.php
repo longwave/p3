@@ -58,6 +58,8 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 				
 			if ($videos) { ?>
 			
+				<div>
+			
 				<?php $i = 1; // just for margin counter below ?>
 			
 				<?php foreach($videos as $video) { ?>
@@ -86,7 +88,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 					} ?>
 					
 				<?php } ?>
-				
+				</div>
 			<?php
 			}
 			

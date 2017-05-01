@@ -38,7 +38,7 @@ function p3_featured_cats_puller($category, $col = 3) {
 			$post_cat = '';
 		}
 		?>
-		<div class="col-sm-<?php echo strip_tags($col); ?>">
+		<div class="col-sm-<?php echo strip_tags($col); ?> p3_featured_cat">
 			<h3 class="widget-title"><span><?php echo get_cat_name($category); ?></span></h3>
 			<a href="<?php the_permalink(); ?>" class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
 				<img src="<?php echo $shape; ?>" class="p3_invisible" />

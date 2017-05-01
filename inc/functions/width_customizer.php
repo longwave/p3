@@ -30,16 +30,16 @@ if (!function_exists('p3_width_customizer_styles')) {
 				margin-left: <?php echo $main; ?>%;
 			}
 			
-			.site-main .row > .col-xs-4:not(.p3_featured_panel) {
+			.site-main .row > .col-xs-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 				width: <?php echo $side; ?>%;
 			}
-			.site-main .row > .col-xs-pull-4:not(.p3_featured_panel) {
+			.site-main .row > .col-xs-pull-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 				right: <?php echo $side; ?>%;
 			}
-			.site-main .row > .col-xs-push-4:not(.p3_featured_panel) {
+			.site-main .row > .col-xs-push-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 				left: <?php echo $side; ?>%;
 			}
-			.site-main .row > .col-xs-offset-4:not(.p3_featured_panel) {
+			.site-main .row > .col-xs-offset-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 				margin-left: <?php echo $side; ?>%;
 			}
 			
@@ -60,16 +60,16 @@ if (!function_exists('p3_width_customizer_styles')) {
 					margin-left: <?php echo $main; ?>%;
 				}
 				
-				.site-main .row > .col-sm-4:not(.p3_featured_panel) {
+				.site-main .row > .col-sm-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					width: <?php echo $side; ?>%;
 				}
-				.site-main .row > .col-sm-pull-4:not(.p3_featured_panel) {
+				.site-main .row > .col-sm-pull-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					right: <?php echo $side; ?>%;
 				}
-				.site-main .row > .col-sm-push-4:not(.p3_featured_panel) {
+				.site-main .row > .col-sm-push-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					left: <?php echo $side; ?>%;
 				}
-				.site-main .row > .col-sm-offset-4:not(.p3_featured_panel) {
+				.site-main .row > .col-sm-offset-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					margin-left: <?php echo $side; ?>%;
 				}
 				
@@ -89,16 +89,16 @@ if (!function_exists('p3_width_customizer_styles')) {
 					margin-left: <?php echo $main; ?>%;
 				}
 				
-				.site-main .row > .col-md-4:not(.p3_featured_panel) {
+				.site-main .row > .col-md-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					width: <?php echo $side; ?>%;
 				}
-				.site-main .row > .col-md-pull-4:not(.p3_featured_panel) {
+				.site-main .row > .col-md-pull-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					right: <?php echo $side; ?>%;
 				}
-				.site-main .row > .col-md-push-4:not(.p3_featured_panel) {
+				.site-main .row > .col-md-push-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					left: <?php echo $side; ?>%;
 				}
-				.site-main .row > .col-md-offset-4:not(.p3_featured_panel) {
+				.site-main .row > .col-md-offset-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					margin-left: <?php echo $side; ?>%;
 				}
 			}
@@ -117,16 +117,16 @@ if (!function_exists('p3_width_customizer_styles')) {
 					margin-left: <?php echo $main; ?>%;
 				}
 				
-				.site-main .row > .col-lg-4:not(.p3_featured_panel) {
+				.site-main .row > .col-lg-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					width: <?php echo $side; ?>%;
 				}
-				.site-main .row > .col-lg-pull-4:not(.p3_featured_panel) {
+				.site-main .row > .col-lg-pull-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					right: <?php echo $side; ?>%;
 				}
-				.site-main .row > .col-lg-push-4:not(.p3_featured_panel) {
+				.site-main .row > .col-lg-push-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					left: <?php echo $side; ?>%;
 				}
-				.site-main .row > .col-lg-offset-4:not(.p3_featured_panel) {
+				.site-main .row > .col-lg-offset-4:not(.p3_featured_panel):not(.p3_featured_cat) {
 					margin-left: <?php echo $side; ?>%;
 				}
 			}

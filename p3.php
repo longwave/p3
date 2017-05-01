@@ -104,6 +104,7 @@ function pipdig_p3_scripts_styles() {
 	wp_enqueue_script( 'pipdig-fitvids', 'https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js', array( 'jquery' ), null, true );
 	wp_register_script( 'pipdig-mixitup', 'https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js', array( 'jquery' ), null, true );
 	//wp_register_script( 'pipdig-cookie', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js', array( 'jquery' ), null, true );
+	wp_register_script( 'pipdig-flickity', 'https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js', array('jquery'), null, false );
 	
 	wp_enqueue_style( 'font-awesome', 'https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
 }
@@ -119,29 +120,29 @@ include('inc/shortcodes.php');
 include('inc/cron.php');
 include('inc/beaver.php');
 
-
+/*
 function pipdig_change_posts_number_theme() {
-if (get_option('pipdig_p3_posts_per_page_set') != 1) { // legacy check
-	if (get_option('pipdig_p3_posts_per_page_set_'.get_template()) != 1) {
-		if (get_option('pipdig_theme') == 'aquae') {
-			update_option('posts_per_page', 13);
-		} elseif (get_option('pipdig_theme') == 'hollyandweave') {
-			update_option('posts_per_page', 8);
-		} elseif (get_option('pipdig_theme') == 'galvani') {
-			update_option('posts_per_page', 12);
-		} elseif (get_option('pipdig_theme') == 'thegrid') {
-			update_option('posts_per_page', 6);
-		} elseif (get_option('pipdig_theme') == 'crystal') {
-			update_option('posts_per_page', 9);
-		} else {
-			update_option('posts_per_page', 5);
+	if (get_option('pipdig_p3_posts_per_page_set') != 1) { // legacy check
+		if (get_option('pipdig_p3_posts_per_page_set_'.get_template()) != 1) {
+			if (get_option('pipdig_theme') == 'aquae') {
+				update_option('posts_per_page', 13);
+			} elseif (get_option('pipdig_theme') == 'hollyandweave') {
+				update_option('posts_per_page', 8);
+			} elseif (get_option('pipdig_theme') == 'galvani') {
+				update_option('posts_per_page', 12);
+			} elseif (get_option('pipdig_theme') == 'thegrid') {
+				update_option('posts_per_page', 6);
+			} elseif (get_option('pipdig_theme') == 'crystal') {
+				update_option('posts_per_page', 9);
+			} else {
+				update_option('posts_per_page', 5);
+			}
+			update_option('pipdig_p3_posts_per_page_set_'.get_template(), 1);
 		}
-		update_option('pipdig_p3_posts_per_page_set_'.get_template(), 1);
 	}
 }
-}
-add_action( 'plugins_loaded', 'pipdig_change_posts_number_theme');
-
+add_action( 'after_setup_theme', 'pipdig_change_posts_number_theme', 9999);
+*/
 
 function p3_new_install_notice() {
 
@@ -312,7 +313,7 @@ function pipdig_p3_activate() {
 			'<a href="'.$piplink.'" target="_blank">Site Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
 			//'<a href="'.$piplink2.'" target="_blank">Theme Designed by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="text-transform: lowercase;letter-spacing: 1px;">pipdig</span></a>',
+			'<a href="'.$piplink3.'" target="_blank">WordPress Theme by <span style="text-transform: lowercase;letter-spacing: 1px;">pipdig</span></a>',
 			'<a href="'.$piplink3.'" target="_blank">WP theme by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
 			//'<a href="'.$piplink3.'" target="_blank">WordPress Themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
 			'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',

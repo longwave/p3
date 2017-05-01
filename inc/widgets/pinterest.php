@@ -77,8 +77,8 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_invisible" alt=""/>
 					</a>
 				<?php } ?>
-				</div>
 				<div class="clearfix"></div>
+				</div>
 				<?php if (!empty($pinterestuser) && $follow) { ?>
 					<div class="clearfix"></div>
 					<p style="margin: 10px 0"><a href="https://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-pinterest" style="font-size: 15px;"></i> <?php _e('Follow on Pinterest', 'p3'); ?></a></p>
