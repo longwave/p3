@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if (p3_theme_enabled(array('aquae', 'galvani', 'venture', 'arubanights', 'styleandlight', 'tundra', 'ghostshell', 'kensington', 'ladygreys', 'firefly', 'cultureshock', 'willow', 'hollyandweave', 'opulence', 'crystal'))) {
+if (p3_theme_enabled(array('aquae', 'galvani', 'venture', 'arubanights', 'styleandlight', 'tundra', 'ghostshell', 'kensington', 'ladygreys', 'firefly', 'cultureshock', 'willow', 'hollyandweave', 'opulence', 'crystal', 'blossom'))) {
 	return;
 }
 
