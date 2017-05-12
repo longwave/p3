@@ -43,6 +43,8 @@ if (!function_exists('pipdig_p3_unregister_widgets')) {
 		unregister_widget('Milestone_Widget');
 		unregister_widget('Jetpack_Widget_Authors');
 		
+		unregister_widget('WP_Widget_Media_Image');
+		
 		unregister_widget('Akismet_Widget');
 		unregister_widget('SocialCountPlus');
 		unregister_widget('GADWP_Frontend_Widget');
