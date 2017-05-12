@@ -10,16 +10,16 @@ function pipdig_p3_social_shares() {
 	
 	$thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
 	if ($thumb) {
-		$img = esc_url($thumb['0']);
+		$img = $thumb['0'];
 	} else {
 		$img = pipdig_p3_catch_that_image();
 	}
-	$link = esc_url(get_the_permalink());
-	$title = rawurlencode(get_the_title());
-	$summary = rawurlencode(get_the_excerpt());
+	$link = get_the_permalink();
+	$title = get_the_title();
+	$summary = strip_shortcodes(strip_tags(get_the_excerpt()));
 	
 	$links = get_option('pipdig_links');
-	$twitter_url = esc_url($links['twitter']);
+	$twitter_url = $links['twitter'];
 	$twitter_handle = parse_url($twitter_url, PHP_URL_PATH);
 	$twitter_handle = str_replace('/', '', $twitter_handle);
 	$via_handle = '';
@@ -30,46 +30,46 @@ function pipdig_p3_social_shares() {
 	$output = '';
 	
 	if (get_theme_mod('p3_share_email')) {
-		$output .= '<a href="mailto:?subject=Shared: '.$title.'&body=I thought you might like this '.$link.'" target="_blank" rel="nofollow"><i class="fa fa-envelope"></i></a>';
+		$output .= '<a href="'.esc_url('mailto:?subject=Shared: '.$title.'&body=I thought you might like this '.$link).'" target="_blank" rel="nofollow"><i class="fa fa-envelope"></i></a>';
 	}
 	if (get_theme_mod('p3_share_facebook', 1)) {
-		$output .= '<a href="https://www.facebook.com/sharer.php?u='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>';
+		$output .= '<a href="'.esc_url('https://www.facebook.com/sharer.php?u='.$link).'" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>';
 	}
 	if (get_theme_mod('p3_share_twitter', 1)) {
-		$output .= '<a href="https://twitter.com/share?url='.$link.'&text='.$title.$via_handle.'" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i></a>';
+		$output .= '<a href="'.esc_url('https://twitter.com/share?url='.$link.'&text='.$title.$via_handle).'" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i></a>';
 	}
 	if (get_theme_mod('p3_share_pinterest', 1)) {
-		$output .= '<a href="https://pinterest.com/pin/create/link/?url='.$link.'&media='.$img.'&description='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-pinterest"></i></a>';
+		$output .= '<a href="'.esc_url('https://pinterest.com/pin/create/link/?url='.$link.'&media='.$img.'&description='.$title).'" target="_blank" rel="nofollow"><i class="fa fa-pinterest"></i></a>';
 	}
 	if (get_theme_mod('p3_share_tumblr', 1)) {
-		$output .= '<a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl='.$link.'&title='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-tumblr"></i></a>';
+		$output .= '<a href="'.esc_url('https://www.tumblr.com/widgets/share/tool?canonicalUrl='.$link.'&title='.$title).'" target="_blank" rel="nofollow"><i class="fa fa-tumblr"></i></a>';
 	}
 	if (get_theme_mod('p3_share_whatsapp')) {
-		$output .= '<a href="whatsapp://send?text='.$link.'" target="_blank" rel="nofollow" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>';
+		$output .= '<a href="'.esc_url('whatsapp://send?text='.$link).'" target="_blank" rel="nofollow" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>';
 	}
 	if (get_theme_mod('p3_share_vk')) {
-		$output .= '<a href="https://vk.com/share.php?url='.$link.'&title='.$title.'&image='.$img.'&description='.$summary.'" target="_blank" rel="nofollow"><i class="fa fa-vk"></i></a>';
+		$output .= '<a href="'.esc_url('https://vk.com/share.php?url='.$link.'&title='.$title.'&image='.$img.'&description='.$summary).'" target="_blank" rel="nofollow"><i class="fa fa-vk"></i></a>';
 	}
 	if (get_theme_mod('p3_share_google_plus')) {
-		$output .= '<a href="https://plus.google.com/share?url='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-google-plus"></i></a>';
+		$output .= '<a href="'.esc_url('https://plus.google.com/share?url='.$link).'" target="_blank" rel="nofollow"><i class="fa fa-google-plus"></i></a>';
 	}
 	if (get_theme_mod('p3_share_linkedin')) {
-		$output .= '<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-linkedin"></i></a>';
+		$output .= '<a href="'.esc_url('https://www.linkedin.com/shareArticle?mini=true&amp;url='.$link).'" target="_blank" rel="nofollow"><i class="fa fa-linkedin"></i></a>';
 	}
 	if (get_theme_mod('p3_share_stumbleupon')) {
-		$output .= '<a href="https://www.stumbleupon.com/submit?url='.$link.'&title='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-stumbleupon"></i></a>';
+		$output .= '<a href="'.esc_url('https://www.stumbleupon.com/submit?url='.$link.'&title='.$title).'" target="_blank" rel="nofollow"><i class="fa fa-stumbleupon"></i></a>';
 	}
 	if (get_theme_mod('p3_share_reddit')) {
-		$output .= '<a href="https://reddit.com/submit?url='.$link.'&title='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-reddit"></i></a>';
+		$output .= '<a href="'.esc_url('https://reddit.com/submit?url='.$link.'&title='.$title).'" target="_blank" rel="nofollow"><i class="fa fa-reddit"></i></a>';
 	}
 	if (get_theme_mod('p3_share_digg')) {
-		$output .= '<a href="https://www.digg.com/submit?url='.$link.'" target="_blank" rel="nofollow"><i class="fa fa-digg"></i></a>';
+		$output .= '<a href="'.esc_url('https://www.digg.com/submit?url='.$link).'" target="_blank" rel="nofollow"><i class="fa fa-digg"></i></a>';
 	}
 	if (get_theme_mod('p3_share_pocket')) {
-		$output .= '<a href="https://getpocket.com/save?url='.$link.'&title='.$title.'" target="_blank" rel="nofollow"><i class="fa fa-get-pocket"></i></a>';
+		$output .= '<a href="'.esc_url('https://getpocket.com/save?url='.$link.'&title='.$title).'" target="_blank" rel="nofollow"><i class="fa fa-get-pocket"></i></a>';
 	}
 	if (get_theme_mod('p3_share_wordpress')) {
-		$output .= '<a href="https://wordpress.com/press-this.php?u='.$link.'&t='.$title.'&s='.$summary.'" target="_blank" rel="nofollow"><i class="fa fa-wordpress"></i></a>';
+		$output .= '<a href="'.esc_url('https://wordpress.com/press-this.php?u='.$link.'&t='.$title.'&s='.$summary).'" target="_blank" rel="nofollow"><i class="fa fa-wordpress"></i></a>';
 	}
 	
 	$share_title = __('Share:', 'p3');

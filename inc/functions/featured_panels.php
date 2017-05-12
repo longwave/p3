@@ -46,7 +46,6 @@ if (!function_exists('p3_featured_panels')) {
 				if (!get_theme_mod('p3_featured_panels_1_img')) {
 					$show = false;
 				}
-				
 			}
 		}
 			

@@ -32,6 +32,10 @@ function p3_youtube_fetch($channel_id) {
 			    'timeout' => 15,
 			);
 			$response = wp_remote_get($url, $args);
+			
+			if (is_wp_error($response)) {
+				return false;
+			}
 				
 			$code = intval(json_decode($response['response']['code']));
 			

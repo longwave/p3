@@ -2,6 +2,15 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+if (get_option('p3_jetpack_override')) {
+	return;
+}
+
+if (isset($_GET['p3_jetpack_override'])) { // If peeps want to use Vanilla Jetpack
+	update_option('p3_jetpack_override', 1);
+	return;
+}
+
 // SSO not default
 add_filter( 'jetpack_sso_default_to_sso_login', '__return_false' );
 
@@ -16,7 +25,7 @@ function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) 
 	'latex',
 	'gravatar-hovercards',
 	//'notes',
-	'carousel',
+	//'carousel',
 	'omnisearch',
 	'photon',
 	'markdown',
@@ -38,17 +47,21 @@ function pipdig_p3_disable_jetpack_modules() {
 	if (Jetpack::is_module_active('custom-css')) {
 		Jetpack::deactivate_module( 'custom-css' );
 	}
+	
 	if (Jetpack::is_module_active('minileven')) {
 		Jetpack::deactivate_module( 'minileven' );
 	}
+	
 	if (Jetpack::is_module_active('photon')) {
 		Jetpack::deactivate_module( 'photon' );
 	}
 	if (Jetpack::is_module_active('related-posts')) {
 		Jetpack::deactivate_module( 'related-posts' );
 	}
+	/*
 	if (Jetpack::is_module_active('carousel')) {
 		Jetpack::deactivate_module( 'carousel' );
 	}
+	*/
 }
 add_action( 'init', 'pipdig_p3_disable_jetpack_modules' );

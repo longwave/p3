@@ -17,7 +17,7 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $spotify = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $spotify = $itunes = '';
 		
 		if (!empty($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
