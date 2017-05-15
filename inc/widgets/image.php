@@ -17,6 +17,7 @@ class pipdig_Image_Widget extends WP_Widget {
 			'image_uri' => '',
 			'link' => '',
 			'target' => '',
+			'nofollow' => '',
 		);
 
 		$widget_ops = array(
@@ -45,13 +46,19 @@ class pipdig_Image_Widget extends WP_Widget {
 			if (! empty($instance['title']))
 				echo $args['before_title'] . apply_filters('widget_title', $instance['title'], $instance, $this->id_base) . $args['after_title'];
 			
-			$target = $link_open = $link_close = '';
+			$target = $link_open = $link_close = $nofollow = '';
 			if (!empty($instance['link'])) {
 				if (!empty($instance['target'])) {
 					$target = 'target="_blank"';
 				}
 				$link_open = '<a href="'.esc_url($instance['link']).'" '.$target.'>';
 				$link_close = '</a>';
+			}
+			
+			if (!empty($instance['nofollow'])) {
+				if (!empty($instance['nofollow'])) {
+					$nofollow = 'rel="nofollow"';
+				}
 			}
 
 			if (!empty($instance['image_uri'])) {
@@ -62,7 +69,7 @@ class pipdig_Image_Widget extends WP_Widget {
 					$image_src = reset($image_src); // php <5.4 way to get [0] value of array
 					$image_src = str_replace('http:', '', $image_src);
 				}
-				echo $link_open.'<img src="'.esc_url($image_src).'" alt="" />'.$link_close;
+				echo $link_open.'<img src="'.esc_url($image_src).'" alt="" '.$nofollow.' />'.$link_close;
 			}
 
 		echo $args['after_widget'];
@@ -76,6 +83,7 @@ class pipdig_Image_Widget extends WP_Widget {
 		$new_instance['image_uri'] = strip_tags($new_instance['image_uri']);
 		$new_instance['link'] = strip_tags($new_instance['link']);
 		$new_instance['target'] = strip_tags($new_instance['target']);
+		$new_instance['nofollow'] = strip_tags($new_instance['nofollow']);
 
 		return $new_instance;
 
@@ -118,6 +126,11 @@ class pipdig_Image_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('target'); ?>">
 			<input type="checkbox" id="<?php echo $this->get_field_id('target'); ?>" name="<?php echo $this->get_field_name('target'); ?>" <?php if (isset($instance['target'])) { checked((bool) $instance['target'], true); } ?> /><?php _e('Open link in a new window', 'p3'); ?></label>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('nofollow'); ?>">
+			<input type="checkbox" id="<?php echo $this->get_field_id('nofollow'); ?>" name="<?php echo $this->get_field_name('nofollow'); ?>" <?php if (isset($instance['nofollow'])) { checked((bool) $instance['nofollow'], true); } ?> /><?php _e('Set link as "nofollow"', 'p3'); ?></label>
 		</p>
 		
 		<?php
