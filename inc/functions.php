@@ -125,11 +125,11 @@ if (!class_exists('Rss_Image_Feed') && !function_exists('pipdig_rss_post_thumbna
 			global $post;
 			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' );
 			if ($thumb) {
-				$bg = esc_url($thumb['0']);
+				$img = $thumb['0'];
 			} else {
-				$bg = pipdig_p3_catch_that_image();
+				$img = pipdig_p3_catch_that_image();
 			}
-			$content = '<p><img src="'.$bg.'" alt="'.esc_attr($post->post_title).'" style="max-width:100%;height:auto;"/></p><p>'.get_the_excerpt().'</p>';
+			$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'" style="max-width:100%;height:auto;"/></p><p>'.get_the_excerpt().'</p>';
 
 		}
 

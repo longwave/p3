@@ -2,6 +2,10 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+if (p3_theme_enabled(array('blossom'))) { // doesn't play nice with search feature
+	return;
+}
+
 function p3_full_screen_landing_cookie() {
 	
 	if (!get_theme_mod('p3_full_screen_landing_enable')) {

@@ -110,6 +110,8 @@ function pipdig_instagram_options_page() {
 			}
 		}
 		
+		delete_transient('p3_stats_gen');
+		
 		?>
 		
 		<p>After connecting your account, you can setup our <a href="https://support.pipdig.co/articles/wordpress-how-to-create-and-use-widgets/" target="_blank">Instagram Widget</a> and <a href="https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/" target="_blank">Instagram Feed</a> options</p>
