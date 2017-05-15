@@ -80,6 +80,9 @@ if (!function_exists('p3_pinterest_hover')) {
 					
 				if (description == null){
 					var description = $(this).attr("alt");
+					if (description == null){
+						var description = '<?php echo esc_attr(get_the_title()); ?>';
+					}
 				}
 
 				var link = 'https://www.pinterest.com/pin/create/button/';
