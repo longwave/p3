@@ -72,6 +72,8 @@ margin: 0;
 font-size: 1.25rem;
 }
 
+#p3_top_menu_bar .menu-bar { text-align: center}
+
 /* related posts ============================= */
 .pipdig_p3_related_posts ul {
 padding: 0;
