@@ -373,9 +373,7 @@ if (!function_exists('p3_instagram_top_of_posts')) {
 				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. Only site admins can see this message.</p>';
 			}
 		}
-		?>
-		</div>
-		<?php
+
 	}
 	add_action('p3_posts_column_start', 'p3_instagram_top_of_posts', 99);
 }
