@@ -5,13 +5,13 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.12.1
+Version: 2.12.2
 Text Domain: p3
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PIPDIG_P3_V', '2.12.1' );
+define( 'PIPDIG_P3_V', '2.12.2' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -20,7 +20,7 @@ function p3_php_version_notice() {
 	?>
 	<div class="notice notice-warning is-dismissible">
 		<h2>PHP Warning</h2>
-		<p>Your web server is using an insecure version of PHP. Please contact your web host so that they can update your server to PHP 5.6 or higher.</p>
+		<p>Your web server is using an insecure version of PHP. Please contact your web host so that they can update your server to PHP 5.6 or higher. Do not ignore this message.</p>
 	</div>
 	<?php
 }

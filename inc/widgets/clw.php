@@ -187,11 +187,11 @@ if (!class_exists('pipdig_widget_clw')) {
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id('latitude'); ?>"><?php _e('Latitude:', 'p3'); ?></label><br />
-				<input type="text" id="<?php echo $this->get_field_id( 'latitude' ); ?>" name="<?php echo $this->get_field_name( 'latitude' ); ?>" value="<?php if ($latitude) { echo $latitude; } ?>" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="e.g. 51.179343" />
+				<input type="text" id="<?php echo $this->get_field_id( 'latitude' ); ?>" name="<?php echo $this->get_field_name( 'latitude' ); ?>" value="<?php if ($latitude) { echo $latitude; } ?>" oninput="this.value = this.value.replace(/[^0-9.-]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="e.g. 51.179343" />
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id('longitude'); ?>"><?php _e('Longitude:', 'p3'); ?></label><br />
-				<input type="text" id="<?php echo $this->get_field_id( 'longitude' ); ?>" name="<?php echo $this->get_field_name( 'longitude' ); ?>" value="<?php if ($longitude) { echo $longitude; } ?>" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="e.g. -1.546873" />
+				<input type="text" id="<?php echo $this->get_field_id( 'longitude' ); ?>" name="<?php echo $this->get_field_name( 'longitude' ); ?>" value="<?php if ($longitude) { echo $longitude; } ?>" oninput="this.value = this.value.replace(/[^0-9.-]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="e.g. -1.546873" />
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id('url'); ?>"><?php _e('Link the map to a url when clicked: (optional)', 'p3'); ?></label><br />
