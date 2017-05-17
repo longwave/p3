@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // load plugin check function, just in case theme hasn't
 if ( !function_exists( 'pipdig_plugin_check' ) ) {

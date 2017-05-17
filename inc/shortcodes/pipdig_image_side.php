@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // [pipdig_image_side title="" image="" image_position="left"]
 if (!function_exists('pipdig_p3_image_side')) {

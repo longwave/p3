@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 if (class_exists('Jetpack')) {
 	if (Jetpack::is_module_active('widgets')) {

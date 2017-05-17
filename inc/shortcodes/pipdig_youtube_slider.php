@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // [pipdig_youtube_slider]
 function pipdig_p3_youtube_slider_shortcode($atts, $content = null) {

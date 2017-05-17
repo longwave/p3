@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // [pipdig_category_section title="" category="slug" number="3"]
 function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {

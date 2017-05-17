@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // [pipdig_left] [/pipdig_left]
 function pipdig_p3_shortcode_left( $atts, $content = null ) {

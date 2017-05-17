@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // [pipdig_instagram_feed shape=""]
 function pipdig_p3_instagram_shortcode( $atts, $content = null ) {

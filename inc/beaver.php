@@ -1,5 +1,5 @@
 <?php 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 if (!class_exists('FLBuilder')) {
 	return;

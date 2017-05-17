@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_social_navbar')) {
 	function pipdig_p3_social_navbar( $items, $args ) {

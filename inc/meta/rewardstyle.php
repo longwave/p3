@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 function pipdig_p3_meta_boxes_rs($meta_boxes) {
 	$prefix = 'pipdig_meta_';

@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // https://feelinsonice-hrd.appspot.com/web/deeplink/snapcode?username=pipdig.co&type=PNG
 

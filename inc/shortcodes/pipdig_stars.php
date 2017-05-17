@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // [pipdig_stars rating="5"]
 function pipdig_p3_star_rating_shortcode( $atts, $content = null ) {

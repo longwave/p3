@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 if (!function_exists('p3_related_posts')) {
 	function p3_related_posts() {
 		

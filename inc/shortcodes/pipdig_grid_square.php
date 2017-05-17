@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // [pipdig_grid_square number="30" columns="3" category="slug"]
 function pipdig_p3_grid_square_shortcode( $atts, $content = null ) {

@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pinterest_hover_enable')) {
 	function p3_pinterest_hover_add_data($content) {

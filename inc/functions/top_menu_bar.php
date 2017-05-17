@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 if (p3_theme_enabled(array('aquae', 'galvani', 'venture', 'arubanights', 'styleandlight', 'tundra', 'ghostshell', 'kensington', 'ladygreys', 'firefly', 'cultureshock', 'willow', 'hollyandweave', 'opulence', 'crystal', 'blossom'))) {
 	return;

@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // [pipdig_social_icons size="15px" color=""]
 function pipdig_p3_social_icons_shortcode( $atts, $content = null ) {

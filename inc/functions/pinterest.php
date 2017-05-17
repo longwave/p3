@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // function to fetch images
 if (!function_exists('p3_pinterest_fetch')) {

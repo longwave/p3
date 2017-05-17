@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 if ( !class_exists( 'pipdig_widget_depop' ) ) {
 	class pipdig_widget_depop extends WP_Widget {

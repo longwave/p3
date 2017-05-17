@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // [pipdig_padded_text padding=""]
 function pipdig_padded_text_func( $atts, $content = null ) {

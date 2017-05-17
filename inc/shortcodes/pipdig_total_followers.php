@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // [pipdig_total_followers]
 function pipdig_total_followers_shortcode( $atts, $content = null ) {

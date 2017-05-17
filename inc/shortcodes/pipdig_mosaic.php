@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 // [pipdig_mosaic number="30" columns="3" category="slug"]
 function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {

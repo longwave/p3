@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 if ( !wp_next_scheduled('pipdig_p3_daily_event') ) {
 	wp_schedule_event( time(), 'twicedaily', 'pipdig_p3_daily_event'); // hourly, twicedaily or daily

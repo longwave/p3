@@ -1,6 +1,6 @@
 <?php 
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) die;
 
 if (!class_exists( 'pipdig_widget_instagram')) {
 	class pipdig_widget_instagram extends WP_Widget {
