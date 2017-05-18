@@ -52,14 +52,38 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 				$number = 1;
 			}
 			
+			if (isset($instance['cols'])) { 
+				$cols = absint($instance['cols']);
+			} else {
+				$cols = 1;
+			}
+			
 			//print_r($videos);
 			
 			//echo '<h1>'.$number.'</h1>';
 				
 			if ($videos) { ?>
 			
-				<div>
+				<?php
+				$id = 'p3_youtube_widget_'.rand(1, 999999999);
+				
+				$horizontal = '';
+				if (!empty($instance['horizontal'])) {
+					$horizontal = 'p3_youtube_widget_horizontal';
+					?>
+					<style>
+					#<?php echo $id; ?> .p3_youtube_widget_horizontal {
+						width: <?php echo (100 / $number) -1; ?>%;
+						margin: .5%;
+					}
+					</style>
+					<?php
+				}
+				
+				?>
 			
+				<div id="<?php echo $id; ?>">
+				
 				<?php $i = 1; // just for margin counter below ?>
 			
 				<?php foreach($videos as $video) { ?>
@@ -67,33 +91,35 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 					<?php
 					// margin for all except first in series
 					$margin = '';
-					if (($number > 1) && ($i != 1)) {
+					if (empty($horizontal) && ($number > 1) && ($i != 1)) {
 						$margin = 'margin-top:15px;';
 					}
 					$i++;
 					?>
-				
-					<div class="p3_youtube_widget p3_cover_me" style="background-image:url(<?php echo $video['thumbnail']; ?>);<?php echo $margin; ?>">
-						<a href="<?php echo $video['link']; ?>" target="_blank" rel="nofollow">
+					<div class="p3_youtube_widget_wrapper <?php echo $horizontal; ?>">
+					<div class="p3_youtube_widget p3_cover_me" style="background-image:url(<?php echo esc_url($video['thumbnail']); ?>);<?php echo $margin; ?>">
+						<a href="<?php echo esc_url($video['link']); ?>" target="_blank" rel="nofollow">
 							<img class="p3_invisible" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=" alt="<?php echo esc_attr($video['title']); ?>"/>
 							<i class="fa fa-youtube-play"></i>
 						</a>
 					</div>
 					<?php if (!empty($instance['show_title'])) { ?>
-						<a href="<?php echo $video['link']; ?>" target="_blank" rel="nofollow"><?php echo $video['title']; ?></a>
+						<a href="<?php echo esc_url($video['link']); ?>" target="_blank" rel="nofollow"><?php echo esc_html($video['title']); ?></a>
 					<?php } ?>
+					</div>
 					
 					<?php if ($i == $number+1) {
 						break;
 					} ?>
 					
 				<?php } ?>
+				<div class="clearfix"></div>
 				</div>
 			<?php
 			}
 			
 		} else {
-			_e('Setup not complete. Please check the widget options.', 'p3');
+			echo 'YouTube widget: '.__('Setup not complete. Please check the widget options.', 'p3');
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');
@@ -110,12 +136,12 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		if (isset($instance['playlist_id'])) { 
 			$playlist_id = $instance['playlist_id'];
 		}
-		if (empty($instance['show_title'])) {
-			$show_title = true;
-		}
+
+		$number = 1;
 		if (isset($instance['number'])) { 
 			$number = absint($instance['number']);
 		}
+
 	   
 		// PART 2-3: Display the fields
 		?>
@@ -130,9 +156,18 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		
 		<p>This widget will display recent videos from either a YouTube Channel or a Playlist.</p>
 		
+		<h3>Display Options</h3>
+		
 		<p>
-			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of videos to display:', 'p3'); ?></label><br />
-			<input type="number" min="1" max="10" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" value="<?php if (!empty($number)) { echo $number; } else { echo '1'; } ?>" /> (max 10)
+			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of videos to display', 'p3'); ?></label>
+			<select id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" class="">
+				<option <?php selected( $number, 1); ?> value="1">1</option>
+				<option <?php selected( $number, 2); ?> value="2">2</option>
+				<option <?php selected( $number, 3); ?> value="3">3</option>
+				<option <?php selected( $number, 4); ?> value="4">4</option>
+				<option <?php selected( $number, 5); ?> value="5">5</option>
+				<option <?php selected( $number, 6); ?> value="6">6</option>
+			</select>
 		</p>
 		
 		<p>
@@ -141,7 +176,14 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 			<br />
 		</p>
 		
-		<p>You can display either a Channel or a Playlist in this widget. Use one of the options below:</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('horizontal'); ?>">
+			<input type="checkbox" id="<?php echo $this->get_field_id('horizontal'); ?>" name="<?php echo $this->get_field_name('horizontal'); ?>" <?php if (isset($instance['horizontal'])) { checked( (bool) $instance['horizontal'], true ); } ?> /><?php _e('Display videos horizontally (instead of vertically)', 'p3'); ?></label>
+			<br />
+		</p>
+		
+		
+		<!--<p>You can display either a Channel or a Playlist in this widget. Use one of the options below:</p>-->
 		
 		<h3>YouTube Channel</h3>
 		<p>If you would like to display any videos from a channel, you should enter your <a href="https://support.google.com/youtube/answer/3250431" target="_blank">Channel ID</a> below.</p>
@@ -173,6 +215,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		$instance['channel_id'] = strip_tags(trim($new_instance['channel_id']));
 		$instance['playlist_id'] = strip_tags(trim($new_instance['playlist_id']));
 		$instance['number'] = absint($new_instance['number']);
+		$instance['horizontal'] = strip_tags($new_instance['horizontal']);
 		$instance['show_title'] = strip_tags($new_instance['show_title']);
 		delete_transient('p3_youtube_widget_'.$instance['channel_id']); // delete transient
 		return $instance;

@@ -92,7 +92,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 			<?php }
 		} else {
 			if (current_user_can('manage_options')) {
-				echo 'Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private.';
+				echo 'Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. This message is only visible to site admins.';
 			}
 		}
 		

@@ -176,6 +176,10 @@ border: 2px solid #fff;
 .p3_youtube_widget {
 line-height: 0;
 }
+.p3_youtube_widget_horizontal {
+	float: left;
+	vertical-align: top;
+}
 .p3_youtube_widget .fa {
 position: absolute;
 font-size: 48px;

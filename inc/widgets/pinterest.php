@@ -85,7 +85,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 				<?php }
 			
 			} else {
-				_e('Setup not complete. Please check the widget options.', 'p3');
+				echo 'Pinterest widget: '.__('Setup not complete. Please check the widget options.', 'p3');
 			}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');

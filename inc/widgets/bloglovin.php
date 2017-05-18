@@ -55,7 +55,7 @@ if ( !class_exists( 'pipdig_theme_bloglovin_widget' ) ) {
 			}
 			echo $bloglovin_widget_output;
 		} else {
-			_e('Setup not complete. Please check the widget options.', 'p3');
+			echo 'Bloglovin widget: '.__('Setup not complete. Please check the widget options.', 'p3');
 		}
 		// After widget code, if any
 		echo (isset($after_widget)?$after_widget:'');
