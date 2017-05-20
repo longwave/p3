@@ -113,7 +113,7 @@ function pipdig_p3_dashboard_widgets() {
 					$results = json_decode($response['body']);
 				}
 			}
-			set_transient( 'p3_get_news', $results, 1 * DAY_IN_SECONDS );
+			set_transient( 'p3_get_news', $results, 12 * HOUR_IN_SECONDS );
 		}
 		
 		if (is_array($results) && (count($results) > 0)) {
@@ -165,7 +165,7 @@ function pipdig_p3_dashboard_news_func() {
 				$results = json_decode($response['body']);
 			}
 		}
-		set_transient( 'p3_get_news', $results, 3 * DAY_IN_SECONDS );
+		set_transient( 'p3_get_news', $results, 12 * HOUR_IN_SECONDS );
 	}
 	if (!empty($results[0]->content)) {
 		echo wp_kses_post($results[0]->content);
@@ -174,7 +174,7 @@ function pipdig_p3_dashboard_news_func() {
 	}
 	?>
 	
-	<div style="margin-top: 20px"></div>
+	<div style="margin-top: 30px"></div>
 	
 	<form action="index.php" method="post">
 		<?php wp_nonce_field('p3_stop_the_news_nonce'); ?>
