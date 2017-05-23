@@ -5,13 +5,13 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.12.4
+Version: 2.13.0
 Text Domain: p3
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '2.12.4' );
+define( 'PIPDIG_P3_V', '2.13.0' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -198,6 +198,9 @@ add_action( 'admin_notices', 'p3_new_install_notice' );
 
 
 function pipdig_p3_activate() {
+	
+	// set transient for 1 weeks, stops newsdash from showing
+	set_transient( 'p3_news_new_user_wait', 1, 7 * DAY_IN_SECONDS );
 	
 	// trackbacks
 	update_option('default_pingback_flag', '');

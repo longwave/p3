@@ -2,8 +2,6 @@
 
 if (!defined('ABSPATH')) die;
 
-
-
 // used in image, profile and snapcode widget
 function pipdig_image_upload_script() {
 	global $pagenow, $wp_customize;
@@ -31,5 +29,5 @@ include('widgets/twitter.php');
 include('widgets/we-heart-it.php');
 //include('widgets/depop.php');
 include('widgets/image.php');
-//include('widgets/goodreads.php');
+include('widgets/goodreads.php');
 include('widgets/featured-post.php');

@@ -92,62 +92,79 @@ function pipdig_p3_remove_default_metaboxes() {
 add_action('admin_menu','pipdig_p3_remove_default_metaboxes');
 
 
-
-/*  Dashboard widgets ----------------------------------------------------------------*/
-function pipdig_p3_dashboard_widgets() {
+// news dashboard widget
+function pipdig_p3_news_dashboard() {
 	
-	if (!current_user_can('delete_others_pages')) {
+	if (!current_user_can('manage_options')) {
 		return;
 	}
 	
-	if (absint(get_option('p3_stop_news')) != 1) {
-		$box_title = $box_id = false;
+	// user asked to stop all messages
+	if (absint(get_option('p3_stop_news')) == 1) {
+		return;
+	}
 	
-		if ( false === ( $results = get_transient( 'p3_get_news' ) )) {
-			$url = 'https://www.wpupdateserver.com/p3_news.json';
-			$response = wp_remote_get($url);
-			$results = '';
-			if (!is_wp_error($response)) {
-				$code = intval(json_decode($response['response']['code']));
-				if ($code === 200) {
-					$results = json_decode($response['body']);
-				}
-			}
-			set_transient( 'p3_get_news', $results, 12 * HOUR_IN_SECONDS );
-		}
-		
-		if (is_array($results) && (count($results) > 0)) {
-			if (!empty($results[0]->id)) {
-				$box_id = esc_attr($results[0]->id);
-			}
-			if (!empty($results[0]->title)) {
-				$box_title = esc_attr($results[0]->title);
+	// if new install, don't show (set on initial activation)
+	if (get_transient('p3_news_new_user_wait')) {
+		return;
+	}
+	
+	$box_title = $box_id = $noshow = false;
+	
+	if ( false === ( $results = get_transient( 'p3_get_news' ) )) {
+		$url = 'https://www.wpupdateserver.com/p3_news_test.json';
+		$response = wp_remote_get($url);
+		$results = '';
+		if (!is_wp_error($response)) {
+			$code = intval(json_decode($response['response']['code']));
+			if ($code === 200) {
+				$results = json_decode($response['body']);
 			}
 		}
-		
-		if ($box_id && $box_title && !empty($results[0]->content)) {
-			add_meta_box( 
-				$box_id,
-				$box_title,
-				'pipdig_p3_dashboard_news_func',
-				'dashboard',
-				'side',
-				'high'
-			);
+		set_transient( 'p3_get_news', $results, 12 * HOUR_IN_SECONDS );
+	}
+	
+	if (is_array($results) && (count($results) > 0)) {
+		if (!empty($results[0]->id)) {
+			$box_id = esc_attr($results[0]->id);
+		} else {
+			return;
+		}
+		if (!empty($results[0]->title)) {
+			$box_title = esc_attr($results[0]->title);
+		} else {
+			return;
+		}
+		if (!empty($results[0]->noshow)) {
+			$noshow = esc_attr($results[0]->noshow);
+		} else {
+			return;
 		}
 	}
 	
-	add_meta_box( 
-		'pipdig_p3_dashboard_social_count',
-		'pipdig - '.__('Your Followers', 'p3'),
-		'pipdig_p3_dashboard_social_count_func',
-		'dashboard',
-		'side',
-		'high'
-	);
+	// don't show this message for this theme
+	if ($noshow == get_option('pipdig_theme')) {
+		return;
+	}
+	
+	$stop_news_items = get_option('p3_stop_news_items');
+	if (is_array($stop_news_items) && in_array($box_id, $stop_news_items)) {
+		return;
+	}
+	
+	if ($box_id && $box_title && !empty($results[0]->content)) {
+		add_meta_box( 
+			$box_id,
+			$box_title,
+			'pipdig_p3_dashboard_news_func',
+			'dashboard',
+			'side',
+			'high'
+		);
+	}
 	
 }
-add_action( 'wp_dashboard_setup', 'pipdig_p3_dashboard_widgets' );
+add_action( 'wp_dashboard_setup', 'pipdig_p3_news_dashboard' );
 
 function pipdig_p3_dashboard_news_func() {
 	
@@ -156,7 +173,7 @@ function pipdig_p3_dashboard_news_func() {
 	}
 	
 	if ( false === ( $results = get_transient( 'p3_get_news' ) )) {
-		$url = 'https://www.wpupdateserver.com/p3_news.json';
+		$url = 'https://www.wpupdateserver.com/p3_news_test.json';
 		$response = wp_remote_get($url);
 		$results = '';
 		if (!is_wp_error($response)) {
@@ -172,19 +189,63 @@ function pipdig_p3_dashboard_news_func() {
 	} else {
 		return;
 	}
+	if (!empty($results[0]->id)) {
+		$box_id = esc_attr($results[0]->id);
+	} else {
+		return;
+	}
+	
+	if (isset($_POST['p3_stop_the_news_item'])) {
+		$stop_news_items = get_option('p3_stop_news_items');
+		if (is_array($stop_news_items)) {
+			array_push($stop_news_items, $box_id);
+			update_option('p3_stop_news_items', $stop_news_items);
+		} else {
+			$stop_news_items = array($box_id);
+			update_option('p3_stop_news_items', $stop_news_items);
+		}
+	}
+	
 	?>
 	
 	<div style="margin-top: 30px"></div>
 	
 	<form action="index.php" method="post">
+		<?php wp_nonce_field('p3_stop_the_news_item_nonce'); ?>
+		<input type="hidden" value="<?php echo $box_id; ?>" name="p3_stop_the_news_item" />
+		<p class="submit">
+			<input name="submit" class="button" value="<?php _e('Hide this message', 'p3'); ?>" type="submit" />
+		</p>
+	</form>
+	<br />
+	<form action="index.php" method="post">
 		<?php wp_nonce_field('p3_stop_the_news_nonce'); ?>
 		<input type="hidden" value="true" name="p3_stop_the_news" />
 		<p class="submit">
-			<input name="submit" class="button" value="<?php _e('Never show messages like this again', 'raptor'); ?>" type="submit" />
+			<input name="submit" class="button" value="<?php _e('Never show messages like this again', 'p3'); ?>" type="submit" />
 		</p>
 	</form>
 	<?php
 }
+
+// All other dashboard widgets
+function pipdig_p3_stats_dashboard() {
+	
+	if (!current_user_can('delete_others_pages')) {
+		return;
+	}
+	
+	add_meta_box( 
+		'pipdig_p3_dashboard_social_count',
+		'pipdig - '.__('Your Followers', 'p3'),
+		'pipdig_p3_dashboard_social_count_func',
+		'dashboard',
+		'side',
+		'high'
+	);
+	
+}
+add_action( 'wp_dashboard_setup', 'pipdig_p3_stats_dashboard' );
 
 function pipdig_p3_dashboard_social_count_func() {
 	
@@ -213,8 +274,8 @@ function pipdig_p3_dashboard_social_count_func() {
 		?><p>This widget will display social media follower stats for any links added to <a href="<?php echo admin_url('admin.php?page=pipdig-links'); ?>">this page</a>.</p><?php
 	} else {
 	?>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/amcharts.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/pie.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.1/amcharts.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.1/pie.js"></script>
 		
 			<script type="text/javascript">
 				AmCharts.makeChart("chartdiv",

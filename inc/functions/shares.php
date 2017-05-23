@@ -44,6 +44,10 @@ function pipdig_p3_social_shares() {
 	if (get_theme_mod('p3_share_tumblr', 1)) {
 		$output .= '<a href="'.esc_url('https://www.tumblr.com/widgets/share/tool?canonicalUrl='.$link.'&title='.$title).'" target="_blank" rel="nofollow"><i class="fa fa-tumblr"></i></a>';
 	}
+	// no https support yet
+	if (get_theme_mod('p3_share_weibo')) {
+		$output .= '<a href="'.esc_url('http://service.weibo.com/share/share.php?'.$link.'&title='.$title.'&pic='.$img).'" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>';
+	}
 	if (get_theme_mod('p3_share_whatsapp')) {
 		$output .= '<a href="'.esc_url('whatsapp://send?text='.$link).'" target="_blank" rel="nofollow" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>';
 	}
@@ -276,6 +280,20 @@ if (!class_exists('pipdig_p3_social_shares_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Reddit',
+					'section' => 'pipdig_p3_shares_section',
+				)
+			);
+			
+			$wp_customize->add_setting('p3_share_weibo',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_share_weibo',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Weibo',
 					'section' => 'pipdig_p3_shares_section',
 				)
 			);

@@ -14,22 +14,14 @@ if (class_exists('Jetpack')) {
  */
 
 
-/**
- * Register the widget for use in Appearance -> Widgets
- */
-add_action( 'widgets_init', 'jetpack_goodreads_widget_init' );
 
-function jetpack_goodreads_widget_init() {
-	register_widget( 'WPCOM_Widget_Goodreads' );
+function pipdig_goodreads_widget_init() {
+	register_widget( 'p3_goodreads_widget' );
 }
+add_action( 'widgets_init', 'pipdig_goodreads_widget_init' );
 
-/**
- * Goodreads widget class
- * Display a user's Goodreads shelf.
- * Customize user_id, title, and shelf
- *
- */
-class WPCOM_Widget_Goodreads extends WP_Widget {
+
+class p3_goodreads_widget extends WP_Widget {
 
 	private $goodreads_widget_id = 0;
 
