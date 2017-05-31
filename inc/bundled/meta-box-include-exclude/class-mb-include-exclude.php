@@ -16,16 +16,17 @@
  */
 class MB_Include_Exclude {
 	/**
-	 * Store the current post ID
+	 * Store the current post ID.
+	 *
 	 * @var string
 	 */
-	static $post_id;
+	protected static $post_id;
 
 	/**
-	 * Check if meta box is displayed or not
+	 * Check if meta box is displayed or not.
 	 *
-	 * @param bool $show
-	 * @param array $meta_box
+	 * @param bool  $show     Show or hide meta box.
+	 * @param array $meta_box Meta Box parameters.
 	 *
 	 * @return bool
 	 */
@@ -34,8 +35,7 @@ class MB_Include_Exclude {
 			return $show;
 		}
 
-		$post_id       = isset( $_GET['post'] ) ? $_GET['post'] : ( isset( $_POST['post_ID'] ) ? $_POST['post_ID'] : false );
-		self::$post_id = (int) $post_id;
+		self::$post_id = self::get_current_post_id();
 
 		if ( isset( $meta_box['include'] ) ) {
 			$show = self::maybe_exclude_include( 'include', $meta_box );
@@ -58,15 +58,12 @@ class MB_Include_Exclude {
 	 */
 	protected static function maybe_exclude_include( $type, $meta_box ) {
 		$conditions = $meta_box[ $type ];
-		$relation   = isset( $conditions['relation'] ) && in_array( strtoupper( $conditions['relation'] ), array(
-			'AND',
-			'OR'
-		) ) ? strtoupper( $conditions['relation'] ) : 'OR';
+		$relation   = isset( $conditions['relation'] ) && in_array( strtoupper( $conditions['relation'] ), array( 'AND', 'OR' ), true ) ? strtoupper( $conditions['relation'] ) : 'OR';
 
-		// Initial value
+		// Initial value.
 		$value = 'OR' === $relation ? false : true;
 
-		// For better loop of checking terms
+		// For better loop of checking terms.
 		unset( $conditions['relation'] );
 
 		$check_by = array( 'ID', 'parent', 'slug', 'template', 'user_role', 'user_id', 'custom', 'is_child' );
@@ -81,16 +78,16 @@ class MB_Include_Exclude {
 				return $value;
 			}
 
-			// For better loop of checking terms
+			// For better loop of checking terms.
 			unset( $conditions[ $by ] );
 		}
 
-		// By parent taxonomy, including category and post_tag
-		// Note that we unset all other parameters, so we can safely loop in the condition array
+		// By parent taxonomy, including category and post_tag.
+		// Note that we unset all other parameters, so we can safely loop in the condition array.
 		if ( empty( $conditions ) ) {
 			return $value;
 		}
-		// Change 'tag' to correct name 'post_tag'
+		// Change 'tag' to correct name 'post_tag'.
 		if ( isset( $conditions['parent_tag'] ) ) {
 			$conditions['parent_post_tag'] = $conditions['parent_tag'];
 			unset( $conditions['parent_tag'] );
@@ -109,12 +106,12 @@ class MB_Include_Exclude {
 			unset( $condition[ $key ] );
 		}
 
-		// By taxonomy, including category and post_tag
-		// Note that we unset all other parameters, so we can safely loop in the condition array
+		// By taxonomy, including category and post_tag.
+		// Note that we unset all other parameters, so we can safely loop in the condition array.
 		if ( empty( $conditions ) ) {
 			return $value;
 		}
-		// Change 'tag' to correct name 'post_tag'
+		// Change 'tag' to correct name 'post_tag'.
 		if ( isset( $conditions['tag'] ) ) {
 			$conditions['post_tag'] = $conditions['tag'];
 			unset( $conditions['tag'] );
@@ -133,7 +130,7 @@ class MB_Include_Exclude {
 	/**
 	 * Check if current post has specific ID
 	 *
-	 * @param array $ids
+	 * @param array $ids List of post IDs. Can be array or CSV.
 	 *
 	 * @return bool
 	 */
@@ -235,28 +232,48 @@ class MB_Include_Exclude {
 	}
 
 	/**
-	 * Check by user role
+	 * Check by user role.
 	 *
-	 * @param array|string $roles
+	 * @param array|string $roles List of user roles. Array or CSV.
 	 *
 	 * @return bool
 	 */
 	protected static function check_user_role( $roles ) {
-		$user      = wp_get_current_user();
-		$user_role = reset( $user->roles );
+		$user = wp_get_current_user();
 
-		return in_array( $user_role, array_map( 'strtolower', self::csv_to_array( $roles ) ) );
+		/*
+		 * If edit another user's profile, get the edited user instead.
+		 * This is required for MB User Meta extension.
+		 */
+		if ( isset( $GLOBALS['pagenow'] ) && 'user-edit.php' === $GLOBALS['pagenow'] ) {
+			$user_id = filter_input( INPUT_GET, 'user_id', FILTER_SANITIZE_NUMBER_INT );
+			$user    = get_userdata( $user_id );
+		}
+
+		$roles = array_map( 'strtolower', self::csv_to_array( $roles ) );
+		$roles = array_intersect( $user->roles, $roles );
+		return ! empty( $roles );
 	}
 
 	/**
-	 * Check by user ID
+	 * Check by user ID.
 	 *
-	 * @param array|string $user_ids
+	 * @param array|string $user_ids List of user IDs. Array or CSV.
 	 *
 	 * @return bool
 	 */
 	protected static function check_user_id( $user_ids ) {
-		return in_array( get_current_user_id(), self::csv_to_array( $user_ids ) );
+		$user_id = get_current_user_id();
+
+		/*
+		 * If edit another user's profile, get the edited user instead.
+		 * This is required for MB User Meta extension.
+		 */
+		if ( isset( $GLOBALS['pagenow'] ) && 'user-edit.php' === $GLOBALS['pagenow'] ) {
+			$user_id = filter_input( INPUT_GET, 'user_id', FILTER_SANITIZE_NUMBER_INT );
+		}
+
+		return in_array( $user_id, self::csv_to_array( $user_ids ) );
 	}
 
 	/**
@@ -286,9 +303,19 @@ class MB_Include_Exclude {
 	}
 
 	/**
-	 * Convert a comma separated string to array
+	 * Get current post ID.
 	 *
-	 * @param string $string Comma separated string
+	 * @return int|false Post ID if successful. False on failure.
+	 */
+	protected static function get_current_post_id() {
+		$post_id = isset( $_GET['post'] ) ? $_GET['post'] : ( isset( $_POST['post_ID'] ) ? $_POST['post_ID'] : false );
+		return is_numeric( $post_id ) ? absint( $post_id ) : false;
+	}
+
+	/**
+	 * Convert a comma separated string to array.
+	 *
+	 * @param string $string Comma separated string.
 	 *
 	 * @return array
 	 */
@@ -299,14 +326,14 @@ class MB_Include_Exclude {
 	/**
 	 * Combine 2 logical value.
 	 *
-	 * @param bool $value1
-	 * @param bool $value2
-	 * @param string $relation 'OR' or 'AND'
+	 * @param bool   $value1   First value.
+	 * @param bool   $value2   Second value.
+	 * @param string $relation 'OR' or 'AND'.
 	 *
 	 * @return bool Indicator for quick break the check.
 	 */
 	protected static function combine( &$value1, $value2, $relation ) {
-		if ( 'OR' == $relation ) {
+		if ( 'OR' === $relation ) {
 			$value1 = $value1 || $value2;
 
 			return $value1;

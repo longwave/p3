@@ -1,6 +1,7 @@
 <?php
 /**
  * The main class of the plugin which handle show, edit, save custom fields (meta data) for terms.
+ *
  * @package    Meta Box
  * @subpackage MB Term Meta
  * @author     Tran Ngoc Tuan Anh <rilwis@gmail.com>
@@ -11,22 +12,42 @@
  */
 class MB_Term_Meta_Box extends RW_Meta_Box {
 	/**
-	 * Create meta box based on given data
+	 * The field meta object.
 	 *
-	 * @param array $meta_box Meta box definition
+	 * @var MB_Term_Meta_Field
+	 */
+	private $field_meta;
+
+	/**
+	 * Create meta box based on given data.
+	 *
+	 * @param array $meta_box Meta box configuration.
 	 */
 	public function __construct( $meta_box ) {
+
+		$meta_box['taxonomies'] = (array) $meta_box['taxonomies'];
 		parent::__construct( $meta_box );
-		$this->meta_box['taxonomies'] = (array) $this->meta_box['taxonomies'];
+	}
 
-		remove_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
-		remove_action( 'save_post_post', array( $this, 'save_post' ) );
+	/**
+	 * Setter method for the field meta property.
+	 *
+	 * @param MB_Term_Meta_Field $field_meta The field meta object.
+	 */
+	public function set_field_meta_object( MB_Term_Meta_Field $field_meta ) {
+		$this->field_meta = $field_meta;
+	}
 
-		// Add meta fields to edit term page
+	/**
+	 * Specific hooks for meta box object. Default is 'post'.
+	 * This should be extended in sub-classes to support meta fields for terms, user, settings pages, etc.
+	 */
+	protected function object_hooks() {
+		// Add meta fields to edit term page.
 		add_action( 'load-edit-tags.php', array( $this, 'add' ) );
 		add_action( 'load-term.php', array( $this, 'add' ) );
 
-		// Save term meta
+		// Save term meta.
 		foreach ( $this->meta_box['taxonomies'] as $taxonomy ) {
 			add_action( "edited_$taxonomy", array( $this, 'save' ) );
 		}
@@ -38,7 +59,7 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 	 * Show heading of the section.
 	 */
 	public function show_heading() {
-		echo '<h2>', esc_html__( $this->meta_box['title'] ), '</h2>';
+		echo '<h2>', esc_html( $this->meta_box['title'] ), '</h2>';
 	}
 
 	/**
@@ -49,13 +70,13 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 			return;
 		}
 
-		// Add meta box
+		// Add meta box.
 		foreach ( $this->meta_box['taxonomies'] as $taxonomy ) {
-			add_action( $taxonomy . '_edit_form', array( $this, 'show' ), 10, 2 );
+			add_action( "{$taxonomy}_edit_form", array( $this, 'show' ), 10, 2 );
 		}
 
 		// Change field meta.
-		add_filter( 'rwmb_field_meta', array( 'MB_Term_Meta_Field', 'meta' ), 10, 3 );
+		add_filter( 'rwmb_field_meta', array( $this->field_meta, 'meta' ), 10, 3 );
 	}
 
 	/**
@@ -66,7 +87,7 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 			return;
 		}
 
-		// Backward compatibility
+		// Backward compatibility.
 		if ( method_exists( $this, 'admin_enqueue_scripts' ) ) {
 			parent::admin_enqueue_scripts();
 		} else {
@@ -77,12 +98,12 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 	}
 
 	/**
-	 * Save meta fields for terms
+	 * Save meta fields for terms.
 	 *
-	 * @param int $term_id
+	 * @param int $term_id Term ID.
 	 */
 	public function save( $term_id ) {
-		// Check whether form is submitted properly
+		// Check whether form is submitted properly.
 		$nonce = (string) filter_input( INPUT_POST, "nonce_{$this->meta_box['id']}" );
 		if ( ! wp_verify_nonce( $nonce, "rwmb-save-{$this->meta_box['id']}" ) ) {
 			return;
@@ -94,20 +115,26 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 			$old    = get_term_meta( $term_id, $name, $single );
 			$new    = isset( $_POST[ $name ] ) ? $_POST[ $name ] : ( $single ? '' : array() );
 
-			// Allow field class change the value
-			$new = RWMB_Field::call( $field, 'value', $new, $old, 0 );
+			// Allow field class change the value.
+			if ( $field['clone'] ) {
+				$new = RWMB_Clone::value( $new, $old, $term_id, $field );
+			} else {
+				$new = RWMB_Field::call( $field, 'value', $new, $old, $term_id );
+				$new = RWMB_Field::filter( 'sanitize', $new, $field );
+			}
 			$new = RWMB_Field::filter( 'value', $new, $field, $old );
 
-			MB_Term_Meta_Field::save( $new, $old, $term_id, $field );
+			$this->field_meta->save( $new, $old, $term_id, $field );
 		}
 	}
 
 	/**
 	 * Check if term meta is saved.
+	 *
 	 * @return bool
 	 */
 	public function is_saved() {
-		$term_id = self::get_object_id();
+		$term_id = filter_input( INPUT_GET, 'tag_ID', FILTER_SANITIZE_NUMBER_INT );
 
 		foreach ( $this->fields as $field ) {
 			$value = get_term_meta( $term_id, $field['id'], ! $field['multiple'] );
@@ -133,15 +160,7 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 		$screen = get_current_screen();
 
 		return
-			( 'edit-tags' == $screen->base || 'term' == $screen->base )
-			&& in_array( $screen->taxonomy, $this->meta_box['taxonomies'] );
-	}
-
-	/**
-	 * Get editing term ID.
-	 * @return bool|int
-	 */
-	public static function get_object_id() {
-		return isset( $_GET['tag_ID'] ) ? intval( $_GET['tag_ID'] ) : false;
+			( 'edit-tags' === $screen->base || 'term' === $screen->base )
+			&& in_array( $screen->taxonomy, $this->meta_box['taxonomies'], true );
 	}
 }

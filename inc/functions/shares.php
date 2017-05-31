@@ -15,8 +15,8 @@ function pipdig_p3_social_shares() {
 		$img = pipdig_p3_catch_that_image();
 	}
 	$link = get_the_permalink();
-	$title = get_the_title();
-	$summary = strip_shortcodes(strip_tags(get_the_excerpt()));
+	$title = rawurlencode(get_the_title());
+	$summary = rawurlencode(strip_shortcodes(strip_tags(get_the_excerpt())));
 	
 	$links = get_option('pipdig_links');
 	$twitter_url = $links['twitter'];

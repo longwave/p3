@@ -2,7 +2,7 @@
 
 if (!defined('ABSPATH')) die;
 
-if (p3_theme_enabled(array('hollyandweave', 'equinox', 'opulence', 'galvani'))) {
+if (p3_theme_enabled(array('hollyandweave', 'equinox', 'opulence', 'galvani', 'blossom'))) {
 	
 } else {
 	return;
@@ -105,7 +105,7 @@ if (!function_exists('p3_featured_panels')) {
 		?>
 			<div id="p3_featured_panels" class="row nopin">
 				
-				<?php if ($img_1 && $title_1 && $link_1) { ?>
+				<?php if ($img_1 && $link_1) { ?>
 				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 					<a href="<?php echo esc_url($link_1); ?>">
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_1); ?>)">
@@ -120,7 +120,7 @@ if (!function_exists('p3_featured_panels')) {
 				</div>
 				<?php } ?>
 
-				<?php if ($img_2 && $title_2 && $link_2) { ?>
+				<?php if ($img_2 && $link_2) { ?>
 				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 					<a href="<?php echo esc_url($link_2); ?>">
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_2); ?>)">
@@ -135,7 +135,7 @@ if (!function_exists('p3_featured_panels')) {
 				</div>
 				<?php } ?>
 				
-				<?php if ($img_3 && $title_3 && $link_3) { ?>
+				<?php if ($img_3 && $link_3) { ?>
 				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 					<a href="<?php echo esc_url($link_3); ?>">
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_3); ?>)">
@@ -150,7 +150,7 @@ if (!function_exists('p3_featured_panels')) {
 				</div>
 				<?php } ?>
 				
-				<?php if ($img_4 && $title_4 && $link_4) { ?>
+				<?php if ($img_4 && $link_4) { ?>
 				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 					<a href="<?php echo esc_url($link_4); ?>">
 						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_4); ?>)">
@@ -270,7 +270,7 @@ if (!class_exists('pipdig_p3_featured_panels_Customize')) {
 				'p3_featured_panels_'.$x.'_title',
 				array(
 					'type' => 'text',
-					'label' => 'Panel #'.$x.' Title Text field',
+					'label' => 'Panel #'.$x.' Title',
 					'section' => 'p3_featured_panels_section'
 				)
 			);

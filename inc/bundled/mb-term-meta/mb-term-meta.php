@@ -3,12 +3,15 @@
  * Plugin Name: MB Term Meta
  * Plugin URI: https://metabox.io/plugins/mb-term-meta/
  * Description: Add custom fields (meta data) for terms.
- * Version: 1.0.4
- * Author: Rilwis
- * Author URI: http://www.deluxeblogtips.com
+ * Version: 1.0.6
+ * Author: MetaBox.io
+ * Author URI: https://metabox.io
  * License: GPL2+
  * Text Domain: mb-term-meta
- * Domain Path: /lang/
+ * Domain Path: /languages/
+ *
+ * @package Meta Box
+ * @subpackage MB Term Meta
  */
 
 // Prevent loading this file directly.
@@ -28,10 +31,10 @@ if ( ! function_exists( 'mb_term_meta_load' ) ) {
 			return;
 		}
 
-		require dirname( __FILE__ ) . '/inc/field.php';
-		require dirname( __FILE__ ) . '/inc/loader.php';
-		require dirname( __FILE__ ) . '/inc/meta-box.php';
-		$loader = new MB_Term_Meta_Loader();
+		require dirname( __FILE__ ) . '/inc/class-mb-term-meta-field.php';
+		require dirname( __FILE__ ) . '/inc/class-mb-term-meta-loader.php';
+		require dirname( __FILE__ ) . '/inc/class-mb-term-meta-box.php';
+		$loader = new MB_Term_Meta_Loader;
 		$loader->init();
 	}
 }

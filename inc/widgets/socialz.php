@@ -139,64 +139,63 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$medium = empty($instance['medium']) ? '' : esc_url($instance['medium']);
 		$stumbleupon = empty($instance['stumbleupon']) ? '' : esc_url($instance['stumbleupon']);
 		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
-		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
 		$snapchat = empty($instance['snapchat']) ? '' : esc_url($instance['snapchat']);
 		$rss = empty($instance['rss']) ? '' : strip_tags($instance['rss']);
 		
 		$links = get_option('pipdig_links');
 		
-		if (empty($twitter)) {
+		if (empty($twitter) && isset($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
 		}
-		if (empty($instagram)) {
+		if (empty($instagram) && isset($links['instagram'])) {
 			$instagram = esc_url($links['instagram']);
 		}
-		if (empty($facebook)) {
+		if (empty($facebook) && isset($links['facebook'])) {
 			$facebook = esc_url($links['facebook']);
 		}
-		if (empty($google)) {
+		if (empty($google) && isset($links['google_plus'])) {
 			$google = esc_url($links['google_plus']);
 		}
-		if (empty($bloglovin)) {
+		if (empty($bloglovin) && isset($links['bloglovin'])) {
 			$bloglovin = esc_url($links['bloglovin']);
 		}
-		if (empty($pinterest)) {
+		if (empty($pinterest) && isset($links['pinterest'])) {
 			$pinterest = esc_url($links['pinterest']);
 		}
-		if (empty($youtube)) {
+		if (empty($youtube) && isset($links['youtube'])) {
 			$youtube = esc_url($links['youtube']);
 		}
-		if (empty($snapchat)) {
+		if (empty($snapchat) && isset($links['snapchat'])) {
 			$snapchat = esc_url($links['snapchat']);
 		}
-		if (empty($soundcloud)) {
+		if (empty($soundcloud) && isset($links['soundcloud'])) {
 				$soundcloud = esc_url($links['soundcloud']);
 		}
-		if (empty($tumblr)) {
+		if (empty($tumblr) && isset($links['tumblr'])) {
 			$tumblr = esc_url($links['tumblr']);
 		}
-		if (empty($linkedin)) {
+		if (empty($linkedin) && isset($links['linkedin'])) {
 			$linkedin = esc_url($links['linkedin']);
 		}
-		if (empty($vk)) {
+		if (empty($vk) && isset($links['vk'])) {
 			$vk = esc_url($links['vk']);
 		}
-		if (empty($flickr)) {
+		if (empty($flickr) && isset($links['flickr'])) {
 			$flickr = esc_url($links['flickr']);
 		}
-		if (empty($twitch)) {
+		if (empty($twitch) && isset($links['twitch'])) {
 			$twitch = esc_url($links['twitch']);
 		}
-		if (empty($stumbleupon)) {
+		if (empty($stumbleupon) && isset($links['stumbleupon'])) {
 			$stumbleupon = esc_url($links['stumbleupon']);
 		}
-		if (empty($etsy)) {
+		if (empty($etsy) && isset($links['etsy'])) {
 			$etsy = esc_url($links['etsy']);
 		}
-		if (empty($rss)) {
+		if (empty($rss) && isset($links['rss'])) {
 			$rss = esc_url($links['rss']);
 		}
-		if (empty($spotify)) {
+		if (empty($spotify) && isset($links['spotify'])) {
 			$spotify = esc_url($links['spotify']);
 		}
 		/* not on links page yet

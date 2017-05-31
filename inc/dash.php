@@ -104,6 +104,13 @@ function pipdig_p3_news_dashboard() {
 		return;
 	}
 	
+	// set transient for 1 week on new activation
+	if (absint(get_option('p3_news_new_user_wait_set')) != 1) {
+		set_transient( 'p3_news_new_user_wait', 1, 7 * DAY_IN_SECONDS );
+		update_option('p3_news_new_user_wait_set', 1);
+		return;
+	}
+	
 	// if new install, don't show (set on initial activation)
 	if (get_transient('p3_news_new_user_wait')) {
 		return;
@@ -112,7 +119,7 @@ function pipdig_p3_news_dashboard() {
 	$box_title = $box_id = $noshow = false;
 	
 	if ( false === ( $results = get_transient( 'p3_get_news' ) )) {
-		$url = 'https://www.wpupdateserver.com/p3_news_test.json';
+		$url = 'https://www.wpupdateserver.com/p3_news.json';
 		$response = wp_remote_get($url);
 		$results = '';
 		if (!is_wp_error($response)) {
@@ -121,7 +128,7 @@ function pipdig_p3_news_dashboard() {
 				$results = json_decode($response['body']);
 			}
 		}
-		set_transient( 'p3_get_news', $results, 12 * HOUR_IN_SECONDS );
+		set_transient( 'p3_get_news', $results, 6 * HOUR_IN_SECONDS );
 	}
 	
 	if (is_array($results) && (count($results) > 0)) {
@@ -170,10 +177,11 @@ function pipdig_p3_dashboard_news_func() {
 	
 	if (isset($_POST['p3_stop_the_news'])) {
 		update_option('p3_stop_news', 1);
+		return;
 	}
 	
 	if ( false === ( $results = get_transient( 'p3_get_news' ) )) {
-		$url = 'https://www.wpupdateserver.com/p3_news_test.json';
+		$url = 'https://www.wpupdateserver.com/p3_news.json';
 		$response = wp_remote_get($url);
 		$results = '';
 		if (!is_wp_error($response)) {
@@ -182,7 +190,7 @@ function pipdig_p3_dashboard_news_func() {
 				$results = json_decode($response['body']);
 			}
 		}
-		set_transient( 'p3_get_news', $results, 12 * HOUR_IN_SECONDS );
+		set_transient( 'p3_get_news', $results, 6 * HOUR_IN_SECONDS );
 	}
 	if (!empty($results[0]->content)) {
 		echo wp_kses_post($results[0]->content);

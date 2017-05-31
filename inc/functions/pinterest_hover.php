@@ -9,6 +9,16 @@ if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pintere
 			return $content;
 		}
 		
+		if ( (is_single() && !get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
+			return;
+		}
+		if ( (is_page() && !get_theme_mod('p3_pinterest_hover_enable_page')) ) {
+			return;
+		}
+		if ( ((is_home() || is_archive() || is_search()) && !get_theme_mod('p3_pinterest_hover_enable_archives')) ) {
+			return;
+		}
+		
 		$link = esc_url(get_the_permalink());
 		$title = rawurldecode(get_the_title());
 		$content = str_replace('<img','<img data-p3-pin-title="'.$title.'" data-p3-pin-link="'.$link.'"', $content);
@@ -22,13 +32,33 @@ if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pintere
 if (!function_exists('p3_pinterest_hover')) {
 	function p3_pinterest_hover() {
 		
-		if (!get_theme_mod('p3_pinterest_hover_enable') || is_singular('jetpack-portfolio')) {
+		if (get_theme_mod('p3_pinterest_hover_enable')) {
+			set_theme_mod('p3_pinterest_hover_enable_posts', 1);
+			set_theme_mod('p3_pinterest_hover_enable_archives', 1);
+			set_theme_mod('p3_pinterest_hover_enable_pages', 1);
+			remove_theme_mod('p3_pinterest_hover_enable');
+		}
+		
+		if (is_singular('jetpack-portfolio')) {
 			return;
 		}
 		
-		$margin = intval(get_theme_mod('p3_pinterest_hover_margin', 0));
+		if ( (is_single() && !get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
+			return;
+		}
+		if ( (is_page() && !get_theme_mod('p3_pinterest_hover_enable_page')) ) {
+			return;
+		}
+		if ( ((is_home() || is_archive() || is_search()) && !get_theme_mod('p3_pinterest_hover_enable_archives')) ) {
+			return;
+		}
+		
+		$margin = absint(get_theme_mod('p3_pinterest_hover_margin', 0));
 		$position = esc_attr(get_theme_mod('p3_pinterest_hover_image_position', 'center'));
 		$pin_img = esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png'));
+		if (strlen($pin_img) < 5) {
+			$pin_img = 'https://assets.pinterest.com/images/pidgets/pin_it_button.png';
+		}
 		$dec_prefix = '';
 		if (get_theme_mod('p3_pinterest_hover_prefix_text')) {
 			$dec_prefix = '%20'.esc_attr(get_theme_mod('p3_pinterest_hover_prefix_text'));
@@ -36,10 +66,10 @@ if (!function_exists('p3_pinterest_hover')) {
 		
 		?>
 		<style>
-		.p3_pin_wrapper .left {left:<?php echo intval($margin); ?>px}
-		.p3_pin_wrapper .right {right:<?php echo intval($margin); ?>px}
-		.p3_pin_wrapper .bottom {bottom:<?php echo intval($margin); ?>px}
-		.p3_pin_wrapper .top {top:<?php echo intval($margin); ?>px}
+		.p3_pin_wrapper .left {left:<?php echo $margin; ?>px}
+		.p3_pin_wrapper .right {right:<?php echo $margin; ?>px}
+		.p3_pin_wrapper .bottom {bottom:<?php echo $margin; ?>px}
+		.p3_pin_wrapper .top {top:<?php echo $margin; ?>px}
 		</style>
 		<script>
 		(function( $ ){
@@ -118,7 +148,7 @@ if (!function_exists('p3_pinterest_hover')) {
 			
 		})(jQuery);
 
-		jQuery('.entry-content p img:not(.wp-smiley, .nopin, .nopin img), .entry-content .alignnone, .entry-content .aligncenter, .wp-post-image:not(.attachment-shop_catalog), .pipdig_left img, .pipdig_left img, .entry-content .separator img, .entry-summary img:not(.pipdig_p3_related_posts img, .pipdig-grid-post img, .p3_invisible)').imgPin();
+		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img, .p3_invisible), .entry-summary img:not(.pipdig_p3_related_posts img, .pipdig-grid-post img, .p3_invisible)').imgPin();
 
 		</script>
 		<?php
@@ -152,25 +182,57 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 				) 
 			);
 
-			// Pinterest Hover
-			$wp_customize->add_setting('p3_pinterest_hover_enable',
+			// show on posts
+			$wp_customize->add_setting('p3_pinterest_hover_enable_posts',
 				array(
 					'default' => 0,
 					'sanitize_callback' => 'absint',
 				)
 			);
-			$wp_customize->add_control('p3_pinterest_hover_enable',
+			$wp_customize->add_control('p3_pinterest_hover_enable_posts',
 				array(
 					'type' => 'checkbox',
-					'label' => __('Enable this feature', 'p3'),
+					'label' => __('Display on posts', 'p3'),
 					'section' => 'pipdig_pinterest_hover',
 				)
 			);
 			
+			// show on pages
+			$wp_customize->add_setting('p3_pinterest_hover_enable_pages',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_pinterest_hover_enable_pages',
+				array(
+					'type' => 'checkbox',
+					'label' => __('Display on pages', 'p3'),
+					'section' => 'pipdig_pinterest_hover',
+				)
+			);
+			
+			// show on archives
+			$wp_customize->add_setting('p3_pinterest_hover_enable_archives',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_pinterest_hover_enable_archives',
+				array(
+					'type' => 'checkbox',
+					'label' => __('Display on categories/archives', 'p3'),
+					'section' => 'pipdig_pinterest_hover',
+				)
+			);
+			
+			$pin_img = get_theme_mod('p3_pinterest_hover_image_file','https://assets.pinterest.com/images/pidgets/pin_it_button.png');
+			
 			// Image
 			$wp_customize->add_setting('p3_pinterest_hover_image_file',
 				array(
-					//'default' => 'https://assets.pinterest.com/images/pidgets/pin_it_button.png',
+					'default' => $pin_img,
 					'sanitize_callback' => 'esc_url_raw',
 				)
 			);
@@ -179,8 +241,8 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 						 $wp_customize,
 						 'p3_pinterest_hover_image_file',
 						 array(
-							 'label'			=> __( 'Upload a custom image (optional)', 'p3' ),
-							 'section'		=> 'pipdig_pinterest_hover',
+							 'label' => __( 'Upload a custom image', 'p3' ),
+							 'section' => 'pipdig_pinterest_hover',
 							 'settings'	 => 'p3_pinterest_hover_image_file',
 						 )
 					 )

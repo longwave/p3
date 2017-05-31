@@ -1,6 +1,7 @@
 <?php
 /**
- * Loader for term meta
+ * Loader for term meta.
+ *
  * @package    Meta Box
  * @subpackage MB Term Meta
  * @author     Tran Ngoc Tuan Anh <rilwis@gmail.com>
@@ -13,6 +14,7 @@ class MB_Term_Meta_Loader {
 	/**
 	 * Meta boxes for terms only.
 	 * Use static variable to be accessible outside the class (in MB Rest API plugin).
+	 *
 	 * @var array
 	 */
 	public static $meta_boxes = array();
@@ -26,7 +28,6 @@ class MB_Term_Meta_Loader {
 		/**
 		 * Initialize meta boxes for term.
 		 * 'rwmb_meta_boxes' runs at priority 10, we use priority 20 to make sure self::$meta_boxes is set.
-		 * @see mb_term_meta_filter()
 		 */
 		add_action( 'admin_init', array( $this, 'register' ), 20 );
 	}
@@ -34,7 +35,7 @@ class MB_Term_Meta_Loader {
 	/**
 	 * Filter meta boxes to get only meta boxes for terms and remove them from posts.
 	 *
-	 * @param array $meta_boxes
+	 * @param array $meta_boxes List of meta boxes.
 	 *
 	 * @return array
 	 */
@@ -53,8 +54,10 @@ class MB_Term_Meta_Loader {
 	 * Register meta boxes for term, each meta box is a section
 	 */
 	public function register() {
+		$field_meta = new MB_Term_Meta_Field;
 		foreach ( self::$meta_boxes as $meta_box ) {
-			new MB_Term_Meta_Box( $meta_box );
+			$meta_box = new MB_Term_Meta_Box( $meta_box );
+			$meta_box->set_field_meta_object( $field_meta );
 		}
 	}
 }

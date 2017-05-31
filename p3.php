@@ -5,13 +5,13 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.13.0
+Version: 2.13.2
 Text Domain: p3
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '2.13.0' );
+define( 'PIPDIG_P3_V', '2.13.2' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -19,8 +19,8 @@ function p3_php_version_notice() {
 	}
 	?>
 	<div class="notice notice-warning is-dismissible">
-		<h2>PHP Warning</h2>
-		<p>Your web server is using an insecure version of PHP. Please contact your web host so that they can update your server to PHP 5.6 or higher. Do not ignore this message.</p>
+		<h2><span class="dashicons dashicons-warning"></span> PHP Warning</h2>
+		<p>Your web server is using an insecure version of PHP. Please contact your web host so that they can update your server to PHP 5.6 or higher. <strong>DO NOT IGNORE THIS MESSAGE</strong>.</p>
 	</div>
 	<?php
 }
@@ -181,8 +181,8 @@ function p3_new_install_notice() {
 	<div class="notice notice-warning is-dismissible">
 		<h2><?php _e('Howdy!', 'p3'); ?></h2>
 		<p>Thank you for installing a pipdig theme!</p>
-		<p>You can now setup all of our custom widgets, options and features by using our <a href="https://go.pipdig.co/open.php?id=wp-quickstart" target="_blank">Quickstart Guide</a>.</p>
-		<p>Already setup? Click the button below to remove this notice:</p>
+		<p>You can now setup all of our custom widgets, options and features by following our <a href="https://go.pipdig.co/open.php?id=wp-quickstart" target="_blank">Quickstart Guide</a>.</p>
+		<p>New to WordPress? You can access the premium series of WP101 Tutorials on <a href="https://go.pipdig.co/open.php?id=wp101videos" target="_blank">this page</a>.</p>
 		<form action="<?php echo admin_url(); ?>" method="post">
 			<?php wp_nonce_field('p3-new-install-notice-nonce'); ?>
 			<input type="hidden" value="true" name="p3_new_install_notice_dismissed" />
@@ -198,9 +198,6 @@ add_action( 'admin_notices', 'p3_new_install_notice' );
 
 
 function pipdig_p3_activate() {
-	
-	// set transient for 1 weeks, stops newsdash from showing
-	set_transient( 'p3_news_new_user_wait', 1, 7 * DAY_IN_SECONDS );
 	
 	// trackbacks
 	update_option('default_pingback_flag', '');

@@ -35,7 +35,7 @@ add_shortcode( 'pipdig_right', 'pipdig_p3_shortcode_right' );
 add_shortcode( 'right', 'pipdig_p3_shortcode_right' );
 
 
-
+/*
 // [pipdig_col1] [/pipdig_col1]
 function pipdig_p3_shortcode_col1( $atts, $content = null ) {
 	return '<div class="pipdig_col1">'.do_shortcode($content).'</div>';
@@ -53,3 +53,4 @@ function pipdig_p3_shortcode_col3( $atts, $content = null ) {
 	return '<div class="pipdig_col3">'.do_shortcode($content).'</div><div class="clearfix"></div>';
 }
 add_shortcode( 'pipdig_col3', 'pipdig_p3_shortcode_col3' );
+*/

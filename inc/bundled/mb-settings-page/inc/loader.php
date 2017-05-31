@@ -1,6 +1,7 @@
 <?php
 /**
  * Loader for settings page
+ *
  * @package    Meta Box
  * @subpackage MB Settings Page
  * @author     Tran Ngoc Tuan Anh <rilwis@gmail.com>
@@ -12,6 +13,7 @@
 class MB_Settings_Page_Loader {
 	/**
 	 * Meta boxes for terms only.
+	 *
 	 * @var array
 	 */
 	protected $meta_boxes = array();
@@ -27,6 +29,7 @@ class MB_Settings_Page_Loader {
 		/**
 		 * Initialize meta boxes for term.
 		 * 'rwmb_meta_boxes' runs at priority 10, we use priority 20 to make sure $this->meta_boxes is set.
+		 *
 		 * @see mb_term_meta_filter()
 		 */
 		add_action( 'admin_init', array( $this, 'register' ), 20 );
@@ -38,7 +41,7 @@ class MB_Settings_Page_Loader {
 	function register_settings_pages() {
 		$settings_pages = apply_filters( 'mb_settings_pages', array() );
 
-		// Prevent errors showing if invalid value is returned from the filter above
+		// Prevent errors showing if invalid value is returned from the filter above.
 		if ( empty( $settings_pages ) || ! is_array( $settings_pages ) ) {
 			return;
 		}
@@ -51,7 +54,7 @@ class MB_Settings_Page_Loader {
 	/**
 	 * Filter meta boxes to get only meta boxes for terms and remove them from posts.
 	 *
-	 * @param array $meta_boxes
+	 * @param array $meta_boxes Meta boxes.
 	 *
 	 * @return array
 	 */
@@ -67,7 +70,7 @@ class MB_Settings_Page_Loader {
 	}
 
 	/**
-	 * Register meta boxes for term, each meta box is a section
+	 * Register meta boxes for term, each meta box is a section.
 	 */
 	public function register() {
 		foreach ( $this->meta_boxes as $meta_box ) {

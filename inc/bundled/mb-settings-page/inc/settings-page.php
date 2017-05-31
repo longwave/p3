@@ -1,6 +1,7 @@
 <?php
 /**
- * The main class of the plugin which create settings page and setup meta boxes placeholder
+ * The main class of the plugin which create settings page and setup meta boxes placeholder.
+ *
  * @package    Meta Box
  * @subpackage MB Settings Page
  * @author     Tran Ngoc Tuan Anh <rilwis@gmail.com>
@@ -11,32 +12,36 @@
  */
 class MB_Settings_Page {
 	/**
-	 * @var array Settings page arguments.
+	 * Settings page arguments.
+	 *
+	 * @var array
 	 */
 	public $args;
 
 	/**
-	 * @var string Page hook. Will be set when add menu page.
+	 * Page hook. Will be set when add menu page.
+	 *
+	 * @var string
 	 */
 	public $page_hook;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 *
 	 * @param array $args Page options like ID page_title, menu_title, capability...
 	 */
 	public function __construct( $args = array() ) {
 		$this->args = $this->normalize( $args );
 
-		// Add hooks
+		// Add hooks.
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'rwmb_before', array( $this, 'show_meta_box_tab' ) );
 	}
 
 	/**
-	 * Normalize settings page arguments
+	 * Normalize settings page arguments.
 	 *
-	 * @param array $args Settings page arguments
+	 * @param array $args Settings page arguments.
 	 *
 	 * @return array
 	 */
@@ -57,7 +62,7 @@ class MB_Settings_Page {
 			'tabs'          => array(),
 		) );
 
-		// Setup optional parameters
+		// Setup optional parameters.
 		if ( ! $args['option_name'] ) {
 			$args['option_name'] = $args['id'];
 		}
@@ -75,7 +80,7 @@ class MB_Settings_Page {
 	 * Add top level menu or sub-menu. Depend on page options
 	 */
 	public function admin_menu() {
-		// Add top level menu
+		// Add top level menu.
 		if ( ! $this->args['parent'] ) {
 			$this->page_hook = add_menu_page(
 				$this->args['page_title'],
@@ -87,7 +92,7 @@ class MB_Settings_Page {
 				$this->args['position']
 			);
 
-			// If this menu has a default sub-menu
+			// If this menu has a default sub-menu.
 			if ( $this->args['submenu_title'] ) {
 				add_submenu_page(
 					$this->args['id'],
@@ -98,7 +103,7 @@ class MB_Settings_Page {
 					array( $this, 'show' )
 				);
 			}
-		} // Add sub-menu
+		} // Add sub-menu.
 		else {
 			$this->page_hook = add_submenu_page(
 				$this->args['parent'],
@@ -110,10 +115,10 @@ class MB_Settings_Page {
 			);
 		}
 
-		// Enqueue scripts and styles
+		// Enqueue scripts and styles.
 		add_action( "admin_print_styles-{$this->page_hook}", array( $this, 'admin_print_styles' ) );
 
-		// Load action
+		// Load action.
 		add_action( "load-{$this->page_hook}", array( $this, 'load' ) );
 	}
 
@@ -121,10 +126,10 @@ class MB_Settings_Page {
 	 * Output the main admin page
 	 */
 	public function show() {
-		$class = 'boxes' == $this->args['style'] ? '' : ' class="rwmb-settings-' . esc_attr( $this->args['style'] ) . '"';
+		$class = 'boxes' === $this->args['style'] ? '' : "rwmb-settings-{$this->args['style']}";
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( $this->args['page_title'] ); ?></h1>
+			<h1><?php echo esc_html( $this->args['page_title'] ); ?></h1>
 
 			<?php if ( $this->args['tabs'] ) : ?>
 				<h2 class="nav-tab-wrapper">
@@ -134,9 +139,9 @@ class MB_Settings_Page {
 				</h2>
 			<?php endif; ?>
 
-			<form method="post" action="" enctype="multipart/form-data" id="poststuff"<?php echo $class; ?>>
+			<form method="post" action="" enctype="multipart/form-data" id="poststuff"<?php echo $class ? ' class="' . esc_html( $class ) . '"' : ''; ?>>
 				<?php
-				// Nonce for saving meta boxes status (collapsed/expanded) and order
+				// Nonce for saving meta boxes status (collapsed/expanded) and order.
 				wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
 				wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
 				?>
@@ -152,25 +157,28 @@ class MB_Settings_Page {
 					</div>
 				</div>
 				<br class="clear">
-				<?php submit_button( __( 'Save Settings', 'mb-settings-page' ) ); ?>
+				<p class="submit">
+					<?php submit_button( esc_html__( 'Save Settings', 'mb-settings-page' ), 'primary', 'submit', false ); ?>
+					<?php do_action( 'mb_settings_page_submit_buttons' ); ?>
+				</p>
 			</form>
 		</div>
 		<?php
 	}
 
 	/**
-	 * Enqueue scripts and styles for settings page
+	 * Enqueue scripts and styles for settings page.
 	 */
 	public function admin_print_styles() {
 		list( , $url ) = RWMB_Loader::get_path( dirname( dirname( __FILE__ ) ) );
 		wp_enqueue_style( 'mb-settings-page', $url . 'css/style.css', '', '1.1.2' );
 
-		// For meta boxes
+		// For meta boxes.
 		wp_enqueue_script( 'common' );
 		wp_enqueue_script( 'wp-lists' );
 		wp_enqueue_script( 'postbox' );
 
-		// Enqueue settings page script and style
+		// Enqueue settings page script and style.
 		wp_enqueue_script( 'mb-settings-page', $url . 'js/script.js', array( 'jquery' ), '1.1.2', true );
 		wp_localize_script( 'mb-settings-page', 'MBSettingsPage', array(
 			'pageHook' => $this->page_hook,
@@ -179,11 +187,13 @@ class MB_Settings_Page {
 	}
 
 	/**
-	 * Register the meta boxes via a custom hook
+	 * Register the meta boxes via a custom hook.
+	 *
+	 * @since 1.1.6 Check if parent is options-general.php, use WordPress core updated message.
 	 */
 	public function load() {
 		/**
-		 * Custom hook runs when current page loads. Use this to add meta boxes and filters.         *
+		 * Custom hook runs when current page loads. Use this to add meta boxes and filters.
 		 *
 		 * @param array $page_args The page arguments
 		 */
@@ -193,16 +203,19 @@ class MB_Settings_Page {
 		$this->save();
 
 		// Show updated message.
-		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+		if ( empty( $this->args['parent'] ) || 'options-general.php' !== $this->args['parent'] ) {
+			add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+		}
 
-		// Add help tabs
+		// Add help tabs.
 		$this->add_help_tabs();
 	}
 
 	/**
-	 * Save settings when submit
+	 * Save settings when submit.
 	 */
 	public function save() {
+		// @codingStandardsIgnoreLine
 		if ( empty( $_POST['submit'] ) ) {
 			return;
 		}
@@ -214,15 +227,15 @@ class MB_Settings_Page {
 	}
 
 	/**
-	 * Display notices
-	 * Use add_settings_error() to add notices
+	 * Display notices.
+	 * Use add_settings_error() to add notices.
 	 */
 	public function admin_notices() {
 		settings_errors( $this->args['id'] );
 	}
 
 	/**
-	 * Add help tabs
+	 * Add help tabs.
 	 */
 	public function add_help_tabs() {
 		if ( ! $this->args['help_tabs'] || ! is_array( $this->args['help_tabs'] ) ) {
@@ -239,9 +252,9 @@ class MB_Settings_Page {
 	}
 
 	/**
-	 * Show tab id of meta box
+	 * Show tab id of meta box.
 	 *
-	 * @param RW_Meta_Box $obj
+	 * @param RW_Meta_Box $obj Meta Box instance.
 	 */
 	public function show_meta_box_tab( $obj ) {
 		if ( ! empty( $obj->meta_box['tab'] ) ) {
