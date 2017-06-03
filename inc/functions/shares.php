@@ -46,7 +46,7 @@ function pipdig_p3_social_shares() {
 	}
 	// no https support yet
 	if (get_theme_mod('p3_share_weibo')) {
-		$output .= '<a href="'.esc_url('http://service.weibo.com/share/share.php?'.$link.'&title='.$title.'&pic='.$img).'" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>';
+		$output .= '<a href="'.esc_url('http://service.weibo.com/share/share.php?url='.$link.'&title='.$title.'&pic='.$img).'" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>';
 	}
 	if (get_theme_mod('p3_share_whatsapp')) {
 		$output .= '<a href="'.esc_url('whatsapp://send?text='.$link).'" target="_blank" rel="nofollow" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>';

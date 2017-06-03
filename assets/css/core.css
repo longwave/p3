@@ -831,3 +831,7 @@ float: right;
 text-align: center;
 width: 50%;
 }
+
+#p3_yoast_breadcrumbs {
+margin: 0 0 20px;
+}

@@ -93,7 +93,7 @@ if (!function_exists('p3_instagram_fetch')) {
 					$caption = $result->data[$i]->caption->text;
 				}
 					
-				if ((!empty($result->data[$i]->images->thumbnail->url))) {
+				if ((!empty($result->data[$i]->images->standard_resolution->url))) {
 						
 					$num = absint(get_theme_mod('p3_instagram_number', 8));	
 

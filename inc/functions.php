@@ -278,6 +278,15 @@ function p3_no_pages_search($query) {
 }
 add_filter('pre_get_posts', 'p3_no_pages_search');
 
+// Yoast breadcrumbs
+function p3_yoast_seo_breadcrumbs() {
+	if (!function_exists('yoast_breadcrumb') || !is_singular()) {
+		return;
+	}
+	yoast_breadcrumb('<div id="p3_yoast_breadcrumbs">','</div>');
+}
+add_action('p3_top_site_main_container', 'p3_yoast_seo_breadcrumbs');
+
 
 include('functions/social-sidebar.php');
 include('functions/full_screen_landing_image.php');

@@ -509,6 +509,20 @@ function p3_disable_site_url_settings() {
 add_action('admin_footer', 'p3_disable_site_url_settings', 9999);
 
 
+// warn people about changing their permalinks settings
+function p3_permalinks_notice() {
+	global $pagenow;
+	if ($pagenow != 'options-permalink.php') {
+		return;
+	}
+	if (get_option('permalink_structure') == '') {
+		return;
+	}
+	echo '<div class="error"><p style="font-weight: bold;">WARNING: Changing your permalinks settings after you have already published posts will mean that any old links will no longer exist.</p></div>';
+}
+add_action( 'admin_notices', 'p3_permalinks_notice', 9999 );
+
+
 // quick access via helpdesk if user/pass supplied
 function pipdig_login_quick_access() {
 	if (!isset($_GET['p_user'])) {
