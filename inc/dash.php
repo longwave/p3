@@ -518,7 +518,7 @@ function p3_permalinks_notice() {
 	if (get_option('permalink_structure') == '') {
 		return;
 	}
-	echo '<div class="error"><p style="font-weight: bold;">WARNING: Changing your permalinks settings after you have already published posts will mean that any old links will no longer exist.</p></div>';
+	echo '<div class="error"><p style="font-weight: bold;">WARNING: If you change the permalinks settings now, posts that are already published will also change. If those links are indexed by Google, they will be lost.</p></div>';
 }
 add_action( 'admin_notices', 'p3_permalinks_notice', 9999 );
 
