@@ -272,7 +272,7 @@ function p3_no_pages_search($query) {
 		return;
 	}
 	if ($query->is_search) {
-	$query->set('post_type', 'post');
+		$query->set('post_type', 'post');
 	}
 	return $query;
 }

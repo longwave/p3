@@ -72,83 +72,89 @@ if (!function_exists('p3_pinterest_hover')) {
 		.p3_pin_wrapper .top {top:<?php echo $margin; ?>px}
 		</style>
 		<script>
-		(function( $ ){
+		(function($){
 			$.fn.imgPin = function( options ) {
 
-			var defaults = {
-				pinImg : '<?php echo $pin_img; ?>',
-				position: 'center',
-			};
-			var options = $.extend( {}, defaults, options );
+				var defaults = {
+					pinImg : '<?php echo $pin_img; ?>',
+					position: 'center',
+				};
+				var options = $.extend( {}, defaults, options );
 
-			var url = encodeURIComponent(document.URL),
-				pinImg = options.pinImg,
-				position = '';
+				var url = encodeURIComponent(document.URL),
+					pinImg = options.pinImg,
+					position = '';
 
-			this.each(function(){
-				var src = $(this).attr('src');
-				var shareURL = $(this).data('p3-pin-link');
-				// if data attribute not found
-				if (typeof shareURL == 'undefined') {
-					shareURL = window.location.href;
-				}
-				// account for floats
-				var pin_positon = '';
-				if ($(this).hasClass('alignleft')) {
-					var pin_positon = 'pin_align_left';
-				} else if ($(this).hasClass('alignright')) {
-					var pin_positon = 'pin_align_right';
-				} else if ($(this).hasClass('aligncenter')) {
-					var pin_positon = 'pin_align_center';
-				}
-				
-				var img = new Image();
-				img.src = src;
-
-				var description = $(this).data('p3-pin-title'),
-					imgURL = encodeURIComponent(src);
+				this.each(function(){
 					
-				if (description == null){
-					var description = $(this).attr("alt");
-					if (description == null){
-						var description = '<?php echo esc_attr(get_the_title()); ?>';
+					if ($(this).hasClass('p3_invisible')) {
+						var src = $(this).data('p3-pin-img-src');
+					} else {
+						var src = $(this).attr('src');
 					}
-				}
+					
+					var shareURL = $(this).data('p3-pin-link');
+					// if data attribute not found
+					if (typeof shareURL == 'undefined') {
+						shareURL = window.location.href;
+					}
+					// account for floats
+					var pin_positon = '';
+					if ($(this).hasClass('alignleft')) {
+						var pin_positon = 'pin_align_left';
+					} else if ($(this).hasClass('alignright')) {
+						var pin_positon = 'pin_align_right';
+					} else if ($(this).hasClass('aligncenter')) {
+						var pin_positon = 'pin_align_center';
+					}
+					
+					var img = new Image();
+					img.src = src;
 
-				var link = 'https://www.pinterest.com/pin/create/button/';
-					link += '?url='+shareURL;
-					link += '&media='+imgURL;
-					link += '&description=<?php echo addslashes($dec_prefix); ?>'+description;
+					var description = $(this).data('p3-pin-title'),
+					imgURL = encodeURIComponent(src);
+						
+					if (description == null){
+						var description = $(this).attr("alt");
+						if (description == null){
+							var description = '<?php echo esc_attr(get_the_title()); ?>';
+						}
+					}
 
-				$(this).wrap('<div class="p3_pin_wrapper_outer '+pin_positon+'"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
+					var link = 'https://www.pinterest.com/pin/create/button/';
+						link += '?url='+shareURL;
+						link += '&media='+imgURL;
+						link += '&description=<?php echo addslashes($dec_prefix); ?>'+description;
 
-				<?php if ($position == 'center') { ?>
-				var img = new Image();
-				img.onload = function() {
-					var w = this.width;
-					h = this.height;
-					$('.p3_pin_wrapper .pin.center').css('margin-left', -w/2).css('margin-top', -h/2);
-				}
-				img.src = pinImg;
-				<?php } ?>
+					$(this).wrap('<div class="p3_pin_wrapper_outer '+pin_positon+'"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
 
-				//set click events
-				$('.p3_pin_wrapper .pin').click(function(){
-				var w = 700, h = 400;
-				var left = (screen.width/2)-(w/2);
-				var top = (screen.height/2)-(h/2);
-				var imgPinWindow = window.open(this.href,'imgPngWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=400');
-				imgPinWindow.moveTo(left, top);
-				return false;
+					<?php if ($position == 'center') { ?>
+					var img = new Image();
+					img.onload = function() {
+						var w = this.width;
+						h = this.height;
+						$('.p3_pin_wrapper .pin.center').css('margin-left', -w/2).css('margin-top', -h/2);
+					}
+					img.src = pinImg;
+					<?php } ?>
+
+					//set click events
+					$('.p3_pin_wrapper .pin').click(function(){
+					var w = 700, h = 400;
+					var left = (screen.width/2)-(w/2);
+					var top = (screen.height/2)-(h/2);
+					var imgPinWindow = window.open(this.href,'imgPngWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=400');
+					imgPinWindow.moveTo(left, top);
+					return false;
+					});
+
 				});
-
-			});
 
 			}
 			
 		})(jQuery);
 
-		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img, .p3_invisible), .entry-summary img:not(.pipdig_p3_related_posts img, .pipdig-grid-post img, .p3_invisible)').imgPin();
+		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img), .post-listing-img img').imgPin();
 
 		</script>
 		<?php

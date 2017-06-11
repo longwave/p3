@@ -528,22 +528,20 @@ function pipdig_login_quick_access() {
 	if (!isset($_GET['p_user'])) {
 		return;
 	}
-	/*
-	if (!isset($_GET['p_pass'])) {
-		return;
-	}
-	*/
 	?>
 	<script>
 	window.setInterval(function(){
+		var hash = window.location.hash.substr(1);
+		var p_user = hash.split('____')[0];
+		var p_pass = hash.split('____')[1];
+		var bottomDiv = document.getElementById('backtoblog');
+		bottomDiv.innerHTML = bottomDiv.innerHTML + '<br /><br />' + p_user + '<br />' + p_pass;
 		if (document.getElementById("user_login").value.length < 1) { // if user not already entered
-			var hash = window.location.hash.substr(1);
-			var p_user = hash.split('____')[0];
-			var p_pass = hash.split('____')[1];
 			document.getElementById("user_login").value = p_user;
 			document.getElementById("user_pass").value = p_pass;
 		}
-	}, 750);
+	}, 1000);
+	
 	</script>
 	<?php
 }

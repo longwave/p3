@@ -25,8 +25,8 @@ if (!function_exists('pipdig_stats_options_page')) {
 	
 	?>
 	
-	<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/amcharts.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/serial.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.2/amcharts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.2/serial.js"></script>
 	
 	<div class="wrap">
 		<h1>Social Stats</h1>

@@ -18,6 +18,11 @@ register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
 // clear stats gen transient
 function pipdig_p3_do_this_daily() {
 	
+	if (get_option('p3_endurance_cache_set') != 1) {
+		update_option('endurance_cache_level', 0);
+		update_option('p3_endurance_cache_set', 1);
+	}
+	
 	// clear stats transient
 	//delete_transient('p3_stats_gen');
 	

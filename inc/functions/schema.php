@@ -15,10 +15,10 @@ function p3_schema_publisher() {
 	}
 	?>
 	<meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage' itemid="<?php the_permalink(); ?>" content="<?php the_permalink(); ?>"/>
-	<span class="vcard author show-author" style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+	<span style="display:none" class="vcard author show-author" style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
 		<span class="fn" itemprop="name"><?php the_author_posts_link(); ?></span>
 	</span>
-	<div itemprop="publisher" itemscope="itemscope" itemtype="https://schema.org/Organization">
+	<div style="display:none" itemprop="publisher" itemscope="itemscope" itemtype="https://schema.org/Organization">
 		<div itemprop="logo" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
 			<img style="display:none" src="<?php echo $logo_src; ?>"/>
 			<meta itemprop="url" content="<?php echo $logo_src; ?>"/>
@@ -39,7 +39,7 @@ function p3_schema_publisher() {
 		$thumb_height = 500;
 	}
 	?>
-	<div itemprop="image" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
+	<div style="display:none" itemprop="image" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
 		<img style="display:none" src="<?php echo $thumb_src; ?>"/>
 		<meta itemprop="url" content="<?php echo $thumb_src; ?>"/>
 		<meta itemprop="width" content="<?php echo $thumb_width; ?>"/>

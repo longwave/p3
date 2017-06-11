@@ -199,6 +199,8 @@ add_action( 'admin_notices', 'p3_new_install_notice' );
 
 function pipdig_p3_activate() {
 	
+	update_option('endurance_cache_level', 0);
+	
 	// trackbacks
 	update_option('default_pingback_flag', '');
 	update_option('default_ping_status', 'closed');
