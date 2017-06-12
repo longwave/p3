@@ -174,9 +174,15 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC'; // square
 		}
 		
+		// medium for sidebar, large for everywhere else
+		$img_size = 'medium';
+		if ($args['id'] != 'sidebar-1') {
+			$img_size = 'large';
+		}
+		
 	?>
 	<?php while ( $popular->have_posts() ): $popular->the_post();
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), $img_size );
 		if ($thumb) {
 			$bg = esc_url($thumb['0']);
 		} else {

@@ -48,8 +48,14 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 			) );
 			
 			while ( $query->have_posts() ): $query->the_post();
-
-				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+				
+				// medium for sidebar, large for everywhere else
+				$img_size = 'medium';
+				if ($args['id'] != 'sidebar-1') {
+					$img_size = 'large';
+				}
+				
+				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), $img_size );
 				if ($thumb) {
 					$bg = esc_url($thumb['0']);
 				} else {
