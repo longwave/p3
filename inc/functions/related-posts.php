@@ -40,10 +40,9 @@ if (!function_exists('p3_related_posts')) {
 		if ($categories) {
 			$category_ids = array();
 			foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
-			$post_id = get_the_ID(); //used to suffix transient id...
 				$query = new wp_query( array(
 					'category__in' => $category_ids,
-					'post__not_in' => array($post_id),
+					'post__not_in' => array($post->ID),
 					'posts_per_page'=> $number,
 					'orderby' => 'rand',
 					'date_query' => array(
@@ -117,7 +116,7 @@ if (!class_exists('pipdig_related_Customize')) {
 			// Date range for related posts
 			$wp_customize->add_setting('related_posts_date',
 				array(
-					'default' => '',
+					'default' => '1 year ago',
 					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);

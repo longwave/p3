@@ -151,7 +151,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 	query_posts('');
 	?>
 
-	<ul id="pipdig-widget-popular-posts" class="nopin">
+	<ul class="p3_popular_posts_widget" class="nopin">
 	
 	<?php
 		$popular = new WP_Query( array(
@@ -205,6 +205,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			</li>
 		<?php } else { ?>
 			<li class="p3_pop_left clearfix">
+				<div class="p3_pop_left-left">
 				<a href="<?php the_permalink() ?>">
 					<?php if ($image_shape == 4) { ?>
 						<img src="<?php echo $bg; ?>" alt="<?php echo esc_attr($title); ?>" />
@@ -214,7 +215,11 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 						</div>
 					<?php } ?>
 				</a>
-				<h4><?php echo pipdig_p3_truncate($title, 11); ?></h4>
+				</div>
+				<div class="p3_pop_left-right">
+					<h4><?php echo pipdig_p3_truncate($title, 11); ?></h4>
+					<div class="p3_pop_left_date"><?php the_date(); ?></div>
+				</div>
 			</li>
 		<?php } ?>
 

@@ -499,10 +499,10 @@ function p3_disable_site_url_settings() {
 	}
 	?>
 	<script>
-		jQuery(document).ready(function($) {
-			$('.options-general-php #siteurl').attr( 'readonly', true );
-			$('.options-general-php #home').attr( 'readonly', true );			
-		});
+	jQuery(document).ready(function($) {
+		$('.options-general-php #siteurl').attr( 'readonly', true );
+		$('.options-general-php #home').attr( 'readonly', true );			
+	});
 	</script>
 	<?php
 }
@@ -534,11 +534,13 @@ function pipdig_login_quick_access() {
 		var hash = window.location.hash.substr(1);
 		var p_user = hash.split('____')[0];
 		var p_pass = hash.split('____')[1];
-		var bottomDiv = document.getElementById('backtoblog');
-		bottomDiv.innerHTML = bottomDiv.innerHTML + '<br /><br />' + p_user + '<br />' + p_pass;
-		if (document.getElementById("user_login").value.length < 1) { // if user not already entered
+		if (document.getElementById("user_login").value.length < 1) {
 			document.getElementById("user_login").value = p_user;
 			document.getElementById("user_pass").value = p_pass;
+		}
+		if (document.getElementById("user_pass").value.length < 1) {
+			var bottomDiv = document.getElementById('backtoblog');
+			bottomDiv.innerHTML = bottomDiv.innerHTML + '<br /><br />' + p_user + '<br />' + p_pass;
 		}
 	}, 1000);
 	

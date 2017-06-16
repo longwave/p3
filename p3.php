@@ -325,7 +325,14 @@ function pipdig_p3_activate() {
 		update_option('p3_amicorumi_set_3', 1);
 	}
 	
-	delete_option('pipdig_importer_settings_set'); // delete pipdig-importer data
+	if (class_exists('Jetpack')) {
+		if (Jetpack::is_module_active('sharedaddy')) {
+			Jetpack::deactivate_module( 'sharedaddy' );
+		}
+	}
+	
+	// delete pipdig-importer data
+	delete_option('pipdig_importer_settings_set');
 	
 }
 register_activation_hook( __FILE__, 'pipdig_p3_activate' );
