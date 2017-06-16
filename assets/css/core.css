@@ -295,17 +295,25 @@ transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -webkit-trans
 opacity: .75;
 }
 
-.p3_popular_posts_widget .p3_pop_left h4 {
-position: relative;
+.p3_popular_posts_widget .p3_pop_left-left {
+float: left;
+width: 36%;
+margin-right: 4%;
+line-height: 0;
+}
+.p3_popular_posts_widget .p3_pop_left-right {
+float: left;
 width: 60%;
-float: right;
 text-align: left;
 }
-.p3_popular_posts_widget .p3_pop_left  a {
-float: left;
-width: 39%;
-margin-right: 1%;
-line-height: 0;
+.p3_popular_posts_widget .p3_pop_left-right  h4 {
+position: relative;
+text-align: left;
+padding: 0;
+margin: 0;
+}
+.p3_popular_posts_widget .p3_pop_left-right .p3_pop_left_date {
+margin-top: 3px;
 }
 
 /* various sliders ============================ */

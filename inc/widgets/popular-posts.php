@@ -91,6 +91,10 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 				<option <?php if ( '4' == $image_shape ) echo 'selected="selected"'; ?> value="4"><?php _e('Original size', 'p3') ?></option>
 			</select>
 		</p>
+		<p>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" <?php checked(isset($instance['show_date'])) ?> />
+			<label for="<?php echo $this->get_field_id('show_date'); ?>"><?php _e('Show post date', 'p3'); ?></label>
+		</p>
 	<?php
 	  }
 	 
@@ -103,6 +107,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		$instance['date_range_posts'] =  strip_tags($new_instance['date_range_posts']);
 		$instance['number_posts'] = absint($new_instance['number_posts']);
 		$instance['image_shape'] = absint($new_instance['image_shape']);
+		$instance['show_date'] = $new_instance['show_date'];
 		$instance['style_select'] = ( isset( $new_instance['style_select'] ) && $new_instance['style_select'] > 0 && $new_instance['style_select'] < 3 ) ? (int) $new_instance['style_select'] : 0; // 3 is total radio +1
 		return $instance;
 	  }
@@ -139,6 +144,11 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			$image_shape = strip_tags($instance['image_shape']);
 		} else {
 			$image_shape = '';
+		}
+		if (isset($instance['show_date'])) { 
+			$show_date = strip_tags($instance['show_date']);
+		} else {
+			$show_date = '';
 		}
 		if (isset($instance['style_select'])) { 
 			$style_select = $instance['style_select'];
@@ -200,7 +210,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
 						</div>
 					<?php } ?>
-					<h4><?php echo pipdig_p3_truncate($title, 11); ?></h4>
+					<h4><?php if (!empty($instance['show_date'])) { echo get_the_date().': '; } ?><?php echo pipdig_p3_truncate($title, 11); ?></h4>
 				</a>
 			</li>
 		<?php } else { ?>
@@ -217,8 +227,8 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 				</a>
 				</div>
 				<div class="p3_pop_left-right">
-					<h4><?php echo pipdig_p3_truncate($title, 11); ?></h4>
-					<div class="p3_pop_left_date"><?php the_date(); ?></div>
+					<h4><?php echo pipdig_p3_truncate($title, 10); ?></h4>
+					<?php if ($show_date) { ?><div class="p3_pop_left_date"><?php the_date(); ?></div><?php } ?>
 				</div>
 			</li>
 		<?php } ?>
