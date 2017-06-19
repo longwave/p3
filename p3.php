@@ -310,7 +310,7 @@ function pipdig_p3_activate() {
 			$piplink2 = 'https://www.pipdig.co/';
 			$piplink3 = 'https://www.pipdig.co/products/wordpress-themes/';
 			$amicorum = array(
-			'<a href="'.$piplink2.'" target="_blank">Theme Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink2.'" target="_blank">Theme created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink3.'" target="_blank">WP Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink.'" target="_blank">Site Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',

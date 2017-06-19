@@ -65,3 +65,16 @@ function pipdig_p3_disable_jetpack_modules() {
 	*/
 }
 add_action( 'init', 'pipdig_p3_disable_jetpack_modules' );
+
+// quit nagging
+function p3_jp_styles() {
+	if (!class_exists('Jetpack')) {
+		return;
+	}
+	?>
+	<style>
+	.jitm-card.is-upgrade-premium {display: none}
+	</style>
+	<?php
+}
+add_action('admin_head', 'p3_jp_styles', 9999);

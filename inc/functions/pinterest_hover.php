@@ -154,7 +154,7 @@ if (!function_exists('p3_pinterest_hover')) {
 			
 		})(jQuery);
 
-		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img), .post-listing-img img').imgPin();
+		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img)').imgPin();
 
 		</script>
 		<?php
@@ -165,10 +165,10 @@ if (!function_exists('p3_pinterest_hover')) {
 
 // stop image from being 100% width of tab in cust
 function p3_pinterest_hover_customizer_styles() { ?>
-		<style>
-			#customize-control-p3_pinterest_hover_image_file img {width: auto;}
-		</style>
-		<?php
+	<style>
+		#customize-control-p3_pinterest_hover_image_file img {width: auto;}
+	</style>
+	<?php
 }
 add_action( 'customize_controls_print_styles', 'p3_pinterest_hover_customizer_styles', 999 );
 
