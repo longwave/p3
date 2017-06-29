@@ -97,7 +97,7 @@ if (!function_exists('p3_feature_header')) {
 							<h4><?php echo pipdig_p3_truncate(get_the_title(), $truncate_title); ?></h4>
 						</a>
 					</div>
-					<?php endwhile;?>
+					<?php endwhile; ?>
 					<div class="clearfix"></div>
 				</div>
 			</div>

@@ -154,7 +154,12 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('cols'); ?>"><?php _e('Number of columns:', 'p3'); ?></label><br />
-			<input type="number" min="1" max="4" id="<?php echo $this->get_field_id( 'cols' ); ?>" name="<?php echo $this->get_field_name( 'cols' ); ?>" value="<?php if ($cols) { echo $cols; } else { echo '2'; } ?>" /> (max 4)
+			<select id="<?php echo $this->get_field_id('cols'); ?>" name="<?php echo $this->get_field_name('cols'); ?>" class="">
+				<option <?php selected( $cols, 1); ?> value="1">1</option>
+				<option <?php selected( $cols, 2); ?> value="2">2</option>
+				<option <?php selected( $cols, 3); ?> value="3">3</option>
+				<option <?php selected( $cols, 4); ?> value="4">4</option>
+			</select>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('likes'); ?>">
