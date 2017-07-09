@@ -13,9 +13,14 @@ function pipdig_p3_scrapey_scrapes() {
 	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
 		
-		set_transient('p3_stats_gen', true, 12 * HOUR_IN_SECONDS);
+		set_transient('p3_stats_gen', true, 9 * HOUR_IN_SECONDS);
 		
-		$request_array = array();
+		$allow_url_fopen = false;
+		if(ini_get('allow_url_fopen')) {
+			$allow_url_fopen = true;
+		}
+		
+		$facebook_url_test = $pinterest_url_test = $bloglovin_url_test = $twitter_url_test = $youtube_url_test = $request_array = array();
 		
 		// Facebook --------------------
 		$facebook_url = esc_url($links['facebook']);
@@ -24,7 +29,9 @@ function pipdig_p3_scrapey_scrapes() {
 				$likes = absint(get_scp_counter('facebook'));
 				update_option('p3_facebook_count', $likes);
 			} else {
-				$facebook_url_test = get_headers($facebook_url);
+				if ($allow_url_fopen) {
+					$facebook_url_test = get_headers($facebook_url);
+				}
 				if (substr($facebook_url_test[0], 9, 3) !== '404') {
 					$facebook_id = parse_url($facebook_url, PHP_URL_PATH);
 					$facebook_id = str_replace('/', '', $facebook_id);
@@ -42,7 +49,9 @@ function pipdig_p3_scrapey_scrapes() {
 				$pinterest_followers = absint(get_scp_counter('pinterest'));
 				update_option('p3_pinterest_count', $pinterest_followers);
 			} else {
-				$pinterest_url_test = get_headers($pinterest_url);
+				if ($allow_url_fopen) {
+					$pinterest_url_test = get_headers($pinterest_url);
+				}
 				if (substr($pinterest_url_test[0], 9, 3) !== '404') {
 					$pinterest_user = parse_url($pinterest_url, PHP_URL_PATH);
 					$pinterest_user = str_replace('/', '', $pinterest_user);
@@ -56,7 +65,9 @@ function pipdig_p3_scrapey_scrapes() {
 		// Bloglovin --------------------
 		$bloglovin_url = esc_url($links['bloglovin']);
 		if($bloglovin_url) {
-			$bloglovin_url_test = get_headers($bloglovin_url);
+			if ($allow_url_fopen) {
+				$bloglovin_url_test = get_headers($bloglovin_url);
+			}
 			if (substr($bloglovin_url_test[0], 9, 3) !== '404') {
 				$bloglovin_url_path = parse_url($bloglovin_url, PHP_URL_PATH);
 				$bloglovin_url_split = explode("-", $bloglovin_url_path);
@@ -74,7 +85,9 @@ function pipdig_p3_scrapey_scrapes() {
 				$followers_count = absint(get_scp_counter('twitter'));
 				update_option('p3_twitter_count', $followers_count);
 			} else {
-				$twitter_url_test = get_headers($twitter_url);
+				if ($allow_url_fopen) {
+					$twitter_url_test = get_headers($twitter_url);
+				}
 				if (substr($twitter_url_test[0], 9, 3) !== '404') {
 					$twitter_handle = parse_url($twitter_url, PHP_URL_PATH);
 					$twitter_handle = str_replace('/', '', $twitter_handle);
@@ -110,7 +123,9 @@ function pipdig_p3_scrapey_scrapes() {
 				$youtube_count = absint(get_scp_counter('youtube'));
 				update_option('p3_youtube_count', $youtube_count);
 			} else {
-				$youtube_url_test = get_headers($youtube_url);
+				if ($allow_url_fopen) {
+					$youtube_url_test = get_headers($youtube_url);
+				}
 				if (substr($youtube_url_test[0], 9, 3) !== '404') {
 					$request_array['youtube'] = $youtube_url;
 				}
@@ -129,7 +144,7 @@ function pipdig_p3_scrapey_scrapes() {
 			$args = array(
 				//'body' => json_encode($request_array),
 				'timeout' => '28',
-				'redirection' => '5',
+				'redirection' => '3',
 				//'httpversion' => '1.0',
 				'blocking' => true,
 			);

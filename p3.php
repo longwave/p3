@@ -5,22 +5,23 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.14.1
+Version: 2.14.4
 Text Domain: p3
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '2.14.1' );
+define( 'PIPDIG_P3_V', '2.14.4' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
 		return;
 	}
 	?>
-	<div class="notice notice-warning is-dismissible">
+	<div class="notice notice-error is-dismissible">
 		<h2><span class="dashicons dashicons-warning"></span> PHP Warning</h2>
 		<p>Your web server is using an insecure version of PHP. Please contact your web host so that they can update your server to PHP 5.6 or higher. <strong>DO NOT IGNORE THIS MESSAGE</strong>.</p>
+		<p>&nbsp;</p>
 	</div>
 	<?php
 }
@@ -106,7 +107,7 @@ function pipdig_p3_scripts_styles() {
 	//wp_register_script( 'pipdig-cookie', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js', array( 'jquery' ), null, true );
 	wp_register_script( 'pipdig-flickity', 'https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js', array('jquery'), null, false );
 	
-	wp_enqueue_style( 'font-awesome', 'https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
+	wp_enqueue_style( 'font-awesome', 'https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', '', null );
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
 
@@ -311,13 +312,12 @@ function pipdig_p3_activate() {
 			$piplink3 = 'https://www.pipdig.co/products/wordpress-themes/';
 			$amicorum = array(
 			'<a href="'.$piplink2.'" target="_blank">Theme created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink3.'" target="_blank">WP Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink.'" target="_blank">Site Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink3.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			'<a href="'.$piplink.'" target="_blank">Website Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
-			//'<a href="'.$piplink2.'" target="_blank">Theme Designed by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
 			'<a href="'.$piplink3.'" target="_blank">WordPress Theme by <span style="text-transform: lowercase;letter-spacing: 1px;">pipdig</span></a>',
 			'<a href="'.$piplink3.'" target="_blank">WP theme by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
-			//'<a href="'.$piplink3.'" target="_blank">WordPress Themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
+			'<a href="'.$piplink3.'" target="_blank">WordPress Themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
 			'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
 			);
 			update_option('p3_amicorumi_2', $amicorum[array_rand($amicorum)]);

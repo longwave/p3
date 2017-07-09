@@ -43,9 +43,11 @@ function p3_featured_cats_puller($category, $col = 3) {
 			<a href="<?php the_permalink(); ?>" class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
 				<img src="<?php echo $shape; ?>" class="p3_invisible" />
 			</a>
+			<?php if (get_theme_mod('p3_featured_cats_show_dates')) { ?>
 			<div class="entry-meta">
 				<?php echo get_the_date(); ?>
 			</div>
+			<?php } ?>
 			<h4><?php the_title(); ?></h4>
 		</div>
 
@@ -178,6 +180,22 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 						'2' => 'Landscape',
 						'3' => 'Square',
 					),
+				)
+			);
+			
+			// Display post dates
+			$wp_customize->add_setting('p3_featured_cats_show_dates',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_featured_cats_show_dates',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Display post date', 'p3' ),
+					'section' => 'p3_featured_cats_section',
 				)
 			);
 

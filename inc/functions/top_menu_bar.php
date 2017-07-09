@@ -45,7 +45,7 @@ if (!class_exists('pipdig_top_menu_bar_Customize')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Add an extra menu to the top', 'p3' ),
-					'description' => __( 'Use this option to add an extra menu across the top of your site. ', 'p3' ).'<a href="//support.pipdig.co/articles/wordpress-how-to-add-an-extra-top-menu-navbar/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
+					'description' => __( 'Use this option to add an extra menu across the top of your site.', 'p3' ).'<a href="//support.pipdig.co/articles/wordpress-how-to-add-an-extra-top-menu-navbar/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
 					'section' => 'pipdig_layout',
 				)
 			);

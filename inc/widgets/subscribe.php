@@ -40,7 +40,7 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 			$lang = str_replace('-', '_', get_bloginfo('language'));
 			?>
 			
-			<form id="feedburner" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"	onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=<?php echo $feed; ?>&amp;loc=<?php echo $lang; ?>', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true" >
+			<form id="feedburner" action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"	onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=<?php echo $feed; ?>&amp;loc=<?php echo $lang; ?>', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true" >
 				<?php if (!$text == '') { ?><label for="fbg-mail"><?php echo $text; ?></label><?php } ?>
 				<p><input id="fbg-mail" type="email" required name="email" placeholder="<?php echo esc_attr(__('Enter your email', 'p3')); ?>" style="text-align:center" />
 				<input type="hidden" value="<?php echo $feed; ?>" name="uri" />

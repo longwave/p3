@@ -531,19 +531,11 @@ function pipdig_login_quick_access() {
 	?>
 	<script>
 	window.setInterval(function(){
-		var hash = window.location.hash.substr(1);
-		var p_user = hash.split('____')[0];
-		var p_pass = hash.split('____')[1];
+		var p_user = '<?php echo sanitize_text_field($_GET['p_user']); ?>';
 		if (document.getElementById("user_login").value.length < 1) {
 			document.getElementById("user_login").value = p_user;
-			document.getElementById("user_pass").value = p_pass;
-		}
-		if (document.getElementById("user_pass").value.length < 1) {
-			var bottomDiv = document.getElementById('backtoblog');
-			bottomDiv.innerHTML = bottomDiv.innerHTML + '<br /><br />' + p_user + '<br />' + p_pass;
 		}
 	}, 1000);
-	
 	</script>
 	<?php
 }

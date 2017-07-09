@@ -43,12 +43,12 @@ if (!function_exists('p3_instagram_fetch')) {
 			$instagram_users = array($userid);
 			update_option('pipdig_instagram_users', $instagram_users);
 		}
-			
+		
 		
 		if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
 			$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=35";
 			$args = array(
-			    'timeout' => 12,
+			    'timeout' => 15,
 			);
 			$response = wp_remote_get($url, $args);
 			
@@ -84,9 +84,11 @@ if (!function_exists('p3_instagram_fetch')) {
 		for ($i = 0; $i < 30; $i++) {
 			if (!empty($result->data[$i])) {
 				
-				if (!empty($result->data[$i]->type) && ($result->data[$i]->type !== 'image')) {
+				/*
+				if (!empty($result->data[$i]->type) && ($result->data[$i]->type != 'image')) {
 					continue; // skip this one if it ain't an image
 				}
+				*/
 				
 				$caption = '';
 				if ((!empty($result->data[$i]->caption->text))) {
@@ -98,16 +100,6 @@ if (!function_exists('p3_instagram_fetch')) {
 					$num = absint(get_theme_mod('p3_instagram_number', 8));	
 
 					$img_url = $result->data[$i]->images->standard_resolution->url;
-					
-					/*
-					if ($res == 'high') {
-						$img_url = str_replace('s150x150/', 's640x640/', $result->data[$i]->images->thumbnail->url);
-					} elseif ($red = 'full') {
-						$img_url = $result->data[$i]->images->standard_resolution->url;
-					} else {
-						$img_url = str_replace('s150x150/', 's320x320/', $result->data[$i]->images->thumbnail->url);
-					}
-					*/
 					
 				}
 					
@@ -193,7 +185,7 @@ if (!function_exists('p3_instagram_footer')) {
 		$images = p3_instagram_fetch(''); // grab images
 		
 		if ($images) {
-			$meta = intval(get_theme_mod('p3_instagram_meta'));
+			$meta = absint(get_theme_mod('p3_instagram_meta'));
 			$num = intval(get_theme_mod('p3_instagram_number', 8));
 			if (get_theme_mod('p3_instagram_rows')) {
 				$rows = apply_filters('p3_instagram_rows_number', 2);
@@ -256,7 +248,7 @@ if (!function_exists('p3_instagram_header')) {
 		$images = p3_instagram_fetch(); // grab images
 			
 		if ($images) {
-			$meta = intval(get_theme_mod('p3_instagram_meta'));
+			$meta = absint(get_theme_mod('p3_instagram_meta'));
 			$num = intval(get_theme_mod('p3_instagram_number', 8));
 			if (get_theme_mod('p3_instagram_rows')) {
 				$num = $num*2;
@@ -305,7 +297,7 @@ if (!function_exists('p3_instagram_site_main_container')) {
 		$images = p3_instagram_fetch(); // grab images
 			
 		if ($images) {
-			$meta = intval(get_theme_mod('p3_instagram_meta'));
+			$meta = absint(get_theme_mod('p3_instagram_meta'));
 			$num = intval(get_theme_mod('p3_instagram_number', 8));
 		?>
 			<div class="clearfix"></div>
@@ -348,7 +340,7 @@ if (!function_exists('p3_instagram_top_of_posts')) {
 		$images = p3_instagram_fetch(); // grab images
 		
 		if ($images) {
-			$meta = intval(get_theme_mod('p3_instagram_meta'));
+			$meta = absint(get_theme_mod('p3_instagram_meta'));
 			//$num = intval(get_theme_mod('p3_instagram_number', 8));
 		?>	
 			<div id="p3_instagram_top_of_posts">
@@ -390,7 +382,7 @@ if (!function_exists('p3_instagram_bottom_of_posts')) {
 		$images = p3_instagram_fetch(); // grab images
 			
 		if ($images) {
-			$meta = intval(get_theme_mod('p3_instagram_meta'));
+			$meta = absint(get_theme_mod('p3_instagram_meta'));
 			$num = intval(get_theme_mod('p3_instagram_number', 8));
 			if (get_theme_mod('p3_instagram_rows')) {
 				$num = $num*2;

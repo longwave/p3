@@ -137,30 +137,28 @@ add_action( 'wp_head', 'p3_width_customizer_styles', 999 );
 
 
 // customiser
-if (!class_exists('p3_width_customizer_Customize')) {
-	class p3_width_customizer_Customize {
+class p3_width_customizer_Customize {
+	
+	public static function register ( $wp_customize ) {
 		
-		public static function register ( $wp_customize ) {
-			
-			$wp_customize->add_setting('p3_width_customizer',
-				array(
-					'default' => 72,
-					'sanitize_callback' => 'sanitize_text_field',
-				)
-			);
-			$wp_customize->add_control( 'p3_width_customizer', array(
-				'type' => 'range',
-				'section' => 'pipdig_layout',
-				'label' => __( 'Blog post width compared to sidebar', 'p3' ),
-				'input_attrs' => array(
-					'min' => 60,
-					'max' => 80,
-					'step' => 1,
-					),
-				)
-			);
-
-		}
+		$wp_customize->add_setting('p3_width_customizer',
+			array(
+				'default' => 72,
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control( 'p3_width_customizer', array(
+			'type' => 'range',
+			'section' => 'pipdig_layout',
+			'priority' => 11,
+			'label' => __( 'Blog post width compared to sidebar', 'p3' ),
+			'input_attrs' => array(
+				'min' => 60,
+				'max' => 80,
+				'step' => 1,
+				),
+			)
+		);
 	}
-	add_action( 'customize_register' , array( 'p3_width_customizer_Customize' , 'register' ) );
 }
+add_action( 'customize_register' , array( 'p3_width_customizer_Customize' , 'register' ) );

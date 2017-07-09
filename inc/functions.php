@@ -295,8 +295,8 @@ function p3_slicknav_brand() {
 	if (class_exists('Woocommerce') && $count < 6) {
 		global $woocommerce;
 		$brand .= '<a href="'.$woocommerce->cart->get_cart_url().'" rel="nofollow"><i class="fa fa-shopping-cart"></i></a>';
+		$count++;
 	}
-
 	if (!empty($links['twitter']) && $count < 6) {
 		$brand .= '<a href="'.esc_url($links['twitter']).'" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i></a>';
 		$count++;
@@ -323,6 +323,10 @@ function p3_slicknav_brand() {
 	}
 	if (!empty($links['youtube']) && $count < 6) {
 		$brand .= '<a href="'.esc_url($links['youtube']).'" target="_blank" rel="nofollow"><i class="fa fa-youtube-play"></i></a>';
+		$count++;
+	}
+	if (!empty($links['email']) && $count < 6) {
+		$brand .= '<a href="mailto:'.sanitize_email($links['email']).'" target="_blank" rel="nofollow"><i class="fa fa-envelope"></i></a>';
 		$count++;
 	}
 	if (!empty($links['tumblr']) && $count < 6) {
@@ -367,10 +371,6 @@ function p3_slicknav_brand() {
 	}
 	if (!empty($links['etsy']) && $count < 6) {
 		$brand .= '<a href="'.esc_url($links['etsy']).'" target="_blank" rel="nofollow"><i class="fa fa-etsy"></i></a>';
-		$count++;
-	}
-	if (!empty($links['email']) && $count < 6) {
-		$brand .= '<a href="mailto:'.sanitize_email($links['email']).'" target="_blank" rel="nofollow"><i class="fa fa-envelope"></i></a>';
 		$count++;
 	}
 	if (!empty($links['rss']) && $count < 6) {
