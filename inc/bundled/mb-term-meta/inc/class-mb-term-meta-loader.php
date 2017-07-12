@@ -29,7 +29,9 @@ class MB_Term_Meta_Loader {
 		 * Initialize meta boxes for term.
 		 * 'rwmb_meta_boxes' runs at priority 10, we use priority 20 to make sure self::$meta_boxes is set.
 		 */
-		add_action( 'admin_init', array( $this, 'register' ), 20 );
+		add_action( 'init', array( $this, 'register' ), 20 );
+
+		add_filter( 'rwmb_meta_type', array( $this, 'filter_meta_type' ), 10, 3 );
 	}
 
 	/**
@@ -54,10 +56,36 @@ class MB_Term_Meta_Loader {
 	 * Register meta boxes for term, each meta box is a section
 	 */
 	public function register() {
-		$field_meta = new MB_Term_Meta_Field;
+		$field_meta     = new MB_Term_Meta_Field;
+		$field_registry = rwmb_get_registry( 'field' );
+
 		foreach ( self::$meta_boxes as $meta_box ) {
 			$meta_box = new MB_Term_Meta_Box( $meta_box );
 			$meta_box->set_field_meta_object( $field_meta );
+
+			foreach ( $meta_box->fields as $field ) {
+				foreach ( $meta_box->taxonomies as $taxonomy ) {
+					$field_registry->add( $field, $taxonomy, 'term' );
+				}
+			}
 		}
+	}
+
+	/**
+	 * Filter meta type from object type and object id.
+	 *
+	 * @param string $type        Meta type get from object type and object id. Assert taxonomy name if object type is term.
+	 * @param string $object_type Object type.
+	 * @param int    $object_id   Object id.
+	 *
+	 * @return string
+	 */
+	public function filter_meta_type( $type, $object_type, $object_id ) {
+		if ( 'term' !== $object_type ) {
+			return $type;
+		}
+
+		$term = get_term( $object_id );
+		return isset( $term->taxonomy ) ? $term->taxonomy : $type;
 	}
 }

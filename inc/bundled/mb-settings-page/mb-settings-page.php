@@ -3,7 +3,7 @@
  * Plugin Name: MB Settings Page
  * Plugin URI: https://metabox.io/plugins/mb-settings-page/
  * Description: Add-on for meta box plugin which helps you create settings pages easily.
- * Version: 1.1.6
+ * Version: 1.2.1
  * Author: MetaBox.io
  * Author URI: https://metabox.io
  * License: GPL2+
@@ -34,6 +34,7 @@ if ( ! function_exists( 'mb_settings_page_load' ) ) {
 		require dirname( __FILE__ ) . '/inc/settings-page.php';
 		require dirname( __FILE__ ) . '/inc/settings-page-meta-box.php';
 		require dirname( __FILE__ ) . '/inc/loader.php';
+		require dirname( __FILE__ ) . '/inc/class-rwmb-setting-storage.php';
 		$loader = new MB_Settings_Page_Loader();
 		$loader->init();
 

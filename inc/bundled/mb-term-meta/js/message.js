@@ -1,0 +1,20 @@
+( function ( $ ) {
+	"use strict";
+
+	/*
+	 * Show message when added term.
+	 */
+	$( document ).on( 'ajaxSuccess', function () {
+		$( '#mb-term-meta-message' ).remove();
+
+		if ( $( '#ajax-response .error' ).length ) {
+			return;
+		}
+
+		$( '#addtag p.submit' ).before( '<div id="mb-term-meta-message" class="updated"><p><strong>' + MBTermMeta.addedMessage + '</strong></p></div>' );
+
+		setTimeout( function () {
+			$( '#mb-term-meta-message' ).fadeOut();
+		}, 2000 );
+	} );
+} )( jQuery );

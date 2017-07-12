@@ -121,7 +121,6 @@ if (!class_exists('Rss_Image_Feed') && !function_exists('pipdig_rss_post_thumbna
 	function pipdig_p3_rss_post_thumbnail($content) {
 		
 		if (get_option('rss_use_excerpt')) {
-			
 			global $post;
 			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' );
 			if ($thumb) {
@@ -129,8 +128,7 @@ if (!class_exists('Rss_Image_Feed') && !function_exists('pipdig_rss_post_thumbna
 			} else {
 				$img = pipdig_p3_catch_that_image();
 			}
-			$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'" style="max-width:100%;height:auto;"/></p><p>'.get_the_excerpt().'</p>';
-
+			$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'"/></p><p>'.strip_shortcodes(get_the_excerpt()).'</p>';
 		}
 
 		return strip_shortcodes($content);
@@ -161,7 +159,6 @@ RewriteCond %{QUERY_STRING} ^m=1$
 RewriteRule ^(.*)$ /$1? [R=301,L]
 </IfModule>
 # /p3
-
 ";
 return $p3_rules . $rules;
 }

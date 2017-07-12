@@ -50,6 +50,7 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 		// Save term meta.
 		foreach ( $this->meta_box['taxonomies'] as $taxonomy ) {
 			add_action( "edited_$taxonomy", array( $this, 'save' ) );
+			add_action( "created_$taxonomy", array( $this, 'save' ) );
 		}
 
 		add_action( "rwmb_before_{$this->meta_box['id']}", array( $this, 'show_heading' ) );
@@ -73,6 +74,7 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 		// Add meta box.
 		foreach ( $this->meta_box['taxonomies'] as $taxonomy ) {
 			add_action( "{$taxonomy}_edit_form", array( $this, 'show' ), 10, 2 );
+			add_action( "{$taxonomy}_add_form_fields", array( $this, 'show' ), 10, 2 );
 		}
 
 		// Change field meta.
@@ -95,6 +97,10 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 		}
 		list( , $url ) = RWMB_Loader::get_path( dirname( dirname( __FILE__ ) ) );
 		wp_enqueue_style( 'mb-term-meta', $url . 'css/style.css', '', '1.0.2' );
+		wp_enqueue_script( 'mb-term-meta-message', $url . 'js/message.js', array( 'jquery' ), '1.0.6', true );
+		wp_localize_script( 'mb-term-meta-message', 'MBTermMeta', array(
+			'addedMessage' => __( 'Term added.', 'mb-term-meta' ),
+		) );
 	}
 
 	/**

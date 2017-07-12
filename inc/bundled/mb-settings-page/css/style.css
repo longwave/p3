@@ -21,3 +21,9 @@
 .nav-tab:active {
 	box-shadow: none;
 }
+.rwmb-settings-no-boxes .rwmb-clone {
+	background-color: transparent;
+}
+.rwmb-settings-no-boxes .rwmb-tabs-left .rwmb-tab-panel {
+	background-color: #fff;
+}

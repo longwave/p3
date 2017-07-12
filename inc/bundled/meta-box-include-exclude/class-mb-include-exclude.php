@@ -14,6 +14,10 @@
  * @package    Meta Box
  * @subpackage Meta Box Include Exclude
  */
+
+/**
+ * Class MB_Include_Exclude
+ */
 class MB_Include_Exclude {
 	/**
 	 * Store the current post ID.
@@ -49,10 +53,10 @@ class MB_Include_Exclude {
 	}
 
 	/**
-	 * Check if meta box is excluded for current post
+	 * Check if meta box is excluded for current post.
 	 *
-	 * @param string $type 'include' or 'exclude'
-	 * @param array $meta_box
+	 * @param string $type     Accept 'include' or 'exclude'.
+	 * @param array  $meta_box Meta box data.
 	 *
 	 * @return bool
 	 */
@@ -66,7 +70,7 @@ class MB_Include_Exclude {
 		// For better loop of checking terms.
 		unset( $conditions['relation'] );
 
-		$check_by = array( 'ID', 'parent', 'slug', 'template', 'user_role', 'user_id', 'custom', 'is_child' );
+		$check_by = array( 'ID', 'parent', 'slug', 'template', 'user_role', 'user_id', 'custom', 'is_child', 'edited_user_role', 'edited_user_id' );
 		foreach ( $check_by as $by ) {
 			$func = "check_{$by}";
 			if ( ! isset( $conditions[ $by ] ) || ! method_exists( __CLASS__, $func ) ) {
@@ -139,9 +143,9 @@ class MB_Include_Exclude {
 	}
 
 	/**
-	 * Check if current post has specific parent
+	 * Check if current post has specific parent.
 	 *
-	 * @param array $ids
+	 * @param array $ids List post ids.
 	 *
 	 * @return bool
 	 */
@@ -152,9 +156,9 @@ class MB_Include_Exclude {
 	}
 
 	/**
-	 * Check if current post has specific slug
+	 * Check if current post has specific slug.
 	 *
-	 * @param array $slugs
+	 * @param array $slugs List post slugs.
 	 *
 	 * @return bool
 	 */
@@ -167,7 +171,7 @@ class MB_Include_Exclude {
 	/**
 	 * Check if current post has specific template
 	 *
-	 * @param array $templates
+	 * @param array $templates List page templates.
 	 *
 	 * @return bool
 	 */
@@ -180,8 +184,8 @@ class MB_Include_Exclude {
 	/**
 	 * Check if current post has specific term
 	 *
-	 * @param string $taxonomy
-	 * @param array $terms
+	 * @param string $taxonomy Taxonomy name.
+	 * @param array  $terms    Terms.
 	 *
 	 * @return bool
 	 */
@@ -205,8 +209,8 @@ class MB_Include_Exclude {
 	/**
 	 * Check if current post has specific term
 	 *
-	 * @param string $taxonomy
-	 * @param array $terms
+	 * @param string $taxonomy Taxonomy name.
+	 * @param array  $terms    Terms.
 	 *
 	 * @return bool
 	 */
@@ -232,7 +236,7 @@ class MB_Include_Exclude {
 	}
 
 	/**
-	 * Check by user role.
+	 * Check by current user role.
 	 *
 	 * @param array|string $roles List of user roles. Array or CSV.
 	 *
@@ -240,23 +244,13 @@ class MB_Include_Exclude {
 	 */
 	protected static function check_user_role( $roles ) {
 		$user = wp_get_current_user();
-
-		/*
-		 * If edit another user's profile, get the edited user instead.
-		 * This is required for MB User Meta extension.
-		 */
-		if ( isset( $GLOBALS['pagenow'] ) && 'user-edit.php' === $GLOBALS['pagenow'] ) {
-			$user_id = filter_input( INPUT_GET, 'user_id', FILTER_SANITIZE_NUMBER_INT );
-			$user    = get_userdata( $user_id );
-		}
-
 		$roles = array_map( 'strtolower', self::csv_to_array( $roles ) );
 		$roles = array_intersect( $user->roles, $roles );
 		return ! empty( $roles );
 	}
 
 	/**
-	 * Check by user ID.
+	 * Check by current user ID.
 	 *
 	 * @param array|string $user_ids List of user IDs. Array or CSV.
 	 *
@@ -264,23 +258,62 @@ class MB_Include_Exclude {
 	 */
 	protected static function check_user_id( $user_ids ) {
 		$user_id = get_current_user_id();
+		return in_array( $user_id, self::csv_to_array( $user_ids ) );
+	}
 
+	/**
+	 * Check by edit user role.
+	 *
+	 * @param  array|string $roles List of user roles. Array of CSV.
+	 * @return boolean
+	 */
+	protected static function check_edited_user_role( $roles ) {
 		/*
 		 * If edit another user's profile, get the edited user instead.
 		 * This is required for MB User Meta extension.
 		 */
 		if ( isset( $GLOBALS['pagenow'] ) && 'user-edit.php' === $GLOBALS['pagenow'] ) {
-			$user_id = filter_input( INPUT_GET, 'user_id', FILTER_SANITIZE_NUMBER_INT );
+			// If edit other's profile, check edited user.
+			$user_id = intval( $_REQUEST['user_id'] );
+			$user    = get_userdata( $user_id );
+
+			$roles = array_map( 'strtolower', self::csv_to_array( $roles ) );
+			$roles = array_intersect( $user->roles, $roles );
+
+			return ! empty( $roles );
+		} elseif ( isset( $GLOBALS['pagenow'] ) && 'profile.php' === $GLOBALS['pagenow'] ) {
+			// If edit profile, check current user.
+			return self::check_user_role( $roles );
 		}
 
-		return in_array( $user_id, self::csv_to_array( $user_ids ) );
+		return true;
+	}
+
+	/**
+	 * Check by edited user id.
+	 *
+	 * @param  array|string $user_ids List of user ids. Array of CSV.
+	 * @return boolean
+	 */
+	protected static function check_edited_user_id( $user_ids ) {
+		if ( isset( $GLOBALS['pagenow'] ) && 'user-edit.php' === $GLOBALS['pagenow'] ) {
+			// If edit other's profile, check edited user.
+			$user_id = intval( $_REQUEST['user_id'] );
+
+			return in_array( $user_id, self::csv_to_array( $user_ids ) );
+		} elseif ( isset( $GLOBALS['pagenow'] ) && 'profile.php' === $GLOBALS['pagenow'] ) {
+			// If edit profile, check current user.
+			return self::check_user_id( $user_ids );
+		}
+
+		return true;
 	}
 
 	/**
 	 * Check by custom function
 	 *
-	 * @param array $func
-	 * @param array $meta_box
+	 * @param array $func     Callable.
+	 * @param array $meta_box Meta box data.
 	 *
 	 * @return bool
 	 */
@@ -291,7 +324,7 @@ class MB_Include_Exclude {
 	/**
 	 * Check the page is child or not
 	 *
-	 * @param bool $value
+	 * @param bool $value Boolean value.
 	 *
 	 * @return bool
 	 */
