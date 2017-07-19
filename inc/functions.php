@@ -294,83 +294,83 @@ function p3_slicknav_brand() {
 		$brand .= '<a href="'.$woocommerce->cart->get_cart_url().'" rel="nofollow"><i class="fa fa-shopping-cart"></i></a>';
 		$count++;
 	}
-	if (!empty($links['twitter']) && $count < 6) {
+	if (($count < 6) && !empty($links['twitter']) && get_theme_mod('p3_navbar_twitter', 1)) {
 		$brand .= '<a href="'.esc_url($links['twitter']).'" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i></a>';
 		$count++;
 	}
-	if (!empty($links['instagram']) && $count < 6) {
+	if (($count < 6) && !empty($links['instagram']) && get_theme_mod('p3_navbar_instagram', 1)) {
 		$brand .= '<a href="'.esc_url($links['instagram']).'" target="_blank" rel="nofollow"><i class="fa fa-instagram"></i></a>';
 		$count++;
 	}
-	if (!empty($links['facebook']) && $count < 6) {
+	if (($count < 6) && !empty($links['facebook']) && get_theme_mod('p3_navbar_facebook', 1)) {
 		$brand .= '<a href="'.esc_url($links['facebook']).'" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>';
 		$count++;
 	}
-	if (!empty($links['bloglovin']) && $count < 6) {
+	if (($count < 6) && !empty($links['bloglovin']) && get_theme_mod('p3_navbar_bloglovin', 1)) {
 		$brand .= '<a href="'.esc_url($links['bloglovin']).'" target="_blank" rel="nofollow"><i class="fa fa-plus"></i></a>';
 		$count++;
 	}
-	if (!empty($links['pinterest']) && $count < 6) {
+	if (($count < 6) && !empty($links['pinterest']) && get_theme_mod('p3_navbar_pinterest', 1)) {
 		$brand .= '<a href="'.esc_url($links['pinterest']).'" target="_blank" rel="nofollow"><i class="fa fa-pinterest"></i></a>';
 		$count++;
 	}
-	if (!empty($links['snapchat']) && $count < 6) {
+	if (($count < 6) && !empty($links['snapchat']) && get_theme_mod('p3_navbar_snapchat', 1)) {
 		$brand .= '<a href="'.esc_url($links['snapchat']).'" target="_blank" rel="nofollow"><i class="fa fa-snapchat-ghost"></i></a>';
 		$count++;
 	}
-	if (!empty($links['youtube']) && $count < 6) {
+	if (($count < 6) && !empty($links['youtube']) && get_theme_mod('p3_navbar_youtube', 1)) {
 		$brand .= '<a href="'.esc_url($links['youtube']).'" target="_blank" rel="nofollow"><i class="fa fa-youtube-play"></i></a>';
 		$count++;
 	}
-	if (!empty($links['email']) && $count < 6) {
+	if (($count < 6) && !empty($links['email']) && get_theme_mod('p3_navbar_email', 1)) {
 		$brand .= '<a href="mailto:'.sanitize_email($links['email']).'" target="_blank" rel="nofollow"><i class="fa fa-envelope"></i></a>';
 		$count++;
 	}
-	if (!empty($links['tumblr']) && $count < 6) {
+	if (($count < 6) && !empty($links['tumblr']) && get_theme_mod('p3_navbar_tumblr', 1)) {
 		$brand .= '<a href="'.esc_url($links['tumblr']).'" target="_blank" rel="nofollow"><i class="fa fa-tumblr"></i></a>';
 		$count++;
 	}
-	if (!empty($links['linkedin']) && $count < 6) {
+	if (($count < 6) && !empty($links['linkedin']) && get_theme_mod('p3_navbar_linkedin', 1)) {
 		$brand .= '<a href="'.esc_url($links['linkedin']).'" target="_blank" rel="nofollow"><i class="fa fa-linkedin"></i></a>';
 		$count++;
 	}
-	if (!empty($links['soundcloud']) && $count < 6) {
+	if (($count < 6) && !empty($links['soundcloud']) && get_theme_mod('p3_navbar_soundcloud', 1)) {
 		$brand .= '<a href="'.esc_url($links['soundcloud']).'" target="_blank" rel="nofollow"><i class="fa fa-soundcloud"></i></a>';
 		$count++;
 	}
-	if (!empty($links['spotify']) && $count < 6) {
+	if (($count < 6) && !empty($links['spotify']) && get_theme_mod('p3_navbar_spotify', 1)) {
 		$brand .= '<a href="'.esc_url($links['spotify']).'" target="_blank" rel="nofollow"><i class="fa fa-spotify"></i></a>';
 		$count++;
 	}
-	if (!empty($links['itunes']) && $count < 6) {
+	if (($count < 6) && !empty($links['itunes']) && get_theme_mod('p3_navbar_itunes', 1)) {
 		$brand .= '<a href="'.esc_url($links['itunes']).'" target="_blank" rel="nofollow"><i class="fa fa-apple"></i></a>';
 		$count++;
 	}
-	if (!empty($links['flickr']) && $count < 6) {
+	if (($count < 6) && !empty($links['flickr']) && get_theme_mod('p3_navbar_flickr', 1)) {
 		$brand .= '<a href="'.esc_url($links['flickr']).'" target="_blank" rel="nofollow"><i class="fa fa-flickr"></i></a>';
 		$count++;
 	}
-	if (!empty($links['vk']) && $count < 6) {
+	if (($count < 6) && !empty($links['vk']) && get_theme_mod('p3_navbar_vk', 1)) {
 		$brand .= '<a href="'.esc_url($links['vk']).'" target="_blank" rel="nofollow"><i class="fa fa-vk"></i></a>';
 		$count++;
 	}
-	if (!empty($links['google_plus']) && $count < 6) {
+	if (($count < 6) && !empty($links['google_plus']) && get_theme_mod('p3_navbar_google_plus', 1)) {
 		$brand .= '<a href="'.esc_url($links['google_plus']).'" target="_blank" rel="nofollow"><i class="fa fa-google-plus"></i></a>';
 		$count++;
 	}
-	if (!empty($links['twitch']) && $count < 6) {
+	if (($count < 6) && !empty($links['twitch']) && get_theme_mod('p3_navbar_twitch', 1)) {
 		$brand .= '<a href="'.esc_url($links['twitch']).'" target="_blank" rel="nofollow"><i class="fa fa-twitch"></i></a>';
 		$count++;
 	}
-	if (!empty($links['stumbleupon']) && $count < 6) {
+	if (($count < 6) && !empty($links['stumbleupon']) && get_theme_mod('p3_navbar_stumbleupon', 1)) {
 		$brand .= '<a href="'.esc_url($links['stumbleupon']).'" target="_blank" rel="nofollow"><i class="fa fa-stumbleupon"></i></a>';
 		$count++;
 	}
-	if (!empty($links['etsy']) && $count < 6) {
+	if (($count < 6) && !empty($links['etsy']) && get_theme_mod('p3_navbar_etsy', 1)) {
 		$brand .= '<a href="'.esc_url($links['etsy']).'" target="_blank" rel="nofollow"><i class="fa fa-etsy"></i></a>';
 		$count++;
 	}
-	if (!empty($links['rss']) && $count < 6) {
+	if (($count < 6) && !empty($links['rss']) && get_theme_mod('p3_navbar_rss', 1)) {
 		$brand .= '<a href="'.esc_attr($links['rss']).'" target="_blank" rel="nofollow"><i class="fa fa-rss"></i></a>';
 		$count++;
 	}
@@ -404,6 +404,7 @@ include('functions/width_customizer.php');
 //include('functions/popup.php');
 include('functions/featured_cats.php');
 include('functions/featured_panels.php');
+include('functions/rewardstyle.php');
 
 include('functions/schema.php');
 

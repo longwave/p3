@@ -63,13 +63,15 @@ function pipdig_p3_disable_jetpack_modules() {
 	if (Jetpack::is_module_active('related-posts')) {
 		Jetpack::deactivate_module( 'related-posts' );
 	}
+	/*
 	if (get_option('p3_tiled_galleries_set') != 1) {
 		Jetpack::activate_module( 'tiled-gallery' );
 		update_option('tiled_galleries', 1);
 		update_option('p3_tiled_galleries_set', 1);
-	}	
+	}
+	*/
 }
-add_action( 'init', 'pipdig_p3_disable_jetpack_modules' );
+add_action( 'after_setup_theme', 'pipdig_p3_disable_jetpack_modules' );
 
 // quit nagging
 function p3_jp_styles() {

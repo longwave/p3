@@ -307,20 +307,22 @@ function pipdig_p3_activate() {
 			$new_amic_https = str_replace("http://", "https://", get_option('p3_amicorumi_2'));
 			update_option('p3_amicorumi_2', $new_amic_https);
 		} else {
-			$piplink = 'https://www.pipdig.co';
-			$piplink2 = 'https://www.pipdig.co/';
-			$piplink3 = 'https://www.pipdig.co/products/wordpress-themes/';
-			$amicorum = array(
-			'<a href="'.$piplink2.'" target="_blank">Theme created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink3.'" target="_blank">Theme Created by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink.'" target="_blank">Website Design by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink2.'" target="_blank">Theme Created by <span style="text-transform:lowercase; letter-spacing:1px;">pipdig</span></a>',
-			'<a href="'.$piplink3.'" target="_blank">WordPress Theme by <span style="text-transform: lowercase;letter-spacing: 1px;">pipdig</span></a>',
-			'<a href="'.$piplink3.'" target="_blank">WP theme by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
-			'<a href="'.$piplink3.'" target="_blank">WordPress Themes by <span style="letter-spacing:1px;text-transform:lowercase;">pipdig</span></a>',
-			'<a href="'.$piplink.'" target="_blank">Powered by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>',
+			$piplink_array = array('https://www.pipdig.co', 'https://www.pipdig.co/', 'https://www.pipdig.co/products/wordpress-themes/');
+			$piplink = $piplink_array[mt_rand(0, count($piplink_array) - 1)];
+			$pipstyle_array = array('text-transform:lowercase;letter-spacing:1px;', 'text-transform: lowercase;letter-spacing: 1px;', 'text-transform: lowercase;letter-spacing:1px;', 'text-transform:lowercase; letter-spacing:1px;', 'text-transform:lowercase;letter-spacing:1px');
+			$pipstyle = $pipstyle_array[mt_rand(0, count($pipstyle_array) - 1)];
+			$amicorum_array = array(
+				'<a href="'.$piplink.'" target="_blank">Theme created by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank">Theme Created by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank">Website Design by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank">Theme Created by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="'.$pipstyle.'">pipdig</span></a>',
+				//'<a href="'.$piplink.'" target="_blank">WP theme by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank">WordPress Themes by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank">Powered by <span style="'.$pipstyle.'">pipdig</span></a>',
 			);
-			update_option('p3_amicorumi_2', $amicorum[array_rand($amicorum)]);
+			$amicorum = $amicorum_array[mt_rand(0, count($amicorum_array) - 1)];
+			update_option('p3_amicorumi_2', $amicorum);
 		}
 		update_option('p3_amicorumi_set_3', 1);
 	}

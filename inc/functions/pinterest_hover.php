@@ -34,8 +34,8 @@ if (!function_exists('p3_pinterest_hover')) {
 		
 		if (get_theme_mod('p3_pinterest_hover_enable')) {
 			set_theme_mod('p3_pinterest_hover_enable_posts', 1);
-			set_theme_mod('p3_pinterest_hover_enable_archives', 1);
-			set_theme_mod('p3_pinterest_hover_enable_pages', 1);
+			//set_theme_mod('p3_pinterest_hover_enable_archives', 1);
+			//set_theme_mod('p3_pinterest_hover_enable_pages', 1);
 			remove_theme_mod('p3_pinterest_hover_enable');
 		}
 		
