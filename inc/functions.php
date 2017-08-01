@@ -409,9 +409,14 @@ include('functions/rewardstyle.php');
 include('functions/schema.php');
 
 // bundled
-if (class_exists('RW_Meta_Box')) {
+if (class_exists('RW_Meta_Box') && function_exists('rwmb_get_registry')) {
 	include_once('bundled/mb-settings-page/mb-settings-page.php');
 	include_once('bundled/meta-box-include-exclude/meta-box-include-exclude.php');
 	include_once('bundled/mb-term-meta/mb-term-meta.php');
 }
-//include_once('bundled/customizer-reset/customizer-reset.php');
+
+// widget visibility
+include_once (ABSPATH.'wp-admin/includes/plugin.php');
+if (!is_plugin_active('jetpack/jetpack.php')) {
+	include_once('bundled/widget-visibility/widget-conditions.php');
+}

@@ -58,6 +58,8 @@ if (!function_exists('p3_pinterest_fetch')) {
 			return false;
 		}
 		
+		libxml_use_internal_errors(true);
+		
 		$xml = simplexml_load_string($body);
 		
 		for ($i = 0; $i < 20; $i++) {

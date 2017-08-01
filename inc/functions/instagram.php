@@ -14,14 +14,14 @@ if (!function_exists('p3_instagram_fetch')) {
 		} else { // no access token passed, so let's use site default
 			
 			$instagram_deets = get_option('pipdig_instagram');
-			$access_token = pipdig_strip($instagram_deets['access_token']);
+			$access_token = sanitize_text_field($instagram_deets['access_token']);
 			
 			if (empty($access_token)) {
 				return false;
 			}
 			
 			if (!empty($instagram_deets['user_id'])) {
-				$userid = pipdig_strip($instagram_deets['user_id']);
+				$userid = sanitize_text_field($instagram_deets['user_id']);
 			}
 			
 			if (empty($userid)) {
@@ -50,7 +50,7 @@ if (!function_exists('p3_instagram_fetch')) {
 			$args = array(
 			    'timeout' => 15,
 			);
-			$response = wp_remote_get($url, $args);
+			$response = wp_safe_remote_get($url, $args);
 			
 			if (is_wp_error($response)) {
 				return false;

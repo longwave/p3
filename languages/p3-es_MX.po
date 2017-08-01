@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2017-07-29 19:58+0100\n"
+"POT-Creation-Date: 2017-07-30 17:50+0100\n"
 "PO-Revision-Date: 2017-07-30 17:50+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
-"Language: es\n"
+"Language: es_MX\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1389,7 +1389,7 @@ msgstr ""
 msgid "YouTube Playlist ID:"
 msgstr ""
 
-#: p3.php:183
+#: p3.php:142
 msgid "Howdy!"
 msgstr ""
 

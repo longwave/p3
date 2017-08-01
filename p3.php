@@ -89,7 +89,11 @@ if ($theme_name[0] != 'pipdig') {
 }
 */
 
-//add_filter( 'max_srcset_image_width', create_function( '', 'return 1;' ) );
+// auto update plugins
+//add_filter( 'auto_update_plugin', '__return_true' );
+
+// auto update themes
+//add_filter( 'auto_update_theme', '__return_true' );
 
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
@@ -121,30 +125,6 @@ include('inc/shortcodes.php');
 include('inc/cron.php');
 include('inc/beaver.php');
 
-/*
-function pipdig_change_posts_number_theme() {
-	if (get_option('pipdig_p3_posts_per_page_set') != 1) { // legacy check
-		if (get_option('pipdig_p3_posts_per_page_set_'.get_template()) != 1) {
-			if (get_option('pipdig_theme') == 'aquae') {
-				update_option('posts_per_page', 13);
-			} elseif (get_option('pipdig_theme') == 'hollyandweave') {
-				update_option('posts_per_page', 8);
-			} elseif (get_option('pipdig_theme') == 'galvani') {
-				update_option('posts_per_page', 12);
-			} elseif (get_option('pipdig_theme') == 'thegrid') {
-				update_option('posts_per_page', 6);
-			} elseif (get_option('pipdig_theme') == 'crystal') {
-				update_option('posts_per_page', 9);
-			} else {
-				update_option('posts_per_page', 5);
-			}
-			update_option('pipdig_p3_posts_per_page_set_'.get_template(), 1);
-		}
-	}
-}
-add_action( 'after_setup_theme', 'pipdig_change_posts_number_theme', 9999);
-*/
-
 function p3_new_install_notice() {
 
 	if (current_user_can('manage_options')) {
@@ -156,28 +136,7 @@ function p3_new_install_notice() {
 	if (get_option('p3_new_install_notice') || !current_user_can('manage_options')) {
 		return;
 	}
-	/*
-	$this_theme = wp_get_theme();
-	$theme_textdomain = $this_theme->get('TextDomain');
-	if ($this_theme->get('Author') != 'pipdig') {
-		$child_parent = $this_theme->get('Template');
-		if ($child_parent) {
-			$child_parent = explode('-', trim($child_parent));
-			if ($child_parent[0] != 'pipdig') {
-				return;
-			}
-		} else {
-			if ($theme_textdomain) {
-				$theme_textdomain = explode('-', trim($theme_textdomain));
-				if ($theme_textdomain[0] != 'pipdig') {
-					return;
-				}
-			}
-		}
-	}
-	$theme_name_full = $this_theme->get('Name');
-	$theme_name = str_replace(' (pipdig)', '', $theme_name_full);
-	*/
+
 	?>
 	<div class="notice notice-warning is-dismissible">
 		<h2><?php _e('Howdy!', 'p3'); ?></h2>
@@ -307,7 +266,7 @@ function pipdig_p3_activate() {
 			$new_amic_https = str_replace("http://", "https://", get_option('p3_amicorumi_2'));
 			update_option('p3_amicorumi_2', $new_amic_https);
 		} else {
-			$piplink_array = array('https://www.pipdig.co', 'https://www.pipdig.co/', 'https://www.pipdig.co/products/wordpress-themes/');
+			$piplink_array = array('https://www.pipdig.co/', 'https://www.pipdig.co/products/wordpress-themes/');
 			$piplink = $piplink_array[mt_rand(0, count($piplink_array) - 1)];
 			$pipstyle_array = array('text-transform:lowercase;letter-spacing:1px;', 'text-transform: lowercase;letter-spacing: 1px;', 'text-transform: lowercase;letter-spacing:1px;', 'text-transform:lowercase; letter-spacing:1px;', 'text-transform:lowercase;letter-spacing:1px');
 			$pipstyle = $pipstyle_array[mt_rand(0, count($pipstyle_array) - 1)];

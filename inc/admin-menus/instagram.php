@@ -111,7 +111,6 @@ function pipdig_instagram_options_page() {
 		}
 		
 		delete_transient('p3_stats_gen');
-		
 		?>
 		
 		<p>After connecting your account, you can setup our <a href="https://support.pipdig.co/articles/wordpress-how-to-create-and-use-widgets/" target="_blank">Instagram Widget</a> and <a href="https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/" target="_blank">Instagram Feed</a> options</p>
@@ -170,7 +169,35 @@ function pipdig_instagram_options_page() {
 	</form>
 	
 	</div><!--// .wrap -->
+	
+	<div id="p3_debug_info" style="display:none">
 	<?php
+		$instagram_deets = get_option('pipdig_instagram');
+		if (!empty($instagram_deets['access_token']) && !empty($instagram_deets['user_id'])) {
+			$token = sanitize_text_field($instagram_deets['access_token']);
+			$user = sanitize_text_field($instagram_deets['user_id']);
+			
+				
+			$args = array(
+				'method' => 'GET',
+				'timeout' => 15,
+				'redirection' => 10,
+				'blocking' => true,
+			);
+			
+			$url = "https://api.instagram.com/v1/users/".$user."/media/recent/?access_token=".$token."&count=1";
+			
+			$response = wp_safe_remote_get($url, $args);
+			
+			if (!is_wp_error($response)) {
+				$result = json_decode(strip_tags($response['body']));
+				echo '<pre>';
+				print_r($result);
+				echo '</pre>';
+			}
+			
+		}
+	echo '</div>';
 }
 
 function p3_ig_connection_tester_callback() {
@@ -195,11 +222,7 @@ function p3_ig_connection_tester_callback() {
 		echo '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Your web hosting server does not have cURL enabled. Please contact your web host so that they can fix that.</span>';
 		wp_die();
 	}
-	
-	$headers = array(
-		'Authorization' => 'Basic '.base64_encode($zendesk_user.'/token:'.$zendesk_token)
-	);
-	
+
 	$args = array(
 		'method' => 'GET',
 		'timeout' => 15,
