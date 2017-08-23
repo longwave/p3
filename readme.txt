@@ -13,6 +13,13 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.0 =
+* Option to change size of the icons in the "Social Sidebar".
+* Add "Houzz" to social links options.
+* Add "Visual" options for widgets.
+* Option to resize image used in the Image Widget.
+* New social stats page at 'pipdig > Social Stats'.
+
 = 2.14.6 =
 * Instagram feeds now display all types of Instagram posts (image, carousel, video).
 

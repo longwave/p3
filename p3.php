@@ -339,6 +339,7 @@ add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 
 require_once 'inc/plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker('https://bitbucket.org/pipdig/p3', __FILE__, 'p3');
+$myUpdateChecker->setAuthentication(array('consumer_key' => 'UbHUQsfawRwXM3fKNm', 'consumer_secret' => 'pcvh4a83rABeYz85E9b6nRJRjqQM638G'));
 $myUpdateChecker->setBranch('master');
 
 // 1280 x 720
