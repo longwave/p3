@@ -100,10 +100,14 @@ if (!function_exists('p3_featured_panels')) {
 				break;
 		}
 		
+		$style = '';
+		if (absint(get_theme_mod('p3_featured_panels_mobile'))) {
+			$style = 'style="display:block"';
+		}
 		
 		if ($show) {
 		?>
-			<div id="p3_featured_panels" class="row nopin">
+			<div id="p3_featured_panels" class="row nopin" <?php echo $style; ?>>
 				
 				<?php if ($img_1 && $link_1) { ?>
 				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
@@ -214,6 +218,22 @@ if (!class_exists('pipdig_p3_featured_panels_Customize')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Enable this feature', 'p3' ),
+					'section' => 'p3_featured_panels_section',
+				)
+			);
+			
+			// on mobile?
+			$wp_customize->add_setting('p3_featured_panels_mobile',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_featured_panels_mobile',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Enable on mobile?', 'p3' ),
 					'section' => 'p3_featured_panels_section',
 				)
 			);

@@ -77,9 +77,20 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 		if ($twitter || $instagram || $facebook || $bloglovin || $pinterest || $youtube || $tumblr || $linkedin || $soundcloud || $flickr || $snapchat || $vk || $email || $twitch || $google_plus || $stumbleupon || $spotify || $itunes) {
 			
 			$social_sidebar .= '<div id="p3_social_sidebar" class="'.$position_class.'">';
-			
-			if (get_theme_mod('p3_social_sidebar_icon_color') || get_theme_mod('p3_social_sidebar_icon_color_hover')) {
-				$social_sidebar .= '<style scoped>#p3_social_sidebar a {color:'.strip_tags(get_theme_mod('p3_social_sidebar_icon_color')).'}#p3_social_sidebar a:hover {color:'.strip_tags(get_theme_mod('p3_social_sidebar_icon_color_hover')).'}</style>';
+
+			if (get_theme_mod('p3_social_sidebar_icon_color') || get_theme_mod('p3_social_sidebar_icon_color_hover') || get_theme_mod('p3_social_sidebar_icon_size')) {
+				$styles = '<style scoped>';
+				if (get_theme_mod('p3_social_sidebar_icon_color')) {
+					$styles .= '#p3_social_sidebar a {color:'.sanitize_text_field(get_theme_mod('p3_social_sidebar_icon_color')).'}';
+				}
+				if (get_theme_mod('p3_social_sidebar_icon_color_hover')) {
+					$styles .= '#p3_social_sidebar a:hover {color:'.sanitize_text_field(get_theme_mod('p3_social_sidebar_icon_color_hover')).'}';
+				}
+				if (get_theme_mod('p3_social_sidebar_icon_size')) {
+					$styles .= '#p3_social_sidebar .fa {font-size:'.absint(get_theme_mod('p3_social_sidebar_icon_size')).'px}';
+				}
+				$styles .= '</style>';
+				$social_sidebar .= $styles;
 			}
 			
 			if($twitter && get_theme_mod('p3_social_sidebar_twitter', 1)) $social_sidebar .= '<a href="'.$twitter.'" target="_blank"><i class="fa fa-twitter"></i></a>';
@@ -104,7 +115,7 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 			$social_sidebar .= '</div>';
 		
 		}
-		
+
 		echo $social_sidebar;
 		
 	}
@@ -196,11 +207,11 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 				)
 			);
 			
-			/*
+			
 			// icon size
 			$wp_customize->add_setting('p3_social_sidebar_icon_size',
 				array(
-					'default' => 1,
+					'default' => 14,
 					'sanitize_callback' => 'absint',
 				)
 			);
@@ -212,7 +223,7 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 					'section' => 'p3_social_sidebar_section',
 				)
 			);
-			*/
+			
 			
 			// twitter
 			$wp_customize->add_setting('p3_social_sidebar_twitter',

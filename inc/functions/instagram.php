@@ -96,11 +96,8 @@ if (!function_exists('p3_instagram_fetch')) {
 				}
 					
 				if ((!empty($result->data[$i]->images->standard_resolution->url))) {
-						
 					$num = absint(get_theme_mod('p3_instagram_number', 8));	
-
 					$img_url = $result->data[$i]->images->standard_resolution->url;
-					
 				}
 					
 				$new_image = array (

@@ -5,13 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 2.14.6
+Version: 3.0.0
 Text Domain: p3
+License: Copyright 2017 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '2.14.6' );
+define( 'PIPDIG_P3_V', '3.0.0' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -55,6 +56,19 @@ function pipdig_p3_deactivate() {
 	delete_option('pipdig_live_site');
 }
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
+
+function p3_deactivate_plugins() {
+	if (get_option('p3_deactivate_plugins') == 1) {
+		return;
+	}
+	$plugins = array(
+		'mojo-marketplace-wp-plugin/mojo-marketplace.php',
+		//'instagram-feed/instagram-feed.php',
+	);
+	deactivate_plugins($plugins);
+	update_option('p3_deactivate_plugins', 1);
+}
+add_action('admin_init', 'p3_deactivate_plugins');
 
 // bootstrap
 $this_theme = wp_get_theme();
@@ -115,15 +129,21 @@ function pipdig_p3_scripts_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
 
-include_once('inc/functions.php');
-include_once('inc/admin-menus.php');
-include_once('inc/meta.php');
-include_once('inc/dash.php');
-include_once('inc/jetpack.php');
-include_once('inc/widgets.php');
-include('inc/shortcodes.php');
-include('inc/cron.php');
-include('inc/beaver.php');
+include_once(plugin_dir_path(__FILE__).'inc/functions.php');
+include_once(plugin_dir_path(__FILE__).'inc/admin-menus.php');
+include_once(plugin_dir_path(__FILE__).'inc/meta.php');
+include_once(plugin_dir_path(__FILE__).'inc/dash.php');
+include_once(plugin_dir_path(__FILE__).'inc/widgets.php');
+include(plugin_dir_path(__FILE__).'inc/shortcodes.php');
+include(plugin_dir_path(__FILE__).'inc/cron.php');
+include(plugin_dir_path(__FILE__).'inc/beaver.php');
+
+include_once (ABSPATH.'wp-admin/includes/plugin.php');
+if (!is_plugin_active('jetpack/jetpack.php')) {
+	include_once(plugin_dir_path(__FILE__).'inc/jetpack.php');
+	// widget visibility
+	include_once(plugin_dir_path(__FILE__).'inc/bundled/widget-visibility/widget-conditions.php');
+}
 
 function p3_new_install_notice() {
 
@@ -266,17 +286,16 @@ function pipdig_p3_activate() {
 			$new_amic_https = str_replace("http://", "https://", get_option('p3_amicorumi_2'));
 			update_option('p3_amicorumi_2', $new_amic_https);
 		} else {
-			$piplink_array = array('https://www.pipdig.co/', 'https://www.pipdig.co/products/wordpress-themes/');
+			$piplink_array = array('https://www.pipdig.co/', 'https://www.pipdig.co/products/wordpress-themes/', 'https://www.pipdig.co');
 			$piplink = $piplink_array[mt_rand(0, count($piplink_array) - 1)];
 			$pipstyle_array = array('text-transform:lowercase;letter-spacing:1px;', 'text-transform: lowercase;letter-spacing: 1px;', 'text-transform: lowercase;letter-spacing:1px;', 'text-transform:lowercase; letter-spacing:1px;', 'text-transform:lowercase;letter-spacing:1px');
 			$pipstyle = $pipstyle_array[mt_rand(0, count($pipstyle_array) - 1)];
 			$amicorum_array = array(
-				'<a href="'.$piplink.'" target="_blank">Theme created by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank">Website theme by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Theme Created by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Website Design by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Theme Created by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="'.$pipstyle.'">pipdig</span></a>',
-				//'<a href="'.$piplink.'" target="_blank">WP theme by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">WordPress Themes by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Powered by <span style="'.$pipstyle.'">pipdig</span></a>',
 			);

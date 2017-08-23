@@ -85,7 +85,7 @@ if (!function_exists('pipdig_css_options_page')) {
 			?>
 			
 		</form>
-		<h3><?php printf(__('Remember, you can also change the appearance of your site by using the <a href="%s">Customizer</a>.', 'p3'), admin_url('customize.php')); ?></h3>
+		<h3>You can also change the appearance of your site by using the <a href="<?php echo admin_url('customize.php'); ?>">Customizer</a></h3>
 		<?php
 
 	}

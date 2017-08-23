@@ -46,40 +46,31 @@ function p3_theme_enabled($enabled_themes) {
 	return 0;
 }
 
-// load image catch function, just in case theme hasn't
-if (!function_exists('pipdig_p3_catch_that_image')) {
-	function pipdig_p3_catch_that_image() {
-		global $post, $posts;
-		$first_img = '';
-		$default_img = 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg';
-		ob_start();
-		ob_end_clean();
-		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-		
-		if(empty($output)){
-			return $default_img;
-		}
-		
-		$first_img = esc_url($matches[1][0]);
-		
+// image catch
+function pipdig_p3_catch_that_image() {
+	global $post;
+	$default_img = 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg';
+	preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $post->post_content, $img);
+	if (!empty($img[1])){
+		$first_img = $img[1];
 		if (($first_img == 'http://assets.rewardstyle.com/images/search/350.gif') || ($first_img == '//assets.rewardstyle.com/images/search/350.gif')) {
 			return $default_img;
+		} else {
+			return esc_url($first_img);
 		}
-		
-		return $first_img;
+	} else {
+		return $default_img;
 	}
 }
 
 // truncate stuff
-if (!function_exists('pipdig_p3_truncate')) {
-	function pipdig_p3_truncate($text, $limit) {
-		if (str_word_count($text, 0) > $limit) {
-			$words = str_word_count($text, 2);
-			$pos = array_keys($words);
-			$text = substr($text, 0, $pos[$limit]).'&hellip;';
-		}
-		return $text;
+function pipdig_p3_truncate($text, $limit) {
+	if (str_word_count($text, 0) > $limit) {
+		$words = str_word_count($text, 2);
+		$pos = array_keys($words);
+		$text = substr($text, 0, $pos[$limit]).'&hellip;';
 	}
+	return $text;
 }
 
 // dns prefetch
@@ -117,25 +108,25 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 include('functions/api.php');
 
 // Add Featured Image to feed if using excerpt mode, or just add the full content if not
-if (!class_exists('Rss_Image_Feed') && !function_exists('pipdig_rss_post_thumbnail')) {
-	function pipdig_p3_rss_post_thumbnail($content) {
+if (!class_exists('Rss_Image_Feed')) {
+function pipdig_p3_rss_post_thumbnail($content) {
 		
-		if (get_option('rss_use_excerpt')) {
-			global $post;
-			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' );
-			if ($thumb) {
-				$img = $thumb['0'];
-			} else {
-				$img = pipdig_p3_catch_that_image();
-			}
-			$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'"/></p><p>'.strip_shortcodes(get_the_excerpt()).'</p>';
+	if (get_option('rss_use_excerpt')) {
+		global $post;
+		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' );
+		if ($thumb) {
+			$img = $thumb['0'];
+		} else {
+			$img = pipdig_p3_catch_that_image();
 		}
-
-		return strip_shortcodes($content);
-		
+		$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'"/></p><p>'.strip_shortcodes(get_the_excerpt()).'</p>';
 	}
-	add_filter('the_excerpt_rss', 'pipdig_p3_rss_post_thumbnail');
-	add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');
+
+	return strip_shortcodes($content);
+		
+}
+add_filter('the_excerpt_rss', 'pipdig_p3_rss_post_thumbnail');
+add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');
 }
 
 
@@ -146,7 +137,7 @@ function p3_flush_htacess() {
 
 function p3_htaccess_edit($rules) {
 $p3_rules = "
-# p3
+# Hector
 Redirect 301 /feeds/posts/default /feed
 
 <ifmodule mod_deflate.c>
@@ -158,7 +149,7 @@ RewriteEngine On
 RewriteCond %{QUERY_STRING} ^m=1$
 RewriteRule ^(.*)$ /$1? [R=301,L]
 </IfModule>
-# /p3
+# /Hector
 ";
 return $p3_rules . $rules;
 }
@@ -171,9 +162,9 @@ function pipdig_p3_emmmm_heeey() {
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 			 if($(window).scrollTop() + $(window).height() == $(document).height()) {
-				$("#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again").css('opacity', '0').css('visibility', 'hidden');
+				$("#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '0').css('visibility', 'hidden');
 			 } else {
-				$("#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again").css('opacity', '1').css('visibility', 'visible');
+				$("#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '1').css('visibility', 'visible');
 			 }
 		});
 	});
@@ -211,7 +202,7 @@ if (!function_exists('pipdig_p3_comment_nav')) {
 	}
 }
 
-// allow 'text-transorm' in wp_kses http://wordpress.stackexchange.com/questions/173526/why-is-wp-kses-not-keeping-style-attributes-as-expected
+// allow 'text-transform' in wp_kses http://wordpress.stackexchange.com/questions/173526/why-is-wp-kses-not-keeping-style-attributes-as-expected
 function p3_safe_styles($styles) {
 	array_push($styles, 'text-transform');
 	return $styles;
@@ -220,6 +211,7 @@ add_filter('safe_style_css','p3_safe_styles');
 
 
 // get image ID from url - https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
+// seems to confuse the same filenames. need to check.
 function pipdig_get_attachment_id( $url ) {
 
 	$attachment_id = 0;
@@ -370,6 +362,10 @@ function p3_slicknav_brand() {
 		$brand .= '<a href="'.esc_url($links['etsy']).'" target="_blank" rel="nofollow"><i class="fa fa-etsy"></i></a>';
 		$count++;
 	}
+	if (($count < 6) && !empty($links['houzz']) && get_theme_mod('p3_navbar_houzz', 1)) {
+		$brand .= '<a href="'.esc_url($links['houzz']).'" target="_blank" rel="nofollow"><i class="fa fa-houzz"></i></a>';
+		$count++;
+	}
 	if (($count < 6) && !empty($links['rss']) && get_theme_mod('p3_navbar_rss', 1)) {
 		$brand .= '<a href="'.esc_attr($links['rss']).'" target="_blank" rel="nofollow"><i class="fa fa-rss"></i></a>';
 		$count++;
@@ -382,41 +378,33 @@ function p3_slicknav_brand() {
 	return $brand;
 }
 
-
-include('functions/social-sidebar.php');
-include('functions/full_screen_landing_image.php');
-include('functions/top_menu_bar.php');
-include('functions/post-options.php');
-include('functions/shares.php');
-include('functions/related-posts.php');
-include('functions/instagram.php');
-include('functions/youtube.php');
-include('functions/pinterest.php');
-include('functions/pinterest_hover.php');
-include('functions/social_footer.php');
-include('functions/navbar_icons.php');
-include('functions/feature_header.php');
-include('functions/trending.php');
-include('functions/post_slider_site_main_width.php');
-//include('functions/post_slider_site_main_width_sq.php');
-include('functions/post_slider_posts_column.php');
-include('functions/width_customizer.php');
-//include('functions/popup.php');
-include('functions/featured_cats.php');
-include('functions/featured_panels.php');
-include('functions/rewardstyle.php');
-
-include('functions/schema.php');
+include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
+include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');
+include(plugin_dir_path(__FILE__).'functions/top_menu_bar.php');
+include(plugin_dir_path(__FILE__).'functions/post-options.php');
+include(plugin_dir_path(__FILE__).'functions/shares.php');
+include(plugin_dir_path(__FILE__).'functions/related-posts.php');
+include(plugin_dir_path(__FILE__).'functions/instagram.php');
+include(plugin_dir_path(__FILE__).'functions/youtube.php');
+include(plugin_dir_path(__FILE__).'functions/pinterest.php');
+include(plugin_dir_path(__FILE__).'functions/pinterest_hover.php');
+include(plugin_dir_path(__FILE__).'functions/social_footer.php');
+include(plugin_dir_path(__FILE__).'functions/navbar_icons.php');
+include(plugin_dir_path(__FILE__).'functions/feature_header.php');
+include(plugin_dir_path(__FILE__).'functions/trending.php');
+include(plugin_dir_path(__FILE__).'functions/post_slider_site_main_width.php');
+//include(plugin_dir_path(__FILE__).'functions/post_slider_site_main_width_sq.php');
+include(plugin_dir_path(__FILE__).'functions/post_slider_posts_column.php');
+include(plugin_dir_path(__FILE__).'functions/width_customizer.php');
+//include(plugin_dir_path(__FILE__).'functions/popup.php');
+include(plugin_dir_path(__FILE__).'functions/featured_cats.php');
+include(plugin_dir_path(__FILE__).'functions/featured_panels.php');
+include(plugin_dir_path(__FILE__).'functions/rewardstyle.php');
+include(plugin_dir_path(__FILE__).'functions/schema.php');
 
 // bundled
 if (class_exists('RW_Meta_Box') && function_exists('rwmb_get_registry')) {
-	include_once('bundled/mb-settings-page/mb-settings-page.php');
-	include_once('bundled/meta-box-include-exclude/meta-box-include-exclude.php');
-	include_once('bundled/mb-term-meta/mb-term-meta.php');
-}
-
-// widget visibility
-include_once (ABSPATH.'wp-admin/includes/plugin.php');
-if (!is_plugin_active('jetpack/jetpack.php')) {
-	include_once('bundled/widget-visibility/widget-conditions.php');
+	include_once(plugin_dir_path(__FILE__).'bundled/mb-settings-page/mb-settings-page.php');
+	include_once(plugin_dir_path(__FILE__).'bundled/meta-box-include-exclude/meta-box-include-exclude.php');
+	include_once(plugin_dir_path(__FILE__).'bundled/mb-term-meta/mb-term-meta.php');
 }

@@ -23,12 +23,12 @@ if (!function_exists('pipdig_add_admin_menu')) {
 	add_action( 'admin_menu', 'pipdig_add_admin_menu' );
 }
 
-require_once('admin-menus/help.php');
-require_once('admin-menus/css.php');
-require_once('admin-menus/hooks.php');
-require_once('admin-menus/stats.php');
-require_once('admin-menus/links.php');
-require_once('admin-menus/instagram.php');
+require(plugin_dir_path(__FILE__).'admin-menus/help.php');
+require(plugin_dir_path(__FILE__).'admin-menus/css.php');
+require(plugin_dir_path(__FILE__).'admin-menus/hooks.php');
+require(plugin_dir_path(__FILE__).'admin-menus/stats.php');
+require(plugin_dir_path(__FILE__).'admin-menus/links.php');
+require(plugin_dir_path(__FILE__).'admin-menus/instagram.php');
 
 function pipdig_wp101_options_page() { 
 	?>

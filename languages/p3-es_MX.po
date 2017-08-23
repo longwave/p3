@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2017-07-30 17:50+0100\n"
-"PO-Revision-Date: 2017-07-30 17:50+0100\n"
+"POT-Creation-Date: 2017-08-07 13:07+0100\n"
+"PO-Revision-Date: 2017-08-07 13:07+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: es_MX\n"
@@ -107,7 +107,7 @@ msgstr ""
 
 #: inc/admin-menus/hooks.php:172 inc/functions/feature_header.php:159
 #: inc/functions/featured_cats.php:142 inc/functions/navbar_icons.php:124
-#: inc/functions/related-posts.php:108 inc/functions/social-sidebar.php:125
+#: inc/functions/related-posts.php:108 inc/functions/social-sidebar.php:136
 #: inc/functions/top_menu_bar.php:48
 msgid "Click here for more information"
 msgstr ""
@@ -225,7 +225,7 @@ msgstr ""
 #: inc/functions/post_slider_posts_column.php:121
 #: inc/functions/post_slider_site_main_width.php:141
 #: inc/functions/post_slider_site_main_width_sq.php:102
-#: inc/functions/social-sidebar.php:141 inc/functions/trending.php:138
+#: inc/functions/social-sidebar.php:152 inc/functions/trending.php:138
 msgid "Enable this feature"
 msgstr ""
 
@@ -659,34 +659,38 @@ msgstr ""
 msgid "Select this option to completely remove this feature."
 msgstr ""
 
-#: inc/functions/social-sidebar.php:124
+#: inc/functions/social-sidebar.php:135
 msgid "Social Sidebar"
 msgstr ""
 
-#: inc/functions/social-sidebar.php:125
+#: inc/functions/social-sidebar.php:136
 msgid ""
 "This feature will display a social follow section to the left/right of your "
 "site. Select the social icons you would like to add from below."
 msgstr ""
 
-#: inc/functions/social-sidebar.php:156
+#: inc/functions/social-sidebar.php:167
 msgid "Position"
 msgstr ""
 
-#: inc/functions/social-sidebar.php:159
+#: inc/functions/social-sidebar.php:170
 msgid "Left"
 msgstr ""
 
-#: inc/functions/social-sidebar.php:160
+#: inc/functions/social-sidebar.php:171
 msgid "Right"
 msgstr ""
 
-#: inc/functions/social-sidebar.php:175
+#: inc/functions/social-sidebar.php:186
 msgid "Icon color"
 msgstr ""
 
-#: inc/functions/social-sidebar.php:192
+#: inc/functions/social-sidebar.php:203
 msgid "Icon hover color"
+msgstr ""
+
+#: inc/functions/social-sidebar.php:222
+msgid "Icon size"
 msgstr ""
 
 #: inc/functions/top_menu_bar.php:13
@@ -847,7 +851,7 @@ msgstr ""
 
 #: inc/widgets/bloglovin.php:53
 msgid "Follow on Bloglovin'"
-msgstr ""
+msgstr "Seguir en Bloglovin'"
 
 #: inc/widgets/bloglovin.php:58 inc/widgets/depop.php:38
 #: inc/widgets/facebook.php:52 inc/widgets/pinterest.php:88
@@ -1083,7 +1087,7 @@ msgstr ""
 
 #: inc/widgets/instagram.php:91
 msgid "Follow on Instagram"
-msgstr ""
+msgstr "Seguir en Instagram"
 
 #: inc/widgets/instagram.php:139
 #, php-format
@@ -1128,7 +1132,7 @@ msgstr ""
 
 #: inc/widgets/pinterest.php:84
 msgid "Follow on Pinterest"
-msgstr ""
+msgstr "Seguir en Pinterest"
 
 #: inc/widgets/pinterest.php:137
 msgid "Add your Pinterest account name to the box below."
@@ -1329,7 +1333,7 @@ msgstr ""
 
 #: inc/widgets/twitter.php:50
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "Seguir en Twitter"
 
 #: inc/widgets/twitter.php:98
 msgid "Twitter Username (Not including @ symbol):"
@@ -1389,7 +1393,7 @@ msgstr ""
 msgid "YouTube Playlist ID:"
 msgstr ""
 
-#: p3.php:142
+#: p3.php:158
 msgid "Howdy!"
 msgstr ""
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2017-07-29 20:04+0100\n"
-"PO-Revision-Date: 2017-07-29 20:04+0100\n"
+"POT-Creation-Date: 2017-08-13 13:12+0100\n"
+"PO-Revision-Date: 2017-08-13 13:12+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: sr\n"
@@ -106,8 +106,8 @@ msgid "WARNING: these options can break your site. Use with caution."
 msgstr ""
 
 #: inc/admin-menus/hooks.php:172 inc/functions/feature_header.php:159
-#: inc/functions/featured_cats.php:142 inc/functions/navbar_icons.php:124
-#: inc/functions/related-posts.php:108 inc/functions/social-sidebar.php:125
+#: inc/functions/featured_cats.php:142 inc/functions/navbar_icons.php:128
+#: inc/functions/related-posts.php:108 inc/functions/social-sidebar.php:136
 #: inc/functions/top_menu_bar.php:48
 msgid "Click here for more information"
 msgstr ""
@@ -121,18 +121,18 @@ msgid ""
 "Once you have connected your account, copy and paste your Access Token below:"
 msgstr ""
 
-#: inc/admin-menus/links.php:283
+#: inc/admin-menus/links.php:296
 msgid "Add the links to each social media page below:"
 msgstr ""
 
-#: inc/admin-menus/links.php:284
+#: inc/admin-menus/links.php:297
 #, php-format
 msgid ""
 "Any links added can then be used across your website, such as on <a href=\"%s"
 "\">this page</a>."
 msgstr ""
 
-#: inc/admin-menus/links.php:305
+#: inc/admin-menus/links.php:318
 #, php-format
 msgid ""
 "If you find that certain social network counters are not working correctly, "
@@ -225,7 +225,7 @@ msgstr ""
 #: inc/functions/post_slider_posts_column.php:121
 #: inc/functions/post_slider_site_main_width.php:141
 #: inc/functions/post_slider_site_main_width_sq.php:102
-#: inc/functions/social-sidebar.php:141 inc/functions/trending.php:138
+#: inc/functions/social-sidebar.php:152 inc/functions/trending.php:138
 msgid "Enable this feature"
 msgstr ""
 
@@ -424,65 +424,65 @@ msgstr ""
 msgid "\"Scroll down\" text:"
 msgstr ""
 
-#: inc/functions/instagram.php:431
+#: inc/functions/instagram.php:428
 #, php-format
 msgid ""
 "Before enabling these features, you will need to add your Instagram account "
 "to <a href=\"%s\">this page</a>."
 msgstr ""
 
-#: inc/functions/instagram.php:449
+#: inc/functions/instagram.php:446
 msgid "Display feed across the header (Homepage)"
 msgstr ""
 
-#: inc/functions/instagram.php:465
+#: inc/functions/instagram.php:462
 msgid "Display header feed on all pages"
 msgstr ""
 
-#: inc/functions/instagram.php:466
+#: inc/functions/instagram.php:463
 msgid ""
 "By default, the header feed will only display on the homepage. If you want "
 "to display it on all pages, select this option too."
 msgstr ""
 
-#: inc/functions/instagram.php:482
+#: inc/functions/instagram.php:479
 msgid "Display feed above posts and sidebar on homepage"
 msgstr ""
 
-#: inc/functions/instagram.php:498
+#: inc/functions/instagram.php:495
 msgid "Display feed above posts on homepage"
 msgstr ""
 
-#: inc/functions/instagram.php:514
+#: inc/functions/instagram.php:511
 msgid "Display feed below posts on homepage"
 msgstr ""
 
-#: inc/functions/instagram.php:530
+#: inc/functions/instagram.php:527
 msgid "Display feed across the footer"
 msgstr ""
 
-#: inc/functions/instagram.php:544 inc/widgets/instagram.php:152
+#: inc/functions/instagram.php:541 inc/widgets/instagram.php:152
 #: inc/widgets/pinterest.php:150
 msgid "Number of images to display:"
 msgstr ""
 
-#: inc/functions/instagram.php:565
+#: inc/functions/instagram.php:562
 msgid "Display feed in 2 rows"
 msgstr ""
 
-#: inc/functions/instagram.php:581
+#: inc/functions/instagram.php:578
 msgid "Display title above footer feed"
 msgstr ""
 
-#: inc/functions/instagram.php:598
+#: inc/functions/instagram.php:595
 msgid "Display Comments & Likes count on hover"
 msgstr ""
 
-#: inc/functions/navbar_icons.php:123
+#: inc/functions/navbar_icons.php:127
 msgid "Navbar Icons"
 msgstr ""
 
-#: inc/functions/navbar_icons.php:124
+#: inc/functions/navbar_icons.php:128
 msgid ""
 "You can display your social icons in the navbar using these options. Select "
 "the social icons you would like to add from below."
@@ -659,34 +659,38 @@ msgstr ""
 msgid "Select this option to completely remove this feature."
 msgstr ""
 
-#: inc/functions/social-sidebar.php:124
+#: inc/functions/social-sidebar.php:135
 msgid "Social Sidebar"
 msgstr ""
 
-#: inc/functions/social-sidebar.php:125
+#: inc/functions/social-sidebar.php:136
 msgid ""
 "This feature will display a social follow section to the left/right of your "
 "site. Select the social icons you would like to add from below."
 msgstr ""
 
-#: inc/functions/social-sidebar.php:156
+#: inc/functions/social-sidebar.php:167
 msgid "Position"
 msgstr ""
 
-#: inc/functions/social-sidebar.php:159
+#: inc/functions/social-sidebar.php:170
 msgid "Left"
 msgstr ""
 
-#: inc/functions/social-sidebar.php:160
+#: inc/functions/social-sidebar.php:171
 msgid "Right"
 msgstr ""
 
-#: inc/functions/social-sidebar.php:175
+#: inc/functions/social-sidebar.php:186
 msgid "Icon color"
 msgstr ""
 
-#: inc/functions/social-sidebar.php:192
+#: inc/functions/social-sidebar.php:203
 msgid "Icon hover color"
+msgstr ""
+
+#: inc/functions/social-sidebar.php:222
+msgid "Icon size"
 msgstr ""
 
 #: inc/functions/top_menu_bar.php:13
@@ -1389,7 +1393,7 @@ msgstr ""
 msgid "YouTube Playlist ID:"
 msgstr ""
 
-#: p3.php:183
+#: p3.php:156
 msgid "Howdy!"
 msgstr ""
 

@@ -166,6 +166,14 @@ function pipdig_links_init() {
 	);
 	
 	add_settings_field( 
+		'Houzz', 
+		'<i class="fa fa-houzz"></i>&nbsp;&nbsp;Houzz', 
+		'p3_houzz_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
+	add_settings_field( 
 		'rss', 
 		'<i class="fa fa-rss"></i>&nbsp;&nbsp;RSS Feed', 
 		'p3_rss_field_render', 
@@ -204,7 +212,7 @@ function p3_google_plus_field_render() {
 function p3_bloglovin_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[bloglovin]' placeholder='e.g. https://www.bloglovin.com/blogs/pipdig-3890264' value="<?php if (isset($links['bloglovin'])) { echo $links['bloglovin']; } ?>"><br />
-<div style="font-size: 90%;">Note: this should be a link to your Blog's Bloglovin profile. NOT your Bloglovin user profile. If the link includes the word "people" in it, then this is <b>not</b> the correct link.</div>	<?php
+<!-- <div style="font-size: 90%;">Note: this should be a link to your Blog's Bloglovin profile. NOT your Bloglovin user profile. If the link includes the word "people" in it, then this is <b>not</b> the correct link.</div> -->	<?php
 }
 
 function p3_pinterest_field_render() { 
@@ -270,6 +278,11 @@ function p3_stumbleupon_field_render() {
 function p3_etsy_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[etsy]' placeholder='e.g. https://etsy.com/pipdig' value="<?php if (isset($links['etsy'])) { echo $links['etsy']; } ?>"> <?php
+}
+
+function p3_houzz_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[houzz]' placeholder='e.g. https://houzz.com/pipdig' value="<?php if (isset($links['houzz'])) { echo $links['houzz']; } ?>"> <?php
 }
 
 function p3_rss_field_render() { 

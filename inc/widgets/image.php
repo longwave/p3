@@ -18,6 +18,7 @@ class pipdig_Image_Widget extends WP_Widget {
 			'link' => '',
 			'target' => '',
 			'nofollow' => '',
+			'width' => '',
 		);
 
 		$widget_ops = array(
@@ -46,18 +47,25 @@ class pipdig_Image_Widget extends WP_Widget {
 			if (! empty($instance['title']))
 				echo $args['before_title'] . apply_filters('widget_title', $instance['title'], $instance, $this->id_base) . $args['after_title'];
 			
-			$target = $link_open = $link_close = $nofollow = '';
+			$target = $link_open = $link_close = $nofollow = $width = '';
+			
+			if (!empty($instance['nofollow'])) {
+				if (!empty($instance['nofollow'])) {
+					$nofollow = ' rel="nofollow"';
+				}
+			}
+			
 			if (!empty($instance['link'])) {
 				if (!empty($instance['target'])) {
 					$target = 'target="_blank"';
 				}
-				$link_open = '<a href="'.esc_url($instance['link']).'" '.$target.'>';
+				$link_open = '<a href="'.esc_url($instance['link']).'" '.$target.$nofollow.'>';
 				$link_close = '</a>';
 			}
 			
-			if (!empty($instance['nofollow'])) {
-				if (!empty($instance['nofollow'])) {
-					$nofollow = 'rel="nofollow"';
+			if (!empty($instance['width'])) {
+				if (!empty($instance['width'])) {
+					$width = 'style="max-width:100%;width:'.absint($instance['width']).'px"';
 				}
 			}
 
@@ -69,7 +77,7 @@ class pipdig_Image_Widget extends WP_Widget {
 					$image_src = reset($image_src); // php <5.4 way to get [0] value of array
 					$image_src = str_replace('http:', '', $image_src);
 				}
-				echo $link_open.'<img src="'.esc_url($image_src).'" alt="" '.$nofollow.' />'.$link_close;
+				echo $link_open.'<img src="'.esc_url($image_src).'" alt="" '.$width.' />'.$link_close;
 			}
 
 		echo $args['after_widget'];
@@ -84,6 +92,7 @@ class pipdig_Image_Widget extends WP_Widget {
 		$new_instance['link'] = strip_tags($new_instance['link']);
 		$new_instance['target'] = strip_tags($new_instance['target']);
 		$new_instance['nofollow'] = strip_tags($new_instance['nofollow']);
+		$new_instance['width'] = intval($new_instance['width']);
 
 		return $new_instance;
 
@@ -119,7 +128,14 @@ class pipdig_Image_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Link to open when clicked: (optional)', 'p3'); ?></label>
+			<label for="<?php echo $this->get_field_id('width'); ?>"><?php _e('Image Width:', 'p3'); ?></label>
+			<input type="number" id="<?php echo $this->get_field_id('width'); ?>" name="<?php echo $this->get_field_name('width'); ?>" value="<?php echo esc_attr($instance['width']); ?>" /> px
+			<br />
+			<div style="font-style:italic">Leave the option above blank if you would like the image to be full size.</div>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Link to open when clicked:', 'p3'); ?></label>
 			<input type="url" id="<?php echo $this->get_field_id('link'); ?>" name="<?php echo $this->get_field_name('link'); ?>" value="<?php echo esc_attr($instance['link']); ?>" class="widefat" />
 		</p>
 
