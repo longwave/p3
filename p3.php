@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.0.0
+Version: 3.0.1
 Text Domain: p3
 License: Copyright 2017 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.0.0' );
+define( 'PIPDIG_P3_V', '3.0.1' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -140,9 +140,10 @@ include(plugin_dir_path(__FILE__).'inc/beaver.php');
 
 include_once (ABSPATH.'wp-admin/includes/plugin.php');
 if (!is_plugin_active('jetpack/jetpack.php')) {
-	include_once(plugin_dir_path(__FILE__).'inc/jetpack.php');
 	// widget visibility
 	include_once(plugin_dir_path(__FILE__).'inc/bundled/widget-visibility/widget-conditions.php');
+} else {
+	include_once(plugin_dir_path(__FILE__).'inc/jetpack.php');
 }
 
 function p3_new_install_notice() {
@@ -293,11 +294,12 @@ function pipdig_p3_activate() {
 			$amicorum_array = array(
 				'<a href="'.$piplink.'" target="_blank">Website theme by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Theme Created by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank">Theme created by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Website Design by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Theme Created by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">WordPress Themes by <span style="'.$pipstyle.'">pipdig</span></a>',
-				'<a href="'.$piplink.'" target="_blank">Powered by <span style="'.$pipstyle.'">pipdig</span></a>',
+				//'<a href="'.$piplink.'" target="_blank">Powered by <span style="'.$pipstyle.'">pipdig</span></a>',
 			);
 			$amicorum = $amicorum_array[mt_rand(0, count($amicorum_array) - 1)];
 			update_option('p3_amicorumi_2', $amicorum);

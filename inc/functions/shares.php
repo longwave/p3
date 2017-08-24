@@ -49,7 +49,7 @@ function pipdig_p3_social_shares() {
 		$output .= '<a href="'.esc_url('http://service.weibo.com/share/share.php?url='.$link.'&title='.$title.'&pic='.$img).'" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>';
 	}
 	if (get_theme_mod('p3_share_whatsapp')) {
-		$output .= '<a href="'.esc_url('whatsapp://send?text='.$link).'" target="_blank" rel="nofollow" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>';
+		$output .= '<a href="'.esc_url('https://api.whatsapp.com/send?text='.$link).'" target="_blank" rel="nofollow" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>';
 	}
 	if (get_theme_mod('p3_share_vk')) {
 		$output .= '<a href="'.esc_url('https://vk.com/share.php?url='.$link.'&title='.$title.'&image='.$img.'&description='.$summary).'" target="_blank" rel="nofollow"><i class="fa fa-vk"></i></a>';

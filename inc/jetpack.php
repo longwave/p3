@@ -75,12 +75,9 @@ add_action( 'after_setup_theme', 'pipdig_p3_disable_jetpack_modules' );
 
 // quit nagging
 function p3_jp_styles() {
-	if (!class_exists('Jetpack')) {
-		return;
-	}
 	?>
 	<style>
-	.jitm-card.is-upgrade-premium {display: none}
+	.jp-jitm {display: none}
 	</style>
 	<?php
 }
