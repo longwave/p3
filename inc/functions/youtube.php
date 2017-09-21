@@ -52,8 +52,7 @@ function p3_youtube_fetch($channel_id) {
 						
 						if ($i < 4) { // First few get special treatment. Open the red carpet.
 							$max_res_url = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
-							$max = get_headers($max_res_url);
-							if (substr($max[0], 9, 3) !== '404') {
+							if (@getimagesize($max_res_url)) {
 								$thumbnail = $max_res_url;
 							}
 						}

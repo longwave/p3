@@ -19,6 +19,12 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			$pinterestuser = parse_url($pinterestuser, PHP_URL_PATH);
 			$pinterestuser = str_replace('/', '', $pinterestuser);
 		}
+		$board = '';
+		if (isset($instance['board'])) { 
+			$board = sanitize_text_field($instance['board']);
+			$board = str_replace('/', '', $board);
+			$board = str_replace(' ', '-', $board);
+		}
 		if (isset($instance['images_num'])) { 
 			$images_num = intval($instance['images_num'])-1;
 		} else {
@@ -59,7 +65,12 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		if (!empty($pinterestuser)) {
 			
 			$id = 'p3_pinterest_widget_'.rand(1, 999999999);
-			$images = p3_pinterest_fetch($pinterestuser); // grab images
+			
+			if ($board) {
+				$images = p3_pinterest_fetch($pinterestuser, $board); // grab images
+			} else {
+				$images = p3_pinterest_fetch($pinterestuser); // grab images
+			}
 		
 			//print_r($images);
 			
@@ -109,6 +120,11 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 				$pinterestuser = '';
 			}
 		}
+		if (isset($instance['board'])) {
+			$board = pipdig_strip($instance['board']);
+		} else {
+			$board = '';
+		}
 		if (isset($instance['images_num'])) { 
 			$images_num = $instance['images_num'];
 		} else {
@@ -142,7 +158,15 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			<label for="<?php echo $this->get_field_id('pinterestuser'); ?>"><?php _e('Pinterest Account Name:', 'p3'); ?><br />
 			<input class="" id="<?php echo $this->get_field_id('pinterestuser'); ?>" 
 			name="<?php echo $this->get_field_name('pinterestuser'); ?>" type="text" 
-			value="<?php echo esc_attr($pinterestuser); ?>" placeholder="songofstyle" />
+			value="<?php echo esc_attr($pinterestuser); ?>" placeholder="e.g. songofstyle" />
+			</label>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('board'); ?>">Pinterest Board Name: (Optional)<br />
+			<input class="" id="<?php echo $this->get_field_id('board'); ?>" 
+			name="<?php echo $this->get_field_name('board'); ?>" type="text" 
+			value="<?php echo esc_attr($board); ?>" placeholder="e.g. pretty-things" />
 			</label>
 		</p>
 		
@@ -174,6 +198,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['pinterestuser'] = strip_tags( $new_instance['pinterestuser'] );
+		$instance['board'] = strip_tags( $new_instance['board'] );
 		$instance['images_num'] = absint( $new_instance['images_num'] );
 		$instance['cols'] = absint( $new_instance['cols'] );
 		$instance['follow'] = strip_tags( $new_instance['follow'] );

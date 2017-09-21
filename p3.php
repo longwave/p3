@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.0.1
+Version: 3.0.3
 Text Domain: p3
 License: Copyright 2017 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.0.1' );
+define( 'PIPDIG_P3_V', '3.0.2' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -47,7 +47,10 @@ add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
 function pipdig_p3_deactivate() {
     if (!current_user_can('activate_plugins')) {
-        return;
+		return;
+	}
+	if (strpos(get_site_url(), '127.0.0.1') !== true) {
+		return;
 	}
     $plugin = isset( $_REQUEST['plugin'] ) ? $_REQUEST['plugin'] : '';
     check_admin_referer( "deactivate-plugin_{$plugin}" );
@@ -107,8 +110,9 @@ if ($theme_name[0] != 'pipdig') {
 //add_filter( 'auto_update_plugin', '__return_true' );
 
 // auto update themes
-//add_filter( 'auto_update_theme', '__return_true' );
-
+if (strpos(get_site_url(), '127.0.0.1') !== true) {
+	add_filter( 'auto_update_theme', '__return_true' );
+}
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
 	wp_enqueue_style( 'p3-core', plugin_dir_url(__FILE__).'assets/css/core.css', array(), PIPDIG_P3_V );
@@ -120,7 +124,7 @@ function pipdig_p3_scripts_styles() {
 	wp_register_script( 'backstretch', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js', array('jquery'), null, false );
 	wp_register_script( 'stellar', 'https://cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js', array('jquery'), null, true );
 	wp_register_script( 'rateyo', 'https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js', array('jquery'), null, true );
-	wp_enqueue_script( 'pipdig-fitvids', 'https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js', array( 'jquery' ), null, true );
+	wp_enqueue_script( 'pipdig-fitvids', 'https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.min.js', array( 'jquery' ), null, true );
 	wp_register_script( 'pipdig-mixitup', 'https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js', array( 'jquery' ), null, true );
 	//wp_register_script( 'pipdig-cookie', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js', array( 'jquery' ), null, true );
 	wp_register_script( 'pipdig-flickity', 'https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js', array('jquery'), null, false );
@@ -275,8 +279,10 @@ function pipdig_p3_activate() {
 	
 	// live site check
 	if (get_option('pipdig_live_site') != 1) {
-		$submit_data = wp_remote_fopen('https://status.pipdig.co/?dcx15=15&action=1&site_url='.rawurldecode(get_site_url()));
-		update_option('pipdig_live_site', 1);
+		if (strpos(get_site_url(), '127.0.0.1') !== true) {
+			$submit_data = wp_remote_fopen('https://status.pipdig.co/?dcx15=15&action=1&site_url='.rawurldecode(get_site_url()));
+			update_option('pipdig_live_site', 1);
+		}
 	}
 	
 	if (get_option('p3_amicorumi_set_3') != 1) {
@@ -287,18 +293,18 @@ function pipdig_p3_activate() {
 			$new_amic_https = str_replace("http://", "https://", get_option('p3_amicorumi_2'));
 			update_option('p3_amicorumi_2', $new_amic_https);
 		} else {
-			$piplink_array = array('https://www.pipdig.co/', 'https://www.pipdig.co/products/wordpress-themes/', 'https://www.pipdig.co');
+			$piplink_array = array('https://www.pipdig.co/', 'https://www.pipdig.co/products/wordpress-themes/', 'https://www.pipdig.co/', 'https://www.pipdig.co');
 			$piplink = $piplink_array[mt_rand(0, count($piplink_array) - 1)];
 			$pipstyle_array = array('text-transform:lowercase;letter-spacing:1px;', 'text-transform: lowercase;letter-spacing: 1px;', 'text-transform: lowercase;letter-spacing:1px;', 'text-transform:lowercase; letter-spacing:1px;', 'text-transform:lowercase;letter-spacing:1px');
 			$pipstyle = $pipstyle_array[mt_rand(0, count($pipstyle_array) - 1)];
 			$amicorum_array = array(
 				'<a href="'.$piplink.'" target="_blank">Website theme by <span style="'.$pipstyle.'">pipdig</span></a>',
-				'<a href="'.$piplink.'" target="_blank">Theme Created by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank">Theme design by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Theme created by <span style="'.$pipstyle.'">pipdig</span></a>',
-				'<a href="'.$piplink.'" target="_blank">Website Design by <span style="'.$pipstyle.'">pipdig</span></a>',
+				//'<a href="'.$piplink.'" target="_blank">Website Design by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Theme Created by <span style="'.$pipstyle.'">pipdig</span></a>',
-				'<a href="'.$piplink.'" target="_blank">WordPress Theme by <span style="'.$pipstyle.'">pipdig</span></a>',
-				'<a href="'.$piplink.'" target="_blank">WordPress Themes by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank">Theme Designed by <span style="'.$pipstyle.'">pipdig</span></a>',
+				//'<a href="'.$piplink.'" target="_blank">WordPress Themes by <span style="'.$pipstyle.'">pipdig</span></a>',
 				//'<a href="'.$piplink.'" target="_blank">Powered by <span style="'.$pipstyle.'">pipdig</span></a>',
 			);
 			$amicorum = $amicorum_array[mt_rand(0, count($amicorum_array) - 1)];
@@ -341,13 +347,6 @@ add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 
 require_once 'inc/plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker('https://www.wpupdateserver.com/p3.json', __FILE__, 'p3');
-
-/*
-require_once 'inc/plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker('https://bitbucket.org/pipdig/p3', __FILE__, 'p3');
-$myUpdateChecker->setAuthentication(array('consumer_key' => 'UbHUQsfawRwXM3fKNm', 'consumer_secret' => 'pcvh4a83rABeYz85E9b6nRJRjqQM638G'));
-$myUpdateChecker->setBranch('master');
-*/
 
 // 1280 x 720
 // data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=

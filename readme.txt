@@ -13,7 +13,7 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.0.0 =
+= 3.0.1 =
 * Option to change size of the icons in the "Social Sidebar".
 * Add "Houzz" to social links options.
 * Add "Visual" options for widgets.

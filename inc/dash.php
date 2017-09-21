@@ -4,76 +4,75 @@ if (!defined('ABSPATH')) die;
 
 
 /*  Add credit to admin area --------------------------------------------------------*/
-if (!function_exists('pipdig_p3_footer_admin')) {
-	function pipdig_p3_footer_admin () {
-		echo 'Powered by <a href="'.esc_url('https://www.wordpress.org/').'" target="_blank">WordPress</a>. Enhanced by <a href="'.esc_url('https://www.pipdig.co/?utm_source=wp-dashboard&utm_medium=footer&utm_campaign=wp-dashboard').'" target="_blank">pipdig</a>.';
-	}
-	add_filter('admin_footer_text', 'pipdig_p3_footer_admin', 99);
+function pipdig_p3_footer_admin () {
+	echo 'Powered by <a href="'.esc_url('https://www.wordpress.org/').'" target="_blank">WordPress</a>. Enhanced by <a href="'.esc_url('https://www.pipdig.co/?utm_source=wp-dashboard&utm_medium=footer&utm_campaign=wp-dashboard').'" target="_blank">pipdig</a>.';
 }
+add_filter('admin_footer_text', 'pipdig_p3_footer_admin', 99);
 
 
 /*	Remove front end widgets ----------------------------------------------*/
-if (!function_exists('pipdig_p3_unregister_widgets')) {
-	function pipdig_p3_unregister_widgets() {
-		
-		if (get_option('p3_widget_override')) {
-			return;
-		}
-		
-		if (isset($_GET['p3_widget_override'])) { // if peeps want it go to ?p3_widget_override
-			update_option('p3_widget_override', 1);
-			return;
-		}
-		
-		unregister_widget('WP_Widget_Pages');
-		unregister_widget('WP_Widget_Links');
-		unregister_widget('WP_Widget_Meta');
-		unregister_widget('WP_Widget_Recent_Posts');
-		unregister_widget('WP_Widget_Recent_Comments');
-
-		unregister_widget('Jetpack_Gravatar_Profile_Widget');
-		unregister_widget('WPCOM_Widget_Facebook_LikeBox');
-		unregister_widget('Jetpack_Twitter_Timeline_Widget');
-		unregister_widget('Jetpack_Gallery_Widget');
-		unregister_widget('Jetpack_RSS_Links_Widget');
-		unregister_widget('wpcom_social_media_icons_widget');
-		unregister_widget('Jetpack_Display_Posts_Widget');
-		unregister_widget('Jetpack_Top_Posts_Widget');
-		unregister_widget('Jetpack_Contact_Info_Widget');
-		unregister_widget('Milestone_Widget');
-		unregister_widget('Jetpack_Widget_Authors');
-		
-		unregister_widget('WP_Widget_Media_Image');
-		
-		unregister_widget('Akismet_Widget');
-		unregister_widget('SocialCountPlus');
-		unregister_widget('GADWP_Frontend_Widget');
-		
+function pipdig_p3_unregister_widgets() {
+	
+	if (get_option('p3_widget_override')) {
+		return;
 	}
-	add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
+		
+	if (isset($_GET['p3_widget_override'])) { // if peeps want it go to ?p3_widget_override
+		update_option('p3_widget_override', 1);
+		return;
+	}
+		
+	unregister_widget('WP_Widget_Pages');
+	unregister_widget('WP_Widget_Links');
+	unregister_widget('WP_Widget_Meta');
+	unregister_widget('WP_Widget_Recent_Posts');
+	unregister_widget('WP_Widget_Recent_Comments');
+		
+	unregister_widget('Jetpack_Upcoming_Events_Widget');
+	unregister_widget('Jetpack_My_Community_Widget');
+	unregister_widget('Jetpack_Gravatar_Profile_Widget');
+	unregister_widget('Jetpack_EU_Cookie_Law_Widget');
+	unregister_widget('Jetpack_Internet_Defense_League_Widget');
+	unregister_widget('WPCOM_Widget_Facebook_LikeBox');
+	unregister_widget('Jetpack_MailChimp_Subscriber_Popup_Widget');
+	unregister_widget('Jetpack_Twitter_Timeline_Widget');
+	unregister_widget('Jetpack_Gallery_Widget');
+	unregister_widget('Jetpack_RSS_Links_Widget');
+	unregister_widget('wpcom_social_media_icons_widget');
+	unregister_widget('Jetpack_Display_Posts_Widget');
+	unregister_widget('Jetpack_Top_Posts_Widget');
+	unregister_widget('Jetpack_Contact_Info_Widget');
+	unregister_widget('Milestone_Widget');
+	unregister_widget('Jetpack_Widget_Authors');
+		
+	unregister_widget('WP_Widget_Media_Image');
+		
+	unregister_widget('Akismet_Widget');
+	unregister_widget('SocialCountPlus');
+	unregister_widget('GADWP_Frontend_Widget');
+		
 }
+add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 
 
 /*	Remove dashboard widgets ----------------------------------------------*/
-if (!function_exists('pipdig_p3_pipdig_remove_dashboard_meta')) {
-	function pipdig_p3_pipdig_remove_dashboard_meta() {
+function pipdig_p3_pipdig_remove_dashboard_meta() {
 		
-		if (get_option('p3_widget_override')) {
-			return;
-		}
-		
-		remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
-		remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
-		remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
-		remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
-		remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
-		remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
-		remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
-		remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'normal' );
-		//remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+	if (get_option('p3_widget_override')) {
+		return;
 	}
-	add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
+		
+	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
+	remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
+	remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
+	remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
+	remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'normal' );
+	//remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
 }
+add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
 
 
 /*	Remove meta boxes on posts --------------------------------------------*/

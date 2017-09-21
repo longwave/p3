@@ -64,7 +64,7 @@ function pipdig_p3_disable_jetpack_modules() {
 		Jetpack::deactivate_module( 'related-posts' );
 	}
 	/*
-	if (get_option('p3_tiled_galleries_set') != 1) {
+	if (!Jetpack::is_module_active('tiled-gallery') && get_option('p3_tiled_galleries_set') != 1) {
 		Jetpack::activate_module( 'tiled-gallery' );
 		update_option('tiled_galleries', 1);
 		update_option('p3_tiled_galleries_set', 1);
@@ -77,7 +77,7 @@ add_action( 'after_setup_theme', 'pipdig_p3_disable_jetpack_modules' );
 function p3_jp_styles() {
 	?>
 	<style>
-	.jp-jitm {display: none}
+	.jp-jitm, .jitm-banner.is-upgrade-premium, .jitm-card.is-upgrade-premium, .jp-wpcom-connect__container {display: none}
 	</style>
 	<?php
 }

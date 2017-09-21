@@ -119,7 +119,7 @@ function pipdig_p3_rss_post_thumbnail($content) {
 		} else {
 			$img = pipdig_p3_catch_that_image();
 		}
-		$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'"/></p><p>'.strip_shortcodes(get_the_excerpt()).'</p>';
+		$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'" width="320" /></p><p>'.strip_shortcodes(get_the_excerpt()).'</p>';
 	}
 
 	return strip_shortcodes($content);
@@ -162,44 +162,40 @@ function pipdig_p3_emmmm_heeey() {
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 			 if($(window).scrollTop() + $(window).height() == $(document).height()) {
-				$("#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '0').css('visibility', 'hidden');
+				$(".scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '0').css('visibility', 'hidden');
 			 } else {
-				$("#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '1').css('visibility', 'visible');
+				$(".scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '1').css('visibility', 'visible');
 			 }
 		});
 	});
 	</script>
-	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> -->
+	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo wp_get_theme()->get('Name'); ?> v<?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> -->
 	<?php
 }
 add_action('wp_footer','pipdig_p3_emmmm_heeey', 9999);
 
 // comments count
-if (!function_exists('pipdig_p3_comment_count')) {
-	function pipdig_p3_comment_count() {
-		if (!post_password_required()) {
-			$comment_count = get_comments_number();
-			if ($comment_count == 0) {
-				$comments_text = __('Leave a comment', 'p3');
-			} elseif ($comment_count == 1) {
-				$comments_text = __('1 Comment', 'p3');
-			} else {
-				$comments_text = number_format_i18n($comment_count).' '.__('Comments', 'p3');
-				if (get_locale() == 'pl_PL') {
-					$comments_text = 'Komentarzy: '.number_format_i18n($comment_count);
-				}
+function pipdig_p3_comment_count() {
+	if (!post_password_required()) {
+		$comment_count = get_comments_number();
+		if ($comment_count == 0) {
+			$comments_text = __('Leave a comment', 'p3');
+		} elseif ($comment_count == 1) {
+			$comments_text = __('1 Comment', 'p3');
+		} else {
+			$comments_text = number_format_i18n($comment_count).' '.__('Comments', 'p3');
+			if (get_locale() == 'pl_PL') {
+				$comments_text = 'Komentarzy: '.number_format_i18n($comment_count);
 			}
-			echo $comments_text;
 		}
+		echo $comments_text;
 	}
 }
 
 // comments nav
-if (!function_exists('pipdig_p3_comment_nav')) {
-	function pipdig_p3_comment_nav() {
-		echo '<div class="nav-previous">'.previous_comments_link('<i class="fa fa-arrow-left"></i> '.__('Older Comments', 'p3')).'</div>';
-		echo '<div class="nav-next">'.next_comments_link(__('Newer Comments', 'p3').' <i class="fa fa-arrow-right"></i>').'</div>';
-	}
+function pipdig_p3_comment_nav() {
+	echo '<div class="nav-previous">'.previous_comments_link('<i class="fa fa-arrow-left"></i> '.__('Older Comments', 'p3')).'</div>';
+	echo '<div class="nav-next">'.next_comments_link(__('Newer Comments', 'p3').' <i class="fa fa-arrow-right"></i>').'</div>';
 }
 
 // allow 'text-transform' in wp_kses http://wordpress.stackexchange.com/questions/173526/why-is-wp-kses-not-keeping-style-attributes-as-expected

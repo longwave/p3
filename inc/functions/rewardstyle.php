@@ -3,7 +3,7 @@
 if (!defined('ABSPATH')) die;
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-if ( is_plugin_active('rewardstyle-widgets/rewardstyle-widgets.php') ) {
+if ( is_plugin_active('rewardstyle-widgets/rewardstyle-widgets.php') || function_exists('shopthepost_show_widget') ) {
 	return;
 }
 

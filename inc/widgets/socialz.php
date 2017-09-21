@@ -103,9 +103,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($etsy)) $icons_output .= '<a href="'.$etsy.'" target="_blank"><i class="fa fa-etsy"></i><br /><span>Etsy</span></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'"><i class="fa fa-envelope"></i><br /><span>Email</span></a>';
 			if (!empty($rss)) $icons_output .= '<a href="'.$rss.'" target="_blank"><i class="fa fa-rss"></i><br /><span>RSS</span></a>';
-			$id = 'p3_socialz_'.rand(1, 999999999);
-			echo '<style scoped>.pipdig_widget_social_icons #'.$id.' a {line-height:.9; display: inline-block; width: 32%; padding: 2px; margin: 10px 0;} .pipdig_widget_social_icons #'.$id.' a span {font: 10px montserrat, arial, sans-serif;text-transform: uppercase; letter-spacing: 1px}</style>';
-			echo '<div id="'.$id.'" class="socialz">'.$icons_output.'</div>';
+			echo '<div class="socialz pipdig_socialz_2">'.$icons_output.'</div>';
 
 		}
 		

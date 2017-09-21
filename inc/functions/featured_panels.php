@@ -112,7 +112,7 @@ if (!function_exists('p3_featured_panels')) {
 				<?php if ($img_1 && $link_1) { ?>
 				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 					<a href="<?php echo esc_url($link_1); ?>">
-						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_1); ?>)">
+						<div class="p3_cover_me" style="background-image:url(<?php echo str_replace('http:', '', esc_url($img_1) ); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_1); ?>" class="p3_invisible" />
 						</div>
 						<?php if (!empty($title_1)) { ?>
@@ -127,7 +127,7 @@ if (!function_exists('p3_featured_panels')) {
 				<?php if ($img_2 && $link_2) { ?>
 				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 					<a href="<?php echo esc_url($link_2); ?>">
-						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_2); ?>)">
+						<div class="p3_cover_me" style="background-image:url(<?php echo str_replace('http:', '', esc_url($img_2) ); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_2); ?>" class="p3_invisible" />
 						</div>
 						<?php if (!empty($title_2)) { ?>
@@ -142,7 +142,7 @@ if (!function_exists('p3_featured_panels')) {
 				<?php if ($img_3 && $link_3) { ?>
 				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 					<a href="<?php echo esc_url($link_3); ?>">
-						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_3); ?>)">
+						<div class="p3_cover_me" style="background-image:url(<?php echo str_replace('http:', '', esc_url($img_3) ); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_3); ?>" class="p3_invisible" />
 						</div>
 						<?php if (!empty($title_3)) { ?>
@@ -157,7 +157,7 @@ if (!function_exists('p3_featured_panels')) {
 				<?php if ($img_4 && $link_4) { ?>
 				<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 					<a href="<?php echo esc_url($link_4); ?>">
-						<div class="p3_cover_me" style="background-image:url(<?php echo esc_url($img_4); ?>)">
+						<div class="p3_cover_me" style="background-image:url(<?php echo str_replace('http:', '', esc_url($img_4) ); ?>)">
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_4); ?>" class="p3_invisible" />
 						</div>
 						<?php if (!empty($title_4)) { ?>

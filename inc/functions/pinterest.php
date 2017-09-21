@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) die;
 
 // function to fetch images
 if (!function_exists('p3_pinterest_fetch')) {
-	function p3_pinterest_fetch($user) {
+	function p3_pinterest_fetch($user, $board = 'feed') {
 		
 		if (!function_exists('simplexml_load_string')) {
 			return false;
@@ -14,12 +14,21 @@ if (!function_exists('p3_pinterest_fetch')) {
 			return false;
 		}
 		
+		if (empty($board)) {
+			$board = 'feed';
+		}
+		
+		$feed_id = $user;
+		if ($board != 'feed') {
+			$feed_id .= '_'.$board;
+		}
+		
 		// store user ids so we can clear transients in cron
 		$pinterest_users = get_option('pipdig_pinterest_users');
 		
 		if (!empty($pinterest_users)) {
 			if (is_array($pinterest_users)) {
-				$pinterest_users = array_push($pinterest_users, $user);
+				$pinterest_users = array_push($pinterest_users, $feed_id);
 				update_option('pipdig_pinterest_users', $pinterest_users);
 			}
 		} else {
@@ -28,8 +37,8 @@ if (!function_exists('p3_pinterest_fetch')) {
 		}
 			
 		
-		if ( false === ( $body = get_transient( 'p3_pinterest_feed_'.$user ) )) {
-			$url = "https://uk.pinterest.com/".$user."/feed.rss/";
+		if ( false === ( $body = get_transient( 'p3_pinterest_feed_'.$feed_id ) )) {
+			$url = "https://www.pinterest.com/".$user."/".$board.".rss/";
 			$args = array(
 			    'timeout' => 20,
 			);
@@ -47,7 +56,7 @@ if (!function_exists('p3_pinterest_fetch')) {
 				$body = $code;
 			}
 			
-			set_transient( 'p3_pinterest_feed_'.$user, $body, 20 * MINUTE_IN_SECONDS );
+			set_transient( 'p3_pinterest_feed_'.$feed_id, $body, 20 * MINUTE_IN_SECONDS );
 		}
 			
 		//$body = json_decode($result['body']);

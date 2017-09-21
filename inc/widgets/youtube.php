@@ -84,7 +84,13 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 			
 				<div id="<?php echo $id; ?>">
 				
-				<?php $i = 1; // just for margin counter below ?>
+				<?php $i = 1; // just for margin counter below
+				
+				if (!empty($instance['shuffle'])) {
+					shuffle($videos);
+				}
+
+				?>
 			
 				<?php foreach($videos as $video) { ?>
 				
@@ -171,6 +177,12 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		</p>
 		
 		<p>
+			<label for="<?php echo $this->get_field_id('shuffle'); ?>">
+			<input type="checkbox" id="<?php echo $this->get_field_id('shuffle'); ?>" name="<?php echo $this->get_field_name('shuffle'); ?>" <?php if (isset($instance['shuffle'])) { checked( (bool) $instance['shuffle'], true ); } ?> /><?php _e('Display videos randomly', 'p3'); ?></label>
+			<br />
+		</p>
+		
+		<p>
 			<label for="<?php echo $this->get_field_id('show_title'); ?>">
 			<input type="checkbox" id="<?php echo $this->get_field_id('show_title'); ?>" name="<?php echo $this->get_field_name('show_title'); ?>" <?php if (isset($instance['show_title'])) { checked( (bool) $instance['show_title'], true ); } ?> /><?php _e('Display the video title', 'p3'); ?></label>
 			<br />
@@ -215,6 +227,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		$instance['channel_id'] = strip_tags(trim($new_instance['channel_id']));
 		$instance['playlist_id'] = strip_tags(trim($new_instance['playlist_id']));
 		$instance['number'] = absint($new_instance['number']);
+		$instance['shuffle'] = strip_tags($new_instance['shuffle']);
 		$instance['horizontal'] = strip_tags($new_instance['horizontal']);
 		$instance['show_title'] = strip_tags($new_instance['show_title']);
 		delete_transient('p3_youtube_widget_'.$instance['channel_id']); // delete transient

@@ -4,8 +4,8 @@ if (!defined('ABSPATH')) die;
 
 if (!function_exists('pipdig_clw_enqueue_scripts')) {
 	function pipdig_clw_enqueue_scripts($hook) {
-		wp_enqueue_script( 'ammap', 'https://cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/ammap.js' );
-		wp_enqueue_script( 'continentsLow', 'https://cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/maps/js/continentsLow.js' );
+		wp_enqueue_script( 'ammap', 'https://cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/ammap.js', array(), null, false );
+		wp_enqueue_script( 'continentsLow', 'https://cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/maps/js/continentsLow.js', array(), null, false );
 	}
 }
 
@@ -209,8 +209,6 @@ if (!class_exists('pipdig_widget_clw')) {
 			$instance['longitude'] = esc_attr( $new_instance['longitude'] );
 			$instance['url'] = esc_url( $new_instance['url'] );
 			
-			pipdig_clw_delete_transients(); // delete transients on widget save
-			
 			return $instance;
 		}
 	  
@@ -314,13 +312,3 @@ if (!class_exists('pipdig_clw_Customize')) {
 	add_action( 'customize_register' , array( 'pipdig_clw_Customize' , 'register' ) );
 }
 
-
-
-// delete transients
-if (!function_exists('pipdig_clw_delete_transients')) {
-	function pipdig_clw_delete_transients() {
-		delete_transient( 'pipdig_clw_map');
-		//wp_cache_flush(); //flush object cache, just to be safe
-	}
-	add_action( 'customize_save_after', 'pipdig_clw_delete_transients' );
-}

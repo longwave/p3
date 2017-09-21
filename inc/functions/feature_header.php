@@ -104,7 +104,7 @@ if (!function_exists('p3_feature_header')) {
 			
 			<div id="p3_feature_header_recent_posts" class="<?php echo $class_2; ?>">
 				<h3 class="widget-title"><span><?php echo $recent_posts_title; ?></span></h3>
-				<div data-starting-slide="1" data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow feature-header-cycle nopin">
+				<div data-starting-slide="1" data-cycle-speed="1300" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow feature-header-cycle nopin">
 					<ul>
 						<?php
 							$args = array(
