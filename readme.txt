@@ -13,11 +13,14 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.0.1 =
-* Option to change size of the icons in the "Social Sidebar".
-* Add "Houzz" to social links options.
-* Add "Visual" options for widgets.
-* Option to resize image used in the Image Widget.
+= 3.0.3 =
+* Option to display videos randomly in the [YouTube widget](https://support.pipdig.co/articles/wordpress-youtube-widget/).
+
+= 3.0 =
+* Option to change size of the icons in the [Social Sidebar](https://support.pipdig.co/articles/wordpress-social-sidebar/).
+* Add "Houzz" to social links.
+* Add [visibility options](https://support.pipdig.co/articles/wordpress-show-hide-widgets-different-pages/) for widgets.
+* Option to resize image used in the [Image Widget](https://support.pipdig.co/articles/wordpress-image-widget/).
 * New social stats page at 'pipdig > Social Stats'.
 
 = 2.14.6 =
