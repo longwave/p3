@@ -358,6 +358,14 @@ function p3_slicknav_brand() {
 		$brand .= '<a href="'.esc_url($links['etsy']).'" target="_blank" rel="nofollow"><i class="fa fa-etsy"></i></a>';
 		$count++;
 	}
+	if (($count < 6) && !empty($links['reddit']) && get_theme_mod('p3_navbar_reddit', 1)) {
+		$brand .= '<a href="'.esc_url($links['reddit']).'" target="_blank" rel="nofollow"><i class="fa fa-reddit"></i></a>';
+		$count++;
+	}
+	if (($count < 6) && !empty($links['digg']) && get_theme_mod('p3_navbar_digg', 1)) {
+		$brand .= '<a href="'.esc_url($links['digg']).'" target="_blank" rel="nofollow"><i class="fa fa-digg"></i></a>';
+		$count++;
+	}
 	if (($count < 6) && !empty($links['houzz']) && get_theme_mod('p3_navbar_houzz', 1)) {
 		$brand .= '<a href="'.esc_url($links['houzz']).'" target="_blank" rel="nofollow"><i class="fa fa-houzz"></i></a>';
 		$count++;
@@ -397,6 +405,7 @@ include(plugin_dir_path(__FILE__).'functions/featured_cats.php');
 include(plugin_dir_path(__FILE__).'functions/featured_panels.php');
 include(plugin_dir_path(__FILE__).'functions/rewardstyle.php');
 include(plugin_dir_path(__FILE__).'functions/schema.php');
+include(plugin_dir_path(__FILE__).'functions/header_image.php');
 
 // bundled
 if (class_exists('RW_Meta_Box') && function_exists('rwmb_get_registry')) {

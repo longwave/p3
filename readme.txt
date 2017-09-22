@@ -13,6 +13,12 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.2.0 =
+* New option - set header image to full width of the screen - [https://i.imgur.com/qzt6joG.png](https://i.imgur.com/qzt6joG.png).
+
+= 3.1.0 =
+* Add Reddit and Digg to the "Social Links" page. Display icons in main menu if available.
+
 = 3.0.3 =
 * Option to display videos randomly in the [YouTube widget](https://support.pipdig.co/articles/wordpress-youtube-widget/).
 

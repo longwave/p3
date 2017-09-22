@@ -166,6 +166,22 @@ function pipdig_links_init() {
 	);
 	
 	add_settings_field( 
+		'Digg', 
+		'<i class="fa fa-digg"></i>&nbsp;&nbsp;Digg', 
+		'p3_digg_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
+	add_settings_field( 
+		'Reddit', 
+		'<i class="fa fa-reddit"></i>&nbsp;&nbsp;Reddit', 
+		'p3_reddit_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
+	add_settings_field( 
 		'Houzz', 
 		'<i class="fa fa-houzz"></i>&nbsp;&nbsp;Houzz', 
 		'p3_houzz_field_render', 
@@ -278,6 +294,16 @@ function p3_stumbleupon_field_render() {
 function p3_etsy_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[etsy]' placeholder='e.g. https://etsy.com/pipdig' value="<?php if (isset($links['etsy'])) { echo $links['etsy']; } ?>"> <?php
+}
+
+function p3_reddit_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[reddit]' placeholder='e.g. https://reddit.com/pipdig' value="<?php if (isset($links['reddit'])) { echo $links['reddit']; } ?>"> <?php
+}
+
+function p3_digg_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[digg]' placeholder='e.g. https://digg.com/pipdig' value="<?php if (isset($links['digg'])) { echo $links['digg']; } ?>"> <?php
 }
 
 function p3_houzz_field_render() { 

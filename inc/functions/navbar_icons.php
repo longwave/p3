@@ -9,8 +9,14 @@ if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_socia
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = $etsy = $spotify = $itunes = $houzz = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = $etsy = $spotify = $itunes = $houzz = $digg = $reddit = '';
 		
+		if (!empty($links['email'])) {
+			$email = sanitize_email($links['email']);
+		}
+		if (!empty($links['rss'])) {
+			$rss = esc_url($links['rss']);
+		}
 		if (!empty($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
 		}
@@ -65,14 +71,14 @@ if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_socia
 		if (!empty($links['etsy'])) {
 			$etsy = esc_url($links['etsy']);
 		}
+		if (!empty($links['reddit'])) {
+			$reddit = esc_url($links['reddit']);
+		}
+		if (!empty($links['digg'])) {
+			$digg = esc_url($links['digg']);
+		}
 		if (!empty($links['houzz'])) {
 			$houzz = esc_url($links['houzz']);
-		}
-		if (!empty($links['email'])) {
-			$email = sanitize_email($links['email']);
-		}
-		if (!empty($links['rss'])) {
-			$rss = esc_url($links['rss']);
 		}
 
 		if($twitter && get_theme_mod('p3_navbar_twitter', 1)) $navbar_icons .= '<a href="'.$twitter.'" target="_blank"><i class="fa fa-twitter"></i></a>';
@@ -94,6 +100,8 @@ if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_socia
 		if($houzz && get_theme_mod('p3_navbar_etsy', 1)) $navbar_icons .= '<a href="'.$houzz.'" target="_blank"><i class="fa fa-houzz"></i></a>';
 		if($vk && get_theme_mod('p3_navbar_vk', 1)) $navbar_icons .= '<a href="'.$vk.'" target="_blank"><i class="fa fa-vk"></i></a>';
 		if($google_plus && get_theme_mod('p3_navbar_google_plus', 1)) $navbar_icons .= '<a href="'.$google_plus.'" target="_blank"><i class="fa fa-google-plus"></i></a>';
+		if($reddit && get_theme_mod('p3_navbar_reddit', 1)) $navbar_icons .= '<a href="'.$reddit.'" target="_blank"><i class="fa fa-reddit"></i></a>';
+		if($digg && get_theme_mod('p3_navbar_digg', 1)) $navbar_icons .= '<a href="'.$digg.'" target="_blank"><i class="fa fa-digg"></i></a>';
 		if($rss && get_theme_mod('p3_navbar_rss', 1)) $navbar_icons .= '<a href="'.$rss.'" target="_blank"><i class="fa fa-rss"></i></a>';
 		if($email && get_theme_mod('p3_navbar_email', 1)) $navbar_icons .= '<a href="mailto:'.$email.'" target="_blank"><i class="fa fa-envelope"></i></a>';
 		
@@ -430,6 +438,36 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Etsy',
+					'section' => 'p3_navbar_icons_section',
+				)
+			);
+			
+			// reddit
+			$wp_customize->add_setting('p3_navbar_reddit',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_navbar_reddit',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Reddit',
+					'section' => 'p3_navbar_icons_section',
+				)
+			);
+			
+			// digg
+			$wp_customize->add_setting('p3_navbar_digg',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_navbar_digg',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Digg',
 					'section' => 'p3_navbar_icons_section',
 				)
 			);
