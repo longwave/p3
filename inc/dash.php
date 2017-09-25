@@ -44,13 +44,13 @@ function pipdig_p3_unregister_widgets() {
 	unregister_widget('Jetpack_Contact_Info_Widget');
 	unregister_widget('Milestone_Widget');
 	unregister_widget('Jetpack_Widget_Authors');
-		
-	unregister_widget('WP_Widget_Media_Image');
+	
+	//unregister_widget('WP_Widget_Media_Image');
 		
 	unregister_widget('Akismet_Widget');
 	unregister_widget('SocialCountPlus');
 	unregister_widget('GADWP_Frontend_Widget');
-		
+	
 }
 add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 
