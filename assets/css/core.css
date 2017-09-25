@@ -12,7 +12,7 @@ float: left;
 }
 
 .entry-content iframe {
-	border: 0
+border: 0
 }
 
 .p3_invisible {
@@ -42,8 +42,17 @@ opacity: 1 !important;
 }
 
 .cycle-slideshow li {
-	list-style: none;
+list-style: none;
 }
+
+/*
+blockquote {
+border-left: 5px solid #eee;
+margin: 0 0 0 20px;
+padding: 1px 15px;
+background: #fafafa;
+}
+*/
 
 .top-socialz {
 float: right;
