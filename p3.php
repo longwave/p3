@@ -145,7 +145,9 @@ include(plugin_dir_path(__FILE__).'inc/beaver.php');
 include_once (ABSPATH.'wp-admin/includes/plugin.php');
 if (!is_plugin_active('jetpack/jetpack.php')) {
 	// widget visibility
-	include_once(plugin_dir_path(__FILE__).'inc/bundled/widget-visibility/widget-conditions.php');
+	if (!class_exists('Jetpack_Widget_Conditions')) {
+		include_once(plugin_dir_path(__FILE__).'inc/bundled/widget-visibility/widget-conditions.php');
+	}
 } else {
 	include_once(plugin_dir_path(__FILE__).'inc/jetpack.php');
 }

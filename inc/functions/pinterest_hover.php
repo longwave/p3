@@ -2,165 +2,152 @@
 
 if (!defined('ABSPATH')) die;
 
-if (!function_exists('p3_pinterest_hover_add_data') && get_theme_mod('p3_pinterest_hover_enable')) {
-	function p3_pinterest_hover_add_data($content) {
-		
-		if (is_singular('jetpack-portfolio')) {
-			return $content;
-		}
-		
-		if ( (is_single() && !get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
-			return;
-		}
-		if ( (is_page() && !get_theme_mod('p3_pinterest_hover_enable_page')) ) {
-			return;
-		}
-		if ( ((is_home() || is_archive() || is_search()) && !get_theme_mod('p3_pinterest_hover_enable_archives')) ) {
-			return;
-		}
-		
+function p3_pinterest_hover_add_data($content) {
+	
+	$active = false;
+
+	if ( (is_single() && get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
+		$active = true;
+	} elseif ( (is_page() && get_theme_mod('p3_pinterest_hover_enable_page')) ) {
+		$active = true;
+	} elseif ( ((is_home() || is_archive() || is_search()) && get_theme_mod('p3_pinterest_hover_enable_archives')) ) {
+		$active = true;
+	}
+	
+	if ($active) {
 		$link = esc_url(get_the_permalink());
 		$title = rawurldecode(get_the_title());
 		$content = str_replace('<img','<img data-p3-pin-title="'.$title.'" data-p3-pin-link="'.$link.'"', $content);
-		return $content;
-		
 	}
-	add_filter('the_content','p3_pinterest_hover_add_data');
+	
+	return $content;
+	
 }
+add_filter('the_content','p3_pinterest_hover_add_data');
 
 
-if (!function_exists('p3_pinterest_hover')) {
-	function p3_pinterest_hover() {
+function p3_pinterest_hover() {
 		
-		if (get_theme_mod('p3_pinterest_hover_enable')) {
-			set_theme_mod('p3_pinterest_hover_enable_posts', 1);
-			//set_theme_mod('p3_pinterest_hover_enable_archives', 1);
-			//set_theme_mod('p3_pinterest_hover_enable_pages', 1);
-			remove_theme_mod('p3_pinterest_hover_enable');
-		}
-		
-		if (is_singular('jetpack-portfolio')) {
-			return;
-		}
-		
-		if ( (is_single() && !get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
-			return;
-		}
-		if ( (is_page() && !get_theme_mod('p3_pinterest_hover_enable_page')) ) {
-			return;
-		}
-		if ( ((is_home() || is_archive() || is_search()) && !get_theme_mod('p3_pinterest_hover_enable_archives')) ) {
-			return;
-		}
-		
-		$margin = absint(get_theme_mod('p3_pinterest_hover_margin', 0));
-		$position = esc_attr(get_theme_mod('p3_pinterest_hover_image_position', 'center'));
-		$pin_img = esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png'));
-		if (strlen($pin_img) < 5) {
-			$pin_img = 'https://assets.pinterest.com/images/pidgets/pin_it_button.png';
-		}
-		$dec_prefix = '';
-		if (get_theme_mod('p3_pinterest_hover_prefix_text')) {
-			$dec_prefix = '%20'.esc_attr(get_theme_mod('p3_pinterest_hover_prefix_text'));
-		}
-		
-		?>
-		<style>
-		.p3_pin_wrapper .left {left:<?php echo $margin; ?>px}
-		.p3_pin_wrapper .right {right:<?php echo $margin; ?>px}
-		.p3_pin_wrapper .bottom {bottom:<?php echo $margin; ?>px}
-		.p3_pin_wrapper .top {top:<?php echo $margin; ?>px}
-		</style>
-		<script>
-		(function($){
-			$.fn.imgPin = function( options ) {
+	if (get_theme_mod('p3_pinterest_hover_enable')) {
+		set_theme_mod('p3_pinterest_hover_enable_posts', 1);
+		//set_theme_mod('p3_pinterest_hover_enable_archives', 1);
+		//set_theme_mod('p3_pinterest_hover_enable_pages', 1);
+		remove_theme_mod('p3_pinterest_hover_enable');
+	}
+	
+	$active = false;
 
+	if ( (is_single() && get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
+		$active = true;
+	} elseif ( (is_page() && get_theme_mod('p3_pinterest_hover_enable_page')) ) {
+		$active = true;
+	} elseif ( ((is_home() || is_archive() || is_search()) && get_theme_mod('p3_pinterest_hover_enable_archives')) ) {
+		$active = true;
+	}
+	
+	if (!$active) {
+		return;
+	}
+	
+	$margin = absint(get_theme_mod('p3_pinterest_hover_margin', 0));
+	$position = esc_attr(get_theme_mod('p3_pinterest_hover_image_position', 'center'));
+	$pin_img = esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png'));
+	if (strlen($pin_img) < 5) {
+		$pin_img = 'https://assets.pinterest.com/images/pidgets/pin_it_button.png';
+	}
+	$dec_prefix = '';
+	if (get_theme_mod('p3_pinterest_hover_prefix_text')) {
+		$dec_prefix = '%20'.esc_attr(get_theme_mod('p3_pinterest_hover_prefix_text'));
+	}
+	
+	?>
+	<style>
+	.p3_pin_wrapper .left {left:<?php echo $margin; ?>px}
+	.p3_pin_wrapper .right {right:<?php echo $margin; ?>px}
+	.p3_pin_wrapper .bottom {bottom:<?php echo $margin; ?>px}
+	.p3_pin_wrapper .top {top:<?php echo $margin; ?>px}
+	</style>
+	<script>
+	(function($){
+		$.fn.imgPin = function( options ) {
 				var defaults = {
-					pinImg : '<?php echo $pin_img; ?>',
-					position: 'center',
-				};
-				var options = $.extend( {}, defaults, options );
-
+				pinImg : '<?php echo $pin_img; ?>',
+				position: 'center',
+			};
+			var options = $.extend( {}, defaults, options );
 				var url = encodeURIComponent(document.URL),
-					pinImg = options.pinImg,
-					position = '';
-
+				pinImg = options.pinImg,
+				position = '';
 				this.each(function(){
+				
+				if ($(this).hasClass('p3_invisible')) {
+					var src = $(this).data('p3-pin-img-src');
+				} else {
+					var src = $(this).attr('src');
+				}
 					
-					if ($(this).hasClass('p3_invisible')) {
-						var src = $(this).data('p3-pin-img-src');
-					} else {
-						var src = $(this).attr('src');
-					}
+				var shareURL = $(this).data('p3-pin-link');
+				// if data attribute not found
+				if (typeof shareURL == 'undefined') {
+					shareURL = window.location.href;
+				}
+				// account for floats
+				var pin_positon = '';
+				if ($(this).hasClass('alignleft')) {
+					var pin_positon = 'pin_align_left';
+				} else if ($(this).hasClass('alignright')) {
+					var pin_positon = 'pin_align_right';
+				} else if ($(this).hasClass('aligncenter')) {
+					var pin_positon = 'pin_align_center';
+				}
+				
+				var img = new Image();
+				img.src = src;
+				
+				var description = $(this).data('p3-pin-title'),
+				imgURL = encodeURIComponent(src);
 					
-					var shareURL = $(this).data('p3-pin-link');
-					// if data attribute not found
-					if (typeof shareURL == 'undefined') {
-						shareURL = window.location.href;
-					}
-					// account for floats
-					var pin_positon = '';
-					if ($(this).hasClass('alignleft')) {
-						var pin_positon = 'pin_align_left';
-					} else if ($(this).hasClass('alignright')) {
-						var pin_positon = 'pin_align_right';
-					} else if ($(this).hasClass('aligncenter')) {
-						var pin_positon = 'pin_align_center';
-					}
-					
-					var img = new Image();
-					img.src = src;
-
-					var description = $(this).data('p3-pin-title'),
-					imgURL = encodeURIComponent(src);
-						
+				if (description == null){
+					var description = $(this).attr("alt");
 					if (description == null){
-						var description = $(this).attr("alt");
-						if (description == null){
-							var description = '<?php echo esc_attr(get_the_title()); ?>';
-						}
+						var description = '<?php echo esc_attr(get_the_title()); ?>';
 					}
+				}
 
-					var link = 'https://www.pinterest.com/pin/create/button/';
-						link += '?url='+shareURL;
-						link += '&media='+imgURL;
-						link += '&description=<?php echo addslashes($dec_prefix); ?>'+description;
-
+				var link = 'https://www.pinterest.com/pin/create/button/';
+					link += '?url='+shareURL;
+					link += '&media='+imgURL;
+					link += '&description=<?php echo addslashes($dec_prefix); ?>'+description;
 					$(this).wrap('<div class="p3_pin_wrapper_outer '+pin_positon+'"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
 
-					<?php if ($position == 'center') { ?>
-					var img = new Image();
-					img.onload = function() {
-						var w = this.width;
-						h = this.height;
-						$('.p3_pin_wrapper .pin.center').css('margin-left', -w/2).css('margin-top', -h/2);
-					}
-					img.src = pinImg;
-					<?php } ?>
-
-					//set click events
-					$('.p3_pin_wrapper .pin').click(function(){
-					var w = 700, h = 400;
-					var left = (screen.width/2)-(w/2);
-					var top = (screen.height/2)-(h/2);
-					var imgPinWindow = window.open(this.href,'imgPngWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=400');
-					imgPinWindow.moveTo(left, top);
-					return false;
-					});
-
+				<?php if ($position == 'center') { ?>
+				var img = new Image();
+				img.onload = function() {
+					var w = this.width;
+					h = this.height;
+					$('.p3_pin_wrapper .pin.center').css('margin-left', -w/2).css('margin-top', -h/2);
+				}
+				img.src = pinImg;
+				<?php } ?>
+				//set click events
+				$('.p3_pin_wrapper .pin').click(function(){
+				var w = 700, h = 400;
+				var left = (screen.width/2)-(w/2);
+				var top = (screen.height/2)-(h/2);
+				var imgPinWindow = window.open(this.href,'imgPngWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=400');
+				imgPinWindow.moveTo(left, top);
+				return false;
 				});
-
+			});
 			}
-			
-		})(jQuery);
+		
+	})(jQuery);
+	jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img)').imgPin();
 
-		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img)').imgPin();
-
-		</script>
-		<?php
-	}
-	add_action('wp_footer', 'p3_pinterest_hover', 999);
+	</script>
+	<?php
 }
+add_action('wp_footer', 'p3_pinterest_hover', 999);
 
 
 // stop image from being 100% width of tab in cust
