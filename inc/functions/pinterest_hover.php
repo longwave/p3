@@ -6,7 +6,7 @@ function p3_pinterest_hover_add_data($content) {
 	
 	$active = false;
 
-	if ( (is_single() && get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
+	if ( (is_singular('post') && get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
 		$active = true;
 	} elseif ( (is_page() && get_theme_mod('p3_pinterest_hover_enable_page')) ) {
 		$active = true;
@@ -37,7 +37,7 @@ function p3_pinterest_hover() {
 	
 	$active = false;
 
-	if ( (is_single() && get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
+	if ( (is_singular('post') && get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
 		$active = true;
 	} elseif ( (is_page() && get_theme_mod('p3_pinterest_hover_enable_page')) ) {
 		$active = true;
