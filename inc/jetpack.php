@@ -34,7 +34,7 @@ function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) 
 	//'notes',
 	//'carousel',
 	'omnisearch',
-	'photon',
+	//'photon',
 	'markdown',
 	'related-posts',
 	);
@@ -57,9 +57,11 @@ function pipdig_p3_disable_jetpack_modules() {
 	if (Jetpack::is_module_active('minileven')) {
 		Jetpack::deactivate_module( 'minileven' );
 	}
+	/*
 	if (Jetpack::is_module_active('photon')) {
 		Jetpack::deactivate_module( 'photon' );
 	}
+	*/
 	if (Jetpack::is_module_active('related-posts')) {
 		Jetpack::deactivate_module( 'related-posts' );
 	}

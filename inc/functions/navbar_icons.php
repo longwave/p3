@@ -152,6 +152,7 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 						'type' => 'checkbox',
 						'label' => 'WooCommerce Cart',
 						'section' => 'p3_navbar_icons_section',
+						'priority' => 1,
 					)
 				);
 			}

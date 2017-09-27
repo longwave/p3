@@ -300,7 +300,7 @@ function pipdig_p3_activate() {
 			$pipstyle_array = array('text-transform:lowercase;letter-spacing:1px;', 'text-transform: lowercase;letter-spacing: 1px;', 'text-transform: lowercase;letter-spacing:1px;', 'text-transform:lowercase; letter-spacing:1px;', 'text-transform:lowercase;letter-spacing:1px');
 			$pipstyle = $pipstyle_array[mt_rand(0, count($pipstyle_array) - 1)];
 			$amicorum_array = array(
-				'<a href="'.$piplink.'" target="_blank">Website theme by <span style="'.$pipstyle.'">pipdig</span></a>',
+				//'<a href="'.$piplink.'" target="_blank">Website theme by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Theme design by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Theme created by <span style="'.$pipstyle.'">pipdig</span></a>',
 				//'<a href="'.$piplink.'" target="_blank">Website Design by <span style="'.$pipstyle.'">pipdig</span></a>',
