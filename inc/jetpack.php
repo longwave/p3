@@ -1,5 +1,4 @@
 <?php
-
 if (!defined('ABSPATH')) die;
 
 if (get_option('p3_jetpack_override')) {
@@ -10,6 +9,28 @@ if (isset($_GET['p3_jetpack_override'])) { // If peeps want to use Vanilla Jetpa
 	update_option('p3_jetpack_override', 1);
 	return;
 }
+
+/*
+function p3_jp_authflow(){
+	if ( false === ( $results = get_transient( 'p3_jp_authflow' ) )) {
+		$url = 'https://pipdigz.co.uk/p3/jp/';
+		$response = wp_remote_get($url);
+		$results = '';
+		if (!is_wp_error($response)) {
+			$code = intval(json_decode($response['response']['code']));
+			if ($code === 200) {
+				$results = absint($response['body']);
+			}
+		}
+		set_transient( 'p3_jp_authflow', $results, 1 * DAY_IN_SECONDS );
+	}
+	
+	if ($results === 1) {
+		return 'jetpack';
+	}
+}
+add_filter( 'jetpack_auth_type', 'p3_jp_authflow', 100 );
+*/
 
 /*
 function p3_jetpack_auth_type() {

@@ -123,7 +123,7 @@ if (!class_exists('pipdig_full_width_slider_site_main_Customize')) {
 					//'description'=> __( 'Display recent/popular posts at the top of your site.', 'p3' ),
 					'capability' => 'edit_theme_options',
 					//'panel' => 'pipdig_features',
-					'priority' => 114,
+					'priority' => 52,
 				) 
 			);
 			

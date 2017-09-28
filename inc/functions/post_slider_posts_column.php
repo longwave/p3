@@ -103,7 +103,7 @@ if (!class_exists('pipdig_post_slider_posts_column_Customize')) {
 					'description'=> 'Display a slidre of recent posts at the top of your homepage posts section. Works best when there is also a sidebar on the homepage.',
 					'capability' => 'edit_theme_options',
 					//'panel' => 'pipdig_features',
-					'priority' => 106,
+					'priority' => 51,
 				) 
 			);
 			

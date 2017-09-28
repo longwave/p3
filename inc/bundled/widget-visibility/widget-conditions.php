@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Hide or show widgets conditionally.
  */

@@ -78,6 +78,9 @@ line-height: 1.2;
 .rs-adblock {display: none}
 
 /* Jetpack */
+.blog div.sharedaddy h3.sd-title {
+display: none;
+}
 
 /* carousel */
 .slideshow-window{background:transparent;border:0}
