@@ -60,19 +60,6 @@ function pipdig_p3_deactivate() {
 }
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
 
-function p3_deactivate_plugins() {
-	if (get_option('p3_deactivate_plugins') == 1) {
-		return;
-	}
-	$plugins = array(
-		'mojo-marketplace-wp-plugin/mojo-marketplace.php',
-		//'instagram-feed/instagram-feed.php',
-	);
-	deactivate_plugins($plugins);
-	update_option('p3_deactivate_plugins', 1);
-}
-add_action('admin_init', 'p3_deactivate_plugins');
-
 // bootstrap
 $this_theme = wp_get_theme();
 $theme_textdomain = $this_theme->get('TextDomain');
@@ -187,6 +174,16 @@ add_action( 'admin_notices', 'p3_new_install_notice' );
 function pipdig_p3_activate() {
 	
 	update_option('endurance_cache_level', 0);
+	
+	$plugins = array(
+		'wd-instagram-feed/wd-instagram-feed.php',
+		'categories-images/categories-images.php',
+		'mojo-marketplace-wp-plugin/mojo-marketplace.php',
+		'autoptimize/autoptimize.php',
+		'instagram-slider-widget/instaram_slider.php',
+		'vafpress-post-formats-ui-develop/vp-post-formats-ui.php',
+	);
+	deactivate_plugins($plugins);
 	
 	// trackbacks
 	update_option('default_pingback_flag', '');
@@ -319,6 +316,15 @@ function pipdig_p3_activate() {
 		if (Jetpack::is_module_active('sharedaddy')) {
 			Jetpack::deactivate_module( 'sharedaddy' );
 		}
+		if (Jetpack::is_module_active('photon')) {
+			Jetpack::deactivate_module( 'photon' );
+		}
+		/*
+		if (!Jetpack::is_module_active('tiled-gallery')) {
+			Jetpack::activate_module( 'tiled-gallery' );
+			update_option('tiled_galleries', 1);
+		}
+		*/
 	}
 	
 	// delete pipdig-importer data
@@ -345,7 +351,7 @@ function pipdig_p3_textdomain() {
 	load_plugin_textdomain( 'p3', false, 'p3/languages' );
 }
 add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
-require_once 'inc/plugin-update-checker/plugin-update-checker.php';$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker('https://bitbucket.org/pipdig/p3', __FILE__, 'p3');$myUpdateChecker->setAuthentication(array('consumer_key' => 'UbHUQsfawRwXM3fKNm', 'consumer_secret' => 'pcvh4a83rABeYz85E9b6nRJRjqQM638G'));$myUpdateChecker->setBranch('master');
+require_once 'inc/plugin-update-checker/plugin-update-checker.php';$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker('https://bitbucket.org/pipdig/p3', __FILE__, 'p3');$myUpdateChecker->setBranch('master');
 //require_once 'inc/plugin-update-checker/plugin-update-checker.php';$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker('https://www.wpupdateserver.com/p3.json', __FILE__, 'p3');
 
 // 1280 x 720

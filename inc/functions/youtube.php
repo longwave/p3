@@ -29,7 +29,7 @@ function p3_youtube_fetch($channel_id) {
 		if ( false === ( $videos = get_transient( 'p3_youtube_'.$channel_id ) )) {
 			$url = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key='.$key.'&maxResults=20';
 			$args = array(
-			    'timeout' => 15,
+			    'timeout' => 9,
 			);
 			$response = wp_remote_get($url, $args);
 			

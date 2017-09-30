@@ -2,9 +2,6 @@
 
 if (!defined('ABSPATH')) die;
 
-
-
-
 // [pipdig_portfolio number="30" columns="3" filters="" shape="square/landscape/portrait"]
 function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 	extract(shortcode_atts(array(
