@@ -217,7 +217,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			<li>
 				<a href="<?php the_permalink() ?>">
 					<?php if ($image_shape == 4) { ?>
-						<img src="<?php echo $bg; ?>" alt="<?php echo esc_attr($title); ?>" />
+						<img src="<?php echo $img; ?>" alt="<?php echo esc_attr($title); ?>" />
 					<?php } else { ?>
 						<div class="p3_cover_me <?php echo $lazy_class; ?>" <?php echo $image_src; ?>>
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
@@ -231,7 +231,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 				<div class="p3_pop_left-left">
 				<a href="<?php the_permalink() ?>">
 					<?php if ($image_shape == 4) { ?>
-						<img src="<?php echo $bg; ?>" alt="<?php echo esc_attr($title); ?>" />
+						<img src="<?php echo $img; ?>" alt="<?php echo esc_attr($title); ?>" />
 					<?php } else { ?>
 						<div class="p3_cover_me <?php echo $lazy_class; ?>" <?php echo $image_src; ?>>
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />

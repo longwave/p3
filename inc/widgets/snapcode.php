@@ -55,7 +55,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 			}
 
 			if (!empty($instance['snapcode'])) {
-				$image_src = str_replace('http:', '', $instance['snapcode']);
+				$image_link = str_replace('http:', '', $instance['snapcode']);
 				
 				$lazy_class = '';
 				if (is_pipdig_lazy()) {

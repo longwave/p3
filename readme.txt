@@ -13,6 +13,9 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.2.1 =
+* Fix issue with Popular Posts widget images in some cases.
+
 = 3.2.0 =
 * New option - set header image to full width of the screen - [https://i.imgur.com/qzt6joG.png](https://i.imgur.com/qzt6joG.png).
 
