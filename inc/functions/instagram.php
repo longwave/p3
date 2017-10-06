@@ -173,132 +173,237 @@ add_action('wp_head', 'p3_instagram_css_to_head');
 
 // footer feed
 if (!function_exists('p3_instagram_footer')) {
-	function p3_instagram_footer() {
+function p3_instagram_footer() {
 		
-		if (!get_theme_mod('p3_instagram_footer')) {
-			return;
+	if (!get_theme_mod('p3_instagram_footer')) {
+		return;
+	}
+		
+	$images = p3_instagram_fetch(''); // grab images
+		
+	if ($images) {
+		
+		$lazy = false;
+		if (is_pipdig_lazy()) {
+			$lazy = true;
 		}
 		
-		$images = p3_instagram_fetch(''); // grab images
-		
-		if ($images) {
-			$meta = absint(get_theme_mod('p3_instagram_meta'));
-			$num = intval(get_theme_mod('p3_instagram_number', 8));
-			if (get_theme_mod('p3_instagram_rows')) {
-				$rows = apply_filters('p3_instagram_rows_number', 2);
-				$num = $num*$rows;
+		$meta = absint(get_theme_mod('p3_instagram_meta'));
+		$num = intval(get_theme_mod('p3_instagram_number', 8));
+		if (get_theme_mod('p3_instagram_rows')) {
+			$rows = apply_filters('p3_instagram_rows_number', 2);
+			$num = $num*$rows;
+		}
+		$links = get_option('pipdig_links');
+		if (!empty($links['instagram'])) {
+			$instagram_url = esc_url($links['instagram']);
+			if (filter_var($instagram_url, FILTER_VALIDATE_URL)) {  // url to path
+				$instagram_user = parse_url($instagram_url, PHP_URL_PATH);
+				$instagram_user = str_replace('/', '', $instagram_user);
 			}
-			$links = get_option('pipdig_links');
-			if (!empty($links['instagram'])) {
-				$instagram_url = esc_url($links['instagram']);
-				if (filter_var($instagram_url, FILTER_VALIDATE_URL)) {  // url to path
-					$instagram_user = parse_url($instagram_url, PHP_URL_PATH);
-					$instagram_user = str_replace('/', '', $instagram_user);
+		}
+	?>
+		<div class="clearfix"></div>
+		<div id="p3_instagram_footer">
+			<?php if (!empty($instagram_url) && !empty($instagram_user) && get_theme_mod('p3_instagram_footer_title')) { ?>
+				<div class="p3_instagram_footer_title_bar">
+					<h3><a href="<?php echo $instagram_url; ?>" target="_blank" rel="nofollow">Instagram <span style="text-transform:none">@<?php echo strip_tags($instagram_user); ?></span></a></h3>
+				</div>
+			<?php } ?>
+			<?php $num = $num-1; // account for array starting at 0 ?>
+			<?php for ($x = 0; $x <= $num; $x++) {
+				$hide_class = '';
+				if ($x >= 4) {
+					$hide_class = ' p3_instagram_hide_mobile';
 				}
-			}
-		?>
+				$image_src = 'style="background-image:url('.$images[$x]['src'].');"';
+				if ($lazy) {
+					$hide_class .= ' pipdig_lazy';
+					$image_src = 'data-src="'.$images[$x]['src'].'"';
+				}
+				?>
+				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" <?php echo $image_src; ?> rel="nofollow" target="_blank">
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
+					<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
+				</a>
+			<?php } ?>
 			<div class="clearfix"></div>
-			<div id="p3_instagram_footer">
-				<?php if (!empty($instagram_url) && !empty($instagram_user) && get_theme_mod('p3_instagram_footer_title')) { ?>
-					<div class="p3_instagram_footer_title_bar">
-						<h3><a href="<?php echo $instagram_url; ?>" target="_blank" rel="nofollow">Instagram <span style="text-transform:none">@<?php echo strip_tags($instagram_user); ?></span></a></h3>
-					</div>
-				<?php } ?>
-				<?php $num = $num-1; // account for array starting at 0 ?>
-				<?php for ($x = 0; $x <= $num; $x++) {
-					$hide_class = '';
-					if ($x >= 4) {
-						$hide_class = ' p3_instagram_hide_mobile';
-					}
-					?>
-					<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
-						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
-						<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
-					</a>
-				<?php } ?>
-				<div class="clearfix"></div>
-			</div>
-			<div class="clearfix"></div>
-			<?php
-		} else { // no access token or user id, so error for admins:
-			if (current_user_can('manage_options')) {
-				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. Only site admins can see this message.</p>';
-			}
+		</div>
+		<div class="clearfix"></div>
+		<?php
+	} else { // no access token or user id, so error for admins:
+		if (current_user_can('manage_options')) {
+			echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. Only site admins can see this message.</p>';
 		}
 	}
-	add_action('p3_footer_bottom', 'p3_instagram_footer', 99);
+}
+add_action('p3_footer_bottom', 'p3_instagram_footer', 99);
 }
 
 
 // header feed
 if (!function_exists('p3_instagram_header')) {
-	function p3_instagram_header() {
+function p3_instagram_header() {
 		
-		if (!get_theme_mod('p3_instagram_header')) {
-			return;
-		}
+	if (!get_theme_mod('p3_instagram_header')) {
+		return;
+	}
 		
-		if (!get_theme_mod('p3_instagram_header_all') && (!is_front_page() && !is_home()) ) {
-			return;
-		}
+	if (!get_theme_mod('p3_instagram_header_all') && (!is_front_page() && !is_home()) ) {
+		return;
+	}
 		
-		$images = p3_instagram_fetch(); // grab images
+	$images = p3_instagram_fetch(); // grab images
 			
-		if ($images) {
-			$meta = absint(get_theme_mod('p3_instagram_meta'));
-			$num = intval(get_theme_mod('p3_instagram_number', 8));
-			if (get_theme_mod('p3_instagram_rows')) {
-				$num = $num*2;
-			}
-		?>
+	if ($images) {
+		$meta = absint(get_theme_mod('p3_instagram_meta'));
+		$num = intval(get_theme_mod('p3_instagram_number', 8));
+		if (get_theme_mod('p3_instagram_rows')) {
+			$num = $num*2;
+		}
+	?>
+		<div class="clearfix"></div>
+		<div id="p3_instagram_header">
+		<?php $num = $num-1; // account for array starting at 0 ?>
+			<?php for ($x = 0; $x <= $num; $x++) {
+				$hide_class = '';
+				if ($x >= 4) {
+					$hide_class = ' p3_instagram_hide_mobile';
+				}
+				?>
+				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
+					<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
+				</a>
+			<?php } ?>
 			<div class="clearfix"></div>
-			<div id="p3_instagram_header">
-			<?php $num = $num-1; // account for array starting at 0 ?>
-				<?php for ($x = 0; $x <= $num; $x++) {
-					$hide_class = '';
-					if ($x >= 4) {
-						$hide_class = ' p3_instagram_hide_mobile';
-					}
-					?>
-					<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
-						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
-						<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
-					</a>
-				<?php } ?>
-				<div class="clearfix"></div>
-			</div>
-			<div class="clearfix"></div>
-			<?php
-		} else { // no access token or user id, so error for admins:
-			if (current_user_can('manage_options')) {
-				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. Only site admins can see this message.</p>';
-			}
+		</div>
+		<div class="clearfix"></div>
+		<?php
+	} else { // no access token or user id, so error for admins:
+		if (current_user_can('manage_options')) {
+			echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. Only site admins can see this message.</p>';
 		}
 	}
-	add_action('p3_top_site_main', 'p3_instagram_header', 99);
+}
+add_action('p3_top_site_main', 'p3_instagram_header', 99);
 }
 
 
 // above posts and sidebar
 if (!function_exists('p3_instagram_site_main_container')) {
-	function p3_instagram_site_main_container() {
+function p3_instagram_site_main_container() {
 		
-		if (!get_theme_mod('p3_instagram_above_posts_and_sidebar')) {
-			return;
-		}
+	if (!get_theme_mod('p3_instagram_above_posts_and_sidebar')) {
+		return;
+	}
 		
-		if (!is_front_page() && !is_home()) {
-			return;
-		}
+	if (!is_front_page() && !is_home()) {
+		return;
+	}
 		
-		$images = p3_instagram_fetch(); // grab images
+	$images = p3_instagram_fetch(); // grab images
 			
-		if ($images) {
-			$meta = absint(get_theme_mod('p3_instagram_meta'));
-			$num = intval(get_theme_mod('p3_instagram_number', 8));
-		?>
+	if ($images) {
+		$meta = absint(get_theme_mod('p3_instagram_meta'));
+		$num = intval(get_theme_mod('p3_instagram_number', 8));
+	?>
+		<div class="clearfix"></div>
+		<div id="p3_instagram_site_main_container">
+		<h3 class="widget-title"><span>Instagram</span></h3>
+		<?php $num = $num-1; // account for array starting at 0 ?>
+			<?php for ($x = 0; $x <= $num; $x++) {
+				$hide_class = '';
+				if ($x >= 4) {
+					$hide_class = ' p3_instagram_hide_mobile';
+				}
+				?>
+				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
+					<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
+				</a>
+			<?php } ?>
 			<div class="clearfix"></div>
-			<div id="p3_instagram_site_main_container">
+		</div>
+		<div class="clearfix"></div>
+		<?php
+	} else { // no access token or user id, so error for admins:
+		if (current_user_can('manage_options')) {
+			echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. Only site admins can see this message.</p>';
+		}
+	}
+}
+add_action('p3_top_site_main_container', 'p3_instagram_site_main_container', 99);
+}
+
+
+// style & light feed
+if (!function_exists('p3_instagram_top_of_posts')) {
+function p3_instagram_top_of_posts() {
+		
+	if (!is_home() || is_paged() || !get_theme_mod('body_instagram')) {
+		return;
+	}
+	
+	$images = p3_instagram_fetch(); // grab images
+	
+	if ($images) {
+		$meta = absint(get_theme_mod('p3_instagram_meta'));
+		//$num = intval(get_theme_mod('p3_instagram_number', 8));
+	?>	
+		<div id="p3_instagram_top_of_posts">
+		<h3 class="widget-title"><span>Instagram</span></h3>
+			<?php for ($x = 0; $x <= 4; $x++) {
+				$hide_class = '';
+				//if ($x >= 4) {
+					//$hide_class = ' p3_instagram_hide_mobile';
+				//}
+				?>
+				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
+					<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
+				</a>
+			<?php } ?>
+			<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
+		<?php
+	} else { // no access token or user id, so error for admins:
+		if (current_user_can('manage_options')) {
+			echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. Only site admins can see this message.</p>';
+		}
+	}
+}
+add_action('p3_posts_column_start', 'p3_instagram_top_of_posts', 99);
+}
+
+
+// kensington feed
+if (!function_exists('p3_instagram_bottom_of_posts')) {
+function p3_instagram_bottom_of_posts() {
+		
+	if (!get_theme_mod('p3_instagram_kensington') || (!is_front_page() && !is_home())) {
+		return;
+	}
+		
+	$images = p3_instagram_fetch(); // grab images
+	
+	if ($images) {
+		
+		$lazy = false;
+		if (is_pipdig_lazy()) {
+			$lazy = true;
+		}
+		
+		$meta = absint(get_theme_mod('p3_instagram_meta'));
+		$num = intval(get_theme_mod('p3_instagram_number', 8));
+		if (get_theme_mod('p3_instagram_rows')) {
+			$num = $num*2;
+		}
+	?>
+		<div class="clearfix"></div>
+		<div id="p3_instagram_kensington" class="row">
+			<div class="container">
 			<h3 class="widget-title"><span>Instagram</span></h3>
 			<?php $num = $num-1; // account for array starting at 0 ?>
 				<?php for ($x = 0; $x <= $num; $x++) {
@@ -306,114 +411,30 @@ if (!function_exists('p3_instagram_site_main_container')) {
 					if ($x >= 4) {
 						$hide_class = ' p3_instagram_hide_mobile';
 					}
+					$image_src = 'style="background-image:url('.$images[$x]['src'].');"';
+					if ($lazy) {
+						$hide_class .= ' pipdig_lazy';
+						$image_src = 'data-src="'.$images[$x]['src'].'"';
+					}
 					?>
-					<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
+					<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" <?php echo $image_src; ?> rel="nofollow" target="_blank">
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
 						<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
 					</a>
 				<?php } ?>
 				<div class="clearfix"></div>
 			</div>
-			<div class="clearfix"></div>
-			<?php
-		} else { // no access token or user id, so error for admins:
-			if (current_user_can('manage_options')) {
-				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. Only site admins can see this message.</p>';
-			}
+		</div>
+		<div class="clearfix"></div>
+		<?php
+	} else { // no access token or user id, so error for admins:
+		if (current_user_can('manage_options')) {
+			echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. Only site admins can see this message.</p>';
 		}
 	}
-	add_action('p3_top_site_main_container', 'p3_instagram_site_main_container', 99);
+
 }
-
-
-// style & light feed
-if (!function_exists('p3_instagram_top_of_posts')) {
-	function p3_instagram_top_of_posts() {
-		
-		if (!is_home() || is_paged() || !get_theme_mod('body_instagram')) {
-			return;
-		}
-		
-		$images = p3_instagram_fetch(); // grab images
-		
-		if ($images) {
-			$meta = absint(get_theme_mod('p3_instagram_meta'));
-			//$num = intval(get_theme_mod('p3_instagram_number', 8));
-		?>	
-			<div id="p3_instagram_top_of_posts">
-			<h3 class="widget-title"><span>Instagram</span></h3>
-				<?php for ($x = 0; $x <= 4; $x++) {
-					$hide_class = '';
-					//if ($x >= 4) {
-						//$hide_class = ' p3_instagram_hide_mobile';
-					//}
-					?>
-					<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
-						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
-						<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
-					</a>
-				<?php } ?>
-				<div class="clearfix"></div>
-			</div>
-			<div class="clearfix"></div>
-			<?php
-		} else { // no access token or user id, so error for admins:
-			if (current_user_can('manage_options')) {
-				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. Only site admins can see this message.</p>';
-			}
-		}
-
-	}
-	add_action('p3_posts_column_start', 'p3_instagram_top_of_posts', 99);
-}
-
-
-// kensington feed
-if (!function_exists('p3_instagram_bottom_of_posts')) {
-	function p3_instagram_bottom_of_posts() {
-		
-		if (!get_theme_mod('p3_instagram_kensington') || (!is_front_page() && !is_home())) {
-			return;
-		}
-		
-		$images = p3_instagram_fetch(); // grab images
-			
-		if ($images) {
-			$meta = absint(get_theme_mod('p3_instagram_meta'));
-			$num = intval(get_theme_mod('p3_instagram_number', 8));
-			if (get_theme_mod('p3_instagram_rows')) {
-				$num = $num*2;
-			}
-		?>
-			<div class="clearfix"></div>
-			<div id="p3_instagram_kensington" class="row">
-				<div class="container">
-				<h3 class="widget-title"><span>Instagram</span></h3>
-				<?php $num = $num-1; // account for array starting at 0 ?>
-					<?php for ($x = 0; $x <= $num; $x++) {
-						$hide_class = '';
-						if ($x >= 4) {
-							$hide_class = ' p3_instagram_hide_mobile';
-						}
-						?>
-						<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
-							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
-							<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
-						</a>
-					<?php } ?>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-			<?php
-		} else { // no access token or user id, so error for admins:
-			if (current_user_can('manage_options')) {
-				echo '<p style="text-align:center">Unable to display Instagram feed. Please check your account has been correctly setup on <a href="'.admin_url('admin.php?page=pipdig-instagram').'">this page</a>. This error can also occur if you have not yet published any images to Instagram or if your Instagram profile is set to Private. Only site admins can see this message.</p>';
-			}
-		}
-
-	}
-	add_action('p3_site_main_end', 'p3_instagram_bottom_of_posts', 99);
+add_action('p3_site_main_end', 'p3_instagram_bottom_of_posts', 99);
 }
 
 

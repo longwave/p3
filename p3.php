@@ -116,6 +116,10 @@ function pipdig_p3_scripts_styles() {
 	//wp_register_script( 'pipdig-cookie', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js', array( 'jquery' ), null, true );
 	wp_register_script( 'pipdig-flickity', 'https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js', array('jquery'), null, false );
 	
+	if (get_theme_mod('pipdig_lazy')) {
+		wp_enqueue_script( 'pipdig-lazy', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.5/jquery.lazy.min.js', array( 'jquery' ), null, true );
+	}
+	
 	wp_enqueue_style( 'font-awesome', 'https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', '', null );
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');

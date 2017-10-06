@@ -65,6 +65,14 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 			if ($videos) { ?>
 			
 				<?php
+				
+				$lazy = false;
+				$lazy_class = '';
+				if (is_pipdig_lazy()) {
+					$lazy = true;
+					$lazy_class = ' pipdig_lazy';
+				}
+				
 				$id = 'p3_youtube_widget_'.rand(1, 999999999);
 				
 				$horizontal = '';
@@ -95,6 +103,12 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 				<?php foreach($videos as $video) { ?>
 				
 					<?php
+					
+					$image_src = 'style="background-image:url('.$video['thumbnail'].');"';
+					if ($lazy) {
+						$image_src = 'data-src="'.$video['thumbnail'].'"';
+					}
+					
 					// margin for all except first in series
 					$margin = '';
 					if (empty($horizontal) && ($number > 1) && ($i != 1)) {
@@ -103,7 +117,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 					$i++;
 					?>
 					<div class="p3_youtube_widget_wrapper <?php echo $horizontal; ?>">
-					<div class="p3_youtube_widget p3_cover_me" style="background-image:url(<?php echo esc_url($video['thumbnail']); ?>);<?php echo $margin; ?>">
+					<div class="p3_youtube_widget p3_cover_me<?php echo $lazy_class; ?>" <?php echo $image_src; ?> style="<?php echo $margin; ?>">
 						<a href="<?php echo esc_url($video['link']); ?>" target="_blank" rel="nofollow">
 							<img class="p3_invisible" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=" alt="<?php echo esc_attr($video['title']); ?>"/>
 							<i class="fa fa-youtube-play"></i>

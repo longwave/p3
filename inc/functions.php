@@ -382,6 +382,14 @@ function p3_slicknav_brand() {
 	return $brand;
 }
 
+function is_pipdig_lazy() {
+	if (get_theme_mod('pipdig_lazy')) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
 include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');
 include(plugin_dir_path(__FILE__).'functions/top_menu_bar.php');

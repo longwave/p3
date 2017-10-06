@@ -67,6 +67,14 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		$id = 'p3_instagram_widget_'.rand(1, 999999999);
 		
 		if ($images) {
+			
+			$lazy = false;
+			$lazy_class = '';
+			if (is_pipdig_lazy()) {
+				$lazy = true;
+				$lazy_class = ' pipdig_lazy';
+			}
+			
 		?>
 			<div id="<?php echo $id; ?>" class="p3_instagram_widget">
 			<style>
@@ -75,8 +83,15 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 					border: <?php echo $border; ?>px solid <?php echo strip_tags(get_theme_mod('content_background_color', '#fff')); ?>
 				}
 			</style>
-			<?php for ($x = 0; $x <= $images_num; $x++) { ?>
-				<a href="<?php echo $images[$x]['link']; ?>" class="p3_instagram_post" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
+			<?php for ($x = 0; $x <= $images_num; $x++) {
+				
+				$image_src = 'style="background-image:url('.$images[$x]['src'].');"';
+				if ($lazy) {
+					$image_src = 'data-src="'.$images[$x]['src'].'"';
+				}
+
+			?>
+				<a href="<?php echo $images[$x]['link']; ?>" class="p3_instagram_post <?php echo $lazy_class; ?>" <?php echo $image_src; ?> rel="nofollow" target="_blank">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_instagram_square" alt=""/>
 					<?php if ($likes) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
 				</a>

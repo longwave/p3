@@ -190,14 +190,27 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 			$img_size = 'large';
 		}
 		
+		$lazy = false;
+		$lazy_class = '';
+		if (is_pipdig_lazy()) {
+			$lazy = true;
+			$lazy_class = 'pipdig_lazy';
+		}
+		
 	?>
 	<?php while ( $popular->have_posts() ): $popular->the_post();
 		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), $img_size );
 		if ($thumb) {
-			$bg = esc_url($thumb['0']);
+			$img = esc_url($thumb['0']);
 		} else {
-			$bg = pipdig_p3_catch_that_image();
+			$img = pipdig_p3_catch_that_image();
 		}
+		
+		$image_src = 'style="background-image:url('.$img.');"';
+		if ($lazy) {
+			$image_src = 'data-src="'.$img.'"';
+		}
+		
 		$title = get_the_title();
 		
 		if ($style_select === 1) { ?>
@@ -206,7 +219,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 					<?php if ($image_shape == 4) { ?>
 						<img src="<?php echo $bg; ?>" alt="<?php echo esc_attr($title); ?>" />
 					<?php } else { ?>
-						<div class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>)">
+						<div class="p3_cover_me <?php echo $lazy_class; ?>" <?php echo $image_src; ?>>
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
 						</div>
 					<?php } ?>
@@ -220,7 +233,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 					<?php if ($image_shape == 4) { ?>
 						<img src="<?php echo $bg; ?>" alt="<?php echo esc_attr($title); ?>" />
 					<?php } else { ?>
-						<div class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>)">
+						<div class="p3_cover_me <?php echo $lazy_class; ?>" <?php echo $image_src; ?>>
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
 						</div>
 					<?php } ?>

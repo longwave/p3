@@ -57,9 +57,16 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 				
 				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), $img_size );
 				if ($thumb) {
-					$bg = esc_url($thumb['0']);
+					$img = esc_url($thumb['0']);
 				} else {
-					$bg = pipdig_p3_catch_that_image();
+					$img = pipdig_p3_catch_that_image();
+				}
+				
+				$image_src = 'src="'.$img.'"';
+				$lazy_class = '';
+				if (is_pipdig_lazy()) {
+					$lazy_class = ' pipdig_lazy';
+					$image_src = 'data-src="'.$img.'"';
 				}
 				
 				$title = get_the_title();
@@ -70,7 +77,7 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 					$featured_text = '<div style="position: absolute; left: 0; top: 15px; background: #fff; color: #000; padding: 2px 5px;">'.__('Featured', 'p3').'</div>';
 				}
 				if (empty($instance['hide_image'])) {
-					echo '<a href="'.$link.'" style="position:relative; display: block;">'.$featured_text.'<img class="p3_featured_post_widget_post_img" src="'.$bg.'" alt="'.$title.'" /></a>';
+					echo '<a href="'.$link.'" style="position:relative; display: block;">'.$featured_text.'<img class="p3_featured_post_widget_post_img '.$lazy_class.'" '.$image_src.' alt="'.$title.'" /></a>';
 				}
 				if (empty($instance['hide_title'])) {
 					echo '<a href="'.$link.'"><h4 class="p3_featured_post_widget_post_title">'.strip_tags(get_the_title()).'</h4></a>';

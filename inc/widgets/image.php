@@ -70,14 +70,23 @@ class pipdig_Image_Widget extends WP_Widget {
 			}
 
 			if (!empty($instance['image_uri'])) {
-				$image_src = $instance['image_uri'];
+				$image_link = $instance['image_uri'];
 				$image_data = pipdig_get_attachment_id($instance['image_uri']); // use the medium thumbnail if we can find it
 				if ($image_data) {
-					$image_src = wp_get_attachment_image_src($image_data, 'large');
-					$image_src = reset($image_src); // php <5.4 way to get [0] value of array
-					$image_src = str_replace('http:', '', $image_src);
+					$image_link = wp_get_attachment_image_src($image_data, 'large');
+					$image_link = reset($image_link); // php <5.4 way to get [0] value of array
+					$image_link = str_replace('http:', '', $image_link);
 				}
-				echo $link_open.'<img src="'.esc_url($image_src).'" alt="" '.$width.' />'.$link_close;
+				
+				$lazy_class = '';
+				if (is_pipdig_lazy()) {
+					$lazy_class = 'class="pipdig_lazy"';
+					$image_src = 'data-src="'.esc_url($image_link).'"';
+				} else {
+					$image_src = 'src="'.esc_url($image_link).'"';
+				}
+				
+				echo $link_open.'<img '.$image_src.' '.$lazy_class.' alt="" '.$width.' />'.$link_close;
 			}
 
 		echo $args['after_widget'];
