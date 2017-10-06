@@ -51,6 +51,14 @@ if (!defined('ABSPATH')) die;
 			),
 			)
 		);
+		
+		$lazy = false;
+		$lazy_class = '';
+		if (is_pipdig_lazy()) {
+			$lazy = true;
+			$lazy_class = 'pipdig_lazy';
+		}
+		
 		if( $query->have_posts() ) {
 	
 		$output .= '<div class="clearfix"></div>';
@@ -64,12 +72,18 @@ if (!defined('ABSPATH')) die;
 			$link = esc_url(get_the_permalink());
 			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
 			if ($thumb) {
-				$bg = esc_url($thumb['0']);
+				$img = esc_url($thumb['0']);
 			} else {
-				$bg = pipdig_p3_catch_that_image();
+				$img = pipdig_p3_catch_that_image();
 			}
+			
+			$image_src = 'style="background-image:url('.$img.');"';
+			if ($lazy) {
+				$image_src = 'data-src="'.$img.'"';
+			}
+			
 			$output .= '<li>';
-				$output .= '<div class="p3_cover_me pipdig_p3_related_thumb" style="background-image:url('.$bg.');">';
+				$output .= '<div class="p3_cover_me pipdig_p3_related_thumb '.$lazy_class.'" '.$image_src.'>';
 				$output .= '<a href="'.$link.'" title="'.$title_attr.'"><img src="'.$shape.'" alt="'.$title_attr.'" class="p3_invisible" data-pin-nopin="true"/></a>';
 				$output .= '</div>';
 				$output .= '<div class="pipdig_p3_related_content">';
