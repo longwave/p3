@@ -390,6 +390,20 @@ function is_pipdig_lazy() {
 	}
 }
 
+function p3_lazy_script() {
+	if (!get_theme_mod('pipdig_lazy')) {
+		return;
+	}
+	?>
+	<script>
+	jQuery(document).ready(function($) {
+		$(".pipdig_lazy").Lazy();
+	});
+	</script>
+	<?php
+}
+add_action( 'wp_footer', 'p3_lazy_script', 99999 );
+
 include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
 include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');
 include(plugin_dir_path(__FILE__).'functions/top_menu_bar.php');
