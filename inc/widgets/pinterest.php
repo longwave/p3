@@ -98,7 +98,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 					}
 					?>
 					<a href="<?php echo $images[$x]['link']; ?>" class="p3_pinterest_post <?php echo $lazy_class; ?>" <?php echo $image_src; ?> rel="nofollow" target="_blank">
-						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_invisible" alt=""/>
+						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_invisible" alt=""/>
 					</a>
 				<?php } ?>
 				<div class="clearfix"></div>

@@ -175,7 +175,7 @@ background-position:center;
 #p3_instagram_top_of_posts .p3_instagram_post {width: 19.5%;margin:0 .25%;}
 #p3_instagram_page .p3_instagram_post {width: 20%;}
 .p3_instagram_post:hover {opacity:.7}
-.p3_instagram_post img {max-width:100%;height:auto;}
+.p3_instagram_post img {width:100%;height:auto;}
 .p3_instagram_post .p3_instagram_likes {font:10px Montserrat, Arial, sans-serif;letter-spacing:1px;color:#000;position:absolute;top:50%;width:100%;}
 .p3_instagram_post .p3_instagram_comments {color:#000;position:absolute;bottom:5%;left:5%}
 .p3_instagram_likes {
@@ -239,7 +239,7 @@ background-position:center;
 -moz-transition:all 0.2s ease-out;-webkit-transition:all 0.2s ease-out;transition:all 0.2s ease-out;
 }
 .p3_pinterest_post:hover {opacity:.7}
-.p3_pinterest_post img {max-width:100%;height:auto;}
+.p3_pinterest_post img {width:100%;height:auto;}
 
 #p3_pinterest_widget {
 overflow: auto;
