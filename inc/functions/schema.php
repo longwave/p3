@@ -9,7 +9,7 @@ function p3_schema_publisher() {
 		$logo_width = intval($logo['1']);
 		$logo_height = intval($logo['2']);
 	} else {
-		$logo_src = 'https://i.imgur.com/f85XGXL.png';
+		$logo_src = 'https://pipdigz.co.uk/p3/img/placeholder-publisher.png';
 		$logo_width = 600;
 		$logo_height = 60;
 	}
