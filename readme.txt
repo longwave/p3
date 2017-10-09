@@ -13,11 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.2.1 =
-* Fix issue with Popular Posts widget images in some cases.
-
-= 3.2.0 =
+= 3.2.2 =
 * New option - set header image to full width of the screen - [https://i.imgur.com/qzt6joG.png](https://i.imgur.com/qzt6joG.png).
+* Improve loading time for CSS (use CDN).
+* Fix issue with YouTube video margins.
 
 = 3.1.0 =
 * Add Reddit and Digg to the "Social Links" page. Display icons in main menu if available.

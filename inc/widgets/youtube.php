@@ -92,11 +92,13 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 			
 				<div id="<?php echo $id; ?>">
 				
-				<?php $i = 1; // just for margin counter below
+				<?php
 				
 				if (!empty($instance['shuffle'])) {
 					shuffle($videos);
 				}
+				
+				$i = 1; // just for margin counter below
 
 				?>
 			
@@ -104,20 +106,20 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 				
 					<?php
 					
-					$image_src = 'style="background-image:url('.$video['thumbnail'].');"';
+					$image_src = 'style="background-image:url('.esc_url($video['thumbnail']).');"';
 					if ($lazy) {
-						$image_src = 'data-src="'.$video['thumbnail'].'"';
+						$image_src = 'data-src="'.esc_url($video['thumbnail']).'"';
 					}
 					
 					// margin for all except first in series
-					$margin = '';
+					$margin_class = '';
 					if (empty($horizontal) && ($number > 1) && ($i != 1)) {
-						$margin = 'margin-top:15px;';
+						$margin_class = ' p3_youtube_margin';
 					}
 					$i++;
 					?>
 					<div class="p3_youtube_widget_wrapper <?php echo $horizontal; ?>">
-					<div class="p3_youtube_widget p3_cover_me<?php echo $lazy_class; ?>" <?php echo $image_src; ?> style="<?php echo $margin; ?>">
+					<div class="p3_youtube_widget p3_cover_me<?php echo $lazy_class.$margin_class; ?>" <?php echo $image_src; ?>>
 						<a href="<?php echo esc_url($video['link']); ?>" target="_blank" rel="nofollow">
 							<img class="p3_invisible" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=" alt="<?php echo esc_attr($video['title']); ?>"/>
 							<i class="fa fa-youtube-play"></i>

@@ -100,7 +100,7 @@ add_action( 'after_setup_theme', 'pipdig_p3_disable_jetpack_modules' );
 function p3_jp_styles() {
 	?>
 	<style>
-	.jp-jitm, .jitm-banner.is-upgrade-premium, .jitm-card.is-upgrade-premium, .jp-wpcom-connect__container {display: none}
+	.jp-jitm, .jitm-banner, .jp-wpcom-connect__container {display: none}
 	</style>
 	<?php
 }
