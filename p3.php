@@ -340,8 +340,15 @@ function pipdig_p3_activate() {
 }
 register_activation_hook( __FILE__, 'pipdig_p3_activate' );
 
-
-
+// Stop people removing query strings. They're an important part of WP and keeping your site working correctly.
+function p3_trust_me_you_dont_want_this() {
+	$plugins = array(
+		'query-strings-remover/query-strings-remover.php',
+		'remove-query-strings-from-static-resources/remove-query-strings.php',
+	);
+	deactivate_plugins($plugins);
+}
+add_action('plugins_loaded', 'p3_trust_me_you_dont_want_this');
 
 /*
 function pipdig_p3_theme_setup() {
