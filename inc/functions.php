@@ -407,6 +407,27 @@ function p3_lazy_script() {
 }
 add_action( 'wp_footer', 'p3_lazy_script', 99999 );
 
+function p3_remove_ellipses_script() {
+	if (get_theme_mod('excerpt_length_num') === 0) {
+	?>
+	<script>
+	jQuery(document).ready(function($) {
+		jQuery.fn.highlight = function (str, className) {    
+				var regex = new RegExp(str, "gi");
+				return this.each(function () {
+					this.innerHTML = this.innerHTML.replace(regex, function(matched) {return "";});
+				});
+		};
+		$(".entry-summary, .pipdig_3_col_grid_item").highlight("…","highlight");
+	});
+	</script>
+	<?php
+	}
+}
+add_action( 'wp_footer', 'p3_remove_ellipses_script', 999 );
+
+
+
 include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
 include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');
 include(plugin_dir_path(__FILE__).'functions/top_menu_bar.php');
