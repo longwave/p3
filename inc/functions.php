@@ -407,6 +407,7 @@ function p3_lazy_script() {
 }
 add_action( 'wp_footer', 'p3_lazy_script', 99999 );
 
+/*
 function p3_remove_ellipses_script() {
 	if (get_theme_mod('excerpt_length_num') === 0) {
 	?>
@@ -425,7 +426,7 @@ function p3_remove_ellipses_script() {
 	}
 }
 add_action( 'wp_footer', 'p3_remove_ellipses_script', 999 );
-
+*/
 
 
 include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
