@@ -11,6 +11,9 @@ function p3_full_screen_landing_cookie() {
 	if (!get_theme_mod('p3_full_screen_landing_enable')) {
 		return;
 	}
+	if (is_paged()) {
+		return;
+	}
 	if (get_theme_mod('p3_full_screen_landing_home', 1) && (!is_front_page() && !is_home())) {
 		return;
 	}
@@ -54,7 +57,9 @@ if (!function_exists('p3_full_screen_landing')) {
 		if (!get_theme_mod('p3_full_screen_landing_enable')) {
 			return;
 		}
-		
+		if (is_paged()) {
+			return;
+		}
 		if (get_theme_mod('p3_full_screen_landing_home', 1) && (!is_front_page() && !is_home())) {
 			return;
 		}

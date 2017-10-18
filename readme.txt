@@ -13,9 +13,12 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.2 =
+* Option to change the size of images in the [pipdig_banner shortcode](https://wp.me/p79IlF-ij).
+
 = 3.2.2 =
 * New option - set header image to full width of the screen - [https://i.imgur.com/qzt6joG.png](https://i.imgur.com/qzt6joG.png).
-* Improve loading time for CSS (use CDN).
+* Improve loading time for CSS (minify and serve via CDN).
 * Fix issue with YouTube video margins.
 
 = 3.1.0 =

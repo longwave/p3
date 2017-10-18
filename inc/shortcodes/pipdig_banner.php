@@ -1,5 +1,4 @@
 <?php 
-
 if (!defined('ABSPATH')) die;
 
 // [pipdig_banner image=""]
@@ -21,7 +20,7 @@ function parallax_section_func( $atts, $content = null ) {
 	
 	if ($parallax == 'yes') {
 		$parallax_class = ' pipdig_banner_parallax';
-		$stellar = 'data-stellar-background-ratio="1.4"';
+		//$stellar = 'data-stellar-background-ratio="1.4"';
 	}
 	if ($link) {
 		$tag_1 = '<a href="'.esc_url($link).'"';
@@ -30,8 +29,10 @@ function parallax_section_func( $atts, $content = null ) {
 	
 	if ($size == 'original') {
 		$output .= $tag_1.' class="pipdig_banner'.$parallax_class.'" style="height:auto"><img src="'.esc_url($image).'" alt=""/>'.$tag_2;
+	} elseif (absint($size) > 10) {
+		$output .= $tag_1.' class="pipdig_banner'.$parallax_class.'" style="background-image:url('.esc_url($image).');height:'.absint($size).'px;">'.$tag_2;
 	} else {
-		$output .= $tag_1.' class="pipdig_banner'.$parallax_class.'" style="background-image:url('.esc_url($image).');" '.$stellar.'>'.$tag_2;
+		$output .= $tag_1.' class="pipdig_banner'.$parallax_class.'" style="background-image:url('.esc_url($image).');">'.$tag_2;
 	}
 	
 	return $output;

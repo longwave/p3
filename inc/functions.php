@@ -428,7 +428,6 @@ function p3_remove_ellipses_script() {
 add_action( 'wp_footer', 'p3_remove_ellipses_script', 999 );
 */
 
-
 include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
 include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');
 include(plugin_dir_path(__FILE__).'functions/top_menu_bar.php');
