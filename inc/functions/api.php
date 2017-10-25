@@ -187,9 +187,17 @@ function pipdig_p3_scrapey_scrapes() {
 		}
 
 
-		// need to add gplus and twitch...
-		
 		// backups
+		$google_plus_url = esc_url($links['google_plus']);
+		if ($google_plus_url) {
+			if (function_exists('get_scp_counter') && get_scp_counter('googleplus')) {
+				$google_plus_count = absint(get_scp_counter('googleplus'));
+				update_option('p3_google_plus_count', $google_plus_count);
+			}
+		} else {
+			delete_option('p3_google_plus_count');
+		}
+		
 		$soundcloud_url = esc_url($links['soundcloud']);
 		if ($soundcloud_url) {
 			if (function_exists('get_scp_counter') && get_scp_counter('soundcloud')) {

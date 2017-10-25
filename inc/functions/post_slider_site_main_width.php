@@ -37,13 +37,14 @@ if (!function_exists('p3_full_width_slider_site_main')) {
 				<div data-starting-slide="1" data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
 					<ul>
 						<?php
-							$post_cat_slider = get_theme_mod('p3_full_width_slider_site_main_slider_cat');
 							$args = array(
 								'showposts' => 4,
-								'cat' => $post_cat_slider,
 							);
+							if (absint(get_theme_mod('p3_full_width_slider_site_main_slider_cat'))) {
+								$args['cat'] = absint(get_theme_mod('p3_full_width_slider_site_main_slider_cat'));
+							}
 							$the_query = new WP_Query( $args );
-								
+							
 							while ($the_query -> have_posts()) : $the_query -> the_post();
 
 								$images = '';

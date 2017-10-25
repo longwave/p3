@@ -2,6 +2,23 @@
 
 if (!defined('ABSPATH')) die;
 
+if (!class_exists('Heartbeat_Control')) {
+function pipdig_heartbeat_control($settings) {
+    $settings['interval'] = 90;
+    return $settings;
+}
+add_filter('heartbeat_settings', 'pipdig_heartbeat_control');
+}
+
+if (!function_exists('disable_emojis')) {
+function pipdig_disable_emojis() {
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+}
+add_action( 'init', 'pipdig_disable_emojis' );
+}
 
 /*  Add credit to admin area --------------------------------------------------------*/
 function pipdig_p3_footer_admin () {

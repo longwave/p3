@@ -13,8 +13,9 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.2 =
+= 3.3.0 =
 * Option to change the size of images in the [pipdig_banner shortcode](https://wp.me/p79IlF-ij).
+* Include Google+ in social footer links/counters.
 
 = 3.2.2 =
 * New option - set header image to full width of the screen - [https://i.imgur.com/qzt6joG.png](https://i.imgur.com/qzt6joG.png).

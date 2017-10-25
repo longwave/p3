@@ -9,12 +9,13 @@ function pipdig_p3_social_footer() {
 	pipdig_p3_scrapey_scrapes();
 	
 	$count = 0;
-	$twitter_count = intval(get_option('p3_twitter_count'));
-	$facebook_count = intval(get_option('p3_facebook_count'));
-	$instagram_count = intval(get_option('p3_instagram_count'));
-	$youtube_count = intval(get_option('p3_youtube_count'));
-	$pinterest_count = intval(get_option('p3_pinterest_count'));
-	$bloglovin_count = intval(get_option('p3_bloglovin_count'));
+	$twitter_count = absint(get_option('p3_twitter_count'));
+	$facebook_count = absint(get_option('p3_facebook_count'));
+	$instagram_count = absint(get_option('p3_instagram_count'));
+	$youtube_count = absint(get_option('p3_youtube_count'));
+	$pinterest_count = absint(get_option('p3_pinterest_count'));
+	$bloglovin_count = absint(get_option('p3_bloglovin_count'));
+	$google_plus_count = absint(get_option('p3_google_plus_count'));
 	
 	if (get_theme_mod('disable_responsive')) {
 		$sm = $md = 'xs';
@@ -23,25 +24,35 @@ function pipdig_p3_social_footer() {
 		$md = 'md';
 	}
 
-	if ( $twitter_count )
+	if ($twitter_count) {
 		$count++;
-
-	if ( $facebook_count )
-		$count++;
-
-	if ( $instagram_count )
-		$count++;
-
-	if ( $youtube_count )
-		$count++;
+	}
 	
-	if ( $pinterest_count )
+	if ($facebook_count) {
 		$count++;
+	}
 	
-	if ( $bloglovin_count )
+	if ($instagram_count) {
 		$count++;
+	}
+	
+	if ($youtube_count) {
+		$count++;
+	}
+	
+	if ($pinterest_count) {
+		$count++;
+	}
+	
+	if ($bloglovin_count) {
+		$count++;
+	}
+	
+	if ($google_plus_count && ($count < 6)) {
+		$count++;
+	}
 
-	$class = '';
+	$class = $colz = '';
 
 	switch ( $count ) {
 		case '1':
@@ -64,15 +75,15 @@ function pipdig_p3_social_footer() {
 			break;
 	}
 
-	if ( $class ) {
-		$colz = 'class="' . $class . '"';
+	if ($class) {
+		$colz = 'class="'.$class.'"';
 	}
 
 	$output = '<div class="clearfix extra-footer-outer social-footer-outer">';
 	$output .= '<div class="container">';
 	$output .= '<div class="row social-footer">';
 	
-	$total_count = $twitter_count + $facebook_count + $instagram_count + $youtube_count + $bloglovin_count + $pinterest_count;
+	$total_count = $twitter_count + $facebook_count + $instagram_count + $youtube_count + $bloglovin_count + $pinterest_count + $google_plus_count;
 	
 	if ($total_count) {
 	
@@ -106,9 +117,15 @@ function pipdig_p3_social_footer() {
 		$output .= '</div>';
 		}
 		
-		if(!empty($bloglovin_count) && get_theme_mod('p3_social_footer_bloglovin', 1)) {
+		if(!empty($bloglovin_count) && ($count < 6) && get_theme_mod('p3_social_footer_bloglovin', 1)) {
 		$output .='<div '.$colz.'>';
 		$output .= '<a href="'.esc_url($links['bloglovin']).'" target="_blank" rel="nofollow"><i class="fa fa-plus"></i> Bloglovin<span class="social-footer-counters"> | '.$bloglovin_count.'</span></a>';
+		$output .= '</div>';
+		}
+		
+		if(!empty($google_plus_count) && ($count < 6) && get_theme_mod('p3_social_footer_g_plus', 1)) {
+		$output .='<div '.$colz.'>';
+		$output .= '<a href="'.esc_url($links['google_plus']).'" target="_blank" rel="nofollow"><i class="fa fa-google-plus"></i> Google<span class="social-footer-counters"> | '.$google_plus_count.'</span></a>';
 		$output .= '</div>';
 		}
 		

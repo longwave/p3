@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.2.2
+Version: 3.3.0
 Text Domain: p3
 License: Copyright 2017 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.2.2' );
+define( 'PIPDIG_P3_V', '3.3.0' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -122,7 +122,7 @@ function pipdig_p3_scripts_styles() {
 		wp_enqueue_script( 'pipdig-lazy', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.5/jquery.lazy.min.js', array( 'jquery' ), null, true );
 	}
 	
-	wp_enqueue_style( 'font-awesome', 'https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', '', null );
+	wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', '', null );
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
 

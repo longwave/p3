@@ -208,7 +208,7 @@ add_filter('safe_style_css','p3_safe_styles');
 
 // get image ID from url - https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
 // seems to confuse the same filenames. need to check.
-function pipdig_get_attachment_id( $url ) {
+function pipdig_get_attachment_id($url) {
 
 	$attachment_id = 0;
 	$dir = wp_upload_dir();
@@ -232,9 +232,9 @@ function pipdig_get_attachment_id( $url ) {
 
 		$query = new WP_Query($query_args);
 
-		if ( $query->have_posts() ) {
+		if ($query->have_posts()) {
 
-			foreach ( $query->posts as $post_id ) {
+			foreach ($query->posts as $post_id) {
 				$meta = wp_get_attachment_metadata( $post_id );
 				$original_file = basename($meta['file']);
 				$cropped_image_files = wp_list_pluck( $meta['sizes'], 'file' );
