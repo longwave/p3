@@ -86,7 +86,7 @@ class pipdig_Image_Widget extends WP_Widget {
 					$image_src = 'src="'.esc_url($image_link).'"';
 				}
 				
-				echo $link_open.'<img '.$image_src.' '.$lazy_class.' alt="" '.$width.' />'.$link_close;
+				echo $link_open.'<img '.$image_src.' '.$lazy_class.' alt="" data-pin-nopin="true" '.$width.' />'.$link_close;
 			}
 
 		echo $args['after_widget'];

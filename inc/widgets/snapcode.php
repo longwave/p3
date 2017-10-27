@@ -65,7 +65,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 					$image_src = 'src="'.esc_url($image_link).'"';
 				}
 				
-				echo $link_open.'<img '.$image_src.' alt="Snapchat" '.$lazy_class.' style="min-width: 1.2in; max-width: 1.6in; height: auto;'.$greyscale.'" />'.$link_close;
+				echo $link_open.'<img '.$image_src.' alt="Snapchat" '.$lazy_class.' data-pin-nopin="true" style="min-width: 1.2in; max-width: 1.6in; height: auto;'.$greyscale.'" />'.$link_close;
 				if (!empty($instance['snapchat_account'])) {
 					echo '<p>'.sprintf( __('Follow <b>%s</b> on Snapchat!', 'p3'), strip_tags($instance['snapchat_account']) ).'</p>';
 				}

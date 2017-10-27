@@ -58,7 +58,7 @@ class pipdig_widget_profile_function extends WP_Widget {
 					$image_src = reset($image_src); // php <5.4 way to get [0] value of array
 					$image_src = str_replace('http:', '', $image_src);
 				}
-				echo '<div class="nopin"><img src="'.esc_url($image_src).'" alt="" '.$circle.' /></div>';
+				echo '<div class="nopin"><img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" /></div>';
 			}
 			
 			if (!empty($instance['description'])) {

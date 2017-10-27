@@ -26,6 +26,8 @@ delete_option('p3_google_plus_count');
 delete_option('pipdig_p3_snapchat_account');
 delete_option('p3_twitter_handle');
 delete_option('p3_deactivate_plugins');
+delete_option('p3_update_notice_1');
+delete_option('p3_update_notice_2');
 delete_option('p3_update_notice_3');
 //delete_option('p3_social_transfer');
 //delete_option('p3_navbar_icons_transfer');
