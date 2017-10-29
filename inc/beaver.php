@@ -5,18 +5,18 @@ if (!class_exists('FLBuilder')) {
 	return;
 }
 
-function p3_beaver_post_types( $post_types ) {
+function p3_beaver_post_types($post_types) {
     $post_types[] = 'post';
     return $post_types;
 }
 add_filter( 'fl_builder_post_types', 'p3_beaver_post_types' );
 
 
-function p3_beaver_modules( $enabled, $instance ) {
+function p3_beaver_modules($enabled, $instance) {
 
-    $disable = array( 'sidebar', 'widget' );
+    $disable = array('sidebar', 'widget');
 
-    if ( in_array( $instance->slug, $disable ) ) {
+    if (in_array($instance->slug, $disable)) {
         return false;
     }
 

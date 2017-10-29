@@ -1,14 +1,13 @@
 <?php 
-
 if (!defined('ABSPATH')) die;
 
 if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 	class pipdig_widget_latest_youtube extends WP_Widget {
 	 
-	  public function __construct() {
-		 $widget_ops = array('classname' => 'pipdig_widget_latest_youtube', 'description' => __('Automatically displays your latest YouTube video.', 'p3') );
-		 parent::__construct('pipdig_widget_latest_youtube', 'pipdig - ' . __('YouTube Videos', 'p3'), $widget_ops);
-	  }
+	public function __construct() {
+		$widget_ops = array('classname' => 'pipdig_widget_latest_youtube', 'description' => __('Automatically displays your latest YouTube video.', 'p3') );
+		parent::__construct('pipdig_widget_latest_youtube', 'pipdig - ' . __('YouTube Videos', 'p3'), $widget_ops);
+	}
 	  
 	  function widget($args, $instance) {
 		// PART 1: Extracting the arguments + getting the values
@@ -120,7 +119,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 					?>
 					<div class="p3_youtube_widget_wrapper <?php echo $horizontal; ?>">
 					<div class="p3_youtube_widget p3_cover_me<?php echo $lazy_class.$margin_class; ?>" <?php echo $image_src; ?>>
-						<a href="<?php echo esc_url($video['link']); ?>" target="_blank" rel="nofollow">
+						<a href="<?php //echo esc_url($video['link']); ?>" target="_blank" rel="nofollow" data-p3-youtube="<?php echo esc_attr($video['id']); ?>">
 							<img class="p3_invisible" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=" alt="<?php echo esc_attr($video['title']); ?>"/>
 							<i class="fa fa-youtube-play"></i>
 						</a>
@@ -137,6 +136,18 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 				<?php } ?>
 				<div class="clearfix"></div>
 				</div>
+				<?php if (!function_exists('pipdig_previews_remove_scripts')) { ?>
+				<script>
+				jQuery(document).ready(function($) {
+					$('.p3_youtube_widget a').click(function(e){
+						e.preventDefault();
+						var videoId = $(this).data('p3-youtube');
+						$(this).html('<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/'+videoId+'?rel=0&controls=0&showinfo=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
+						$('.p3_youtube_widget').fitVids();
+					});
+				});
+				</script>
+				<?php } ?>
 			<?php
 			}
 			

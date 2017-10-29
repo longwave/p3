@@ -13,9 +13,12 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.4.0 =
+* Automatically play YouTube videos [when clicked](https://imgur.com/a/4AjYR).
+* Include Google+ in social footer links/counters.
+
 = 3.3.0 =
 * Option to change the size of images in the [pipdig_banner shortcode](https://wp.me/p79IlF-ij).
-* Include Google+ in social footer links/counters.
 
 = 3.2.2 =
 * New option - set header image to full width of the screen - [https://i.imgur.com/qzt6joG.png](https://i.imgur.com/qzt6joG.png).

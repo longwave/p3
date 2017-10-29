@@ -15,7 +15,7 @@ function pipdig_p3_social_footer() {
 	$youtube_count = absint(get_option('p3_youtube_count'));
 	$pinterest_count = absint(get_option('p3_pinterest_count'));
 	$bloglovin_count = absint(get_option('p3_bloglovin_count'));
-	$google_plus_count = 0; //absint(get_option('p3_google_plus_count'));
+	$google_plus_count = absint(get_option('p3_google_plus_count'));
 	
 	if (get_theme_mod('disable_responsive')) {
 		$sm = $md = 'xs';
@@ -48,8 +48,10 @@ function pipdig_p3_social_footer() {
 		$count++;
 	}
 	
+	$show_google = false;
 	if ($google_plus_count && ($count < 6)) {
 		$count++;
+		$show_google = true;
 	}
 
 	$class = $colz = '';
@@ -123,7 +125,7 @@ function pipdig_p3_social_footer() {
 		$output .= '</div>';
 		}
 		
-		if(!empty($google_plus_count) && ($count < 6)) {
+		if(!empty($google_plus_count) && $show_google) {
 		$output .='<div '.$colz.'>';
 		$output .= '<a href="'.esc_url($links['google_plus']).'" target="_blank" rel="nofollow"><i class="fa fa-google-plus"></i> Google<span class="social-footer-counters"> | '.$google_plus_count.'</span></a>';
 		$output .= '</div>';
