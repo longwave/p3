@@ -14,7 +14,7 @@ The core functions of any pipdig theme. Please check the changelog before updati
 == Changelog ==
 
 = 3.4.0 =
-* Automatically play YouTube videos [when clicked](https://imgur.com/a/4AjYR).
+* Automatically play YouTube videos when clicked.
 * Include Google+ in social footer links/counters.
 
 = 3.3.0 =
