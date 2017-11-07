@@ -15,7 +15,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'email', 
-		'<i class="fa fa-envelope"></i>&nbsp;&nbsp;Email', 
+		'<i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;Email', 
 		'p3_email_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -23,7 +23,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'twitter', 
-		'<i class="fa fa-twitter"></i>&nbsp;&nbsp;Twitter', 
+		'<i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;&nbsp;Twitter', 
 		'p3_twitter_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -31,7 +31,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'instagram', 
-		'<i class="fa fa-instagram"></i>&nbsp;&nbsp;Instagram', 
+		'<i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;&nbsp;Instagram', 
 		'p3_instagram_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -39,7 +39,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'facebook', 
-		'<i class="fa fa-facebook"></i>&nbsp;&nbsp;Facebook', 
+		'<i class="fa fa-facebook" aria-hidden="true"></i>&nbsp;&nbsp;Facebook', 
 		'p3_facebook_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -47,7 +47,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'google_plus', 
-		'<i class="fa fa-google-plus"></i>&nbsp;&nbsp;Google Plus', 
+		'<i class="fa fa-google-plus" aria-hidden="true"></i>&nbsp;&nbsp;Google Plus', 
 		'p3_google_plus_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -55,7 +55,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'bloglovin', 
-		'<i class="fa fa-plus"></i>&nbsp;&nbsp;Bloglovin&#146;', 
+		'<i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Bloglovin&#146;', 
 		'p3_bloglovin_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -63,7 +63,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'pinterest', 
-		'<i class="fa fa-pinterest"></i>&nbsp;&nbsp;Pinterest', 
+		'<i class="fa fa-pinterest" aria-hidden="true"></i>&nbsp;&nbsp;Pinterest', 
 		'p3_pinterest_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -71,7 +71,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'snapchat', 
-		'<i class="fa fa-snapchat-ghost"></i>&nbsp;&nbsp;Snapchat', 
+		'<i class="fa fa-snapchat-ghost" aria-hidden="true"></i>&nbsp;&nbsp;Snapchat', 
 		'p3_snapchat_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -79,7 +79,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'youtube', 
-		'<i class="fa fa-youtube-play"></i>&nbsp;&nbsp;YouTube', 
+		'<i class="fa fa-youtube-play" aria-hidden="true"></i>&nbsp;&nbsp;YouTube', 
 		'p3_youtube_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -87,7 +87,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'tumblr', 
-		'<i class="fa fa-tumblr"></i>&nbsp;&nbsp;Tumblr', 
+		'<i class="fa fa-tumblr" aria-hidden="true"></i>&nbsp;&nbsp;Tumblr', 
 		'p3_tumblr_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -95,7 +95,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'linkedin', 
-		'<i class="fa fa-linkedin"></i>&nbsp;&nbsp;LinkedIn', 
+		'<i class="fa fa-linkedin" aria-hidden="true"></i>&nbsp;&nbsp;LinkedIn', 
 		'p3_linkedin_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -103,7 +103,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'soundcloud', 
-		'<i class="fa fa-soundcloud"></i>&nbsp;&nbsp;SoundCloud', 
+		'<i class="fa fa-soundcloud" aria-hidden="true"></i>&nbsp;&nbsp;SoundCloud', 
 		'p3_soundcloud_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -111,7 +111,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'spotify', 
-		'<i class="fa fa-spotify"></i>&nbsp;&nbsp;Spotify', 
+		'<i class="fa fa-spotify" aria-hidden="true"></i>&nbsp;&nbsp;Spotify', 
 		'p3_spotify_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -119,7 +119,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'itunes', 
-		'<i class="fa fa-apple"></i>&nbsp;&nbsp;iTunes', 
+		'<i class="fa fa-apple" aria-hidden="true"></i>&nbsp;&nbsp;iTunes', 
 		'p3_itunes_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -127,7 +127,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'flickr', 
-		'<i class="fa fa-flickr"></i>&nbsp;&nbsp;Flickr', 
+		'<i class="fa fa-flickr" aria-hidden="true"></i>&nbsp;&nbsp;Flickr', 
 		'p3_flickr_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -135,7 +135,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'vk', 
-		'<i class="fa fa-vk"></i>&nbsp;&nbsp;VK', 
+		'<i class="fa fa-vk" aria-hidden="true"></i>&nbsp;&nbsp;VK', 
 		'p3_vk_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -143,7 +143,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'twitch', 
-		'<i class="fa fa-twitch"></i>&nbsp;&nbsp;Twitch', 
+		'<i class="fa fa-twitch" aria-hidden="true"></i>&nbsp;&nbsp;Twitch', 
 		'p3_twitch_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -151,7 +151,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'stumbleupon', 
-		'<i class="fa fa-stumbleupon"></i>&nbsp;&nbsp;Stumbleupon', 
+		'<i class="fa fa-stumbleupon" aria-hidden="true"></i>&nbsp;&nbsp;Stumbleupon', 
 		'p3_stumbleupon_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -159,7 +159,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'etsy', 
-		'<i class="fa fa-etsy"></i>&nbsp;&nbsp;Etsy', 
+		'<i class="fa fa-etsy" aria-hidden="true"></i>&nbsp;&nbsp;Etsy', 
 		'p3_etsy_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -167,7 +167,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'Digg', 
-		'<i class="fa fa-digg"></i>&nbsp;&nbsp;Digg', 
+		'<i class="fa fa-digg" aria-hidden="true"></i>&nbsp;&nbsp;Digg', 
 		'p3_digg_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -175,7 +175,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'Reddit', 
-		'<i class="fa fa-reddit"></i>&nbsp;&nbsp;Reddit', 
+		'<i class="fa fa-reddit" aria-hidden="true"></i>&nbsp;&nbsp;Reddit', 
 		'p3_reddit_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -183,7 +183,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'Houzz', 
-		'<i class="fa fa-houzz"></i>&nbsp;&nbsp;Houzz', 
+		'<i class="fa fa-houzz" aria-hidden="true"></i>&nbsp;&nbsp;Houzz', 
 		'p3_houzz_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -191,7 +191,7 @@ function pipdig_links_init() {
 	
 	add_settings_field( 
 		'rss', 
-		'<i class="fa fa-rss"></i>&nbsp;&nbsp;RSS Feed', 
+		'<i class="fa fa-rss" aria-hidden="true"></i>&nbsp;&nbsp;RSS Feed', 
 		'p3_rss_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
@@ -341,7 +341,7 @@ function pipdig_links_options_page() {
 		do_settings_sections('pipdig_links_options_page');
 		submit_button();
 		?>
-		<p><a href="https://support.pipdig.co/articles/wordpress-advanced-social-stats/" target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> <?php printf(__('If you find that certain social network counters are not working correctly, please see <a href="%s" target="_blank">this guide</a> for a possible solution.', 'p3'), esc_url('https://support.pipdig.co/articles/wordpress-advanced-social-stats/')); ?></p>
+		<p><a href="https://support.pipdig.co/articles/wordpress-advanced-social-stats/" target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true" aria-hidden="true"></i></a> <?php printf(__('If you find that certain social network counters are not working correctly, please see <a href="%s" target="_blank">this guide</a> for a possible solution.', 'p3'), esc_url('https://support.pipdig.co/articles/wordpress-advanced-social-stats/')); ?></p>
 	</form>
 	<?php
 }
