@@ -127,26 +127,24 @@ if (!function_exists('p3_instagram_fetch')) {
 
 
 // function to clear out transients
-if (!function_exists('p3_instagram_clear_transients')) {
-	function p3_instagram_clear_transients($userid = '') {
+function p3_instagram_clear_transients($userid = '') {
 		
-		delete_transient( 'p3_instagram_feed_'.$userid );
+	delete_transient( 'p3_instagram_feed_'.$userid );
 		
-		$instagram_deets = get_option('pipdig_instagram');
-		if (!empty($instagram_deets['access_token'])) {
+	$instagram_deets = get_option('pipdig_instagram');
+	if (!empty($instagram_deets['access_token'])) {
 		
-			$access_token = pipdig_strip($instagram_deets['access_token']);
+		$access_token = pipdig_strip($instagram_deets['access_token']);
 			
-			if (empty($userid)) {
-				$user_id = explode('.', $access_token);
-				$userid = trim($user_id[0]);
-			}
-			delete_transient( 'p3_instagram_feed_'.$userid );
+		if (empty($userid)) {
+			$user_id = explode('.', $access_token);
+			$userid = trim($user_id[0]);
 		}
-		
+		delete_transient( 'p3_instagram_feed_'.$userid );
 	}
-	add_action('p3_instagram_save_action', 'p3_instagram_clear_transients');
+		
 }
+add_action('p3_instagram_save_action', 'p3_instagram_clear_transients');
 
 // add css to head depending on amount of images displayed
 function p3_instagram_css_to_head($width) {
@@ -172,7 +170,6 @@ add_action('wp_head', 'p3_instagram_css_to_head');
 
 
 // footer feed
-if (!function_exists('p3_instagram_footer')) {
 function p3_instagram_footer() {
 		
 	if (!get_theme_mod('p3_instagram_footer')) {
@@ -238,11 +235,9 @@ function p3_instagram_footer() {
 	}
 }
 add_action('p3_footer_bottom', 'p3_instagram_footer', 99);
-}
 
 
 // header feed
-if (!function_exists('p3_instagram_header')) {
 function p3_instagram_header() {
 		
 	if (!get_theme_mod('p3_instagram_header')) {
@@ -287,11 +282,9 @@ function p3_instagram_header() {
 	}
 }
 add_action('p3_top_site_main', 'p3_instagram_header', 99);
-}
 
 
 // above posts and sidebar
-if (!function_exists('p3_instagram_site_main_container')) {
 function p3_instagram_site_main_container() {
 		
 	if (!get_theme_mod('p3_instagram_above_posts_and_sidebar')) {
@@ -334,11 +327,9 @@ function p3_instagram_site_main_container() {
 	}
 }
 add_action('p3_top_site_main_container', 'p3_instagram_site_main_container', 99);
-}
 
 
 // style & light feed
-if (!function_exists('p3_instagram_top_of_posts')) {
 function p3_instagram_top_of_posts() {
 		
 	if (!is_home() || is_paged() || !get_theme_mod('body_instagram')) {
@@ -375,11 +366,9 @@ function p3_instagram_top_of_posts() {
 	}
 }
 add_action('p3_posts_column_start', 'p3_instagram_top_of_posts', 99);
-}
 
 
 // kensington feed
-if (!function_exists('p3_instagram_bottom_of_posts')) {
 function p3_instagram_bottom_of_posts() {
 		
 	if (!get_theme_mod('p3_instagram_kensington') || (!is_front_page() && !is_home())) {
@@ -435,7 +424,6 @@ function p3_instagram_bottom_of_posts() {
 
 }
 add_action('p3_site_main_end', 'p3_instagram_bottom_of_posts', 99);
-}
 
 
 // customiser

@@ -137,19 +137,12 @@ function p3_flush_htacess() {
 
 function p3_htaccess_edit($rules) {
 $p3_rules = "
-# Hector
 Redirect 301 /feeds/posts/default /feed
-
-<ifmodule mod_deflate.c>
-AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
-</ifmodule>
-
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteCond %{QUERY_STRING} ^m=1$
 RewriteRule ^(.*)$ /$1? [R=301,L]
 </IfModule>
-# /Hector
 ";
 return $p3_rules . $rules;
 }
@@ -169,7 +162,7 @@ function pipdig_p3_emmmm_heeey() {
 		});
 	});
 	</script>
-	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo wp_get_theme()->get('Name'); ?> v<?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> -->
+	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo strip_tags(wp_get_theme()->get('Name')); ?> v<?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> | <?php echo strip_tags(get_site_url()); ?> -->
 	<?php
 }
 add_action('wp_footer','pipdig_p3_emmmm_heeey', 9999);
@@ -406,27 +399,6 @@ function p3_lazy_script() {
 	<?php
 }
 add_action( 'wp_footer', 'p3_lazy_script', 99999 );
-
-/*
-function p3_remove_ellipses_script() {
-	if (get_theme_mod('excerpt_length_num') === 0) {
-	?>
-	<script>
-	jQuery(document).ready(function($) {
-		jQuery.fn.highlight = function (str, className) {    
-				var regex = new RegExp(str, "gi");
-				return this.each(function () {
-					this.innerHTML = this.innerHTML.replace(regex, function(matched) {return "";});
-				});
-		};
-		$(".entry-summary, .pipdig_3_col_grid_item").highlight("…","highlight");
-	});
-	</script>
-	<?php
-	}
-}
-add_action( 'wp_footer', 'p3_remove_ellipses_script', 999 );
-*/
 
 include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
 include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');

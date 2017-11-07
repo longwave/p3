@@ -104,15 +104,25 @@ function p3_pinterest_hover() {
 				var img = new Image();
 				img.src = src;
 				
-				var description = $(this).data('p3-pin-title'),
-				imgURL = encodeURIComponent(src);
-					
-				if (description == null){
+				<?php if (get_theme_mod('p3_pinterest_hover_alt')) { // use alt tags ?>
 					var description = $(this).attr("alt");
 					if (description == null){
-						var description = '<?php echo esc_attr(get_the_title()); ?>';
+						var description = $(this).data('p3-pin-title');
+						if (description == null){
+							var description = '<?php echo esc_attr(get_the_title()); ?>';
+						}
 					}
-				}
+				<?php } else { // use post title ?>
+					var description = $(this).data('p3-pin-title');
+					if (description == null){
+						var description = $(this).attr("alt");
+						if (description == null){
+							var description = '<?php echo esc_attr(get_the_title()); ?>';
+						}
+					}
+				<?php } ?>
+				
+				var imgURL = encodeURIComponent(src);
 
 				var link = 'https://www.pinterest.com/pin/create/button/';
 					link += '?url='+shareURL;
@@ -282,6 +292,22 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 				)
 			);
 			
+			// show on posts
+			$wp_customize->add_setting('p3_pinterest_hover_alt',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_pinterest_hover_alt',
+				array(
+					'type' => 'checkbox',
+					'label' => __('Use alt tags', 'p3'),
+					'description' => 'Normally when an image is pinned it will use the post title as the description. Select this option if you would prefer to use the image alt tags instead.',
+					'section' => 'pipdig_pinterest_hover',
+				)
+			);
+			
 			// preix description text
 			$wp_customize->add_setting('p3_pinterest_hover_prefix_text',
 				array(
@@ -293,6 +319,7 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 				array(
 					'type' => 'text',
 					'label' => __( 'Prefix for "Description" field', 'p3' ),
+					'description' => 'This text will be added to the front of the image description when pinned.',
 					'section' => 'pipdig_pinterest_hover'
 				)
 			);

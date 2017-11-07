@@ -13,6 +13,9 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.4.1 =
+* [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) - option to use image alt tags instead of the post title.
+
 = 3.4.0 =
 * Automatically play YouTube videos when clicked.
 * Include Google+ in social footer links/counters.

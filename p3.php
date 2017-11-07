@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.4.0
+Version: 3.4.1
 Text Domain: p3
 License: Copyright 2017 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.4.0' );
+define( 'PIPDIG_P3_V', '3.4.1' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -340,11 +340,12 @@ function pipdig_p3_activate() {
 }
 register_activation_hook( __FILE__, 'pipdig_p3_activate' );
 
-// Stop people removing query strings. They're an important part of WP and keeping your site working correctly.
+// Don't allow some plugins. Sorry not sorry.
 function p3_trust_me_you_dont_want_this() {
 	$plugins = array(
-		'query-strings-remover/query-strings-remover.php',
+		'query-strings-remover/query-strings-remover.php', // Stop removing query strings. They're an important part of WP and keeping the site working correctly with caching.
 		'remove-query-strings-from-static-resources/remove-query-strings.php',
+		'scripts-to-footerphp/scripts-to-footerphp.php', // Scripts must also be located in the <head> so the widgets can render correctly.
 	);
 	deactivate_plugins($plugins);
 }
