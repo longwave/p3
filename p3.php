@@ -185,10 +185,12 @@ function pipdig_p3_activate() {
 		'wd-instagram-feed/wd-instagram-feed.php',
 		'categories-images/categories-images.php',
 		'mojo-marketplace-wp-plugin/mojo-marketplace.php',
+		'mojo-marketplace-hg/mojo-marketplace.php',
 		'autoptimize/autoptimize.php',
 		'instagram-slider-widget/instaram_slider.php',
 		'vafpress-post-formats-ui-develop/vp-post-formats-ui.php',
 		'advanced-excerpt/advanced-excerpt.php',
+		'force-regenerate-thumbnails/force-regenerate-thumbnails.php'
 	);
 	deactivate_plugins($plugins);
 	

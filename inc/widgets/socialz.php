@@ -54,55 +54,55 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		
 		if ($style_select == 1) { // style/layout of icons
 		
-			if (!empty($twitter)) $icons_output .= '<a href="'.$twitter.'" target="_blank" rel="nofollow noopener"><i class="fa fa-twitter"></i></a>';
-			if (!empty($instagram)) $icons_output .= '<a href="'.$instagram.'" target="_blank" rel="nofollow noopener"><i class="fa fa-instagram"></i></a>';
-			if (!empty($facebook)) $icons_output .= '<a href="'.$facebook.'" target="_blank" rel="nofollow noopener"><i class="fa fa-facebook"></i></a>';
-			if (!empty($google)) $icons_output .= '<a href="'.$google.'" target="_blank" rel="nofollow noopener"><i class="fa fa-google-plus"></i></a>';
-			if (!empty($bloglovin)) $icons_output .= '<a href="'.$bloglovin.'" target="_blank" rel="nofollow noopener"><i class="fa fa-plus"></i></a>';
-			if (!empty($pinterest)) $icons_output .= '<a href="'.$pinterest.'" target="_blank" rel="nofollow noopener"><i class="fa fa-pinterest"></i></a>';
-			if (!empty($snapchat)) $icons_output .= '<a href="'.$snapchat.'" target="_blank" rel="nofollow noopener"><i class="fa fa-snapchat-ghost"></i></a>';
-			if (!empty($youtube)) $icons_output .= '<a href="'.$youtube.'" target="_blank" rel="nofollow noopener"><i class="fa fa-youtube-play"></i></a>';
-			if (!empty($vine)) $icons_output .= '<a href="'.$vine.'" target="_blank" rel="nofollow noopener"><i class="fa fa-vine"></i></a>';
-			if (!empty($tumblr)) $icons_output .= '<a href="'.$tumblr.'" target="_blank" rel="nofollow noopener"><i class="fa fa-tumblr"></i></a>';
-			if (!empty($linkedin)) $icons_output .= '<a href="'.$linkedin.'" target="_blank" rel="nofollow noopener"><i class="fa fa-linkedin"></i></a>';
-			if (!empty($vk)) $icons_output .= '<a href="'.$vk.'" target="_blank" rel="nofollow noopener"><i class="fa fa-vk"></i></a>';
-			if (!empty($flickr)) $icons_output .= '<a href="'.$flickr.'" target="_blank" rel="nofollow noopener"><i class="fa fa-flickr"></i></a>';
-			if (!empty($spotify)) $icons_output .= '<a href="'.$spotify.'" target="_blank" rel="nofollow noopener"><i class="fa fa-spotify"></i></a>';
-			if (!empty($itunes)) $icons_output .= '<a href="'.$itunes.'" target="_blank" rel="nofollow noopener"><i class="fa fa-apple"></i></a>';
-			if (!empty($soundcloud)) $icons_output .= '<a href="'.$soundcloud.'" target="_blank" rel="nofollow noopener"><i class="fa fa-soundcloud"></i></a>';
-			if (!empty($medium)) $icons_output .= '<a href="'.$medium.'" target="_blank" rel="nofollow noopener"><i class="fa fa-medium"></i></a>';
-			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopener"><i class="fa fa-twitch"></i></a>';
-			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopener"><i class="fa fa-stumbleupon"></i></a>';
-			if (!empty($etsy)) $icons_output .= '<a href="'.$etsy.'" target="_blank" rel="nofollow noopener"><i class="fa fa-etsy"></i></a>';
-			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'"><i class="fa fa-envelope"></i></a>';
-			if (!empty($rss)) $icons_output .= '<a href="'.$rss.'" target="_blank" rel="nofollow noopener"><i class="fa fa-rss"></i></a>';
+			if (!empty($twitter)) $icons_output .= '<a href="'.$twitter.'" target="_blank" rel="nofollow noopener" aria-label="twitter" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>';
+			if (!empty($instagram)) $icons_output .= '<a href="'.$instagram.'" target="_blank" rel="nofollow noopener" aria-label="instagram" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>';
+			if (!empty($facebook)) $icons_output .= '<a href="'.$facebook.'" target="_blank" rel="nofollow noopener" aria-label="facebook" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>';
+			if (!empty($google)) $icons_output .= '<a href="'.$google.'" target="_blank" rel="nofollow noopener" aria-label="google" title="google"><i class="fa fa-google-plus" aria-hidden="true"></i></a>';
+			if (!empty($bloglovin)) $icons_output .= '<a href="'.$bloglovin.'" target="_blank" rel="nofollow noopener" aria-label="bloglovin" title="bloglovin"><i class="fa fa-plus" aria-hidden="true"></i></a>';
+			if (!empty($pinterest)) $icons_output .= '<a href="'.$pinterest.'" target="_blank" rel="nofollow noopener" aria-label="pinterest" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>';
+			if (!empty($snapchat)) $icons_output .= '<a href="'.$snapchat.'" target="_blank" rel="nofollow noopener" aria-label="snapchat" title="snapchat"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i></a>';
+			if (!empty($youtube)) $icons_output .= '<a href="'.$youtube.'" target="_blank" rel="nofollow noopener" aria-label="youtube" title="youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>';
+			if (!empty($vine)) $icons_output .= '<a href="'.$vine.'" target="_blank" rel="nofollow noopener" aria-label="vine" title="vine"><i class="fa fa-vine" aria-hidden="true"></i></a>';
+			if (!empty($tumblr)) $icons_output .= '<a href="'.$tumblr.'" target="_blank" rel="nofollow noopener" aria-label="tumblr" title="tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a>';
+			if (!empty($linkedin)) $icons_output .= '<a href="'.$linkedin.'" target="_blank" rel="nofollow noopener" aria-label="linkedin" title="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>';
+			if (!empty($vk)) $icons_output .= '<a href="'.$vk.'" target="_blank" rel="nofollow noopener" aria-label="vk" title="vk"><i class="fa fa-vk" aria-hidden="true"></i></a>';
+			if (!empty($flickr)) $icons_output .= '<a href="'.$flickr.'" target="_blank" rel="nofollow noopener" aria-label="flickr" title="flickr"><i class="fa fa-flickr" aria-hidden="true"></i></a>';
+			if (!empty($spotify)) $icons_output .= '<a href="'.$spotify.'" target="_blank" rel="nofollow noopener" aria-label="spotify" title="spotify"><i class="fa fa-spotify" aria-hidden="true"></i></a>';
+			if (!empty($itunes)) $icons_output .= '<a href="'.$itunes.'" target="_blank" rel="nofollow noopener" aria-label="itunes" title="itunes"><i class="fa fa-apple" aria-hidden="true"></i></a>';
+			if (!empty($soundcloud)) $icons_output .= '<a href="'.$soundcloud.'" target="_blank" rel="nofollow noopener" aria-label="soundcloud" title="soundcloud"><i class="fa fa-soundcloud" aria-hidden="true"></i></a>';
+			if (!empty($medium)) $icons_output .= '<a href="'.$medium.'" target="_blank" rel="nofollow noopener" aria-label="medium" title="medium"><i class="fa fa-medium" aria-hidden="true"></i></a>';
+			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopener" aria-label="twitch" title="twitch"><i class="fa fa-twitch" aria-hidden="true"></i></a>';
+			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopener" aria-label="stumbleupon" title="stumbleupon"><i class="fa fa-stumbleupon" aria-hidden="true"></i></a>';
+			if (!empty($etsy)) $icons_output .= '<a href="'.$etsy.'" target="_blank" rel="nofollow noopener" aria-label="etsy" title="etsy"><i class="fa fa-etsy" aria-hidden="true"></i></a>';
+			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'" aria-label="Email" title="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>';
+			if (!empty($rss)) $icons_output .= '<a href="'.$rss.'" target="_blank" rel="nofollow noopener" aria-label="RSS Feed" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i></a>';
 			
 			echo '<div class="socialz">'.$icons_output.'</div>';
 		
 		} else {
 			
-			if (!empty($twitter)) $icons_output .= '<a href="'.$twitter.'" target="_blank" rel="nofollow noopener"><i class="fa fa-twitter"></i><br /><span>Twitter</span></a>';
-			if (!empty($instagram)) $icons_output .= '<a href="'.$instagram.'" target="_blank" rel="nofollow noopener"><i class="fa fa-instagram"></i><br /><span>Instagram</span></a>';
-			if (!empty($facebook)) $icons_output .= '<a href="'.$facebook.'" target="_blank" rel="nofollow noopener"><i class="fa fa-facebook"></i><br /><span>Facebook</span></a>';
-			if (!empty($google)) $icons_output .= '<a href="'.$google.'" target="_blank" rel="nofollow noopener"><i class="fa fa-google-plus"></i><br /><span>Google+</span></a>';
-			if (!empty($bloglovin)) $icons_output .= '<a href="'.$bloglovin.'" target="_blank" rel="nofollow noopener"><i class="fa fa-plus"></i><br /><span>Bloglovin</span></a>';
-			if (!empty($pinterest)) $icons_output .= '<a href="'.$pinterest.'" target="_blank" rel="nofollow noopener"><i class="fa fa-pinterest"></i><br /><span>Pinterest</span></a>';
-			if (!empty($snapchat)) $icons_output .= '<a href="'.$snapchat.'" target="_blank" rel="nofollow noopener"><i class="fa fa-snapchat-ghost"></i><br /><span>Snapchat</span></a>';
-			if (!empty($youtube)) $icons_output .= '<a href="'.$youtube.'" target="_blank" rel="nofollow noopener"><i class="fa fa-youtube-play"></i><br /><span>YouTube</span></a>';
-			if (!empty($vine)) $icons_output .= '<a href="'.$vine.'" target="_blank" rel="nofollow noopener"><i class="fa fa-vine"></i><br /><span>Vine</span></a>';
-			if (!empty($tumblr)) $icons_output .= '<a href="'.$tumblr.'" target="_blank" rel="nofollow noopener"><i class="fa fa-tumblr"></i><br /><span>Tumblr</span></a>';
-			if (!empty($linkedin)) $icons_output .= '<a href="'.$linkedin.'" target="_blank" rel="nofollow noopener"><i class="fa fa-linkedin"></i><br /><span>LinkedIn</span></a>';
-			if (!empty($vk)) $icons_output .= '<a href="'.$vk.'" target="_blank" rel="nofollow noopener"><i class="fa fa-vk"></i><br /><span>VKontakte</span></a>';
-			if (!empty($flickr)) $icons_output .= '<a href="'.$flickr.'" target="_blank" rel="nofollow noopener"><i class="fa fa-flickr"></i><br /><span>Flickr</span></a>';
-			if (!empty($spotify)) $icons_output .= '<a href="'.$spotify.'" target="_blank" rel="nofollow noopener"><i class="fa fa-spotify"></i><br /><span>Spotify</span></a>';
-			if (!empty($itunes)) $icons_output .= '<a href="'.$itunes.'" target="_blank" rel="nofollow noopener"><i class="fa fa-apple"></i><br /><span>iTunes</span></a>';
-			if (!empty($soundcloud)) $icons_output .= '<a href="'.$soundcloud.'" target="_blank" rel="nofollow noopener"><i class="fa fa-soundcloud"></i><br /><span>Soundcloud</span></a>';
-			if (!empty($medium)) $icons_output .= '<a href="'.$medium.'" target="_blank" rel="nofollow noopener"><i class="fa fa-medium"></i><br /><span>Medium</span></a>';
-			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopener"><i class="fa fa-twitch"></i><br /><span>Twitch</span></a>';
-			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopener"><i class="fa fa-stumbleupon"></i><br /><span>Stumble</span></a>';
-			if (!empty($etsy)) $icons_output .= '<a href="'.$etsy.'" target="_blank" rel="nofollow noopener"><i class="fa fa-etsy"></i><br /><span>Etsy</span></a>';
-			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'"><i class="fa fa-envelope"></i><br /><span>Email</span></a>';
-			if (!empty($rss)) $icons_output .= '<a href="'.$rss.'" target="_blank" rel="nofollow noopener"><i class="fa fa-rss"></i><br /><span>RSS</span></a>';
+			if (!empty($twitter)) $icons_output .= '<a href="'.$twitter.'" target="_blank" rel="nofollow noopener" aria-label="twitter" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i><br /><span>Twitter</span></a>';
+			if (!empty($instagram)) $icons_output .= '<a href="'.$instagram.'" target="_blank" rel="nofollow noopener" aria-label="instagram" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i><br /><span>Instagram</span></a>';
+			if (!empty($facebook)) $icons_output .= '<a href="'.$facebook.'" target="_blank" rel="nofollow noopener" aria-label="facebook" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i><br /><span>Facebook</span></a>';
+			if (!empty($google)) $icons_output .= '<a href="'.$google.'" target="_blank" rel="nofollow noopener" aria-label="google" title="google"><i class="fa fa-google-plus" aria-hidden="true"></i><br /><span>Google+</span></a>';
+			if (!empty($bloglovin)) $icons_output .= '<a href="'.$bloglovin.'" target="_blank" rel="nofollow noopener" aria-label="bloglovin" title="bloglovin"><i class="fa fa-plus" aria-hidden="true"></i><br /><span>Bloglovin</span></a>';
+			if (!empty($pinterest)) $icons_output .= '<a href="'.$pinterest.'" target="_blank" rel="nofollow noopener" aria-label="pinterest" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i><br /><span>Pinterest</span></a>';
+			if (!empty($snapchat)) $icons_output .= '<a href="'.$snapchat.'" target="_blank" rel="nofollow noopener" aria-label="snapchat" title="snapchat"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i><br /><span>Snapchat</span></a>';
+			if (!empty($youtube)) $icons_output .= '<a href="'.$youtube.'" target="_blank" rel="nofollow noopener" aria-label="youtube" title="youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i><br /><span>YouTube</span></a>';
+			if (!empty($vine)) $icons_output .= '<a href="'.$vine.'" target="_blank" rel="nofollow noopener" aria-label="vine" title="vine"><i class="fa fa-vine" aria-hidden="true"></i><br /><span>Vine</span></a>';
+			if (!empty($tumblr)) $icons_output .= '<a href="'.$tumblr.'" target="_blank" rel="nofollow noopener" aria-label="tumblr" title="tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i><br /><span>Tumblr</span></a>';
+			if (!empty($linkedin)) $icons_output .= '<a href="'.$linkedin.'" target="_blank" rel="nofollow noopener" aria-label="linkedin" title="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i><br /><span>LinkedIn</span></a>';
+			if (!empty($vk)) $icons_output .= '<a href="'.$vk.'" target="_blank" rel="nofollow noopener" aria-label="VKontakte" title="VKontakte"><i class="fa fa-vk" aria-hidden="true"></i><br /><span>VKontakte</span></a>';
+			if (!empty($flickr)) $icons_output .= '<a href="'.$flickr.'" target="_blank" rel="nofollow noopener" aria-label="Flickr" title="Flickr"><i class="fa fa-flickr" aria-hidden="true"></i><br /><span>Flickr</span></a>';
+			if (!empty($spotify)) $icons_output .= '<a href="'.$spotify.'" target="_blank" rel="nofollow noopener" aria-label="spotify" title="spotify"><i class="fa fa-spotify" aria-hidden="true"></i><br /><span>Spotify</span></a>';
+			if (!empty($itunes)) $icons_output .= '<a href="'.$itunes.'" target="_blank" rel="nofollow noopener" aria-label="itunes" title="itunes"><i class="fa fa-apple" aria-hidden="true"></i><br /><span>iTunes</span></a>';
+			if (!empty($soundcloud)) $icons_output .= '<a href="'.$soundcloud.'" target="_blank" rel="nofollow noopener" aria-label="soundcloud" title="soundcloud"><i class="fa fa-soundcloud" aria-hidden="true"></i><br /><span>Soundcloud</span></a>';
+			if (!empty($medium)) $icons_output .= '<a href="'.$medium.'" target="_blank" rel="nofollow noopener" aria-label="medium" title="medium"><i class="fa fa-medium" aria-hidden="true"></i><br /><span>Medium</span></a>';
+			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopener" aria-label="twitch" title="twitch"><i class="fa fa-twitch" aria-hidden="true"></i><br /><span>Twitch</span></a>';
+			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopener" aria-label="stumbleupon" title="stumbleupon"><i class="fa fa-stumbleupon" aria-hidden="true"></i><br /><span>Stumble</span></a>';
+			if (!empty($etsy)) $icons_output .= '<a href="'.$etsy.'" target="_blank" rel="nofollow noopener" aria-label="etsy" title="etsy"><i class="fa fa-etsy" aria-hidden="true"></i><br /><span>Etsy</span></a>';
+			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'"><i class="fa fa-envelope" aria-hidden="true"></i><br /><span>Email</span></a>';
+			if (!empty($rss)) $icons_output .= '<a href="'.$rss.'" target="_blank" rel="nofollow noopener" aria-label="RSS Feed" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i><br /><span>RSS</span></a>';
 			echo '<div class="socialz pipdig_socialz_2">'.$icons_output.'</div>';
 
 		}

@@ -81,35 +81,35 @@ if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_socia
 			$houzz = esc_url($links['houzz']);
 		}
 
-		if($twitter && get_theme_mod('p3_navbar_twitter', 1)) $navbar_icons .= '<a href="'.$twitter.'" target="_blank"><i class="fa fa-twitter"></i></a>';
-		if($instagram && get_theme_mod('p3_navbar_instagram', 1)) $navbar_icons .= '<a href="'.$instagram.'" target="_blank"><i class="fa fa-instagram"></i></a>';
-		if($facebook && get_theme_mod('p3_navbar_facebook', 1)) $navbar_icons .= '<a href="'.$facebook.'" target="_blank"><i class="fa fa-facebook"></i></a>';
-		if($bloglovin && get_theme_mod('p3_navbar_bloglovin', 1)) $navbar_icons .= '<a href="'.$bloglovin.'" target="_blank"><i class="fa fa-plus"></i></a>';
-		if($pinterest && get_theme_mod('p3_navbar_pinterest', 1)) $navbar_icons .= '<a href="'.$pinterest.'" target="_blank"><i class="fa fa-pinterest"></i></a>';
-		if($snapchat && get_theme_mod('p3_navbar_snapchat', 1)) $navbar_icons .= '<a href="'.$snapchat.'" target="_blank"><i class="fa fa-snapchat-ghost"></i></a>';
-		if($youtube && get_theme_mod('p3_navbar_youtube', 1)) $navbar_icons .= '<a href="'.$youtube.'" target="_blank"><i class="fa fa-youtube-play"></i></a>';
-		if($tumblr && get_theme_mod('p3_navbar_tumblr', 1)) $navbar_icons .= '<a href="'.$tumblr.'" target="_blank"><i class="fa fa-tumblr"></i></a>';
-		if($linkedin && get_theme_mod('p3_navbar_linkedin', 1)) $navbar_icons .= '<a href="'.$linkedin.'" target="_blank"><i class="fa fa-linkedin"></i></a>';
-		if($soundcloud && get_theme_mod('p3_navbar_soundcloud', 1)) $navbar_icons .= '<a href="'.$soundcloud.'" target="_blank"><i class="fa fa-soundcloud"></i></a>';
-		if($spotify && get_theme_mod('p3_navbar_spotify', 1)) $navbar_icons .= '<a href="'.$spotify.'" target="_blank"><i class="fa fa-spotify"></i></a>';
-		if($itunes && get_theme_mod('p3_navbar_itunes', 1)) $navbar_icons .= '<a href="'.$itunes.'" target="_blank"><i class="fa fa-apple"></i></a>';
-		if($flickr && get_theme_mod('p3_navbar_flickr', 1)) $navbar_icons .= '<a href="'.$flickr.'" target="_blank"><i class="fa fa-flickr"></i></a>';
-		if($twitch && get_theme_mod('p3_navbar_twitch', 1)) $navbar_icons .= '<a href="'.$twitch.'" target="_blank"><i class="fa fa-twitch"></i></a>';
-		if($stumbleupon && get_theme_mod('p3_navbar_stumbleupon', 1)) $navbar_icons .= '<a href="'.$stumbleupon.'" target="_blank"><i class="fa fa-stumbleupon"></i></a>';
-		if($etsy && get_theme_mod('p3_navbar_etsy', 1)) $navbar_icons .= '<a href="'.$etsy.'" target="_blank"><i class="fa fa-etsy"></i></a>';
-		if($houzz && get_theme_mod('p3_navbar_etsy', 1)) $navbar_icons .= '<a href="'.$houzz.'" target="_blank"><i class="fa fa-houzz"></i></a>';
-		if($vk && get_theme_mod('p3_navbar_vk', 1)) $navbar_icons .= '<a href="'.$vk.'" target="_blank"><i class="fa fa-vk"></i></a>';
-		if($google_plus && get_theme_mod('p3_navbar_google_plus', 1)) $navbar_icons .= '<a href="'.$google_plus.'" target="_blank"><i class="fa fa-google-plus"></i></a>';
-		if($reddit && get_theme_mod('p3_navbar_reddit', 1)) $navbar_icons .= '<a href="'.$reddit.'" target="_blank"><i class="fa fa-reddit"></i></a>';
-		if($digg && get_theme_mod('p3_navbar_digg', 1)) $navbar_icons .= '<a href="'.$digg.'" target="_blank"><i class="fa fa-digg"></i></a>';
-		if($rss && get_theme_mod('p3_navbar_rss', 1)) $navbar_icons .= '<a href="'.$rss.'" target="_blank"><i class="fa fa-rss"></i></a>';
-		if($email && get_theme_mod('p3_navbar_email', 1)) $navbar_icons .= '<a href="mailto:'.$email.'" target="_blank"><i class="fa fa-envelope"></i></a>';
+		if($twitter && get_theme_mod('p3_navbar_twitter', 1)) $navbar_icons .= '<a href="'.$twitter.'" target="_blank" rel="nofollow noopenner" aria-label="twitter" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>';
+		if($instagram && get_theme_mod('p3_navbar_instagram', 1)) $navbar_icons .= '<a href="'.$instagram.'" target="_blank" rel="nofollow noopenner" aria-label="instagram" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>';
+		if($facebook && get_theme_mod('p3_navbar_facebook', 1)) $navbar_icons .= '<a href="'.$facebook.'" target="_blank" rel="nofollow noopenner" aria-label="facebook" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>';
+		if($bloglovin && get_theme_mod('p3_navbar_bloglovin', 1)) $navbar_icons .= '<a href="'.$bloglovin.'" target="_blank" rel="nofollow noopenner" aria-label="bloglovin" title="bloglovin"><i class="fa fa-plus" aria-hidden="true"></i></a>';
+		if($pinterest && get_theme_mod('p3_navbar_pinterest', 1)) $navbar_icons .= '<a href="'.$pinterest.'" target="_blank" rel="nofollow noopenner" aria-label="pinterest" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>';
+		if($snapchat && get_theme_mod('p3_navbar_snapchat', 1)) $navbar_icons .= '<a href="'.$snapchat.'" target="_blank" rel="nofollow noopenner" aria-label="snapchat" title="snapchat"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i></a>';
+		if($youtube && get_theme_mod('p3_navbar_youtube', 1)) $navbar_icons .= '<a href="'.$youtube.'" target="_blank" rel="nofollow noopenner" aria-label="youtube" title="youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>';
+		if($tumblr && get_theme_mod('p3_navbar_tumblr', 1)) $navbar_icons .= '<a href="'.$tumblr.'" target="_blank" rel="nofollow noopenner" aria-label="tumblr" title="tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a>';
+		if($linkedin && get_theme_mod('p3_navbar_linkedin', 1)) $navbar_icons .= '<a href="'.$linkedin.'" target="_blank" rel="nofollow noopenner" aria-label="linkedin" title="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>';
+		if($soundcloud && get_theme_mod('p3_navbar_soundcloud', 1)) $navbar_icons .= '<a href="'.$soundcloud.'" target="_blank" rel="nofollow noopenner" aria-label="soundcloud" title="soundcloud"><i class="fa fa-soundcloud" aria-hidden="true"></i></a>';
+		if($spotify && get_theme_mod('p3_navbar_spotify', 1)) $navbar_icons .= '<a href="'.$spotify.'" target="_blank" rel="nofollow noopenner" aria-label="spotify" title="spotify"><i class="fa fa-spotify" aria-hidden="true"></i></a>';
+		if($itunes && get_theme_mod('p3_navbar_itunes', 1)) $navbar_icons .= '<a href="'.$itunes.'" target="_blank" rel="nofollow noopenner" aria-label="itunes" title="itunes"><i class="fa fa-apple" aria-hidden="true"></i></a>';
+		if($flickr && get_theme_mod('p3_navbar_flickr', 1)) $navbar_icons .= '<a href="'.$flickr.'" target="_blank" rel="nofollow noopenner" aria-label="flickr" title="flickr"><i class="fa fa-flickr" aria-hidden="true"></i></a>';
+		if($twitch && get_theme_mod('p3_navbar_twitch', 1)) $navbar_icons .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopenner" aria-label="twitch" title="twitch"><i class="fa fa-twitch" aria-hidden="true"></i></a>';
+		if($stumbleupon && get_theme_mod('p3_navbar_stumbleupon', 1)) $navbar_icons .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopenner" aria-label="stumbleupon" title="stumbleupon"><i class="fa fa-stumbleupon" aria-hidden="true"></i></a>';
+		if($etsy && get_theme_mod('p3_navbar_etsy', 1)) $navbar_icons .= '<a href="'.$etsy.'" target="_blank" rel="nofollow noopenner" aria-label="etsy" title="etsy"><i class="fa fa-etsy" aria-hidden="true"></i></a>';
+		if($houzz && get_theme_mod('p3_navbar_etsy', 1)) $navbar_icons .= '<a href="'.$houzz.'" target="_blank" rel="nofollow noopenner" aria-label="houzz" title="houzz"><i class="fa fa-houzz" aria-hidden="true"></i></a>';
+		if($vk && get_theme_mod('p3_navbar_vk', 1)) $navbar_icons .= '<a href="'.$vk.'" target="_blank" rel="nofollow noopenner" aria-label="VK" title="VK"><i class="fa fa-vk" aria-hidden="true"></i></a>';
+		if($google_plus && get_theme_mod('p3_navbar_google_plus', 1)) $navbar_icons .= '<a href="'.$google_plus.'" target="_blank" rel="nofollow noopenner" aria-label="Google Plus" title="Google Plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>';
+		if($reddit && get_theme_mod('p3_navbar_reddit', 1)) $navbar_icons .= '<a href="'.$reddit.'" target="_blank" rel="nofollow noopenner" aria-label="reddit" title="reddit"><i class="fa fa-reddit" aria-hidden="true"></i></a>';
+		if($digg && get_theme_mod('p3_navbar_digg', 1)) $navbar_icons .= '<a href="'.$digg.'" target="_blank" rel="nofollow noopenner" aria-label="digg" title="digg"><i class="fa fa-digg" aria-hidden="true"></i></a>';
+		if($rss && get_theme_mod('p3_navbar_rss', 1)) $navbar_icons .= '<a href="'.$rss.'" target="_blank" rel="nofollow noopenner" aria-label="RSS Feed" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i></a>';
+		if($email && get_theme_mod('p3_navbar_email', 1)) $navbar_icons .= '<a href="mailto:'.$email.'" target="_blank" rel="nofollow noopenner" aria-label="Email" title="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>';
 		
-		if(get_theme_mod('site_top_search')) $navbar_icons .= '<a class="toggle-search"><i class="fa fa-search"></i></a>'; // still need to p3 this.
+		if(get_theme_mod('site_top_search')) $navbar_icons .= '<a class="toggle-search" aria-label="Search" title="Search"><i class="fa fa-search" aria-hidden="true"></i></a>'; // still need to p3 this.
 		
 		if (class_exists('Woocommerce') && get_theme_mod('p3_navbar_woocommerce', 1)) {
 			global $woocommerce;
-			$navbar_icons .= '<a href="' . $woocommerce->cart->get_cart_url() . '" rel="nofollow"><i class="fa fa-shopping-cart"></i></a>';
+			$navbar_icons .= '<a href="' . $woocommerce->cart->get_cart_url() . '" rel="nofollow" aria-label="" title=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>';
 		}
 		
 		if( $args->theme_location == 'primary' ) {
