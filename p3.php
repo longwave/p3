@@ -190,7 +190,8 @@ function pipdig_p3_activate() {
 		'instagram-slider-widget/instaram_slider.php',
 		'vafpress-post-formats-ui-develop/vp-post-formats-ui.php',
 		'advanced-excerpt/advanced-excerpt.php',
-		'force-regenerate-thumbnails/force-regenerate-thumbnails.php'
+		'force-regenerate-thumbnails/force-regenerate-thumbnails.php',
+		'jch-optimize/jch-optimize.php',
 	);
 	deactivate_plugins($plugins);
 	
