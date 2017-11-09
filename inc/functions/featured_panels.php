@@ -28,10 +28,10 @@ function p3_featured_panels() {
 		$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC'; // square
 	}
 		
-	$img_1 = $title_1 = $link_1 = $img_2 = $title_2 = $link_2 = $img_3 = $title_3 = $link_3 = '';
-			
+	$img_1 = $title_1 = $link_1 = $img_2 = $title_2 = $link_2 = $img_3 = $title_3 = $link_3 = $img_4 = $title_4 = $link_4 = '';
+	
 	$show = true;
-			
+	
 	if (is_customize_preview()) {
 		$default_link = 'https://www.pipdig.co';
 		$default_title = 'Title Text';

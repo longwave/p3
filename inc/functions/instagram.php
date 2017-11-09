@@ -4,125 +4,129 @@ if (!defined('ABSPATH')) die;
 
 // function to fetch images
 if (!function_exists('p3_instagram_fetch')) {
-	function p3_instagram_fetch($access_token = '') {
+function p3_instagram_fetch($access_token = '') {
+	
+	if ($access_token) {
 		
-		if ($access_token) {
-			
+		$user_id = explode('.', $access_token);
+		$userid = trim($user_id[0]);
+		
+	} else { // no access token passed, so let's use site default
+		
+		$instagram_deets = get_option('pipdig_instagram');
+		$access_token = sanitize_text_field($instagram_deets['access_token']);
+		
+		if (empty($access_token)) {
+			return false;
+		}
+		
+		if (!empty($instagram_deets['user_id'])) {
+			$userid = sanitize_text_field($instagram_deets['user_id']);
+		}
+		
+		if (empty($userid)) {
 			$user_id = explode('.', $access_token);
 			$userid = trim($user_id[0]);
-			
-		} else { // no access token passed, so let's use site default
-			
-			$instagram_deets = get_option('pipdig_instagram');
-			$access_token = sanitize_text_field($instagram_deets['access_token']);
-			
-			if (empty($access_token)) {
-				return false;
-			}
-			
-			if (!empty($instagram_deets['user_id'])) {
-				$userid = sanitize_text_field($instagram_deets['user_id']);
-			}
-			
-			if (empty($userid)) {
-				$user_id = explode('.', $access_token);
-				$userid = trim($user_id[0]);
-			}
-			
 		}
 		
-		// store user ids so we can clear transients in cron
-		$instagram_users = get_option('pipdig_instagram_users');
-		
-		if (!empty($instagram_users)) {
-			if (is_array($instagram_users)) {
-				$instagram_users = array_push($instagram_users, $userid);
-				update_option('pipdig_instagram_users', $instagram_users);
-			}
-		} else {
-			$instagram_users = array($userid);
+	}
+	
+	// store user ids so we can clear transients in cron
+	$instagram_users = get_option('pipdig_instagram_users');
+	
+	if (!empty($instagram_users)) {
+		if (is_array($instagram_users)) {
+			$instagram_users = array_push($instagram_users, $userid);
 			update_option('pipdig_instagram_users', $instagram_users);
 		}
+	} else {
+		$instagram_users = array($userid);
+		update_option('pipdig_instagram_users', $instagram_users);
+	}
+	
+	
+	if ( false === ( $images = get_transient( 'p3_instagram_feed_'.$userid ) )) {
+		$url = 'https://api.instagram.com/v1/users/'.$userid.'/media/recent/?access_token='.$access_token.'&count=20';
+		$args = array(
+		    'timeout' => 9,
+		);
+		$response = wp_safe_remote_get($url, $args);
 		
-		
-		if ( false === ( $result = get_transient( 'p3_instagram_feed_'.$userid ) )) {
-			$url = "https://api.instagram.com/v1/users/".$userid."/media/recent/?access_token=".$access_token."&count=35";
-			$args = array(
-			    'timeout' => 9,
-			);
-			$response = wp_safe_remote_get($url, $args);
-			
-			if (is_wp_error($response)) {
-				return false;
-			}
-				
-			$code = intval(json_decode($response['response']['code']));
-			
-			$save_for = 30; // minutes for transient
-			
-			if ($code === 200) {
-				$result = json_decode($response['body']);
-				update_option('p3_update_notice_3', 1); // get rid of dashboard nag for new API changes
-			} else {
-				$result = $code;
-				$save_for = 5; // minutes for transient
-			}
-			
-			set_transient( 'p3_instagram_feed_'.$userid, $result, $save_for * MINUTE_IN_SECONDS );
+		if (is_wp_error($response)) {
+			return false;
 		}
-			
-		//$result = json_decode($result['body']);
-			
-		//print_r($result['body']);
-			
-		if ($result === 400) {
+		
+		$code = intval(json_decode($response['response']['code']));
+		
+		if ($code === 200) {
+			$result = json_decode($response['body']);
+		} else {
 			return false;
 		}
 		
 		$images = array();
+		
+		foreach ($result->data as $image) {
+			$caption = '';
+			/*
+			if (!empty($image->caption->text)) {
+				$caption = $image->caption->text;
+			}
+			*/			
+			if (!empty($image->images->standard_resolution->url)) {
+				$img_url = $image->images->standard_resolution->url;
+			}	
+			$images[] = array (
+				'src' => esc_url($img_url),
+				'link' => esc_url($image->link),
+				'likes' => absint($image->likes->count),
+				'comments' => absint($image->comments->count),
+				'caption' => strip_tags($caption),
+			);
+		}
+		
+		// grab next page if available
+		if (!empty($result->pagination->next_url)) {
+			$url = $result->pagination->next_url;
+			$response = wp_safe_remote_get($url, $args);
 			
-		for ($i = 0; $i < 30; $i++) {
-			if (!empty($result->data[$i])) {
-				
-				/*
-				if (!empty($result->data[$i]->type) && ($result->data[$i]->type != 'image')) {
-					continue; // skip this one if it ain't an image
+			if (!is_wp_error($response)) {
+				$code = intval(json_decode($response['response']['code']));
+				if ($code === 200) {
+					$result = json_decode($response['body']);
+					foreach ($result->data as $image) {
+						$caption = '';
+						/*
+						if (!empty($image->caption->text)) {
+							$caption = $image->caption->text;
+						}
+						*/
+						if (!empty($image->images->standard_resolution->url)) {
+							$img_url = $image->images->standard_resolution->url;
+						}
+						$images[] = array (
+							'src' => esc_url($img_url),
+							'link' => esc_url($image->link),
+							'likes' => absint($image->likes->count),
+							'comments' => absint($image->comments->count),
+							'caption' => strip_tags($caption),
+						);
+					}
 				}
-				*/
-				
-				$caption = '';
-				if ((!empty($result->data[$i]->caption->text))) {
-					$caption = $result->data[$i]->caption->text;
-				}
-					
-				if ((!empty($result->data[$i]->images->standard_resolution->url))) {
-					$num = absint(get_theme_mod('p3_instagram_number', 8));	
-					$img_url = $result->data[$i]->images->standard_resolution->url;
-				}
-					
-				$new_image = array (
-					'src' => esc_url($img_url),
-					'link' => esc_url($result->data[$i]->link),
-					'likes' => intval($result->data[$i]->likes->count),
-					'comments' => intval($result->data[$i]->comments->count),
-					'caption' => strip_tags($caption),
-				);
-				
-				array_push($images, $new_image);
-					
-			} else {
-				break;
 			}
 		}
-			
-		if (!empty($images)) {
-			return $images;
-		} else {
-			return false;
-		}
-			
+		
+		set_transient( 'p3_instagram_feed_'.$userid, $images, 30 * MINUTE_IN_SECONDS );
 	}
-	add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to avoid cache
+		
+	if (!empty($images)) {
+		return $images;
+	} else {
+		return false;
+	}
+		
+}
+add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to avoid cache
 }
 
 
