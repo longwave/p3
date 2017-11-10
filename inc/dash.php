@@ -500,15 +500,14 @@ function pipdig_p3_dashboard_social_count_func() {
 
 // disable siteurl settings
 function p3_disable_site_url_settings() {
-	
+	/*
 	if (!is_super_admin()) {
 		return;
 	}
-	
 	if (isset($_GET['safety_off'])) {
 		return;
 	}
-	
+	*/
 	global $pagenow;
 	if ($pagenow != 'options-general.php') {
 		return;
@@ -516,8 +515,10 @@ function p3_disable_site_url_settings() {
 	?>
 	<script>
 	jQuery(document).ready(function($) {
-		$('.options-general-php #siteurl').attr( 'readonly', true );
-		$('.options-general-php #home').attr( 'readonly', true );			
+		//$('.options-general-php #siteurl').attr( 'readonly', true );
+		//$('.options-general-php #home').attr( 'readonly', true );
+		$('.options-general-php #siteurl').after(' BE CAREFUL. THIS OPTION CAN BREAK YOUR SITE.');
+		$('.options-general-php #home').after(' BE CAREFUL. THIS OPTION CAN BREAK YOUR SITE.');
 	});
 	</script>
 	<?php

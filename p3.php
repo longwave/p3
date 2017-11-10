@@ -192,6 +192,7 @@ function pipdig_p3_activate() {
 		'advanced-excerpt/advanced-excerpt.php',
 		'force-regenerate-thumbnails/force-regenerate-thumbnails.php',
 		'jch-optimize/jch-optimize.php',
+		'rss-image-feed/image-rss.php',
 	);
 	deactivate_plugins($plugins);
 	
@@ -348,7 +349,8 @@ function p3_trust_me_you_dont_want_this() {
 	$plugins = array(
 		'query-strings-remover/query-strings-remover.php', // Stop removing query strings. They're an important part of WP and keeping the site working correctly with caching.
 		'remove-query-strings-from-static-resources/remove-query-strings.php',
-		'scripts-to-footerphp/scripts-to-footerphp.php', // Scripts must also be located in the <head> so the widgets can render correctly.
+		'scripts-to-footer/scripts-to-footer.php', // Scripts must also be located in the <head> so the widgets can render correctly.
+		'fast-velocity-minify/fvm.php',
 	);
 	deactivate_plugins($plugins);
 }
