@@ -151,6 +151,7 @@ add_filter('mod_rewrite_rules', 'p3_htaccess_edit');
 
 function pipdig_p3_emmmm_heeey() {
 	?>
+	<!–noptimize–>
 	<script>	
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
@@ -162,6 +163,7 @@ function pipdig_p3_emmmm_heeey() {
 		});
 	});
 	</script>
+	<!–/noptimize–>
 	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo strip_tags(wp_get_theme()->get('Name')); ?> v<?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> | <?php echo strip_tags(get_site_url()); ?> -->
 	<?php
 }
@@ -388,6 +390,7 @@ function p3_lazy_script() {
 		return;
 	}
 	?>
+	<!–noptimize–>
 	<script>
 	jQuery(document).ready(function($) {
 		$(".pipdig_lazy").Lazy({
@@ -396,6 +399,7 @@ function p3_lazy_script() {
 		});
 	});
 	</script>
+	<!–/noptimize–>
 	<?php
 }
 add_action( 'wp_footer', 'p3_lazy_script', 99999 );

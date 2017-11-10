@@ -15,7 +15,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		'show_comments' => '1'
 	), $atts ) );
 	
-	//wp_enqueue_script( 'imagesloaded' ); // I know, I know :(
+	//wp_enqueue_script( 'pipdig-imagesloaded' );
 	wp_enqueue_script( 'masonry' );
 	
 	$percent = '47';
@@ -89,9 +89,9 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 								$output .= '<div>';
 							}
 								if ($show_date) {
-									$output .= '<span class="date"><time itemprop="datePublished">'.get_the_date().'</time></span>';
+									$output .= '<span class="date"><time itemprop="datePublished">'.esc_html(get_the_date()).'</time></span>';
 								}
-								$output .= '<h2 class="title moasic-title" itemprop="name">'.get_the_title().'</h2>';
+								$output .= '<h2 class="title moasic-title" itemprop="name">'.esc_html(get_the_title()).'</h2>';
 								if ($show_comments) {
 									$output .= '<div class="mosaic-comments">'.$comments_out.'</div>';
 								}
@@ -141,7 +141,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 			.grid-item {width: 48%}
 		}
 	</style>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
 	<script>
 	jQuery(document).ready(function($) {
 		$(".entry-content").imagesLoaded( function(){

@@ -109,7 +109,7 @@ if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_socia
 		
 		if (class_exists('Woocommerce') && get_theme_mod('p3_navbar_woocommerce', 1)) {
 			global $woocommerce;
-			$navbar_icons .= '<a href="' . $woocommerce->cart->get_cart_url() . '" rel="nofollow" aria-label="" title=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>';
+			$navbar_icons .= '<a href="' . $woocommerce->cart->get_cart_url() . '" rel="nofollow" aria-label="Shopping cart" title="Shopping cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>';
 		}
 		
 		if( $args->theme_location == 'primary' ) {
