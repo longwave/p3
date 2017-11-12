@@ -51,7 +51,7 @@ class pipdig_Image_Widget extends WP_Widget {
 			
 			if (!empty($instance['nofollow'])) {
 				if (!empty($instance['nofollow'])) {
-					$nofollow = ' rel="nofollow"';
+					$nofollow = ' rel="nofollow noopener"';
 				}
 			}
 			

@@ -73,11 +73,8 @@ function p3_instagram_fetch($access_token = '') {
 				$caption = $image->caption->text;
 			}
 			*/			
-			if (!empty($image->images->standard_resolution->url)) {
-				$img_url = $image->images->standard_resolution->url;
-			}	
 			$images[] = array (
-				'src' => esc_url($img_url),
+				'src' => esc_url($image->images->standard_resolution->url),
 				'link' => esc_url($image->link),
 				'likes' => absint($image->likes->count),
 				'comments' => absint($image->comments->count),
@@ -101,11 +98,8 @@ function p3_instagram_fetch($access_token = '') {
 							$caption = $image->caption->text;
 						}
 						*/
-						if (!empty($image->images->standard_resolution->url)) {
-							$img_url = $image->images->standard_resolution->url;
-						}
 						$images[] = array (
-							'src' => esc_url($img_url),
+							'src' => esc_url($image->images->standard_resolution->url),
 							'link' => esc_url($image->link),
 							'likes' => absint($image->likes->count),
 							'comments' => absint($image->comments->count),
@@ -116,9 +110,9 @@ function p3_instagram_fetch($access_token = '') {
 			}
 		}
 		
-		set_transient( 'p3_instagram_feed_'.$userid, $images, 30 * MINUTE_IN_SECONDS );
+		set_transient( 'p3_instagram_feed_'.$userid, $images, 15 * MINUTE_IN_SECONDS );
 	}
-		
+	
 	if (!empty($images)) {
 		return $images;
 	} else {
@@ -213,6 +207,9 @@ function p3_instagram_footer() {
 			<?php } ?>
 			<?php $num = $num-1; // account for array starting at 0 ?>
 			<?php for ($x = 0; $x <= $num; $x++) {
+				if (!isset($images[$x]['link'])) {
+					break;
+				}
 				$hide_class = '';
 				if ($x >= 4) {
 					$hide_class = ' p3_instagram_hide_mobile';
@@ -265,6 +262,9 @@ function p3_instagram_header() {
 		<div id="p3_instagram_header">
 		<?php $num = $num-1; // account for array starting at 0 ?>
 			<?php for ($x = 0; $x <= $num; $x++) {
+				if (!isset($images[$x]['link'])) {
+					break;
+				}
 				$hide_class = '';
 				if ($x >= 4) {
 					$hide_class = ' p3_instagram_hide_mobile';
@@ -310,6 +310,9 @@ function p3_instagram_site_main_container() {
 		<h3 class="widget-title"><span>Instagram</span></h3>
 		<?php $num = $num-1; // account for array starting at 0 ?>
 			<?php for ($x = 0; $x <= $num; $x++) {
+				if (!isset($images[$x]['link'])) {
+					break;
+				}
 				$hide_class = '';
 				if ($x >= 4) {
 					$hide_class = ' p3_instagram_hide_mobile';
@@ -349,6 +352,9 @@ function p3_instagram_top_of_posts() {
 		<div id="p3_instagram_top_of_posts">
 		<h3 class="widget-title"><span>Instagram</span></h3>
 			<?php for ($x = 0; $x <= 4; $x++) {
+				if (!isset($images[$x]['link'])) {
+					break;
+				}
 				$hide_class = '';
 				//if ($x >= 4) {
 					//$hide_class = ' p3_instagram_hide_mobile';
@@ -400,6 +406,9 @@ function p3_instagram_bottom_of_posts() {
 			<h3 class="widget-title"><span>Instagram</span></h3>
 			<?php $num = $num-1; // account for array starting at 0 ?>
 				<?php for ($x = 0; $x <= $num; $x++) {
+					if (!isset($images[$x]['link'])) {
+						break;
+					}
 					$hide_class = '';
 					if ($x >= 4) {
 						$hide_class = ' p3_instagram_hide_mobile';
