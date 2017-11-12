@@ -45,6 +45,11 @@ function p3_instagram_fetch($access_token = '') {
 	}
 	
 	
+	if (get_option('p3_instagram_transient_cleared') != 1) {
+		delete_transient('p3_instagram_feed_'.$userid);
+		update_option('p3_instagram_transient_cleared', 1);
+	}
+	
 	if ( false === ( $images = get_transient( 'p3_instagram_feed_'.$userid ) )) {
 		$url = 'https://api.instagram.com/v1/users/'.$userid.'/media/recent/?access_token='.$access_token.'&count=20';
 		$args = array(

@@ -13,6 +13,9 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.4.3 =
+* Display YouTube thumbnail if no images are within the blog post.
+
 = 3.4.1 =
 * [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) - option to use image alt tags instead of the post title.
 
