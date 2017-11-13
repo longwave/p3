@@ -63,6 +63,10 @@ if (!function_exists('p3_featured_cats')) {
 			return;
 		}
 		
+		if (is_paged()) {
+			return;
+		}
+		
 		if (!get_theme_mod('p3_featured_cats_enable')) {
 			return;
 		}
