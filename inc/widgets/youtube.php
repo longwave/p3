@@ -100,7 +100,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 				$i = 1; // just for margin counter below
 				
 				$pipdig_preview = false;
-				if (!function_exists('pipdig_previews_remove_scripts')) {
+				if (function_exists('pipdig_previews_remove_scripts')) {
 					$pipdig_preview = true;
 				}
 

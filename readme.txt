@@ -13,7 +13,7 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.4.3 =
+= 3.4.4 =
 * Display YouTube thumbnail if no images are within the blog post.
 
 = 3.4.1 =
