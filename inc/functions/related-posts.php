@@ -35,22 +35,36 @@ if (!defined('ABSPATH')) die;
 	$output = '';
 	global $post;
 	$orig_post = $post;
-	$categories = get_the_category($post->ID);
+	$posts_by = absint(get_theme_mod('p3_related_posts_by', 1));
+	if ($posts_by == 2) {
+		$categories = get_the_tags($post->ID);
+	} else {
+		$categories = get_the_category($post->ID);
+	}
+	
 	if ($categories) {
+		
 		$category_ids = array();
 		foreach ($categories as $individual_category) {
 			$category_ids[] = $individual_category->term_id;
 		}
-		$query = new wp_query( array(
-			'category__in' => $category_ids,
+		
+		$args = array(
 			'post__not_in' => array($post->ID),
 			'posts_per_page'=> $number,
 			'orderby' => 'rand',
 			'date_query' => array(
 				array('after' => get_theme_mod( 'related_posts_date', '1 year ago' )),
 			),
-			)
 		);
+		
+		if ($posts_by == 2) {
+			$args['tag__in'] = $category_ids;
+		} else {
+			$args['category__in'] = $category_ids;
+		}
+		
+		$query = new wp_query($args);
 		
 		$lazy = false;
 		$lazy_class = '';
@@ -124,7 +138,6 @@ if (!class_exists('pipdig_related_Customize')) {
 				) 
 			);
 
-
 			// Date range for related posts
 			$wp_customize->add_setting('related_posts_date',
 				array(
@@ -143,6 +156,25 @@ if (!class_exists('pipdig_related_Customize')) {
 						'6 months ago' => __('6 Months', 'p3'),
 						'1 year ago' => __('1 Year', 'p3'),
 						'' => __('All Time', 'p3'),
+					),
+				)
+			);
+			
+			// tags or cats?
+			$wp_customize->add_setting('p3_related_posts_by',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_related_posts_by',
+				array(
+					'type' => 'radio',
+					'label' => 'Find related posts using:',
+					'section' => 'pipdig_related_posts_pop',
+					'choices' => array(
+						1 => 'Post Categories',
+						2 => 'Post Tags',
 					),
 				)
 			);
