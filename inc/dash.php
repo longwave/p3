@@ -500,28 +500,25 @@ function pipdig_p3_dashboard_social_count_func() {
 
 // disable siteurl settings
 function p3_disable_site_url_settings() {
-	/*
-	if (!is_super_admin()) {
-		return;
-	}
-	if (isset($_GET['safety_off'])) {
-		return;
-	}
-	*/
 	global $pagenow;
-	if ($pagenow != 'options-general.php') {
-		return;
+	if ($pagenow == 'options-general.php') {
+		?>
+		<script>
+		jQuery(document).ready(function($) {
+			$('.options-general-php #siteurl').after(' BE CAREFUL. THIS OPTION CAN BREAK YOUR SITE.');
+			$('.options-general-php #home').after(' BE CAREFUL. THIS OPTION CAN BREAK YOUR SITE.');
+		});
+		</script>
+		<?php
+	} elseif (($pagenow == 'theme-editor.php') && !is_child_theme()) {
+		?>
+		<script>
+		jQuery(document).ready(function($) {
+			$('#file-editor-warning .file-editor-warning-message').html( '<h1>Warning!</h1><p>You appear to be making direct edits to your theme in the WordPress dashboard. We recommend that you don&#8217;t! Editing your theme directly could break your site and your changes may be lost in future updates. <a href="https://go.pipdig.co/open.php?id=edit-theme-warning" target="_blank" rel="noopener">Click here for more information</a></p><p>If you&#8217;d like to proceed anyway, you can click the button below.</p>' );
+		});
+		</script>
+		<?php
 	}
-	?>
-	<script>
-	jQuery(document).ready(function($) {
-		//$('.options-general-php #siteurl').attr( 'readonly', true );
-		//$('.options-general-php #home').attr( 'readonly', true );
-		$('.options-general-php #siteurl').after(' BE CAREFUL. THIS OPTION CAN BREAK YOUR SITE.');
-		$('.options-general-php #home').after(' BE CAREFUL. THIS OPTION CAN BREAK YOUR SITE.');
-	});
-	</script>
-	<?php
 }
 add_action('admin_footer', 'p3_disable_site_url_settings', 9999);
 
