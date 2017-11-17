@@ -59,9 +59,7 @@ function p3_pinterest_hover() {
 	if (get_theme_mod('p3_pinterest_hover_prefix_text')) {
 		$dec_prefix = '%20'.esc_attr(get_theme_mod('p3_pinterest_hover_prefix_text'));
 	}
-	
 	?>
-	<!–noptimize–>
 	<style>
 	.p3_pin_wrapper .left {left:<?php echo $margin; ?>px}
 	.p3_pin_wrapper .right {right:<?php echo $margin; ?>px}
@@ -151,11 +149,11 @@ function p3_pinterest_hover() {
 				});
 			});
 			}
-		
 	})(jQuery);
-	jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img)').imgPin();
+	if (document.documentElement.clientWidth > 769 ) { // not on mobiles
+		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img)').imgPin();
+	}
 	</script>
-	<!–/noptimize–>
 	<?php
 }
 add_action('wp_footer', 'p3_pinterest_hover', 999);

@@ -14,7 +14,7 @@ function p3_width_customizer_styles() {
 	$side = 100 - $main;
 	
 	?>
-	<!–noptimize–>
+	
 	<!-- p3 width customizer START -->
 	<style>
 	.site-main .row > .col-xs-8 {
@@ -130,7 +130,7 @@ function p3_width_customizer_styles() {
 	}
 	</style>
 	<!-- p3 width customizer END -->
-	<!–/noptimize–>
+	
 	<?php
 }
 add_action( 'wp_head', 'p3_width_customizer_styles', 999 );

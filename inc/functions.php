@@ -181,7 +181,6 @@ add_filter('mod_rewrite_rules', 'p3_htaccess_edit');
 
 function pipdig_p3_emmmm_heeey() {
 	?>
-	<!–noptimize–>
 	<script>	
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
@@ -191,10 +190,14 @@ function pipdig_p3_emmmm_heeey() {
 				$(".scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '1').css('visibility', 'visible');
 			 }
 		});
+		
+		<?php // Hey Blogerize, if you'd like to get in touch about this please contact us. This can be removed if you are legitimately purchsaing each theme for each client. ?>
+		if ($('.site-credit a:contains("Blogerize")').length > 0) {
+			$('.site-credit a').html('<a href="https://www.pipdig.co" target="_blank">Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>');
+		}
 	});
 	</script>
 	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo strip_tags(wp_get_theme()->get('Name')); ?> v<?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> | <?php echo strip_tags(get_site_url()); ?> -->
-	<!–/noptimize–>
 	<?php
 }
 add_action('wp_footer','pipdig_p3_emmmm_heeey', 9999);
@@ -420,7 +423,7 @@ function p3_lazy_script() {
 		return;
 	}
 	?>
-	<!–noptimize–>
+	
 	<script>
 	jQuery(document).ready(function($) {
 		$(".pipdig_lazy").Lazy({
@@ -429,7 +432,7 @@ function p3_lazy_script() {
 		});
 	});
 	</script>
-	<!–/noptimize–>
+	
 	<?php
 }
 add_action( 'wp_footer', 'p3_lazy_script', 99999 );
