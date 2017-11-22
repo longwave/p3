@@ -73,7 +73,11 @@ class pipdig_Image_Widget extends WP_Widget {
 				$image_link = $instance['image_uri'];
 				$image_data = pipdig_get_attachment_id($instance['image_uri']); // use the medium thumbnail if we can find it
 				if ($image_data) {
-					$image_link = wp_get_attachment_image_src($image_data, 'large');
+					$img_size = 'medium';
+					if ($args['id'] != 'sidebar-1') {
+						$img_size = 'large';
+					}
+					$image_link = wp_get_attachment_image_src($image_data, $img_size);
 					$image_link = reset($image_link); // php <5.4 way to get [0] value of array
 					$image_link = str_replace('http:', '', $image_link);
 				}

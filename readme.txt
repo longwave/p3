@@ -13,8 +13,11 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.5.1 =
+* Option to display [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-how-to-make-sure-images-are-the-correct-size/) on mobiles as well as desktop.
+
 = 3.5.0 =
-* "Related Posts" can now be selected using categories or tags. Find this new option in the 2related Posts" section of the Customizer.
+* "Related Posts" can now be selected using categories or tags. Find this new option in the "Related Posts" section of the Customizer.
 
 = 3.4.4 =
 * Display YouTube thumbnail if no images are within the blog post.

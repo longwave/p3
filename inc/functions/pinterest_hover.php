@@ -51,6 +51,7 @@ function p3_pinterest_hover() {
 	
 	$margin = absint(get_theme_mod('p3_pinterest_hover_margin', 0));
 	$position = esc_attr(get_theme_mod('p3_pinterest_hover_image_position', 'center'));
+	$mobile = get_theme_mod('p3_pinterest_hover_mobile', '1');
 	$pin_img = esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png'));
 	if (strlen($pin_img) < 5) {
 		$pin_img = 'https://assets.pinterest.com/images/pidgets/pin_it_button.png';
@@ -150,9 +151,13 @@ function p3_pinterest_hover() {
 			});
 			}
 	})(jQuery);
+	<?php if ($mobile == 1) { ?>
 	if (document.documentElement.clientWidth > 769 ) { // not on mobiles
+	<?php } ?>
 		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img)').imgPin();
+	<?php if ($mobile == 1) { ?>
 	}
+	<?php } ?>
 	</script>
 	<?php
 }
@@ -226,6 +231,25 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 					'type' => 'checkbox',
 					'label' => __('Display on categories/archives', 'p3'),
 					'section' => 'pipdig_pinterest_hover',
+				)
+			);
+			
+			// display on mobile or desktop+mobile?			
+			$wp_customize->add_setting('p3_pinterest_hover_mobile',
+				array(
+					'default' => '1',
+					'sanitize_callback' => 'sanitize_text_field',
+				)
+			);
+			$wp_customize->add_control('p3_pinterest_hover_mobile',
+				array(
+					'type' => 'select',
+					'label' => __('Display on:', 'p3'),
+					'section' => 'pipdig_pinterest_hover',
+					'choices' => array(
+						'1' => __('Desktop', 'p3'),
+						'2' => __('Desktop and mobile', 'p3'),
+					),
 				)
 			);
 			

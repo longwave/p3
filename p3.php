@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.5.0
+Version: 3.5.1
 Text Domain: p3
 License: Copyright 2017 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.5.0' );
+define( 'PIPDIG_P3_V', '3.5.1' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -258,33 +258,6 @@ function pipdig_p3_activate() {
 		update_option( "pipdig_instagram", $pipdig_instagram );
 	}
 	
-	if (get_option('p3_instagram_transfer') != 1) {
-		if (get_theme_mod('footer_instagram')) {
-		set_theme_mod('p3_instagram_footer', 1);
-		remove_theme_mod('footer_instagram');
-		}
-		if (get_theme_mod('header_instagram')) {
-		set_theme_mod('p3_instagram_header', 1);
-		remove_theme_mod('header_instagram');
-		}
-		remove_theme_mod('footer_instagram_num');
-		remove_theme_mod('header_instagram_num');
-		update_option('p3_instagram_transfer', 1);
-	}
-	
-	remove_theme_mod('footer_instagram');
-	remove_theme_mod('header_instagram');
-	
-	// set header if WP default used
-	/*
-	if (!get_theme_mod('logo_image') && (get_option('pipdig_p3_header_set') != 1)) {
-		if (get_header_image()) {
-		 set_theme_mod('logo_image', get_header_image());
-		 update_option('pipdig_p3_header_set', 1);
-		}
-	}
-	*/
-	
 	p3_flush_htacess();
 	
 	// live site check
@@ -330,12 +303,6 @@ function pipdig_p3_activate() {
 		/*
 		if (Jetpack::is_module_active('photon')) {
 			Jetpack::deactivate_module( 'photon' );
-		}
-		*/
-		/*
-		if (!Jetpack::is_module_active('tiled-gallery')) {
-			Jetpack::activate_module( 'tiled-gallery' );
-			update_option('tiled_galleries', 1);
 		}
 		*/
 	}
