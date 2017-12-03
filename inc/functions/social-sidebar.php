@@ -17,7 +17,7 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $spotify = $itunes = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $spotify = $itunes = $goodreads = '';
 		
 		if (!empty($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
@@ -70,11 +70,14 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 		if (!empty($links['stumbleupon'])) {
 			$stumbleupon = esc_url($links['stumbleupon']);
 		}
+		if (!empty($links['goodreads'])) {
+			$goodreads = esc_url($links['goodreads']);
+		}
 		if (!empty($links['email'])) {
 			$email = sanitize_email($links['email']);
 		}
 		
-		if ($twitter || $instagram || $facebook || $bloglovin || $pinterest || $youtube || $tumblr || $linkedin || $soundcloud || $flickr || $snapchat || $vk || $email || $twitch || $google_plus || $stumbleupon || $spotify || $itunes) {
+		if ($twitter || $instagram || $facebook || $bloglovin || $pinterest || $youtube || $tumblr || $linkedin || $soundcloud || $flickr || $snapchat || $vk || $email || $twitch || $google_plus || $stumbleupon || $spotify || $itunes || $goodreads) {
 			
 			$social_sidebar .= '<div id="p3_social_sidebar" class="'.$position_class.'">';
 
@@ -93,24 +96,25 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 				$social_sidebar .= $styles;
 			}
 			
-			if($twitter && get_theme_mod('p3_social_sidebar_twitter', 1)) $social_sidebar .= '<a href="'.$twitter.'" target="_blank"><i class="fa fa-twitter"></i></a>';
-			if($instagram && get_theme_mod('p3_social_sidebar_instagram', 1)) $social_sidebar .= '<a href="'.$instagram.'" target="_blank"><i class="fa fa-instagram"></i></a>';
-			if($facebook && get_theme_mod('p3_social_sidebar_facebook', 1)) $social_sidebar .= '<a href="'.$facebook.'" target="_blank"><i class="fa fa-facebook"></i></a>';
-			if($bloglovin && get_theme_mod('p3_social_sidebar_bloglovin', 1)) $social_sidebar .= '<a href="'.$bloglovin.'" target="_blank"><i class="fa fa-plus"></i></a>';
-			if($pinterest && get_theme_mod('p3_social_sidebar_pinterest', 1)) $social_sidebar .= '<a href="'.$pinterest.'" target="_blank"><i class="fa fa-pinterest"></i></a>';
-			if($snapchat && get_theme_mod('p3_social_sidebar_snapchat', 1)) $social_sidebar .= '<a href="'.$snapchat.'" target="_blank"><i class="fa fa-snapchat-ghost"></i></a>';
-			if($youtube && get_theme_mod('p3_social_sidebar_youtube', 1)) $social_sidebar .= '<a href="'.$youtube.'" target="_blank"><i class="fa fa-youtube-play"></i></a>';
-			if($tumblr && get_theme_mod('p3_social_sidebar_tumblr', 1)) $social_sidebar .= '<a href="'.$tumblr.'" target="_blank"><i class="fa fa-tumblr"></i></a>';
-			if($linkedin && get_theme_mod('p3_social_sidebar_linkedin', 1)) $social_sidebar .= '<a href="'.$linkedin.'" target="_blank"><i class="fa fa-linkedin"></i></a>';
-			if($soundcloud && get_theme_mod('p3_social_sidebar_soundcloud', 1)) $social_sidebar .= '<a href="'.$soundcloud.'" target="_blank"><i class="fa fa-soundcloud"></i></a>';
-			if($spotify && get_theme_mod('p3_social_sidebar_spotify', 1)) $social_sidebar .= '<a href="'.$spotify.'" target="_blank"><i class="fa fa-spotify"></i></a>';
-			if($itunes && get_theme_mod('p3_social_sidebar_itunes', 1)) $social_sidebar .= '<a href="'.$itunes.'" target="_blank"><i class="fa fa-apple"></i></a>';
-			if($flickr && get_theme_mod('p3_social_sidebar_flickr', 1)) $social_sidebar .= '<a href="'.$flickr.'" target="_blank"><i class="fa fa-flickr"></i></a>';
-			if($twitch && get_theme_mod('p3_social_sidebar_twitch', 1)) $social_sidebar .= '<a href="'.$twitch.'" target="_blank"><i class="fa fa-twitch"></i></a>';
-			if($stumbleupon && get_theme_mod('p3_social_sidebar_stumbleupon', 1)) $social_sidebar .= '<a href="'.$stumbleupon.'" target="_blank"><i class="fa fa-stumbleupon"></i></a>';
-			if($vk && get_theme_mod('p3_social_sidebar_vk', 1)) $social_sidebar .= '<a href="'.$vk.'" target="_blank"><i class="fa fa-vk"></i></a>';
-			if($google_plus && get_theme_mod('p3_social_sidebar_google_plus', 1)) $social_sidebar .= '<a href="'.$google_plus.'" target="_blank"><i class="fa fa-google-plus"></i></a>';
-			if($email && get_theme_mod('p3_social_sidebar_email', 1)) $social_sidebar .= '<a href="mailto:'.$email.'" target="_blank"><i class="fa fa-envelope"></i></a>';
+			if($twitter && get_theme_mod('p3_social_sidebar_twitter', 1)) $social_sidebar .= '<a href="'.$twitter.'" target="_blank" rel="nofollow noopener"><i class="fa fa-twitter"></i></a>';
+			if($instagram && get_theme_mod('p3_social_sidebar_instagram', 1)) $social_sidebar .= '<a href="'.$instagram.'" target="_blank" rel="nofollow noopener"><i class="fa fa-instagram"></i></a>';
+			if($facebook && get_theme_mod('p3_social_sidebar_facebook', 1)) $social_sidebar .= '<a href="'.$facebook.'" target="_blank" rel="nofollow noopener"><i class="fa fa-facebook"></i></a>';
+			if($bloglovin && get_theme_mod('p3_social_sidebar_bloglovin', 1)) $social_sidebar .= '<a href="'.$bloglovin.'" target="_blank" rel="nofollow noopener"><i class="fa fa-plus"></i></a>';
+			if($pinterest && get_theme_mod('p3_social_sidebar_pinterest', 1)) $social_sidebar .= '<a href="'.$pinterest.'" target="_blank" rel="nofollow noopener"><i class="fa fa-pinterest"></i></a>';
+			if($snapchat && get_theme_mod('p3_social_sidebar_snapchat', 1)) $social_sidebar .= '<a href="'.$snapchat.'" target="_blank" rel="nofollow noopener"><i class="fa fa-snapchat-ghost"></i></a>';
+			if($youtube && get_theme_mod('p3_social_sidebar_youtube', 1)) $social_sidebar .= '<a href="'.$youtube.'" target="_blank" rel="nofollow noopener"><i class="fa fa-youtube-play"></i></a>';
+			if($tumblr && get_theme_mod('p3_social_sidebar_tumblr', 1)) $social_sidebar .= '<a href="'.$tumblr.'" target="_blank" rel="nofollow noopener"><i class="fa fa-tumblr"></i></a>';
+			if($linkedin && get_theme_mod('p3_social_sidebar_linkedin', 1)) $social_sidebar .= '<a href="'.$linkedin.'" target="_blank" rel="nofollow noopener"><i class="fa fa-linkedin"></i></a>';
+			if($soundcloud && get_theme_mod('p3_social_sidebar_soundcloud', 1)) $social_sidebar .= '<a href="'.$soundcloud.'" target="_blank" rel="nofollow noopener"><i class="fa fa-soundcloud"></i></a>';
+			if($spotify && get_theme_mod('p3_social_sidebar_spotify', 1)) $social_sidebar .= '<a href="'.$spotify.'" target="_blank" rel="nofollow noopener"><i class="fa fa-spotify"></i></a>';
+			if($itunes && get_theme_mod('p3_social_sidebar_itunes', 1)) $social_sidebar .= '<a href="'.$itunes.'" target="_blank" rel="nofollow noopener"><i class="fa fa-apple"></i></a>';
+			if($flickr && get_theme_mod('p3_social_sidebar_flickr', 1)) $social_sidebar .= '<a href="'.$flickr.'" target="_blank" rel="nofollow noopener"><i class="fa fa-flickr"></i></a>';
+			if($twitch && get_theme_mod('p3_social_sidebar_twitch', 1)) $social_sidebar .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopener"><i class="fa fa-twitch"></i></a>';
+			if($stumbleupon && get_theme_mod('p3_social_sidebar_stumbleupon', 1)) $social_sidebar .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopener"><i class="fa fa-stumbleupon"></i></a>';
+			if($goodreads && get_theme_mod('p3_social_sidebar_goodreads', 1)) $social_sidebar .= '<a href="'.$goodreads.'" target="_blank" rel="nofollow noopener"><i class="fa fa-book"></i></a>';
+			if($vk && get_theme_mod('p3_social_sidebar_vk', 1)) $social_sidebar .= '<a href="'.$vk.'" target="_blank" rel="nofollow noopener"><i class="fa fa-vk"></i></a>';
+			if($google_plus && get_theme_mod('p3_social_sidebar_google_plus', 1)) $social_sidebar .= '<a href="'.$google_plus.'" target="_blank" rel="nofollow noopener"><i class="fa fa-google-plus"></i></a>';
+			if($email && get_theme_mod('p3_social_sidebar_email', 1)) $social_sidebar .= '<a href="mailto:'.$email.'" target="_blank" rel="nofollow noopener"><i class="fa fa-envelope"></i></a>';
 		
 			$social_sidebar .= '</div>';
 		
@@ -133,7 +137,7 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 			$wp_customize->add_section( 'p3_social_sidebar_section', 
 				array(
 					'title' => __( 'Social Sidebar', 'p3' ),
-					'description' => __( 'This feature will display a social follow section to the left/right of your site. Select the social icons you would like to add from below.', 'p3' ).' <a href="https://support.pipdig.co/articles/wordpress-social-sidebar/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
+					'description' => __( 'This feature will display a social follow section to the left/right of your site. Select the social icons you would like to add from below.', 'p3' ).' <a href="https://support.pipdig.co/articles/wordpress-social-sidebar/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank" rel="nofollow noopener">'.__( 'Click here for more information', 'p3' ).'</a>.',
 					'capability' => 'edit_theme_options',
 					'priority' => 37,
 				) 
@@ -285,7 +289,6 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 				)
 			);
 			
-			
 			// bloglovin
 			$wp_customize->add_setting('p3_social_sidebar_bloglovin',
 				array(
@@ -312,6 +315,21 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Pinterest',
+					'section' => 'p3_social_sidebar_section',
+				)
+			);
+			
+			// goodreads
+			$wp_customize->add_setting('p3_social_sidebar_goodreads',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_social_sidebar_goodreads',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Goodreads',
 					'section' => 'p3_social_sidebar_section',
 				)
 			);

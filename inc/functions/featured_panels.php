@@ -9,25 +9,27 @@ if (p3_theme_enabled(array('hollyandweave', 'equinox', 'opulence', 'galvani', 'b
 }
 
 function p3_featured_panels() {
-		
+	
 	if (!is_home() && !is_front_page()) {
-		return;
+		if (get_theme_mod('p3_featured_panels_homepage', 1)) {
+			return;
+		}
 	}
-		
+	
 	if (!get_theme_mod('p3_featured_panels_enable', p3_theme_enabled(array('hollyandweave')))) {
 		return;
 	}
-		
+	
 	$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAGQAQMAAABI+4zbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADRJREFUeNrtwQENAAAAwiD7p7bHBwwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgKQDdsAAAWZeCiIAAAAASUVORK5CYII='; // landscape
-		
+	
 	$image_shape = get_theme_mod('p3_featured_panels_shape');
-		
+	
 	if ($image_shape == 2) {
 		$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAHgAQMAAACyyGUjAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACxJREFUeNrtwTEBAAAAwiD7p7bGDmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkHVZAAAFam5MDAAAAAElFTkSuQmCC'; // portrait
 	} elseif ($image_shape == 3) {
 		$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC'; // square
 	}
-		
+	
 	$img_1 = $title_1 = $link_1 = $img_2 = $title_2 = $link_2 = $img_3 = $title_3 = $link_3 = $img_4 = $title_4 = $link_4 = '';
 	
 	$show = true;
@@ -47,7 +49,7 @@ function p3_featured_panels() {
 			}
 		}
 	}
-			
+	
 	$img_1 = get_theme_mod('p3_featured_panels_1_img', 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg');
 	$title_1 = get_theme_mod('p3_featured_panels_1_title', $default_title);
 	$link_1 = get_theme_mod('p3_featured_panels_1_link', $default_link);
@@ -230,11 +232,27 @@ class pipdig_p3_featured_panels_Customize {
 			'p3_featured_panels_mobile',
 			array(
 				'type' => 'checkbox',
-				'label' => __( 'Enable on mobile?', 'p3' ),
+				'label' => __( 'Enable on mobile', 'p3' ),
 				'section' => 'p3_featured_panels_section',
 			)
 		);
-			
+		
+		// homepage only?
+		$wp_customize->add_setting('p3_featured_panels_homepage',
+			array(
+				'default' => 1,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control(
+			'p3_featured_panels_homepage',
+			array(
+				'type' => 'checkbox',
+				'label' => __( 'Display on homepage only', 'p3' ),
+				'section' => 'p3_featured_panels_section',
+			)
+		);
+		
 		// image shape
 		$wp_customize->add_setting('p3_featured_panels_shape',
 			array(

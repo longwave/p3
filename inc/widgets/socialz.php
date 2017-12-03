@@ -36,6 +36,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$stumbleupon = empty($instance['stumbleupon']) ? '' : esc_url($instance['stumbleupon']);
 		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
 		$snapchat = empty($instance['snapchat']) ? '' : esc_url($instance['snapchat']);
+		$goodreads = empty($instance['goodreads']) ? '' : esc_url($instance['goodreads']);
 		$rss = empty($instance['rss']) ? '' : esc_attr($instance['rss']);
 		//$style_select = empty($instance['style_select']) ? '' : $instance['style_select'];
 
@@ -67,6 +68,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($linkedin)) $icons_output .= '<a href="'.$linkedin.'" target="_blank" rel="nofollow noopener" aria-label="linkedin" title="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>';
 			if (!empty($vk)) $icons_output .= '<a href="'.$vk.'" target="_blank" rel="nofollow noopener" aria-label="vk" title="vk"><i class="fa fa-vk" aria-hidden="true"></i></a>';
 			if (!empty($flickr)) $icons_output .= '<a href="'.$flickr.'" target="_blank" rel="nofollow noopener" aria-label="flickr" title="flickr"><i class="fa fa-flickr" aria-hidden="true"></i></a>';
+			if (!empty($goodreads)) $icons_output .= '<a href="'.$goodreads.'" target="_blank" rel="nofollow noopener" aria-label="goodreads" title="goodreads"><i class="fa fa-book" aria-hidden="true"></i></a>';
 			if (!empty($spotify)) $icons_output .= '<a href="'.$spotify.'" target="_blank" rel="nofollow noopener" aria-label="spotify" title="spotify"><i class="fa fa-spotify" aria-hidden="true"></i></a>';
 			if (!empty($itunes)) $icons_output .= '<a href="'.$itunes.'" target="_blank" rel="nofollow noopener" aria-label="itunes" title="itunes"><i class="fa fa-apple" aria-hidden="true"></i></a>';
 			if (!empty($soundcloud)) $icons_output .= '<a href="'.$soundcloud.'" target="_blank" rel="nofollow noopener" aria-label="soundcloud" title="soundcloud"><i class="fa fa-soundcloud" aria-hidden="true"></i></a>';
@@ -94,6 +96,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($linkedin)) $icons_output .= '<a href="'.$linkedin.'" target="_blank" rel="nofollow noopener" aria-label="linkedin" title="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i><br /><span>LinkedIn</span></a>';
 			if (!empty($vk)) $icons_output .= '<a href="'.$vk.'" target="_blank" rel="nofollow noopener" aria-label="VKontakte" title="VKontakte"><i class="fa fa-vk" aria-hidden="true"></i><br /><span>VKontakte</span></a>';
 			if (!empty($flickr)) $icons_output .= '<a href="'.$flickr.'" target="_blank" rel="nofollow noopener" aria-label="Flickr" title="Flickr"><i class="fa fa-flickr" aria-hidden="true"></i><br /><span>Flickr</span></a>';
+			if (!empty($goodreads)) $icons_output .= '<a href="'.$goodreads.'" target="_blank" rel="nofollow noopener" aria-label="Goodreads" title="Goodreads"><i class="fa fa-book" aria-hidden="true"></i><br /><span>Goodreads</span></a>';
 			if (!empty($spotify)) $icons_output .= '<a href="'.$spotify.'" target="_blank" rel="nofollow noopener" aria-label="spotify" title="spotify"><i class="fa fa-spotify" aria-hidden="true"></i><br /><span>Spotify</span></a>';
 			if (!empty($itunes)) $icons_output .= '<a href="'.$itunes.'" target="_blank" rel="nofollow noopener" aria-label="itunes" title="itunes"><i class="fa fa-apple" aria-hidden="true"></i><br /><span>iTunes</span></a>';
 			if (!empty($soundcloud)) $icons_output .= '<a href="'.$soundcloud.'" target="_blank" rel="nofollow noopener" aria-label="soundcloud" title="soundcloud"><i class="fa fa-soundcloud" aria-hidden="true"></i><br /><span>Soundcloud</span></a>';
@@ -138,6 +141,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$stumbleupon = empty($instance['stumbleupon']) ? '' : esc_url($instance['stumbleupon']);
 		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
 		$snapchat = empty($instance['snapchat']) ? '' : esc_url($instance['snapchat']);
+		$goodreads = empty($instance['goodreads']) ? '' : esc_url($instance['goodreads']);
 		$rss = empty($instance['rss']) ? '' : strip_tags($instance['rss']);
 		
 		$links = get_option('pipdig_links');
@@ -195,6 +199,9 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		}
 		if (empty($spotify) && isset($links['spotify'])) {
 			$spotify = esc_url($links['spotify']);
+		}
+		if (empty($goodreads) && isset($links['goodreads'])) {
+			$goodreads = esc_url($links['goodreads']);
 		}
 		/* not on links page yet
 		if (empty($medium)) {
@@ -324,6 +331,14 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			value="<?php echo esc_attr($rss); ?>" />
 			</label>
 		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('goodreads'); ?>">Goodreads (e.g. https://goodreads.com/pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('goodreads'); ?>" 
+			name="<?php echo $this->get_field_name('goodreads'); ?>" type="text" 
+			value="<?php echo esc_url($goodreads); ?>" />
+			</label>
+		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id('tumblr'); ?>">Tumblr (e.g. http://pipdig.tumblr.com) 
@@ -448,6 +463,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$instance['twitch'] = esc_url($new_instance['twitch']);
 		$instance['stumbleupon'] = esc_url($new_instance['stumbleupon']);
 		$instance['etsy'] = esc_url($new_instance['etsy']);
+		$instance['goodreads'] = esc_url($new_instance['goodreads']);
 		$instance['email'] = sanitize_email($new_instance['email']);
 		$instance['rss'] = strip_tags($new_instance['rss']);
 		

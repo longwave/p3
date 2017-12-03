@@ -102,6 +102,14 @@ function pipdig_links_init() {
 	);
 	
 	add_settings_field( 
+		'Goodreads', 
+		'<i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;Goodreads', 
+		'p3_goodreads_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
+	add_settings_field( 
 		'soundcloud', 
 		'<i class="fa fa-soundcloud" aria-hidden="true"></i>&nbsp;&nbsp;SoundCloud', 
 		'p3_soundcloud_field_render', 
@@ -309,6 +317,11 @@ function p3_digg_field_render() {
 function p3_houzz_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[houzz]' placeholder='e.g. https://houzz.com/pipdig' value="<?php if (isset($links['houzz'])) { echo $links['houzz']; } ?>"> <?php
+}
+
+function p3_goodreads_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[goodreads]' placeholder='e.g. https://goodreads.com/pipdig' value="<?php if (isset($links['goodreads'])) { echo $links['goodreads']; } ?>"> <?php
 }
 
 function p3_rss_field_render() { 

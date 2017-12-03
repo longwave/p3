@@ -9,7 +9,7 @@ if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_socia
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = $etsy = $spotify = $itunes = $houzz = $digg = $reddit = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = $etsy = $spotify = $itunes = $houzz = $digg = $reddit = $goodreads = '';
 		
 		if (!empty($links['email'])) {
 			$email = sanitize_email($links['email']);
@@ -80,6 +80,9 @@ if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_socia
 		if (!empty($links['houzz'])) {
 			$houzz = esc_url($links['houzz']);
 		}
+		if (!empty($links['goodreads'])) {
+			$goodreads = esc_url($links['goodreads']);
+		}
 
 		if($twitter && get_theme_mod('p3_navbar_twitter', 1)) $navbar_icons .= '<a href="'.$twitter.'" target="_blank" rel="nofollow noopenner" aria-label="twitter" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>';
 		if($instagram && get_theme_mod('p3_navbar_instagram', 1)) $navbar_icons .= '<a href="'.$instagram.'" target="_blank" rel="nofollow noopenner" aria-label="instagram" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>';
@@ -97,7 +100,8 @@ if (!function_exists('add_socialz_to_menu') && !function_exists('pipdig_p3_socia
 		if($twitch && get_theme_mod('p3_navbar_twitch', 1)) $navbar_icons .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopenner" aria-label="twitch" title="twitch"><i class="fa fa-twitch" aria-hidden="true"></i></a>';
 		if($stumbleupon && get_theme_mod('p3_navbar_stumbleupon', 1)) $navbar_icons .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopenner" aria-label="stumbleupon" title="stumbleupon"><i class="fa fa-stumbleupon" aria-hidden="true"></i></a>';
 		if($etsy && get_theme_mod('p3_navbar_etsy', 1)) $navbar_icons .= '<a href="'.$etsy.'" target="_blank" rel="nofollow noopenner" aria-label="etsy" title="etsy"><i class="fa fa-etsy" aria-hidden="true"></i></a>';
-		if($houzz && get_theme_mod('p3_navbar_etsy', 1)) $navbar_icons .= '<a href="'.$houzz.'" target="_blank" rel="nofollow noopenner" aria-label="houzz" title="houzz"><i class="fa fa-houzz" aria-hidden="true"></i></a>';
+		if($goodreads && get_theme_mod('p3_navbar_goodreads', 1)) $navbar_icons .= '<a href="'.$goodreads.'" target="_blank" rel="nofollow noopenner" aria-label="Goodreads" title="Goodreads"><i class="fa fa-book" aria-hidden="true"></i></a>';
+		if($houzz && get_theme_mod('p3_navbar_houzz', 1)) $navbar_icons .= '<a href="'.$houzz.'" target="_blank" rel="nofollow noopenner" aria-label="houzz" title="houzz"><i class="fa fa-houzz" aria-hidden="true"></i></a>';
 		if($vk && get_theme_mod('p3_navbar_vk', 1)) $navbar_icons .= '<a href="'.$vk.'" target="_blank" rel="nofollow noopenner" aria-label="VK" title="VK"><i class="fa fa-vk" aria-hidden="true"></i></a>';
 		if($google_plus && get_theme_mod('p3_navbar_google_plus', 1)) $navbar_icons .= '<a href="'.$google_plus.'" target="_blank" rel="nofollow noopenner" aria-label="Google Plus" title="Google Plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>';
 		if($reddit && get_theme_mod('p3_navbar_reddit', 1)) $navbar_icons .= '<a href="'.$reddit.'" target="_blank" rel="nofollow noopenner" aria-label="reddit" title="reddit"><i class="fa fa-reddit" aria-hidden="true"></i></a>';
@@ -424,6 +428,21 @@ if (!class_exists('pipdig_p3_navbar_icons_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Stumbleupon',
+					'section' => 'p3_navbar_icons_section',
+				)
+			);
+			
+			// Goodreads
+			$wp_customize->add_setting('p3_navbar_goodreads',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_navbar_goodreads',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Goodreads',
 					'section' => 'p3_navbar_icons_section',
 				)
 			);

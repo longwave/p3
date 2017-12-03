@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.6.0 =
+* Add Goodreads to social links (Not the official icon yet whilst we're waiting for this to become available).
+* Display an Author Bio at the end of blog posts.
+
 = 3.5.1 =
 * Option to display [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-how-to-make-sure-images-are-the-correct-size/) on mobiles as well as desktop.
 

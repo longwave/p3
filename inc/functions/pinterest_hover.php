@@ -51,6 +51,9 @@ function p3_pinterest_hover() {
 	
 	$margin = absint(get_theme_mod('p3_pinterest_hover_margin', 0));
 	$position = esc_attr(get_theme_mod('p3_pinterest_hover_image_position', 'center'));
+	if (empty($position)) {
+		$position = 'center';
+	}
 	$mobile = get_theme_mod('p3_pinterest_hover_mobile', '1');
 	$pin_img = esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png'));
 	if (strlen($pin_img) < 5) {
@@ -128,7 +131,7 @@ function p3_pinterest_hover() {
 					link += '?url='+shareURL;
 					link += '&media='+imgURL;
 					link += '&description=<?php echo addslashes($dec_prefix).' '; ?>'+description;
-					$(this).wrap('<div class="p3_pin_wrapper_outer '+pin_positon+'"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
+					$(this).wrap('<div class="p3_pin_wrapper_outer '+pin_positon+'"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>" target="_blank" rel="nofollow noopener"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
 
 				<?php if ($position == 'center') { ?>
 				var img = new Image();
