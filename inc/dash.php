@@ -147,8 +147,6 @@ function pipdig_p3_news_dashboard() {
 		set_transient( 'p3_get_news', $results, 6 * HOUR_IN_SECONDS );
 	}
 	
-	
-	
 	if (is_array($results) && (count($results) > 0)) {
 		if (!empty($results[0]->id)) {
 			$box_id = esc_attr($results[0]->id);
@@ -165,9 +163,10 @@ function pipdig_p3_news_dashboard() {
 		}
 	}
 
-	
-	// don't show this message for this theme
+	// don't show this message
 	if ($noshow == get_option('pipdig_theme')) {
+		return;
+	} elseif (function_exists('is_shopr_active') && $noshow == 'shopr') {
 		return;
 	}
 	
