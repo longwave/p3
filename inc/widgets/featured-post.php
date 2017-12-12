@@ -124,7 +124,7 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 		
 		<?php
 		$args = array(
-			'posts_per_page'=> 100,
+			'posts_per_page'=> 75,
 			//'fields' => 'ids',
 			'post_type' => 'post',
 			'post_status' => 'publish',

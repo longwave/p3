@@ -193,95 +193,67 @@ if (!function_exists('pipdig_hooks_options_page')) {
 	}
 }
 
-if (!function_exists('pipdig_head_stuff')) {
-	function pipdig_head_stuff() { // wp_head
-		$output = '';
-		$options = get_option( 'pipdig_settings', '' );
-		if (!empty($options['pipdig_textarea_scripts'])) {
-			$output .= "<!-- pipdig p3 custom code head --> \r" . $options['pipdig_textarea_scripts'] . "\r <!-- // pipdig p3 custom code head -->";
-		}
-		echo $output;
+function pipdig_head_stuff() { // wp_head
+	$output = '';
+	$options = get_option( 'pipdig_settings', '' );
+	if (!empty($options['pipdig_textarea_scripts'])) {
+		$output = "<!-- pipdig p3 custom code head --> \r" . $options['pipdig_textarea_scripts'] . "\r <!-- // pipdig p3 custom code head -->";
 	}
-	add_action('wp_head', 'pipdig_head_stuff');
+	echo $output;
 }
+add_action('wp_head', 'pipdig_head_stuff', 9999999);
 
 
-if (!function_exists('pipdig_opening_body_stuff')) {
-	function pipdig_opening_body_stuff() { // After opening <body> tag
-		$output = '';
-		$options = get_option( 'pipdig_settings', '' );
-		if (!empty($options['pipdig_textarea_body_scripts'])) {
-			$output .= "<!-- pipdig p3 custom code starting body --> \r" . $options['pipdig_textarea_body_scripts'] . "\r <!-- // pipdig p3 custom starting body -->";
-		}
-		echo $output;
+function pipdig_opening_body_stuff() { // After opening <body> tag
+	$output = '';
+	$options = get_option( 'pipdig_settings', '' );
+	if (!empty($options['pipdig_textarea_body_scripts'])) {
+		$output = "<!-- pipdig p3 custom code starting body --> \r" . $options['pipdig_textarea_body_scripts'] . "\r <!-- // pipdig p3 custom starting body -->";
 	}
-	add_action('before', 'pipdig_opening_body_stuff');
+	echo $output;
 }
+add_action('before', 'pipdig_opening_body_stuff');
 
 
-if (!function_exists('pipdig_footer_stuff')) {
-	function pipdig_footer_stuff() { // wp_footer
-		$output = '';
-		$options = get_option( 'pipdig_settings', '' );
-		if (!empty($options['pipdig_textarea_footer_scripts'])) {
-			$output .= "<!-- pipdig p3 custom code footer --> \r" . $options['pipdig_textarea_footer_scripts'] . "\r <!-- // pipdig p3 custom code footer -->";
-		}
-		echo $output;
+function pipdig_footer_stuff() { // wp_footer
+	$output = '';
+	$options = get_option( 'pipdig_settings', '' );
+	if (!empty($options['pipdig_textarea_footer_scripts'])) {
+		$output = "<!-- pipdig p3 custom code footer --> \r" . $options['pipdig_textarea_footer_scripts'] . "\r <!-- // pipdig p3 custom code footer -->";
 	}
-	add_action('wp_footer', 'pipdig_footer_stuff');
+	echo $output;
 }
+add_action('wp_footer', 'pipdig_footer_stuff', 9999999);
 
 
-if (!function_exists('pipdig_after_first_post_stuff')) {
-	function pipdig_after_first_post_stuff() { // After the first post (unless grid layout)
-		$output = '';
-		$options = get_option( 'pipdig_settings', '' );
-		if (!empty($options['pipdig_textarea_after_first_post'])) {
-			$output .= '<div class="hook_after-first-post"><!-- pipdig p3 custom code after first post --> ' . do_shortcode($options['pipdig_textarea_after_first_post']) . ' <!-- // pipdig p3 custom code after first post --></div>';
-		}
-		echo $output;
+function pipdig_after_first_post_stuff() { // After the first post (unless grid layout)
+	$output = '';
+	$options = get_option( 'pipdig_settings', '' );
+	if (!empty($options['pipdig_textarea_after_first_post'])) {
+		$output = '<div class="hook_after-first-post"><!-- pipdig p3 custom code after first post --> ' . do_shortcode($options['pipdig_textarea_after_first_post']) . ' <!-- // pipdig p3 custom code after first post --></div>';
 	}
-	add_action('after_first_post','pipdig_after_first_post_stuff');
+	echo $output;
 }
+add_action('after_first_post','pipdig_after_first_post_stuff');
 
 
-if (!function_exists('pipdig_textarea_p3_content_start_stuff')) {
-	function pipdig_textarea_p3_content_start_stuff() { // top of post content
-		$output = '';
-		$options = get_option( 'pipdig_settings', '' );
-		if (!empty($options['pipdig_textarea_p3_content_start'])) {
-			$output .= do_shortcode($options['pipdig_textarea_p3_content_start']);
-		}
-		echo $output;
+function pipdig_textarea_p3_content_start_stuff() { // top of post content
+	$output = '';
+	$options = get_option( 'pipdig_settings', '' );
+	if (!empty($options['pipdig_textarea_p3_content_start'])) {
+		$output = do_shortcode($options['pipdig_textarea_p3_content_start']);
 	}
-	add_action('p3_content_start','pipdig_textarea_p3_content_start_stuff');
+	echo $output;
 }
+add_action('p3_content_start','pipdig_textarea_p3_content_start_stuff');
 
-if (!function_exists('pipdig_textarea_p3_content_end_stuff')) {
-	function pipdig_textarea_p3_content_end_stuff() { // end of post content
-		$output = '';
-		$options = get_option( 'pipdig_settings', '' );
-		if (!empty($options['pipdig_textarea_p3_content_end'])) {
-			$output .= do_shortcode($options['pipdig_textarea_p3_content_end']);
-		}
-		echo $output;
+
+function pipdig_textarea_p3_content_end_stuff() { // end of post content
+	$output = '';
+	$options = get_option( 'pipdig_settings', '' );
+	if (!empty($options['pipdig_textarea_p3_content_end'])) {
+		$output = do_shortcode($options['pipdig_textarea_p3_content_end']);
 	}
-	add_action('p3_content_end','pipdig_textarea_p3_content_end_stuff', 1);
+	echo $output;
 }
-
-/*
-Required theme styling for the above hook:
-
-style.css:
-.hook_after-first-post {
-	margin: 30px auto 50px;
-	text-align: center;
-}
-
-responsive.css:
-@media only screen and (max-width: 400px) {
-	.hook_after-first-post {
-		display: none;
-	}
-}
-*/
+add_action('p3_content_end','pipdig_textarea_p3_content_end_stuff', 1);

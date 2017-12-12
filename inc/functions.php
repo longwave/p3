@@ -178,16 +178,16 @@ return $p3_rules . $rules;
 }
 add_filter('mod_rewrite_rules', 'p3_htaccess_edit');
 
-
+if (!function_exists('pipdig_previews_remove_scripts')) {
 function pipdig_p3_emmmm_heeey() {
 	?>
 	<script>	
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 			 if($(window).scrollTop() + $(window).height() == $(document).height()) {
-				$(".scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '0').css('visibility', 'hidden');
+				$(".cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '0').css('visibility', 'hidden');
 			 } else {
-				$(".scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '1').css('visibility', 'visible');
+				$(".cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '1').css('visibility', 'visible');
 			 }
 		});
 		
@@ -201,6 +201,7 @@ function pipdig_p3_emmmm_heeey() {
 	<?php
 }
 add_action('wp_footer','pipdig_p3_emmmm_heeey', 9999);
+}
 
 // comments count
 function pipdig_p3_comment_count() {
@@ -284,8 +285,14 @@ function p3_no_pages_search($query) {
 	if (is_admin()) {
 		return;
 	}
-	if ($query->is_search) {
-		$query->set('post_type', 'post');
+	if (class_exists('Woocommerce')) {
+		if ($query->is_search) {
+			$query->set('post_type', 'product');
+		}
+	} else {
+		if ($query->is_search) {
+			$query->set('post_type', 'post');
+		}
 	}
 	return $query;
 }

@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.6.0
+Version: 3.6.1
 Text Domain: p3
 License: Copyright 2017 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.6.0' );
+define( 'PIPDIG_P3_V', '3.6.1' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -106,7 +106,7 @@ if (strpos(get_site_url(), '127.0.0.1') !== true) {
 function pipdig_p3_scripts_styles() {
 	wp_enqueue_style( 'p3-core', 'https://pipdigz.co.uk/p3/css/core.css', array(), PIPDIG_P3_V );
 	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', 'https://pipdigz.co.uk/p3/css/responsive.css', array(), PIPDIG_P3_V ); }
-	//wp_register_script( 'pipdig-imagesloaded', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js', array('jquery'), false );
+	wp_register_script( 'pipdig-imagesloaded', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js', array('jquery'), false );
 	wp_register_script( 'pipdig-cycle', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), null, false );
 	wp_register_script( 'jquery-easing', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js', array( 'jquery' ), '', true );
 	wp_register_script( 'pipdig-owl', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js', array('jquery'), null, false );
@@ -156,13 +156,23 @@ function p3_new_install_notice() {
 	if (get_option('p3_new_install_notice') || !current_user_can('manage_options')) {
 		return;
 	}
+	
+	$import = '';
+	$wp101= '<p>New to WordPress? You can access the premium series of WP101 Tutorials on <a href="https://go.pipdig.co/open.php?id=wp101videos" target="_blank">this page</a>.</p>';
+	$posts = get_posts('post_type=post&post_status=any');
+	if (is_array($posts) && count($posts) < 2) {
+		$import = '<p>It looks like this is a new site. You may wish to <a href="https://support.pipdig.co/articles/wordpress-import-demo-content/" target="_blank">import some demo content</a> so that you can see the theme options more easily.</p>';
+	} elseif (is_array($posts) && count($posts) > 25) {
+		$wp101 = '';
+	}
 
 	?>
 	<div class="notice notice-warning is-dismissible">
 		<h2><?php _e('Howdy!', 'p3'); ?></h2>
 		<p>Thank you for installing a pipdig theme!</p>
 		<p>You can now setup all of our custom widgets, options and features by following our <a href="https://go.pipdig.co/open.php?id=wp-quickstart" target="_blank">Quickstart Guide</a>.</p>
-		<p>New to WordPress? You can access the premium series of WP101 Tutorials on <a href="https://go.pipdig.co/open.php?id=wp101videos" target="_blank">this page</a>.</p>
+		<?php echo $wp101; ?>
+		<?php echo $import; ?>
 		<form action="<?php echo admin_url(); ?>" method="post">
 			<?php wp_nonce_field('p3-new-install-notice-nonce'); ?>
 			<input type="hidden" value="true" name="p3_new_install_notice_dismissed" />

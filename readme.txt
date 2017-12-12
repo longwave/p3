@@ -13,6 +13,9 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.6.1 =
+* Move custom code from Hooks to last position in footer.
+
 = 3.6.0 =
 * Add Goodreads to social links (Not the official icon yet whilst we're waiting for this to become available).
 * Display an Author Bio at the end of blog posts.
