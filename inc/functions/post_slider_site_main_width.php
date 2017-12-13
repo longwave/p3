@@ -6,84 +6,82 @@ if (p3_theme_enabled(array('hollyandweave', 'crystal', 'galvani', 'blossom'))) {
 	return;
 }
 
-if (!function_exists('p3_full_width_slider_site_main')) {
-	function p3_full_width_slider_site_main() {
+function p3_full_width_slider_site_main() {
+	
+	if (!get_theme_mod('p3_full_width_slider_site_main_enable', p3_theme_enabled(array('opulence')))) {
+		return;
+	}
+	if (!is_front_page() && get_theme_mod('p3_full_width_slider_site_main_home', 1)) {
+		return;
+	}
+	$text_color_out = '';
+	$text_bg_color_out = '';
+	$text_bg_color = get_theme_mod('p3_full_width_slider_site_main_text_bg_color');
+	if ($text_bg_color) {
+		$text_bg_color_out = 'background:'.$text_bg_color.';';
+	}
+	$text_color = get_theme_mod('p3_full_width_slider_site_main_text_color');
+	if ($text_color) {
+		$text_color_out = 'color:'.$text_color.';';
+	}
 		
-		if (!get_theme_mod('p3_full_width_slider_site_main_enable', p3_theme_enabled(array('opulence')))) {
-			return;
-		}
-		if (!is_front_page() && get_theme_mod('p3_full_width_slider_site_main_home', 1)) {
-			return;
-		}
-		$text_color_out = '';
-		$text_bg_color_out = '';
-		$text_bg_color = get_theme_mod('p3_full_width_slider_site_main_text_bg_color');
-		if ($text_bg_color) {
-			$text_bg_color_out = 'background:'.$text_bg_color.';';
-		}
-		$text_color = get_theme_mod('p3_full_width_slider_site_main_text_color');
-		if ($text_color) {
-			$text_color_out = 'color:'.$text_color.';';
-		}
-		
-		wp_enqueue_script( 'pipdig-cycle' );
-		
-	?>
-	<div id="p3_full_width_slider_site_main" class="row">
-		<div class="col-xs-12">
-			<style scoped>
-				.cycle-slideshow {height: auto} .cycle-slideshow li{display:none;width:100%}.cycle-slideshow li.first{display:block}
-			</style>
-				<div data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
-					<ul>
-						<?php
-							$args = array(
-								'showposts' => 4,
-							);
-							if (absint(get_theme_mod('p3_full_width_slider_site_main_slider_cat'))) {
-								$args['cat'] = absint(get_theme_mod('p3_full_width_slider_site_main_slider_cat'));
-							}
-							$the_query = new WP_Query( $args );
-							
-							while ($the_query -> have_posts()) : $the_query -> the_post();
+	wp_enqueue_script( 'pipdig-cycle' );		
+?>
+<div id="p3_full_width_slider_site_main" class="row">
+	<div class="col-xs-12">
+		<style scoped>
+			.cycle-slideshow {height: auto} .cycle-slideshow li{display:none;width:100%}.cycle-slideshow li.first{display:block}
+		</style>
+		<div data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
+			<ul>
+				<?php
+					$args = array(
+						'showposts' => 4,
+					);
+					if (absint(get_theme_mod('p3_full_width_slider_site_main_slider_cat'))) {
+						$args['cat'] = absint(get_theme_mod('p3_full_width_slider_site_main_slider_cat'));
+					}
+					$the_query = new WP_Query( $args );
+						
+					while ($the_query -> have_posts()) : $the_query -> the_post();
 
-								$images = '';
-								if (function_exists('rwmb_meta')) {
-									$images = rwmb_meta( 'pipdig_meta_rectangle_slider_image', 'type=image&size=full' );
-								}
-								if ($images){ // if an image has been added via meta box
-									foreach ( $images as $image ) {
-										$bg = esc_url($image['url']);
-									}
-								} else { // if no meta box image, use featured as fallback
-									$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
-									if ($thumb) {
-										$bg = esc_url($thumb['0']);
-									} else {
-										$bg = pipdig_catch_that_image();
-									}
-								}
-						?>
-						<li>
-							<a href="<?php the_permalink() ?>" class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
-								<div class="p3_feature_slide" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
-									<span class="p3_slide_banner" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
-										<h2 style="<?php echo $text_color_out; ?>"><?php echo pipdig_p3_truncate(get_the_title(), 15); ?></h2>
-									</span>
-								</div>
-							</a>
-						</li>
-					<?php endwhile; wp_reset_query(); ?>
-					</ul>
-					<div class='cycle-prev'></div>
-					<div class='cycle-next'></div>
-				</div>
+						$images = '';
+						if (function_exists('rwmb_meta')) {
+							$images = rwmb_meta( 'pipdig_meta_rectangle_slider_image', 'type=image&size=full' );
+						}
+						if ($images){ // if an image has been added via meta box
+							foreach ( $images as $image ) {
+								$bg = esc_url($image['url']);
+							}
+						} else { // if no meta box image, use featured as fallback
+							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
+							if ($thumb) {
+								$bg = esc_url($thumb['0']);
+							} else {
+								$bg = pipdig_catch_that_image();
+							}
+						}
+				?>
+				<li>
+					<a href="<?php the_permalink() ?>" class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
+						<div class="p3_feature_slide" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
+							<span class="p3_slide_banner" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
+								<h2 style="<?php echo $text_color_out; ?>"><?php echo pipdig_p3_truncate(get_the_title(), 15); ?></h2>
+							</span>
+						</div>
+					</a>
+				</li>
+			<?php endwhile; wp_reset_query(); ?>
+			</ul>
+			<div class='cycle-prev'></div>
+			<div class='cycle-next'></div>
 		</div>
 	</div>
-	<?php
-	}
-	add_action('p3_top_site_main_container', 'p3_full_width_slider_site_main', 1);
+</div>
+<?php
 }
+add_action('p3_top_site_main_container', 'p3_full_width_slider_site_main', 1);
+
 
 // add class to body for styling .p3_full_width_slider_site_main_home_false .site-main .container
 function p3_full_width_slider_site_main_home_body_class($classes) {
@@ -94,23 +92,6 @@ function p3_full_width_slider_site_main_home_body_class($classes) {
 }
 add_filter( 'body_class', 'p3_full_width_slider_site_main_home_body_class' );
 
-
-// indicate if this feature is enabled
-/*
-function p3_full_width_slider_site_main_customizer_styles() {
-	
-	if (!get_theme_mod('p3_full_width_slider_site_main_enable')) {
-		return;
-	}
-	
-	?>
-	<style>
-		#accordion-section-p3_full_width_slider_site_main_section {border-left: 5px solid green !important;}
-	</style>
-	<?php
-}
-add_action( 'customize_controls_print_styles', 'p3_full_width_slider_site_main_customizer_styles', 999 );
-*/
 
 // customiser
 if (!class_exists('pipdig_full_width_slider_site_main_Customize')) {

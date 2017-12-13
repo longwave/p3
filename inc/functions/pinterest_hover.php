@@ -73,22 +73,28 @@ function p3_pinterest_hover() {
 	<script>
 	(function($){
 		$.fn.imgPin = function( options ) {
-				var defaults = {
+			
+			var defaults = {
 				pinImg : '<?php echo $pin_img; ?>',
 				position: 'center',
 			};
 			var options = $.extend( {}, defaults, options );
-				var url = encodeURIComponent(document.URL),
-				pinImg = options.pinImg,
-				position = '';
-				this.each(function(){
+			var url = encodeURIComponent(document.URL),
+			pinImg = options.pinImg,
+			position = '';
+			this.each(function(){
+				
+				// skip image if smaller than 400px wide
+				if ($(this).width() < 400) {
+					return false;
+				}
 				
 				if ($(this).hasClass('p3_invisible')) {
 					var src = $(this).data('p3-pin-img-src');
 				} else {
 					var src = $(this).attr('src');
 				}
-					
+				
 				var shareURL = $(this).data('p3-pin-link');
 				// if data attribute not found
 				if (typeof shareURL == 'undefined') {
@@ -103,10 +109,10 @@ function p3_pinterest_hover() {
 				} else if ($(this).hasClass('aligncenter')) {
 					var pin_positon = 'pin_align_center';
 				}
-				
+					
 				var img = new Image();
 				img.src = src;
-				
+					
 				<?php if (get_theme_mod('p3_pinterest_hover_alt')) { // use alt tags ?>
 					var description = $(this).attr("alt");
 					if (description == null){
@@ -124,7 +130,7 @@ function p3_pinterest_hover() {
 						}
 					}
 				<?php } ?>
-				
+					
 				var imgURL = encodeURIComponent(src);
 
 				var link = 'https://www.pinterest.com/pin/create/button/';
@@ -144,15 +150,15 @@ function p3_pinterest_hover() {
 				<?php } ?>
 				//set click events
 				$('.p3_pin_wrapper .pin').click(function(){
-				var w = 700, h = 400;
-				var left = (screen.width/2)-(w/2);
-				var top = (screen.height/2)-(h/2);
-				var imgPinWindow = window.open(this.href,'imgPngWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=400');
-				imgPinWindow.moveTo(left, top);
-				return false;
+					var w = 700, h = 400;
+					var left = (screen.width/2)-(w/2);
+					var top = (screen.height/2)-(h/2);
+					var imgPinWindow = window.open(this.href,'imgPngWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=400');
+					imgPinWindow.moveTo(left, top);
+					return false;
 				});
 			});
-			}
+		}
 	})(jQuery);
 	<?php if ($mobile == 1) { ?>
 	if (document.documentElement.clientWidth > 769 ) { // not on mobiles

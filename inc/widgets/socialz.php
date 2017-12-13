@@ -227,14 +227,14 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		
 		<hr style="margin: 25px 0 10px;">
 	
-		<p>
+		<div>
 			<legend><h3><?php _e('Select a layout:', 'p3'); ?></h3></legend>
 			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-1') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="1" <?php checked( $style_select == 1, true) ?>>
 			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-1' ) ?>"><img src="https://pipdigz.co.uk/p3/img/widgets/social_widget_style_1.png" style="position:relative;top:5px;border:1px solid #ddd" /></label>
 			<br /><br />
 			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-2') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="2" <?php checked( $style_select == 2, true) ?>>
 			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-2' ) ?>"><img src="https://pipdigz.co.uk/p3/img/widgets/social_widget_style_2.png" style="position:relative;top:5px;border:1px solid #ddd" /></label>
-		</p>
+		</div>
 
 		<hr style="margin: 25px 0 10px;">
 		

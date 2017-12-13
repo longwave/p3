@@ -13,7 +13,8 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.6.1 =
+= 3.6.2 =
+* Don't add [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) to images which are smaller than 400px wide.
 * Move custom code from Hooks to last position in footer.
 
 = 3.6.0 =
@@ -21,7 +22,7 @@ The core functions of any pipdig theme. Please check the changelog before updati
 * Display an Author Bio at the end of blog posts.
 
 = 3.5.1 =
-* Option to display [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-how-to-make-sure-images-are-the-correct-size/) on mobiles as well as desktop.
+* Option to display [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) on mobiles as well as desktop.
 
 = 3.5.0 =
 * "Related Posts" can now be selected using categories or tags. Find this new option in the "Related Posts" section of the Customizer.

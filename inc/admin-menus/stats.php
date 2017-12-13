@@ -33,7 +33,7 @@ function pipdig_stats_options_page() {
 	
 	if (empty($p3_stats_data)) {
 		echo '<h1>No stats yet!</h1>';
-		echo '<p>Be sure to add your soclail links to <a href="'.admin_url('admin.php?page=pipdig-links').'">this page</a> and allow a few days for the stats to generate.<p>';
+		echo '<p>You can add your social links to <a href="'.admin_url('admin.php?page=pipdig-links').'">this page</a>. Please allow 24 hours for the stats to generate.<p>';
 		return;
 	}
 	
