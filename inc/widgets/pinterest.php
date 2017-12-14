@@ -35,15 +35,21 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		} else {
 			$cols = 2;
 		}
-		if ($cols == 3) {
+		if ($cols == 1) {
+			$width = '100%';
+			$border = '0';
+		} elseif ($cols == 3) {
 			$width = '33.333333%';
 			$border = '1';
 		} elseif ($cols == 4) {
 			$width = '25%';
 			$border = '1';
-		} elseif ($cols == 1) {
-			$width = '100%';
-			$border = '0';
+		} elseif ($cols == 5) {
+			$width = '20%';
+			$border = '2';
+			if ($images_num < 4) {
+				$images_num = 4;
+			}
 		} else {
 			$width = '50%';
 			$border = '2';
@@ -195,6 +201,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 				<option <?php selected( $cols, 2); ?> value="2">2</option>
 				<option <?php selected( $cols, 3); ?> value="3">3</option>
 				<option <?php selected( $cols, 4); ?> value="4">4</option>
+				<option <?php selected( $cols, 5); ?> value="5">5</option>
 			</select>
 		</p>
 

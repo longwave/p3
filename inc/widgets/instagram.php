@@ -44,6 +44,12 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		} elseif ($cols == 4) {
 			$width = '25%';
 			$border = '1';
+		} elseif ($cols == 5) {
+			$width = '20%';
+			$border = '2';
+			if ($images_num < 4) {
+				$images_num = 4;
+			}
 		} else {
 			$width = '100%';
 		}
@@ -174,6 +180,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 				<option <?php selected( $cols, 2); ?> value="2">2</option>
 				<option <?php selected( $cols, 3); ?> value="3">3</option>
 				<option <?php selected( $cols, 4); ?> value="4">4</option>
+				<option <?php selected( $cols, 5); ?> value="5">5</option>
 			</select>
 		</p>
 		<p>

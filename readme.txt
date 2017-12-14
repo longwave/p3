@@ -13,13 +13,14 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.6.2 =
+= 3.6.3 =
+* Increase maximum columns in the Pinterest and Instagram widget from 4 to 5.
 * Don't add [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) to images which are smaller than 400px wide.
 * Move custom code from Hooks to last position in footer.
 
 = 3.6.0 =
 * Add Goodreads to social links (Not the official icon yet whilst we're waiting for this to become available).
-* Display an Author Bio at the end of blog posts.
+* Display an [Author Bio](https://support.pipdig.co/articles/wordpress-author-bio-box/) at the end of blog posts.
 
 = 3.5.1 =
 * Option to display [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) on mobiles as well as desktop.
