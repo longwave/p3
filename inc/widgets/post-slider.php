@@ -159,10 +159,16 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 		),
 	);
 	$the_query = new WP_Query( $args );
+	
+	// medium for sidebar, large for everywhere else
+	$img_size = 'medium';
+	if ($args['id'] != 'sidebar-1') {
+		$img_size = 'large';
+	}
 		
 	while ($the_query -> have_posts()) : $the_query -> the_post();
 
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), $img_size );
 		if ($thumb) {
 			$bg = esc_url($thumb['0']);
 		} else {

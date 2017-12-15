@@ -130,7 +130,7 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 			'post_status' => 'publish',
 		);
 
-		$posts_array = get_posts( $args );
+		$posts_array = get_posts($args);
 		
 		if (isset($instance['the_post'])) { 
 			$the_post = $instance['the_post'];
