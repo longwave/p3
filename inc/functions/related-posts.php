@@ -51,6 +51,7 @@ if (!defined('ABSPATH')) die;
 		
 		$args = array(
 			'post__not_in' => array($post->ID),
+			'cat' => '',
 			'posts_per_page'=> $number,
 			'orderby' => 'rand',
 			'date_query' => array(
@@ -62,6 +63,11 @@ if (!defined('ABSPATH')) die;
 			$args['tag__in'] = $category_ids;
 		} else {
 			$args['category__in'] = $category_ids;
+		}
+		
+		$exclude_cat = absint(get_theme_mod('p3_related_posts_exclude_cat'));
+		if ($exclude_cat) {
+			$args['cat'] = '-'.$exclude_cat;
 		}
 		
 		$query = new wp_query($args);
@@ -137,6 +143,55 @@ if (!class_exists('pipdig_related_Customize')) {
 					'priority' => 95,
 				) 
 			);
+			
+			// Hide related posts on home page
+			$wp_customize->add_setting('hide_related_posts_home',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'hide_related_posts_home',
+				array(
+					'type' => 'checkbox',
+					'label' => __( "Don't display on homepage", 'p3' ),
+					'section' => 'pipdig_related_posts_pop',
+				)
+			);
+
+			// Hide related posts on single posts
+			$wp_customize->add_setting('hide_related_posts',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'hide_related_posts',
+				array(
+					'type' => 'checkbox',
+					'label' => __( "Don't display on posts", 'p3' ),
+					'section' => 'pipdig_related_posts_pop',
+				)
+			);
+			
+			$wp_customize->add_setting('p3_related_posts_title',
+				array(
+					'sanitize_callback' => 'sanitize_text_field',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_related_posts_title',
+				array(
+					'type' => 'text',
+					'label' => __( 'Title:', 'p3' ),
+					'section' => 'pipdig_related_posts_pop',
+					'input_attrs' => array(
+						'placeholder' => __('You may also enjoy:', 'p3'),
+					),
+				)
+			);
 
 			// Date range for related posts
 			$wp_customize->add_setting('related_posts_date',
@@ -176,6 +231,24 @@ if (!class_exists('pipdig_related_Customize')) {
 						1 => 'Post Categories',
 						2 => 'Post Tags',
 					),
+				)
+			);
+			
+			// exclude from category
+			$wp_customize->add_setting('p3_related_posts_exclude_cat',
+				array(
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Category_Control_Exclude(
+					$wp_customize,
+					'p3_related_posts_exclude_cat',
+					array(
+						'label' => __('Exclude posts from:', 'p3'),
+						'settings' => 'p3_related_posts_exclude_cat',
+						'section'  => 'pipdig_related_posts_pop'
+					)
 				)
 			);
 			
@@ -238,55 +311,6 @@ if (!class_exists('pipdig_related_Customize')) {
 						'min'   => 1,
 						'max'   => 50,
 						'step'  => 1,
-					),
-				)
-			);
-
-			// Hide related posts on home page
-			$wp_customize->add_setting('hide_related_posts_home',
-				array(
-					'default' => 0,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control(
-				'hide_related_posts_home',
-				array(
-					'type' => 'checkbox',
-					'label' => __( "Don't display on homepage", 'p3' ),
-					'section' => 'pipdig_related_posts_pop',
-				)
-			);
-
-			// Hide related posts on single posts
-			$wp_customize->add_setting('hide_related_posts',
-				array(
-					'default' => 0,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control(
-				'hide_related_posts',
-				array(
-					'type' => 'checkbox',
-					'label' => __( "Don't display on posts", 'p3' ),
-					'section' => 'pipdig_related_posts_pop',
-				)
-			);
-			
-			$wp_customize->add_setting('p3_related_posts_title',
-				array(
-					'sanitize_callback' => 'sanitize_text_field',
-				)
-			);
-			$wp_customize->add_control(
-				'p3_related_posts_title',
-				array(
-					'type' => 'text',
-					'label' => __( 'Title:', 'p3' ),
-					'section' => 'pipdig_related_posts_pop',
-					'input_attrs' => array(
-						'placeholder' => __('You may also enjoy:', 'p3'),
 					),
 				)
 			);

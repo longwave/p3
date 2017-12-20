@@ -13,6 +13,9 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.6.4 =
+* Option to exclude posts from a category in the [Related Posts](https://i.imgur.com/uoABhQD.png) feature.
+
 = 3.6.3 =
 * Increase maximum columns in the Pinterest and Instagram widget from 4 to 5.
 * Don't add [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) to images which are smaller than 400px wide.

@@ -2,7 +2,7 @@
 
 if (!defined('ABSPATH')) die;
 
-if (p3_theme_enabled(array('galvani', 'opulence', 'thegrid', 'blossom', 'crystal'))) {
+if (p3_theme_enabled(array('galvani', 'opulence', 'thegrid', 'blossom', 'crystal', 'maryline', 'amethyst'))) {
 	return;
 }
 
