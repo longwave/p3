@@ -58,6 +58,7 @@ function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) 
 	//'photon',
 	'markdown',
 	'related-posts',
+	//'lazy-images',
 	);
 	foreach ( $jp_mods_to_disable as $mod ) {
 		if ( isset( $modules[$mod] ) ) {
@@ -78,11 +79,9 @@ function pipdig_p3_disable_jetpack_modules() {
 	if (Jetpack::is_module_active('minileven')) {
 		Jetpack::deactivate_module( 'minileven' );
 	}
-	/*
-	if (Jetpack::is_module_active('photon')) {
-		Jetpack::deactivate_module( 'photon' );
+	if (get_theme_mod('p3_pinterest_hover_enable_posts') && Jetpack::is_module_active('lazy-images')) {
+		Jetpack::deactivate_module( 'lazy-images' );
 	}
-	*/
 	if (Jetpack::is_module_active('related-posts')) {
 		Jetpack::deactivate_module( 'related-posts' );
 	}
