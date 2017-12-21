@@ -54,7 +54,7 @@ function p3_pinterest_hover() {
 	if (empty($position)) {
 		$position = 'center';
 	}
-	$mobile = get_theme_mod('p3_pinterest_hover_mobile', '1');
+	$mobile = absint(get_theme_mod('p3_pinterest_hover_mobile', 2));
 	$pin_img = esc_url(get_theme_mod('p3_pinterest_hover_image_file', 'https://assets.pinterest.com/images/pidgets/pin_it_button.png'));
 	if (strlen($pin_img) < 5) {
 		$pin_img = 'https://assets.pinterest.com/images/pidgets/pin_it_button.png';
@@ -84,8 +84,8 @@ function p3_pinterest_hover() {
 			position = '';
 			this.each(function(){
 				
-				// skip image if smaller than 400px wide
-				if ($(this).width() < 400) {
+				// skip image if smaller than 350px wide (except on mobiles)
+				if ( ($(this).width() < 350) && (document.documentElement.clientWidth > 769 ) ) {
 					return false;
 				}
 				
@@ -246,7 +246,7 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 			// display on mobile or desktop+mobile?			
 			$wp_customize->add_setting('p3_pinterest_hover_mobile',
 				array(
-					'default' => '1',
+					'default' => 2,
 					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
@@ -256,8 +256,8 @@ if (!class_exists('pipdig_pinterest_hover_Customize')) {
 					'label' => __('Display on:', 'p3'),
 					'section' => 'pipdig_pinterest_hover',
 					'choices' => array(
-						'1' => __('Desktop', 'p3'),
-						'2' => __('Desktop and mobile', 'p3'),
+						1 => __('Desktop', 'p3'),
+						2 => __('Desktop and mobile', 'p3'),
 					),
 				)
 			);

@@ -13,6 +13,9 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.6.5 =
+* Enable Pinterest Hover Button on mobile by default.
+
 = 3.6.4 =
 * Option to exclude posts from a category in the [Related Posts](https://i.imgur.com/uoABhQD.png) feature.
 
