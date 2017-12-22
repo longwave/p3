@@ -188,7 +188,6 @@ function p3_instagram_footer() {
 			$lazy = true;
 		}
 		
-		$meta = absint(get_theme_mod('p3_instagram_meta'));
 		$num = intval(get_theme_mod('p3_instagram_number', 8));
 		if (get_theme_mod('p3_instagram_rows')) {
 			$rows = apply_filters('p3_instagram_rows_number', 2);
@@ -227,7 +226,7 @@ function p3_instagram_footer() {
 				?>
 				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" <?php echo $image_src; ?> rel="nofollow" target="_blank">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_instagram_square" alt=""/>
-					<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
+					<?php if (get_theme_mod('p3_instagram_meta')) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
 				</a>
 			<?php } ?>
 			<div class="clearfix"></div>
@@ -257,7 +256,6 @@ function p3_instagram_header() {
 	$images = p3_instagram_fetch(); // grab images
 			
 	if ($images) {
-		$meta = absint(get_theme_mod('p3_instagram_meta'));
 		$num = intval(get_theme_mod('p3_instagram_number', 8));
 		if (get_theme_mod('p3_instagram_rows')) {
 			$num = $num*2;
@@ -277,7 +275,7 @@ function p3_instagram_header() {
 				?>
 				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_instagram_square" alt=""/>
-					<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
+					<?php if (get_theme_mod('p3_instagram_meta')) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
 				</a>
 			<?php } ?>
 			<div class="clearfix"></div>
@@ -307,7 +305,6 @@ function p3_instagram_site_main_container() {
 	$images = p3_instagram_fetch(); // grab images
 			
 	if ($images) {
-		$meta = absint(get_theme_mod('p3_instagram_meta'));
 		$num = intval(get_theme_mod('p3_instagram_number', 8));
 	?>
 		<div class="clearfix"></div>
@@ -325,7 +322,7 @@ function p3_instagram_site_main_container() {
 				?>
 				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_instagram_square" alt=""/>
-					<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
+					<?php if (get_theme_mod('p3_instagram_meta')) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
 				</a>
 			<?php } ?>
 			<div class="clearfix"></div>
@@ -351,7 +348,6 @@ function p3_instagram_top_of_posts() {
 	$images = p3_instagram_fetch(); // grab images
 	
 	if ($images) {
-		$meta = absint(get_theme_mod('p3_instagram_meta'));
 		//$num = intval(get_theme_mod('p3_instagram_number', 8));
 	?>	
 		<div id="p3_instagram_top_of_posts">
@@ -367,7 +363,7 @@ function p3_instagram_top_of_posts() {
 				?>
 				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow" target="_blank">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_instagram_square" alt=""/>
-					<?php if ($meta) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
+					<?php if (get_theme_mod('p3_instagram_meta')) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?>
 				</a>
 			<?php } ?>
 			<div class="clearfix"></div>

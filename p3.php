@@ -160,10 +160,11 @@ function p3_new_install_notice() {
 	
 	$import = '';
 	$wp101= '<p>New to WordPress? You can access the premium series of WP101 Tutorials on <a href="https://go.pipdig.co/open.php?id=wp101videos" target="_blank">this page</a>.</p>';
-	$posts = get_posts('post_type=post&post_status=any');
-	if (is_array($posts) && count($posts) < 2) {
+	$posts = wp_count_posts();
+	$posts_count = $posts->publish + $posts->draft;
+	if ($posts_count < 2) {
 		$import = '<p>It looks like this is a new site. You may wish to <a href="https://support.pipdig.co/articles/wordpress-import-demo-content/" target="_blank">import some demo content</a> so that you can see the theme options more easily.</p>';
-	} elseif (is_array($posts) && count($posts) > 25) {
+	} elseif ($posts_count > 21) {
 		$wp101 = '';
 	}
 
