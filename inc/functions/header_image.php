@@ -2,7 +2,7 @@
 
 if (!defined('ABSPATH')) die;
 
-if (p3_theme_enabled(array('opulence', 'blossom'))) {
+if (p3_theme_enabled(array('opulence', 'blossom', 'maryline'))) {
 	return;
 }
 
@@ -10,7 +10,6 @@ function p3_header_customizer_styles() {
 	if (!get_theme_mod( 'p3_header_section_width')) {
 		return;
 	}
-	
 	?>
 	<!-- p3 header customizer START -->
 	<style>

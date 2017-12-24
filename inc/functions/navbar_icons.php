@@ -114,9 +114,8 @@ function pipdig_p3_social_navbar( $items, $args ) {
 		
 	if (get_theme_mod('site_top_search')) $navbar_icons .= '<a id="p3_search_btn" class="toggle-search" aria-label="Search" title="Search"><i class="fa fa-search" aria-hidden="true"></i></a>'; // still need to p3 this.
 		
-	if (class_exists('Woocommerce') && get_theme_mod('p3_navbar_woocommerce', 1)) {
-		global $woocommerce;
-		$navbar_icons .= '<a href="' . $woocommerce->cart->get_cart_url() . '" rel="nofollow" aria-label="Shopping cart" title="Shopping cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>';
+	if (function_exists('wc_get_cart_url') && get_theme_mod('p3_navbar_woocommerce', 1)) {
+		$navbar_icons .= '<a href="'.wc_get_cart_url().'" rel="nofollow" aria-label="Shopping cart" title="Shopping cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>';
 	}
 	
 	if ($navbar_icons) {

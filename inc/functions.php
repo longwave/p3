@@ -312,9 +312,8 @@ function p3_slicknav_brand() {
 	$brand = '';
 	$count = 0;
 
-	if (class_exists('Woocommerce') && get_theme_mod('p3_navbar_woocommerce', 1)) {
-		global $woocommerce;
-		$brand .= '<a href="'.$woocommerce->cart->get_cart_url().'" rel="nofollow"><i class="fa fa-shopping-cart"></i></a>';
+	if (function_exists('wc_get_cart_url') && get_theme_mod('p3_navbar_woocommerce', 1)) {
+		$brand .= '<a href="'.wc_get_cart_url().'" rel="nofollow"><i class="fa fa-shopping-cart"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['twitter']) && get_theme_mod('p3_navbar_twitter', 1)) {

@@ -147,6 +147,15 @@ if (!is_plugin_active('jetpack/jetpack.php')) {
 }
 
 function p3_new_install_notice() {
+	
+	global $pagenow;
+	if ($pagenow != 'index.php' && $pagenow != 'themes.php' && $pagenow != 'plugins.php') {
+		return;
+	}
+	
+	if (isset($_GET['page']) && $_GET['page'] == 'pipdig-demo-import') {
+		return;
+	}
 
 	if (current_user_can('manage_options')) {
 		if (isset($_POST['p3_new_install_notice_dismissed'])) {
@@ -163,7 +172,11 @@ function p3_new_install_notice() {
 	$posts = wp_count_posts();
 	$posts_count = $posts->publish + $posts->draft;
 	if ($posts_count < 2) {
-		$import = '<p>It looks like this is a new site. You may wish to <a href="https://support.pipdig.co/articles/wordpress-import-demo-content/" target="_blank">import some demo content</a> so that you can see the theme options more easily.</p>';
+		$import_link = '<a href="https://support.pipdig.co/articles/wordpress-import-demo-content/" target="_blank">';
+		if (class_exists('OCDI_Plugin')) {
+			$import_link = '<a href="'.admin_url('themes.php?page=pipdig-demo-import').'">';
+		}
+		$import = '<p>It looks like this is a new site. You may wish to '.$import_link.'import some demo content</a> so that you can see the theme options more easily.</p>';
 	} elseif ($posts_count > 21) {
 		$wp101 = '';
 	}
