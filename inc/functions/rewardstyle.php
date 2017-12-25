@@ -9,9 +9,7 @@ if ( is_plugin_active('rewardstyle-widgets/rewardstyle-widgets.php') || function
 
 function p3_shopthepost_show_widget($atts) {
     extract(shortcode_atts(array(
-        'id'    => '0',
-        'adblock'  => 'Turn off your ad blocker to view content',
-        'enableJs' => 'Turn on your JavaScript to view content'
+        'id'    => '0'
     ), $atts));
 
     $out = '<div class="shopthepost-widget" data-widget-id="'.esc_attr($id).'">
@@ -29,10 +27,6 @@ function p3_shopthepost_show_widget($atts) {
                         }
                     }(document, \'script\', \'shopthepost-script\');
                 </script>
-                <div class="rs-adblock">
-                    <img src="//assets.rewardstyle.com/images/search/350.gif" style="width:15px;height:15px;" onerror="this.parentNode.innerHTML=\''.$adblock.'\'" />
-                    <noscript>'.$enableJs.'</noscript>
-                </div>
             </div>';
     return $out;
 }
@@ -40,9 +34,7 @@ add_shortcode('show_shopthepost_widget', 'p3_shopthepost_show_widget');
 
 function p3_boutique_show_widget($atts) {
     extract(shortcode_atts(array(
-        'id'    => '0',
-        'adblock'  => 'Turn off your ad blocker to view content',
-        'enableJs' => 'Turn on your JavaScript to view content'
+        'id'    => '0'
     ), $atts));
 
     $out = '<div class="boutique-widget" data-widget-id="'.esc_attr($id).'">
@@ -60,10 +52,6 @@ function p3_boutique_show_widget($atts) {
                         }
                     }(document, \'script\', \'boutique-script\');
                 </script>
-                <div class="rs-adblock">
-                    <img src="//assets.rewardstyle.com/images/search/350.gif" style="width:15px;height:15px;" onerror="this.parentNode.innerHTML=\''.$adblock.'\'" />
-                    <noscript>'.$enableJs.'</noscript>
-                </div>
             </div>';
     return $out;
 }

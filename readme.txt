@@ -13,7 +13,8 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.6.5 =
+= 3.6.6 =
+* Date: 25 December 2017.
 * Enable Pinterest Hover Button on mobile by default.
 
 = 3.6.4 =
