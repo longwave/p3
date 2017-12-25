@@ -443,6 +443,13 @@ function p3_lazy_script() {
 }
 add_action( 'wp_footer', 'p3_lazy_script', 99999 );
 
+// For Google Adsense ad widget
+function pipdig_p3_filter_allowed_styles($styles) {
+    $styles[] = 'display';
+    return $styles;
+}
+add_filter('safe_style_css', 'pipdig_p3_filter_allowed_styles');
+
 include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
 include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');
 include(plugin_dir_path(__FILE__).'functions/top_menu_bar.php');

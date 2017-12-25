@@ -13,8 +13,11 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.6.6 =
+= 3.7.0 =
 * Date: 25 December 2017.
+* New: [Google Adsense widget](https://support.pipdig.co/articles/wordpress-google-adsense-widget/).
+
+= 3.6.6 =
 * Enable Pinterest Hover Button on mobile by default.
 
 = 3.6.4 =

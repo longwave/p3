@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (!defined('ABSPATH')) die;
 
@@ -31,3 +31,4 @@ include('widgets/we-heart-it.php');
 include('widgets/image.php');
 include('widgets/goodreads.php');
 include('widgets/featured-post.php');
+include('widgets/google-adsense.php');
