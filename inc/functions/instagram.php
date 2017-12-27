@@ -163,6 +163,9 @@ function p3_instagram_css_to_head($width) {
 			}
 			.p3_instagram_hide_mobile {
 				display: none;
+				height: 0;
+				width: 0;
+				opacity: 0;
 			}
 		}
 		</style>
