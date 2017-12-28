@@ -157,17 +157,13 @@ function p3_instagram_css_to_head($width) {
 		?>
 		<style>
 		.p3_instagram_post{width:<?php echo $width; ?>%}
+		<?php if(!get_theme_mod('disable_responsive')) { ?>
 		@media only screen and (max-width: 719px) {
 			.p3_instagram_post {
 				width: 25%;
 			}
-			.p3_instagram_hide_mobile {
-				display: none;
-				height: 0;
-				width: 0;
-				opacity: 0;
-			}
 		}
+		<?php } ?>
 		</style>
 		<?php
 	}

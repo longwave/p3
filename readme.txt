@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.7.1 =
+* Date: 28 December 2017.
+* Fix typo in [Google Adsense widget](https://support.pipdig.co/articles/wordpress-google-adsense-widget/) options.
+
 = 3.7.0 =
 * Date: 25 December 2017.
 * New: [Google Adsense widget](https://support.pipdig.co/articles/wordpress-google-adsense-widget/).

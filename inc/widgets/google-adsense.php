@@ -84,7 +84,7 @@ class pipdig_widget_google_adsense extends WP_Widget {
 		<p><a href="https://support.pipdig.co/articles/wordpress-google-adsense-widget/" target="_blank" rel="noopener">Click here</a> for more information about this widget.</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('description'); ?>"><?php _e('Text to show below the photo: (optional)', 'p3'); ?></label>
+			<label for="<?php echo $this->get_field_id('description'); ?>">Ad code:</label>
 			<textarea id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" class="widefat" rows="11"><?php if (isset($instance['description'])) echo wp_kses($instance['description'], self::$allowed_tags); ?></textarea>
 		</p>
 
