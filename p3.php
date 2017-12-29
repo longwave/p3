@@ -287,14 +287,6 @@ function pipdig_p3_activate() {
 
 	p3_flush_htacess();
 
-	// live site check
-	if (get_option('pipdig_live_site') != 1) {
-		if (strpos(get_site_url(), '127.0.0.1') !== true) {
-			$submit_data = wp_remote_fopen('https://status.pipdig.co/?dcx15=15&action=1&site_url='.rawurldecode(get_site_url()));
-			update_option('pipdig_live_site', 1);
-		}
-	}
-
 	if (get_option('p3_amicorumi_set_3') != 1) {
 		delete_option('p3_amicorumi');
 		delete_option('p3_amicorumi_set');

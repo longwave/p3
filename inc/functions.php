@@ -287,7 +287,13 @@ function p3_no_pages_search($query) {
 	}
 	if (class_exists('Woocommerce')) {
 		if ($query->is_search) {
-			$query->set('post_type', 'product');
+			$posts = wp_count_posts('product');
+			$posts_count = $posts->publish + $posts->draft;
+			if ($posts_count > 4) {
+				$query->set('post_type', 'product');
+			} else {
+				$query->set('post_type', 'post');
+			}
 		}
 	} else {
 		if ($query->is_search) {
