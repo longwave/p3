@@ -105,7 +105,7 @@ function p3_featured_panels() {
 	if (absint(get_theme_mod('p3_featured_panels_mobile'))) {
 		$style = 'style="display:block"';
 	}
-		
+	
 	if ($show) {
 	?>
 		<div id="p3_featured_panels" class="row nopin" <?php echo $style; ?>>
