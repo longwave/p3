@@ -37,10 +37,17 @@ function p3_featured_cats_puller($category, $col = 3) {
 		} else {
 			$post_cat = '';
 		}
+		
+		if (get_theme_mod('p3_featured_cats_link2cat')) {
+			$the_link = get_category_link($category);
+		} else {
+			$the_link = get_permalink();
+		}
+		
 		?>
 		<div class="col-sm-<?php echo strip_tags($col); ?> p3_featured_cat">
 			<h3 class="widget-title"><span><?php echo get_cat_name($category); ?></span></h3>
-			<a href="<?php the_permalink(); ?>" class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
+			<a href="<?php echo esc_url($the_link); ?>" class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
 				<img src="<?php echo $shape; ?>" class="p3_invisible" />
 			</a>
 			<?php if (get_theme_mod('p3_featured_cats_show_dates')) { ?>
@@ -199,6 +206,22 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Display post date', 'p3' ),
+					'section' => 'p3_featured_cats_section',
+				)
+			);
+			
+			// Enable feature
+			$wp_customize->add_setting('p3_featured_cats_link2cat',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_featured_cats_link2cat',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Link to the post category rather than the latest post directly',
 					'section' => 'p3_featured_cats_section',
 				)
 			);

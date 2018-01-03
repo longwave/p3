@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.7.2 =
+* Date: 03 January 2018 - Happy new year!
+* New: Option to link to the post category in [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/).
+
 = 3.7.1 =
 * Date: 28 December 2017.
 * Fix typo in [Google Adsense widget](https://support.pipdig.co/articles/wordpress-google-adsense-widget/) options.
