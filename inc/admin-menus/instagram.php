@@ -132,35 +132,12 @@ function pipdig_instagram_options_page() {
 					'token': token,
 					'user': user,
 				};
-					
+				
 				$.post(ajaxurl, data, function(response) {
 					//alert(response);
 					$('#p3_test_connection_result').html(response);
 				});
 			}
-			/*
-			$('#p3_test_connection').click(function(e) {
-				
-				var token = $("#p3_access_token").val();
-				var user = $("#p3_user_id").val();
-				
-				$(this).html('Testing, please wait...').prop( "disabled", true );
-				
-				var data = {
-					action: 'p3_ig_connection_tester',
-					'token': token,
-					'user': user,
-				};
-				
-				$.post(ajaxurl, data, function(response) {
-					//alert(response);
-					$('#p3_test_connection_result').html(response);
-					$('#p3_test_connection').html('Click here to test connection').removeAttr('disabled');
-				});
-				
-			});
-			*/
-		
 		});
 		</script>
 		

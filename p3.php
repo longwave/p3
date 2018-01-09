@@ -261,7 +261,7 @@ function pipdig_p3_activate() {
 	if (get_option('blogdescription') == 'My WordPress Blog') {
 		update_option('blogdescription', '');
 	}
-	if (get_option('pipdig_p3_show_on_front_set') != 1) {
+	if ( (get_option('show_on_front') == 'page') && (get_option('pipdig_p3_show_on_front_set') != 1) ) {
 		update_option('show_on_front', 'posts');
 		update_option('pipdig_p3_show_on_front_set', 1);
 	}

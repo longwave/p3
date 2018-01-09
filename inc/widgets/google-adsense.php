@@ -53,7 +53,8 @@ class pipdig_widget_google_adsense extends WP_Widget {
 				echo $args['before_title'] . apply_filters('widget_title', $instance['title'], $instance, $this->id_base) . $args['after_title'];
 
 			if (!empty($instance['description'])) {
-				echo wp_kses($instance['description'], self::$allowed_tags);
+				//echo wp_kses($instance['description'], self::$allowed_tags);
+				echo $instance['description'];
 			}
 
 			echo $args['after_widget'];
@@ -64,7 +65,8 @@ class pipdig_widget_google_adsense extends WP_Widget {
 	function update($new_instance, $old_instance) {
 
 		$new_instance['title'] = strip_tags($new_instance['title']);
-		$new_instance['description'] = wp_kses($new_instance['description'], self::$allowed_tags);
+		//$new_instance['description'] = wp_kses($new_instance['description'], self::$allowed_tags);
+		$new_instance['description'] = $new_instance['description'];
 
 		return $new_instance;
 
@@ -85,7 +87,7 @@ class pipdig_widget_google_adsense extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id('description'); ?>">Ad code:</label>
-			<textarea id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" class="widefat code" rows="11"><?php if (isset($instance['description'])) echo wp_kses($instance['description'], self::$allowed_tags); ?></textarea>
+			<textarea id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" class="widefat code" rows="11"><?php if (isset($instance['description'])) echo $instance['description']; ?></textarea>
 		</p>
 
 		<?php
