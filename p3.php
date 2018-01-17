@@ -48,26 +48,13 @@ add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
 function pipdig_p3_deactivate() {
 	
-    $instagram_users = get_option('pipdig_instagram_users');
-	if (is_array($instagram_users)) {
-		foreach ($instagram_users as $instagram_user) {
-			delete_transient('p3_instagram_feed_'.$instagram_user);
-		}
+	$instagram_deets = get_option('pipdig_instagram');
+	if (!empty($instagram_deets['user_id'])) {
+		$instagram_user = sanitize_text_field($instagram_deets['user_id']);
+		delete_transient('p3_instagram_feed_'.$instagram_user);
 	}
 	
-	$pinterest_users = get_option('pipdig_pinterest_users');
-	if (is_array($pinterest_users)) {
-		foreach ($pinterest_users as $pinterest_user) {
-			delete_transient('p3_pinterest_feed_'.$pinterest_user);
-		}
-	}
-	
-	$youtube_channels = get_option('pipdig_youtube_channels');
-	if (is_array($youtube_channels)) {
-		foreach ($youtube_channels as $channel_id) {
-			delete_transient('p3_youtube_'.$channel_id);
-		}
-	}
+	wp_cache_flush();
 	
 }
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );

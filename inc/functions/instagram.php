@@ -32,6 +32,7 @@ function p3_instagram_fetch($access_token = '') {
 	}
 	
 	// store user ids so we can clear transients in cron
+	/*
 	$instagram_users = get_option('pipdig_instagram_users');
 	
 	if (!empty($instagram_users)) {
@@ -43,6 +44,7 @@ function p3_instagram_fetch($access_token = '') {
 		$instagram_users = array($userid);
 		update_option('pipdig_instagram_users', $instagram_users);
 	}
+	*/
 
 	if ( false === ( $images = get_transient( 'p3_instagram_feed_'.$userid ) )) {
 		

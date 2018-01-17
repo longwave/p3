@@ -30,6 +30,11 @@ delete_option('p3_update_notice_1');
 delete_option('p3_update_notice_2');
 delete_option('p3_update_notice_3');
 delete_option('p3_instagram_transient_cleared');
+
+delete_option('pipdig_instagram_users');
+delete_option('pipdig_pinterest_users');
+delete_option('pipdig_youtube_channels');
+
 //delete_option('p3_social_transfer');
 //delete_option('p3_navbar_icons_transfer');
 /*
