@@ -43,7 +43,7 @@ if ( !class_exists( 'pipdig_widget_weheartit' ) ) {
 		if (!empty($weheartit_url)) {
 			echo '<iframe src="https://weheartit.com/widget/hearts/'.$weheartit_user.'?=0&avatar='.$show_profile.'&title='.$show_profile.'&subtitle='.$show_profile.'&center=0&type=0" style="width: 100%; height: 380px; border: 0;" scrolling="no" frameborder="0"></iframe>';
 		} else {
-			echo 'We Heart It widget: '.__('Setup not complete. Please check the widget options.', 'p3');
+			echo 'We Heart It widget in section "'.$args['name'].'": '.__('Setup not complete. Please check the widget options.', 'p3');
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');

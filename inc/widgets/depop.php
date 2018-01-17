@@ -35,7 +35,7 @@ if ( !class_exists( 'pipdig_widget_depop' ) ) {
 			!function(a){function b(){var a=document.getElementsByClassName("depop-widget");if(a){for(var b,c=[],d=0;b=a[d];d++)c.push({el:b,username:b.attributes["data-username"]&&b.attributes["data-username"].value,width:b.attributes["data-width"]&&b.attributes["data-width"].value||f,height:b.attributes["data-height"]&&b.attributes["data-height"].value||f});return c}}function c(a){var b=document.createElement("iframe");b.src="http://depop.com/"+a.username+"/widget",b.width=a.width,b.height=a.height,b.border=0,b.frameBorder="0",b.scrolling="no",b.style.overflow="hidden",a.el.appendChild(b)}function d(){a.removeEventListener("DOMContentLoaded",d);var e=b();if(e.length)for(var f,g=0;f=e[g];g++)c(f)}if(!document.getElementsByClassName){var e=[].indexOf||function(a){for(var b=0;b<this.length;b++)if(this[b]===a)return b;return-1};getElementsByClassName=function(a,b){var c=document.querySelectorAll?b.querySelectorAll("."+a):function(){for(var c=b.getElementsByTagName("*"),d=[],f=0;f<c.length;f++)c[f].className&&(" "+c[f].className+" ").indexOf(" "+a+" ")>-1&&-1===e.call(d,c[f])&&d.push(c[f]);return d}();return c},document.getElementsByClassName=function(a){return getElementsByClassName(a,document)},Element.prototype.getElementsByClassName=function(a){return getElementsByClassName(a,this)}}var f=300;a.addEventListener("DOMContentLoaded",d)}(this);
 			</script>
 		<?php } else {
-			echo 'Depop widget: '.__('Setup not complete. Please check the widget options.', 'p3');
+			echo 'Depop widget in section "'.$args['name'].'": '.__('Setup not complete. Please check the widget options.', 'p3');
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');

@@ -162,7 +162,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 			}
 			
 		} else {
-			echo 'YouTube widget: '.__('Setup not complete. Please check the widget options.', 'p3');
+			echo 'YouTube widget in section "'.$args['name'].'": '.__('Setup not complete. Please check the widget options.', 'p3');
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');

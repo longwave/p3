@@ -5,7 +5,7 @@ if (get_option('p3_jetpack_override')) {
 	return;
 }
 
-if (isset($_GET['p3_jetpack_override'])) { // If peeps want to use Vanilla Jetpack
+if (is_admin() && isset($_GET['p3_jetpack_override'])) { // If peeps want to use Vanilla Jetpack
 	update_option('p3_jetpack_override', 1);
 	return;
 }

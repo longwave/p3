@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.7.3 =
+* Date: 17 January 2018.
+* Clear Instagram cache when plugin is deactivated.
+
 = 3.7.2 =
 * Date: 03 January 2018 - Happy new year!
 * New: Option to link to the post category in [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/).

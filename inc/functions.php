@@ -153,7 +153,7 @@ function pipdig_p3_rss_post_thumbnail($content) {
 	}
 
 	return strip_shortcodes($content);
-		
+	
 }
 add_filter('the_excerpt_rss', 'pipdig_p3_rss_post_thumbnail');
 add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');

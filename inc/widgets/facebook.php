@@ -49,7 +49,7 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 		if (!empty($facebook_url)) {
 			echo '<script>!function(e,n,t){var o,c=e.getElementsByTagName(n)[0];e.getElementById(t)||(o=e.createElement(n),o.id=t,o.src="//connect.facebook.net/en/sdk.js#xfbml=1&version=v2.3",c.parentNode.insertBefore(o,c))}(document,"script","facebook-jssdk");</script><div class="fb-page" data-href="' . $facebook_url . '" data-width="500" data-height="' . $height . '" data-hide-cover="' . $hide_cover . '" data-show-facepile="' . $show_faces . '" data-show-posts="' . $show_posts . '"></div>';
 		} else {
-			echo 'Facebook widget: '.__('Setup not complete. Please check the widget options.', 'p3');
+			echo 'Facebook widget in section "'.$args['name'].'": '.__('Setup not complete. Please check the widget options.', 'p3');
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');

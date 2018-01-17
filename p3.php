@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.7.2
+Version: 3.7.3
 Text Domain: p3
 License: Copyright 2017 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.7.2' );
+define( 'PIPDIG_P3_V', '3.7.3' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -45,22 +45,33 @@ function pipdig_p3_themes_top_link() {
 }
 add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
-/*
+
 function pipdig_p3_deactivate() {
-    if (!current_user_can('activate_plugins')) {
-		return;
+	
+    $instagram_users = get_option('pipdig_instagram_users');
+	if (is_array($instagram_users)) {
+		foreach ($instagram_users as $instagram_user) {
+			delete_transient('p3_instagram_feed_'.$instagram_user);
+		}
 	}
-	if (strpos(get_site_url(), '127.0.0.1') !== true) {
-		return;
+	
+	$pinterest_users = get_option('pipdig_pinterest_users');
+	if (is_array($pinterest_users)) {
+		foreach ($pinterest_users as $pinterest_user) {
+			delete_transient('p3_pinterest_feed_'.$pinterest_user);
+		}
 	}
-    $plugin = isset( $_REQUEST['plugin'] ) ? $_REQUEST['plugin'] : '';
-    check_admin_referer( "deactivate-plugin_{$plugin}" );
-	// delete this site
-	$remove_data = wp_remote_fopen('https://status.pipdig.co/?dcx15=15&action=2&site_url='.rawurldecode(get_site_url()));
-	delete_option('pipdig_live_site');
+	
+	$youtube_channels = get_option('pipdig_youtube_channels');
+	if (is_array($youtube_channels)) {
+		foreach ($youtube_channels as $channel_id) {
+			delete_transient('p3_youtube_'.$channel_id);
+		}
+	}
+	
 }
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
-*/
+
 
 // bootstrap
 $this_theme = wp_get_theme();
@@ -84,26 +95,6 @@ if ($this_theme->get('Author') != 'pipdig') {
 	}
 }
 
-/*
-$theme_name = explode('-', trim(get_template()));
-if ($theme_name[0] != 'pipdig') {
-	return;
-} else {
-	function pipdig_bootstrap_active() {
-		$pipdig_bootstrap_active = 1;
-	}
-}
-*/
-
-// auto update plugins
-//add_filter( 'auto_update_plugin', '__return_true' );
-
-// auto update themes
-/*
-if (strpos(get_site_url(), '127.0.0.1') !== true) {
-	add_filter( 'auto_update_theme', '__return_true' );
-}
-*/
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
 	wp_enqueue_style( 'p3-core', 'https://pipdigz.co.uk/p3/css/core.css', array(), PIPDIG_P3_V );

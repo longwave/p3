@@ -63,83 +63,81 @@ function p3_featured_cats_puller($category, $col = 3) {
 }
 
 
-if (!function_exists('p3_featured_cats')) {
-	function p3_featured_cats() {
+function p3_featured_cats() {
 		
-		if (!is_home() && !is_front_page()) {
-			return;
-		}
+	if (!is_home() && !is_front_page()) {
+		return;
+	}
 		
-		if (is_paged()) {
-			return;
-		}
+	if (is_paged()) {
+		return;
+	}
 		
-		if (!get_theme_mod('p3_featured_cats_enable')) {
-			return;
-		}
+	if (!get_theme_mod('p3_featured_cats_enable')) {
+		return;
+	}
 		
-		$post_cat_1 = get_theme_mod('p3_featured_cats_cat_1');
-		$post_cat_2 = get_theme_mod('p3_featured_cats_cat_2');
-		$post_cat_3 = get_theme_mod('p3_featured_cats_cat_3');
-		$post_cat_4 = get_theme_mod('p3_featured_cats_cat_4');
+	$post_cat_1 = get_theme_mod('p3_featured_cats_cat_1');
+	$post_cat_2 = get_theme_mod('p3_featured_cats_cat_2');
+	$post_cat_3 = get_theme_mod('p3_featured_cats_cat_3');
+	$post_cat_4 = get_theme_mod('p3_featured_cats_cat_4');
 
-		$text_color = get_theme_mod('p3_featured_cats_text_color', '#000');
-		$text_bg_color = get_theme_mod('p3_featured_cats_text_bg_color', '#fff');
+	$text_color = get_theme_mod('p3_featured_cats_text_color', '#000');
+	$text_bg_color = get_theme_mod('p3_featured_cats_text_bg_color', '#fff');
 		
-		$count = 0;
+	$count = 0;
+	if (!empty($post_cat_1)) {
+		$count++;
+	}
+	if (!empty($post_cat_2)) {
+		$count++;
+	}
+	if (!empty($post_cat_3)) {
+		$count++;
+	}
+	if (!empty($post_cat_4)) {
+		$count++;
+	}
+		
+	switch ( $count ) {
+		case 1:
+			$col = '12';
+			break;
+		case 2:
+			$col = '6';
+			break;
+		case 3:
+			$col = '4';
+			break;
+		case 4:
+			$col = '3';
+			break;
+	}
+	
+	?>
+	<div id="p3_featured_cats" class="row nopin">
+			
+		<?php
 		if (!empty($post_cat_1)) {
-			$count++;
+			p3_featured_cats_puller($post_cat_1, $col);
 		}
 		if (!empty($post_cat_2)) {
-			$count++;
+			p3_featured_cats_puller($post_cat_2, $col);
 		}
 		if (!empty($post_cat_3)) {
-			$count++;
+			p3_featured_cats_puller($post_cat_3, $col);
 		}
 		if (!empty($post_cat_4)) {
-			$count++;
+			p3_featured_cats_puller($post_cat_4, $col);
 		}
-		
-		switch ( $count ) {
-			case 1:
-				$col = '12';
-				break;
-			case 2:
-				$col = '6';
-				break;
-			case 3:
-				$col = '4';
-				break;
-			case 4:
-				$col = '3';
-				break;
-		}
-		
 		?>
-		<div id="p3_featured_cats" class="row nopin">
-			
-			<?php
-			if (!empty($post_cat_1)) {
-				p3_featured_cats_puller($post_cat_1, $col);
-			}
-			if (!empty($post_cat_2)) {
-				p3_featured_cats_puller($post_cat_2, $col);
-			}
-			if (!empty($post_cat_3)) {
-				p3_featured_cats_puller($post_cat_3, $col);
-			}
-			if (!empty($post_cat_4)) {
-				p3_featured_cats_puller($post_cat_4, $col);
-			}
-			?>
-			
-			<div class="clearfix"></div>
-
-		</div>
-	<?php
-	}
-	add_action('p3_top_site_main_container', 'p3_featured_cats', 4);
+		
+		<div class="clearfix"></div>
+	</div>
+<?php
 }
+add_action('p3_top_site_main_container', 'p3_featured_cats', 4);
+
 
 // customiser
 if (!class_exists('pipdig_p3_featured_cats_Customize')) {

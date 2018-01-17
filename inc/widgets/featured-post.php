@@ -34,7 +34,7 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 
 	// The widget content.
 	function widget($args, $instance) {
-
+		
 		//* Merge with defaults
 		$instance = wp_parse_args((array) $instance, $this->defaults);
 

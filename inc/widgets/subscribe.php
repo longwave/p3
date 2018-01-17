@@ -51,7 +51,7 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 			
 			<?php
 		} else {
-			echo 'Email Subscribe widget: '.__('Setup not complete. Please check the widget options.', 'p3');
+			echo 'Email Subscribe widget in section "'.$args['name'].'": '.__('Setup not complete. Please check the widget options.', 'p3');
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');

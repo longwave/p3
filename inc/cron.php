@@ -17,20 +17,7 @@ register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
 
 // clear stats gen transient
 function pipdig_p3_do_this_daily() {
-	
-	delete_option('p3_update_notice_1');
-	delete_option('p3_update_notice_2');
-	delete_option('p3_update_notice_3');
-	delete_option('jpibfi_pro_ad');
-	delete_option('p3_endurance_cache_set');
-	
-	/*
-	if (get_option('p3_endurance_cache_set') != 1) {
-		update_option('endurance_cache_level', 0);
-		update_option('p3_endurance_cache_set', 1);
-	}
-	*/
-	
+
 	pipdig_p3_scrapey_scrapes();
 
 	$instagram_users = get_option('pipdig_instagram_users');
