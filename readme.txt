@@ -13,9 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.7.3 =
-* Date: 17 January 2018.
+= 3.7.4 =
+* Date: 19 January 2018.
 * Clear Instagram cache when plugin is deactivated.
+* Update German translations.
 
 = 3.7.2 =
 * Date: 03 January 2018 - Happy new year!
