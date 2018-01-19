@@ -192,6 +192,7 @@ function pipdig_p3_activate() {
 		'mojo-marketplace-wp-plugin/mojo-marketplace.php',
 		'mojo-marketplace-hg/mojo-marketplace.php',
 		'autoptimize/autoptimize.php',
+		'heartbeat-control/heartbeat-control.php',
 		'instagram-slider-widget/instaram_slider.php',
 		'vafpress-post-formats-ui-develop/vp-post-formats-ui.php',
 		'advanced-excerpt/advanced-excerpt.php',

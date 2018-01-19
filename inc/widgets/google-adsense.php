@@ -82,7 +82,7 @@ class pipdig_widget_google_adsense extends WP_Widget {
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php if (isset($instance['title'])) echo esc_attr($instance['title']); ?>" class="widefat" />
 		</p>
-
+		<p>Please note it may take 24 hours for ads to appear if you have recently joined Adsense. It may show a blank white space until then.</p>
 		<p><a href="https://support.pipdig.co/articles/wordpress-google-adsense-widget/" target="_blank" rel="noopener">Click here</a> for more information about this widget.</p>
 
 		<p>
