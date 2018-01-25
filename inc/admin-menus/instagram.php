@@ -69,7 +69,9 @@ function pipdig_instagram_options_page() {
 	?>
 	<div class="wrap">
 	<style scoped>
-	.form-table th {width: 110px;}
+	.form-table th {
+		width: 110px;
+	}
 	.instagram-token-button {
 		background: #517fa4;
 		border-radius: 5px;
@@ -82,6 +84,7 @@ function pipdig_instagram_options_page() {
 	}
 	.instagram-token-button:hover {
 		background: #e89a2e;
+		color: #fff;
 	}
 	.piperror {
 		color: red;
