@@ -2,6 +2,12 @@
 
 if (!defined('ABSPATH')) die;
 
+// https://make.wordpress.org/core/2018/01/17/auto-formatting-of-author-bios-reverted-in-4-9-2/
+add_filter( 'get_the_author_description', 'wptexturize' );
+add_filter( 'get_the_author_description', 'convert_chars' );
+add_filter( 'get_the_author_description', 'wpautop' );
+add_filter( 'get_the_author_description', 'shortcode_unautop' );
+
 if (!class_exists('Heartbeat_Control')) {
 function pipdig_heartbeat_control($settings) {
     $settings['interval'] = 90;

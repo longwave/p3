@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.7.4
+Version: 3.7.5
 Text Domain: p3
 License: Copyright 2017 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.7.4' );
+define( 'PIPDIG_P3_V', '3.7.5' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -84,11 +84,15 @@ if ($this_theme->get('Author') != 'pipdig') {
 
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
-	wp_enqueue_style( 'p3-core', 'https://pipdigz.co.uk/p3/css/core.css', array(), PIPDIG_P3_V );
-	if (!get_theme_mod('disable_responsive')) { wp_enqueue_style( 'p3-responsive', 'https://pipdigz.co.uk/p3/css/responsive.css', array(), PIPDIG_P3_V ); }
-	wp_register_script( 'pipdig-imagesloaded', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js', array('jquery'), false );
+	
+	if (get_theme_mod('disable_responsive')) {
+		wp_enqueue_style( 'p3-core', 'https://pipdigz.co.uk/p3/css/core.css', array(), PIPDIG_P3_V );
+	} else {
+		wp_enqueue_style( 'p3-core-responsive', 'https://pipdigz.co.uk/p3/css/core_resp.css', array(), PIPDIG_P3_V );
+	}
+	wp_register_script( 'pipdig-imagesloaded', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js', array('jquery'), false );
 	wp_register_script( 'pipdig-cycle', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), null, false );
-	wp_register_script( 'jquery-easing', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js', array( 'jquery' ), '', true );
+	wp_register_script( 'jquery-easing', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js', array( 'jquery' ), null, true );
 	wp_register_script( 'pipdig-owl', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js', array('jquery'), null, false );
 	wp_register_script( 'backstretch', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js', array('jquery'), null, false );
 	wp_register_script( 'stellar', 'https://cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js', array('jquery'), null, true );

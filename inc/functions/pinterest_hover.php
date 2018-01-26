@@ -86,7 +86,7 @@ function p3_pinterest_hover() {
 				
 				// skip image if smaller than 350px wide (except on mobiles)
 				if ( ($(this).width() < 350) && (document.documentElement.clientWidth > 769 ) ) {
-					return false;
+					return true;
 				}
 				
 				if ($(this).hasClass('p3_invisible')) {
@@ -162,10 +162,10 @@ function p3_pinterest_hover() {
 	})(jQuery);
 	<?php if ($mobile == 1) { ?>
 	if (document.documentElement.clientWidth > 769 ) { // not on mobiles
-	<?php } ?>
 		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img)').imgPin();
-	<?php if ($mobile == 1) { ?>
 	}
+	<?php } else { ?>
+		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img)').imgPin();
 	<?php } ?>
 	</script>
 	<?php
