@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
 "POT-Creation-Date: 2018-01-19 16:23+0000\n"
-"PO-Revision-Date: 2018-01-19 16:23+0000\n"
+"PO-Revision-Date: 2018-01-30 16:05+0000\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: pl_PL\n"
@@ -626,7 +626,7 @@ msgstr ""
 
 #: inc/functions/shares.php:79 inc/functions/shares.php:132
 msgid "Share:"
-msgstr ""
+msgstr "udostępnij"
 
 #: inc/functions/shares.php:97
 msgid "Sharing Icons"
@@ -846,7 +846,7 @@ msgstr ""
 
 #: inc/widgets/bloglovin.php:53
 msgid "Follow on Bloglovin'"
-msgstr ""
+msgstr "obserwuj na bloglovin"
 
 #: inc/widgets/bloglovin.php:58 inc/widgets/depop.php:38
 #: inc/widgets/facebook.php:52 inc/widgets/pinterest.php:118
