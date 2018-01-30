@@ -11,12 +11,13 @@
  * Class for handling custom fields (meta data) for terms.
  */
 class MB_Term_Meta_Box extends RW_Meta_Box {
+
 	/**
-	 * The field meta object.
+	 * Object type.
 	 *
-	 * @var MB_Term_Meta_Field
+	 * @var string
 	 */
-	private $field_meta;
+	protected $object_type = 'term';
 
 	/**
 	 * Create meta box based on given data.
@@ -30,15 +31,6 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 	}
 
 	/**
-	 * Setter method for the field meta property.
-	 *
-	 * @param MB_Term_Meta_Field $field_meta The field meta object.
-	 */
-	public function set_field_meta_object( MB_Term_Meta_Field $field_meta ) {
-		$this->field_meta = $field_meta;
-	}
-
-	/**
 	 * Specific hooks for meta box object. Default is 'post'.
 	 * This should be extended in sub-classes to support meta fields for terms, user, settings pages, etc.
 	 */
@@ -49,8 +41,8 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 
 		// Save term meta.
 		foreach ( $this->meta_box['taxonomies'] as $taxonomy ) {
-			add_action( "edited_$taxonomy", array( $this, 'save' ) );
-			add_action( "created_$taxonomy", array( $this, 'save' ) );
+			add_action( "edited_$taxonomy", array( $this, 'save_post' ) );
+			add_action( "created_$taxonomy", array( $this, 'save_post' ) );
 		}
 
 		add_action( "rwmb_before_{$this->meta_box['id']}", array( $this, 'show_heading' ) );
@@ -76,9 +68,6 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 			add_action( "{$taxonomy}_edit_form", array( $this, 'show' ), 10, 2 );
 			add_action( "{$taxonomy}_add_form_fields", array( $this, 'show' ), 10, 2 );
 		}
-
-		// Change field meta.
-		add_filter( 'rwmb_field_meta', array( $this->field_meta, 'meta' ), 10, 3 );
 	}
 
 	/**
@@ -97,62 +86,26 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 		}
 		list( , $url ) = RWMB_Loader::get_path( dirname( dirname( __FILE__ ) ) );
 		wp_enqueue_style( 'mb-term-meta', $url . 'css/style.css', '', '1.0.2' );
-		wp_enqueue_script( 'mb-term-meta-message', $url . 'js/message.js', array( 'jquery' ), '1.0.6', true );
-		wp_localize_script( 'mb-term-meta-message', 'MBTermMeta', array(
-			'addedMessage' => __( 'Term added.', 'mb-term-meta' ),
-		) );
-	}
 
-	/**
-	 * Save meta fields for terms.
-	 *
-	 * @param int $term_id Term ID.
-	 */
-	public function save( $term_id ) {
-		// Check whether form is submitted properly.
-		$nonce = (string) filter_input( INPUT_POST, "nonce_{$this->meta_box['id']}" );
-		if ( ! wp_verify_nonce( $nonce, "rwmb-save-{$this->meta_box['id']}" ) ) {
-			return;
-		}
-
-		foreach ( $this->fields as $field ) {
-			$name   = $field['id'];
-			$single = $field['clone'] || ! $field['multiple'];
-			$old    = get_term_meta( $term_id, $name, $single );
-			$new    = isset( $_POST[ $name ] ) ? $_POST[ $name ] : ( $single ? '' : array() );
-
-			// Allow field class change the value.
-			if ( $field['clone'] ) {
-				$new = RWMB_Clone::value( $new, $old, $term_id, $field );
-			} else {
-				$new = RWMB_Field::call( $field, 'value', $new, $old, $term_id );
-				$new = RWMB_Field::filter( 'sanitize', $new, $field );
-			}
-			$new = RWMB_Field::filter( 'value', $new, $field, $old );
-
-			$this->field_meta->save( $new, $old, $term_id, $field );
+		// Only load these scripts on add term page.
+		$screen = get_current_screen();
+		if ( 'edit-tags' === $screen->base ) {
+			wp_enqueue_script( 'mb-term-meta-clear-input', $url . 'js/clear-input.js', array( 'jquery' ), '1.0.6', true );
+			wp_enqueue_script( 'mb-term-meta-wysiwyg-save', $url . 'js/wysiwyg-save.js', array( 'jquery' ), '1.0.6', true );
+			wp_enqueue_script( 'mb-term-meta-message', $url . 'js/message.js', array( 'jquery' ), '1.0.6', true );
+			wp_localize_script( 'mb-term-meta-message', 'MBTermMeta', array(
+				'addedMessage' => __( 'Term added.', 'mb-term-meta' ),
+			) );
 		}
 	}
 
 	/**
-	 * Check if term meta is saved.
+	 * Get current object id.
 	 *
-	 * @return bool
+	 * @return int|string
 	 */
-	public function is_saved() {
-		$term_id = filter_input( INPUT_GET, 'tag_ID', FILTER_SANITIZE_NUMBER_INT );
-
-		foreach ( $this->fields as $field ) {
-			$value = get_term_meta( $term_id, $field['id'], ! $field['multiple'] );
-			if (
-				( ! $field['multiple'] && '' !== $value )
-				|| ( $field['multiple'] && array() !== $value )
-			) {
-				return true;
-			}
-		}
-
-		return false;
+	public function get_current_object_id() {
+		return filter_input( INPUT_GET, 'tag_ID', FILTER_SANITIZE_NUMBER_INT );
 	}
 
 	/**
@@ -168,5 +121,18 @@ class MB_Term_Meta_Box extends RW_Meta_Box {
 		return
 			( 'edit-tags' === $screen->base || 'term' === $screen->base )
 			&& in_array( $screen->taxonomy, $this->meta_box['taxonomies'], true );
+	}
+
+	/**
+	 * Add fields to field registry.
+	 */
+	public function register_fields() {
+		$field_registry = rwmb_get_registry( 'field' );
+
+		foreach ( $this->taxonomies as $taxonomy ) {
+			foreach ( $this->fields as $field ) {
+				$field_registry->add( $field, $taxonomy, 'term' );
+			}
+		}
 	}
 }

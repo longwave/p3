@@ -23,52 +23,26 @@ class MB_Term_Meta_Loader {
 	 * Run hooks to get meta boxes for terms and initialize them.
 	 */
 	public function init() {
-		add_filter( 'rwmb_meta_boxes', array( $this, 'filter' ), 999 );
-
-		/**
-		 * Initialize meta boxes for term.
-		 * 'rwmb_meta_boxes' runs at priority 10, we use priority 20 to make sure self::$meta_boxes is set.
-		 */
-		add_action( 'init', array( $this, 'register' ), 20 );
+		add_filter( 'rwmb_meta_box_class_name', array( $this, 'meta_box_class_name' ), 10, 2 );
 
 		add_filter( 'rwmb_meta_type', array( $this, 'filter_meta_type' ), 10, 3 );
+
+		add_filter( 'rwmb_meta_boxes', array( $this, 'load_meta_boxes_legacy' ), 9999 );
 	}
 
 	/**
-	 * Filter meta boxes to get only meta boxes for terms and remove them from posts.
+	 * Filter meta box class name.
 	 *
-	 * @param array $meta_boxes List of meta boxes.
-	 *
-	 * @return array
+	 * @param  string $class_name Meta box class name.
+	 * @param  array  $meta_box   Meta box data.
+	 * @return string
 	 */
-	public function filter( $meta_boxes ) {
-		foreach ( $meta_boxes as $k => $meta_box ) {
-			if ( isset( $meta_box['taxonomies'] ) ) {
-				self::$meta_boxes[] = $meta_box;
-				unset( $meta_boxes[ $k ] );
-			}
+	public function meta_box_class_name( $class_name, $meta_box ) {
+		if ( isset( $meta_box['taxonomies'] ) ) {
+			$class_name = 'MB_Term_Meta_Box';
 		}
 
-		return $meta_boxes;
-	}
-
-	/**
-	 * Register meta boxes for term, each meta box is a section
-	 */
-	public function register() {
-		$field_meta     = new MB_Term_Meta_Field;
-		$field_registry = rwmb_get_registry( 'field' );
-
-		foreach ( self::$meta_boxes as $meta_box ) {
-			$meta_box = new MB_Term_Meta_Box( $meta_box );
-			$meta_box->set_field_meta_object( $field_meta );
-
-			foreach ( $meta_box->fields as $field ) {
-				foreach ( $meta_box->taxonomies as $taxonomy ) {
-					$field_registry->add( $field, $taxonomy, 'term' );
-				}
-			}
-		}
+		return $class_name;
 	}
 
 	/**
@@ -87,5 +61,23 @@ class MB_Term_Meta_Loader {
 
 		$term = get_term( $object_id );
 		return isset( $term->taxonomy ) ? $term->taxonomy : $type;
+	}
+
+	/**
+	 * Store meta boxes to static variable to make compatible with Admin Columns.
+	 *
+	 * @param  array $meta_boxes Array of meta boxes.
+	 * @return array
+	 */
+	public function load_meta_boxes_legacy( $meta_boxes ) {
+		foreach ( $meta_boxes as $meta_box ) {
+			if ( ! isset( $meta_box['taxonomies'] ) ) {
+				continue;
+			}
+
+			self::$meta_boxes[] = $meta_box;
+		}
+
+		return $meta_boxes;
 	}
 }

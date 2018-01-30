@@ -13,10 +13,14 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.7.6 =
+* Date: 30 January 2018.
+* Enhance: Display number of products in cart when using WooCommerce.
+
 = 3.7.5 =
 * Date: 26 January 2018.
 * Fix: Pinterest hover button did not work on some images.
-* Enhancement: Minor speed improvement by combining CSS files.
+* Enhance: Minor speed improvement by combining CSS files.
 
 = 3.7.4 =
 * Date: 19 January 2018.

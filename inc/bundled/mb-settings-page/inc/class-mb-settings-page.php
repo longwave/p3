@@ -36,6 +36,14 @@ class MB_Settings_Page {
 		// Add hooks.
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'rwmb_before', array( $this, 'show_meta_box_tab' ) );
+		add_action( 'init', array( $this, 'settings_page_init_hook' ), 20 );
+	}
+
+	/**
+	 * Add settings page init hook for meta box can get page args.
+	 */
+	public function settings_page_init_hook() {
+		do_action( 'mb_settings_page_init', $this->args );
 	}
 
 	/**
@@ -60,6 +68,8 @@ class MB_Settings_Page {
 			'style'         => 'boxes',
 			'columns'       => 2,
 			'tabs'          => array(),
+			'submit_button' => __( 'Save Settings', 'mb-settings-page' ),
+			'message'       => __( 'Settings saved.', 'mb-settings-page' ),
 		) );
 
 		// Setup optional parameters.
@@ -139,28 +149,30 @@ class MB_Settings_Page {
 				</h2>
 			<?php endif; ?>
 
-			<form method="post" action="" enctype="multipart/form-data" id="poststuff"<?php echo $class ? ' class="' . esc_html( $class ) . '"' : ''; ?>>
-				<?php
-				// Nonce for saving meta boxes status (collapsed/expanded) and order.
-				wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
-				wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
-				?>
-				<div id="post-body" class="metabox-holder columns-<?php echo intval( $this->args['columns'] ); ?>">
-					<?php if ( $this->args['columns'] > 1 ) : ?>
-						<div id="postbox-container-1" class="postbox-container">
-							<?php do_meta_boxes( null, 'side', null ); ?>
+			<form method="post" action="" enctype="multipart/form-data" id="post"<?php echo $class ? ' class="' . esc_html( $class ) . '"' : ''; ?>>
+				<div id="poststuff">
+					<?php
+					// Nonce for saving meta boxes status (collapsed/expanded) and order.
+					wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
+					wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
+					?>
+					<div id="post-body" class="metabox-holder columns-<?php echo intval( $this->args['columns'] ); ?>">
+						<?php if ( $this->args['columns'] > 1 ) : ?>
+							<div id="postbox-container-1" class="postbox-container">
+								<?php do_meta_boxes( null, 'side', null ); ?>
+							</div>
+						<?php endif; ?>
+						<div id="postbox-container-2" class="postbox-container">
+							<?php do_meta_boxes( null, 'normal', null ); ?>
+							<?php do_meta_boxes( null, 'advanced', null ); ?>
 						</div>
-					<?php endif; ?>
-					<div id="postbox-container-2" class="postbox-container">
-						<?php do_meta_boxes( null, 'normal', null ); ?>
-						<?php do_meta_boxes( null, 'advanced', null ); ?>
 					</div>
+					<br class="clear">
+					<p class="submit">
+						<?php submit_button( esc_html( $this->args['submit_button'] ), 'primary', 'submit', false ); ?>
+						<?php do_action( 'mb_settings_page_submit_buttons' ); ?>
+					</p>
 				</div>
-				<br class="clear">
-				<p class="submit">
-					<?php submit_button( esc_html__( 'Save Settings', 'mb-settings-page' ), 'primary', 'submit', false ); ?>
-					<?php do_action( 'mb_settings_page_submit_buttons' ); ?>
-				</p>
 			</form>
 		</div>
 		<?php
@@ -171,7 +183,7 @@ class MB_Settings_Page {
 	 */
 	public function admin_print_styles() {
 		list( , $url ) = RWMB_Loader::get_path( dirname( dirname( __FILE__ ) ) );
-		wp_enqueue_style( 'mb-settings-page', $url . 'css/style.css', '', '1.1.2' );
+		wp_enqueue_style( 'mb-settings-page', $url . 'css/settings.css', '', '1.3' );
 
 		// For meta boxes.
 		wp_enqueue_script( 'common' );
@@ -199,9 +211,6 @@ class MB_Settings_Page {
 		 */
 		do_action( 'mb_settings_page_load', $this->args );
 
-		// Save settings when submit.
-		$this->save();
-
 		// Show updated message.
 		if ( empty( $this->args['parent'] ) || 'options-general.php' !== $this->args['parent'] ) {
 			add_action( 'admin_notices', array( $this, 'admin_notices' ) );
@@ -209,21 +218,6 @@ class MB_Settings_Page {
 
 		// Add help tabs.
 		$this->add_help_tabs();
-	}
-
-	/**
-	 * Save settings when submit.
-	 */
-	public function save() {
-		// @codingStandardsIgnoreLine
-		if ( empty( $_POST['submit'] ) ) {
-			return;
-		}
-		$data = get_option( $this->args['option_name'], array() );
-		$data = apply_filters( 'mb_settings_pages_data', $data, $this->args['option_name'] );
-		update_option( $this->args['option_name'], $data );
-
-		add_settings_error( $this->args['id'], 'saved', __( 'Settings saved.', 'mb-settings-page' ), 'updated' );
 	}
 
 	/**

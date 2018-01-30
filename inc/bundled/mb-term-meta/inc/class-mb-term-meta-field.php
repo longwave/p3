@@ -11,6 +11,14 @@
  */
 class MB_Term_Meta_Field {
 	/**
+	 * Add hooks for fields edit screen.
+	 */
+	public function init() {
+		// Change field meta.
+		add_filter( 'rwmb_field_meta', array( $this, 'meta' ), 10, 3 );
+	}
+
+	/**
 	 * Get field meta value
 	 *
 	 * @param mixed $meta  Meta value.
@@ -52,75 +60,5 @@ class MB_Term_Meta_Field {
 		}
 
 		return $meta;
-	}
-
-	/**
-	 * Save meta value.
-	 *
-	 * @param mixed $new     The submitted meta value.
-	 * @param mixed $old     The existing meta value.
-	 * @param int   $term_id The term ID.
-	 * @param array $field   The field parameters.
-	 */
-	public function save( $new, $old, $term_id, $field ) {
-		$name = $field['id'];
-
-		// Taxonomy advanced field: ignore "multiple" as values are saved in 1 row.
-		if ( 'taxonomy_advanced' === $field['type'] ) {
-			$field['multiple'] = false;
-		}
-
-		// Media fields: remove term meta to save order.
-		if ( in_array( $field['type'], array(
-			'media',
-			'file_advanced',
-			'file_upload',
-			'image_advanced',
-			'image_upload',
-			'plupload_image',
-		), true ) ) {
-			$old = array();
-			delete_term_meta( $term_id, $name );
-		}
-
-		// Remove term meta if it's empty.
-		if ( '' === $new || array() === $new ) {
-			delete_term_meta( $term_id, $name );
-			return;
-		}
-
-		// If field is cloneable, value is saved as a single entry in the database.
-		if ( $field['clone'] ) {
-			// Remove empty values.
-			$new = (array) $new;
-			foreach ( $new as $k => $v ) {
-				if ( '' === $v || array() === $v ) {
-					unset( $new[ $k ] );
-				}
-			}
-			// Reset indexes.
-			$new = array_values( $new );
-			update_term_meta( $term_id, $name, $new );
-			return;
-		}
-
-		// If field is multiple, value is saved as multiple entries in the database (WordPress behaviour).
-		if ( $field['multiple'] ) {
-			$old        = (array) $old;
-			$new        = (array) $new;
-			$new_values = array_diff( $new, $old );
-			foreach ( $new_values as $new_value ) {
-				add_term_meta( $term_id, $name, $new_value, false );
-			}
-			$old_values = array_diff( $old, $new );
-			foreach ( $old_values as $old_value ) {
-				delete_term_meta( $term_id, $name, $old_value );
-			}
-
-			return;
-		}
-
-		// Default: just update term meta.
-		update_term_meta( $term_id, $name, $new );
 	}
 }

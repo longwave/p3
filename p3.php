@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.7.5
+Version: 3.7.6
 Text Domain: p3
 License: Copyright 2017 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.7.5' );
+define( 'PIPDIG_P3_V', '3.7.6' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
@@ -309,6 +309,11 @@ function pipdig_p3_activate() {
 		*/
 	}
 	
+	// delete siteground starting blog post
+	if (get_the_title(1) == 'WordPress Resources at SiteGround') {
+		wp_delete_post(1);
+	}
+	
 	update_option('link_manager_enabled', 0);
 
 	// delete pipdig-importer data
@@ -345,11 +350,13 @@ function pipdig_p3_textdomain() {
 }
 add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
 require_once 'inc/plugin-update-checker/plugin-update-checker.php';$updater = Puc_v4_Factory::buildUpdateChecker('https://bitbucket.org/pipdig/p3', __FILE__, 'p3');$updater->setBranch('master');
+/*
 function p3_plugin_puc_icons( $info, $response = null ) {
 	$info->icons = array('1x' => 'https://pipdigz.co.uk/p3/icon-128x128.png','2x' => 'https://pipdigz.co.uk/p3/icon-256x256.png');
 	return $info;
 }
 $updater->addResultFilter('p3_plugin_puc_icons');
+*/
 
 // 1280 x 720
 // data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=
