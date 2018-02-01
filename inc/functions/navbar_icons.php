@@ -116,7 +116,7 @@ function pipdig_p3_social_navbar( $items, $args ) {
 		
 	if (function_exists('wc_get_cart_url') && get_theme_mod('p3_navbar_woocommerce', 1)) {
 		global $woocommerce;
-		$navbar_icons .= '<a href="'.wc_get_cart_url().'" rel="nofollow" aria-label="Shopping cart" title="Shopping cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> '.$woocommerce->cart->cart_contents_count.'</a>';
+		$navbar_icons .= '<a href="'.wc_get_cart_url().'" rel="nofollow" aria-label="Shopping cart" title="Shopping cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span id="p3_navbar_cart_count"> '.$woocommerce->cart->cart_contents_count.'</span></a>';
 	}
 	
 	if ($navbar_icons) {
