@@ -22,19 +22,24 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 			$date_range_posts = '';
 		}
 		if (isset($instance['category'])) { 
-			$category = intval($instance['category']);
+			$category = absint($instance['category']);
 		} else {
 			$category = '';
 		}
 		if (isset($instance['number_posts'])) { 
-			$number_posts = intval($instance['number_posts']);
+			$number_posts = absint($instance['number_posts']);
 		} else {
 			$number_posts = 4;
 		}
 		if (isset($instance['height'])) { 
-			$height = intval($instance['height']);
+			$height = absint($instance['height']);
 		} else {
 			$height = 360;
+		}
+		if (isset($instance['title_length'])) { 
+			$title_length = absint($instance['title_length']);
+		} else {
+			$title_length = 4;
 		}
 		if (isset($instance['post_title_layout'])) { 
 			$post_title_layout = strip_tags($instance['post_title_layout']);
@@ -80,16 +85,21 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 				<option <?php if ('hover' == $post_title_layout) echo 'selected="selected"'; ?> value="hover"><?php _e('On hover', 'p3') ?></option>
 			</select>
 		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('title_length'); ?>">Post title length limit (words)</label><br />
+			<input type="number" min="0" id="<?php echo $this->get_field_id( 'title_length' ); ?>" name="<?php echo $this->get_field_name( 'title_length' ); ?>" value="<?php echo $title_length; ?>" />
+		</p>
 	<?php
 	  }
 	 
 	  function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['category'] = intval($new_instance['category']);
+		$instance['category'] = absint($new_instance['category']);
 		$instance['date_range_posts'] =  strip_tags($new_instance['date_range_posts']);
-		$instance['number_posts'] = intval($new_instance['number_posts']);
-		$instance['height'] = intval($new_instance['height']);
+		$instance['number_posts'] = absint($new_instance['number_posts']);
+		$instance['height'] = absint($new_instance['height']);
+		$instance['title_length'] = absint($new_instance['title_length']);
 		$instance['post_title_layout'] =  strip_tags($new_instance['post_title_layout']);
 		return $instance;
 	  }
@@ -110,19 +120,24 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 			$date_range_posts = '';
 		}
 		if (isset($instance['category'])) { 
-			$category = intval($instance['category']);
+			$category = absint($instance['category']);
 		} else {
 			$category = '';
 		}
 		if (isset($instance['number_posts'])) { 
-			$number_posts = intval($instance['number_posts']);
+			$number_posts = absint($instance['number_posts']);
 		} else {
 			$number_posts = 4;
 		}
 		if (isset($instance['height'])) { 
-			$height = intval($instance['height']);
+			$height = absint($instance['height']);
 		} else {
 			$height = 360;
+		}
+		if (isset($instance['title_length'])) { 
+			$title_length = absint($instance['title_length']);
+		} else {
+			$title_length = 4;
 		}
 		if (isset($instance['post_title_layout'])) { 
 			$post_title_layout = strip_tags($instance['post_title_layout']);
@@ -180,7 +195,7 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 		<div class="slide-inside">
 			<?php if ($post_title_layout != 'no') { ?>
 				<span class="slide-desc">
-					<h2><?php echo pipdig_p3_truncate(get_the_title(), 4); ?></h2>
+					<h2><?php echo pipdig_p3_truncate(get_the_title(), $title_length); ?></h2>
 					<a href="<?php the_permalink(); ?>" class="read-more"><?php _e('View Post', 'p3'); ?></a>
 				</span>
 			<?php } ?>
