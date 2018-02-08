@@ -3,7 +3,7 @@
 if (!defined('ABSPATH')) die;
 
 function p3_pinterest_hover_add_data($content) {
-	
+
 	$active = false;
 
 	if ( (is_singular('post') && get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
@@ -27,7 +27,7 @@ add_filter('the_content','p3_pinterest_hover_add_data');
 
 
 function p3_pinterest_hover() {
-		
+	
 	if (get_theme_mod('p3_pinterest_hover_enable')) {
 		set_theme_mod('p3_pinterest_hover_enable_posts', 1);
 		//set_theme_mod('p3_pinterest_hover_enable_archives', 1);
@@ -184,180 +184,176 @@ add_action( 'customize_controls_print_styles', 'p3_pinterest_hover_customizer_st
 
 
 // customiser
-if (!class_exists('pipdig_pinterest_hover_Customize')) {
-	class pipdig_pinterest_hover_Customize {
-		public static function register ( $wp_customize ) {
-			
-			$wp_customize->add_section( 'pipdig_pinterest_hover', 
-				array(
-					'title' => __( 'Pinterest Hover Button', 'p3' ),
-					'description'=> __( 'When you hover your mouse over an image in a post/page, a Pinterest "Pin it" button will appear.', 'p3' ). ' You can download some of our custom Pinterest Hover Images on <a href="https://www.dropbox.com/sh/k8myt2vd8lgoz6a/AAD4w2WGe99Nr9wXpJl5T-TQa?dl=0" target="_blank">this page</a>',
-					'capability' => 'edit_theme_options',
-					//'panel' => 'pipdig_features',
-					'priority' => 64,
-				) 
-			);
+class pipdig_pinterest_hover_Customize {
+	public static function register ( $wp_customize ) {
+		
+		$wp_customize->add_section( 'pipdig_pinterest_hover', 
+			array(
+				'title' => __( 'Pinterest Hover Button', 'p3' ),
+				'description'=> 'When you hover your mouse over an image in a post/page, a Pinterest "Pin it" button will appear. You can download some of our custom Pinterest Hover Images on <a href="https://www.dropbox.com/sh/k8myt2vd8lgoz6a/AAD4w2WGe99Nr9wXpJl5T-TQa?dl=0" target="_blank">this page</a>.',
+				'capability' => 'edit_theme_options',
+				//'panel' => 'pipdig_features',
+				'priority' => 64,
+			) 
+		);
 
-			// show on posts
-			$wp_customize->add_setting('p3_pinterest_hover_enable_posts',
-				array(
-					'default' => 0,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control('p3_pinterest_hover_enable_posts',
-				array(
-					'type' => 'checkbox',
-					'label' => __('Display on posts', 'p3'),
-					'section' => 'pipdig_pinterest_hover',
-				)
-			);
-			
-			// show on pages
-			$wp_customize->add_setting('p3_pinterest_hover_enable_pages',
-				array(
-					'default' => 0,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control('p3_pinterest_hover_enable_pages',
-				array(
-					'type' => 'checkbox',
-					'label' => __('Display on pages', 'p3'),
-					'section' => 'pipdig_pinterest_hover',
-				)
-			);
-			
-			// show on archives
-			$wp_customize->add_setting('p3_pinterest_hover_enable_archives',
-				array(
-					'default' => 0,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control('p3_pinterest_hover_enable_archives',
-				array(
-					'type' => 'checkbox',
-					'label' => __('Display on categories/archives', 'p3'),
-					'section' => 'pipdig_pinterest_hover',
-				)
-			);
-			
-			// display on mobile or desktop+mobile?			
-			$wp_customize->add_setting('p3_pinterest_hover_mobile',
-				array(
-					'default' => 2,
-					'sanitize_callback' => 'sanitize_text_field',
-				)
-			);
-			$wp_customize->add_control('p3_pinterest_hover_mobile',
-				array(
-					'type' => 'select',
-					'label' => __('Display on:', 'p3'),
-					'section' => 'pipdig_pinterest_hover',
-					'choices' => array(
-						1 => __('Desktop', 'p3'),
-						2 => __('Desktop and mobile', 'p3'),
-					),
-				)
-			);
-			
-			$pin_img = get_theme_mod('p3_pinterest_hover_image_file','https://assets.pinterest.com/images/pidgets/pin_it_button.png');
-			
-			// Image
-			$wp_customize->add_setting('p3_pinterest_hover_image_file',
-				array(
-					'default' => $pin_img,
-					'sanitize_callback' => 'esc_url_raw',
-				)
-			);
-			$wp_customize->add_control(
-					 new WP_Customize_Image_Control(
-						 $wp_customize,
-						 'p3_pinterest_hover_image_file',
-						 array(
-							 'label' => __( 'Upload a custom image', 'p3' ),
-							 'section' => 'pipdig_pinterest_hover',
-							 'settings'	 => 'p3_pinterest_hover_image_file',
-						 )
-					 )
-			);
-			
-			// Position			
-			$wp_customize->add_setting('p3_pinterest_hover_image_position',
-				array(
-					'default' => 'center',
-					'sanitize_callback' => 'sanitize_text_field',
-				)
-			);
-			$wp_customize->add_control('p3_pinterest_hover_image_position',
-				array(
-					'type' => 'select',
-					'label' => __('Image position', 'p3'),
-					'section' => 'pipdig_pinterest_hover',
-					'choices' => array(
-						'center' => __('Center', 'p3'),
-						'top left' => __('Top left', 'p3'),
-						'top right' => __('Top right', 'p3'),
-						'bottom right' => __('Bottom right', 'p3'),
-						'bottom left' => __('Bottom left', 'p3'),
-					),
-				)
-			);
-			
-			// Image margin top
-			$wp_customize->add_setting( 'p3_pinterest_hover_margin', array(
+		// show on posts
+		$wp_customize->add_setting('p3_pinterest_hover_enable_posts',
+			array(
 				'default' => 0,
 				'sanitize_callback' => 'absint',
-				)
-			);
-
-			$wp_customize->add_control( 'p3_pinterest_hover_margin', array(
-				'type' => 'number',
+			)
+		);
+		$wp_customize->add_control('p3_pinterest_hover_enable_posts',
+			array(
+				'type' => 'checkbox',
+				'label' => __('Display on posts', 'p3'),
 				'section' => 'pipdig_pinterest_hover',
-				'label' => __( 'Image margin', 'p3' ),
-				'input_attrs' => array(
-					'min' => 0,
-					'max' => 150,
-					'step' => 1,
-					),
-				)
-			);
+			)
+		);
 			
-			// show on posts
-			$wp_customize->add_setting('p3_pinterest_hover_alt',
-				array(
-					'default' => 0,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control('p3_pinterest_hover_alt',
-				array(
-					'type' => 'checkbox',
-					'label' => __('Use alt tags', 'p3'),
-					'description' => 'Normally when an image is pinned it will use the post title as the description. Select this option if you would prefer to use the image alt tags instead.',
-					'section' => 'pipdig_pinterest_hover',
-				)
-			);
+		// show on pages
+		$wp_customize->add_setting('p3_pinterest_hover_enable_pages',
+			array(
+				'default' => 0,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control('p3_pinterest_hover_enable_pages',
+			array(
+				'type' => 'checkbox',
+				'label' => __('Display on pages', 'p3'),
+				'section' => 'pipdig_pinterest_hover',
+			)
+		);
+		
+		// show on archives
+		$wp_customize->add_setting('p3_pinterest_hover_enable_archives',
+			array(
+				'default' => 0,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control('p3_pinterest_hover_enable_archives',
+			array(
+				'type' => 'checkbox',
+				'label' => __('Display on categories/archives', 'p3'),
+				'section' => 'pipdig_pinterest_hover',
+			)
+		);
+		
+		// display on mobile or desktop+mobile?			
+		$wp_customize->add_setting('p3_pinterest_hover_mobile',
+			array(
+				'default' => 2,
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control('p3_pinterest_hover_mobile',
+			array(
+				'type' => 'select',
+				'label' => __('Display on:', 'p3'),
+				'section' => 'pipdig_pinterest_hover',
+				'choices' => array(
+					1 => __('Desktop', 'p3'),
+					2 => __('Desktop and mobile', 'p3'),
+				),
+			)
+		);
+		
+		$pin_img = get_theme_mod('p3_pinterest_hover_image_file','https://assets.pinterest.com/images/pidgets/pin_it_button.png');
+		
+		// Image
+		$wp_customize->add_setting('p3_pinterest_hover_image_file',
+			array(
+				'default' => $pin_img,
+				'sanitize_callback' => 'esc_url_raw',
+			)
+		);
+		$wp_customize->add_control(
+				 new WP_Customize_Image_Control(
+					 $wp_customize,
+					 'p3_pinterest_hover_image_file',
+					 array(
+						 'label' => __( 'Upload a custom image', 'p3' ),
+						 'section' => 'pipdig_pinterest_hover',
+						 'settings'	 => 'p3_pinterest_hover_image_file',
+					 )
+				 )
+		);
+		
+		// Position			
+		$wp_customize->add_setting('p3_pinterest_hover_image_position',
+			array(
+				'default' => 'center',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control('p3_pinterest_hover_image_position',
+			array(
+				'type' => 'select',
+				'label' => __('Image position', 'p3'),
+				'section' => 'pipdig_pinterest_hover',
+				'choices' => array(
+					'center' => __('Center', 'p3'),
+					'top left' => __('Top left', 'p3'),
+					'top right' => __('Top right', 'p3'),
+					'bottom right' => __('Bottom right', 'p3'),
+					'bottom left' => __('Bottom left', 'p3'),
+				),
+			)
+		);
+		
+		// Image margin top
+		$wp_customize->add_setting( 'p3_pinterest_hover_margin', array(
+			'default' => 0,
+			'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control( 'p3_pinterest_hover_margin', array(
+			'type' => 'number',
+			'section' => 'pipdig_pinterest_hover',
+			'label' => __( 'Image margin', 'p3' ),
+			'input_attrs' => array(
+				'min' => 0,
+				'max' => 150,
+				'step' => 1,
+				),
+			)
+		);
 			
-			// preix description text
-			$wp_customize->add_setting('p3_pinterest_hover_prefix_text',
-				array(
-					'sanitize_callback' => 'sanitize_text_field',
-				)
-			);
-			$wp_customize->add_control(
-				'p3_pinterest_hover_prefix_text',
-				array(
-					'type' => 'text',
-					'label' => __( 'Prefix for "Description" field', 'p3' ),
-					'description' => 'This text will be added to the front of the image description when pinned.',
-					'section' => 'pipdig_pinterest_hover'
-				)
-			);
+		// show on posts
+		$wp_customize->add_setting('p3_pinterest_hover_alt',
+			array(
+				'default' => 0,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control('p3_pinterest_hover_alt',
+			array(
+				'type' => 'checkbox',
+				'label' => __('Use alt tags', 'p3'),
+				'description' => 'Normally when an image is pinned it will use the post title as the description. Select this option if you would prefer to use the image alt tags instead.',
+				'section' => 'pipdig_pinterest_hover',
+			)
+		);
+		
+		// preix description text
+		$wp_customize->add_setting('p3_pinterest_hover_prefix_text',
+			array(
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control(
+			'p3_pinterest_hover_prefix_text',
+			array(
+				'type' => 'text',
+				'label' => __( 'Prefix for "Description" field', 'p3' ),
+				'description' => 'This text will be added to the front of the image description when pinned.',
+				'section' => 'pipdig_pinterest_hover'
+			)
+		);
 
-
-		}
 	}
-	add_action( 'customize_register' , array( 'pipdig_pinterest_hover_Customize' , 'register' ) );
 }
+add_action( 'customize_register' , array( 'pipdig_pinterest_hover_Customize' , 'register' ) );

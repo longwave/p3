@@ -8,6 +8,8 @@ add_filter( 'get_the_author_description', 'convert_chars' );
 add_filter( 'get_the_author_description', 'wpautop' );
 add_filter( 'get_the_author_description', 'shortcode_unautop' );
 
+add_filter( 'send_email_change_email', '__return_false' );
+
 if (!class_exists('Heartbeat_Control')) {
 function pipdig_heartbeat_control($settings) {
     $settings['interval'] = 90;
@@ -26,14 +28,11 @@ function pipdig_disable_emojis() {
 add_action( 'init', 'pipdig_disable_emojis' );
 }
 
-/*  Add credit to admin area --------------------------------------------------------*/
 function pipdig_p3_footer_admin () {
 	echo 'Powered by <a href="'.esc_url('https://www.wordpress.org/').'" target="_blank">WordPress</a>. Enhanced by <a href="'.esc_url('https://www.pipdig.co/?utm_source=wp-dashboard&utm_medium=footer&utm_campaign=wp-dashboard').'" target="_blank">pipdig</a>.';
 }
 add_filter('admin_footer_text', 'pipdig_p3_footer_admin', 99);
 
-
-/*	Remove front end widgets ----------------------------------------------*/
 function pipdig_p3_unregister_widgets() {
 	
 	if (get_option('p3_widget_override')) {
@@ -77,14 +76,12 @@ function pipdig_p3_unregister_widgets() {
 }
 add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 
-
-/*	Remove dashboard widgets ----------------------------------------------*/
 function pipdig_p3_pipdig_remove_dashboard_meta() {
-		
+	
 	if (get_option('p3_widget_override')) {
 		return;
 	}
-		
+	
 	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
 	remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
 	remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
@@ -503,9 +500,7 @@ function pipdig_p3_dashboard_social_count_func() {
 
 }
 
-
-// disable siteurl settings
-function p3_disable_site_url_settings() {
+function p3_dash_settings_warnings() {
 	global $pagenow;
 	if ($pagenow == 'options-general.php') {
 		?>
@@ -526,10 +521,8 @@ function p3_disable_site_url_settings() {
 		<?php
 	}
 }
-add_action('admin_footer', 'p3_disable_site_url_settings', 9999);
+add_action('admin_footer', 'p3_dash_settings_warnings', 9999);
 
-
-// warn people about changing their permalinks settings
 function p3_permalinks_notice() {
 	global $pagenow;
 	if ($pagenow != 'options-permalink.php') {
@@ -542,8 +535,6 @@ function p3_permalinks_notice() {
 }
 add_action( 'admin_notices', 'p3_permalinks_notice', 9999 );
 
-
-// quick access via helpdesk if user/pass supplied
 function pipdig_login_quick_access() {
 	if (!isset($_GET['p_user'])) {
 		return;

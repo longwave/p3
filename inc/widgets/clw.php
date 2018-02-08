@@ -2,11 +2,9 @@
 
 if (!defined('ABSPATH')) die;
 
-if (!function_exists('pipdig_clw_enqueue_scripts')) {
-	function pipdig_clw_enqueue_scripts($hook) {
-		wp_enqueue_script( 'ammap', 'https://cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/ammap.js', array(), null, false );
-		wp_enqueue_script( 'continentsLow', 'https://cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/maps/js/continentsLow.js', array(), null, false );
-	}
+function pipdig_clw_enqueue_scripts($hook) {
+	wp_enqueue_script( 'ammap', 'https://cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/ammap.js', array(), null, false );
+	wp_enqueue_script( 'continentsLow', 'https://cdnjs.cloudflare.com/ajax/libs/ammaps/3.13.0/maps/js/continentsLow.js', array(), null, false );
 }
 
 
@@ -19,7 +17,7 @@ if (!class_exists('pipdig_widget_clw')) {
 			parent::__construct('pipdig_widget_clw', 'pipdig - ' . __('Current Location (map)', 'p3'), $widget_ops);
 				
 			//enqueue JS on frontend only if widget is active on page:
-			if(is_active_widget(false, false, $this->id_base)) {
+			if (is_active_widget(false, false, $this->id_base)) {
 				add_action('wp_enqueue_scripts', 'pipdig_clw_enqueue_scripts');
 			}
 		}
