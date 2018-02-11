@@ -1,12 +1,14 @@
 <?php
 
 if (!defined('ABSPATH')) die;
-	function p3_related_posts() {
+
+function p3_related_posts() {
 	
-	if (is_single() && get_theme_mod('hide_related_posts')) {
+	if ((is_home() || is_archive()) && get_theme_mod('hide_related_posts_home', 1)) {
 		return;
 	}
-	if ((is_home() || is_archive()) && get_theme_mod('hide_related_posts_home')) {
+	
+	if (is_single() && get_theme_mod('hide_related_posts')) {
 		return;
 	}
 	
@@ -130,192 +132,190 @@ add_action('p3_summary_end', 'p3_related_posts');
 
 
 // customiser
-if (!class_exists('pipdig_related_Customize')) {
-	class pipdig_related_Customize {
-		public static function register ( $wp_customize ) {
+class pipdig_related_Customize {
+	public static function register ( $wp_customize ) {
 			
-			$wp_customize->add_section( 'pipdig_related_posts_pop', 
-				array(
-					'title' => __( 'Related Posts', 'p3' ),
-					'description'=> __( 'Related Posts are displayed from the same category.', 'p3' ).' <a href="https://support.pipdig.co/articles/wordpress-how-to-display-related-posts/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
-					'capability' => 'edit_theme_options',
-					//'panel' => 'pipdig_features',
-					'priority' => 95,
-				) 
-			);
-			
-			// Hide related posts on home page
-			$wp_customize->add_setting('hide_related_posts_home',
-				array(
-					'default' => 0,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control(
-				'hide_related_posts_home',
-				array(
-					'type' => 'checkbox',
-					'label' => __( "Don't display on homepage", 'p3' ),
-					'section' => 'pipdig_related_posts_pop',
-				)
-			);
+		$wp_customize->add_section( 'pipdig_related_posts_pop', 
+			array(
+				'title' => __( 'Related Posts', 'p3' ),
+				'description'=> __( 'Related Posts are displayed from the same category.', 'p3' ).' <a href="https://support.pipdig.co/articles/wordpress-how-to-display-related-posts/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
+				'capability' => 'edit_theme_options',
+				//'panel' => 'pipdig_features',
+				'priority' => 95,
+			) 
+		);
+		
+		// Hide related posts on home page
+		$wp_customize->add_setting('hide_related_posts_home',
+			array(
+				'default' => 1,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control(
+			'hide_related_posts_home',
+			array(
+				'type' => 'checkbox',
+				'label' => __( "Don't display on homepage", 'p3' ),
+				'section' => 'pipdig_related_posts_pop',
+			)
+		);
 
-			// Hide related posts on single posts
-			$wp_customize->add_setting('hide_related_posts',
+		// Hide related posts on single posts
+		$wp_customize->add_setting('hide_related_posts',
 				array(
-					'default' => 0,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control(
-				'hide_related_posts',
-				array(
-					'type' => 'checkbox',
-					'label' => __( "Don't display on posts", 'p3' ),
-					'section' => 'pipdig_related_posts_pop',
-				)
-			);
+			'default' => 0,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control(
+			'hide_related_posts',
+			array(
+				'type' => 'checkbox',
+				'label' => __( "Don't display on posts", 'p3' ),
+				'section' => 'pipdig_related_posts_pop',
+			)
+		);
 			
-			$wp_customize->add_setting('p3_related_posts_title',
-				array(
-					'sanitize_callback' => 'sanitize_text_field',
-				)
-			);
-			$wp_customize->add_control(
-				'p3_related_posts_title',
-				array(
-					'type' => 'text',
-					'label' => __( 'Title:', 'p3' ),
-					'section' => 'pipdig_related_posts_pop',
-					'input_attrs' => array(
-						'placeholder' => __('You may also enjoy:', 'p3'),
-					),
-				)
-			);
+		$wp_customize->add_setting('p3_related_posts_title',
+			array(
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control(
+			'p3_related_posts_title',
+			array(
+				'type' => 'text',
+				'label' => __( 'Title:', 'p3' ),
+				'section' => 'pipdig_related_posts_pop',
+				'input_attrs' => array(
+					'placeholder' => __('You may also enjoy:', 'p3'),
+				),
+			)
+		);
 
-			// Date range for related posts
-			$wp_customize->add_setting('related_posts_date',
-				array(
-					'default' => '1 year ago',
-					'sanitize_callback' => 'sanitize_text_field',
-				)
-			);
-			$wp_customize->add_control('related_posts_date',
-				array(
-					'type' => 'select',
-					'label' => __('Date range for posts:', 'p3'),
-					'section' => 'pipdig_related_posts_pop',
-					'choices' => array(
-						'1 month ago' => __('1 Month', 'p3'),
-						'3 months ago' => __('3 Months', 'p3'),
-						'6 months ago' => __('6 Months', 'p3'),
-						'1 year ago' => __('1 Year', 'p3'),
-						'' => __('All Time', 'p3'),
-					),
-				)
-			);
+		// Date range for related posts
+		$wp_customize->add_setting('related_posts_date',
+			array(
+				'default' => '1 year ago',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control('related_posts_date',
+			array(
+				'type' => 'select',
+				'label' => __('Date range for posts:', 'p3'),
+				'section' => 'pipdig_related_posts_pop',
+				'choices' => array(
+					'1 month ago' => __('1 Month', 'p3'),
+					'3 months ago' => __('3 Months', 'p3'),
+					'6 months ago' => __('6 Months', 'p3'),
+					'1 year ago' => __('1 Year', 'p3'),
+					'' => __('All Time', 'p3'),
+				),
+			)
+		);
 			
-			// tags or cats?
-			$wp_customize->add_setting('p3_related_posts_by',
-				array(
-					'default' => 1,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control('p3_related_posts_by',
-				array(
-					'type' => 'radio',
-					'label' => 'Find related posts using:',
-					'section' => 'pipdig_related_posts_pop',
-					'choices' => array(
-						1 => 'Post Categories',
-						2 => 'Post Tags',
-					),
-				)
-			);
+		// tags or cats?
+		$wp_customize->add_setting('p3_related_posts_by',
+			array(
+				'default' => 1,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control('p3_related_posts_by',
+			array(
+				'type' => 'radio',
+				'label' => 'Find related posts using:',
+				'section' => 'pipdig_related_posts_pop',
+				'choices' => array(
+					1 => 'Post Categories',
+					2 => 'Post Tags',
+				),
+			)
+		);
 			
-			// exclude from category
-			$wp_customize->add_setting('p3_related_posts_exclude_cat',
+		// exclude from category
+		$wp_customize->add_setting('p3_related_posts_exclude_cat',
+			array(
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Category_Control_Exclude(
+				$wp_customize,
+				'p3_related_posts_exclude_cat',
 				array(
-					'sanitize_callback' => 'absint',
+					'label' => __('Exclude posts from:', 'p3'),
+					'settings' => 'p3_related_posts_exclude_cat',
+					'section'  => 'pipdig_related_posts_pop'
 				)
-			);
-			$wp_customize->add_control(
-				new WP_Customize_Category_Control_Exclude(
-					$wp_customize,
-					'p3_related_posts_exclude_cat',
-					array(
-						'label' => __('Exclude posts from:', 'p3'),
-						'settings' => 'p3_related_posts_exclude_cat',
-						'section'  => 'pipdig_related_posts_pop'
-					)
-				)
-			);
+			)
+		);
 			
-			// number of posts
-			$wp_customize->add_setting('p3_related_posts_number',
-				array(
-					'default' => 4,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control(
-				'p3_related_posts_number',
-				array(
-					'type' => 'number',
-					'label' => __( 'Number of posts to display', 'p3' ),
-					'description' => __( 'Maximum = 4', 'p3' ),
-					'section' => 'pipdig_related_posts_pop',
-					'input_attrs' => array(
-						'min'   => 1,
-						'max'   => 4,
-						'step'  => 1,
-					),
-				)
-			);
+		// number of posts
+		$wp_customize->add_setting('p3_related_posts_number',
+			array(
+				'default' => 4,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control(
+			'p3_related_posts_number',
+			array(
+				'type' => 'number',
+				'label' => __( 'Number of posts to display', 'p3' ),
+				'description' => __( 'Maximum = 4', 'p3' ),
+				'section' => 'pipdig_related_posts_pop',
+				'input_attrs' => array(
+					'min'   => 1,
+					'max'   => 4,
+					'step'  => 1,
+				),
+			)
+		);
 			
-			// image shape
-			$wp_customize->add_setting('p3_related_posts_shape',
-				array(
-					'default' => 1,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control('p3_related_posts_shape',
-				array(
-					'type' => 'select',
-					'label' => __('Image shape', 'p3'),
-					'section' => 'pipdig_related_posts_pop',
-					'choices' => array(
-						1 => 'Landscape',
-						2 => 'Portait',
-						3 => 'Square',
-					),
-				)
-			);
+		// image shape
+		$wp_customize->add_setting('p3_related_posts_shape',
+			array(
+				'default' => 1,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control('p3_related_posts_shape',
+			array(
+				'type' => 'select',
+				'label' => __('Image shape', 'p3'),
+				'section' => 'pipdig_related_posts_pop',
+				'choices' => array(
+					1 => 'Landscape',
+					2 => 'Portait',
+					3 => 'Square',
+				),
+			)
+		);
 			
-			// post title length
-			$wp_customize->add_setting('p3_related_posts_post_title_limit',
-				array(
-					'default' => 7,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control(
-				'p3_related_posts_post_title_limit',
-				array(
-					'type' => 'number',
-					'label' => __( 'Post title length (words)', 'p3' ),
-					'section' => 'pipdig_related_posts_pop',
-					'input_attrs' => array(
-						'min'   => 1,
-						'max'   => 50,
-						'step'  => 1,
-					),
-				)
-			);
+		// post title length
+		$wp_customize->add_setting('p3_related_posts_post_title_limit',
+			array(
+				'default' => 7,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control(
+			'p3_related_posts_post_title_limit',
+			array(
+				'type' => 'number',
+				'label' => __( 'Post title length (words)', 'p3' ),
+				'section' => 'pipdig_related_posts_pop',
+				'input_attrs' => array(
+					'min'   => 1,
+					'max'   => 50,
+					'step'  => 1,
+				),
+			)
+		);
 
-		}
 	}
-	add_action( 'customize_register' , array( 'pipdig_related_Customize' , 'register' ) );
 }
+add_action( 'customize_register' , array( 'pipdig_related_Customize' , 'register' ) );

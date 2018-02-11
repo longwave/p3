@@ -92,8 +92,17 @@ function pipdig_p3_disable_jetpack_modules() {
 		update_option('p3_tiled_galleries_set', 1);
 	}
 	*/
+	
+	// plugin not compatible with Jetpack comments - https://wordpress.org/plugins/anti-spam/
+	if (Jetpack::is_module_active('comments')) {
+		$plugins = array(
+			'anti-spam/anti-spam.php',
+		);
+		deactivate_plugins($plugins);
+	}
+	
 }
-add_action( 'after_setup_theme', 'pipdig_p3_disable_jetpack_modules' );
+add_action( 'admin_init', 'pipdig_p3_disable_jetpack_modules' );
 
 // quit nagging
 function p3_jp_styles() {

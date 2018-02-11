@@ -13,7 +13,7 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.7.6 =
+= 3.7.7 =
 * Date: 30 January 2018.
 * Enhance: Display number of products in cart when using WooCommerce.
 
