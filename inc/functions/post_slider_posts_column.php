@@ -42,7 +42,7 @@ function p3_post_slider_posts_column() {
 		<style scoped>
 			.cycle-slideshow {height: auto} .cycle-slideshow li{display:none;width:100%}.cycle-slideshow li.first{display:block}
 		</style>
-			<div data-starting-slide="1" data-cycle-speed="1200" data-cycle-slides="li" data-cycle-swipe="true" data-cycle-swipe-fx="scrollHorz" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
+			<div data-cycle-speed="1200" data-cycle-slides="li" data-cycle-swipe="true" data-cycle-swipe-fx="scrollHorz" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
 				<ul>
 					<?php
 						$post_cat_slider = get_theme_mod('p3_post_slider_posts_column_cat');
