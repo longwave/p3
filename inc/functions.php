@@ -440,7 +440,7 @@ function p3_lazy_script() {
 	jQuery(document).ready(function($) {
 		$(".pipdig_lazy").Lazy({
 			effect: 'fadeIn',
-			effectTime: 500,
+			effectTime: 600,
 		});
 	});
 	</script>

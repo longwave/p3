@@ -192,6 +192,7 @@ function pipdig_p3_activate() {
 
 	$plugins = array(
 		'wd-instagram-feed/wd-instagram-feed.php',
+		'instagram-slider-widget/instaram_slider.php',
 		'categories-images/categories-images.php',
 		'mojo-marketplace-wp-plugin/mojo-marketplace.php',
 		'mojo-marketplace-hg/mojo-marketplace.php',
@@ -203,6 +204,8 @@ function pipdig_p3_activate() {
 		'force-regenerate-thumbnails/force-regenerate-thumbnails.php',
 		'jch-optimize/jch-optimize.php',
 		'rss-image-feed/image-rss.php',
+		'wpclef/wpclef.php',
+		'hello-dolly/hello.php',
 	);
 	deactivate_plugins($plugins);
 
