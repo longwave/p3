@@ -10,34 +10,22 @@ if (is_admin() && isset($_GET['p3_jetpack_override'])) { // If peeps want to use
 	return;
 }
 
-/*
-function p3_jp_authflow(){
-	if ( false === ( $results = get_transient( 'p3_jp_authflow' ) )) {
-		$url = 'https://pipdigz.co.uk/p3/jp/';
-		$response = wp_remote_get($url);
-		$results = '';
-		if (!is_wp_error($response)) {
-			$code = intval(json_decode($response['response']['code']));
-			if ($code === 200) {
-				$results = absint($response['body']);
-			}
-		}
-		set_transient( 'p3_jp_authflow', $results, 1 * DAY_IN_SECONDS );
-	}
-	
-	if ($results === 1) {
-		return 'jetpack';
-	}
-}
-add_filter( 'jetpack_auth_type', 'p3_jp_authflow', 100 );
-*/
 
-/*
-function p3_jetpack_auth_type() {
-	return 'jetpack';
+function p3_add_link_to_jp_modules() {
+    add_submenu_page(
+        'jetpack',
+        'Modules',
+        'Modules',
+        'manage_options',
+        'p3_jp_mods',
+        'p3_add_link_to_jp_modules_content' );
 }
-add_filter( 'jetpack_auth_type', 'p3_jetpack_auth_type', 100 );
-*/
+add_action('admin_menu', 'p3_add_link_to_jp_modules', 9999999);
+
+function p3_add_link_to_jp_modules_content() {
+	echo '<script>window.location.replace("'.admin_url('admin.php?page=jetpack_modules').'");</script>';
+}
+
 
 // SSO not default
 add_filter( 'jetpack_sso_default_to_sso_login', '__return_false' );

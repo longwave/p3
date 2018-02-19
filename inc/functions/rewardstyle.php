@@ -104,3 +104,31 @@ function p3_lookbook_show_widget($atts) {
     return $out;
 }
 add_shortcode('show_lookbook_widget', 'p3_lookbook_show_widget');
+
+function p3_ms_show_widget($atts) {
+    extract(shortcode_atts(array(
+        'id'       => '0',
+    ), $atts));
+
+    $out = '<div class="moneyspot-widget" data-widget-id="'.esc_attr($id).'">
+                <script type="text/javascript" language="javascript">
+                    !function(d,s,id){
+                        var e, p = /^http:/.test(d.location) ? \'http\' : \'https\';
+                        if(!d.getElementById(id)) {
+                            e     = d.createElement(s);
+                            e.id  = id;
+                            e.src = p + \'://widgets.rewardstyle.com/js/widget.js\';
+                            d.body.appendChild(e);
+                        }
+                        if(typeof(window.__moneyspot) === \'object\') {
+                            if(document.readyState === \'complete\') {
+                                window.__moneyspot.init();
+                            }
+                        }
+                    }(document, \'script\', \'moneyspot-script\');
+                </script>
+            </div>';
+
+    return $out;
+}
+add_shortcode('show_ms_widget', 'p3_ms_show_widget');
