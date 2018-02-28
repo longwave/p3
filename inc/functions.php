@@ -414,10 +414,12 @@ function p3_slicknav_brand() {
 		$brand .= '<a href="'.esc_attr($links['rss']).'" target="_blank" rel="nofollow"><i class="fa fa-rss"></i></a>';
 		$count++;
 	}
-
+	
+	/*
 	if (empty($brand)) {
 		$brand = esc_attr(get_bloginfo());
 	}
+	*/
 	
 	return $brand;
 }

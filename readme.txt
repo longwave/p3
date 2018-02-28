@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.7.8 =
+* Date: 27 February 2018.
+* Enhance: Display [Profile Photo Widget](https://support.pipdig.co/articles/wordpress-profile-photo-widget/) horizontally if not in sidebar or footer column.
+
 = 3.7.7 =
 * Date: 30 January 2018.
 * Enhance: Display number of products in cart when using WooCommerce.

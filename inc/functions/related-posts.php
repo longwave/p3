@@ -110,7 +110,7 @@ function p3_related_posts() {
 				$output .= '</div>';
 				$output .= '<div class="pipdig_p3_related_content">';
 				$truncate_title = absint(get_theme_mod('p3_related_posts_post_title_limit', 7));
-				$output .= '<h4 class="pipdig_p3_related_title"><a href="'.$link.'" title="'.$title_attr.'">'.pipdig_p3_truncate(get_the_title(), $truncate_title).'</a></h4>';
+				$output .= '<h4 class="pipdig_p3_related_title p_post_titles_font"><a href="'.$link.'" title="'.$title_attr.'">'.pipdig_p3_truncate(get_the_title(), $truncate_title).'</a></h4>';
 				$output .= '</div>';
 			$output .= '</li>';
 			} //endwhile 

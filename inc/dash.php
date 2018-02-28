@@ -18,7 +18,7 @@ function pipdig_heartbeat_control($settings) {
 add_filter('heartbeat_settings', 'pipdig_heartbeat_control');
 }
 
-if (!function_exists('disable_emojis')) {
+if (!function_exists('disable_emojis') && get_option('p3_emoji_override') != 1) {
 function pipdig_disable_emojis() {
 	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
@@ -43,7 +43,7 @@ function pipdig_p3_unregister_widgets() {
 		update_option('p3_widget_override', 1);
 		return;
 	}
-		
+	
 	unregister_widget('WP_Widget_Pages');
 	unregister_widget('WP_Widget_Links');
 	unregister_widget('WP_Widget_Meta');

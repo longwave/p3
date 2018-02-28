@@ -91,7 +91,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 								if ($show_date) {
 									$output .= '<span class="date"><time itemprop="datePublished">'.esc_html(get_the_date()).'</time></span>';
 								}
-								$output .= '<h2 class="title moasic-title" itemprop="name">'.esc_html(get_the_title()).'</h2>';
+								$output .= '<h2 class="title moasic-title p_post_titles_font" itemprop="name">'.esc_html(get_the_title()).'</h2>';
 								if ($show_comments) {
 									$output .= '<div class="mosaic-comments">'.$comments_out.'</div>';
 								}

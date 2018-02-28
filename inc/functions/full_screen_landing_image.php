@@ -119,7 +119,7 @@ if (!function_exists('p3_full_screen_landing')) {
 			<?php if (!empty($title)) { ?>
 				<div class="p3_full_screen_landing_panel">
 					<?php if (!empty($link)) { ?><a href="<?php echo $link; ?>"><?php } ?>
-						<h1><?php echo $title; ?></h1>
+						<h1 class="p_post_titles_font"><?php echo $title; ?></h1>
 					<?php if (!empty($link)) { ?></a><?php } ?>
 					<?php if (!empty($summary)) { ?>
 						<div><?php echo $summary; ?></div>

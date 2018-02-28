@@ -13,11 +13,11 @@ function p3_header_customizer_styles() {
 	?>
 	<!-- p3 header customizer START -->
 	<style>
-		.site-header .container {
-			max-width: 100%;
-			padding-left: 0;
-			padding-right: 0;
-		}
+	.site-header .container {
+		max-width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+	}
 	</style>
 	<!-- p3 header customizer END -->
 	<?php

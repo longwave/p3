@@ -55,7 +55,7 @@ function p3_featured_cats_puller($category, $col = 3) {
 				<?php echo get_the_date(); ?>
 			</div>
 			<?php } ?>
-			<h4><?php the_title(); ?></h4>
+			<h4 class="p_post_titles_font"><?php the_title(); ?></h4>
 		</div>
 
 	<?php

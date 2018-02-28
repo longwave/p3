@@ -202,7 +202,7 @@ function p3_instagram_footer() {
 		<div id="p3_instagram_footer">
 			<?php if (!empty($instagram_url) && !empty($instagram_user) && get_theme_mod('p3_instagram_footer_title')) { ?>
 				<div class="p3_instagram_footer_title_bar">
-					<h3><a href="<?php echo $instagram_url; ?>" target="_blank" rel="nofollow">Instagram <span style="text-transform:none">@<?php echo strip_tags($instagram_user); ?></span></a></h3>
+					<h3 class="p_post_titles_font"><a href="<?php echo $instagram_url; ?>" target="_blank" rel="nofollow">Instagram <span style="text-transform:none">@<?php echo strip_tags($instagram_user); ?></span></a></h3>
 				</div>
 			<?php } ?>
 			<?php $num = $num-1; // account for array starting at 0 ?>

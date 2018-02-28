@@ -66,7 +66,7 @@ function p3_full_width_slider_site_main() {
 					<a href="<?php the_permalink() ?>" class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
 						<div class="p3_feature_slide" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
 							<span class="p3_slide_banner" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
-								<h2 style="<?php echo $text_color_out; ?>"><?php echo pipdig_p3_truncate(get_the_title(), 15); ?></h2>
+								<h2 class="p_post_titles_font" style="<?php echo $text_color_out; ?>"><?php echo pipdig_p3_truncate(get_the_title(), 15); ?></h2>
 							</span>
 						</div>
 					</a>

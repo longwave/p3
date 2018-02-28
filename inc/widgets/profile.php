@@ -49,6 +49,11 @@ class pipdig_widget_profile_function extends WP_Widget {
 			if (!empty($instance['circle'])) {
 				$circle = 'style="-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;"';
 			}
+			
+			$horizontal = true;
+			if ($args['id'] == 'sidebar-1' || $args['id'] == 'sidebar-2' || $args['id'] == 'sidebar-3' || $args['id'] == 'sidebar-4' || $args['id'] == 'sidebar-5') {
+				$horizontal = false;
+			} 
 
 			if (!empty($instance['image_uri'])) {
 				$image_src = $instance['image_uri'];
@@ -58,11 +63,20 @@ class pipdig_widget_profile_function extends WP_Widget {
 					$image_src = reset($image_src); // php <5.4 way to get [0] value of array
 					$image_src = str_replace('http:', '', $image_src);
 				}
-				echo '<div class="nopin"><img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" /></div>';
+				$img = '<div class="nopin"><img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" /></div>';
 			}
 			
 			if (!empty($instance['description'])) {
-				echo wpautop(do_shortcode($instance['description']));
+				$desc = wpautop(do_shortcode($instance['description']));
+			}
+			
+			if ($horizontal) {
+				echo '<div class="col-sm-6">'.$img.'</div>';
+				echo '<div class="col-sm-6">'.$desc.'</div>';
+				echo '<div class="clearfix"></div>';
+			} else {
+				echo $img;
+				echo $desc;
 			}
 
 		echo $args['after_widget'];
@@ -125,8 +139,6 @@ class pipdig_widget_profile_function extends WP_Widget {
 			<label for="<?php echo $this->get_field_id('description'); ?>"><?php _e('Text to show below the photo: (optional)', 'p3'); ?></label>
 			<textarea id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" class="widefat" rows="4"><?php if (isset($instance['description'])) echo wp_kses_post($instance['description']); ?></textarea>
 		</p>
-
-
 		
 		<?php
 

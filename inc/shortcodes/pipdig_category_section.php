@@ -81,7 +81,7 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 						
 				$output .= '<a href="'.$link.'" class="p3_cover_me" style="background-image:url('.$bg.');"><img src="'.$the_shape.'" alt="'.esc_attr(get_the_title()).'" class="p3_invisible" data-pin-nopin="true"/></a>';
 						
-				$output .= '<h3 class="pipdig_category_section_item_title">'.strip_tags(get_the_title()).'</h3>';
+				$output .= '<h3 class="pipdig_category_section_item_title p_post_titles_font">'.strip_tags(get_the_title()).'</h3>';
 				
 				if ($excerpt) {
 					$output .= '<div class="pipdig_category_section_item_summary">'.pipdig_truncate(strip_shortcodes(strip_tags(get_the_excerpt())), $excerpt_length).'</div>';

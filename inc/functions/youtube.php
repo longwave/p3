@@ -2,7 +2,6 @@
 
 if (!defined('ABSPATH')) die;
 
-
 // function to fetch videos
 function p3_youtube_fetch($channel_id) {
 	

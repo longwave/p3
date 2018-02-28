@@ -109,7 +109,7 @@ function p3_featured_panels() {
 	if ($show) {
 	?>
 		<div id="p3_featured_panels" class="row nopin" <?php echo $style; ?>>
-				
+			
 			<?php if ($img_1 && $link_1) { ?>
 			<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 				<a href="<?php echo esc_url($link_1); ?>">

@@ -195,7 +195,7 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 		<div class="slide-inside">
 			<?php if ($post_title_layout != 'no') { ?>
 				<span class="slide-desc">
-					<h2><?php echo pipdig_p3_truncate(get_the_title(), $title_length); ?></h2>
+					<h2 class="p_post_titles_font"><?php echo pipdig_p3_truncate(get_the_title(), $title_length); ?></h2>
 					<a href="<?php the_permalink(); ?>" class="read-more"><?php _e('View Post', 'p3'); ?></a>
 				</span>
 			<?php } ?>

@@ -223,7 +223,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
 						</div>
 					<?php } ?>
-					<h4><?php if (!empty($instance['show_date'])) { echo get_the_date().': '; } ?><?php echo pipdig_p3_truncate($title, 11); ?></h4>
+					<h4 class="p_post_titles_font"><?php if (!empty($instance['show_date'])) { echo get_the_date().': '; } ?><?php echo pipdig_p3_truncate($title, 11); ?></h4>
 				</a>
 			</li>
 		<?php } else { ?>
@@ -240,7 +240,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 				</a>
 				</div>
 				<div class="p3_pop_left-right">
-					<h4><?php echo pipdig_p3_truncate($title, 10); ?></h4>
+					<h4 class="p_post_titles_font"><?php echo pipdig_p3_truncate($title, 10); ?></h4>
 					<?php if ($show_date) { ?><div class="p3_pop_left_date"><?php the_date(); ?></div><?php } ?>
 				</div>
 			</li>

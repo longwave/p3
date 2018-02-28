@@ -8,11 +8,11 @@ function pipdig_p3_meta_boxes_cats($meta_boxes) {
 	// Post meta boxes
 	
 	$meta_boxes[] = array(
-		'title' => 'Standard Fields',
+		'title' => '',
 		'taxonomies' => 'category', // List of taxonomies. Array or string
 		'fields' => array(
 			array(
-				'name' => __( 'Featured Image' ),
+				'name' => __('Featured Image'),
 				'id'   => 'cat_image',
 				'type' => 'image_advanced',
 				'max_file_uploads' => 1,

@@ -93,7 +93,7 @@ function p3_trending_bar() {
 							<div class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
 								<img src="<?php echo $shape; ?>" alt="<?php the_title_attribute(); ?>" class="p3_invisible" data-pin-nopin="true"/>
 							</div>
-							<h4><?php echo pipdig_p3_truncate(get_the_title(), $truncate_title); ?></h4>
+							<h4 class="p_post_titles_font"><?php echo pipdig_p3_truncate(get_the_title(), $truncate_title); ?></h4>
 						</a>
 					</div>
 				<?php endwhile;?>

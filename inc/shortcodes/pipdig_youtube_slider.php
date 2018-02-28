@@ -43,7 +43,7 @@ function pipdig_p3_youtube_slider_shortcode($atts, $content = null) {
 							$output .= '</a>';
 						$output .= '</div>';
 						if ($video_titles != 'no') {
-							$output .= '<h5 class="p3_youtube_slider_shortcode_video_title">'.$videos[$x]['title'].'</h5>';
+							$output .= '<h5 class="p3_youtube_slider_shortcode_video_title p_post_titles_font">'.$videos[$x]['title'].'</h5>';
 						}
 					$output .= '</div>';
 				}

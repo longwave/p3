@@ -40,8 +40,8 @@ function pipdig_p3_hide_jetpack_modules( $modules, $min_version, $max_version ) 
 	'minileven',
 	'latex',
 	'gravatar-hovercards',
-	//'notes',
-	//'carousel',
+	'search',
+	'seo-tools',
 	'omnisearch',
 	//'photon',
 	'markdown',
@@ -101,3 +101,27 @@ function p3_jp_styles() {
 	<?php
 }
 add_action('admin_head', 'p3_jp_styles', 9999);
+
+/*
+function p3_jp_wpcom_check() {
+	
+	$wp_com = false;
+
+	$site_url = get_site_url();
+	$domain = parse_url($site_url, PHP_URL_HOST);
+	$dns = dns_get_record($domain, DNS_NS);
+	if (isset($dns[0]['target']) && (strpos($dns[0]['target'], 'wordpress.com') !== false)) {
+		$wp_com = true;
+	} elseif (isset($dns[1]['target']) && (strpos($dns[1]['target'], 'wordpress.com') !== false)) {
+		$wp_com = true;
+	}
+
+	if ($wp_com) {
+		?>
+		<p>test</p>
+		<?php
+	}
+	
+}
+add_action( 'admin_notices', 'p3_jp_wpcom_check' );
+*/

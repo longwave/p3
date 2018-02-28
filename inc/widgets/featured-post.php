@@ -80,7 +80,7 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 					echo '<a href="'.$link.'" style="position:relative; display: block;">'.$featured_text.'<img class="p3_featured_post_widget_post_img '.$lazy_class.'" '.$image_src.' alt="'.$title.'" /></a>';
 				}
 				if (empty($instance['hide_title'])) {
-					echo '<a href="'.$link.'"><h4 class="p3_featured_post_widget_post_title">'.strip_tags(get_the_title()).'</h4></a>';
+					echo '<a href="'.$link.'"><h4 class="p3_featured_post_widget_post_title p_post_titles_font">'.strip_tags(get_the_title()).'</h4></a>';
 				}
 				if (empty($instance['hide_excerpt'])) {
 					echo '<p class="p3_featured_post_widget_post_excerpt">'.strip_tags(get_the_excerpt()).'</p>';
