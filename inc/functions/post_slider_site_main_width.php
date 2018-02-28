@@ -18,11 +18,11 @@ function p3_full_width_slider_site_main() {
 	$text_bg_color_out = '';
 	$text_bg_color = get_theme_mod('p3_full_width_slider_site_main_text_bg_color');
 	if ($text_bg_color) {
-		$text_bg_color_out = 'background:'.$text_bg_color.';';
+		$text_bg_color_out = 'background:'.sanitize_hex_color($text_bg_color).';';
 	}
 	$text_color = get_theme_mod('p3_full_width_slider_site_main_text_color');
 	if ($text_color) {
-		$text_color_out = 'color:'.$text_color.';';
+		$text_color_out = 'color:'.sanitize_hex_color($text_color).';';
 	}
 		
 	wp_enqueue_script( 'pipdig-cycle' );		

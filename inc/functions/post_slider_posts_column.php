@@ -20,11 +20,11 @@ function p3_post_slider_posts_column() {
 	$text_bg_color_out = '';
 	$text_bg_color = get_theme_mod('p3_post_slider_posts_column_text_bg_color');
 	if ($text_bg_color) {
-		$text_bg_color_out = 'background:'.$text_bg_color.';';
+		$text_bg_color_out = 'background:'.sanitize_hex_color($text_bg_color).';';
 	}
 	$text_color = get_theme_mod('p3_post_slider_posts_column_text_color');
 	if ($text_color) {
-		$text_color_out = 'color:'.$text_color.';';
+		$text_color_out = 'color:'.sanitize_hex_color($text_color).';';
 	}
 	$posts_num = intval(get_theme_mod('p3_post_slider_posts_column_number', 4));
 	$title_trunc = intval(get_theme_mod('p3_post_slider_posts_column_title_truncate', 6));
