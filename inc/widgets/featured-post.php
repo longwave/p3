@@ -43,53 +43,49 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 			if (! empty($instance['title']))
 				echo $args['before_title'] . apply_filters('widget_title', $instance['title'], $instance, $this->id_base) . $args['after_title'];
 			
-			$query = new WP_Query( array(
-				'p' => absint($instance['the_post']),
-			) );
+			$post_id = absint($instance['the_post']);
 			
-			while ( $query->have_posts() ): $query->the_post();
+			$post = get_post($post_id);
+			
+			// medium for sidebar, large for everywhere else
+			$img_size = 'medium';
+			if ($args['id'] != 'sidebar-1') {
+				$img_size = 'large';
+			}
 				
-				// medium for sidebar, large for everywhere else
-				$img_size = 'medium';
-				if ($args['id'] != 'sidebar-1') {
-					$img_size = 'large';
-				}
+			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post_id), $img_size );
+			if ($thumb) {
+				$img = esc_url($thumb['0']);
+			} else {
+				$img = pipdig_p3_catch_that_image();
+			}
 				
-				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), $img_size );
-				if ($thumb) {
-					$img = esc_url($thumb['0']);
-				} else {
-					$img = pipdig_p3_catch_that_image();
-				}
+			$image_src = 'src="'.$img.'"';
+			$lazy_class = '';
+			if (is_pipdig_lazy()) {
+				$lazy_class = ' pipdig_lazy';
+				$image_src = 'data-src="'.$img.'"';
+			}
 				
-				$image_src = 'src="'.$img.'"';
-				$lazy_class = '';
-				if (is_pipdig_lazy()) {
-					$lazy_class = ' pipdig_lazy';
-					$image_src = 'data-src="'.$img.'"';
-				}
+			$title = get_the_title($post_id);
+			$link = esc_url(get_permalink($post_id));
 				
-				$title = get_the_title();
-				$link = esc_url(get_permalink());
-				
-				$featured_text = '';
-				if (empty($instance['hide_label'])) {
-					$featured_text = '<div style="position: absolute; left: 0; top: 15px; background: #fff; color: #000; padding: 2px 5px;">'.__('Featured', 'p3').'</div>';
-				}
-				if (empty($instance['hide_image'])) {
-					echo '<a href="'.$link.'" style="position:relative; display: block;">'.$featured_text.'<img class="p3_featured_post_widget_post_img '.$lazy_class.'" '.$image_src.' alt="'.$title.'" /></a>';
-				}
-				if (empty($instance['hide_title'])) {
-					echo '<a href="'.$link.'"><h4 class="p3_featured_post_widget_post_title p_post_titles_font">'.strip_tags(get_the_title()).'</h4></a>';
-				}
-				if (empty($instance['hide_excerpt'])) {
-					echo '<p class="p3_featured_post_widget_post_excerpt">'.strip_tags(get_the_excerpt()).'</p>';
-				}
-				if (empty($instance['hide_button'])) {
-					echo '<div><a href="'.$link.'" class="more-link">'.__('View Post', 'p3').'</a></div>';
-				}
-				
-			endwhile; wp_reset_query();
+			$featured_text = '';
+			if (empty($instance['hide_label'])) {
+				$featured_text = '<div style="position: absolute; left: 0; top: 15px; background: #fff; color: #000; padding: 2px 5px;">'.__('Featured', 'p3').'</div>';
+			}
+			if (empty($instance['hide_image'])) {
+				echo '<a href="'.$link.'" style="position:relative; display: block;">'.$featured_text.'<img class="p3_featured_post_widget_post_img '.$lazy_class.'" '.$image_src.' alt="'.esc_attr($title).'" /></a>';
+			}
+			if (empty($instance['hide_title'])) {
+				echo '<a href="'.$link.'"><h4 class="p3_featured_post_widget_post_title p_post_titles_font">'.strip_tags($title).'</h4></a>';
+			}
+			if (empty($instance['hide_excerpt'])) {
+				echo '<p class="p3_featured_post_widget_post_excerpt">'.strip_tags(get_the_excerpt($post_id)).'</p>';
+			}
+			if (empty($instance['hide_button'])) {
+				echo '<div><a href="'.$link.'" class="more-link">'.__('View Post', 'p3').'</a></div>';
+			}
 
 		echo $args['after_widget'];
 

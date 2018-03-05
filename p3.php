@@ -281,7 +281,7 @@ function pipdig_p3_activate() {
 			$new_amic_https = str_replace("http://", "https://", get_option('p3_amicorumi_2'));
 			update_option('p3_amicorumi_2', $new_amic_https);
 		} else {
-			$piplink_array = array('https://www.pipdig.co/', 'https://www.pipdig.co/products/wordpress-themes/', 'https://www.pipdig.co/', 'https://www.pipdig.co');
+			$piplink_array = array('https://www.pipdig.co/', 'https://www.pipdig.co/', 'https://www.pipdig.co', 'https://www.pipdig.co/products/wordpress-themes/');
 			$piplink = $piplink_array[mt_rand(0, count($piplink_array) - 1)];
 			$pipstyle_array = array('text-transform:lowercase;letter-spacing:1px;', 'text-transform: lowercase;letter-spacing: 1px;', 'text-transform: lowercase;letter-spacing:1px;', 'text-transform:lowercase; letter-spacing:1px;', 'text-transform:lowercase;letter-spacing:1px');
 			$pipstyle = $pipstyle_array[mt_rand(0, count($pipstyle_array) - 1)];

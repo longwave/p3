@@ -35,7 +35,6 @@ function p3_trending_bar() {
 		$popular_title = __('Popular Posts', 'p3');
 	}
 	$post_cat_trending = get_theme_mod('p3_trending_bar_trending_cat');
-	$big_this_month_title = get_theme_mod('p3_trending_bar_pop_title');
 	$order_by = get_theme_mod( 'p3_trending_bar_orderby', 1 );
 	$date_range = get_theme_mod( 'p3_trending_bar_trending_dates', '1 month ago' );
 	$text_color = get_theme_mod('p3_trending_bar_text_color', '#000');
