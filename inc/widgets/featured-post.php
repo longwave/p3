@@ -49,10 +49,10 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 			
 			// medium for sidebar, large for everywhere else
 			$img_size = 'medium';
-			if ($args['id'] != 'sidebar-1') {
+			if ( ($args['id'] != 'sidebar-1') && ($args['id'] !== null) ) { //SiteOrigin sets NULL
 				$img_size = 'large';
 			}
-				
+			
 			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post_id), $img_size );
 			if ($thumb) {
 				$img = esc_url($thumb['0']);

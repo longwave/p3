@@ -54,7 +54,7 @@ class pipdig_widget_profile_function extends WP_Widget {
 			if ($args['id'] == 'sidebar-1' || $args['id'] == 'sidebar-2' || $args['id'] == 'sidebar-3' || $args['id'] == 'sidebar-4' || $args['id'] == 'sidebar-5') {
 				$horizontal = false;
 			} 
-
+			
 			if (!empty($instance['image_uri'])) {
 				$image_src = $instance['image_uri'];
 				$image_data = pipdig_get_attachment_id($instance['image_uri']); // use the medium thumbnail if we can find it
@@ -63,7 +63,14 @@ class pipdig_widget_profile_function extends WP_Widget {
 					$image_src = reset($image_src); // php <5.4 way to get [0] value of array
 					$image_src = str_replace('http:', '', $image_src);
 				}
-				$img = '<div class="nopin"><img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" /></div>';
+				
+				if (is_pipdig_lazy()) {
+					$img = '<div class="nopin"><img data-src="'.esc_url($image_src).'" alt="" class="pipdig_lazy" '.$circle.' data-pin-nopin="true" /></div>';
+				} else {
+					$img = '<div class="nopin"><img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" /></div>';
+				}
+				
+				
 			}
 			
 			if (!empty($instance['description'])) {
