@@ -149,7 +149,7 @@ class pipdig_Image_Widget extends WP_Widget {
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Link to open when clicked:', 'p3'); ?></label>
-			<input type="url" id="<?php echo $this->get_field_id('link'); ?>" name="<?php echo $this->get_field_name('link'); ?>" value="<?php echo esc_attr($instance['link']); ?>" class="widefat" />
+			<input type="text" id="<?php echo $this->get_field_id('link'); ?>" name="<?php echo $this->get_field_name('link'); ?>" value="<?php echo esc_attr($instance['link']); ?>" class="widefat" />
 		</p>
 
 		<p>

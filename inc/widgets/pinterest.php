@@ -103,7 +103,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 						$image_src = 'data-src="'.$images[$x]['src'].'"';
 					}
 					?>
-					<a href="<?php echo $images[$x]['link']; ?>" class="p3_pinterest_post <?php echo $lazy_class; ?>" <?php echo $image_src; ?> rel="nofollow" target="_blank">
+					<a href="<?php echo $images[$x]['link']; ?>" class="p3_pinterest_post <?php echo $lazy_class; ?>" <?php echo $image_src; ?> rel="nofollow noopener" target="_blank">
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_invisible" alt=""/>
 					</a>
 				<?php } ?>
@@ -111,7 +111,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 				</div>
 				<?php if (!empty($pinterestuser) && $follow) { ?>
 					<div class="clearfix"></div>
-					<p style="margin: 10px 0"><a href="https://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-pinterest" style="font-size: 15px;"></i> <?php _e('Follow on Pinterest', 'p3'); ?></a></p>
+					<p style="margin: 10px 0"><a href="https://pinterest.com/<?php echo $pinterestuser; ?>" target="_blank" rel="nofollow noopener" style="color: #000;"><i class="fa fa-pinterest" style="font-size: 15px;"></i> <?php _e('Follow on Pinterest', 'p3'); ?></a></p>
 				<?php }
 			
 			} else {

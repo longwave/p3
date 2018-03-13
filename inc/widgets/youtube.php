@@ -129,13 +129,13 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 					?>
 					<div class="p3_youtube_widget_wrapper <?php echo $horizontal; ?>">
 					<div class="p3_youtube_widget p3_cover_me<?php echo $lazy_class.$margin_class; ?>" <?php echo $image_src; ?>>
-						<a href="<?php echo $link; ?>" target="_blank" rel="nofollow" data-p3-youtube="<?php echo esc_attr($video['id']); ?>">
+						<a href="<?php echo $link; ?>" target="_blank" rel="nofollow noopener" data-p3-youtube="<?php echo esc_attr($video['id']); ?>">
 							<img class="p3_invisible" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=" alt="<?php echo esc_attr($video['title']); ?>"/>
 							<i class="fa fa-youtube-play"></i>
 						</a>
 					</div>
 					<?php if (!empty($instance['show_title'])) { ?>
-						<a href="<?php echo esc_url($video['link']); ?>" target="_blank" rel="nofollow"><?php echo esc_html($video['title']); ?></a>
+						<a href="<?php echo esc_url($video['link']); ?>" target="_blank" rel="nofollow noopener"><?php echo esc_html($video['title']); ?></a>
 					<?php } ?>
 					</div>
 					

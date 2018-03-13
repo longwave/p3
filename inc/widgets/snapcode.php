@@ -50,7 +50,7 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 			
 			$link_open = $link_close = '';
 			if (!empty($instance['snapchat_account'])) {
-				$link_open = '<a href="'.esc_url('https://www.snapchat.com/add/'.trim($instance['snapchat_account'])).'" target="_blank" rel="nofollow">';
+				$link_open = '<a href="'.esc_url('https://www.snapchat.com/add/'.trim($instance['snapchat_account'])).'" target="_blank" rel="nofollow noopener">';
 				$link_close = '</a>';
 			}
 

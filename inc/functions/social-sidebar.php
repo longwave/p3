@@ -114,7 +114,7 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 			if($goodreads && get_theme_mod('p3_social_sidebar_goodreads', 1)) $social_sidebar .= '<a href="'.$goodreads.'" target="_blank" rel="nofollow noopener"><i class="fa fa-book"></i></a>';
 			if($vk && get_theme_mod('p3_social_sidebar_vk', 1)) $social_sidebar .= '<a href="'.$vk.'" target="_blank" rel="nofollow noopener"><i class="fa fa-vk"></i></a>';
 			if($google_plus && get_theme_mod('p3_social_sidebar_google_plus', 1)) $social_sidebar .= '<a href="'.$google_plus.'" target="_blank" rel="nofollow noopener"><i class="fa fa-google-plus"></i></a>';
-			if($email && get_theme_mod('p3_social_sidebar_email', 1)) $social_sidebar .= '<a href="mailto:'.$email.'" rel="nofollow"><i class="fa fa-envelope"></i></a>';
+			if($email && get_theme_mod('p3_social_sidebar_email', 1)) $social_sidebar .= '<a href="mailto:'.$email.'" rel="nofollow noopener"><i class="fa fa-envelope"></i></a>';
 		
 			$social_sidebar .= '</div>';
 		

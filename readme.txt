@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.7.9 =
+* Date: 13 March 2018.
+* Enhance: Option to add up to 5 categories via the [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/).
+
 = 3.7.8 =
 * Date: 27 February 2018.
 * Enhance: Display [Profile Photo Widget](https://support.pipdig.co/articles/wordpress-profile-photo-widget/) horizontally if not in sidebar or footer column.

@@ -17,6 +17,10 @@ function p3_featured_panels_polylang() {
 		pll_register_string('Featured Panel 2 Title', get_theme_mod( 'p3_featured_panels_2_title' ) , true);
 		pll_register_string('Featured Panel 3 Title', get_theme_mod( 'p3_featured_panels_3_title' ) , true);
 		pll_register_string('Featured Panel 4 Title', get_theme_mod( 'p3_featured_panels_4_title' ) , true);
+		pll_register_string('Featured Panel 1 Link', get_theme_mod( 'p3_featured_panels_1_link' ) , true);
+		pll_register_string('Featured Panel 2 Link', get_theme_mod( 'p3_featured_panels_2_link' ) , true);
+		pll_register_string('Featured Panel 3 Link', get_theme_mod( 'p3_featured_panels_3_link' ) , true);
+		pll_register_string('Featured Panel 4 Link', get_theme_mod( 'p3_featured_panels_4_link' ) , true);
 	}
 }
 add_action( 'after_setup_theme', 'p3_featured_panels_polylang', 9999);
@@ -69,23 +73,24 @@ function p3_featured_panels() {
 		$title_2 = pll__(get_theme_mod('p3_featured_panels_2_title', $default_title));
 		$title_3 = pll__(get_theme_mod('p3_featured_panels_3_title', $default_title));
 		$title_4 = pll__(get_theme_mod('p3_featured_panels_4_title', $default_title));
+		$link_1 = pll__(get_theme_mod('p3_featured_panels_1_link', $default_link));
+		$link_2 = pll__(get_theme_mod('p3_featured_panels_2_link', $default_link));
+		$link_3 = pll__(get_theme_mod('p3_featured_panels_3_link', $default_link));
+		$link_4 = pll__(get_theme_mod('p3_featured_panels_4_link', $default_link));
 	} else {
 		$title_1 = get_theme_mod('p3_featured_panels_1_title', $default_title);
 		$title_2 = get_theme_mod('p3_featured_panels_2_title', $default_title);
 		$title_3 = get_theme_mod('p3_featured_panels_3_title', $default_title);
 		$title_4 = get_theme_mod('p3_featured_panels_4_title', $default_title);
+		$link_1 = get_theme_mod('p3_featured_panels_1_link', $default_link);
+		$link_2 = get_theme_mod('p3_featured_panels_2_link', $default_link);
+		$link_3 = get_theme_mod('p3_featured_panels_3_link', $default_link);
+		$link_4 = get_theme_mod('p3_featured_panels_4_link', $default_link);
 	}
 	$img_1 = get_theme_mod('p3_featured_panels_1_img', 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg');
-	$link_1 = get_theme_mod('p3_featured_panels_1_link', $default_link);
-	
 	$img_2 = get_theme_mod('p3_featured_panels_2_img', 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg');
-	$link_2 = get_theme_mod('p3_featured_panels_2_link', $default_link);
-	
 	$img_3 = get_theme_mod('p3_featured_panels_3_img', 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg');
-	$link_3 = get_theme_mod('p3_featured_panels_3_link', $default_link);
-	
 	$img_4 = get_theme_mod('p3_featured_panels_4_img');
-	$link_4 = get_theme_mod('p3_featured_panels_4_link', $default_link);
 	
 	$sm = 'sm';
 	$col = '4';

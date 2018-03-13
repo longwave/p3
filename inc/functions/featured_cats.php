@@ -81,6 +81,7 @@ function p3_featured_cats() {
 	$post_cat_2 = get_theme_mod('p3_featured_cats_cat_2');
 	$post_cat_3 = get_theme_mod('p3_featured_cats_cat_3');
 	$post_cat_4 = get_theme_mod('p3_featured_cats_cat_4');
+	$post_cat_5 = get_theme_mod('p3_featured_cats_cat_5');
 
 	$text_color = get_theme_mod('p3_featured_cats_text_color', '#000');
 	$text_bg_color = get_theme_mod('p3_featured_cats_text_bg_color', '#fff');
@@ -98,7 +99,10 @@ function p3_featured_cats() {
 	if (!empty($post_cat_4)) {
 		$count++;
 	}
-		
+	if (!empty($post_cat_5)) {
+		$count++;
+	}
+	
 	switch ( $count ) {
 		case 1:
 			$col = '12';
@@ -111,6 +115,9 @@ function p3_featured_cats() {
 			break;
 		case 4:
 			$col = '3';
+			break;
+		case 5:
+			$col = '5ths';
 			break;
 	}
 	
@@ -129,6 +136,9 @@ function p3_featured_cats() {
 		}
 		if (!empty($post_cat_4)) {
 			p3_featured_cats_puller($post_cat_4, $col);
+		}
+		if (!empty($post_cat_5)) {
+			p3_featured_cats_puller($post_cat_5, $col);
 		}
 		?>
 		
@@ -236,7 +246,6 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 					'p3_featured_cats_cat_1',
 					array(
 						'label' => __('Category').' 1',
-						'description' => __('Only display posts from:', 'p3'),
 						'settings' => 'p3_featured_cats_cat_1',
 						'section'  => 'p3_featured_cats_section'
 					)
@@ -255,7 +264,6 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 					'p3_featured_cats_cat_2',
 					array(
 						'label' => __('Category').' 2',
-						'description' => __('Only display posts from:', 'p3'),
 						'settings' => 'p3_featured_cats_cat_2',
 						'section'  => 'p3_featured_cats_section'
 					)
@@ -274,7 +282,6 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 					'p3_featured_cats_cat_3',
 					array(
 						'label' => __('Category').' 3',
-						'description' => __('Only display posts from:', 'p3'),
 						'settings' => 'p3_featured_cats_cat_3',
 						'section'  => 'p3_featured_cats_section'
 					)
@@ -293,8 +300,25 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 					'p3_featured_cats_cat_4',
 					array(
 						'label' => __('Category').' 4',
-						'description' => __('Only display posts from:', 'p3'),
 						'settings' => 'p3_featured_cats_cat_4',
+						'section'  => 'p3_featured_cats_section'
+					)
+				)
+			);
+			
+			// Choose category 5
+			$wp_customize->add_setting('p3_featured_cats_cat_5',
+				array(
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Category_Control(
+					$wp_customize,
+					'p3_featured_cats_cat_5',
+					array(
+						'label' => __('Category').' 5',
+						'settings' => 'p3_featured_cats_cat_5',
 						'section'  => 'p3_featured_cats_section'
 					)
 				)

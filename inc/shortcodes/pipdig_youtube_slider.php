@@ -38,7 +38,7 @@ function pipdig_p3_youtube_slider_shortcode($atts, $content = null) {
 				if (!empty($videos[$x]['thumbnail'])) {
 					$output .= '<div>';
 						$output .= '<div class="p3_cover_me" style="background-image:url('.$videos[$x]['thumbnail'].');">';
-							$output .= '<a href="'.$videos[$x]['link'].'" target="_blank" rel="nofollow">';
+							$output .= '<a href="'.$videos[$x]['link'].'" target="_blank" rel="nofollow noopener">';
 								$output .= '<img class="p3_invisible" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAJRJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg9uCQAAAAAEDQ/9eeMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKsAxN8AAX2oznYAAAAASUVORK5CYII=" alt="'.$videos[$x]['title'].'"/>';
 							$output .= '</a>';
 						$output .= '</div>';

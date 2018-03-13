@@ -19,7 +19,7 @@ if (!function_exists('p3_popup_modal')) {
 		?>
 		
 		<div id="p3_modal">
-			<a href="<?php echo $link; ?>" target="_blank" rel="nofollow"><img src="<?php echo $img; ?>" alt="" width="400" /></a>
+			<a href="<?php echo $link; ?>" target="_blank" rel="nofollow noopener"><img src="<?php echo $img; ?>" alt="" width="400" /></a>
 		</div>
 		
 		

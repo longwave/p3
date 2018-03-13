@@ -64,11 +64,11 @@ class pipdig_widget_profile_function extends WP_Widget {
 					$image_src = str_replace('http:', '', $image_src);
 				}
 				
-				if (is_pipdig_lazy()) {
-					$img = '<div class="nopin"><img data-src="'.esc_url($image_src).'" alt="" class="pipdig_lazy" '.$circle.' data-pin-nopin="true" /></div>';
-				} else {
+				//if (is_pipdig_lazy()) {
+					//$img = '<div class="nopin"><img data-src="'.esc_url($image_src).'" alt="" class="pipdig_lazy" '.$circle.' data-pin-nopin="true" /></div>';
+				//} else {
 					$img = '<div class="nopin"><img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" /></div>';
-				}
+				//}
 				
 				
 			}

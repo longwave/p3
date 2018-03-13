@@ -47,7 +47,7 @@ if ( !class_exists( 'pipdig_widget_twitter' ) ) {
 			if (isset($instance['follow'])) {
 				if ($follow) { ?>
 					<div class="clearfix"></div>
-					<p style="margin: 10px 0"><a href="https://twitter.com/<?php echo $twitter_handle; ?>" target="_blank" rel="nofollow" style="color: #000;"><i class="fa fa-twitter" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Twitter', 'p3'); ?></a></p>
+					<p style="margin: 10px 0"><a href="https://twitter.com/<?php echo $twitter_handle; ?>" target="_blank" rel="nofollow noopener" style="color: #000;"><i class="fa fa-twitter" style="font-size: 15px; margin-bottom: -1px"></i> <?php _e('Follow on Twitter', 'p3'); ?></a></p>
 				<?php }
 			}
 			?>
