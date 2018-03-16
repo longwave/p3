@@ -8,12 +8,7 @@ function pipdig_p3_social_shares() {
 		return;
 	}
 	
-	$thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-	if ($thumb) {
-		$img = $thumb['0'];
-	} else {
-		$img = pipdig_p3_catch_that_image();
-	}
+	$img = p3_catch_image(get_the_ID(), 'full');
 	$link = get_the_permalink();
 	$title = rawurlencode(get_the_title());
 	$summary = rawurlencode(strip_shortcodes(strip_tags(get_the_excerpt())));

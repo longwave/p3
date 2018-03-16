@@ -53,13 +53,8 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 				$img_size = 'large';
 			}
 			
-			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post_id), $img_size );
-			if ($thumb) {
-				$img = esc_url($thumb['0']);
-			} else {
-				$img = pipdig_p3_catch_that_image();
-			}
-				
+
+			$img = p3_catch_image($post_id);
 			$image_src = 'src="'.$img.'"';
 			$lazy_class = '';
 			if (is_pipdig_lazy()) {

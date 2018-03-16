@@ -183,12 +183,7 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 		
 	while ($the_query -> have_posts()) : $the_query -> the_post();
 
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), $img_size );
-		if ($thumb) {
-			$bg = esc_url($thumb['0']);
-		} else {
-			$bg = pipdig_p3_catch_that_image();
-		}
+		$bg = p3_catch_image(get_the_ID(), $img_size);
 ?>
 	<li>
 	<div class="slide-image" style="background-image:url(<?php echo $bg; ?>);">

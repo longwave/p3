@@ -54,12 +54,7 @@ function p3_post_slider_posts_column() {
 							
 						while ($the_query -> have_posts()) : $the_query -> the_post();
 
-							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
-							if ($thumb) {
-								$bg = esc_url($thumb['0']);
-							} else {
-								$bg = pipdig_p3_catch_that_image();
-							}
+							$bg = p3_catch_image(get_the_ID(), 'large');
 					?>
 					<li>
 						<a href="<?php the_permalink() ?>" class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">

@@ -199,13 +199,8 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		
 	?>
 	<?php while ( $popular->have_posts() ): $popular->the_post();
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), $img_size );
-		if ($thumb) {
-			$img = esc_url($thumb['0']);
-		} else {
-			$img = pipdig_p3_catch_that_image();
-		}
 		
+		$img = p3_catch_image(get_the_ID(), $img_size);
 		$image_src = 'style="background-image:url('.$img.');"';
 		if ($lazy) {
 			$image_src = 'data-src="'.$img.'"';

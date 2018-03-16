@@ -60,12 +60,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 	$output .= '<div class="grid p3_grid_mosaic">';
 
 				while ( $query->have_posts() ) : $query->the_post();
-					$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
-					if ($thumb) {
-						$img = esc_url($thumb['0']);
-					} else {
-						$img = pipdig_p3_catch_that_image();
-					}
+					$img = p3_catch_image(get_the_ID(), 'medium');
 					$link = get_the_permalink();
 					$comment_count = get_comments_number();
 					if ($comment_count == 0) {

@@ -46,28 +46,33 @@ function p3_theme_enabled($enabled_themes) {
 	return 0;
 }
 
-// image catch
-function pipdig_p3_catch_that_image() {
-	global $post;
-	$default_img = 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg';
-	preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $post->post_content, $img);
-	if (!empty($img[1])){
-		$first_img = $img[1];
-		if (($first_img == 'http://assets.rewardstyle.com/images/search/350.gif') || ($first_img == '//assets.rewardstyle.com/images/search/350.gif')) {
-			return $default_img;
-		} else {
-			return esc_url($first_img);
+// Grab image
+function p3_catch_image($post_id = '', $size = 'large') {
+	
+	if (get_the_post_thumbnail_url($post_id)) {
+		return esc_url(get_the_post_thumbnail_url($post_id, $size));
+	} else {
+		$post = get_post($post_id);
+		preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+		if (!empty($matches[1][0])){
+			return esc_url($matches[1][0]);
 		}
 	}
 	
-	$video_thumb = p3_get_youtube_video_thumb($post->ID);
+	$video_thumb = p3_get_youtube_video_thumb($post_id);
 	if ($video_thumb) {
 		return $video_thumb;
 	}
 	
-	return $default_img;
+	return 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg';
 }
 
+// depreciated
+function pipdig_p3_catch_that_image() {
+	
+}
+
+// grab YT video thumbnail
 function p3_get_youtube_video_thumb($post_id) {
     $post = get_post($post_id);
     $content = do_shortcode(apply_filters('the_content', $post->post_content));
@@ -143,12 +148,7 @@ function pipdig_p3_rss_post_thumbnail($content) {
 		
 	if (get_option('rss_use_excerpt')) {
 		global $post;
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' );
-		if ($thumb) {
-			$img = $thumb['0'];
-		} else {
-			$img = pipdig_p3_catch_that_image();
-		}
+		$img = p3_catch_image($post->ID, 'medium');
 		$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'" width="320" /></p><p>'.strip_shortcodes(get_the_excerpt()).'</p>';
 	}
 

@@ -91,17 +91,12 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 										
 					$filtering = join( " ", $filtering_links );
 				
-					$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
-					if ($thumb) {
-						$bg = esc_url($thumb['0']);
-					} else {
-						$bg = pipdig_p3_catch_that_image();
-					}
+					$img = p3_catch_image(get_the_ID(), 'medium');
 					$link = get_the_permalink();
 					
 					
 					$output .= '<div class="pipdig_portfolio_grid_item mix '.$filtering.'">';
-						$output .= '<a href="'.$link.'" class="p3_cover_me" style="display: block; width: 100%; height: 100%;background-image:url('.$bg.');">';
+						$output .= '<a href="'.$link.'" class="p3_cover_me" style="display: block; width: 100%; height: 100%;background-image:url('.$img.');">';
 							$output .= '<img src="'.$shape_img.'" alt="" class="p3_invisible" data-pin-nopin="true"/>';
 							$output .= '<div class="pipdig_portfolio_grid_title_box">';
 							$output .= '<h2 class="title p_post_titles_font">'.get_the_title().'</h2>';

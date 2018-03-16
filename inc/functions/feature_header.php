@@ -82,12 +82,7 @@ if (!function_exists('p3_feature_header')) {
 								break;
 						}
 						
-						$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
-						if ($thumb) {
-							$bg = esc_url($thumb['0']);
-						} else {
-							$bg = pipdig_p3_catch_that_image();
-						}
+						$bg = p3_catch_image(get_the_ID(), 'medium');
 					?>
 					<div class="p3_trending_panel" <?php echo $panel_margins; ?>>
 						<a href="<?php the_permalink() ?>">
@@ -115,12 +110,7 @@ if (!function_exists('p3_feature_header')) {
 								
 							while ($the_query -> have_posts()) : $the_query -> the_post();
 
-								$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
-								if ($thumb) {
-									$bg = esc_url($thumb['0']);
-								} else {
-									$bg = pipdig_p3_catch_that_image();
-								}
+								$bg = p3_catch_image(get_the_ID(), 'medium');
 								?>
 								<li>
 									<div class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">

@@ -80,12 +80,7 @@ function p3_trending_bar() {
 					) );
 				?>
 				<?php while ( $popular->have_posts() ): $popular->the_post();			
-					$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
-					if ($thumb) {
-						$bg = esc_url($thumb['0']);
-					} else {
-						$bg = pipdig_p3_catch_that_image();
-					}
+					$bg = p3_catch_image(get_the_ID(), 'medium');
 					?>
 					<div class="p3_trending_panel">
 						<a href="<?php the_permalink() ?>">
