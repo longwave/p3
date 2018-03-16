@@ -87,7 +87,7 @@ function p3_auto_updates() {
 		return true;
 	}
 }
-add_filter('auto_update_plugin', 'p3_auto_updates',);
+add_filter('auto_update_plugin', 'p3_auto_updates');
 
 
 // enqueue scripts and styles
