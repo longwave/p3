@@ -2,7 +2,6 @@
 
 if (!defined('ABSPATH')) die;
 
-if ( !function_exists( 'pipdig_multiKeyExists' ) ) {
 function pipdig_multiKeyExists(array $arr, $key) {
 
     // is in base array?
@@ -22,9 +21,7 @@ function pipdig_multiKeyExists(array $arr, $key) {
 
     return false;
 }
-}
 
-if (!function_exists('pipdig_stats_options_page')) {
 function pipdig_stats_options_page() {
 	
 	pipdig_p3_scrapey_scrapes();
@@ -81,7 +78,7 @@ function pipdig_stats_options_page() {
 		<?php
 		ksort($p3_stats_data, SORT_NUMERIC);
 		foreach ($p3_stats_data as $item) {
-			$item['date'] = date('d F Y', strtotime(key($p3_stats_data)));
+			$item['date'] = date('d F Y',strtotime($item['date']));
 			echo json_encode($item).',';
 		}
 		?>
@@ -212,5 +209,3 @@ function pipdig_stats_options_page() {
 	
 	<?php
 }
-}
-

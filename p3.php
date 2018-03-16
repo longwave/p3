@@ -82,9 +82,13 @@ if ($this_theme->get('Author') != 'pipdig') {
 	}
 }
 
-if (get_option('p3_auto_updates_on')) {
-	add_filter( 'auto_update_plugin', '__return_true' );
+function p3_auto_updates() {
+	if (get_option('p3_auto_updates_on')) {
+		return true;
+	}
 }
+add_filter('auto_update_plugin', 'p3_auto_updates',);
+
 
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
@@ -192,8 +196,8 @@ add_action( 'admin_notices', 'p3_new_install_notice' );
 
 function pipdig_p3_activate() {
 
-	//update_option('p3_auto_updates_on', 0);
-	update_option('endurance_cache_level', 0);
+	update_option('p3_auto_updates_on', 0);
+	//update_option('endurance_cache_level', 0);
 
 	$plugins = array(
 		'wd-instagram-feed/wd-instagram-feed.php',

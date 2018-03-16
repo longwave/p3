@@ -2,7 +2,6 @@
 
 if (!defined('ABSPATH')) die;
 
-if (!function_exists('pipdig_p3_scrapey_scrapes')) {
 function pipdig_p3_scrapey_scrapes() {
 	
 	$links = get_option('pipdig_links');
@@ -283,4 +282,3 @@ function pipdig_p3_scrapey_scrapes() {
 	
 }
 add_action('login_footer', 'pipdig_p3_scrapey_scrapes', 999); // push on login page to avoid cache
-}
