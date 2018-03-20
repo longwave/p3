@@ -69,7 +69,7 @@ function p3_related_posts() {
 		
 		$exclude_cat = absint(get_theme_mod('p3_related_posts_exclude_cat'));
 		if ($exclude_cat) {
-			$args['cat'] = '-'.$exclude_cat;
+			$args['category__not_in'] = array($exclude_cat);
 		}
 		
 		$query = new wp_query($args);
