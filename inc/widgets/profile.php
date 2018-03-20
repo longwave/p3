@@ -73,17 +73,20 @@ class pipdig_widget_profile_function extends WP_Widget {
 				
 			}
 			
+			$desc = '';
 			if (!empty($instance['description'])) {
 				$desc = wpautop(do_shortcode($instance['description']));
 			}
 			
-			if ($horizontal) {
+			if ($horizontal && $desc) {
 				echo '<div class="col-sm-6">'.$img.'</div>';
 				echo '<div class="col-sm-6">'.$desc.'</div>';
 				echo '<div class="clearfix"></div>';
 			} else {
 				echo $img;
-				echo $desc;
+				if ($desc) {
+					echo $desc;
+				}
 			}
 
 		echo $args['after_widget'];
