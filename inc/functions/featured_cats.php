@@ -116,8 +116,13 @@ function p3_featured_cats() {
 			break;
 	}
 	
+	$mobile_class = '';
+	if (!get_theme_mod('p3_featured_cats_mobile', 1)) {
+		$mobile_class = 'p3_featured_cats_no_mobile';
+	}
+	
 	?>
-	<div id="p3_featured_cats" class="row nopin">
+	<div id="p3_featured_cats" class="row nopin <?php echo $mobile_class; ?>">
 			
 		<?php
 		if (!empty($post_cat_1)) {
@@ -173,6 +178,22 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 					'type' => 'checkbox',
 					'label' => __( 'Enable this feature', 'p3' ),
 					'description' => "Please note, you must select at least one category below",
+					'section' => 'p3_featured_cats_section',
+				)
+			);
+			
+			// on mobile?
+			$wp_customize->add_setting('p3_featured_cats_mobile',
+				array(
+					'default' => 1,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_featured_cats_mobile',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Enable on mobile', 'p3' ),
 					'section' => 'p3_featured_cats_section',
 				)
 			);
