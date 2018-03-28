@@ -2,7 +2,7 @@
 
 if (!defined('ABSPATH')) die;
 
-if (p3_theme_enabled(array('hollyandweave', 'equinox', 'opulence', 'galvani', 'blossom', 'maryline', 'venture'))) {
+if (p3_theme_enabled(array('hollyandweave', 'equinox', 'opulence', 'galvani', 'blossom', 'maryline', 'venture', 'styleandlight'))) {
 	
 } else {
 	return;
@@ -224,7 +224,7 @@ class pipdig_p3_featured_panels_Customize {
 		$wp_customize->add_section( 'p3_featured_panels_section', 
 			array(
 				'title' => __( 'Featured Image Panels', 'p3' ),
-				'description'=> __( 'Display 3 image panels at te top of the homepage. Each panel can also be linked to anywhere you like. E.g. a post, category, page or even an external website.', 'p3' ),
+				'description'=> 'Display up to 4 image panels at the top of the homepage. Each panel can also be linked to anywhere you like. E.g. a post, category, page or even an external website.',
 				'capability' => 'edit_theme_options',
 				//'panel' => 'pipdig_features',
 				'priority' => 59,

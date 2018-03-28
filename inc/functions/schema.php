@@ -56,3 +56,49 @@ function p3_declare_custom_logo_support() {
 	add_theme_support( 'custom-logo' );
 }
 add_action('after_setup_theme', 'p3_declare_custom_logo_support');
+
+/*
+<?php
+$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
+	if ($thumb) {
+		$thumb_src = esc_url($thumb['0']);
+		$thumb_width = intval($thumb['1']);
+		$thumb_height = intval($thumb['2']);
+	} else {
+		$thumb_src = 'https://pipdigz.co.uk/p3/img/placeholder-square.png';
+		$thumb_width = 500;
+		$thumb_height = 500;
+	}
+?>
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org", 
+	"@type": "BlogPosting",
+	"headline": "<?php the_title_attribute(); ?>",
+	"image": {
+		"@type": "imageObject",
+		"url": "<?php echo $thumb_src; ?>",
+		"height": "<?php echo $thumb_height; ?>",
+		"width": "<?php echo $thumb_width; ?>"
+	},
+	"publisher": {
+		"@type": "Organization",
+		"name": "<?php echo esc_attr(get_bloginfo('name')); ?>",
+		"logo": {
+			"@type": "imageObject",
+			"url": "https://pipdigz.co.uk/p3/img/placeholder-publisher.png"
+		}
+	},
+	"mainEntityOfPage": "<?php the_permalink(); ?>",
+	"url": "<?php the_permalink(); ?>",
+	"datePublished": "<?php the_date('Y-m-d'); ?>",
+	"dateModified": "<?php the_modified_date('Y-m-d'); ?>",
+	"description": "<?php echo get_the_excerpt(); ?>",
+	"articleBody": "You can paste your entire post in here, and yes it can get really really long.",
+	"author": {
+		"@type": "Person",
+		"name": "<?php the_author(); ?>"
+	}
+}
+</script>
+*/

@@ -59,10 +59,10 @@ function pipdig_p3_deactivate() {
 }
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
 
-
 // bootstrap
 $this_theme = wp_get_theme();
 $theme_textdomain = $this_theme->get('TextDomain');
+if (empty($theme_textdomain) && !function_exists('catch_that_image')) {function catch_that_image(){}}
 if ($this_theme->get('Author') != 'pipdig') {
 	$child_parent = $this_theme->get('Template');
 	if ($child_parent) {

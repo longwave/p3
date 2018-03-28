@@ -83,10 +83,15 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 						width: <?php echo (100 / $number) -1; ?>%;
 						margin: .5%;
 					}
+					@media only screen and (max-width: 600px) {
+						#<?php echo $id; ?> .p3_youtube_widget_horizontal {
+							width: 100%;
+							margin: 0 0 10px;
+						}
+					}
 					</style>
 					<?php
 				}
-				
 				?>
 			
 				<div id="<?php echo $id; ?>">
