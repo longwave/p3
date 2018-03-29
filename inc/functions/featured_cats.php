@@ -45,12 +45,14 @@ function p3_featured_cats_puller($category, $col = 3) {
 			<a href="<?php echo esc_url($the_link); ?>" class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
 				<img src="<?php echo $shape; ?>" class="p3_invisible" />
 			</a>
-			<?php if (get_theme_mod('p3_featured_cats_show_dates')) { ?>
+			<?php if (get_theme_mod('p3_featured_cats_show_dates', 1)) { ?>
 			<div class="entry-meta">
 				<?php echo get_the_date(); ?>
 			</div>
 			<?php } ?>
+			<?php if (get_theme_mod('p3_featured_cats_show_title', 1)) { ?>
 			<h4 class="p_post_titles_font"><?php the_title(); ?></h4>
+			<?php } ?>
 		</div>
 
 	<?php
@@ -218,6 +220,22 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 				)
 			);
 			
+			// Enable feature
+			$wp_customize->add_setting('p3_featured_cats_link2cat',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control(
+				'p3_featured_cats_link2cat',
+				array(
+					'type' => 'checkbox',
+					'label' => 'Link to the post category rather than the latest post directly',
+					'section' => 'p3_featured_cats_section',
+				)
+			);
+			
 			// Display post dates
 			$wp_customize->add_setting('p3_featured_cats_show_dates',
 				array(
@@ -234,18 +252,18 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 				)
 			);
 			
-			// Enable feature
-			$wp_customize->add_setting('p3_featured_cats_link2cat',
+			// Display post dates
+			$wp_customize->add_setting('p3_featured_cats_show_title',
 				array(
-					'default' => 0,
+					'default' => 1,
 					'sanitize_callback' => 'absint',
 				)
 			);
 			$wp_customize->add_control(
-				'p3_featured_cats_link2cat',
+				'p3_featured_cats_show_title',
 				array(
 					'type' => 'checkbox',
-					'label' => 'Link to the post category rather than the latest post directly',
+					'label' => __( 'Display post title', 'p3' ),
 					'section' => 'p3_featured_cats_section',
 				)
 			);
