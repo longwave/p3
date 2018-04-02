@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.8.0 =
+* Date: 2 April 2018.
+* Enhance: Optimize some functions for faster loading times.
+
 = 3.7.9 =
 * Date: 13 March 2018.
 * Enhance: Option to add up to 5 categories via the [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/).
@@ -48,19 +52,19 @@ The core functions of any pipdig theme. Please check the changelog before updati
 * New: [Google Adsense widget](https://support.pipdig.co/articles/wordpress-google-adsense-widget/).
 
 = 3.6.6 =
-* Enable Pinterest Hover Button on mobile by default.
+* Enhance: Enable Pinterest Hover Button on mobile by default.
 
 = 3.6.4 =
-* Option to exclude posts from a category in the [Related Posts](https://i.imgur.com/uoABhQD.png) feature.
+* Enhance: Option to exclude posts from a category in the [Related Posts](https://i.imgur.com/uoABhQD.png) feature.
 
 = 3.6.3 =
-* Increase maximum columns in the Pinterest and Instagram widget from 4 to 5.
-* Don't add [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) to images which are smaller than 400px wide.
-* Move custom code from Hooks to last position in footer.
+* Enhance: Increase maximum columns in the Pinterest and Instagram widget from 4 to 5.
+* Enhance: Don't add [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) to images which are smaller than 400px wide.
+* Enhance: Move custom code from Hooks to last position in footer.
 
 = 3.6.0 =
-* Add Goodreads to social links (Not the official icon yet whilst we're waiting for this to become available).
-* Display an [Author Bio](https://support.pipdig.co/articles/wordpress-author-bio-box/) at the end of blog posts.
+* New: Add Goodreads to social links (Not the official icon yet whilst we're waiting for this to become available).
+* New: Display an [Author Bio](https://support.pipdig.co/articles/wordpress-author-bio-box/) at the end of blog posts.
 
 = 3.5.1 =
 * Option to display [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) on mobiles as well as desktop.
