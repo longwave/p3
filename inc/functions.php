@@ -469,6 +469,101 @@ function pipdig_p3_filter_allowed_styles($styles) {
 }
 add_filter('safe_style_css', 'pipdig_p3_filter_allowed_styles');
 
+
+function p3_build_cc($wp_customize, $fonts_array, $slugs, $title, $font_slug, $size, $uppercase, $italic, $bold, $example) {
+
+	// font
+	$wp_customize->add_setting($slugs[0],
+		array(
+			'default' => $font_slug,
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control($slugs[0],
+		array(
+			'type' => 'select',
+			'label' => $title.' font',
+			'description' => '<a href="'.$example.'" target="_blank" rel="noopener">'.__("What's this?", "p3").'</a>',
+			'section' => 'pipdig_fonts',
+			'choices' => $fonts_array,
+		)
+	);
+
+	// size
+	$wp_customize->add_setting($slugs[1],
+		array(
+			'default' => $size,
+			'capability' => 'edit_theme_options',
+			'sanitize_callback' => 'absint',
+		)
+	);
+	$wp_customize->add_control($slugs[1], array(
+		'type' => 'number',
+		'section' => 'pipdig_fonts',
+		'label' => $title.' size',
+		'input_attrs' => array(
+			'min' => 8,
+			'max' => 120,
+			'step' => 1,
+			),
+		)
+	);
+	
+	// transform
+	if ($uppercase !== false) {
+		$wp_customize->add_setting($slugs[2],
+			array(
+				'default' => $uppercase,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control($slugs[2],
+			array(
+				'type' => 'checkbox',
+				'label' => 'Uppercase',
+				'section' => 'pipdig_fonts',
+			)
+		);
+	}
+	
+	// italic
+	if ($italic !== false) {
+		$wp_customize->add_setting($slugs[3],
+			array(
+				'default' => $italic,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control($slugs[3],
+			array(
+				'type' => 'checkbox',
+				'label' => 'Italic',
+				'section' => 'pipdig_fonts',
+			)
+		);
+	}
+	
+	// bold
+	if ($bold !== false) {
+		$wp_customize->add_setting($slugs[4],
+			array(
+				'default' => $bold,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control($slugs[4],
+			array(
+				'type' => 'checkbox',
+				'label' => 'Bold',
+				'section' => 'pipdig_fonts',
+			)
+		);
+	}
+	
+	return $wp_customize;
+	
+}
+
 include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
 include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');
 include(plugin_dir_path(__FILE__).'functions/top_menu_bar.php');
