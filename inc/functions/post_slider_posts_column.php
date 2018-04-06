@@ -2,20 +2,20 @@
 
 if (!defined('ABSPATH')) die;
 
-if (p3_theme_enabled(array('galvani', 'opulence', 'thegrid', 'blossom', 'crystal', 'maryline', 'amethyst'))) {
+if (p3_theme_enabled(array('galvani', 'opulence', 'thegrid', 'blossom', 'crystal', 'maryline'))) {
 	return;
 }
 
 function p3_post_slider_posts_column() {
-		
+	
 	if (is_paged() || !is_home()) {
 		return;
 	}
-		
+	
 	if (!get_theme_mod('p3_post_slider_posts_column_enable')) {
 		return;
 	}
-		
+	
 	$text_color_out = '';
 	$text_bg_color_out = '';
 	$text_bg_color = get_theme_mod('p3_post_slider_posts_column_text_bg_color');
@@ -27,15 +27,16 @@ function p3_post_slider_posts_column() {
 		$text_color_out = 'color:'.sanitize_hex_color($text_color).';';
 	}
 	$posts_num = intval(get_theme_mod('p3_post_slider_posts_column_number', 4));
+	$post_cat = get_theme_mod('p3_post_slider_posts_column_cat');
 	$title_trunc = intval(get_theme_mod('p3_post_slider_posts_column_title_truncate', 6));
 	
 	$instagram_compensate = '';
 	if (get_theme_mod('body_instagram')) {
 		$instagram_compensate = 'style="margin-bottom: 0;"';
 	}
-		
+	
 	wp_enqueue_script( 'pipdig-cycle' );
-		
+	
 ?>
 <div id="p3_post_slider_posts_column" class="row" <?php echo $instagram_compensate; ?>>
 	<div class="col-xs-12">
@@ -45,32 +46,40 @@ function p3_post_slider_posts_column() {
 			<div data-cycle-speed="1200" data-cycle-slides="li" data-cycle-swipe="true" data-cycle-swipe-fx="scrollHorz" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
 				<ul>
 					<?php
-						$post_cat_slider = get_theme_mod('p3_post_slider_posts_column_cat');
-						$args = array(
-							'showposts' => $posts_num,
-							'cat' => $post_cat_slider,
-						);
-						$the_query = new WP_Query( $args );
+						
+					$args = array(
+						'showposts' => $posts_num,
+					);
+					if ($post_cat) {
+						$args['cat'] = $post_cat;
+					}
+						
+					$the_query = new WP_Query( $args );
 							
-						while ($the_query -> have_posts()) : $the_query -> the_post();
+					while ($the_query -> have_posts()) : $the_query -> the_post();
 
-							$bg = p3_catch_image(get_the_ID(), 'large');
+						$bg = p3_catch_image(get_the_ID(), 'large');
+						?>
+						<li>
+							<a href="<?php the_permalink() ?>" class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
+							<?php if (get_theme_mod('p3_post_slider_posts_column_display_title', 6)) { ?>
+								<div class="p3_feature_slide" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
+									<span class="p3_slide_banner" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
+										<h2 class="p_post_titles_font" style="margin:0;<?php echo $text_color_out; ?>"><?php echo pipdig_p3_truncate(get_the_title(), $title_trunc); ?></h2>
+									</span>
+								</div>
+							<?php } ?>
+							</a>
+						</li>
+					<?php
+					endwhile;
+					wp_reset_query();
 					?>
-					<li>
-						<a href="<?php the_permalink() ?>" class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
-						<?php if (get_theme_mod('p3_post_slider_posts_column_display_title', 6)) { ?>
-							<div class="p3_feature_slide" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
-								<span class="p3_slide_banner" style="<?php echo $text_bg_color_out; echo $text_color_out; ?>">
-									<h2 class="p_post_titles_font" style="margin:0;<?php echo $text_color_out; ?>"><?php echo pipdig_p3_truncate(get_the_title(), $title_trunc); ?></h2>
-								</span>
-							</div>
-						<?php } ?>
-						</a>
-					</li>
-				<?php endwhile; wp_reset_query(); ?>
 				</ul>
+				<?php if ($num_posts > 1) { ?>
 				<div class='cycle-prev'></div>
 				<div class='cycle-next'></div>
+				<?php } ?>
 			</div>
 	</div>
 </div>
@@ -114,7 +123,7 @@ class pipdig_post_slider_posts_column_Customize {
 				'section' => 'p3_post_slider_posts_column_section',
 			)
 		);
-			
+		
 		
 		// Choose a category for slider
 		$wp_customize->add_setting('p3_post_slider_posts_column_cat',
@@ -133,7 +142,7 @@ class pipdig_post_slider_posts_column_Customize {
 				)
 			)
 		);
-			
+		
 		// number of slides
 		$wp_customize->add_setting('p3_post_slider_posts_column_number',
 			array(
@@ -156,7 +165,7 @@ class pipdig_post_slider_posts_column_Customize {
 				),
 			)
 		);
-			
+		
 		// Enable feature
 		$wp_customize->add_setting('p3_post_slider_posts_column_display_title',
 			array(
@@ -172,7 +181,7 @@ class pipdig_post_slider_posts_column_Customize {
 				'section' => 'p3_post_slider_posts_column_section',
 			)
 		);
-			
+		
 		// post title length
 		$wp_customize->add_setting('p3_post_slider_posts_column_title_truncate',
 			array(

@@ -345,24 +345,24 @@ function p3_slicknav_brand() {
 		$brand .= '<a href="'.esc_url($links['facebook']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-facebook"></i></a>';
 		$count++;
 	}
-	if (($count < 6) && !empty($links['bloglovin']) && get_theme_mod('p3_navbar_bloglovin', 1)) {
-		$brand .= '<a href="'.esc_url($links['bloglovin']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-plus"></i></a>';
-		$count++;
-	}
 	if (($count < 6) && !empty($links['pinterest']) && get_theme_mod('p3_navbar_pinterest', 1)) {
 		$brand .= '<a href="'.esc_url($links['pinterest']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-pinterest"></i></a>';
-		$count++;
-	}
-	if (($count < 6) && !empty($links['snapchat']) && get_theme_mod('p3_navbar_snapchat', 1)) {
-		$brand .= '<a href="'.esc_url($links['snapchat']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-snapchat-ghost"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['youtube']) && get_theme_mod('p3_navbar_youtube', 1)) {
 		$brand .= '<a href="'.esc_url($links['youtube']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-youtube-play"></i></a>';
 		$count++;
 	}
+	if (($count < 6) && !empty($links['bloglovin']) && get_theme_mod('p3_navbar_bloglovin', 1)) {
+		$brand .= '<a href="'.esc_url($links['bloglovin']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-plus"></i></a>';
+		$count++;
+	}
 	if (($count < 6) && !empty($links['email']) && get_theme_mod('p3_navbar_email', 1)) {
 		$brand .= '<a href="mailto:'.sanitize_email($links['email']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-envelope"></i></a>';
+		$count++;
+	}
+	if (($count < 6) && !empty($links['snapchat']) && get_theme_mod('p3_navbar_snapchat', 1)) {
+		$brand .= '<a href="'.esc_url($links['snapchat']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-snapchat-ghost"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['tumblr']) && get_theme_mod('p3_navbar_tumblr', 1)) {

@@ -89,7 +89,7 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 				if (($columns == '2') && ($query->current_post % 2)) {
 					$output .= '<div class="clearfix" style="margin-bottom: 20px;"></div>';
 				}
-						
+				
 			endwhile; wp_reset_query();
 			
 			$cat_link = esc_url(get_category_link(get_category_by_slug($category)));

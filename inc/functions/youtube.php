@@ -49,10 +49,13 @@ function p3_youtube_fetch($channel_id) {
 						
 						$thumbnail = "https://img.youtube.com/vi/".$id."/0.jpg";
 						
-						if ($i < 4) { // First few get special treatment. Open the red carpet.
-							$max_res_url = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
-							if (@getimagesize($max_res_url)) {
-								$thumbnail = $max_res_url;
+						if ($i < 4) { // First few get special treatment. Roll out the red carpet.
+							$max_res_url_1 = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
+							$max_res_url_2 = "https://i.ytimg.com/vi/".$id."/maxresdefault.jpg";
+							if (@getimagesize($max_res_url_1)) {
+								$thumbnail = $max_res_url_1;
+							} elseif (@getimagesize($max_res_url_2)) {
+								$thumbnail = $max_res_url_2;
 							}
 						}
 						

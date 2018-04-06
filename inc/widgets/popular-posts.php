@@ -164,18 +164,68 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 	<ul class="p3_popular_posts_widget" class="nopin">
 	
 	<?php
-		$popular = new WP_Query( array(
-			'showposts' => $number_posts,
-			'cat' => $category,
-			'ignore_sticky_posts' => 1,
-			'orderby' => 'comment_count',
-			'date_query' => array(
-				array(
-					'after' => $date_range_posts,
-				),
-			),
-		) );
+	
+		$traditional = true;
+		$jp_top_posts = '';
+		$trans_prefix = 'all';
+		if (function_exists('stats_get_csv') && !$category) {
+			
+			if ($date_range == '1 week ago') {
+				$days = '7';
+				$trans_prefix = $days;
+			} elseif ($date_range == '1 month ago') {
+				$days = '30';
+				$trans_prefix = $days;
+			} elseif ($date_range == '3 months ago') {
+				$days = '90';
+				$trans_prefix = $days;
+			} elseif ($date_range == '6 months ago') {
+				$days = '180';
+				$trans_prefix = $days;
+			} elseif ($date_range == '1 year ago') {
+				$days = '365';
+				$trans_prefix = $days;
+			} else {
+				$days = '-1';
+			}
+			
+			if ( false === ( $post_view_ids = get_transient( 'p3_jp_pop_days_'.$trans_prefix ) )) {
+				$jp_top_posts = stats_get_csv( 'postviews', array( 'days' => $days, 'limit' => 500 ) );
+				$post_view_ids = wp_list_pluck($jp_top_posts, 'post_id');
+				set_transient( 'p3_jp_pop_days_'.$trans_prefix, $post_view_ids, 30 * MINUTE_IN_SECONDS );
+			}
+			
+			if (is_array($post_view_ids) && count($post_view_ids) > 4) {
+				
+				$args = array(
+					'ignore_sticky_posts' => true,
+					'showposts' => $number_posts,
+					'post__in' => $post_view_ids
+				);
+				
+				$traditional = false;
+				
+			}
+			
+		}
 		
+		if ($traditional) {
+			$args = array(
+				'cat' => $category,
+				'showposts' => $number_posts,
+				'ignore_sticky_posts' => true,
+				'orderby' => 'comment_count',
+				'order' => 'dsc',
+				'date_query' => array(
+					array(
+						'after' => $date_range_posts,
+					),
+				),
+			);
+		}
+		
+		$popular = new WP_Query($args);
+	
 		$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC'; // landscape
 		
 		if ($image_shape == 2) {
@@ -186,7 +236,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		
 		// medium for sidebar, large for everywhere else
 		$img_size = 'medium';
-		if ($args['id'] != 'sidebar-1') {
+		if (isset($args['id']) && $args['id'] != 'sidebar-1') {
 			$img_size = 'large';
 		}
 		

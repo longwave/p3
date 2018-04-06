@@ -13,26 +13,27 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.8.0 =
-* Date: 2 April 2018.
-* Enhance: Optimize some functions for faster loading times.
+= 3.8.1 =
+* Date: 6 April 2018.
+* The Popular Posts widget now uses data from Jetpack Stats.
+* Option to change the number of posts in the 'Large Rectnagle Slider'.
 
 = 3.7.9 =
 * Date: 13 March 2018.
-* Enhance: Option to add up to 5 categories via the [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/).
+* Option to add up to 5 categories via the [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/).
 
 = 3.7.8 =
 * Date: 27 February 2018.
-* Enhance: Display [Profile Photo Widget](https://support.pipdig.co/articles/wordpress-profile-photo-widget/) horizontally if not in sidebar or footer column.
+* Display [Profile Photo Widget](https://support.pipdig.co/articles/wordpress-profile-photo-widget/) horizontally if not in sidebar or footer column.
 
 = 3.7.7 =
 * Date: 30 January 2018.
-* Enhance: Display number of products in cart when using WooCommerce.
+* Display number of products in cart when using WooCommerce.
 
 = 3.7.5 =
 * Date: 26 January 2018.
-* Fix: Pinterest hover button did not work on some images.
-* Enhance: Minor speed improvement by combining CSS files.
+* Fix Pinterest hover button did not work on some images.
+* Minor speed improvement by combining CSS files.
 
 = 3.7.4 =
 * Date: 19 January 2018.
@@ -52,15 +53,15 @@ The core functions of any pipdig theme. Please check the changelog before updati
 * New: [Google Adsense widget](https://support.pipdig.co/articles/wordpress-google-adsense-widget/).
 
 = 3.6.6 =
-* Enhance: Enable Pinterest Hover Button on mobile by default.
+* Enable Pinterest Hover Button on mobile by default.
 
 = 3.6.4 =
-* Enhance: Option to exclude posts from a category in the [Related Posts](https://i.imgur.com/uoABhQD.png) feature.
+* Option to exclude posts from a category in the [Related Posts](https://i.imgur.com/uoABhQD.png) feature.
 
 = 3.6.3 =
-* Enhance: Increase maximum columns in the Pinterest and Instagram widget from 4 to 5.
-* Enhance: Don't add [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) to images which are smaller than 400px wide.
-* Enhance: Move custom code from Hooks to last position in footer.
+* Increase maximum columns in the Pinterest and Instagram widget from 4 to 5.
+* Don't add [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) to images which are smaller than 400px wide.
+* Move custom code from Hooks to last position in footer.
 
 = 3.6.0 =
 * New: Add Goodreads to social links (Not the official icon yet whilst we're waiting for this to become available).

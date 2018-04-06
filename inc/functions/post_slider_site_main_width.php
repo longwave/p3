@@ -24,7 +24,7 @@ function p3_full_width_slider_site_main() {
 	if ($text_color) {
 		$text_color_out = 'color:'.sanitize_hex_color($text_color).';';
 	}
-		
+	
 	wp_enqueue_script( 'pipdig-cycle' );		
 ?>
 <div id="p3_full_width_slider_site_main" class="row">
@@ -35,12 +35,18 @@ function p3_full_width_slider_site_main() {
 		<div data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
 			<ul>
 				<?php
+				
+					$num_posts = absint(get_theme_mod('p3_full_width_slider_site_main_slider_num', 4));
+					$post_cat = get_theme_mod('p3_full_width_slider_site_main_slider_cat');
+					
 					$args = array(
-						'showposts' => 4,
+						'showposts' => $num_posts,
 					);
-					if (absint(get_theme_mod('p3_full_width_slider_site_main_slider_cat'))) {
-						$args['cat'] = absint(get_theme_mod('p3_full_width_slider_site_main_slider_cat'));
+						
+					if ($post_cat) {
+						$args['cat'] = $post_cat;
 					}
+					
 					$the_query = new WP_Query( $args );
 						
 					while ($the_query -> have_posts()) : $the_query -> the_post();
@@ -49,11 +55,11 @@ function p3_full_width_slider_site_main() {
 						if (function_exists('rwmb_meta')) {
 							$images = rwmb_meta( 'pipdig_meta_rectangle_slider_image', 'type=image&size=full' );
 						}
-						if ($images){ // if an image has been added via meta box
+						if ($images){
 							foreach ( $images as $image ) {
 								$bg = esc_url($image['url']);
 							}
-						} else { // if no meta box image, use featured as fallback
+						} else {
 							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
 							if ($thumb) {
 								$bg = esc_url($thumb['0']);
@@ -73,8 +79,10 @@ function p3_full_width_slider_site_main() {
 				</li>
 			<?php endwhile; wp_reset_query(); ?>
 			</ul>
+			<?php if ($num_posts > 1) { ?>
 			<div class='cycle-prev'></div>
 			<div class='cycle-next'></div>
+			<?php } ?>
 		</div>
 	</div>
 </div>
@@ -138,6 +146,22 @@ if (!class_exists('pipdig_full_width_slider_site_main_Customize')) {
 					'type' => 'checkbox',
 					'label' => __( 'Display on homepage only', 'p3' ),
 					'description' => '<hr>',
+					'section' => 'p3_full_width_slider_site_main_section',
+				)
+			);
+			
+			
+			// Number of images to display in slider
+			$wp_customize->add_setting('p3_full_width_slider_site_main_slider_num',
+				array(
+					'default' => 4,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_full_width_slider_site_main_slider_num',
+				array(
+					'type' => 'number',
+					'label' => __('Number of posts to show in the slider', 'p3'),
 					'section' => 'p3_full_width_slider_site_main_section',
 				)
 			);

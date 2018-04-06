@@ -20,7 +20,7 @@ if (!function_exists('p3_feature_header')) {
 			$class_2 = 'col-sm-6 col-sm-pull-6';
 		}
 		
-		$post_cat_trending = intval(get_theme_mod('p3_feature_header_trending_cat'));
+		$post_cat_trending = absint(get_theme_mod('p3_feature_header_trending_cat'));
 		$post_cat_slider = intval(get_theme_mod('p3_feature_header_slider_cat'));
 		$big_this_month_title = strip_tags(get_theme_mod('p3_feature_header_pop_title'));
 		if (empty($big_this_month_title)) {
@@ -48,18 +48,68 @@ if (!function_exists('p3_feature_header')) {
 				<div id="p3_big_this" class="nopin">
 					<h3 class="widget-title"><span><?php echo $big_this_month_title; ?></span></h3>
 					<?php
-						$popular = new WP_Query( array(
-							'cat'                   => $post_cat_trending,
-							'showposts'             => 4,
-							'ignore_sticky_posts'   => true,
-							'orderby'               => 'comment_count',
-							'order'                 => 'dsc',
+					
+					$traditional = true;
+					$jp_top_posts = '';
+					$trans_prefix = 'all';
+					if (function_exists('stats_get_csv') && !$post_cat_trending) {
+						
+						if ($date_range == '1 week ago') {
+							$days = '7';
+							$trans_prefix = $days;
+						} elseif ($date_range == '1 month ago') {
+							$days = '30';
+							$trans_prefix = $days;
+						} elseif ($date_range == '3 months ago') {
+							$days = '90';
+							$trans_prefix = $days;
+						} elseif ($date_range == '6 months ago') {
+							$days = '180';
+							$trans_prefix = $days;
+						} elseif ($date_range == '1 year ago') {
+							$days = '365';
+							$trans_prefix = $days;
+						} else {
+							$days = '-1';
+						}
+						
+						if ( false === ( $post_view_ids = get_transient( 'p3_jp_pop_days_'.$trans_prefix ) )) {
+							$jp_top_posts = stats_get_csv( 'postviews', array( 'days' => $days, 'limit' => 500 ) );
+							$post_view_ids = wp_list_pluck($jp_top_posts, 'post_id');
+							set_transient( 'p3_jp_pop_days_'.$trans_prefix, $post_view_ids, 30 * MINUTE_IN_SECONDS );
+						}
+						
+						if (is_array($post_view_ids) && count($post_view_ids) > 4) {
+							
+							$args = array(
+								'ignore_sticky_posts' => true,
+								'showposts' => 4,
+								'post__in' => $post_view_ids
+							);
+							
+							$traditional = false;
+							
+						}
+						
+					}
+					
+					if ($traditional) {
+						$args = array(
+							'cat' => $post_cat_trending,
+							'showposts' => 4,
+							'ignore_sticky_posts' => true,
+							'orderby' => 'comment_count',
+							'order' => 'dsc',
 							'date_query' => array(
 								array(
 									'after' => $date_range,
 								),
 							),
-						) );
+						);
+					}
+					
+					$popular = new WP_Query($args);
+					
 					?>
 					<?php while ( $popular->have_posts() ): $popular->the_post();
 						
