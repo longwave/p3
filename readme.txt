@@ -13,10 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.8.1 =
-* Date: 6 April 2018.
+= 3.8.2 =
+* Date: 9 April 2018.
 * The Popular Posts widget now uses data from Jetpack Stats.
-* Option to change the number of posts in the 'Large Rectnagle Slider'.
+* Option to change the number of posts in the 'Large Rectangle Slider'.
 
 = 3.7.9 =
 * Date: 13 March 2018.
