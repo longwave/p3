@@ -215,6 +215,7 @@ function pipdig_p3_activate() {
 		'rss-image-feed/image-rss.php',
 		'wpclef/wpclef.php',
 		'hello-dolly/hello.php',
+		'theme-test-drive/themedrive.php',
 	);
 	deactivate_plugins($plugins);
 
@@ -344,7 +345,7 @@ function p3_trust_me_you_dont_want_this() {
 	);
 	deactivate_plugins($plugins);
 }
-add_action('plugins_loaded', 'p3_trust_me_you_dont_want_this');
+add_action('admin_init', 'p3_trust_me_you_dont_want_this');
 
 /*
 function pipdig_p3_theme_setup() {
