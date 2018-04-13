@@ -45,8 +45,6 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 			
 			$post_id = absint($instance['the_post']);
 			
-			$post = get_post($post_id);
-			
 			// medium for sidebar, large for everywhere else
 			$img_size = 'medium';
 			if ( ($args['id'] != 'sidebar-1') && ($args['id'] !== null) ) { //SiteOrigin sets NULL
@@ -76,7 +74,8 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 				echo '<a href="'.$link.'"><h4 class="p3_featured_post_widget_post_title p_post_titles_font">'.strip_tags($title).'</h4></a>';
 			}
 			if (empty($instance['hide_excerpt'])) {
-				echo '<p class="p3_featured_post_widget_post_excerpt">'.strip_tags(get_the_excerpt($post_id)).'</p>';
+				$post = get_post($post_id);
+				echo '<p class="p3_featured_post_widget_post_excerpt">'.strip_tags($post->post_excerpt).'</p>';
 			}
 			if (empty($instance['hide_button'])) {
 				echo '<div><a href="'.$link.'" class="more-link">'.__('View Post', 'p3').'</a></div>';
