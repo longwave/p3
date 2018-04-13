@@ -75,7 +75,9 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 			}
 			if (empty($instance['hide_excerpt'])) {
 				$post = get_post($post_id);
-				echo '<p class="p3_featured_post_widget_post_excerpt">'.strip_tags($post->post_excerpt).'</p>';
+				setup_postdata($post);
+				echo '<p class="p3_featured_post_widget_post_excerpt">'.strip_tags(get_the_excerpt()).'</p>';
+				wp_reset_postdata();
 			}
 			if (empty($instance['hide_button'])) {
 				echo '<div><a href="'.$link.'" class="more-link">'.__('View Post', 'p3').'</a></div>';
