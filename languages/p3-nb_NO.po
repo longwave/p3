@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
 "POT-Creation-Date: 2018-01-19 16:23+0000\n"
-"PO-Revision-Date: 2018-01-19 16:23+0000\n"
+"PO-Revision-Date: 2018-04-15 14:10+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: nb_NO\n"
@@ -693,7 +693,7 @@ msgstr ""
 #: inc/functions/trending.php:35 inc/functions/trending.php:168
 #: inc/widgets/popular-posts.php:10
 msgid "Popular Posts"
-msgstr ""
+msgstr "Populære innlegg"
 
 #: inc/functions/trending.php:116
 msgid "Popular Posts Bar"
@@ -987,7 +987,7 @@ msgstr ""
 
 #: inc/widgets/featured-post.php:89 inc/widgets/post-slider.php:184
 msgid "View Post"
-msgstr ""
+msgstr "Les mer"
 
 #: inc/widgets/featured-post.php:143
 msgid "Post to feature:"
