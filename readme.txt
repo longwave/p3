@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.8.3 =
+* Date: 16 April 2018.
+* Site speed improvements by changing Schema tags to JSON-LD.
+
 = 3.8.2 =
 * Date: 9 April 2018.
 * The Popular Posts widget now uses data from Jetpack Stats.
