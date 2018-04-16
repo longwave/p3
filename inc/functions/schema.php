@@ -39,7 +39,7 @@ function p3_schema_publisher() {
 		"datePublished": "<?php the_date('Y-m-d'); ?>",
 		"dateModified": "<?php the_modified_date('Y-m-d'); ?>",
 		"description": "<?php echo esc_attr(get_the_excerpt()); ?>",
-		"articleBody": "You can paste your entire post in here, and yes it can get really really long.",
+		"articleBody": "<?php echo esc_attr(get_the_excerpt()); ?>",
 		"author": {
 			"@type": "Person",
 			"name": "<?php esc_attr(the_author()); ?>"
