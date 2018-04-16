@@ -5,15 +5,18 @@ if (!defined('ABSPATH')) die;
 function p3_schema_publisher() {
 
 	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
-		if ($thumb) {
-			$thumb_src = esc_url($thumb['0']);
-			$thumb_width = intval($thumb['1']);
-			$thumb_height = intval($thumb['2']);
-		} else {
-			$thumb_src = 'https://pipdigz.co.uk/p3/img/placeholder-square.png';
-			$thumb_width = 500;
-			$thumb_height = 500;
-		}
+	if ($thumb) {
+		$thumb_src = esc_url($thumb['0']);
+		$thumb_width = intval($thumb['1']);
+		$thumb_height = intval($thumb['2']);
+	} else {
+		$thumb_src = 'https://pipdigz.co.uk/p3/img/placeholder-square.png';
+		$thumb_width = 500;
+		$thumb_height = 500;
+	}
+	
+	$excerpt = esc_attr(get_the_excerpt());
+	
 	?>
 	<script type="application/ld+json">
 	{
@@ -38,8 +41,8 @@ function p3_schema_publisher() {
 		"url": "<?php the_permalink(); ?>",
 		"datePublished": "<?php the_date('Y-m-d'); ?>",
 		"dateModified": "<?php the_modified_date('Y-m-d'); ?>",
-		"description": "<?php echo esc_attr(get_the_excerpt()); ?>",
-		"articleBody": "<?php echo esc_attr(get_the_excerpt()); ?>",
+		"description": "<?php echo $excerpt; ?>",
+		"articleBody": "<?php echo $excerpt; ?>",
 		"author": {
 			"@type": "Person",
 			"name": "<?php esc_attr(the_author()); ?>"
