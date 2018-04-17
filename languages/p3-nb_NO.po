@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
 "POT-Creation-Date: 2018-01-19 16:23+0000\n"
-"PO-Revision-Date: 2018-04-15 14:10+0100\n"
+"PO-Revision-Date: 2018-04-17 11:54+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: nb_NO\n"
@@ -625,7 +625,7 @@ msgstr ""
 
 #: inc/functions/shares.php:79 inc/functions/shares.php:132
 msgid "Share:"
-msgstr ""
+msgstr "Del"
 
 #: inc/functions/shares.php:97
 msgid "Sharing Icons"
@@ -802,12 +802,12 @@ msgstr ""
 #: inc/shortcodes/pipdig_grid_square.php:82
 #: inc/shortcodes/pipdig_mosaic.php:109
 msgid "Older posts"
-msgstr ""
+msgstr "Eldre innlegg"
 
 #: inc/shortcodes/pipdig_grid_square.php:86
 #: inc/shortcodes/pipdig_mosaic.php:113
 msgid "Newer posts"
-msgstr ""
+msgstr "Nyere innlegg"
 
 #: inc/shortcodes/pipdig_portfolio.php:108
 msgid "Click to view"
