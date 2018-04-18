@@ -26,7 +26,7 @@ function p3_post_slider_posts_column() {
 	if ($text_color) {
 		$text_color_out = 'color:'.sanitize_hex_color($text_color).';';
 	}
-	$posts_num = intval(get_theme_mod('p3_post_slider_posts_column_number', 4));
+	$num_posts = intval(get_theme_mod('p3_post_slider_posts_column_number', 4));
 	$post_cat = get_theme_mod('p3_post_slider_posts_column_cat');
 	$title_trunc = intval(get_theme_mod('p3_post_slider_posts_column_title_truncate', 6));
 	
@@ -48,7 +48,7 @@ function p3_post_slider_posts_column() {
 					<?php
 						
 					$args = array(
-						'showposts' => $posts_num,
+						'showposts' => $num_posts,
 					);
 					if ($post_cat) {
 						$args['cat'] = $post_cat;
