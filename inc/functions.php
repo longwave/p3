@@ -150,9 +150,6 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 }
 */
 
-
-include('functions/api.php');
-
 // Add Featured Image to feed if using excerpt mode, or just add the full content if not
 if (!class_exists('Rss_Image_Feed')) {
 function pipdig_p3_rss_post_thumbnail($content) {
@@ -572,6 +569,7 @@ function p3_build_cc($wp_customize, $fonts_array, $slugs, $title, $font_slug, $s
 	
 }
 
+include(plugin_dir_path(__FILE__).'functions/api.php');
 include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
 include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');
 include(plugin_dir_path(__FILE__).'functions/top_menu_bar.php');
