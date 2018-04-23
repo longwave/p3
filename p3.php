@@ -35,7 +35,7 @@ if (strnatcmp(phpversion(),'5.3.10') <= 0) {
 function pipdig_p3_themes_top_link() {
 	if(!isset($_GET['page'])) {
 	?>
-	<script type="text/javascript">
+	<script>
 	jQuery(document).ready(function($) {
 		$('.page-title-action').before('<a class="add-new-h2" href="https://www.pipdig.co/products/wordpress-themes?utm_source=wpmojo&utm_medium=wpmojo&utm_campaign=wpmojo" target="_blank">pipdig.co Themes</a>');
 	});

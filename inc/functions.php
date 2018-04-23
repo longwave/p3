@@ -156,13 +156,14 @@ include('functions/api.php');
 // Add Featured Image to feed if using excerpt mode, or just add the full content if not
 if (!class_exists('Rss_Image_Feed')) {
 function pipdig_p3_rss_post_thumbnail($content) {
-		
+	
+	global $post;
+	
 	if (get_option('rss_use_excerpt')) {
-		global $post;
 		$img = p3_catch_image($post->ID, 'medium');
-		$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'" width="320" /></p><p>'.strip_shortcodes(get_the_excerpt()).'</p>';
+		$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'" width="320" /></p><p>'.strip_shortcodes(get_the_excerpt($post->ID)).'</p>';
 	} else {
-		$content = the_content();
+		$content = the_content($post->ID);
 	}
 
 	return strip_shortcodes($content);
