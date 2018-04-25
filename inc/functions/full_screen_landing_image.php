@@ -14,7 +14,7 @@ function p3_full_screen_landing_cookie() {
 	if (is_paged()) {
 		return;
 	}
-	if (get_theme_mod('p3_full_screen_landing_home', 1) && (!is_front_page() && !is_home())) {
+	if (get_theme_mod('p3_full_screen_landing_home', 1) && !is_front_page()) {
 		return;
 	}
 	

@@ -27,13 +27,11 @@ add_action( 'after_setup_theme', 'p3_featured_panels_polylang', 9999);
 
 function p3_featured_panels() {
 	
-	if (!is_home() && !is_front_page()) {
-		if (get_theme_mod('p3_featured_panels_homepage', 1)) {
-			return;
-		}
+	if (!get_theme_mod('p3_featured_panels_enable', p3_theme_enabled(array('hollyandweave')))) {
+		return;
 	}
 	
-	if (!get_theme_mod('p3_featured_panels_enable', p3_theme_enabled(array('hollyandweave')))) {
+	if (!is_front_page() && get_theme_mod('p3_featured_panels_homepage', 1)) {
 		return;
 	}
 	
