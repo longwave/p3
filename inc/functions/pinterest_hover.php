@@ -122,7 +122,12 @@ function p3_pinterest_hover() {
 						}
 					}
 				<?php } else { // use post title ?>
-					var description = $(this).data('p3-pin-title');
+					if ($(this).attr("data-pin-description") != null) {
+						var description = $(this).data('pin-description'); <?php // data-pin-description is the "official" title attribute ?>
+					} else {
+						var description = $(this).data('p3-pin-title');
+					}
+					
 					if (description == null){
 						var description = $(this).attr("alt");
 						if (description == null){
