@@ -15,7 +15,8 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 = 3.9.0 =
 * Date: 27 April 2018.
-* New! [Spotify widget](https://support.pipdig.co/articles/wordpress-spotify-widget/)
+* New! [Spotify widget](https://support.pipdig.co/articles/wordpress-spotify-widget/).
+* Pinterest Hover Button can now use data-pin-description attribute.
 
 = 3.8.3 =
 * Date: 16 April 2018.

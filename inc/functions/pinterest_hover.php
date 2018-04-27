@@ -109,10 +109,10 @@ function p3_pinterest_hover() {
 				} else if ($(this).hasClass('aligncenter')) {
 					var pin_positon = 'pin_align_center';
 				}
-					
+				
 				var img = new Image();
 				img.src = src;
-					
+				
 				<?php if (get_theme_mod('p3_pinterest_hover_alt')) { // use alt tags ?>
 					var description = $(this).attr("alt");
 					if (description == null){
