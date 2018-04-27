@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.9.0 =
+* Date: 27 April 2018.
+* New! [Spotify widget](https://support.pipdig.co/articles/wordpress-spotify-widget/)
+
 = 3.8.3 =
 * Date: 16 April 2018.
 * Site speed improvements by changing Schema tags to JSON-LD.

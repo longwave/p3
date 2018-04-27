@@ -32,3 +32,4 @@ include('widgets/image.php');
 include('widgets/goodreads.php');
 include('widgets/featured-post.php');
 include('widgets/google-adsense.php');
+include('widgets/spotify.php');

@@ -6,7 +6,7 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 	class pipdig_widget_facebook extends WP_Widget {
 	 
 	  public function __construct() {
-		  $widget_ops = array('classname' => 'pipdig_widget_facebook', 'description' => __('Displays a Facebook Like Box.', 'p3') );
+		  $widget_ops = array('classname' => 'pipdig_widget_facebook', 'description' => 'Display a Facebook Like Box.' );
 		  parent::__construct('pipdig_widget_facebook', 'pipdig - ' . __('Facebook Likebox', 'p3'), $widget_ops);
 	  }
 	  
@@ -47,7 +47,7 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 		}
 
 		if (!empty($facebook_url)) {
-			echo '<script>!function(e,n,t){var o,c=e.getElementsByTagName(n)[0];e.getElementById(t)||(o=e.createElement(n),o.id=t,o.src="//connect.facebook.net/en/sdk.js#xfbml=1&version=v2.3",c.parentNode.insertBefore(o,c))}(document,"script","facebook-jssdk");</script><div class="fb-page" data-href="' . $facebook_url . '" data-width="500" data-height="' . $height . '" data-hide-cover="' . $hide_cover . '" data-show-facepile="' . $show_faces . '" data-show-posts="' . $show_posts . '"></div>';
+			echo '<script>!function(e,n,t){var o,c=e.getElementsByTagName(n)[0];e.getElementById(t)||(o=e.createElement(n),o.id=t,o.src="//connect.facebook.net/en/sdk.js#xfbml=1&version=v2.3",c.parentNode.insertBefore(o,c))}(document,"script","facebook-jssdk");</script><div class="fb-page" data-href="' . esc_url($facebook_url) . '" data-width="500" data-height="' . $height . '" data-hide-cover="' . $hide_cover . '" data-show-facepile="' . $show_faces . '" data-show-posts="' . $show_posts . '"></div>';
 		} else {
 			echo 'Facebook widget in section "'.$args['name'].'": '.__('Setup not complete. Please check the widget options.', 'p3');
 		}
@@ -91,9 +91,7 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 
 		<p>
 			<label for="<?php echo $this->get_field_id('facebook_url'); ?>"><?php _e('Facebook Page URL:', 'p3'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('facebook_url'); ?>" 
-			name="<?php echo $this->get_field_name('facebook_url'); ?>" type="text" 
-			value="<?php echo esc_attr($facebook_url); ?>" placeholder="https://facebook.com/pipdig" />
+			<input class="widefat" id="<?php echo $this->get_field_id('facebook_url'); ?>" name="<?php echo $this->get_field_name('facebook_url'); ?>" type="text" value="<?php echo esc_url($facebook_url); ?>" placeholder="https://facebook.com/pipdig" />
 		</p>
 		
 		<p>
