@@ -80,7 +80,7 @@ function p3_trending_bar() {
 					) );
 				?>
 				<?php while ( $popular->have_posts() ): $popular->the_post();			
-					$bg = p3_catch_image(get_the_ID(), 'medium');
+					$bg = p3_catch_image(get_the_ID(), 'p3_medium');
 					?>
 					<div class="p3_trending_panel">
 						<a href="<?php the_permalink() ?>">

@@ -92,7 +92,7 @@ function p3_related_posts() {
 			while( $query->have_posts() ) { $query->the_post();
 			$title_attr = esc_attr(get_the_title());
 			$link = esc_url(get_the_permalink());
-			$img = p3_catch_image(get_the_ID(), 'medium');
+			$img = p3_catch_image(get_the_ID(), 'p3_medium');
 			
 			$image_src = 'style="background-image:url('.$img.');"';
 			if ($lazy) {

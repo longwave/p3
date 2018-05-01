@@ -60,7 +60,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 	$output .= '<div class="grid p3_grid_mosaic">';
 
 				while ( $query->have_posts() ) : $query->the_post();
-					$img = p3_catch_image(get_the_ID(), 'medium');
+					$img = p3_catch_image(get_the_ID(), 'p3_medium');
 					$link = get_the_permalink();
 					$comment_count = get_comments_number();
 					if ($comment_count == 0) {

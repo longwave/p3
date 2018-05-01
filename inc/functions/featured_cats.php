@@ -25,7 +25,7 @@ function p3_featured_cats_puller($category, $col = 3) {
 
 	while ( $query->have_posts() ): $query->the_post();
 
-		$bg = p3_catch_image(get_the_ID(), 'medium');
+		$bg = p3_catch_image(get_the_ID(), 'p3_medium');
 		$post_cat = get_the_category();
 		if ($post_cat) {
 			$post_cat = $post_cat[0]->name;

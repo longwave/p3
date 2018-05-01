@@ -157,7 +157,7 @@ function pipdig_p3_rss_post_thumbnail($content) {
 	global $post;
 	
 	if (get_option('rss_use_excerpt')) {
-		$img = p3_catch_image($post->ID, 'medium');
+		$img = p3_catch_image($post->ID, 'p3_medium');
 		$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'" width="320" /></p><p>'.strip_shortcodes(get_the_excerpt($post->ID)).'</p>';
 	} else {
 		$content = the_content($post->ID);

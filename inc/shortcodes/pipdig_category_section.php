@@ -61,7 +61,7 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 			
 			while ( $query->have_posts() ) : $query->the_post();
 			
-				$bg = p3_catch_image(get_the_ID(), 'medium');
+				$bg = p3_catch_image(get_the_ID(), 'p3_medium');
 				
 				$link = esc_url(get_the_permalink());
 				

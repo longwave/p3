@@ -91,7 +91,7 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 										
 					$filtering = join( " ", $filtering_links );
 				
-					$img = p3_catch_image(get_the_ID(), 'medium');
+					$img = p3_catch_image(get_the_ID(), 'p3_medium');
 					$link = get_the_permalink();
 					
 					

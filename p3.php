@@ -89,6 +89,18 @@ function p3_auto_updates() {
 }
 add_filter('auto_update_plugin', 'p3_auto_updates');
 
+// change medium to smaller size for faster media lib loading times.
+function p3_update_sizes_may_2018() {
+	if (get_option('p3_update_sizes_may_2018')) {
+		return;
+	}
+	update_option('medium_size_w', 300);
+	update_option('medium_size_h', 0);
+	update_option('medium_large_size_w', 0);
+	update_option('medium_large_size_h', 0);
+	update_option('p3_update_sizes_may_2018', 1);
+}
+add_action('admin_init', 'p3_update_sizes_may_2018');
 
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
@@ -231,9 +243,9 @@ function pipdig_p3_activate() {
 
 	update_option('thumbnail_size_h', 150);
 	update_option('thumbnail_size_w', 150);
-	update_option('medium_size_w', 800);
+	update_option('medium_size_w', 300);
 	update_option('medium_size_h', 0);
-	update_option('medium_large_size_w', 800);
+	update_option('medium_large_size_w', 0);
 	update_option('medium_large_size_h', 0);
 	update_option('large_size_w', 1440);
 	update_option('large_size_h', 0);
@@ -347,15 +359,14 @@ function p3_trust_me_you_dont_want_this() {
 }
 add_action('admin_init', 'p3_trust_me_you_dont_want_this');
 
-/*
+
 function pipdig_p3_theme_setup() {
 	// thumbnails
-	add_image_size( 'p3_small', 640, 360, array( 'center', 'center' ) );
+	//add_image_size( 'p3_small', 640, 360, array( 'center', 'center' ) );
 	add_image_size( 'p3_medium', 800, 450, array( 'center', 'center' ) );
-	add_image_size( 'p3_large', 1280, 720, array( 'center', 'center' ) );
+	//add_image_size( 'p3_large', 1280, 720, array( 'center', 'center' ) );
 }
 add_action( 'after_setup_theme', 'pipdig_p3_theme_setup' );
-*/
 
 // Load text domain for languages
 function pipdig_p3_textdomain() {
