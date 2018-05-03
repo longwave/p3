@@ -46,8 +46,7 @@ if (!function_exists('pipdig_settings_init')) {
 			'pipdig_content_desc_render', 
 			'pipdig_hooks_page', 
 			'pipdig_pipdig_hooks_page_section' 
-		);
-		
+		);		
 		
 		// after first post on homepage/archives
 		add_settings_field( 
@@ -75,6 +74,22 @@ if (!function_exists('pipdig_settings_init')) {
 			'pipdig_hooks_page', 
 			'pipdig_pipdig_hooks_page_section' 
 		);
+		
+		add_settings_field( 
+			'pipdig_textarea_content_script_1', 
+			__( 'Code which will be embedded when using the following shortcode in any post/page:', 'p3' ).'<br /><br />[pipdig_code_1]', 
+			'pipdig_textarea_content_script_1_render', 
+			'pipdig_hooks_page', 
+			'pipdig_pipdig_hooks_page_section' 
+		);
+		
+		add_settings_field( 
+			'pipdig_textarea_content_script_2', 
+			__( 'Code which will be embedded when using the following shortcode in any post/page:', 'p3' ).'<br /><br />[pipdig_code_2]', 
+			'pipdig_textarea_content_script_2_render', 
+			'pipdig_hooks_page', 
+			'pipdig_pipdig_hooks_page_section' 
+		);
 
 
 	}
@@ -95,7 +110,7 @@ if (!function_exists('pipdig_content_desc_render')) {
 if (!function_exists('pipdig_textarea_scripts_render')) {
 	function pipdig_textarea_scripts_render() { 
 
-		$options = get_option( 'pipdig_settings' );
+		$options = get_option('pipdig_settings');
 		?>
 		<textarea style='width:1000px; max-width: 100%;' class='code' rows='9' name='pipdig_settings[pipdig_textarea_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_scripts'])) { echo $options['pipdig_textarea_scripts']; } ?></textarea>
 		<?php
@@ -105,33 +120,33 @@ if (!function_exists('pipdig_textarea_scripts_render')) {
 
 
 if (!function_exists('pipdig_textarea_footer_scripts_render')) {
-		function pipdig_textarea_footer_scripts_render() { 
+	function pipdig_textarea_footer_scripts_render() { 
 
-			$options = get_option( 'pipdig_settings' );
-			?>
-			<textarea style='width:1000px; max-width: 100%;' class='code' rows='9' name='pipdig_settings[pipdig_textarea_footer_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_footer_scripts'])) { echo $options['pipdig_textarea_footer_scripts']; } ?></textarea>
-			<?php
+		$options = get_option('pipdig_settings');
+		?>
+		<textarea style='width:1000px; max-width: 100%;' class='code' rows='9' name='pipdig_settings[pipdig_textarea_footer_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_footer_scripts'])) { echo $options['pipdig_textarea_footer_scripts']; } ?></textarea>
+		<?php
 
-		}
+	}
 }
 
 
 if (!function_exists('pipdig_textarea_body_scripts_render')) {
-		function pipdig_textarea_body_scripts_render() { 
+	function pipdig_textarea_body_scripts_render() { 
 
-			$options = get_option( 'pipdig_settings' );
-			?>
-			<textarea style='width:1000px; max-width: 100%;' class='code' rows='9' name='pipdig_settings[pipdig_textarea_body_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_body_scripts'])) { echo $options['pipdig_textarea_body_scripts']; } ?></textarea>
-			<?php
+		$options = get_option('pipdig_settings');
+		?>
+		<textarea style='width:1000px; max-width: 100%;' class='code' rows='9' name='pipdig_settings[pipdig_textarea_body_scripts]' placeholder=''><?php if (isset($options['pipdig_textarea_body_scripts'])) { echo $options['pipdig_textarea_body_scripts']; } ?></textarea>
+		<?php
 
-		}
+	}
 }
 
 
 if (!function_exists('pipdig_textarea_after_first_post_render')) {
 	function pipdig_textarea_after_first_post_render() { 
 
-		$options = get_option( 'pipdig_settings' );
+		$options = get_option('pipdig_settings');
 		?>
 		<textarea style='width:1000px; max-width: 100%;' class='code' rows='9' name='pipdig_settings[pipdig_textarea_after_first_post]' placeholder=''><?php if (isset($options['pipdig_textarea_after_first_post'])) { echo $options['pipdig_textarea_after_first_post']; } ?></textarea>
 		<?php
@@ -143,7 +158,7 @@ if (!function_exists('pipdig_textarea_after_first_post_render')) {
 if (!function_exists('pipdig_textarea_p3_content_start_render')) {
 	function pipdig_textarea_p3_content_start_render() { 
 
-		$options = get_option( 'pipdig_settings' );
+		$options = get_option('pipdig_settings');
 		?>
 		<textarea style='width:1000px; max-width: 100%;' class='code' rows='9' name='pipdig_settings[pipdig_textarea_p3_content_start]' placeholder=''><?php if (isset($options['pipdig_textarea_p3_content_start'])) { echo $options['pipdig_textarea_p3_content_start']; } ?></textarea>
 		<?php
@@ -154,12 +169,26 @@ if (!function_exists('pipdig_textarea_p3_content_start_render')) {
 if (!function_exists('pipdig_textarea_p3_content_end_render')) {
 	function pipdig_textarea_p3_content_end_render() { 
 
-		$options = get_option( 'pipdig_settings' );
+		$options = get_option('pipdig_settings');
 		?>
 		<textarea style='width:1000px; max-width: 100%;' class='code' rows='9' name='pipdig_settings[pipdig_textarea_p3_content_end]' placeholder=''><?php if (isset($options['pipdig_textarea_p3_content_end'])) { echo $options['pipdig_textarea_p3_content_end']; } ?></textarea>
 		<?php
 
 	}
+}
+
+function pipdig_textarea_content_script_1_render() { 
+	$options = get_option('pipdig_settings');
+	?>
+	<textarea style='width:1000px; max-width: 100%;' class='code' rows='9' name='pipdig_settings[pipdig_textarea_content_script_1]' placeholder=''><?php if (isset($options['pipdig_textarea_content_script_1'])) { echo $options['pipdig_textarea_content_script_1']; } ?></textarea>
+	<?php
+}
+
+function pipdig_textarea_content_script_2_render() { 
+	$options = get_option('pipdig_settings');
+	?>
+	<textarea style='width:1000px; max-width: 100%;' class='code' rows='9' name='pipdig_settings[pipdig_textarea_content_script_2]' placeholder=''><?php if (isset($options['pipdig_textarea_content_script_2'])) { echo $options['pipdig_textarea_content_script_2']; } ?></textarea>
+	<?php
 }
 
 
@@ -195,7 +224,7 @@ if (!function_exists('pipdig_hooks_options_page')) {
 
 function pipdig_head_stuff() { // wp_head
 	$output = '';
-	$options = get_option( 'pipdig_settings', '' );
+	$options = get_option('pipdig_settings');
 	if (!empty($options['pipdig_textarea_scripts'])) {
 		$output = "<!-- pipdig p3 custom code head --> \r" . $options['pipdig_textarea_scripts'] . "\r <!-- // pipdig p3 custom code head -->";
 	}
@@ -206,7 +235,7 @@ add_action('wp_head', 'pipdig_head_stuff', 9999999);
 
 function pipdig_opening_body_stuff() { // After opening <body> tag
 	$output = '';
-	$options = get_option( 'pipdig_settings', '' );
+	$options = get_option('pipdig_settings');
 	if (!empty($options['pipdig_textarea_body_scripts'])) {
 		$output = "<!-- pipdig p3 custom code starting body --> \r" . $options['pipdig_textarea_body_scripts'] . "\r <!-- // pipdig p3 custom starting body -->";
 	}
@@ -217,7 +246,7 @@ add_action('before', 'pipdig_opening_body_stuff');
 
 function pipdig_footer_stuff() { // wp_footer
 	$output = '';
-	$options = get_option( 'pipdig_settings', '' );
+	$options = get_option('pipdig_settings');
 	if (!empty($options['pipdig_textarea_footer_scripts'])) {
 		$output = "<!-- pipdig p3 custom code footer --> \r" . $options['pipdig_textarea_footer_scripts'] . "\r <!-- // pipdig p3 custom code footer -->";
 	}
@@ -228,7 +257,7 @@ add_action('wp_footer', 'pipdig_footer_stuff', 9999999);
 
 function pipdig_after_first_post_stuff() { // After the first post (unless grid layout)
 	$output = '';
-	$options = get_option( 'pipdig_settings', '' );
+	$options = get_option('pipdig_settings');
 	if (!empty($options['pipdig_textarea_after_first_post'])) {
 		$output = '<div class="hook_after-first-post"><!-- pipdig p3 custom code after first post --> ' . do_shortcode($options['pipdig_textarea_after_first_post']) . ' <!-- // pipdig p3 custom code after first post --></div>';
 	}
@@ -239,7 +268,7 @@ add_action('after_first_post','pipdig_after_first_post_stuff');
 
 function pipdig_textarea_p3_content_start_stuff() { // top of post content
 	$output = '';
-	$options = get_option( 'pipdig_settings', '' );
+	$options = get_option('pipdig_settings');
 	if (!empty($options['pipdig_textarea_p3_content_start'])) {
 		$output = do_shortcode($options['pipdig_textarea_p3_content_start']);
 	}
@@ -250,7 +279,7 @@ add_action('p3_content_start','pipdig_textarea_p3_content_start_stuff');
 
 function pipdig_textarea_p3_content_end_stuff() { // end of post content
 	$output = '';
-	$options = get_option( 'pipdig_settings', '' );
+	$options = get_option('pipdig_settings');
 	if (!empty($options['pipdig_textarea_p3_content_end'])) {
 		$output = do_shortcode($options['pipdig_textarea_p3_content_end']);
 	}

@@ -13,8 +13,12 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.9.1 =
-* Date: 03 April 2018.
+= 3.10.0 =
+* Date: 03 May 2018.
+* New! display Google Adsense ads [within post content](https://support.pipdig.co/articles/wordpress-display-adsense-start-end-blog-posts/#article_display_in_content).
+
+= 3.9.0 =
+* Date: 30 April 2018.
 * New! [Spotify widget](https://support.pipdig.co/articles/wordpress-spotify-widget/).
 * Pinterest Hover Button can now use data-pin-description attribute.
 

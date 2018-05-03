@@ -16,6 +16,7 @@ include(plugin_dir_path(__FILE__).'shortcodes/pipdig_youtube_slider.php');
 include(plugin_dir_path(__FILE__).'shortcodes/pipdig_total_followers.php');
 include(plugin_dir_path(__FILE__).'shortcodes/pipdig_instagram_feed.php');
 include(plugin_dir_path(__FILE__).'shortcodes/pipdig_padded_text.php');
+include(plugin_dir_path(__FILE__).'shortcodes/pipdig_code.php');
 
 
 // stop wpautop on shortcodes http://stackoverflow.com/questions/5940854/disable-automatic-formatting-inside-wordpress-shortcodes
