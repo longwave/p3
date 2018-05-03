@@ -151,19 +151,17 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 */
 
 // Add Featured Image to feed if using excerpt mode, or just add the full content if not
-if (!class_exists('Rss_Image_Feed')) {
+if (!class_exists('Rss_Image_Feed') && !function_exists('firss_init')) {
 function pipdig_p3_rss_post_thumbnail($content) {
 	
-	global $post;
-	
 	if (get_option('rss_use_excerpt')) {
+		global $post;
 		$img = p3_catch_image($post->ID, 'p3_medium');
 		$content = '<p><img src="'.esc_url($img).'" alt="'.esc_attr($post->post_title).'" width="320" /></p><p>'.strip_shortcodes(get_the_excerpt($post->ID)).'</p>';
+		return strip_shortcodes($content);
 	} else {
-		$content = the_content($post->ID);
+		return $content;
 	}
-
-	return strip_shortcodes($content);
 	
 }
 add_filter('the_excerpt_rss', 'pipdig_p3_rss_post_thumbnail');
@@ -196,11 +194,11 @@ function pipdig_p3_emmmm_heeey() {
 	jQuery(document).ready(function($) {
 		
 		$(window).scroll(function() {
-			 if($(window).scrollTop() + $(window).height() == $(document).height()) {
+			if ($(window).scrollTop() + $(window).height() == $(document).height()) {
 				$(".cc-window,.cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '0').css('visibility', 'hidden');
-			 } else {
-				$(".cc-window,.cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '1').css('visibility', 'visible');
-			 }
+			} else {
+				$(".cc-window,.cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script").css('opacity', '').css('visibility', '');
+			}
 		});
 		
 		<?php if (!get_transient('p3_news_new_user_wait')) { ?>
