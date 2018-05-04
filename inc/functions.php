@@ -57,6 +57,30 @@ function get_the_post_thumbnail_url( $post = null, $size = 'post-thumbnail' ) {
 }
 }
 
+// grab YT video thumbnail
+function p3_get_youtube_video_thumb($post_id) {
+    $post = get_post($post_id);
+    $content = do_shortcode(apply_filters('the_content', $post->post_content));
+    $embeds = get_media_embedded_in_content($content);
+    if (!empty($embeds)) {
+        foreach ($embeds as $embed) {
+            if (strpos($embed, 'youtube')) {
+                preg_match('/embed\/([\w+\-+]+)[\\"\?]/', $embed, $output_array);
+				if (!empty($output_array[1])) {
+					$id = $output_array[1];
+					$img = "https://img.youtube.com/vi/".$id."/0.jpg";
+					$max_res_url = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
+					if (@getimagesize($max_res_url)) {
+						$img = $max_res_url;
+					}
+					return $img;
+				}
+            }
+        }
+    }
+	return false;
+}
+
 // Grab image
 function p3_catch_image($post_id = '', $size = 'large') {
 	
@@ -81,32 +105,6 @@ function p3_catch_image($post_id = '', $size = 'large') {
 // depreciated
 function pipdig_p3_catch_that_image() {
 	
-}
-
-// grab YT video thumbnail
-function p3_get_youtube_video_thumb($post_id) {
-    $post = get_post($post_id);
-    $content = do_shortcode(apply_filters('the_content', $post->post_content));
-    $embeds = get_media_embedded_in_content($content);
-    if (!empty($embeds)) {
-        foreach ($embeds as $embed) {
-            if (strpos($embed, 'youtube')) {
-                preg_match('/embed\/([\w+\-+]+)[\\"\?]/', $embed, $output_array);
-				if (!empty($output_array[1])) {
-					$id = $output_array[1];
-					$img = "https://img.youtube.com/vi/".$id."/0.jpg";
-					/*
-					$max_res_url = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
-					if (@getimagesize($max_res_url)) {
-						$img = $max_res_url;
-					}
-					*/
-					return $img;
-				}
-            }
-        }
-    }
-	return false;
 }
 
 // truncate stuff
