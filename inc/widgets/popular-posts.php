@@ -235,7 +235,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		}
 		
 		// medium for sidebar, large for everywhere else
-		$img_size = 'medium';
+		$img_size = 'p3_medium';
 		if (isset($args['id']) && $args['id'] != 'sidebar-1') {
 			$img_size = 'large';
 		}

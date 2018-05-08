@@ -84,7 +84,12 @@ function p3_get_youtube_video_thumb($post_id) {
 // Grab image
 function p3_catch_image($post_id = '', $size = 'large') {
 	
-	if (get_the_post_thumbnail_url($post_id)) {
+	$attachemnt_id = get_post_thumbnail_id($post_id);
+	$nearest = image_get_intermediate_size($attachemnt_id, $size);
+	
+	if ($nearest['url']) {
+		return $nearest['url'];
+	} elseif (get_the_post_thumbnail_url($post_id)) {
 		return esc_url(get_the_post_thumbnail_url($post_id, $size));
 	} else {
 		$post = get_post($post_id);

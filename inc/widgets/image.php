@@ -73,7 +73,7 @@ class pipdig_Image_Widget extends WP_Widget {
 				$image_link = $instance['image_uri'];
 				$image_data = pipdig_get_attachment_id($instance['image_uri']); // use the medium thumbnail if we can find it
 				if ($image_data) {
-					$img_size = 'medium';
+					$img_size = 'p3_medium';
 					if ($args['id'] != 'sidebar-1') {
 						$img_size = 'large';
 					}
