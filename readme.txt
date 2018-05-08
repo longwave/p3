@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.10.1 =
+* Date: 08 May 2018.
+* Improve loading time for images in the Media library. This may take a few weeks to start working fully.
+
 = 3.10.0 =
 * Date: 03 May 2018.
 * New! Shortcode to display Google Adsense ads [within post content](https://support.pipdig.co/articles/wordpress-display-adsense-start-end-blog-posts/#article_display_in_content).
