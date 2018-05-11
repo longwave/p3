@@ -162,4 +162,4 @@ class p3_width_customizer_Customize {
 		);
 	}
 }
-add_action( 'customize_register' , array( 'p3_width_customizer_Customize' , 'register' ) );
+add_action('customize_register', array('p3_width_customizer_Customize', 'register'));

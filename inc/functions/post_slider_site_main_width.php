@@ -102,124 +102,121 @@ add_filter( 'body_class', 'p3_full_width_slider_site_main_home_body_class' );
 
 
 // customiser
-if (!class_exists('pipdig_full_width_slider_site_main_Customize')) {
-	class pipdig_full_width_slider_site_main_Customize {
+class pipdig_full_width_slider_site_main_Customize {
+	
+	public static function register ( $wp_customize ) {
 		
-		public static function register ( $wp_customize ) {
+		$wp_customize->add_section( 'p3_full_width_slider_site_main_section', 
+			array(
+				'title' => __( 'Large Rectangle Slider', 'p3' ),
+				//'description'=> __( 'Display recent/popular posts at the top of your site.', 'p3' ),
+				'capability' => 'edit_theme_options',
+				//'panel' => 'pipdig_features',
+				'priority' => 52,
+			) 
+		);
 			
-			$wp_customize->add_section( 'p3_full_width_slider_site_main_section', 
-				array(
-					'title' => __( 'Large Rectangle Slider', 'p3' ),
-					//'description'=> __( 'Display recent/popular posts at the top of your site.', 'p3' ),
-					'capability' => 'edit_theme_options',
-					//'panel' => 'pipdig_features',
-					'priority' => 52,
-				) 
-			);
+		// Enable feature
+		$wp_customize->add_setting('p3_full_width_slider_site_main_enable',
+			array(
+				'default' => p3_theme_enabled(array('opulence')),
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control(
+			'p3_full_width_slider_site_main_enable',
+			array(
+				'type' => 'checkbox',
+				'label' => __( 'Enable this feature', 'p3' ),
+				'section' => 'p3_full_width_slider_site_main_section',
+			)
+		);
 			
-			// Enable feature
-			$wp_customize->add_setting('p3_full_width_slider_site_main_enable',
-				array(
-					'default' => p3_theme_enabled(array('opulence')),
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control(
-				'p3_full_width_slider_site_main_enable',
-				array(
-					'type' => 'checkbox',
-					'label' => __( 'Enable this feature', 'p3' ),
-					'section' => 'p3_full_width_slider_site_main_section',
-				)
-			);
-			
-			// homepage only
-			$wp_customize->add_setting('p3_full_width_slider_site_main_home',
-				array(
-					'default' => 1,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control(
-				'p3_full_width_slider_site_main_home',
-				array(
-					'type' => 'checkbox',
-					'label' => __( 'Display on homepage only', 'p3' ),
-					'description' => '<hr>',
-					'section' => 'p3_full_width_slider_site_main_section',
-				)
-			);
+		// homepage only
+		$wp_customize->add_setting('p3_full_width_slider_site_main_home',
+			array(
+				'default' => 1,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control(
+			'p3_full_width_slider_site_main_home',
+			array(
+				'type' => 'checkbox',
+				'label' => __( 'Display on homepage only', 'p3' ),
+				'description' => '<hr>',
+				'section' => 'p3_full_width_slider_site_main_section',
+			)
+		);
 			
 			
-			// Number of images to display in slider
-			$wp_customize->add_setting('p3_full_width_slider_site_main_slider_num',
-				array(
-					'default' => 4,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control('p3_full_width_slider_site_main_slider_num',
-				array(
-					'type' => 'number',
-					'label' => __('Number of posts to show in the slider', 'p3'),
-					'section' => 'p3_full_width_slider_site_main_section',
-				)
-			);
+		// Number of images to display in slider
+		$wp_customize->add_setting('p3_full_width_slider_site_main_slider_num',
+			array(
+				'default' => 4,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control('p3_full_width_slider_site_main_slider_num',
+			array(
+				'type' => 'number',
+				'label' => __('Number of posts to show in the slider', 'p3'),
+				'section' => 'p3_full_width_slider_site_main_section',
+			)
+		);
 			
-			// Choose a category for slider
-			$wp_customize->add_setting('p3_full_width_slider_site_main_slider_cat',
+		// Choose a category for slider
+		$wp_customize->add_setting('p3_full_width_slider_site_main_slider_cat',
+			array(
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Category_Control(
+				$wp_customize,
+				'p3_full_width_slider_site_main_slider_cat',
 				array(
-					'sanitize_callback' => 'absint',
+					'label'    => __('Display posts from:', 'p3'),
+					'settings' => 'p3_full_width_slider_site_main_slider_cat',
+					'section'  => 'p3_full_width_slider_site_main_section'
 				)
-			);
-			$wp_customize->add_control(
-				new WP_Customize_Category_Control(
-					$wp_customize,
-					'p3_full_width_slider_site_main_slider_cat',
-					array(
-						'label'    => __('Display posts from:', 'p3'),
-						'settings' => 'p3_full_width_slider_site_main_slider_cat',
-						'section'  => 'p3_full_width_slider_site_main_section'
-					)
-				)
-			);
+			)
+		);
+		
+		// title backgroud color
+		$wp_customize->add_setting('p3_full_width_slider_site_main_text_bg_color',
+			array(
+				'default' => '#ffffff',
+				//'transport'=>'postMessage',
+				'sanitize_callback' => 'sanitize_hex_color',
+			)
+		);
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_full_width_slider_site_main_text_bg_color',
+			array(
+				'label' => __( 'Background color', 'p3' ),
+				'settings' => 'p3_full_width_slider_site_main_text_bg_color',
+				'section' => 'p3_full_width_slider_site_main_section',
+			)
+			)
+		);
 			
-			// title backgroud color
-			$wp_customize->add_setting('p3_full_width_slider_site_main_text_bg_color',
-				array(
-					'default' => '#ffffff',
-					//'transport'=>'postMessage',
-					'sanitize_callback' => 'sanitize_hex_color',
-				)
-			);
-			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_full_width_slider_site_main_text_bg_color',
-				array(
-					'label' => __( 'Background color', 'p3' ),
-					'settings' => 'p3_full_width_slider_site_main_text_bg_color',
-					'section' => 'p3_full_width_slider_site_main_section',
-				)
-				)
-			);
-			
-			// title color
-			$wp_customize->add_setting('p3_full_width_slider_site_main_text_color',
-				array(
-					'default' => '#000000',
-					//'transport'=>'postMessage',
-					'sanitize_callback' => 'sanitize_hex_color',
-				)
-			);
-			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_full_width_slider_site_main_text_color',
-				array(
-					'label' => __( 'Title color', 'p3' ),
-					'settings' => 'p3_full_width_slider_site_main_text_color',
-					'section' => 'p3_full_width_slider_site_main_section',
-				)
-				)
-			);
+		// title color
+		$wp_customize->add_setting('p3_full_width_slider_site_main_text_color',
+			array(
+				'default' => '#000000',
+				//'transport'=>'postMessage',
+				'sanitize_callback' => 'sanitize_hex_color',
+			)
+		);
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_full_width_slider_site_main_text_color',
+			array(
+				'label' => __( 'Title color', 'p3' ),
+				'settings' => 'p3_full_width_slider_site_main_text_color',
+				'section' => 'p3_full_width_slider_site_main_section',
+			)
+			)
+		);
 
-
-		}
 	}
-	add_action( 'customize_register' , array( 'pipdig_full_width_slider_site_main_Customize' , 'register' ) );
 }
+add_action('customize_register', array('pipdig_full_width_slider_site_main_Customize', 'register'));

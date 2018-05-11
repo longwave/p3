@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.10.2 =
+* Date: 11 May 2018.
+* Higher quality images from Pinterest.
+
 = 3.10.1 =
 * Date: 08 May 2018.
 * Improve loading time for images in the Media library. This may take a few weeks to start working fully.

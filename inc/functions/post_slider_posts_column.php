@@ -242,4 +242,4 @@ class pipdig_post_slider_posts_column_Customize {
 
 	}
 }
-add_action( 'customize_register' , array( 'pipdig_post_slider_posts_column_Customize' , 'register' ) );
+add_action('customize_register', array('pipdig_post_slider_posts_column_Customize', 'register'));

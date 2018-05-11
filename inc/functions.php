@@ -82,14 +82,21 @@ function p3_get_youtube_video_thumb($post_id) {
 }
 
 // Grab image
-function p3_catch_image($post_id = '', $size = 'large') {
+function p3_catch_image($post_id = '', $size = 'large', $meta_field = '') {
+	
+	if ($meta_field && function_exists('rwmb_meta')) {
+		$images = rwmb_meta('pipdig_meta_'.$meta_field, 'type=image&limit=1&size='.$size);
+		if (isset($images[0]['url'])){
+			return esc_url($images[0]['url']);
+		}
+	}
 	
 	$attachemnt_id = get_post_thumbnail_id($post_id);
 	$nearest = image_get_intermediate_size($attachemnt_id, $size);
 	
-	if ($nearest['url']) {
+	if (!empty($nearest['url'])) {
 		return $nearest['url'];
-	} elseif (get_the_post_thumbnail_url($post_id)) {
+	} elseif (get_the_post_thumbnail_url($post_id, $size)) {
 		return esc_url(get_the_post_thumbnail_url($post_id, $size));
 	} else {
 		$post = get_post($post_id);

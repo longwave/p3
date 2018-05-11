@@ -240,7 +240,7 @@ if ( !class_exists( 'pipdig_widget_latest_youtube' ) ) {
 		<!--<p>You can display either a Channel or a Playlist in this widget. Use one of the options below:</p>-->
 		
 		<h3>YouTube Channel</h3>
-		<p>If you would like to display any videos from a channel, you should enter your <a href="https://support.google.com/youtube/answer/3250431" target="_blank">Channel ID</a> below.</p>
+		<p>If you would like to display any videos from a channel, you should enter your <a href="https://support.google.com/youtube/answer/3250431" target="_blank" rel="noopener">Channel ID</a> below.</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('channel_id'); ?>"><?php _e('YouTube Channel ID:', 'p3'); ?>
 			<input class="widefat" id="<?php echo $this->get_field_id('channel_id'); ?>" 

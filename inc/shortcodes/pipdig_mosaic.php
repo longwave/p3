@@ -15,8 +15,8 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		'show_comments' => '1'
 	), $atts ) );
 	
-	//wp_enqueue_script( 'pipdig-imagesloaded' );
-	wp_enqueue_script( 'masonry' );
+	wp_enqueue_script( 'pipdig-imagesloaded' );
+	wp_enqueue_script( 'pipdig-masonry' );
 	
 	$percent = '47';
 	
@@ -54,7 +54,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 		'paged' => $paged,
 		)
 	);
-				
+	
 	if ( $query->have_posts() ) {
 		
 	$output .= '<div class="grid p3_grid_mosaic">';
@@ -136,7 +136,6 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 			.grid-item {width: 48%}
 		}
 	</style>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
 	<script>
 	jQuery(document).ready(function($) {
 		$(".entry-content").imagesLoaded( function(){

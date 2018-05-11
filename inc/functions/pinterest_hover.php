@@ -84,6 +84,11 @@ function p3_pinterest_hover() {
 			position = '';
 			this.each(function(){
 				
+				// skip image if manually excluded with data-pin-nopin="true"
+				if ($(this).data("pin-nopin") == true) {
+					return true;
+				}
+				
 				// skip image if smaller than 350px wide (except on mobiles)
 				if ( ($(this).width() < 350) && (document.documentElement.clientWidth > 769 ) ) {
 					return true;
@@ -167,10 +172,10 @@ function p3_pinterest_hover() {
 	})(jQuery);
 	<?php if ($mobile == 1) { ?>
 	if (document.documentElement.clientWidth > 769 ) { // not on mobiles
-		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img)').imgPin();
+		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img), .p3_pin_this').imgPin();
 	}
 	<?php } else { ?>
-		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img)').imgPin();
+		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img, .nopin img), .p3_pin_this').imgPin();
 	<?php } ?>
 	</script>
 	<?php
@@ -233,19 +238,21 @@ class pipdig_pinterest_hover_Customize {
 		);
 		
 		// show on archives
-		$wp_customize->add_setting('p3_pinterest_hover_enable_archives',
-			array(
-				'default' => 0,
-				'sanitize_callback' => 'absint',
-			)
-		);
-		$wp_customize->add_control('p3_pinterest_hover_enable_archives',
-			array(
-				'type' => 'checkbox',
-				'label' => __('Display on categories/archives', 'p3'),
-				'section' => 'pipdig_pinterest_hover',
-			)
-		);
+		if (get_option('pipdig_theme') != 'sartorial') {
+			$wp_customize->add_setting('p3_pinterest_hover_enable_archives',
+				array(
+					'default' => 0,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_pinterest_hover_enable_archives',
+				array(
+					'type' => 'checkbox',
+					'label' => __('Display on categories/archives', 'p3'),
+					'section' => 'pipdig_pinterest_hover',
+				)
+			);
+		}
 		
 		// display on mobile or desktop+mobile?			
 		$wp_customize->add_setting('p3_pinterest_hover_mobile',

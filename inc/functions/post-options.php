@@ -39,7 +39,7 @@ class pipdig_p3_post_options_Customiser {
 				'capability' => 'edit_theme_options',
 			) 
 		);
-			
+		
 		// add featurd image to post
 		$wp_customize->add_setting('display_featured_image',
 			array(
@@ -56,7 +56,7 @@ class pipdig_p3_post_options_Customiser {
 				'section' => 'pipdig_posts',
 			)
 		);
-			
+		
 		// Show author bio
 		$wp_customize->add_setting('p3_show_author_bio',
 			array(
@@ -69,7 +69,7 @@ class pipdig_p3_post_options_Customiser {
 			array(
 				'type' => 'checkbox',
 				'label' => __( 'Display author bio in the footer', 'p3' ),
-				'description' => 'You can edit the description text and author name on <a href="'.admin_url('profile.php').'" target="_blank">this page</a>',
+				'description' => 'Please see <a href="https://support.pipdig.co/articles/wordpress-author-bio-box/" target="_blank" rel="noopener">this guide</a> for more information.',
 				'section' => 'pipdig_posts',
 			)
 		);

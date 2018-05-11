@@ -76,26 +76,29 @@ if (!function_exists('p3_pinterest_fetch')) {
 			if (empty($xml->channel->item[$i]->description)) {
 				break;
 			}
-					
+			
 			$img_url = '';				
 			$pin_desc = $xml->channel->item[$i]->description;
 			preg_match('@src="([^"]+)"@' , $pin_desc, $match);
 			$img_url = array_pop($match);
+			
+			$large_img = str_replace('236x', '736x', $img_url);
 
 			$images[$i] = array (
 				'src' => esc_url($img_url),
+				'large' => esc_url($large_img),
 				'link' => esc_url($xml->channel->item[$i]->link),
 				'title' => strip_tags($xml->channel->item[$i]->title),
 			);
 			
 		}
-			
+		
 		if (!empty($images)) {
 			return $images;
 		} else {
 			return false;
 		}
-			
+		
 	}
 	add_action('login_footer', 'p3_pinterest_fetch', 99); // push on login page to avoid cache
 }

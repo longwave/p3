@@ -10,8 +10,8 @@ function pipdig_p3_instagram_shortcode( $atts, $content = null ) {
 		'number' => '',
 	), $atts ) );
 	
-	//wp_enqueue_script( 'imagesloaded' ); // I know, I know :(
-	wp_enqueue_script( 'masonry' );
+	wp_enqueue_script( 'pipdig-imagesloaded' );
+	wp_enqueue_script( 'pipdig-masonry' );
 	
 	$output = '';
 	
@@ -71,7 +71,6 @@ function pipdig_p3_instagram_shortcode( $atts, $content = null ) {
 	}
 	
 	$output .= '
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
 	<script>
 	jQuery(document).ready(function($) {
 		$(".p3_instagram_feed_shortcode").imagesLoaded( function(){
