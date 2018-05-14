@@ -55,6 +55,7 @@ class pipdig_widget_profile_function extends WP_Widget {
 				$horizontal = false;
 			} 
 			
+			$img = '';
 			if (!empty($instance['image_uri'])) {
 				$image_src = $instance['image_uri'];
 				$image_data = pipdig_get_attachment_id($instance['image_uri']); // use the medium thumbnail if we can find it

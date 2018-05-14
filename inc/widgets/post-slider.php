@@ -177,7 +177,7 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 	
 	// medium for sidebar, large for everywhere else
 	$img_size = 'medium';
-	if ($args['id'] != 'sidebar-1') {
+	if (isset($args['id']) && ($args['id'] != 'sidebar-1')) {
 		$img_size = 'large';
 	}
 		
