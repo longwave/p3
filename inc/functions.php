@@ -103,7 +103,6 @@ function p3_catch_image($post_id = '', $size = 'large', $meta_field = '') {
 		preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 		if (!empty($matches[1][0])) {
 			$image_link = esc_url($matches[1][0]);
-			$image_link = reset($image_link); // php <5.4 way to get [0] value of array. Boo for crappy hosts!
 			$image_link = str_replace('http:', '', $image_link);
 			return $image_link;
 		}
