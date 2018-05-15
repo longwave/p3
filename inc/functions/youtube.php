@@ -50,13 +50,32 @@ function p3_youtube_fetch($channel_id) {
 						$thumbnail = "https://img.youtube.com/vi/".$id."/0.jpg";
 						
 						if ($i < 4) { // First few get special treatment. Roll out the red carpet.
+						
 							$max_res_url_1 = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
 							$max_res_url_2 = "https://i.ytimg.com/vi/".$id."/maxresdefault.jpg";
+							
 							if (@getimagesize($max_res_url_1)) {
 								$thumbnail = $max_res_url_1;
 							} elseif (@getimagesize($max_res_url_2)) {
 								$thumbnail = $max_res_url_2;
+							} else {
+								stream_context_set_default( [
+									'ssl' => [
+										'verify_peer' => false,
+										'verify_peer_name' => false,
+									],
+								]);
+								$header_response = get_headers($max_res_url_1, 1);
+								if (strpos($header_response[0], "404") === false) {
+									$thumbnail = $max_res_url_1;
+								} else {
+									$header_response = get_headers($max_res_url_2, 1);
+									if (strpos($header_response[0], "404") === false) {
+										$thumbnail = $max_res_url_2;
+									}
+								}
 							}
+							
 						}
 						
 						$videos[$i] = array (
