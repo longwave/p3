@@ -58,13 +58,13 @@ function p3_youtube_fetch($channel_id) {
 								$thumbnail = $max_res_url_1;
 							} elseif (@getimagesize($max_res_url_2)) {
 								$thumbnail = $max_res_url_2;
-							} elseif (strnatcmp(phpversion(),'5.4.0') >= 0) {
-								stream_context_set_default( [
-									'ssl' => [
+							} else {
+								stream_context_set_default( array(
+									'ssl' => array(
 										'verify_peer' => false,
 										'verify_peer_name' => false,
-									],
-								]);
+									),
+								) );
 								$header_response = get_headers($max_res_url_1, 1);
 								if (strpos($header_response[0], "404") === false) {
 									$thumbnail = $max_res_url_1;

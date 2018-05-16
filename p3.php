@@ -20,8 +20,8 @@ function p3_php_version_notice() {
 	}
 	?>
 	<div class="notice notice-error is-dismissible">
-		<h2><span class="dashicons dashicons-warning"></span> PHP Warning</h2>
-		<p>Your web server is using an insecure version of PHP. Please contact your web host so that they can update your server to PHP 7.0 or higher. <strong>DO NOT IGNORE THIS MESSAGE</strong>.</p>
+		<h2><span class="dashicons dashicons-warning"></span> Security Warning</h2>
+		<p>Your host is using an old, insecure version of PHP. Please contact your web host so that they can update to PHP version 7.0 or higher. <strong>DO NOT IGNORE THIS MESSAGE</strong>.</p>
 		<p>&nbsp;</p>
 	</div>
 	<?php
