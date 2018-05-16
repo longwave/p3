@@ -15,13 +15,13 @@ if (!defined('ABSPATH')) die;
 define( 'PIPDIG_P3_V', '3.11.0' );
 
 function p3_php_version_notice() {
-	if (strnatcmp(phpversion(),'5.3.10') >= 0) {
+	if (strnatcmp(phpversion(),'5.4.0') >= 0) {
 		return;
 	}
 	?>
 	<div class="notice notice-error is-dismissible">
 		<h2><span class="dashicons dashicons-warning"></span> PHP Warning</h2>
-		<p>Your web server is using an insecure version of PHP. Please contact your web host so that they can update your server to PHP 5.6 or higher. <strong>DO NOT IGNORE THIS MESSAGE</strong>.</p>
+		<p>Your web server is using an insecure version of PHP. Please contact your web host so that they can update your server to PHP 7.0 or higher. <strong>DO NOT IGNORE THIS MESSAGE</strong>.</p>
 		<p>&nbsp;</p>
 	</div>
 	<?php
