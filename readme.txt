@@ -15,7 +15,7 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 = 3.11.0 =
 * Date: 16 May 2018.
-* Improved "show likes on hover" styling on Instagram imaages.
+* Improved "show likes on hover" styling on Instagram images.
 * Higher quality video thumbnails from YouTube.
 * Higher quality images from Pinterest.
 

@@ -222,7 +222,7 @@ class pipdig_p3_featured_panels_Customize {
 		$wp_customize->add_section( 'p3_featured_panels_section', 
 			array(
 				'title' => __( 'Featured Image Panels', 'p3' ),
-				'description'=> 'Display up to 4 image panels at the top of the homepage. Each panel can also be linked to anywhere you like. E.g. a post, category, page or even an external website.',
+				'description'=> 'Display up to 4 image panels at the top of the homepage. Each panel can also be linked to anywhere you like. E.g. a post, category, page or even an external website. <a href="https://support.pipdig.co/articles/wordpress-featured-image-panels/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
 				'capability' => 'edit_theme_options',
 				//'panel' => 'pipdig_features',
 				'priority' => 59,
