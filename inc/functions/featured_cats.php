@@ -22,18 +22,21 @@ function p3_featured_cats_puller($category, $col = 3) {
 		'cat'					=> $category,
 		)
 	);
-	/*
+	
 	$bg = '';
 	$cat_img = get_term_meta( $category, 'cat_image', true);
-	if ($cat_img && isset(wp_get_attachment_image_src($cat_img, 'p3_medium')[0])) {
-		$bg = esc_url(wp_get_attachment_image_src($cat_img, 'p3_medium')[0]);
+	if ($cat_img) {
+		$img_src = wp_get_attachment_image_src($cat_img, 'p3_medium');
+		if ($img_src) {
+			$bg = esc_url(reset($img_src));
+		}
 	}
-*/
+
 	while ( $query->have_posts() ): $query->the_post();
 		
-		//if (!$bg) {
+		if (!$bg) {
 			$bg = p3_catch_image(get_the_ID(), 'p3_medium');
-		//}
+		}
 		
 		if (get_theme_mod('p3_featured_cats_link2cat')) {
 			$the_link = get_category_link($category);
