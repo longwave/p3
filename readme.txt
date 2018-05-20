@@ -13,6 +13,11 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.11.1 =
+* Date: 20 May 2018.
+* Select an image for categories that are shown in the [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/) option.
+
+
 = 3.11.0 =
 * Date: 16 May 2018.
 * Improved "show likes on hover" styling on Instagram images.

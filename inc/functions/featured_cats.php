@@ -14,7 +14,7 @@ function p3_featured_cats_puller($category, $col = 3) {
 	} elseif ($the_shape == 3) {
 		$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC'; // square
 	}
-
+	
 	$query = new WP_Query( array(
 		'post_type'				=> 'post',
 		'showposts'				=> 1,
@@ -22,15 +22,17 @@ function p3_featured_cats_puller($category, $col = 3) {
 		'cat'					=> $category,
 		)
 	);
+	
+	$bg = '';
+	$cat_img = get_term_meta( $category, 'cat_image', true);
+	if ($cat_img) {
+		$bg = esc_url(wp_get_attachment_image_src($cat_img, 'p3_medium')[0]);
+	}
 
 	while ( $query->have_posts() ): $query->the_post();
-
-		$bg = p3_catch_image(get_the_ID(), 'p3_medium');
-		$post_cat = get_the_category();
-		if ($post_cat) {
-			$post_cat = $post_cat[0]->name;
-		} else {
-			$post_cat = '';
+		
+		if (!$bg) {
+			$bg = p3_catch_image(get_the_ID(), 'p3_medium');
 		}
 		
 		if (get_theme_mod('p3_featured_cats_link2cat')) {
@@ -41,13 +43,13 @@ function p3_featured_cats_puller($category, $col = 3) {
 		
 		?>
 		<div class="col-sm-<?php echo strip_tags($col); ?> p3_featured_cat">
-			<h3 class="widget-title"><span><?php echo get_cat_name($category); ?></span></h3>
+			<h3 class="widget-title"><span><?php echo strip_tags(get_cat_name($category)); ?></span></h3>
 			<a href="<?php echo esc_url($the_link); ?>" class="p3_cover_me" style="background-image:url(<?php echo $bg; ?>);">
 				<img src="<?php echo $shape; ?>" class="p3_invisible" />
 			</a>
 			<?php if (get_theme_mod('p3_featured_cats_show_dates', 1)) { ?>
 			<div class="entry-meta">
-				<?php echo get_the_date(); ?>
+				<?php the_date(); ?>
 			</div>
 			<?php } ?>
 			<?php if (get_theme_mod('p3_featured_cats_show_title', 1)) { ?>

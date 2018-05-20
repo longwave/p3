@@ -176,7 +176,7 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 	$the_query = new WP_Query( $args );
 	
 	// medium for sidebar, large for everywhere else
-	$img_size = 'medium';
+	$img_size = 'p3_medium';
 	if (isset($args['id']) && ($args['id'] != 'sidebar-1')) {
 		$img_size = 'large';
 	}
