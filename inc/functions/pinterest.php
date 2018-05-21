@@ -60,9 +60,9 @@ if (!function_exists('p3_pinterest_fetch')) {
 		}
 			
 		//$body = json_decode($result['body']);
-			
+		
 		//print_r($result['body']);
-			
+		
 		if ($body === 400) {
 			return false;
 		}
@@ -70,6 +70,8 @@ if (!function_exists('p3_pinterest_fetch')) {
 		libxml_use_internal_errors(true);
 		
 		$xml = simplexml_load_string($body);
+		
+		$images = array();
 		
 		for ($i = 0; $i < 20; $i++) {
 			
@@ -93,7 +95,7 @@ if (!function_exists('p3_pinterest_fetch')) {
 			
 		}
 		
-		if (!empty($images)) {
+		if ($images) {
 			return $images;
 		} else {
 			return false;

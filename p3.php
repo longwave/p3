@@ -59,6 +59,8 @@ function pipdig_p3_deactivate() {
 }
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
 
+include(plugin_dir_path(__FILE__).'inc/cron.php');
+
 // bootstrap
 $this_theme = wp_get_theme();
 $theme_textdomain = $this_theme->get('TextDomain');
@@ -138,7 +140,6 @@ include_once(plugin_dir_path(__FILE__).'inc/meta.php');
 include_once(plugin_dir_path(__FILE__).'inc/dash.php');
 include_once(plugin_dir_path(__FILE__).'inc/widgets.php');
 include(plugin_dir_path(__FILE__).'inc/shortcodes.php');
-include(plugin_dir_path(__FILE__).'inc/cron.php');
 include(plugin_dir_path(__FILE__).'inc/beaver.php');
 
 include_once (ABSPATH.'wp-admin/includes/plugin.php');
