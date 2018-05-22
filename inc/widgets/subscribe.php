@@ -42,9 +42,13 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 			
 			<form id="feedburner" action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"	onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=<?php echo $feed; ?>&amp;loc=<?php echo $lang; ?>', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true" >
 				<?php if (!$text == '') { ?><label for="fbg-mail"><?php echo $text; ?></label><?php } ?>
-				<p><input id="fbg-mail" type="email" required name="email" placeholder="<?php echo esc_attr(__('Enter your email', 'p3')); ?>" style="text-align:center" />
+				<p>
+				<input id="fbg-mail" type="email" name="email" placeholder="<?php echo esc_attr(__('Enter your email', 'p3')); ?>" style="text-align:center" required />
 				<input type="hidden" value="<?php echo $feed; ?>" name="uri" />
 				<input type="hidden" name="loc" value="<?php echo $lang; ?>" />
+				<?php if (isset($instance['show_confirm'])) { ?>
+					<br /><label class="p3_subscribe_confirm"><input type="checkbox" name="p3_sub_confirm" value="1" required checked> I accept that my subscription will be processed by FeedBurner and their <a href="https://policies.google.com/privacy" target="_blank" rel="nofollow noopener">Privacy Policy</a> and that I can unsubscribe at any time.</label>
+				<?php } ?>
 				<input type="submit" style="margin-top: 10px;" value="<?php echo esc_attr(__('Subscribe', 'p3')); ?>" />
 				</p>
 			</form>
@@ -55,21 +59,24 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 		}
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');
-	  }
+	}
 	 
-	  public function form( $instance ) {
-	   
+	public function form( $instance ) {
+		
 		// PART 1: Extract the data from the instance variable
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 		$title = $instance['title'];
 		if (isset($instance['feed'])) { 
 			$feed =	$instance['feed'];
 		}
-		 
+		if (isset($instance['show_confirm'])) { 
+			$show_confirm = $instance['show_confirm'];
+		}
+		
 	   
 		// PART 2-3: Display the fields
 		?>
-		 
+		
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
@@ -91,22 +98,27 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('text'); ?>"><?php _e('Text to display above the form:', 'p3'); ?></label>
-	  <textarea class="widefat" id="<?php echo $this->get_field_id('text'); ?>" name="<?php echo $this->get_field_name('text'); ?>" ><?php if (isset($instance['text'])) { echo $instance['text']; } else { _e('Enter your email address to subscribe:', 'p3'); }; ?></textarea>
+			<textarea class="widefat" id="<?php echo $this->get_field_id('text'); ?>" name="<?php echo $this->get_field_name('text'); ?>" ><?php if (isset($instance['text'])) { echo $instance['text']; } else { _e('Enter your email address to subscribe:', 'p3'); }; ?></textarea>
+		</p>
+		
+		<p>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'show_confirm' ); ?>" name="<?php echo $this->get_field_name( 'show_confirm' ); ?>" <?php checked(isset($instance['show_confirm'])) ?> />
+			<label for="<?php echo $this->get_field_id('show_confirm'); ?>">Show a link to FeedBurner's <a href="https://policies.google.com/privacy" target="_blank" rel="nofollow noopener">Privacy Policy</a> (useful for GDPR)</label>
 		</p>
 		
 
-		 <?php
-	   
-	  }
+		<?php
+		}
 	 
-	  function update($new_instance, $old_instance) {
-		$instance = $old_instance;
-		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['feed'] = strip_tags($new_instance['feed']);
-		$instance['text'] = wp_kses_post($new_instance['text']);
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			$instance['feed'] = strip_tags($new_instance['feed']);
+			$instance['text'] = wp_kses_post($new_instance['text']);
+			$instance['show_confirm'] = $new_instance['show_confirm'];
 
-		return $instance;
-	  }
+			return $instance;
+		}
 
 	}
 	add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_widget_subscribe");') );
