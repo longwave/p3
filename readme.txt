@@ -13,10 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.11.1 =
-* Date: 20 May 2018.
+= 3.11.2 =
+* Date: 22 May 2018.
 * Select an image for categories that are shown in the [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/) option.
-
+* Display an "Author" tag next to commenter's name if they are the author of that blog post.
 
 = 3.11.0 =
 * Date: 16 May 2018.

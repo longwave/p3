@@ -579,6 +579,16 @@ function p3_build_cc($wp_customize, $fonts_array, $slugs, $title, $font_slug, $s
 	
 }
 
+function p3_highlight_author_comment($link){
+	global $comment;
+	if ($comment->comment_author_email !== get_the_author_meta('email'))
+		return $link;
+	else {
+		return $link.' <br /><span class="p3_comment_author">'.__('Author').'</span>';
+	}	
+}
+add_filter('get_comment_author_link', 'p3_highlight_author_comment');
+
 include(plugin_dir_path(__FILE__).'functions/api.php');
 include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
 include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');
@@ -595,10 +605,8 @@ include(plugin_dir_path(__FILE__).'functions/navbar_icons.php');
 include(plugin_dir_path(__FILE__).'functions/feature_header.php');
 include(plugin_dir_path(__FILE__).'functions/trending.php');
 include(plugin_dir_path(__FILE__).'functions/post_slider_site_main_width.php');
-//include(plugin_dir_path(__FILE__).'functions/post_slider_site_main_width_sq.php');
 include(plugin_dir_path(__FILE__).'functions/post_slider_posts_column.php');
 include(plugin_dir_path(__FILE__).'functions/width_customizer.php');
-//include(plugin_dir_path(__FILE__).'functions/popup.php');
 include(plugin_dir_path(__FILE__).'functions/featured_cats.php');
 include(plugin_dir_path(__FILE__).'functions/featured_panels.php');
 include(plugin_dir_path(__FILE__).'functions/rewardstyle.php');
