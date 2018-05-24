@@ -159,7 +159,7 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 .pipdig_widget_post_slider .slide-inside:hover{opacity:1}
 <?php } ?>
 </style>
-<div data-cycle-speed="1000" data-cycle-slides="li" data-cycle-manual-speed="600" class="cycle-slideshow nopin">
+<div data-cycle-speed="1000" data-cycle-slides="li" data-cycle-manual-speed="600" data-cycle-random="true" class="cycle-slideshow nopin">
 <ul>
 <?php 
 	$args = array(

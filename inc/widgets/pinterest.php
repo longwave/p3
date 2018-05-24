@@ -168,6 +168,8 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			value="<?php echo esc_attr($title); ?>" />
 			</label>
 		</p>
+		
+		<p><a href="https://support.pipdig.co/articles/wordpress-pinterest-widget/" target="_blank" rel="noopener">Click here</a> for information about this widget.</p>
 
 		<p><?php _e('Add your Pinterest account name to the box below.', 'p3'); ?></p>
 		<p><?php _e('For example, the red part below:', 'p3'); ?><br />
