@@ -13,6 +13,11 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.12.0 =
+* Date: 27 May 2018.
+* New [horizontal layout](https://i.imgur.com/VsLhGXU.png) option in the [Popular Posts widget](https://support.pipdig.co/articles/wordpress-popular-posts-widget/).
+
+
 = 3.11.2 =
 * Date: 22 May 2018.
 * Select an image for categories that are shown in the [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/) option.

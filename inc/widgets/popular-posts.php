@@ -58,6 +58,9 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			<br /><br />
 			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-2') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="2" <?php checked( $style_select == 2, true) ?>>
 			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-2' ) ?>"><img src="https://pipdigz.co.uk/p3/img/widgets/pop_2.png" style="position:relative;top:5px;border:1px solid #ddd; width: 100px;" /></label>
+			<br /><br />
+			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-3') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="3" <?php checked( $style_select == 3, true) ?>>
+			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-3' ) ?>"><img src="https://pipdigz.co.uk/p3/img/widgets/pop_3.png" style="position:relative;top:5px;border:1px solid #ddd; width: 100px;" /></label><br /><br />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Include', 'p3'); ?>:</label>
@@ -108,7 +111,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		$instance['number_posts'] = absint($new_instance['number_posts']);
 		$instance['image_shape'] = absint($new_instance['image_shape']);
 		$instance['show_date'] = $new_instance['show_date'];
-		$instance['style_select'] = ( isset( $new_instance['style_select'] ) && $new_instance['style_select'] > 0 && $new_instance['style_select'] < 3 ) ? (int) $new_instance['style_select'] : 0; // 3 is total radio +1
+		$instance['style_select'] = absint($new_instance['style_select']);
 		return $instance;
 	  }
 	 
@@ -247,7 +250,40 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			$lazy_class = 'pipdig_lazy';
 		}
 		
+		$width = 100 / $number_posts;
+		
 	?>
+	
+	<?php if ($style_select === 3) { ?>
+	<style scoped>
+	.p3_pop_horizontal {
+		float: left;
+		width: <?php echo $width; ?>%;
+		text-align: center;
+	} 
+	.p3_pop_horizontal > div {
+		padding: 7px;
+	}
+	.p3_popular_posts_widget h4 {
+		left: 0;
+		right: 0;
+		width: 100%;
+		background: none;
+		position: relative;
+		margin-top: 3px;
+	}
+	@media only screen and (max-width: 769px) {
+		.p3_pop_horizontal {
+			float: none;
+			width: 100%;
+		}
+		.p3_pop_horizontal > div {
+			padding: 0;
+		}
+	}
+	</style>
+	<?php } ?>
+	
 	<?php while ( $popular->have_posts() ): $popular->the_post();
 		
 		$img = p3_catch_image(get_the_ID(), $img_size);
@@ -257,21 +293,24 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		}
 		
 		$title = get_the_title();
+		?>
 		
-		if ($style_select === 1) { ?>
-			<li>
-				<a href="<?php the_permalink() ?>">
-					<?php if ($image_shape == 4) { ?>
-						<img src="<?php echo $img; ?>" alt="<?php echo esc_attr($title); ?>" />
-					<?php } else { ?>
-						<div class="p3_cover_me <?php echo $lazy_class; ?>" <?php echo $image_src; ?>>
-							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
-						</div>
-					<?php } ?>
+		<?php if ($style_select === 3) { ?>
+			<li class="p3_pop_horizontal">
+				<div>
+					<a href="<?php the_permalink() ?>">
+						<?php if ($image_shape == 4) { ?>
+							<img src="<?php echo $img; ?>" alt="<?php echo esc_attr($title); ?>" />
+						<?php } else { ?>
+							<div class="p3_cover_me <?php echo $lazy_class; ?>" <?php echo $image_src; ?>>
+								<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
+							</div>
+						<?php } ?>
+					</a>
 					<h4 class="p_post_titles_font"><?php if (!empty($instance['show_date'])) { echo get_the_date().': '; } ?><?php echo pipdig_p3_truncate($title, 11); ?></h4>
-				</a>
+				</div>
 			</li>
-		<?php } else { ?>
+		<?php } elseif ($style_select === 2) { ?>
 			<li class="p3_pop_left clearfix">
 				<div class="p3_pop_left-left">
 				<a href="<?php the_permalink() ?>">
@@ -289,9 +328,25 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 					<?php if ($show_date) { ?><div class="p3_pop_left_date"><?php the_date(); ?></div><?php } ?>
 				</div>
 			</li>
+		<?php } else { ?>
+			<li>
+				<a href="<?php the_permalink() ?>">
+					<?php if ($image_shape == 4) { ?>
+						<img src="<?php echo $img; ?>" alt="<?php echo esc_attr($title); ?>" />
+					<?php } else { ?>
+						<div class="p3_cover_me <?php echo $lazy_class; ?>" <?php echo $image_src; ?>>
+							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
+						</div>
+					<?php } ?>
+					<h4 class="p_post_titles_font"><?php if (!empty($instance['show_date'])) { echo get_the_date().': '; } ?><?php echo pipdig_p3_truncate($title, 11); ?></h4>
+				</a>
+			</li>
 		<?php } ?>
 
 	<?php endwhile; wp_reset_query(); ?>
+	<?php if ($style_select === 3) { ?>
+		<div class="clearfix"></div>
+	<?php } ?>
 	</ul>
 	 
 	<?php
