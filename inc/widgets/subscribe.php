@@ -47,7 +47,7 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 				<input type="hidden" value="<?php echo $feed; ?>" name="uri" />
 				<input type="hidden" name="loc" value="<?php echo $lang; ?>" />
 				<?php if (isset($instance['show_confirm'])) { ?>
-					<br /><label class="p3_subscribe_confirm"><input type="checkbox" name="p3_sub_confirm" value="1" required checked> I accept that my subscription will be processed by FeedBurner and their <a href="https://policies.google.com/privacy" target="_blank" rel="nofollow noopener">Privacy Policy</a> and that I can unsubscribe at any time.</label>
+					<br /><label class="p3_subscribe_confirm"><input type="checkbox" name="p3_sub_confirm" value="1" required> <?php printf(__('I accept that my email will be processed by FeedBurner and their <a href="%s" target="_blank" rel="nofollow noopener">privacy policy</a>.', 'p3'), 'https://policies.google.com/privacy' ); ?></label>
 				<?php } ?>
 				<input type="submit" style="margin-top: 10px;" value="<?php echo esc_attr(__('Subscribe', 'p3')); ?>" />
 				</p>
