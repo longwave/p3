@@ -3,7 +3,7 @@ Contributors: pipdig
 Requires at least: 4.0
 Tested up to: 4.9
 Stable tag: master
-License: Copyright 2017 pipdig Ltd. All rights reserved.
+License: Copyright 2018 pipdig Ltd. All rights reserved.
 
 The core functions of any pipdig theme.
 
@@ -13,10 +13,13 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.12.1 =
+* Date: 30 May 2018.
+* Email subscribe widget privacy policy text is now translatable.
+
 = 3.12.0 =
 * Date: 27 May 2018.
 * New [horizontal layout](https://i.imgur.com/VsLhGXU.png) option in the [Popular Posts widget](https://support.pipdig.co/articles/wordpress-popular-posts-widget/).
-
 
 = 3.11.2 =
 * Date: 22 May 2018.
@@ -101,16 +104,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 * New: Display an [Author Bio](https://support.pipdig.co/articles/wordpress-author-bio-box/) at the end of blog posts.
 
 = 3.5.1 =
-* Option to display [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) on mobiles as well as desktop.
+* Option to display [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) on mobile as well as desktop.
 
 = 3.5.0 =
 * "Related Posts" can now be selected using categories or tags. Find this new option in the "Related Posts" section of the Customizer.
-
-= 3.4.4 =
-* Display YouTube thumbnail if no images are within the blog post.
-
-= 3.4.1 =
-* [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) - option to use image alt tags instead of the post title.
 
 = 3.4.0 =
 * Automatically play YouTube videos when clicked.
@@ -126,9 +123,6 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 = 3.1.0 =
 * Add Reddit and Digg to the "Social Links" page. Display icons in main menu if available.
-
-= 3.0.3 =
-* Option to display videos randomly in the [YouTube widget](https://support.pipdig.co/articles/wordpress-youtube-widget/).
 
 = 3.0 =
 * Option to change size of the icons in the [Social Sidebar](https://support.pipdig.co/articles/wordpress-social-sidebar/).
