@@ -374,7 +374,7 @@ add_action('admin_init', 'p3_trust_me_you_dont_want_this');
 
 function pipdig_p3_theme_setup() {
 	// thumbnails
-	add_image_size('p3_medium', 800, 99999);
+	add_image_size('p3_medium', 800, 9999);
 }
 add_action( 'after_setup_theme', 'pipdig_p3_theme_setup' );
 
