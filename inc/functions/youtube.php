@@ -78,7 +78,7 @@ function p3_youtube_fetch($channel_id) {
 							
 						}
 						
-						$videos[$i] = array (
+						$videos[] = array (
 							'id' => $id,
 							'title' => strip_tags($response->items[$i]->snippet->title),
 							'thumbnail' => esc_url($thumbnail),
