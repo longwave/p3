@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.12.2 =
+* Date: 07 June 2018.
+* New [horizontal layout](https://i.imgur.com/N6HPt14.png) option in the [Profile Photo](https://support.pipdig.co/articles/wordpress-profile-photo-widget/).
+
 = 3.12.1 =
 * Date: 30 May 2018.
 * Email subscribe widget privacy policy text is now translatable.

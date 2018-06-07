@@ -50,10 +50,19 @@ class pipdig_widget_profile_function extends WP_Widget {
 				$circle = 'style="-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;"';
 			}
 			
+			if (isset($instance['style_select'])) { 
+				$style_select = $instance['style_select'];
+			} else {
+				$style_select = 1;
+			}
+			
 			$horizontal = true;
-			if ($args['id'] == 'sidebar-1' || $args['id'] == 'sidebar-2' || $args['id'] == 'sidebar-3' || $args['id'] == 'sidebar-4' || $args['id'] == 'sidebar-5') {
+			if ( isset($args['id']) && ($args['id'] == 'sidebar-1' || $args['id'] == 'sidebar-2' || $args['id'] == 'sidebar-3' || $args['id'] == 'sidebar-4' || $args['id'] == 'sidebar-5') ) {
 				$horizontal = false;
-			} 
+				if ($style_select === 2) {
+					$horizontal = true;
+				}
+			}
 			
 			$img = '';
 			if (!empty($instance['image_uri'])) {
@@ -68,7 +77,7 @@ class pipdig_widget_profile_function extends WP_Widget {
 				//if (is_pipdig_lazy()) {
 					//$img = '<div class="nopin"><img data-src="'.esc_url($image_src).'" alt="" class="pipdig_lazy" '.$circle.' data-pin-nopin="true" /></div>';
 				//} else {
-					$img = '<div class="nopin"><img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" /></div>';
+					$img = '<img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" class="nopin" />';
 				//}
 				
 				
@@ -101,6 +110,7 @@ class pipdig_widget_profile_function extends WP_Widget {
 		$new_instance['image_uri'] = strip_tags($new_instance['image_uri']);
 		$new_instance['description'] = wp_kses_post($new_instance['description']);
 		$new_instance['circle'] = strip_tags($new_instance['circle']);
+		$new_instance['style_select'] = absint($new_instance['style_select']);
 
 		return $new_instance;
 
@@ -111,7 +121,9 @@ class pipdig_widget_profile_function extends WP_Widget {
 
 		// Merge with defaults
 		$instance = wp_parse_args((array) $instance, $this->defaults);
-
+		
+		$style_select = ( isset( $instance['style_select'] ) && is_numeric( $instance['style_select'] ) ) ? (int) $instance['style_select'] : 1;
+		
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
@@ -147,8 +159,18 @@ class pipdig_widget_profile_function extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('description'); ?>"><?php _e('Text to show below the photo: (optional)', 'p3'); ?></label>
-			<textarea id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" class="widefat" rows="4"><?php if (isset($instance['description'])) echo wp_kses_post($instance['description']); ?></textarea>
+			<label for="<?php echo $this->get_field_id('description'); ?>"><strong>Description text:</strong></label>
+			<textarea id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" class="widefat" rows="5"><?php if (isset($instance['description'])) echo wp_kses_post($instance['description']); ?></textarea>
+		</p>
+		
+		<p>
+			<legend><h3><?php _e('Select a layout:', 'p3'); ?></h3></legend>
+			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-1') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="1" <?php checked( $style_select == 1, true) ?>>
+			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-1' ) ?>"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAAB4CAMAAAB7G7gGAAAAOVBMVEX////8/Pxzc3MAAAB2dnYoKCj5+fm+vr4bGxvn5+fJyckHBwdDQ0NsbGzk5OQwMDDv7+/S0tJQUFAd4x20AAABYElEQVR42u2c227CMBAFz5LeaLi0/f+PbWTxgiAoKFnbR8z4HU9GSGwiYpkTi1ZDuvWivjvUTyCn/u97Hc77lPrfQyX2CfWL/viVzjiMafWPH+kchjGt/lHpHDLrKx3qU5/61Kc+9e+DvoQ++uijjz766E+gjz766KOPPvrXoI8++uijjz76E+ijjz766KO/Tn+nG5z0/z7TOS/W7/SveOb6w0kZnN4q8SMAAIC17GpRdkO/lX5I8tUPKZz1IyRz/dDmRD0koX8lX9G/fHd860sFzytQSvy5T/XZJtYtgzds4YLpr27ZDf1m+t4jmyaM9f0HZu+Zh4H5hnjgbzG0xSwG9WduWCzUKw7Mocg6ISbyFyfEdHOV23n1N04uqr+tvn39cK4f3vXLOGlcP6JB/UJvY8Gi+tvrN6kfUmePj9vUb3gqXld3Ik/WV2yyZ7v6fT0+fqWJsz+o/xQvl/+R1j+NrzLf0a+5tgAAAABJRU5ErkJggg==" style="position:relative;top:5px;border:1px solid #ddd; width: 100px;" /></label>
+			<br /><br />
+			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-2') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="2" <?php checked( $style_select == 2, true) ?>>
+			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-2' ) ?>"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAABOCAMAAACpOFy2AAAAOVBMVEX///9zc3P8/PwAAAB2dnbn5+fJyckoKCgHBwf5+fm+vr5DQ0MbGxtsbGzk5OQwMDDv7+/S0tJQUFBQQHllAAAA+klEQVRo3u3YSw7CMAyE4emUR3m1wP0Py7KITZTIOHY0Hxf45Q3TQERERNy9zm22IyI4zY3C5C/3asu8hMl/XKrdIuWj2nf+5EX5ffOZOZ+5r0/mvj4JmucD9APl/+QT9ALQML98/gTXBwE6wM74+vBA0DZ/R4ef3fUHWpxV4uVPPgZYnLnzmTqfADPn5x/MoBbnSPn06s//tfW3yeYBYOLBbPu35b2XqcU5Xv5kQvl985k5n7mvT+a+PgmiKPLihPL7vTADRFncF2aUhX1h7rl5aDGHvfNNJ7MWp/ILlD9Y/pQ7/32ttgXKb5E9f14RwXpo9ISIiIhIcB/bSihH+6MKLwAAAABJRU5ErkJggg==" style="position:relative;top:5px;border:1px solid #ddd; width: 100px;" /></label>
+			<br /><br />
 		</p>
 		
 		<?php
