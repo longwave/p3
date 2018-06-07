@@ -59,9 +59,12 @@ class pipdig_widget_profile_function extends WP_Widget {
 			$horizontal = true;
 			if ( isset($args['id']) && ($args['id'] == 'sidebar-1' || $args['id'] == 'sidebar-2' || $args['id'] == 'sidebar-3' || $args['id'] == 'sidebar-4' || $args['id'] == 'sidebar-5') ) {
 				$horizontal = false;
-				if ($style_select === 2) {
-					$horizontal = true;
-				}
+			}
+			
+			if ($style_select === 1) {
+				$horizontal = false;
+			} elseif ($style_select === 2) {
+				$horizontal = true;
 			}
 			
 			$img = '';
@@ -87,13 +90,12 @@ class pipdig_widget_profile_function extends WP_Widget {
 			if (!empty($instance['description'])) {
 				$desc = wpautop(do_shortcode($instance['description']));
 			}
-			
+					
 			if ($horizontal && $desc) {
-				echo '<div class="col-sm-6">'.$img.'</div>';
-				echo '<div class="col-sm-6">'.$desc.'</div>';
+				echo '<img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" class="nopin profile_col_50" />'.$desc;
 				echo '<div class="clearfix"></div>';
 			} else {
-				echo $img;
+				echo '<img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" class="nopin" />';
 				if ($desc) {
 					echo $desc;
 				}
