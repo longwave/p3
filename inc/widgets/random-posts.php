@@ -210,9 +210,12 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		float: left;
 		width: <?php echo $width; ?>%;
 		text-align: center;
-	} 
+	}
 	.p3_pop_horizontal > div {
 		padding: 7px;
+	}
+	.p3_popular_posts_widget li.p3_pop_horizontal {
+		margin-bottom: 0;
 	}
 	.p3_popular_posts_widget h4 {
 		left: 0;
@@ -229,6 +232,9 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		}
 		.p3_pop_horizontal > div {
 			padding: 0;
+		}
+		.p3_popular_posts_widget li.p3_pop_horizontal {
+			margin-bottom: 15px;
 		}
 	}
 	</style>
