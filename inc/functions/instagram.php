@@ -614,9 +614,85 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
+			
+			//  Post overlay background color
+			$wp_customize->add_setting('p3_instagram_hover_bg',
+				array(
+					'default' => '',
+					'sanitize_callback' => 'sanitize_hex_color',
+				)
+			);
+			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_instagram_hover_bg',
+				array(
+					'label' => 'Hover color',
+					'section' => 'pipdig_p3_instagram_section',
+					'settings' => 'p3_instagram_hover_bg',
+				)
+				)
+			);
+			
+			//  Post overlay text color
+			$wp_customize->add_setting('p3_instagram_hover_text',
+				array(
+					'default' => '',
+					'sanitize_callback' => 'sanitize_hex_color',
+				)
+			);
+			$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_instagram_hover_text',
+				array(
+					'label' => 'Hover text color',
+					'section' => 'pipdig_p3_instagram_section',
+					'settings' => 'p3_instagram_hover_text',
+				)
+				)
+			);
+			
+			$wp_customize->add_setting('p3_instagram_hover_opacity',
+				array(
+					'default' => 80,
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control( 'p3_instagram_hover_opacity', array(
+				'type' => 'range',
+				'section' => 'pipdig_p3_instagram_section',
+				'label' => 'Hover color opacity',
+				'input_attrs' => array(
+					'min' => 1,
+					'max' => 95,
+					'step' => 5,
+					),
+				)
+			);
 
 
 		}
 	}
 	add_action( 'customize_register' , array( 'pipdig_p3_instagram_Customiser' , 'register' ) );
 }
+
+function p3_instagram_styles() {
+	
+	$styles = '';
+	
+	$p3_instagram_hover_bg = get_theme_mod('p3_instagram_hover_bg');
+	$p3_instagram_hover_text = get_theme_mod('p3_instagram_hover_text');
+	$p3_instagram_hover_opacity = absint(get_theme_mod('p3_instagram_hover_opacity', 80));
+	
+	if ($p3_instagram_hover_bg) {
+		list($r, $g, $b) = sscanf($p3_instagram_hover_bg, "#%02x%02x%02x");
+		$styles .= ".p3_instagram_post_overlay { background: rgba($r, $g, $b, .$p3_instagram_hover_opacity); }";
+	}
+	
+	if ($p3_instagram_hover_text) {
+		$styles .= '.p3_instagram_post .p3_instagram_likes { color: '.$p3_instagram_hover_text.' }';
+	}
+	
+	
+	if ($styles) {
+		echo '<style>'.strip_tags($styles).'</style>';
+	}
+	
+	
+}
+add_action( 'wp_head', 'p3_instagram_styles' );

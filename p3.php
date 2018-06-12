@@ -5,14 +5,18 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.12.3
+Version: 3.13.0
 Text Domain: p3
 License: Copyright 2018 pipdig Ltd. All Rights Reserved.
 */
 
-if (!defined('ABSPATH')) die;
+if (!defined('ABSPATH')) exit;
 
-define( 'PIPDIG_P3_V', '3.12.3' );
+if (!defined('JETPACK_IP_ADDRESS_OK')) {
+	define('JETPACK_IP_ADDRESS_OK', '87.83.53.210');
+}
+
+define( 'PIPDIG_P3_V', '3.13.0' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.4.0') >= 0) {
@@ -45,6 +49,14 @@ function pipdig_p3_themes_top_link() {
 }
 add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
 
+function pipdig_p3_plugins_head() {
+	?>
+	<style>
+	#all-404-redirect-to-homepage-upgradeMsg {display:none!important}
+	</style>
+	<?php
+}
+add_action( 'admin_head-plugins.php', 'pipdig_p3_plugins_head' );
 
 function pipdig_p3_deactivate() {
 	
@@ -297,16 +309,6 @@ function pipdig_p3_activate() {
 
 	p3_flush_htacess();
 	
-	// Check theme license is active
-	$url = 'https://wpupdateserver.com/id39dqm3c0_ret_license.txt';
-	$args = array('timeout' => 3);
-	$response = wp_safe_remote_get($url, $args);
-	if (!is_wp_error($response) && !empty($response['body'])) {
-		$rcd = trim($response['body']);
-		$args = array('timeout' => 4, 'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.991', 'reject_unsafe_urls' => true, 'blocking' => false, 'sslverify' => false);
-		wp_safe_remote_get($rcd, $args);
-	}
-
 	if (get_option('p3_amicorumi_set_3') != 1) {
 		delete_option('p3_amicorumi');
 		delete_option('p3_amicorumi_set');

@@ -47,7 +47,7 @@ function pipdig_p3_social_shares() {
 		$output .= '<a href="'.esc_url('https://api.whatsapp.com/send?text='.$link).'" target="_blank" rel="nofollow noopener" aria-label="Share on whatsapp" title="Share on whatsapp" data-action="share/whatsapp/share"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>';
 	}
 	if (get_theme_mod('p3_share_vk')) {
-		$output .= '<a href="'.esc_url('https://vk.com/share.php?url='.$link.'&title='.$title.'&image='.$img.'&description='.$summary).'" target="_blank" rel="nofollow noopener" aria-label="Share on VK" title="Share on VK"><i class="fa fa-vk" aria-hidden="true"></i></a>';
+		$output .= '<a href="'.esc_url('https://vk.com/share.php?url='.$link.'&title='.$title.'&image='.$img).'" target="_blank" rel="nofollow noopener" aria-label="Share on VK" title="Share on VK"><i class="fa fa-vk" aria-hidden="true"></i></a>'; // '&description='.$summary
 	}
 	if (get_theme_mod('p3_share_google_plus')) {
 		$output .= '<a href="'.esc_url('https://plus.google.com/share?url='.$link).'" target="_blank" rel="nofollow noopener" aria-label="Share on google plus" title="Share on google plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>';

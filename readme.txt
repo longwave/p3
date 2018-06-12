@@ -13,6 +13,10 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
+= 3.13.0 =
+* Date: 12 June 2018.
+* New [color options](https://i.imgur.com/oBl3ESW.gif) in the [Instagram section](https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/) of the Customizer.
+
 = 3.12.3 =
 * Date: 07 June 2018.
 * New [horizontal layout](https://i.imgur.com/N6HPt14.png) option in the [Profile Photo](https://support.pipdig.co/articles/wordpress-profile-photo-widget/).

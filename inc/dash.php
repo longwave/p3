@@ -38,7 +38,7 @@ function pipdig_p3_unregister_widgets() {
 	if (get_option('p3_widget_override')) {
 		return;
 	}
-		
+	
 	if (isset($_GET['p3_widget_override'])) { // if peeps want it go to ?p3_widget_override
 		update_option('p3_widget_override', 1);
 		return;
@@ -97,18 +97,18 @@ add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
 
 /*	Remove meta boxes on posts --------------------------------------------*/
 function pipdig_p3_remove_default_metaboxes() {
+	
 	// posts:
 	remove_meta_box( 'trackbacksdiv','post','normal' );
-	//remove_meta_box( 'slugdiv','post','normal' );
 	remove_meta_box( 'revisionsdiv','post','normal' );
+	
 	// pages:
 	remove_meta_box( 'postexcerpt','page','normal' );
-	if (get_theme_mod('page_comments')){ remove_meta_box( 'commentstatusdiv','page','normal' ); }
 	remove_meta_box( 'trackbacksdiv','page','normal' );
-	//remove_meta_box( 'slugdiv','page','normal' );
 	remove_meta_box( 'revisionsdiv','page','normal' );
+	
 }
-add_action('admin_menu','pipdig_p3_remove_default_metaboxes');
+add_action('admin_menu', 'pipdig_p3_remove_default_metaboxes');
 
 
 // news dashboard widget
