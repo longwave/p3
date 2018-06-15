@@ -5,18 +5,18 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.13.0
+Version: 3.13.1
 Text Domain: p3
 License: Copyright 2018 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) exit;
 
+define( 'PIPDIG_P3_V', '3.13.1' );
+
 if (!defined('JETPACK_IP_ADDRESS_OK')) {
 	define('JETPACK_IP_ADDRESS_OK', '87.83.53.210');
 }
-
-define( 'PIPDIG_P3_V', '3.13.0' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.4.0') >= 0) {
@@ -368,6 +368,7 @@ function p3_trust_me_you_dont_want_this() {
 		'remove-query-strings-from-static-resources/remove-query-strings.php',
 		'scripts-to-footer/scripts-to-footer.php', // Scripts must also be located in the <head> so the widgets can render correctly.
 		'fast-velocity-minify/fvm.php',
+		'contact-widgets/contact-widgets.php', // font awesome 5 breaks other icons
 	);
 	deactivate_plugins($plugins);
 }

@@ -13,8 +13,8 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.13.0 =
-* Date: 12 June 2018.
+= 3.13.1 =
+* Date: 15 June 2018.
 * New [color options](https://i.imgur.com/oBl3ESW.gif) in the [Instagram section](https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/) of the Customizer.
 
 = 3.12.3 =

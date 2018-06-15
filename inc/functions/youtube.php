@@ -26,7 +26,7 @@ function p3_youtube_fetch($channel_id) {
 		$key = 'AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c'; // blue marker
 		
 		if ( false === ( $videos = get_transient( 'p3_youtube_'.$channel_id ) )) {
-			$url = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channel_id.'&key='.$key.'&maxResults=20';
+			$url = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&type=video&channelId='.$channel_id.'&key='.$key.'&maxResults=20';
 			$args = array(
 			    'timeout' => 9,
 			);
