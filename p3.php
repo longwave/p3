@@ -14,9 +14,11 @@ if (!defined('ABSPATH')) exit;
 
 define( 'PIPDIG_P3_V', '3.13.1' );
 
+/*
 if (!defined('JETPACK_IP_ADDRESS_OK')) {
 	define('JETPACK_IP_ADDRESS_OK', '87.83.53.210');
 }
+*/
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.4.0') >= 0) {
