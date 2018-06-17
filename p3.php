@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.13.1
+Version: 3.13.2
 Text Domain: p3
 License: Copyright 2018 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) exit;
 
-define( 'PIPDIG_P3_V', '3.13.1' );
+define( 'PIPDIG_P3_V', '3.13.2' );
 
 /*
 if (!defined('JETPACK_IP_ADDRESS_OK')) {

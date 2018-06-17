@@ -13,87 +13,71 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.13.1 =
-* Date: 15 June 2018.
+= 3.13.2 (17 June 2018) =
+* [Author bio box](https://support.pipdig.co/articles/wordpress-author-bio-box/) now shows social links from Yoast SEO.
+
+= 3.13.1 (15 June 2018) =
 * New [color options](https://i.imgur.com/oBl3ESW.gif) in the [Instagram section](https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/) of the Customizer.
 
-= 3.12.3 =
-* Date: 07 June 2018.
+= 3.12.3 (07 June 2018) =
 * New [horizontal layout](https://i.imgur.com/N6HPt14.png) option in the [Profile Photo](https://support.pipdig.co/articles/wordpress-profile-photo-widget/).
 
-= 3.12.1 =
-* Date: 30 May 2018.
+= 3.12.1 (30 May 2018) =
 * Email subscribe widget privacy policy text is now translatable.
 
-= 3.12.0 =
-* Date: 27 May 2018.
+= 3.12.0 (27 May 2018) =
 * New [horizontal layout](https://i.imgur.com/VsLhGXU.png) option in the [Popular Posts widget](https://support.pipdig.co/articles/wordpress-popular-posts-widget/).
 
-= 3.11.2 =
-* Date: 22 May 2018.
+= 3.11.2 (22 May 2018) =
 * Select an image for categories that are shown in the [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/) option.
 * Display an "Author" tag next to commenter's name if they are the author of that blog post.
 
-= 3.11.0 =
-* Date: 16 May 2018.
+= 3.11.0 (16 May 2018) =
 * Improved "show likes on hover" styling on Instagram images.
 * Higher quality video thumbnails from YouTube.
 * Higher quality images from Pinterest.
 
-= 3.10.1 =
-* Date: 08 May 2018.
+= 3.10.1 (08 May 2018) =
 * Improve loading time for images in the Media library. This may take a few weeks to start working fully.
 
-= 3.10.0 =
-* Date: 03 May 2018.
+= 3.10.0 (03 May 2018) =
 * New! Shortcode to display Google Adsense ads [within post content](https://support.pipdig.co/articles/wordpress-display-adsense-start-end-blog-posts/#article_display_in_content).
 
-= 3.9.0 =
-* Date: 30 April 2018.
+= 3.9.0 (30 April 2018) =
 * New! [Spotify widget](https://support.pipdig.co/articles/wordpress-spotify-widget/).
 * Pinterest Hover Button can now use data-pin-description attribute.
 
-= 3.8.3 =
-* Date: 16 April 2018.
+= 3.8.3 (16 April 2018) =
 * Site speed improvements by changing Schema tags to JSON-LD.
 
-= 3.8.2 =
-* Date: 9 April 2018.
+= 3.8.2 (9 April 2018) =
 * The Popular Posts widget now uses data from Jetpack Stats.
 * Option to change the number of posts in the 'Large Rectangle Slider'.
 
-= 3.7.9 =
-* Date: 13 March 2018.
+= 3.7.9 (13 March 2018) =
 * Option to add up to 5 categories via the [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/).
 
-= 3.7.8 =
-* Date: 27 February 2018.
+= 3.7.8 (27 February 2018) =
 * Display [Profile Photo Widget](https://support.pipdig.co/articles/wordpress-profile-photo-widget/) horizontally if not in sidebar or footer column.
 
 = 3.7.7 =
-* Date: 30 January 2018.
 * Display number of products in cart when using WooCommerce.
 
 = 3.7.5 =
-* Date: 26 January 2018.
 * Fix Pinterest hover button did not work on some images.
 * Minor speed improvement by combining CSS files.
 
 = 3.7.4 =
-* Date: 19 January 2018.
 * Clear Instagram cache when plugin is deactivated.
 * Update German translations.
 
 = 3.7.2 =
-* Date: 03 January 2018 - Happy new year!
 * New: Option to link to the post category in [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/).
 
 = 3.7.1 =
-* Date: 28 December 2017.
 * Fix typo in [Google Adsense widget](https://support.pipdig.co/articles/wordpress-google-adsense-widget/) options.
 
 = 3.7.0 =
-* Date: 25 December 2017.
 * New: [Google Adsense widget](https://support.pipdig.co/articles/wordpress-google-adsense-widget/).
 
 = 3.6.6 =

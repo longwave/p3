@@ -21,7 +21,21 @@ function p3_author_bio() {
 	<div class="p3_author_bio">
 		<?php echo get_avatar(get_the_author_meta('ID'), 200); ?>
 		<div class="p3_author_name"><?php echo esc_html(get_the_author_meta('display_name')); ?></div>
-		<?php echo wpautop(get_the_author_meta('description')); ?>
+		<?php echo wpautop(wp_kses_post(get_the_author_meta('description'))); ?>
+		<?php
+		$twitter = trim(get_the_author_meta('twitter'));
+		$facebook = trim(get_the_author_meta('facebook'));
+		$socials = array();
+		if ($twitter) {
+			$socialz[] = '<a href="'.esc_url('https://twitter.com/'.$twitter).'" rel="nofollow noopener" target="_blank">Twitter</a>';
+		}
+		if ($facebook) {
+			$socialz[] = '<a href="'.esc_url($facebook).'" rel="nofollow noopener" target="_blank">Facebook</a>';
+		}
+		if ($socialz) {
+			echo '<p>'.__('Find me on:', 'p3').' '.implode(" | ", $socialz).'</p>';
+		}
+		?>
 		<div class="clearfix"></div>
 	</div>
 	<?php
