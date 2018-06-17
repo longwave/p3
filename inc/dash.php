@@ -103,7 +103,6 @@ function pipdig_p3_remove_default_metaboxes() {
 	remove_meta_box( 'revisionsdiv','post','normal' );
 	
 	// pages:
-	remove_meta_box( 'postexcerpt','page','normal' );
 	remove_meta_box( 'trackbacksdiv','page','normal' );
 	remove_meta_box( 'revisionsdiv','page','normal' );
 	
