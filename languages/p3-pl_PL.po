@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
 "POT-Creation-Date: 2018-02-28 18:01+0000\n"
-"PO-Revision-Date: 2018-02-28 18:02+0000\n"
+"PO-Revision-Date: 2018-06-17 13:49+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: pl_PL\n"
@@ -621,7 +621,7 @@ msgstr ""
 
 #: inc/functions/shares.php:79 inc/functions/shares.php:132
 msgid "Share:"
-msgstr "udostępnij"
+msgstr "Udostępnij:"
 
 #: inc/functions/shares.php:97
 msgid "Sharing Icons"
