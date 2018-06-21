@@ -589,12 +589,6 @@ function p3_highlight_author_comment($link) {
 }
 add_filter('get_comment_author_link', 'p3_highlight_author_comment');
 
-// The link to the privacy policy in Akismet is insecure and bad for SEO. Let's fix that.
-function p3_stop_akismet_being_a_douche() {
-	return '<p class="akismet_comment_form_privacy_notice">' . sprintf(__( 'This site uses Akismet to reduce spam. <a href="%s" rel="nofollow noopener noreferrer" target="_blank">Learn how your comment data is processed</a>.', 'akismet' ), 'https://akismet.com/privacy/') . '</p>';
-}
-add_filter('akismet_comment_form_privacy_notice_markup', 'p3_stop_akismet_being_a_douche');
-
 include(plugin_dir_path(__FILE__).'functions/api.php');
 include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
 include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');
