@@ -180,7 +180,7 @@ add_filter('the_excerpt_rss', 'pipdig_p3_rss_post_thumbnail');
 add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');
 }
 
-
+/*
 function p3_flush_htacess() {
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
@@ -198,6 +198,7 @@ RewriteRule ^(.*)$ /$1? [R=301,L]
 return $p3_rules . $rules;
 }
 add_filter('mod_rewrite_rules', 'p3_htaccess_edit');
+*/
 
 if (!function_exists('pipdig_previews_remove_scripts')) {
 function pipdig_p3_emmmm_heeey() {

@@ -309,7 +309,7 @@ function pipdig_p3_activate() {
 		update_option( "pipdig_instagram", $pipdig_instagram );
 	}
 
-	p3_flush_htacess();
+	//p3_flush_htacess();
 	
 	if (get_option('p3_amicorumi_set_3') != 1) {
 		delete_option('p3_amicorumi');
