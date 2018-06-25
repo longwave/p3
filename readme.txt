@@ -13,8 +13,8 @@ The core functions of any pipdig theme. Please check the changelog before updati
 
 == Changelog ==
 
-= 3.13.2 (17 June 2018) =
-* [Author bio box](https://support.pipdig.co/articles/wordpress-author-bio-box/) now shows social links from Yoast SEO.
+= 3.13.3 (25 June 2018) =
+* [Author bio box](https://support.pipdig.co/articles/wordpress-author-bio-box/) now displays social links from Yoast SEO.
 
 = 3.13.1 (15 June 2018) =
 * New [color options](https://i.imgur.com/oBl3ESW.gif) in the [Instagram section](https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/) of the Customizer.

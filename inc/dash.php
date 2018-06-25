@@ -53,7 +53,6 @@ function pipdig_p3_unregister_widgets() {
 	unregister_widget('Jetpack_Upcoming_Events_Widget');
 	unregister_widget('Jetpack_My_Community_Widget');
 	unregister_widget('Jetpack_Gravatar_Profile_Widget');
-	unregister_widget('Jetpack_EU_Cookie_Law_Widget');
 	unregister_widget('Jetpack_Internet_Defense_League_Widget');
 	unregister_widget('WPCOM_Widget_Facebook_LikeBox');
 	unregister_widget('Jetpack_MailChimp_Subscriber_Popup_Widget');

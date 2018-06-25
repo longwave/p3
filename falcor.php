@@ -1,5 +1,1 @@
-<?php
-
-if (!defined('ABSPATH')) die;
-
-// legacy is a beach.
+<?php // legacy is a beach.
