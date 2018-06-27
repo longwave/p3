@@ -102,7 +102,7 @@ add_action('admin_init', 'pipdig_p3_disable_jetpack_modules');
 function p3_jp_styles() {
 	?>
 	<style>
-	.jp-jitm, .jitm-banner, .jp-wpcom-connect__container {display:none!important}
+	.jp-jitm, .jitm-banner, .jp-wpcom-connect__container, .yoast-alert {display:none!important}
 	</style>
 	<?php
 }

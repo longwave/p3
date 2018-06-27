@@ -14,12 +14,6 @@ if (!defined('ABSPATH')) exit;
 
 define( 'PIPDIG_P3_V', '3.13.3' );
 
-/*
-if (!defined('JETPACK_IP_ADDRESS_OK')) {
-	define('JETPACK_IP_ADDRESS_OK', '87.83.53.210');
-}
-*/
-
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.4.0') >= 0) {
 		return;
@@ -289,15 +283,6 @@ function pipdig_p3_activate() {
 		update_option('show_on_front', 'posts');
 		update_option('pipdig_p3_show_on_front_set', 1);
 	}
-	/*
-	if (get_option('jr_resizeupload_width') == '1200' && (get_option('pipdig_p3_jr_resizeupload_width_set') != 1)) {
-		update_option('jr_resizeupload_width', 1920);
-		update_option('jr_resizeupload_quality', 75);
-		update_option('jr_resizeupload_height', 0);
-		update_option('jr_resizeupload_convertgif_yesno', 'no');
-		update_option('pipdig_p3_jr_resizeupload_width_set', 1);
-	}
-	*/
 
 	update_option('woocommerce_enable_lightbox', 'no');
 
@@ -309,8 +294,6 @@ function pipdig_p3_activate() {
 		update_option( "pipdig_instagram", $pipdig_instagram );
 	}
 
-	//p3_flush_htacess();
-	
 	if (get_option('p3_amicorumi_set_3') != 1) {
 		delete_option('p3_amicorumi');
 		delete_option('p3_amicorumi_set');
@@ -324,7 +307,6 @@ function pipdig_p3_activate() {
 			$pipstyle_array = array('text-transform:lowercase;letter-spacing:1px;', 'text-transform: lowercase;letter-spacing: 1px;', 'text-transform: lowercase;letter-spacing:1px;', 'text-transform:lowercase; letter-spacing:1px;', 'text-transform:lowercase;letter-spacing:1px');
 			$pipstyle = $pipstyle_array[mt_rand(0, count($pipstyle_array) - 1)];
 			$amicorum_array = array(
-				//'<a href="'.$piplink.'" target="_blank">Website theme by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Theme design by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank">Theme created by <span style="'.$pipstyle.'">pipdig</span></a>',
 				//'<a href="'.$piplink.'" target="_blank">Website Design by <span style="'.$pipstyle.'">pipdig</span></a>',
