@@ -163,7 +163,7 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 */
 
 // Add Featured Image to feed if using excerpt mode, or just add the full content if not
-if ( !class_exists('Rss_Image_Feed') && !function_exists('firss_init') && !defined( 'SENDIMAGESRSS_BASENAME') ) {
+if ( !class_exists('Rss_Image_Feed') && !function_exists('firss_init') && !defined('SENDIMAGESRSS_BASENAME') ) {
 function pipdig_p3_rss_post_thumbnail($content) {
 	
 	if (get_option('rss_use_excerpt')) {
