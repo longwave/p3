@@ -9,11 +9,11 @@ function pipdig_p3_social_navbar( $items, $args ) {
 	}
 	
 	$navbar_icons = '';
-		
+	
 	$links = get_option('pipdig_links');
-		
+	
 	$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = $etsy = $spotify = $itunes = $houzz = $digg = $reddit = $goodreads = '';
-		
+	
 	if (!empty($links['email'])) {
 		$email = sanitize_email($links['email']);
 	}
@@ -127,8 +127,23 @@ function pipdig_p3_social_navbar( $items, $args ) {
 }
 add_filter('wp_nav_menu_items','pipdig_p3_social_navbar', 10, 2);
 
-
-
+function pipdig_p3_social_navbar_styles() {
+	
+	$size = absint(get_theme_mod( 'p3_navbar_icon_size'));
+	
+	if ($size < 11) {
+		return;
+	}
+	
+	?>
+	<!-- p3 navbar icon size -->
+	<style>
+		.menu-bar ul li.top-socialz a { font-size: <?php echo $size; ?>px !important }
+	</style>
+	<!-- p3 navbar icon size END -->
+	<?php
+}
+add_action( 'wp_head', 'pipdig_p3_social_navbar_styles', 99999 );
 
 // customiser
 class pipdig_p3_navbar_icons_Customiser {
@@ -142,7 +157,29 @@ class pipdig_p3_navbar_icons_Customiser {
 				'priority' => 35,
 			) 
 		);
-			
+		
+		// icon size
+		$wp_customize->add_setting('p3_navbar_icon_size',
+			array(
+				'default' => 10,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control(
+			'p3_navbar_icon_size',
+			array(
+				'type' => 'range',
+				'label' => __( 'Icon size', 'p3' ),
+				'section' => 'p3_navbar_icons_section',
+				'priority' => 1,
+				'input_attrs' => array(
+					'min' => 10,
+					'max' => 35,
+					'step' => 1,
+				),
+			)
+		);
+		
 		// woocommerce
 		if (class_exists('Woocommerce')) {
 			$wp_customize->add_setting('p3_navbar_woocommerce',
@@ -156,11 +193,11 @@ class pipdig_p3_navbar_icons_Customiser {
 					'type' => 'checkbox',
 					'label' => 'WooCommerce Cart',
 					'section' => 'p3_navbar_icons_section',
-					'priority' => 1,
+					'priority' => 2,
 				)
 			);
 		}
-			
+		
 		// twitter
 		$wp_customize->add_setting('p3_navbar_twitter',
 			array(

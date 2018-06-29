@@ -157,8 +157,8 @@ class p3_width_customizer_Customize {
 				'min' => 60,
 				'max' => 80,
 				'step' => 1,
-				),
-			)
+			),
+		)
 		);
 	}
 }

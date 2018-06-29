@@ -9,9 +9,12 @@ The core functions of any pipdig theme.
 
 == Description ==
 
-The core functions of any pipdig theme. Please check the changelog before updating.
+This update includes a [New option](https://i.imgur.com/fmUB9Ih.png) to change the size of the [social icons in the navbar](https://support.pipdig.co/articles/wordpress-how-to-add-social-icons-to-the-navbar/).
 
 == Changelog ==
+
+= 3.13.4 (29 June 2018) =
+* [New option](https://i.imgur.com/fmUB9Ih.png) to change the size of the [social icons in the navbar](https://support.pipdig.co/articles/wordpress-how-to-add-social-icons-to-the-navbar/).
 
 = 3.13.3 (25 June 2018) =
 * [Author bio box](https://support.pipdig.co/articles/wordpress-author-bio-box/) now displays social links from Yoast SEO.

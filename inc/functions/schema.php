@@ -20,7 +20,7 @@ function p3_schema_publisher() {
 	?>
 	<script type="application/ld+json">
 	{
-		"@context": "http://schema.org", 
+		"@context": "https://schema.org", 
 		"@type": "BlogPosting",
 		"headline": "<?php the_title_attribute(); ?>",
 		"image": {
