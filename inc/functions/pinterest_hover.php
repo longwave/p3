@@ -17,7 +17,7 @@ function p3_pinterest_hover_add_data($content) {
 	if ($active) {
 		$link = esc_url(get_the_permalink());
 		$title = rawurldecode(get_the_title());
-		$content = str_replace('<img','<img data-p3-pin-title="'.$title.'" data-p3-pin-link="'.$link.'"', $content);
+		$content = str_replace('<img', '<img data-p3-pin-title="'.$title.'" data-p3-pin-link="'.$link.'"', $content);
 	}
 	
 	return $content;
@@ -27,13 +27,6 @@ add_filter('the_content','p3_pinterest_hover_add_data');
 
 
 function p3_pinterest_hover() {
-	
-	if (get_theme_mod('p3_pinterest_hover_enable')) {
-		set_theme_mod('p3_pinterest_hover_enable_posts', 1);
-		//set_theme_mod('p3_pinterest_hover_enable_archives', 1);
-		//set_theme_mod('p3_pinterest_hover_enable_pages', 1);
-		remove_theme_mod('p3_pinterest_hover_enable');
-	}
 	
 	$active = false;
 
