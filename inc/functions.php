@@ -470,6 +470,8 @@ function p3_lazy_script() {
 		$(".pipdig_lazy").Lazy({
 			effect: 'fadeIn',
 			effectTime: 600,
+		});
+		$(".pipdig_lazy").Lazy({
 			delay: 10000,
 		});
 	});

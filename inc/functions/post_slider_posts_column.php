@@ -2,7 +2,7 @@
 
 if (!defined('ABSPATH')) die;
 
-if (p3_theme_enabled(array('galvani', 'opulence', 'thegrid', 'blossom', 'crystal', 'maryline'))) {
+if (p3_theme_enabled(array('galvani', 'opulence', 'thegrid', 'blossom', 'crystal', 'maryline', 'sartorial'))) {
 	return;
 }
 
@@ -35,6 +35,17 @@ function p3_post_slider_posts_column() {
 		$instagram_compensate = 'style="margin-bottom: 0;"';
 	}
 	
+	$args = array(
+		'showposts' => $num_posts,
+	);
+	if ($post_cat) {
+		$args['cat'] = $post_cat;
+	}
+	$the_query = new WP_Query( $args );
+	if (!$the_query->have_posts()){
+		return;
+	}
+	
 	wp_enqueue_script( 'pipdig-cycle' );
 	
 ?>
@@ -46,16 +57,6 @@ function p3_post_slider_posts_column() {
 			<div data-cycle-speed="1200" data-cycle-slides="li" data-cycle-swipe="true" data-cycle-swipe-fx="scrollHorz" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
 				<ul>
 					<?php
-						
-					$args = array(
-						'showposts' => $num_posts,
-					);
-					if ($post_cat) {
-						$args['cat'] = $post_cat;
-					}
-						
-					$the_query = new WP_Query( $args );
-							
 					while ($the_query -> have_posts()) : $the_query -> the_post();
 
 						$bg = p3_catch_image(get_the_ID(), 'large');

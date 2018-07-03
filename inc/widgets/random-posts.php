@@ -281,7 +281,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 				</div>
 				<div class="p3_pop_left-right">
 					<h4 class="p_post_titles_font"><?php echo pipdig_p3_truncate($title, 10); ?></h4>
-					<?php if ($show_date) { ?><div class="p3_pop_left_date"><?php the_date(); ?></div><?php } ?>
+					<?php if ($show_date) { ?><div class="p3_pop_left_date"><?php echo apply_filters('the_date', get_the_date(), get_option('date_format'), '', ''); ?></div><?php } ?>
 				</div>
 			</li>
 		<?php } else { ?>

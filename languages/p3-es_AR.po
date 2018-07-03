@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
 "POT-Creation-Date: 2018-07-03 10:17+0100\n"
-"PO-Revision-Date: 2018-07-03 10:18+0100\n"
+"PO-Revision-Date: 2018-07-03 10:25+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: es_AR\n"
@@ -1297,11 +1297,13 @@ msgstr ""
 #: inc/widgets/subscribe.php:23
 msgid ""
 "Enter your email address to receive notifications of new posts by email."
-msgstr "Escribe tu email para recibir notificación de cada post."
+msgstr ""
+"Enter your email to subscribe to this blog and receive notifications of new "
+"entries."
 
 #: inc/widgets/subscribe.php:46
 msgid "Enter your email"
-msgstr "Ingresa tu email"
+msgstr "Dirección de email"
 
 #: inc/widgets/subscribe.php:50
 #, php-format
@@ -1312,7 +1314,7 @@ msgstr ""
 
 #: inc/widgets/subscribe.php:52
 msgid "Subscribe"
-msgstr "Suscríbete"
+msgstr "Suscribir"
 
 #: inc/widgets/subscribe.php:100
 msgid "Text to display above the form:"
@@ -1328,7 +1330,7 @@ msgstr ""
 
 #: inc/widgets/twitter.php:10
 msgid "Twitter Timeline"
-msgstr ""
+msgstr "Twitter"
 
 #: inc/widgets/twitter.php:50
 msgid "Follow on Twitter"

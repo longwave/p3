@@ -13,6 +13,10 @@ This update includes a [New option](https://i.imgur.com/fmUB9Ih.png) to change t
 
 == Changelog ==
 
+= 3.13.5 (03 July 2018) =
+* Some minor improvements to image loading which should increase page load times.
+* Argentinian Spanish added to languages.
+
 = 3.13.4 (29 June 2018) =
 * [New option](https://i.imgur.com/fmUB9Ih.png) to change the size of the [social icons in the navbar](https://support.pipdig.co/articles/wordpress-how-to-add-social-icons-to-the-navbar/).
 

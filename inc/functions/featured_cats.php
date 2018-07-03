@@ -52,7 +52,7 @@ function p3_featured_cats_puller($category, $col = 3) {
 			</a>
 			<?php if (get_theme_mod('p3_featured_cats_show_dates', 1)) { ?>
 			<div class="entry-meta">
-				<?php the_date(); ?>
+				<?php echo apply_filters('the_date', get_the_date(), get_option('date_format'), '', ''); ?>
 			</div>
 			<?php } ?>
 			<?php if (get_theme_mod('p3_featured_cats_show_title', 1)) { ?>

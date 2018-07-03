@@ -25,7 +25,22 @@ function p3_full_width_slider_site_main() {
 		$text_color_out = 'color:'.sanitize_hex_color($text_color).';';
 	}
 	
-	wp_enqueue_script( 'pipdig-cycle' );		
+	$num_posts = absint(get_theme_mod('p3_full_width_slider_site_main_slider_num', 4));
+	$post_cat = get_theme_mod('p3_full_width_slider_site_main_slider_cat');
+	
+	$args = array(
+		'showposts' => $num_posts,
+	);
+	
+	if ($post_cat) {
+		$args['cat'] = $post_cat;
+	}
+	
+	$the_query = new WP_Query( $args );
+	if (!$the_query->have_posts()){
+		return;
+	}
+	wp_enqueue_script( 'pipdig-cycle' );
 ?>
 <div id="p3_full_width_slider_site_main" class="row">
 	<div class="col-xs-12">
@@ -34,39 +49,25 @@ function p3_full_width_slider_site_main() {
 		</style>
 		<div data-cycle-speed="1200" data-cycle-slides="li" data-cycle-manual-speed="700" class="cycle-slideshow nopin">
 			<ul>
-				<?php
-				
-					$num_posts = absint(get_theme_mod('p3_full_width_slider_site_main_slider_num', 4));
-					$post_cat = get_theme_mod('p3_full_width_slider_site_main_slider_cat');
-					
-					$args = array(
-						'showposts' => $num_posts,
-					);
-						
-					if ($post_cat) {
-						$args['cat'] = $post_cat;
-					}
-					
-					$the_query = new WP_Query( $args );
-						
-					while ($the_query -> have_posts()) : $the_query -> the_post();
+				<?php					
+				while ($the_query -> have_posts()) : $the_query -> the_post();
 
-						$images = '';
-						if (function_exists('rwmb_meta')) {
-							$images = rwmb_meta( 'pipdig_meta_rectangle_slider_image', 'type=image&size=full' );
+					$images = '';
+					if (function_exists('rwmb_meta')) {
+						$images = rwmb_meta( 'pipdig_meta_rectangle_slider_image', 'type=image&size=full' );
+					}
+					if ($images){
+						foreach ( $images as $image ) {
+							$bg = esc_url($image['url']);
 						}
-						if ($images){
-							foreach ( $images as $image ) {
-								$bg = esc_url($image['url']);
-							}
+					} else {
+						$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
+						if ($thumb) {
+							$bg = esc_url($thumb['0']);
 						} else {
-							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
-							if ($thumb) {
-								$bg = esc_url($thumb['0']);
-							} else {
-								$bg = pipdig_catch_that_image();
-							}
+							$bg = pipdig_catch_that_image();
 						}
+					}
 				?>
 				<li>
 					<a href="<?php the_permalink() ?>" class="p3_slide_img" style="background-image:url(<?php echo $bg; ?>);">
