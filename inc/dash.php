@@ -49,25 +49,24 @@ function pipdig_p3_unregister_widgets() {
 	unregister_widget('WP_Widget_Meta');
 	unregister_widget('WP_Widget_Recent_Posts');
 	unregister_widget('WP_Widget_Recent_Comments');
-		
-	unregister_widget('Jetpack_Upcoming_Events_Widget');
-	unregister_widget('Jetpack_My_Community_Widget');
-	unregister_widget('Jetpack_Gravatar_Profile_Widget');
-	unregister_widget('Jetpack_Internet_Defense_League_Widget');
-	unregister_widget('WPCOM_Widget_Facebook_LikeBox');
-	unregister_widget('Jetpack_MailChimp_Subscriber_Popup_Widget');
-	unregister_widget('Jetpack_Twitter_Timeline_Widget');
-	unregister_widget('Jetpack_Gallery_Widget');
-	unregister_widget('Jetpack_RSS_Links_Widget');
-	unregister_widget('wpcom_social_media_icons_widget');
-	unregister_widget('Jetpack_Display_Posts_Widget');
-	unregister_widget('Jetpack_Top_Posts_Widget');
-	unregister_widget('Jetpack_Contact_Info_Widget');
-	unregister_widget('Milestone_Widget');
-	unregister_widget('Jetpack_Widget_Authors');
 	
-	//unregister_widget('WP_Widget_Media_Image');
-		
+	if (!get_option('p3_jetpack_override')) {
+		unregister_widget('Jetpack_Upcoming_Events_Widget');
+		unregister_widget('Jetpack_My_Community_Widget');
+		//unregister_widget('Jetpack_Gravatar_Profile_Widget');
+		unregister_widget('Jetpack_Internet_Defense_League_Widget');
+		unregister_widget('WPCOM_Widget_Facebook_LikeBox');
+		unregister_widget('Jetpack_MailChimp_Subscriber_Popup_Widget');
+		unregister_widget('Jetpack_Twitter_Timeline_Widget');
+		unregister_widget('Jetpack_Gallery_Widget');
+		unregister_widget('Jetpack_RSS_Links_Widget');
+		unregister_widget('wpcom_social_media_icons_widget');
+		unregister_widget('Jetpack_Display_Posts_Widget');
+		unregister_widget('Jetpack_Top_Posts_Widget');
+		unregister_widget('Jetpack_Contact_Info_Widget');
+		unregister_widget('Milestone_Widget');
+		unregister_widget('Jetpack_Widget_Authors');
+	}
 	unregister_widget('Akismet_Widget');
 	unregister_widget('SocialCountPlus');
 	unregister_widget('GADWP_Frontend_Widget');
