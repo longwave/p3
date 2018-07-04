@@ -35,7 +35,7 @@ function p3_feature_header() {
 	
 	$truncate_title = absint(get_theme_mod('p3_feature_header_title_truncate', 7));
 	
-	wp_enqueue_script( 'pipdig-cycle' );
+	wp_enqueue_script( 'jquery-cycle' );
 	?>
 	<div id="p3_feature_header" class="row nopin">
 		<style scoped>

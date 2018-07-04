@@ -40,7 +40,7 @@ function p3_full_width_slider_site_main() {
 	if (!$the_query->have_posts()){
 		return;
 	}
-	wp_enqueue_script( 'pipdig-cycle' );
+	wp_enqueue_script( 'jquery-cycle' );
 ?>
 <div id="p3_full_width_slider_site_main" class="row">
 	<div class="col-xs-12">

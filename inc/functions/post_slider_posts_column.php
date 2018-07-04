@@ -46,7 +46,7 @@ function p3_post_slider_posts_column() {
 		return;
 	}
 	
-	wp_enqueue_script( 'pipdig-cycle' );
+	wp_enqueue_script( 'jquery-cycle' );
 	
 ?>
 <div id="p3_post_slider_posts_column" class="row" <?php echo $instagram_compensate; ?>>

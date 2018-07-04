@@ -106,7 +106,7 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 	 
 	function widget($args, $instance) {
 		  
-		wp_enqueue_script('pipdig-cycle');
+		wp_enqueue_script('jquery-cycle');
 		  
 		extract($args, EXTR_SKIP);
 	 
