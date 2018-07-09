@@ -13,6 +13,7 @@ if (is_admin() && isset($_GET['p3_jetpack_override'])) { // If peeps want to use
 
 function p3_dequeue_devicepx() {
 	wp_dequeue_script( 'devicepx' );
+	wp_dequeue_script( 'jquery-cycle' );
 }
 add_action('wp_enqueue_scripts', 'p3_dequeue_devicepx');
 
