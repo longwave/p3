@@ -12,7 +12,7 @@ function pipdig_p3_scrapey_scrapes() {
 	
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
 		
-		set_transient('p3_stats_gen', true, 9 * HOUR_IN_SECONDS);
+		set_transient('p3_stats_gen', true, 11 * HOUR_IN_SECONDS);
 		
 		$allow_url_fopen = false;
 		if(ini_get('allow_url_fopen')) {

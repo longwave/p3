@@ -263,7 +263,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 							</div>
 						<?php } ?>
 					</a>
-					<h4 class="p_post_titles_font"><?php if (!empty($instance['show_date'])) { echo get_the_date().': '; } ?><?php echo pipdig_p3_truncate($title, 11); ?></h4>
+					<a href="<?php the_permalink() ?>"><h4 class="p_post_titles_font"><?php if (!empty($instance['show_date'])) { echo get_the_date().': '; } ?><?php echo pipdig_p3_truncate($title, 11); ?></h4></a>
 				</div>
 			</li>
 		<?php } elseif ($style_select === 2) { ?>
