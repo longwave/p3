@@ -13,8 +13,11 @@ This update includes a [New option](https://i.imgur.com/fmUB9Ih.png) to change t
 
 == Changelog ==
 
+= 3.13.8 (10 July 2018) =
+* Fix an issue with the 'Large Rectangle Slider' which was not showing in some rare cases.
+
 = 3.13.7 (09 July 2018) =
-* Link pos titles to the post in the "Popular Posts" widget.
+* Link post titles to the post in the "Popular Posts" widget.
 * Fix an incompatibility with the Jetpack slideshow shortcode.
 
 = 3.13.5 (03 July 2018) =
