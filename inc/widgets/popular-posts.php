@@ -102,7 +102,6 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 	  }
 	 
 	  function update($new_instance, $old_instance) {
-		delete_transient('pipdig_popular_posts_widget'); // delete transient on widget save
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
 		$instance['category'] = absint($new_instance['category']);
@@ -193,7 +192,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			}
 			
 			if ( false === ( $post_view_ids = get_transient( 'p3_jp_pop_days_'.$trans_prefix ) )) {
-				$jp_top_posts = stats_get_csv( 'postviews', array( 'days' => $days, 'limit' => 500 ) );
+				$jp_top_posts = stats_get_csv( 'postviews', array( 'days' => $days, 'limit' => 50 ) );
 				$post_view_ids = wp_list_pluck($jp_top_posts, 'post_id');
 				set_transient( 'p3_jp_pop_days_'.$trans_prefix, $post_view_ids, 30 * MINUTE_IN_SECONDS );
 			}
@@ -203,7 +202,8 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 				$args = array(
 					'ignore_sticky_posts' => true,
 					'showposts' => $number_posts,
-					'post__in' => $post_view_ids
+					'post__in' => $post_view_ids,
+					'orderby' => 'post__in'
 				);
 				
 				$traditional = false;

@@ -73,7 +73,7 @@ function p3_feature_header() {
 					}
 					
 					if ( false === ( $post_view_ids = get_transient( 'p3_jp_pop_days_'.$trans_prefix ) )) {
-						$jp_top_posts = stats_get_csv( 'postviews', array( 'days' => $days, 'limit' => 500 ) );
+						$jp_top_posts = stats_get_csv( 'postviews', array( 'days' => $days, 'limit' => 50 ) );
 						$post_view_ids = wp_list_pluck($jp_top_posts, 'post_id');
 						set_transient( 'p3_jp_pop_days_'.$trans_prefix, $post_view_ids, 30 * MINUTE_IN_SECONDS );
 					}
@@ -83,7 +83,8 @@ function p3_feature_header() {
 						$args = array(
 							'ignore_sticky_posts' => true,
 							'showposts' => 4,
-							'post__in' => $post_view_ids
+							'post__in' => $post_view_ids,
+							'orderby' => 'post__in'
 						);
 						
 						$traditional = false;

@@ -102,7 +102,6 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 	  }
 	 
 	  function update($new_instance, $old_instance) {
-		delete_transient('pipdig_popular_posts_widget'); // delete transient on widget save
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
 		$instance['category'] = absint($new_instance['category']);
