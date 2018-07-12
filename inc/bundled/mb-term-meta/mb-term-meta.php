@@ -3,7 +3,7 @@
  * Plugin Name: MB Term Meta
  * Plugin URI: https://metabox.io/plugins/mb-term-meta/
  * Description: Add custom fields (meta data) for terms.
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: MetaBox.io
  * Author URI: https://metabox.io
  * License: GPL2+
