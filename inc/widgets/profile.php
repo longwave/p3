@@ -67,7 +67,7 @@ class pipdig_widget_profile_function extends WP_Widget {
 				$horizontal = true;
 			}
 			
-			$img = '';
+			$img = $image_src = '';
 			if (!empty($instance['image_uri'])) {
 				$image_src = $instance['image_uri'];
 				$image_data = pipdig_get_attachment_id($instance['image_uri']); // use the medium thumbnail if we can find it
@@ -90,12 +90,14 @@ class pipdig_widget_profile_function extends WP_Widget {
 			if (!empty($instance['description'])) {
 				$desc = wpautop(do_shortcode($instance['description']));
 			}
-					
+			
 			if ($horizontal && $desc) {
 				echo '<img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" class="nopin profile_col_50" />'.$desc;
 				echo '<div class="clearfix"></div>';
 			} else {
-				echo '<img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" class="nopin" />';
+				if ($image_src) {
+					echo '<img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" class="nopin" />';
+				}
 				if ($desc) {
 					echo $desc;
 				}
