@@ -216,8 +216,10 @@ add_action( 'admin_notices', 'p3_new_install_notice' );
 
 
 function pipdig_p3_activate() {
+	
+	add_option('pipdig_id', sanitize_text_field(substr(str_shuffle(MD5(microtime())), 0, 10)));
 
-	update_option('p3_auto_updates_on', 0);
+	add_option('p3_auto_updates_on', 0);
 	update_option('endurance_cache_level', 0);
 
 	$plugins = array(
@@ -331,7 +333,6 @@ function pipdig_p3_activate() {
 		*/
 	}
 	
-	// delete siteground starting blog post
 	if (get_the_title(1) == 'WordPress Resources at SiteGround') {
 		wp_delete_post(1);
 	}
