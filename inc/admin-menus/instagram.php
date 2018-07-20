@@ -42,7 +42,7 @@ function p3_instagram_at_render() {
 		//echo $user_id[0];
 	}
 	?>
-	<input class='large-text' id="p3_access_token" type='text' name='pipdig_instagram[access_token]' value="<?php echo $access_token; ?>"> <?php
+	<input class='large-text' id="p3_access_token" type='text' name='pipdig_instagram[access_token]' value="<?php echo $access_token; ?>" autocomplete="off"> <?php
 }
 
 function p3_instagram_userid_render() {
@@ -53,12 +53,11 @@ function p3_instagram_userid_render() {
 	}
 	
 	?>
-	<input class='large-text' id="p3_user_id" type='text' name='pipdig_instagram[user_id]' value="<?php echo $user_id; ?>"> <?php
+	<input class='large-text' id="p3_user_id" type='text' name='pipdig_instagram[user_id]' value="<?php echo $user_id; ?>" autocomplete="off"> <?php
 }
 
 
 function pipdig_instagram_section_callback() {
-	//echo '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">';
 	echo '<p>You will need to connect your Instagram account to display your feed on this site. Click the button below to do this:</p>';
 	echo '<p><a href="https://www.pipdig.co/ig" target="_blank" class="instagram-token-button">'.__('Click here to connect your Instagram account', 'p3').'</a></p>';
 	echo '<p>'.__('Once you have connected your account, copy and paste your Access Token below:', 'p3').'</p>';

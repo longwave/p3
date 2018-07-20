@@ -65,7 +65,6 @@ function p3_do_this_daily() {
 	
 	// Check domain license is active
 	$url = 'https://wpupdateserver.com/id39dqm3c0_license.txt';
-	$args = array('timeout' => 3);
 	$response = wp_safe_remote_get($url, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		$rcd = trim($response['body']);
