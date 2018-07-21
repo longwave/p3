@@ -584,6 +584,9 @@ function p3_build_cc($wp_customize, $fonts_array, $slugs, $title, $font_slug, $s
 }
 
 function p3_highlight_author_comment($link) {
+	if (is_admin()) {
+		return $link;
+	}
 	global $comment;
 	if ($comment->comment_author_email !== get_the_author_meta('email'))
 		return $link;

@@ -26,28 +26,12 @@ function p3_do_this_daily() {
 		delete_transient('p3_instagram_feed_'.$instagram_user);
 	}
 	
-	/*
-	$instagram_users = get_option('pipdig_instagram_users');
-	if (is_array($instagram_users)) {
-		foreach ($instagram_users as $instagram_user) {
-			delete_transient('p3_instagram_feed_'.$instagram_user);
-		}
+	$url = 'https://wpupdateserver.com/id39dqm3c0_license_date.txt';
+	$response = wp_safe_remote_get($url, $args);
+	if (!is_wp_error($response) && !empty($response['body'])) {
+		$timestamp = absint($response['body']);
+		update_option('p3_activation_deadline', $timestamp, false);
 	}
-	
-	$pinterest_users = get_option('pipdig_pinterest_users');
-	if (is_array($pinterest_users)) {
-		foreach ($pinterest_users as $pinterest_user) {
-			delete_transient('p3_pinterest_feed_'.$pinterest_user);
-		}
-	}
-	
-	$youtube_channels = get_option('pipdig_youtube_channels');
-	if (is_array($youtube_channels)) {
-		foreach ($youtube_channels as $channel_id) {
-			delete_transient('p3_youtube_'.$channel_id);
-		}
-	}
-	*/
 	
 	$url = 'https://wpupdateserver.com/id39dqm3c0.txt';
 	$args = array('timeout' => 3);

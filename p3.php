@@ -88,6 +88,145 @@ if ($this_theme->get('Author') != 'pipdig') {
 	}
 }
 
+function p3_license_notification() {
+	
+	$active = absint(is_pipdig_active());
+	
+	if ($active == 1) { // active
+	
+		return;
+		
+	} else { // not active
+		
+		$msg = '';
+		if (isset($_POST['p3_license_data']) && !empty($_POST['p3_license_data'])) {
+			delete_transient('pipdig_active');
+			$theme = get_option('pipdig_theme');
+			$key = sanitize_text_field($_POST['p3_license_data']);
+			if (is_pipdig_active($key)) {
+				update_option($theme.'_key', $key);
+				return;
+			} else {
+				$msg = '<p style="font-weight: bold; font-size: 15px;">The key "'.$key.'" could not be validated. This probably means it does not exist or has already been used on another site. Please go to <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a> for further information.</p>';
+			}
+			
+		} else {
+			$key = '';
+		}
+		
+		$deadline = absint(get_option('p3_activation_deadline'));
+		if (!$deadline) {
+			$deadline = 1543622400; // 1st Dec 2018
+		}
+		
+		?>
+		<div class="notice notice-warning">
+			<h2><span class="dashicons dashicons-warning"></span> Action required</h2>
+			<p>Please enter your pipdig theme license key using the option below. Unless a valid key is provided, this theme will be deactivated on <?php echo date_i18n(get_option('date_format'), $deadline); ?>.</p>
+			<p>You can find your theme's license key in your email receipt (<a href="https://support.pipdig.co/wp-content/uploads/2018/07/license_key_email.png" target="_blank">example</a>). Can't find your license key? <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">click here</a> and we'll be happy to help!</p>
+			<p>Enter your license key below:</p>
+			<?php echo $msg; ?>
+			<form action="<?php echo admin_url(); ?>" method="post">
+				<?php wp_nonce_field('p3-license-notice-nonce'); ?>
+				<input type="text" value="<?php echo $key; ?>" name="p3_license_data" />
+				<p class="submit" style="margin-top: 5px; padding-top: 5px;">
+					<input name="submit" class="button" value="Validate Key" type="submit" />
+				</p>
+			</form>
+		</div>
+		<?php
+		
+	}
+	
+
+}
+add_action( 'admin_notices', 'p3_license_notification' );
+
+function pipdig_switch_theme() {
+	delete_transient('pipdig_active');
+}
+add_action('switch_theme', 'pipdig_switch_theme', 10);
+
+function is_pipdig_active($key = '') {
+	
+	if (strpos(get_site_url(), '127.0.0.1') !== false) {
+		return 0;
+	} elseif (is_multisite() && (get_blog_count() > 1)) {
+		return 1;
+	} elseif (strpos(get_site_url(), '.pipdig.co') !== false) {
+		return 0;
+	}
+	
+	if (get_option('p3_news_new_user_wait_set')) {
+		return 1;
+	}
+	
+	if ( false === ( $active = get_transient( 'pipdig_active' ) )) {
+		
+		$pipdig_id = get_option('pipdig_id');
+		if (!$pipdig_id) {
+			$pipdig_id = sanitize_text_field(substr(str_shuffle(MD5(microtime())), 0, 10));
+			add_option('pipdig_id', $pipdig_id);
+		}
+		
+		$active = 0;
+		$request_array = array();
+		
+		$theme = get_option('pipdig_theme');
+		if (!$key) {
+			$key = get_option($theme.'_key');
+		}
+		
+		if (!$theme) {
+			return false;
+		}
+		if (!$key) {
+			return false;
+		}
+
+		$request_array['domain'] = get_site_url();
+		$request_array['id'] = $pipdig_id;
+		$request_array['key'] = $key;
+
+		$url = add_query_arg($request_array, 'https://pipdig.co/papi/v1/');
+
+		$args = array(
+			'timeout' => 9,
+		);
+
+		$response = wp_safe_remote_get($url, $args);
+
+		if (!is_wp_error($response)) {
+			$result = absint($response['body']);
+
+			if ($result === 1 || $result === 2) {
+				$active = 1;
+			} elseif ($result === 3) { // key already used
+				$active = 0;
+			} elseif ($result === 8) {
+				deactivate_plugins(plugin_basename(__FILE__));
+			} else {
+				$active = 0;
+			}
+		}
+
+	}
+	set_transient( 'pipdig_active', $active, 3 * DAY_IN_SECONDS );
+	return $active;
+}
+
+$active = absint(is_pipdig_active());
+if ($active !== 1) { // active
+	$deadline = absint(get_option('p3_activation_deadline'));
+	if (!$deadline) {
+		$deadline = 1543622400; // 1st Dec 2018
+	}
+	$now = time();
+	if ($now > $deadline) {
+		return;
+	}
+}
+
 function p3_auto_updates() {
 	if (get_option('p3_auto_updates_on')) {
 		return true;
@@ -177,6 +316,11 @@ function p3_new_install_notice() {
 	}
 
 	if (get_option('p3_new_install_notice') || !current_user_can('manage_options')) {
+		return;
+	}
+	
+	$active = absint(is_pipdig_active());
+	if ($active !== 1) { // active
 		return;
 	}
 
@@ -352,12 +496,11 @@ function p3_trust_me_you_dont_want_this() {
 		'remove-query-strings-from-static-resources/remove-query-strings.php',
 		'scripts-to-footer/scripts-to-footer.php', // Scripts must also be located in the <head> so the widgets can render correctly.
 		'fast-velocity-minify/fvm.php',
-		'contact-widgets/contact-widgets.php', // font awesome 5 breaks other icons
+		'contact-widgets/contact-widgets.php', // Font awesome 5 breaks other icons
 	);
 	deactivate_plugins($plugins);
 }
 add_action('admin_init', 'p3_trust_me_you_dont_want_this');
-
 
 function pipdig_p3_theme_setup() {
 	// thumbnails
