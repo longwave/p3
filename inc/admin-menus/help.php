@@ -24,12 +24,20 @@ if (!function_exists('pipdig_help_options_page')) {
 					
 					<h3>Please use the form below to search for topics:</h3>
 				
-					<form role="search" class="search-form" data-search="true" action="//support.pipdig.co/" accept-charset="UTF-8" method="get" target="_blank">
+					<form role="search" class="search-form" data-search="true" action="https://support.pipdig.co/" accept-charset="UTF-8" method="get" target="_blank">
 						<input type="hidden" value="1" name="ht-kb-search">
 						<input type="hidden" value="" name="lang">
 						<input type="search" name="s" id="query" placeholder="Search" />
 						<input type="submit" name="commit" class="button" value="Search" />
 					</form>
+					
+					<?php
+					$theme = get_option('pipdig_theme');
+					$key = get_option($theme.'_key');
+					if ($key) {
+						echo '<p>Active License: '.$key.'<p>';
+					}
+					?>
 
 				</div>
 				<!-- .meta-box-sortables .ui-sortable -->

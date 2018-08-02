@@ -533,3 +533,8 @@ function p3_plugin_puc_icons( $info, $response = null ) {
 	return $info;
 }
 require_once 'inc/plugin-update-checker/plugin-update-checker.php';$updater = Puc_v4_Factory::buildUpdateChecker('https://bitbucket.org/pipdig/p3', __FILE__, 'p3');$updater->setBranch('master');$updater->addResultFilter('p3_plugin_puc_icons');
+
+function p3_gb_learn_more_link($link) {
+    return '<a href="https://www.pipdig.co/blog/gutenberg/">Learn more about Gutenberg</a>';
+}
+add_filter( 'try_gutenberg_learn_more_link', 'p3_gb_learn_more_link' );
