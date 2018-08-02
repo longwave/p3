@@ -37,6 +37,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
 		$snapchat = empty($instance['snapchat']) ? '' : esc_url($instance['snapchat']);
 		$goodreads = empty($instance['goodreads']) ? '' : esc_url($instance['goodreads']);
+		$vimeo = empty($instance['vimeo']) ? '' : esc_url($instance['vimeo']);
 		$rss = empty($instance['rss']) ? '' : esc_attr($instance['rss']);
 		//$style_select = empty($instance['style_select']) ? '' : $instance['style_select'];
 
@@ -63,6 +64,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($pinterest)) $icons_output .= '<a href="'.$pinterest.'" target="_blank" rel="nofollow noopener" aria-label="pinterest" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>';
 			if (!empty($snapchat)) $icons_output .= '<a href="'.$snapchat.'" target="_blank" rel="nofollow noopener" aria-label="snapchat" title="snapchat"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i></a>';
 			if (!empty($youtube)) $icons_output .= '<a href="'.$youtube.'" target="_blank" rel="nofollow noopener" aria-label="youtube" title="youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>';
+			if (!empty($vimeo)) $icons_output .= '<a href="'.$vimeo.'" target="_blank" rel="nofollow noopener" aria-label="vimeo" title="vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a>';
 			if (!empty($vine)) $icons_output .= '<a href="'.$vine.'" target="_blank" rel="nofollow noopener" aria-label="vine" title="vine"><i class="fa fa-vine" aria-hidden="true"></i></a>';
 			if (!empty($tumblr)) $icons_output .= '<a href="'.$tumblr.'" target="_blank" rel="nofollow noopener" aria-label="tumblr" title="tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a>';
 			if (!empty($linkedin)) $icons_output .= '<a href="'.$linkedin.'" target="_blank" rel="nofollow noopener" aria-label="linkedin" title="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>';
@@ -91,6 +93,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($pinterest)) $icons_output .= '<a href="'.$pinterest.'" target="_blank" rel="nofollow noopener" aria-label="pinterest" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i><br /><span>Pinterest</span></a>';
 			if (!empty($snapchat)) $icons_output .= '<a href="'.$snapchat.'" target="_blank" rel="nofollow noopener" aria-label="snapchat" title="snapchat"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i><br /><span>Snapchat</span></a>';
 			if (!empty($youtube)) $icons_output .= '<a href="'.$youtube.'" target="_blank" rel="nofollow noopener" aria-label="youtube" title="youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i><br /><span>YouTube</span></a>';
+			if (!empty($vimeo)) $icons_output .= '<a href="'.$vimeo.'" target="_blank" rel="nofollow noopener" aria-label="vimeo" title="vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i><br /><span>Vimeo</span></a>';
 			if (!empty($vine)) $icons_output .= '<a href="'.$vine.'" target="_blank" rel="nofollow noopener" aria-label="vine" title="vine"><i class="fa fa-vine" aria-hidden="true"></i><br /><span>Vine</span></a>';
 			if (!empty($tumblr)) $icons_output .= '<a href="'.$tumblr.'" target="_blank" rel="nofollow noopener" aria-label="tumblr" title="tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i><br /><span>Tumblr</span></a>';
 			if (!empty($linkedin)) $icons_output .= '<a href="'.$linkedin.'" target="_blank" rel="nofollow noopener" aria-label="linkedin" title="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i><br /><span>LinkedIn</span></a>';
@@ -128,6 +131,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$bloglovin = empty($instance['bloglovin']) ? '' : esc_url($instance['bloglovin']);
 		$pinterest = empty($instance['pinterest']) ? '' : esc_url($instance['pinterest']);
 		$youtube = empty($instance['youtube']) ? '' : esc_url($instance['youtube']);
+		$vimeo = empty($instance['vimeo']) ? '' : esc_url($instance['vimeo']);
 		$vine = empty($instance['vine']) ? '' : esc_url($instance['vine']);
 		$tumblr = empty($instance['tumblr']) ? '' : esc_url($instance['tumblr']);
 		$linkedin = empty($instance['linkedin']) ? '' : esc_url($instance['linkedin']);
@@ -166,6 +170,9 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		}
 		if (empty($youtube) && isset($links['youtube'])) {
 			$youtube = esc_url($links['youtube']);
+		}
+		if (empty($vimeo) && isset($links['vimeo'])) {
+			$vimeo = esc_url($links['vimeo']);
 		}
 		if (empty($snapchat) && isset($links['snapchat'])) {
 			$snapchat = esc_url($links['snapchat']);
@@ -323,6 +330,14 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			value="<?php echo esc_url($youtube); ?>" />
 			</label>
 		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id('vimeo'); ?>">Vimeo (e.g. http:///vimeo.com/pipdig)
+			<input class="widefat" id="<?php echo $this->get_field_id('vimeo'); ?>" 
+			name="<?php echo $this->get_field_name('vimeo'); ?>" type="text" 
+			value="<?php echo esc_url($vimeo); ?>" />
+			</label>
+		</p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('rss'); ?>">RSS Feed (e.g. http://mydomain.com/feed) 
@@ -451,6 +466,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$instance['pinterest'] = esc_url($new_instance['pinterest']);
 		$instance['snapchat'] = esc_url($new_instance['snapchat']);
 		$instance['youtube'] = esc_url($new_instance['youtube']);
+		$instance['vimeo'] = esc_url($new_instance['vimeo']);
 		$instance['vine'] = esc_url($new_instance['vine']);
 		$instance['tumblr'] = esc_url($new_instance['tumblr']);
 		$instance['linkedin'] = esc_url($new_instance['linkedin']);

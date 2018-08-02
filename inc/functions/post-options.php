@@ -25,7 +25,11 @@ function p3_author_bio() {
 		<?php
 		$twitter = trim(get_the_author_meta('twitter'));
 		$facebook = trim(get_the_author_meta('facebook'));
+		$user_url = esc_url(get_the_author_meta('user_url'));
 		$socialz = array();
+		if ($user_url) {
+			$socialz[] = '<a href="'.esc_url($user_url).'" rel="nofollow noopener" target="_blank">Web</a>';
+		}
 		if ($twitter) {
 			$socialz[] = '<a href="'.esc_url('https://twitter.com/'.$twitter).'" rel="nofollow noopener" target="_blank">Twitter</a>';
 		}

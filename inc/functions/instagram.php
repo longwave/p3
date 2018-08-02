@@ -249,7 +249,7 @@ function p3_instagram_header() {
 	if (!get_theme_mod('p3_instagram_header_all') && (!is_front_page() && !is_home()) ) {
 		return;
 	}
-		
+	
 	$images = p3_instagram_fetch(); // grab images
 			
 	if ($images) {

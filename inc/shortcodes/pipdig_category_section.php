@@ -16,6 +16,7 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 		'view_all_button_text' => '',
 		'number' => '3',
 		'columns' => '3',
+		'location' => false,
 	), $atts ) );
 	
 	$output = $border_class = $col_class = $title_link_start = $title_link_end = '';
@@ -23,6 +24,7 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 	$border = filter_var( $border, FILTER_VALIDATE_BOOLEAN );
 	$excerpt = filter_var( $excerpt, FILTER_VALIDATE_BOOLEAN );
 	$view_all_button = filter_var( $view_all_button, FILTER_VALIDATE_BOOLEAN );
+	$location = filter_var( $location, FILTER_VALIDATE_BOOLEAN );
 	
 	if ($columns == '2') {
 		$col_class = '_2_cols';
@@ -71,11 +73,22 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 				} else {
 					$comments_out = '<i class="fa fa-comments"></i> '.$comment_count;
 				}
-						
+				
 				$output .= '<div class="pipdig_category_section_item'.$col_class.'">';
-						
+				
 				$output .= '<a href="'.$link.'" class="p3_cover_me" style="background-image:url('.$bg.');"><img src="'.$the_shape.'" alt="'.esc_attr(get_the_title()).'" class="p3_invisible" data-pin-nopin="true"/></a>';
-						
+				
+				
+				if ($location) {
+					$post_location = '';
+					if (function_exists('rwmb_meta')) {
+						$post_location = rwmb_meta('pipdig_meta_geographic_location');
+					}
+					if ($post_location) {
+						$output .= '<div class="p_post_location"><i class="fa fa-map-marker"></i> '.strip_tags($post_location).'</div>';
+					}
+				}
+				
 				$output .= '<h3 class="pipdig_category_section_item_title p_post_titles_font">'.strip_tags(get_the_title()).'</h3>';
 				
 				if ($excerpt) {
@@ -83,7 +96,6 @@ function pipdig_p3_cat_section_shortcode( $atts, $content = null ) {
 				}
 				
 				$output .= '</div>'; //.pipdig_category_section_item
-				
 				
 				// clearfix and margin if 2 columns
 				if (($columns == '2') && ($query->current_post % 2)) {

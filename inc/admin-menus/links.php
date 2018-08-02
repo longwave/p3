@@ -38,9 +38,25 @@ function pipdig_links_init() {
 	);
 	
 	add_settings_field( 
+		'pinterest', 
+		'<i class="fa fa-pinterest" aria-hidden="true"></i>&nbsp;&nbsp;Pinterest', 
+		'p3_pinterest_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
+	add_settings_field( 
 		'facebook', 
 		'<i class="fa fa-facebook" aria-hidden="true"></i>&nbsp;&nbsp;Facebook', 
 		'p3_facebook_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
+	add_settings_field( 
+		'youtube', 
+		'<i class="fa fa-youtube-play" aria-hidden="true"></i>&nbsp;&nbsp;YouTube', 
+		'p3_youtube_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
 	);
@@ -62,25 +78,9 @@ function pipdig_links_init() {
 	);
 	
 	add_settings_field( 
-		'pinterest', 
-		'<i class="fa fa-pinterest" aria-hidden="true"></i>&nbsp;&nbsp;Pinterest', 
-		'p3_pinterest_field_render', 
-		'pipdig_links_options_page', 
-		'pipdig_links_options_page_section' 
-	);
-	
-	add_settings_field( 
 		'snapchat', 
 		'<i class="fa fa-snapchat-ghost" aria-hidden="true"></i>&nbsp;&nbsp;Snapchat', 
 		'p3_snapchat_field_render', 
-		'pipdig_links_options_page', 
-		'pipdig_links_options_page_section' 
-	);
-	
-	add_settings_field( 
-		'youtube', 
-		'<i class="fa fa-youtube-play" aria-hidden="true"></i>&nbsp;&nbsp;YouTube', 
-		'p3_youtube_field_render', 
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
 	);

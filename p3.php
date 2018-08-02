@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.13.8
+Version: 3.14.0
 Text Domain: p3
 License: Copyright 2018 pipdig Ltd. All Rights Reserved.
 */
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.13.8' );
+define( 'PIPDIG_P3_V', '3.14.0' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.4.0') >= 0) {
@@ -29,7 +29,15 @@ function p3_php_version_notice() {
 add_action( 'admin_notices', 'p3_php_version_notice' );
 
 function pipdig_p3_themes_top_link() {
-	if(!isset($_GET['page'])) {
+	/*
+	if (isset($_GET['pipdig_key'])) {
+		delete_transient('pipdig_active');
+		$theme = get_option('pipdig_theme');
+		$key = sanitize_text_field($_GET['pipdig_key']);
+		update_option($theme.'_key', $key);
+	}
+	*/
+	if (!isset($_GET['page'])) {
 	?>
 	<script>
 	jQuery(document).ready(function($) {
@@ -90,6 +98,10 @@ if ($this_theme->get('Author') != 'pipdig') {
 
 function p3_license_notification() {
 	
+	if (!is_super_admin()) {
+		return;
+	}
+	
 	$active = absint(is_pipdig_active());
 	
 	if ($active == 1) { // active
@@ -107,7 +119,7 @@ function p3_license_notification() {
 				update_option($theme.'_key', $key);
 				return;
 			} else {
-				$msg = '<p style="font-weight: bold; font-size: 15px;">The key "'.$key.'" could not be validated. This probably means it does not exist or has already been used on another site. Please go to <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a> for further information.</p>';
+				$msg = '<p style="font-weight: bold; font-size: 15px;">The key "'.$key.'" could not be validated. This might mean there is a typo or the key has already been used on another site. Please try again to double check. You can get help with this issue on <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a>.</p>';
 			}
 			
 		} else {
@@ -123,10 +135,10 @@ function p3_license_notification() {
 		<div class="notice notice-warning">
 			<h2><span class="dashicons dashicons-warning"></span> Action required</h2>
 			<p>Please enter your pipdig theme license key using the option below. Unless a valid key is provided, this theme will be deactivated on <?php echo date_i18n(get_option('date_format'), $deadline); ?>.</p>
-			<p>You can find your theme's license key in your email receipt (<a href="https://support.pipdig.co/wp-content/uploads/2018/07/license_key_email.png" target="_blank">example</a>). Can't find your license key? <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">click here</a> and we'll be happy to help!</p>
+			<p>You can find your theme's license key in your email receipt (<a href="https://support.pipdig.co/wp-content/uploads/2018/07/license_key_email.png" target="_blank">example</a>). Can't find your license key? <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">Click here</a> and we'll be happy to help!</p>
 			<p>Enter your license key below:</p>
 			<?php echo $msg; ?>
-			<form action="<?php echo admin_url(); ?>" method="post">
+			<form action="<?php echo admin_url(); ?>" method="post" autocomplete="off">
 				<?php wp_nonce_field('p3-license-notice-nonce'); ?>
 				<input type="text" value="<?php echo $key; ?>" name="p3_license_data" />
 				<p class="submit" style="margin-top: 5px; padding-top: 5px;">
@@ -140,7 +152,7 @@ function p3_license_notification() {
 	
 
 }
-add_action( 'admin_notices', 'p3_license_notification' );
+//add_action( 'admin_notices', 'p3_license_notification' );
 
 function pipdig_switch_theme() {
 	delete_transient('pipdig_active');
@@ -150,11 +162,11 @@ add_action('switch_theme', 'pipdig_switch_theme', 10);
 function is_pipdig_active($key = '') {
 	
 	if (strpos(get_site_url(), '127.0.0.1') !== false) {
-		return 0;
+		return 1;
 	} elseif (is_multisite() && (get_blog_count() > 1)) {
 		return 1;
 	} elseif (strpos(get_site_url(), '.pipdig.co') !== false) {
-		return 0;
+		return 1;
 	}
 	
 	if (get_option('p3_news_new_user_wait_set')) {
@@ -178,15 +190,16 @@ function is_pipdig_active($key = '') {
 		}
 		
 		if (!$theme) {
-			return false;
+			return 0;
 		}
 		if (!$key) {
-			return false;
+			return 0;
 		}
 
 		$request_array['domain'] = get_site_url();
 		$request_array['id'] = $pipdig_id;
 		$request_array['key'] = $key;
+		$request_array['theme'] = $theme;
 
 		$url = add_query_arg($request_array, 'https://pipdig.co/papi/v1/');
 
@@ -198,16 +211,15 @@ function is_pipdig_active($key = '') {
 
 		if (!is_wp_error($response)) {
 			$result = absint($response['body']);
-
 			if ($result === 1 || $result === 2) {
 				$active = 1;
-			} elseif ($result === 3) { // key already used
-				$active = 0;
-			} elseif ($result === 8) {
-				deactivate_plugins(plugin_basename(__FILE__));
+			} elseif ($result === 3) {
+				$active = 1;
 			} else {
 				$active = 0;
 			}
+		} else {
+			return 1; // server offline
 		}
 
 	}
@@ -215,6 +227,7 @@ function is_pipdig_active($key = '') {
 	return $active;
 }
 
+/*
 $active = absint(is_pipdig_active());
 if ($active !== 1) { // active
 	$deadline = absint(get_option('p3_activation_deadline'));
@@ -226,6 +239,7 @@ if ($active !== 1) { // active
 		return;
 	}
 }
+*/
 
 function p3_auto_updates() {
 	if (get_option('p3_auto_updates_on')) {
@@ -261,6 +275,7 @@ function pipdig_p3_scripts_styles() {
 		//wp_register_script( 'jquery-cycle', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), null, false );
 		wp_register_script( 'pipdig-cycle', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), null, false );
 	//}
+	wp_register_script( 'pipdig-cycle-swipe', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.swipe.min.js', array( 'jquery' ), null, true );
 	wp_register_script( 'jquery-easing', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js', array( 'jquery' ), null, false );
 	wp_register_script( 'pipdig-owl', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js', array('jquery'), null, false );
 	wp_register_script( 'backstretch', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js', array('jquery'), null, false );

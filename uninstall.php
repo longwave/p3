@@ -14,6 +14,7 @@ delete_transient('p3_stats_gen');
 delete_transient('p3_youtube_widget');
 delete_transient('pipdig_shaq_fu');
 delete_transient('p3_theme_checker');
+delete_transient('pipdig_active');
 
 // delete database entries
 //delete_option('pipdig_links');
