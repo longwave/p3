@@ -169,10 +169,6 @@ function is_pipdig_active($key = '') {
 		return 1;
 	}
 	
-	if (get_option('p3_news_new_user_wait_set')) {
-		return 1;
-	}
-	
 	if ( false === ( $active = get_transient( 'pipdig_active' ) )) {
 		
 		$pipdig_id = get_option('pipdig_id');
@@ -223,7 +219,7 @@ function is_pipdig_active($key = '') {
 		}
 
 	}
-	set_transient( 'pipdig_active', $active, 3 * DAY_IN_SECONDS );
+	set_transient( 'pipdig_active', $active, 7 * DAY_IN_SECONDS );
 	return $active;
 }
 
