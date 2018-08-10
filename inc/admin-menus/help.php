@@ -33,13 +33,13 @@ if (!function_exists('pipdig_help_options_page')) {
 					
 					<?php
 					$active = absint(is_pipdig_active());
-					$msg = '';
+					$key = '';
 					$theme = get_option('pipdig_theme');
 					if ($active == 1) { // active
 					
 						$key = get_option($theme.'_key');
 						if ($key) {
-							$msg = '<p>Active License: '.$key.'<p>';
+							echo '<p style="margin-top: 3000px;">Active License: '.$key.'<p>';
 						}
 						
 					} else { // not active
@@ -53,17 +53,17 @@ if (!function_exists('pipdig_help_options_page')) {
 						} else {
 							$key = '';
 						}
-						
+						?>
+						<div style="margin-top: 3000px;">
+							<form action="<?php echo admin_url(); ?>" method="post" autocomplete="off">
+								<input type="text" value="<?php echo $key; ?>" name="p3_menu_license_data" />
+								<input name="submit" class="button" value="Validate Key" type="submit" />
+							</form>
+						</div>
+						<?php
 					}
 					
 					?>
-					<div style="margin-top: 3000px;">
-						<?php echo $msg; ?>
-						<form action="<?php echo admin_url(); ?>" method="post" autocomplete="off">
-							<input type="text" value="<?php echo $key; ?>" name="p3_menu_license_data" />
-							<input name="submit" class="button" value="Validate Key" type="submit" />
-						</form>
-					</div>
 
 				</div>
 				<!-- .meta-box-sortables .ui-sortable -->

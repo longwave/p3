@@ -23,7 +23,6 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 			$text = __('Enter your email address to receive notifications of new posts by email.', 'p3');
 		}
 
-
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
 	   

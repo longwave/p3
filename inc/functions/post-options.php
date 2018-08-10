@@ -28,13 +28,13 @@ function p3_author_bio() {
 		$user_url = esc_url(get_the_author_meta('user_url'));
 		$socialz = array();
 		if ($user_url) {
-			$socialz[] = '<a href="'.esc_url($user_url).'" rel="nofollow noopener" target="_blank">Web</a>';
+			$socialz[] = '<a href="'.esc_url($user_url).'" rel="nofollow noopener" target="_blank" class="p3_author_bio_web">Web</a>';
 		}
 		if ($twitter) {
-			$socialz[] = '<a href="'.esc_url('https://twitter.com/'.$twitter).'" rel="nofollow noopener" target="_blank">Twitter</a>';
+			$socialz[] = '<a href="'.esc_url('https://twitter.com/'.$twitter).'" rel="nofollow noopener" target="_blank" class="p3_author_bio_twitter">Twitter</a>';
 		}
 		if ($facebook) {
-			$socialz[] = '<a href="'.esc_url($facebook).'" rel="nofollow noopener" target="_blank">Facebook</a>';
+			$socialz[] = '<a href="'.esc_url($facebook).'" rel="nofollow noopener" target="_blank" class="p3_author_bio_facebook">Facebook</a>';
 		}
 		if ($socialz) {
 			echo '<p>'.__('Find me on:', 'p3').' '.implode(" | ", $socialz).'</p>';
