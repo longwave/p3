@@ -53,7 +53,7 @@ function pipdig_p3_instagram_shortcode( $atts, $content = null ) {
 				if ($shape == 'original') {
 					$output .= '<img src="'.esc_url($img).'" alt="" />';
 				} else {
-					$output .= '<div class="p3_cover_me" style="background-image:url('.esc_url($img).')"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_invisible" alt="" /></div>';
+					$output .= '<div class="p3_cover_me" style="background-image:url('.esc_url($img).')"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AQMAAADxGE3JAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADVJREFUeNrtwTEBAAAAwiD7p/ZZDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOX0AAAEidG8rAAAAAElFTkSuQmCC" class="p3_invisible skip-lazy" alt="" /></div>';
 				}
 				$output .= '</a>';
 				

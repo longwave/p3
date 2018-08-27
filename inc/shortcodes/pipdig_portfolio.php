@@ -97,7 +97,7 @@ function pipdig_p3_portfolio_shortcode($atts, $content = null) {
 					
 					$output .= '<div class="pipdig_portfolio_grid_item mix '.$filtering.'">';
 						$output .= '<a href="'.$link.'" class="p3_cover_me" style="display: block; width: 100%; height: 100%;background-image:url('.$img.');">';
-							$output .= '<img src="'.$shape_img.'" alt="" class="p3_invisible" data-pin-nopin="true"/>';
+							$output .= '<img src="'.$shape_img.'" alt="" class="p3_invisible skip-lazy skip-lazy" data-pin-nopin="true"/>';
 							$output .= '<div class="pipdig_portfolio_grid_title_box">';
 							$output .= '<h2 class="title p_post_titles_font">'.get_the_title().'</h2>';
 							$output .= '<div class="read_more">'.__('Click to view', 'p3').'</div>';

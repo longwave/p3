@@ -28,7 +28,7 @@ function parallax_section_func( $atts, $content = null ) {
 	}
 	
 	if ($size == 'original') {
-		$output .= $tag_1.' class="pipdig_banner'.$parallax_class.'" style="height:auto"><img src="'.esc_url($image).'" alt=""/>'.$tag_2;
+		$output .= $tag_1.' class="pipdig_banner'.$parallax_class.'" style="height:auto"><img src="'.esc_url($image).'" alt="" class="skip-lazy"/>'.$tag_2;
 	} elseif (absint($size) > 10) {
 		$output .= $tag_1.' class="pipdig_banner'.$parallax_class.'" style="background-image:url('.esc_url($image).');height:'.absint($size).'px;">'.$tag_2;
 	} else {

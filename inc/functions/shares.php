@@ -71,12 +71,12 @@ function pipdig_p3_social_shares() {
 		$output .= '<a href="'.esc_url('https://wordpress.com/press-this.php?u='.$link.'&t='.$title.'&s='.$summary).'" target="_blank" rel="nofollow noopener" aria-label="Share on wp.com" title="Share on wp.com"><i class="fa fa-wordpress" aria-hidden="true"></i></a>';
 	}
 	
-	$share_title = __('Share:', 'p3');
-	if (get_theme_mod('p3_share_title')) {
-		$share_title = pipdig_strip(get_theme_mod('p3_share_title'));
+	$share_title = get_theme_mod('p3_share_title');
+	if (!$share_title) {
+		$share_title = __('Share:', 'p3');
 	}
 	
-	echo '<div class="addthis_toolbox"><span class="p3_share_title">'.$share_title.' </span>'.$output.'</div>';
+	echo '<div class="addthis_toolbox"><span class="p3_share_title">'.strip_tags($share_title).' </span>'.$output.'</div>';
 }
 
 

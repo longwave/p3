@@ -58,6 +58,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		if (!empty($instance['follow'])) {
 			$follow = true;
 		}
+		
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
 	   
@@ -67,7 +68,7 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 		} else {
 			echo $before_title . 'Pinterest' . $after_title;
 		}
-
+		
 		if (!empty($pinterestuser)) {
 			
 			$id = 'p3_pinterest_widget_'.rand(1, 999999999);
@@ -117,9 +118,12 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			} else {
 				echo 'Pinterest widget in section "'.$args['name'].'": '.__('Setup not complete. Please check the widget options.', 'p3');
 			}
+
+		}
+		
 		// After widget code, if any  
 		echo (isset($after_widget)?$after_widget:'');
-	}
+		
 	}
 	 
 	  public function form( $instance ) {

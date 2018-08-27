@@ -225,7 +225,7 @@ function pipdig_p3_emmmm_heeey() {
 		
 	});
 	</script>
-	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo strip_tags(wp_get_theme()->get('Name')); ?> v<?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> | <?php echo strip_tags(get_site_url()); ?> -->
+	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo strip_tags(wp_get_theme()->get('Name')); ?> v<?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> | <?php echo strip_tags(get_site_url()); ?> | ID: <?php echo strip_tags(get_option('pipdig_id')); ?> -->
 	<!--/noptimize-->
 	<?php
 }
@@ -593,7 +593,7 @@ function p3_highlight_author_comment($link) {
 	if ($comment->comment_author_email !== get_the_author_meta('email'))
 		return $link;
 	else {
-		return $link.' <br /><span class="p3_comment_author">'.__('Author').'</span>';
+		return $link.'<br /><span class="p3_comment_author">'.__('Author').'</span>';
 	}	
 }
 add_filter('get_comment_author_link', 'p3_highlight_author_comment');

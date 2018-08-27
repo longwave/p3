@@ -29,14 +29,14 @@ function p3_php_version_notice() {
 add_action( 'admin_notices', 'p3_php_version_notice' );
 
 function pipdig_p3_themes_top_link() {
-	
+
 	if (isset($_GET['pipdig_key'])) {
 		delete_transient('pipdig_active');
 		$theme = get_option('pipdig_theme');
 		$key = sanitize_text_field($_GET['pipdig_key']);
 		update_option($theme.'_key', $key);
 	}
-	
+
 	if (!isset($_GET['page'])) {
 	?>
 	<script>
@@ -59,19 +59,22 @@ function pipdig_p3_plugins_head() {
 add_action( 'admin_head-plugins.php', 'pipdig_p3_plugins_head' );
 
 function pipdig_p3_deactivate() {
-	
+
 	$instagram_deets = get_option('pipdig_instagram');
 	if (!empty($instagram_deets['user_id'])) {
 		$instagram_user = sanitize_text_field($instagram_deets['user_id']);
 		delete_transient('p3_instagram_feed_'.$instagram_user);
 	}
-	
+
 	wp_cache_flush();
-	
+
 }
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
 
 include(plugin_dir_path(__FILE__).'inc/cron.php');
+
+remove_action('try_gutenberg_panel', 'wp_try_gutenberg_panel');
+remove_action('welcome_panel', 'wp_welcome_panel');
 
 // bootstrap
 $this_theme = wp_get_theme();
@@ -97,21 +100,21 @@ if ($this_theme->get('Author') != 'pipdig') {
 }
 
 function p3_license_notification() {
-	
+
 	if (!is_super_admin()) {
 		return;
 	}
-	
+
 	$active = absint(is_pipdig_active());
-	
+
 	if ($active == 1) { // active
-	
+
 		return;
-		
+
 	} else { // not active
-		
+
 		$msg = '';
-		if (isset($_POST['p3_license_data']) && !empty($_POST['p3_license_data'])) {
+		if (!empty($_POST['p3_license_data'])) {
 			delete_transient('pipdig_active');
 			$theme = get_option('pipdig_theme');
 			$key = sanitize_text_field($_POST['p3_license_data']);
@@ -121,21 +124,22 @@ function p3_license_notification() {
 			} else {
 				$msg = '<p style="font-weight: bold; font-size: 15px;">The key "'.$key.'" could not be validated. This might mean there is a typo or the key has already been used on another site. Please try again to double check. You can get help with this issue on <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a>.</p>';
 			}
-			
+
 		} else {
 			$key = '';
 		}
-		
+
 		$deadline = absint(get_option('p3_activation_deadline'));
 		if (!$deadline) {
 			$deadline = 1543622400; // 1st Dec 2018
 		}
-		
+
 		?>
 		<div class="notice notice-warning">
 			<h2><span class="dashicons dashicons-warning"></span> Action required</h2>
-			<p>Please enter your pipdig theme license key using the option below. Unless a valid key is provided, this theme will be deactivated on <?php echo date_i18n(get_option('date_format'), $deadline); ?>.</p>
-			<p>You can find your theme's license key in your email receipt (<a href="https://support.pipdig.co/wp-content/uploads/2018/07/license_key_email.png" target="_blank">example</a>). Can't find your license key? <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">Click here</a> and we'll be happy to help!</p>
+			<p>Please enter your pipdig theme license key below. Unless a valid key is provided, this theme will be deactivated on <?php echo date_i18n(get_option('date_format'), $deadline); ?>.</p>
+			<p>You can find your theme's license key in your email receipt.</p>
+			<p>If you need any help finding your license key please <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">Click here</a>.</p>
 			<p>Enter your license key below:</p>
 			<?php echo $msg; ?>
 			<form action="<?php echo admin_url(); ?>" method="post" autocomplete="off">
@@ -147,11 +151,11 @@ function p3_license_notification() {
 			</form>
 		</div>
 		<?php
-		
+
 	}
 
 }
-//add_action( 'admin_notices', 'p3_license_notification' );
+add_action( 'admin_notices', 'p3_license_notification' );
 
 function pipdig_switch_theme() {
 	delete_transient('pipdig_active');
@@ -159,36 +163,40 @@ function pipdig_switch_theme() {
 add_action('switch_theme', 'pipdig_switch_theme', 10);
 
 function is_pipdig_active($key = '') {
-	
+
 	if (strpos(get_site_url(), '127.0.0.1') !== false) {
 		return 1;
-	} elseif (is_multisite() && (get_blog_count() > 1)) {
+	} elseif (strpos(get_site_url(), '.local') !== false) {
+		return 1;
+	} elseif (strpos(get_site_url(), 'localhost') !== false) {
 		return 1;
 	} elseif (strpos(get_site_url(), '.pipdig.co') !== false) {
 		return 1;
+	} elseif (is_multisite() && (get_blog_count() > 1)) {
+		return 1;
 	}
-	
+
 	if ( false === ( $active = get_transient( 'pipdig_active' ) )) {
-		
+
 		$pipdig_id = get_option('pipdig_id');
 		if (!$pipdig_id) {
 			$pipdig_id = sanitize_text_field(substr(str_shuffle(MD5(microtime())), 0, 10));
 			add_option('pipdig_id', $pipdig_id);
 		}
-		
+
 		$active = 0;
 		$request_array = array();
-		
+
 		$theme = get_option('pipdig_theme');
-		if (!$key) {
-			$key = get_option($theme.'_key');
-		}
-		
 		if (!$theme) {
 			return 0;
 		}
+
 		if (!$key) {
-			return 0;
+			$key = get_option($theme.'_key');
+			if (!$key) {
+				return 0;
+			}
 		}
 
 		$request_array['domain'] = get_site_url();
@@ -206,15 +214,13 @@ function is_pipdig_active($key = '') {
 
 		if (!is_wp_error($response)) {
 			$result = absint($response['body']);
-			if ($result === 1 || $result === 2) {
-				$active = 1;
-			} elseif ($result === 3) {
+			if ($result === 1 || $result === 2 || $result === 3) {
 				$active = 1;
 			} else {
 				$active = 0;
 			}
 		} else {
-			return 1; // server offline
+			return 1;
 		}
 
 	}
@@ -258,7 +264,7 @@ add_action('admin_init', 'p3_update_sizes_may_2018');
 
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
-	
+
 	if (get_theme_mod('disable_responsive')) {
 		wp_enqueue_style( 'p3-core', 'https://pipdigz.co.uk/p3/css/core.css', array(), PIPDIG_P3_V );
 	} else {
@@ -266,10 +272,7 @@ function pipdig_p3_scripts_styles() {
 	}
 	wp_register_script( 'pipdig-imagesloaded', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js', array('jquery'), null, false );
 	wp_register_script( 'pipdig-masonry', 'https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.1/masonry.pkgd.min.js', array('pipdig-imagesloaded'), null, false );
-	//if (class_exists('Jetpack') && !Jetpack::is_module_active('carousel')) {
-		//wp_register_script( 'jquery-cycle', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), null, false );
-		wp_register_script( 'pipdig-cycle', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), null, false );
-	//}
+	wp_register_script( 'pipdig-cycle', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js', array('jquery'), null, false );
 	wp_register_script( 'pipdig-cycle-swipe', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.swipe.min.js', array( 'jquery' ), null, true );
 	wp_register_script( 'jquery-easing', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js', array( 'jquery' ), null, false );
 	wp_register_script( 'pipdig-owl', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js', array('jquery'), null, false );
@@ -277,13 +280,13 @@ function pipdig_p3_scripts_styles() {
 	wp_register_script( 'stellar', 'https://cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js', array('jquery'), null, true );
 	wp_register_script( 'rateyo', 'https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js', array('jquery'), null, true );
 	wp_enqueue_script( 'pipdig-fitvids', 'https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.min.js', array( 'jquery' ), null, true );
+	if (!function_exists('pipdig_previews_remove_scripts')) { wp_enqueue_script( 'p3-global', 'https://pipdigz.co.uk/p3/scripts.js', array(), PIPDIG_P3_V, true ); }
 	wp_register_script( 'pipdig-mixitup', 'https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js', array( 'jquery' ), null, true );
-	//wp_register_script( 'pipdig-cookie', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js', array( 'jquery' ), null, true );
 	wp_register_script( 'pipdig-flickity', 'https://cdnjs.cloudflare.com/ajax/libs/flickity/2.0.10/flickity.pkgd.min.js', array('jquery'), null, false );
 	wp_register_script( 'pipdig-flickity-bglazy', 'https://unpkg.com/flickity-bg-lazyload@1.0.0/bg-lazyload.js', array('pipdig-flickity'), null, false );
 
 	if (get_theme_mod('pipdig_lazy')) {
-		wp_enqueue_script( 'pipdig-lazy', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.5/jquery.lazy.min.js', array( 'jquery' ), null, true );
+		wp_enqueue_script( 'pipdig-lazy', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js', array( 'jquery' ), null, true );
 	}
 
 	wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', '', null );
@@ -328,7 +331,7 @@ function p3_new_install_notice() {
 	if (get_option('p3_new_install_notice') || !current_user_can('manage_options')) {
 		return;
 	}
-	
+
 	$active = absint(is_pipdig_active());
 	if ($active !== 1) { // active
 		return;
@@ -370,7 +373,7 @@ add_action( 'admin_notices', 'p3_new_install_notice' );
 
 
 function pipdig_p3_activate() {
-	
+
 	add_option('pipdig_id', sanitize_text_field(substr(str_shuffle(MD5(microtime())), 0, 10)));
 
 	add_option('p3_auto_updates_on', 0);
@@ -391,6 +394,7 @@ function pipdig_p3_activate() {
 		'jch-optimize/jch-optimize.php',
 		'rss-image-feed/image-rss.php',
 		'wpclef/wpclef.php',
+		'wptouch/wptouch.php',
 		'hello-dolly/hello.php',
 		'theme-test-drive/themedrive.php',
 	);
@@ -486,11 +490,11 @@ function pipdig_p3_activate() {
 		}
 		*/
 	}
-	
+
 	if (get_the_title(1) == 'WordPress Resources at SiteGround') {
 		wp_delete_post(1);
 	}
-	
+
 	update_option('link_manager_enabled', 0);
 
 	// delete pipdig-importer data

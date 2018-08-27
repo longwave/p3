@@ -71,7 +71,7 @@ function pipdig_p3_mosaic_shortcode( $atts, $content = null ) {
 				$output .= '<div class="pipdig-masonry-post grid-item">';
 					//$output .= '<a href="'.$link.'" class="moasic-hover" >';
 						if ($layout == 'grid') {
-							$output .= '<div class="p3_cover_me" style="background-image:url('.$img.')"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAHgAQMAAACyyGUjAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACxJREFUeNrtwTEBAAAAwiD7p7bGDmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkHVZAAAFam5MDAAAAAElFTkSuQmCC" class="p3_invisible" alt="" /></div>';
+							$output .= '<div class="p3_cover_me" style="background-image:url('.$img.')"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAHgAQMAAACyyGUjAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACxJREFUeNrtwTEBAAAAwiD7p7bGDmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkHVZAAAFam5MDAAAAAElFTkSuQmCC" class="p3_invisible skip-lazy" alt="" /></div>';
 						} else {
 							$output .= '<img src="'.$img.'" alt="" />';
 						}

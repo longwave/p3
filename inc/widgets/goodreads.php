@@ -2,18 +2,14 @@
 
 if (!defined('ABSPATH')) die;
 
-if (class_exists('Jetpack')) {
-	if (Jetpack::is_module_active('widgets')) {
-		return;
-	}
+if (class_exists('Jetpack') && Jetpack::is_module_active('widgets')) {
+	return;
 }
 
 /**
  * Widget originally sourced from https://wordpress.org/plugins/jetpack/ under GPL2+
  * All props to the Jetpack team!
  */
-
-
 
 function pipdig_goodreads_widget_init() {
 	register_widget( 'p3_goodreads_widget' );
