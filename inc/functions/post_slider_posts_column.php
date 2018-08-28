@@ -132,15 +132,12 @@ class pipdig_post_slider_posts_column_Customize {
 				'sanitize_callback' => 'absint',
 			)
 		);
-		$wp_customize->add_control(
-			new WP_Customize_Category_Control(
-				$wp_customize,
-				'p3_post_slider_posts_column_cat',
-				array(
-					'label'    => __('Display posts from:', 'p3'),
-					'settings' => 'p3_post_slider_posts_column_cat',
-					'section'  => 'p3_post_slider_posts_column_section'
-				)
+		$wp_customize->add_control('p3_post_slider_posts_column_cat',
+			array(
+				'type' => 'select',
+				'label' => __('Only include posts from:', 'p3'),
+				'section' => 'p3_post_slider_posts_column_section',
+				'choices' => p3_get_cats(),
 			)
 		);
 		

@@ -279,37 +279,30 @@ class pipdig_feature_header_Customize {
 				'sanitize_callback' => 'absint',
 			)
 		);
-		$wp_customize->add_control(
-			new WP_Customize_Category_Control(
-				$wp_customize,
-				'p3_feature_header_trending_cat',
-				array(
-					'label' => __('Category for "Big this Month":', 'p3'),
-					'description' => __('Only display posts from:', 'p3'),
-					'settings' => 'p3_feature_header_trending_cat',
-					'section'  => 'p3_feature_header_section'
-				)
+		$wp_customize->add_control('p3_feature_header_trending_cat',
+			array(
+				'type' => 'select',
+				'label' => __('Category for "Big this Month":', 'p3'),
+				'section' => 'p3_feature_header_section',
+				'choices' => p3_get_cats(),
 			)
 		);
-			
+		
 		// Choose a category for slider
 		$wp_customize->add_setting('p3_feature_header_slider_cat',
 			array(
 				'sanitize_callback' => 'absint',
 			)
 		);
-		$wp_customize->add_control(
-			new WP_Customize_Category_Control(
-				$wp_customize,
-				'p3_feature_header_slider_cat',
-				array(
-					'label'    => __('Category for "Recent Posts":', 'p3'),
-					'settings' => 'p3_feature_header_slider_cat',
-					'section'  => 'p3_feature_header_section'
-				)
+		$wp_customize->add_control('p3_feature_header_slider_cat',
+			array(
+				'type' => 'select',
+				'label' => __('Category for "Recent Posts":', 'p3'),
+				'section' => 'p3_feature_header_section',
+				'choices' => p3_get_cats(),
 			)
 		);
-			
+		
 		// number of slides
 		$wp_customize->add_setting('p3_feature_header_slider_num',
 			array(

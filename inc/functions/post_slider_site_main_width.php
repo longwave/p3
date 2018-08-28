@@ -172,15 +172,12 @@ class pipdig_full_width_slider_site_main_Customize {
 				'sanitize_callback' => 'absint',
 			)
 		);
-		$wp_customize->add_control(
-			new WP_Customize_Category_Control(
-				$wp_customize,
-				'p3_full_width_slider_site_main_slider_cat',
-				array(
-					'label'    => __('Display posts from:', 'p3'),
-					'settings' => 'p3_full_width_slider_site_main_slider_cat',
-					'section'  => 'p3_full_width_slider_site_main_section'
-				)
+		$wp_customize->add_control('p3_full_width_slider_site_main_slider_cat',
+			array(
+				'type' => 'select',
+				'label' => __('Only include posts from:', 'p3'),
+				'section' => 'p3_full_width_slider_site_main_section',
+				'choices' => p3_get_cats(),
 			)
 		);
 		

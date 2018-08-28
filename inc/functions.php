@@ -585,6 +585,19 @@ function p3_build_cc($wp_customize, $fonts_array, $slugs, $title, $font_slug, $s
 	
 }
 
+function p3_get_cats() {
+	$cats = get_categories( array(
+		'hide_empty' => false,
+	) );
+	$cats_out = array(
+		'' => __('Select a category', 'p3')
+	);
+	foreach ($cats as $cat) {
+		$cats_out[$cat->term_id] = $cat->name;
+	}
+	return $cats_out;
+}
+
 function p3_highlight_author_comment($link) {
 	if (is_admin()) {
 		return $link;

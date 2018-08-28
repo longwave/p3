@@ -1,7 +1,5 @@
 <?php 
-
 if (!defined('ABSPATH')) die;
-
 
 function p3_featured_cats_puller($category, $col = 3) {
 	
@@ -279,15 +277,12 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 					'sanitize_callback' => 'absint',
 				)
 			);
-			$wp_customize->add_control(
-				new WP_Customize_Category_Control(
-					$wp_customize,
-					'p3_featured_cats_cat_1',
-					array(
-						'label' => __('Category').' 1',
-						'settings' => 'p3_featured_cats_cat_1',
-						'section'  => 'p3_featured_cats_section'
-					)
+			$wp_customize->add_control('p3_featured_cats_cat_1',
+				array(
+					'type' => 'select',
+					'label' => __('Category').' 1',
+					'section' => 'p3_featured_cats_section',
+					'choices' => p3_get_cats(),
 				)
 			);
 			
@@ -297,15 +292,12 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 					'sanitize_callback' => 'absint',
 				)
 			);
-			$wp_customize->add_control(
-				new WP_Customize_Category_Control(
-					$wp_customize,
-					'p3_featured_cats_cat_2',
-					array(
-						'label' => __('Category').' 2',
-						'settings' => 'p3_featured_cats_cat_2',
-						'section'  => 'p3_featured_cats_section'
-					)
+			$wp_customize->add_control('p3_featured_cats_cat_2',
+				array(
+					'type' => 'select',
+					'label' => __('Category').' 2',
+					'section' => 'p3_featured_cats_section',
+					'choices' => p3_get_cats(),
 				)
 			);
 			
@@ -315,15 +307,12 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 					'sanitize_callback' => 'absint',
 				)
 			);
-			$wp_customize->add_control(
-				new WP_Customize_Category_Control(
-					$wp_customize,
-					'p3_featured_cats_cat_3',
-					array(
-						'label' => __('Category').' 3',
-						'settings' => 'p3_featured_cats_cat_3',
-						'section'  => 'p3_featured_cats_section'
-					)
+			$wp_customize->add_control('p3_featured_cats_cat_3',
+				array(
+					'type' => 'select',
+					'label' => __('Category').' 3',
+					'section' => 'p3_featured_cats_section',
+					'choices' => p3_get_cats(),
 				)
 			);
 			
@@ -333,15 +322,12 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 					'sanitize_callback' => 'absint',
 				)
 			);
-			$wp_customize->add_control(
-				new WP_Customize_Category_Control(
-					$wp_customize,
-					'p3_featured_cats_cat_4',
-					array(
-						'label' => __('Category').' 4',
-						'settings' => 'p3_featured_cats_cat_4',
-						'section'  => 'p3_featured_cats_section'
-					)
+			$wp_customize->add_control('p3_featured_cats_cat_4',
+				array(
+					'type' => 'select',
+					'label' => __('Category').' 4',
+					'section' => 'p3_featured_cats_section',
+					'choices' => p3_get_cats(),
 				)
 			);
 			
@@ -351,15 +337,12 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 					'sanitize_callback' => 'absint',
 				)
 			);
-			$wp_customize->add_control(
-				new WP_Customize_Category_Control(
-					$wp_customize,
-					'p3_featured_cats_cat_5',
-					array(
-						'label' => __('Category').' 5',
-						'settings' => 'p3_featured_cats_cat_5',
-						'section'  => 'p3_featured_cats_section'
-					)
+			$wp_customize->add_control('p3_featured_cats_cat_5',
+				array(
+					'type' => 'select',
+					'label' => __('Category').' 5',
+					'section' => 'p3_featured_cats_section',
+					'choices' => p3_get_cats(),
 				)
 			);
 			

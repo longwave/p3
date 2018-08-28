@@ -227,26 +227,21 @@ class p3_trending_bar_Customize {
 				),
 			)
 		);
-			
+		
 		// Choose a category for trending
 		$wp_customize->add_setting('p3_trending_bar_trending_cat',
 			array(
 				'sanitize_callback' => 'absint',
 			)
 		);
-		$wp_customize->add_control(
-			new WP_Customize_Category_Control(
-				$wp_customize,
-				'p3_trending_bar_trending_cat',
-				array(
-					'label' => __('Only include posts from:', 'p3'),
-					'description' => __('Only display posts from:', 'p3'),
-					'settings' => 'p3_trending_bar_trending_cat',
-					'section'  => 'pipdig_trending_section'
-				)
+		$wp_customize->add_control('p3_trending_bar_trending_cat',
+			array(
+				'type' => 'select',
+				'label' => __('Only include posts from:', 'p3'),
+				'section' => 'pipdig_trending_section',
+				'choices' => p3_get_cats(),
 			)
 		);
-		
 		
 		// title backgroud color
 		$wp_customize->add_setting('p3_trending_bar_text_bg_color',

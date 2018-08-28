@@ -229,25 +229,22 @@ class pipdig_related_Customize {
 				),
 			)
 		);
-			
-		// exclude from category
+		
+		// exclude category
 		$wp_customize->add_setting('p3_related_posts_exclude_cat',
 			array(
 				'sanitize_callback' => 'absint',
 			)
 		);
-		$wp_customize->add_control(
-			new WP_Customize_Category_Control_Exclude(
-				$wp_customize,
-				'p3_related_posts_exclude_cat',
-				array(
-					'label' => __('Exclude posts from:', 'p3'),
-					'settings' => 'p3_related_posts_exclude_cat',
-					'section'  => 'pipdig_related_posts_pop'
-				)
+		$wp_customize->add_control('p3_related_posts_exclude_cat',
+			array(
+				'type' => 'select',
+				'label' => __('Exclude posts from:', 'p3'),
+				'section' => 'pipdig_related_posts_pop',
+				'choices' => p3_get_cats(),
 			)
 		);
-			
+		
 		// number of posts
 		$wp_customize->add_setting('p3_related_posts_number',
 			array(
