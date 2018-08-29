@@ -155,7 +155,7 @@ function p3_license_notification() {
 	}
 
 }
-add_action( 'admin_notices', 'p3_license_notification' );
+//add_action( 'admin_notices', 'p3_license_notification' );
 
 function pipdig_switch_theme() {
 	delete_transient('pipdig_active');
