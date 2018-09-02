@@ -198,6 +198,14 @@ function pipdig_links_init() {
 	);
 	
 	add_settings_field( 
+		'Shop', 
+		'<i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;&nbsp;Shop', 
+		'p3_shop_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
+	add_settings_field( 
 		'rss', 
 		'<i class="fa fa-rss" aria-hidden="true"></i>&nbsp;&nbsp;RSS Feed', 
 		'p3_rss_field_render', 
@@ -322,6 +330,11 @@ function p3_houzz_field_render() {
 function p3_goodreads_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[goodreads]' placeholder='e.g. https://goodreads.com/pipdig' value="<?php if (isset($links['goodreads'])) { echo $links['goodreads']; } ?>"> <?php
+}
+
+function p3_shop_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[shop]' placeholder='e.g. https://pipdig.co/shop' value="<?php if (isset($links['shop'])) { echo $links['shop']; } ?>"> <?php
 }
 
 function p3_rss_field_render() { 

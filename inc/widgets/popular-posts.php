@@ -172,19 +172,19 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		$trans_prefix = 'all';
 		if (function_exists('stats_get_csv') && !$category) {
 			
-			if ($date_range == '1 week ago') {
+			if ($date_range_posts == '1 week ago') {
 				$days = '7';
 				$trans_prefix = $days;
-			} elseif ($date_range == '1 month ago') {
+			} elseif ($date_range_posts == '1 month ago') {
 				$days = '30';
 				$trans_prefix = $days;
-			} elseif ($date_range == '3 months ago') {
+			} elseif ($date_range_posts == '3 months ago') {
 				$days = '90';
 				$trans_prefix = $days;
-			} elseif ($date_range == '6 months ago') {
+			} elseif ($date_range_posts == '6 months ago') {
 				$days = '180';
 				$trans_prefix = $days;
-			} elseif ($date_range == '1 year ago') {
+			} elseif ($date_range_posts == '1 year ago') {
 				$days = '365';
 				$trans_prefix = $days;
 			} else {

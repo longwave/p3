@@ -13,7 +13,11 @@ This update includes a [New option](https://i.imgur.com/fmUB9Ih.png) to change t
 
 == Changelog ==
 
-= 3.14.0 (02 August 2018) =
+= 3.14.2 (02 September 2018) =
+* Add new "shop" link under the "pipdig > Social Links" page. Can be used to add a link to any shop page you like, e.g. [Shopr](https://www.pipdig.co/shop/shopr-wordpress-plugin/) or [Liketoknow.it](https://www.liketoknow.it/).
+* More accurate Popular Posts widget stats from Jetpack.
+
+= 3.14.1 (02 August 2018) =
 * Display website link in [author bio](https://support.pipdig.co/articles/wordpress-author-bio-box/).
 * Option to display the post location tag in the [Featured Categories Shortcode](https://support.pipdig.co/articles/wordpress-featured-categories-shortcode/).
 

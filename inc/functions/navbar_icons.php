@@ -12,7 +12,7 @@ function pipdig_p3_social_navbar( $items, $args ) {
 	
 	$links = get_option('pipdig_links');
 	
-	$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = $etsy = $spotify = $itunes = $houzz = $digg = $reddit = $goodreads = '';
+	$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $google_plus = $stumbleupon = $rss = $etsy = $spotify = $itunes = $houzz = $digg = $reddit = $goodreads = $shop = '';
 	
 	if (!empty($links['email'])) {
 		$email = sanitize_email($links['email']);
@@ -83,6 +83,9 @@ function pipdig_p3_social_navbar( $items, $args ) {
 	if (!empty($links['houzz'])) {
 		$houzz = esc_url($links['houzz']);
 	}
+	if (!empty($links['shop'])) {
+		$shop = esc_url($links['shop']);
+	}
 	if (!empty($links['goodreads'])) {
 		$goodreads = esc_url($links['goodreads']);
 	}
@@ -110,6 +113,7 @@ function pipdig_p3_social_navbar( $items, $args ) {
 	if($reddit && get_theme_mod('p3_navbar_reddit', 1)) $navbar_icons .= '<a href="'.$reddit.'" target="_blank" rel="nofollow noopener" aria-label="reddit" title="reddit"><i class="fa fa-reddit" aria-hidden="true"></i></a>';
 	if($digg && get_theme_mod('p3_navbar_digg', 1)) $navbar_icons .= '<a href="'.$digg.'" target="_blank" rel="nofollow noopener" aria-label="digg" title="digg"><i class="fa fa-digg" aria-hidden="true"></i></a>';
 	if($rss && get_theme_mod('p3_navbar_rss', 1)) $navbar_icons .= '<a href="'.$rss.'" target="_blank" rel="nofollow noopener" aria-label="RSS Feed" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i></a>';
+	if($shop && get_theme_mod('p3_navbar_shop', 1)) $navbar_icons .= '<a href="'.$shop.'" rel="nofollow noopener" aria-label="Shop" title="Shop"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>';
 	if($email && get_theme_mod('p3_navbar_email', 1)) $navbar_icons .= '<a href="mailto:'.$email.'" target="_blank" rel="nofollow noopener" aria-label="Email" title="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>';
 		
 	if (get_theme_mod('site_top_search')) $navbar_icons .= '<a id="p3_search_btn" class="toggle-search" aria-label="Search" title="Search"><i class="fa fa-search" aria-hidden="true"></i></a>'; // still need to p3 this.
@@ -543,7 +547,22 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+		
+		// shop
+		$wp_customize->add_setting('p3_navbar_shop',
+			array(
+				'default' => 1,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control('p3_navbar_shop',
+			array(
+				'type' => 'checkbox',
+				'label' => 'Shop',
+				'section' => 'p3_navbar_icons_section',
+			)
+		);
+		
 		// rss
 		$wp_customize->add_setting('p3_navbar_rss',
 			array(
