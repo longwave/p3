@@ -47,11 +47,12 @@ function p3_feature_header() {
 			<div id="p3_big_this" class="nopin">
 				<h3 class="widget-title"><span><?php echo $big_this_month_title; ?></span></h3>
 				<?php
-			
+				
 				$traditional = true;
 				$jp_top_posts = '';
 				$trans_prefix = 'all';
-				if (function_exists('stats_get_csv') && !$post_cat_trending) {
+				
+				if (function_exists('stats_get_csv') && absint($post_cat_trending) === 0) {
 					
 					if ($date_range == '1 week ago') {
 						$days = '7';

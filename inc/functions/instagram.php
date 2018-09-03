@@ -223,7 +223,7 @@ function p3_instagram_footer() {
 				?>
 				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" <?php echo $image_src; ?> rel="nofollow noopener" target="_blank">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_instagram_square" alt=""/>
-					<div class="p3_instagram_post_overlay"><?php if (get_theme_mod('p3_instagram_meta')) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
+					<div class="p3_instagram_post_overlay"><?php if (get_theme_mod('p3_instagram_meta', 1)) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
 				</a>
 			<?php } ?>
 			<div class="clearfix"></div>
@@ -272,7 +272,7 @@ function p3_instagram_header() {
 				?>
 				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow noopener" target="_blank">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_instagram_square" alt=""/>
-					<div class="p3_instagram_post_overlay"><?php if (get_theme_mod('p3_instagram_meta')) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
+					<div class="p3_instagram_post_overlay"><?php if (get_theme_mod('p3_instagram_meta', 1)) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
 				</a>
 			<?php } ?>
 			<div class="clearfix"></div>
@@ -319,7 +319,7 @@ function p3_instagram_site_main_container() {
 				?>
 				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow noopener" target="_blank">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_instagram_square" alt=""/>
-					<div class="p3_instagram_post_overlay"><?php if (get_theme_mod('p3_instagram_meta')) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
+					<div class="p3_instagram_post_overlay"><?php if (get_theme_mod('p3_instagram_meta', 1)) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
 				</a>
 			<?php } ?>
 			<div class="clearfix"></div>
@@ -360,7 +360,7 @@ function p3_instagram_top_of_posts() {
 				?>
 				<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" style="background-image:url(<?php echo $images[$x]['src']; ?>);" rel="nofollow noopener" target="_blank">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_instagram_square" alt=""/>
-					<div class="p3_instagram_post_overlay"><?php if (get_theme_mod('p3_instagram_meta')) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
+					<div class="p3_instagram_post_overlay"><?php if (get_theme_mod('p3_instagram_meta', 1)) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
 				</a>
 			<?php } ?>
 			<div class="clearfix"></div>
@@ -418,7 +418,7 @@ function p3_instagram_bottom_of_posts() {
 					?>
 					<a href="<?php echo $images[$x]['link']; ?>" id="p3_instagram_post_<?php echo $x; ?>" class="p3_instagram_post<?php echo $hide_class; ?>" <?php echo $image_src; ?> rel="nofollow noopener" target="_blank">
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_instagram_square" alt=""/>
-						<div class="p3_instagram_post_overlay"><?php if (get_theme_mod('p3_instagram_meta')) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
+						<div class="p3_instagram_post_overlay"><?php if (get_theme_mod('p3_instagram_meta', 1)) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
 					</a>
 				<?php } ?>
 				<div class="clearfix"></div>
@@ -601,9 +601,9 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 			
 			
 			// show likes/comments on hover
-			$wp_customize->add_setting('p3_instagram_meta',
+			$wp_customize->add_setting('p3_instagram_meta', 1,
 				array(
-					'default' => 0,
+					'default' => 1,
 					'sanitize_callback' => 'absint',
 				)
 			);

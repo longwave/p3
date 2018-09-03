@@ -17,13 +17,9 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		$images_num = 4;
 		$cols = 2;
 		$follow = false;
-		$likes = false;
 		$access_token = '';
 		if (isset($instance['access_token'])) { 
 			$access_token = pipdig_strip($instance['access_token']);
-		}
-		if (!empty($instance['likes'])) {
-			$likes = true;
 		}
 		if (isset($instance['images_num'])) { 
 			$images_num = absint($instance['images_num'])-1; // minus to compensate for array loop
@@ -99,7 +95,7 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 			?>
 				<a href="<?php echo $images[$x]['link']; ?>" class="p3_instagram_post <?php echo $lazy_class; ?>" <?php echo $image_src; ?> rel="nofollow noopener" target="_blank">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" class="p3_instagram_square" alt=""/>
-					<div class="p3_instagram_post_overlay"><?php if ($likes) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
+					<div class="p3_instagram_post_overlay"><?php if (get_theme_mod('p3_instagram_meta', 1)) { ?><span class="p3_instagram_likes"><i class="fa fa-comment"></i> <?php echo $images[$x]['comments'];?> &nbsp;<i class="fa fa-heart"></i> <?php echo $images[$x]['likes'];?></span><?php } ?></div>
 				</a>
 			<?php } ?>
 			</div>
@@ -129,7 +125,6 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		$images_num = 4;
 		$cols = 2;
 		$follow = false;
-		$likes = false;
 		$access_token = '';
 		if (isset($instance['access_token'])) { 
 			$access_token = pipdig_strip($instance['access_token']);
@@ -139,9 +134,6 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		}
 		if (isset($instance['cols'])) { 
 			$cols = absint($instance['cols']);
-		}
-		if (!empty($instance['likes'])) {
-			$likes = true;
 		}
 		if (!empty($instance['follow'])) {
 			$follow = true;
@@ -184,11 +176,6 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('likes'); ?>">
-			<input type="checkbox" id="<?php echo $this->get_field_id('likes'); ?>" name="<?php echo $this->get_field_name('likes'); ?>" <?php if (isset($instance['likes'])) { checked( (bool) $instance['likes'], true ); } ?> /><?php _e('Display Comments & Likes count on hover.', 'p3'); ?></label>
-			<br />
-		</p>
-		<p>
 			<label for="<?php echo $this->get_field_id('follow'); ?>">
 			<input type="checkbox" id="<?php echo $this->get_field_id('follow'); ?>" name="<?php echo $this->get_field_name('follow'); ?>" <?php if (isset($instance['follow'])) { checked( (bool) $instance['follow'], true ); } ?> /><?php _e('Display a "Follow" link.', 'p3'); ?></label>
 			<br />
@@ -203,7 +190,6 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		$instance['access_token'] = pipdig_strip($new_instance['access_token']);
 		$instance['images_num'] = absint($new_instance['images_num']);
 		$instance['cols'] = absint($new_instance['cols'] );
-		$instance['likes'] = strip_tags($new_instance['likes']);
 		$instance['follow'] = strip_tags($new_instance['follow']);
 		return $instance;
 	  }

@@ -170,7 +170,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		$traditional = true;
 		$jp_top_posts = '';
 		$trans_prefix = 'all';
-		if (function_exists('stats_get_csv') && !$category) {
+		if (function_exists('stats_get_csv') && absint($category) === 0) {
 			
 			if ($date_range_posts == '1 week ago') {
 				$days = '7';
