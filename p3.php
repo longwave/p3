@@ -101,14 +101,10 @@ if ($this_theme->get('Author') != 'pipdig') {
 
 function p3_license_notification() {
 	
-	if (!isset($_GET['p3_key'])) {
-		return;
-	}
-
 	if (!is_super_admin()) {
 		return;
 	}
-
+	
 	$active = absint(is_pipdig_active());
 
 	if ($active == 1) { // active
@@ -130,6 +126,15 @@ function p3_license_notification() {
 			}
 
 		} else {
+			
+			$response = wp_safe_remote_get('https://pipdigz.co.uk/p3/check.txt', array('timeout' => 2));
+			if (is_wp_error($response) || empty($response['body'])) {
+				return;
+			}
+			if (absint($response['body']) !== 1) {
+				return;
+			}
+			
 			$key = '';
 		}
 
