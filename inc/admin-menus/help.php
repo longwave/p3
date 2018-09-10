@@ -35,7 +35,7 @@ if (!function_exists('pipdig_help_options_page')) {
 					$active = absint(is_pipdig_active());
 					$key = '';
 					$theme = get_option('pipdig_theme');
-					if ($active == 1) { // active
+					if ($active) { // active
 					
 						$key = get_option($theme.'_key');
 						if ($key) {
@@ -44,7 +44,7 @@ if (!function_exists('pipdig_help_options_page')) {
 						
 					} else { // not active
 						
-						if (isset($_POST['p3_menu_license_data']) && !empty($_POST['p3_menu_license_data'])) {
+						if (!empty($_POST['p3_menu_license_data'])) {
 							delete_transient('pipdig_active');
 							$key = sanitize_text_field($_POST['p3_menu_license_data']);
 							if (is_pipdig_active($key)) {

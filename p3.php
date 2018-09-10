@@ -118,7 +118,9 @@ function p3_license_notification() {
 			delete_transient('pipdig_active');
 			$theme = get_option('pipdig_theme');
 			$key = sanitize_text_field($_POST['p3_license_data']);
-			if (is_pipdig_active($key)) {
+			if (is_numeric($key)) {
+				$msg = '<p style="font-weight: bold; font-size: 15px;">The key "'.$key.'" could not be validated. Please note that your thmee license key is not the same as your order number. If you need any help finding your key please see the steps on <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a>.</p>';
+			} elseif (is_pipdig_active($key)) {
 				update_option($theme.'_key', $key);
 				return;
 			} else {
@@ -126,15 +128,19 @@ function p3_license_notification() {
 			}
 
 		} else {
-
-			$response = wp_safe_remote_get('https://pipdigz.co.uk/p3/check.txt', array('timeout' => 2));
-			if (is_wp_error($response) || empty($response['body'])) {
-				return;
+			
+			if ( false === ( $check = get_transient( 'pipdig_check_now_yeah' ) )) {
+				$response = wp_safe_remote_get('https://pipdigz.co.uk/p3/check.txt', array('timeout' => 3));
+				if (is_wp_error($response) || !isset($response['body'])) {
+					return;
+				}
+				$check = absint($response['body']);
+				if ($check !== 1) {
+					return;
+				}
 			}
-			if (absint($response['body']) !== 1) {
-				return;
-			}
-
+			set_transient( 'pipdig_check_now_yeah', $check, 2 * DAY_IN_SECONDS );
+			
 			$key = '';
 		}
 
@@ -147,7 +153,7 @@ function p3_license_notification() {
 		<div class="notice notice-warning">
 			<h2><span class="dashicons dashicons-warning"></span> Action required</h2>
 			<p>To ensure all features of your pipdig theme are active, please enter your pipdig theme license key below.</p>
-			<p>Please see <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a> for more information. Don't worry if you can't find your license key, we're here to help via that page :)</p>
+			<p>Please see <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a> if you can't find your license key.</p>
 			<p>Enter your license key below:</p>
 			<?php echo $msg; ?>
 			<form action="<?php echo admin_url(); ?>" method="post" autocomplete="off">
@@ -171,19 +177,25 @@ function pipdig_switch_theme() {
 add_action('switch_theme', 'pipdig_switch_theme', 10);
 
 function is_pipdig_active($key = '') {
-
-	if (strpos(get_site_url(), '127.0.0.1') !== false) {
+	
+	$me = get_site_url();
+	
+	if (strpos($me, '127.0.0.1') !== false) {
 		return 1;
-	} elseif (strpos(get_site_url(), '.local') !== false) {
+	} elseif (strpos($me, '.local') !== false) {
 		return 1;
-	} elseif (strpos(get_site_url(), 'localhost') !== false) {
+	} elseif (strpos($me, 'localhost') !== false) {
 		return 1;
-	} elseif (strpos(get_site_url(), '.pipdig.co') !== false) {
+	} elseif (strpos($me, 'dev.') !== false) {
+		return 1;
+	} elseif (strpos($me, '/~') !== false) {
+		return 1;
+	} elseif (strpos($me, '.pipdig.co') !== false) {
 		return 1;
 	} elseif (is_multisite() && (get_blog_count() > 1)) {
 		return 1;
 	}
-
+	
 	if ( false === ( $active = get_transient( 'pipdig_active' ) )) {
 
 		$pipdig_id = get_option('pipdig_id');
@@ -207,7 +219,7 @@ function is_pipdig_active($key = '') {
 			}
 		}
 
-		$request_array['domain'] = get_site_url();
+		$request_array['domain'] = $me;
 		$request_array['id'] = $pipdig_id;
 		$request_array['key'] = $key;
 		$request_array['theme'] = $theme;
