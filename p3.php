@@ -100,11 +100,11 @@ if ($this_theme->get('Author') != 'pipdig') {
 }
 
 function p3_license_notification() {
-	
+
 	if (!is_super_admin()) {
 		return;
 	}
-	
+
 	$active = absint(is_pipdig_active());
 
 	if ($active == 1) { // active
@@ -126,7 +126,7 @@ function p3_license_notification() {
 			}
 
 		} else {
-			
+
 			$response = wp_safe_remote_get('https://pipdigz.co.uk/p3/check.txt', array('timeout' => 2));
 			if (is_wp_error($response) || empty($response['body'])) {
 				return;
@@ -134,7 +134,7 @@ function p3_license_notification() {
 			if (absint($response['body']) !== 1) {
 				return;
 			}
-			
+
 			$key = '';
 		}
 
@@ -146,9 +146,8 @@ function p3_license_notification() {
 		?>
 		<div class="notice notice-warning">
 			<h2><span class="dashicons dashicons-warning"></span> Action required</h2>
-			<p>Please enter your pipdig theme license key below. Unless a valid key is provided, this theme will be deactivated on <?php echo date_i18n(get_option('date_format'), $deadline); ?>.</p>
-			<p>You can find your theme's license key in your email receipt.</p>
-			<p>If you need any help finding your license key please <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">Click here</a>.</p>
+			<p>To ensure all features of your pipdig theme are active, please enter your pipdig theme license key below.</p>
+			<p>Please see <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a> for more information. We can help you find your license key if you can't find it.</p>
 			<p>Enter your license key below:</p>
 			<?php echo $msg; ?>
 			<form action="<?php echo admin_url(); ?>" method="post" autocomplete="off">
