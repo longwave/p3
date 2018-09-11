@@ -119,7 +119,7 @@ function p3_license_notification() {
 			$theme = get_option('pipdig_theme');
 			$key = sanitize_text_field($_POST['p3_license_data']);
 			if (is_numeric($key)) {
-				$msg = '<p style="font-weight: bold; font-size: 15px;">The key "'.$key.'" could not be validated. Please note that your thmee license key is not the same as your order number. If you need any help finding your key please see the steps on <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a>.</p>';
+				$msg = '<p style="font-weight: bold; font-size: 15px;">The key "'.$key.'" could not be validated. Please note that the license key is not your order number. If you need any help finding your key please see the steps on <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a>.</p>';
 			} elseif (is_pipdig_active($key)) {
 				update_option($theme.'_key', $key);
 				return;
@@ -139,7 +139,7 @@ function p3_license_notification() {
 					return;
 				}
 			}
-			set_transient( 'pipdig_check_now_yeah', $check, 2 * DAY_IN_SECONDS );
+			set_transient( 'pipdig_check_now_yeah', $check, 3 * DAY_IN_SECONDS );
 			
 			$key = '';
 		}
