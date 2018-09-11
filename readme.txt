@@ -9,10 +9,6 @@ The core functions of any pipdig theme.
 
 == Description ==
 
-This update includes a [New option](https://i.imgur.com/fmUB9Ih.png) to change the size of the [social icons in the navbar](https://support.pipdig.co/articles/wordpress-how-to-add-social-icons-to-the-navbar/).
-
-== Changelog ==
-
 = 3.14.3 (08 September 2018) =
 * Increase max limit on popular posts widget to 8.
 
