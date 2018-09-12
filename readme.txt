@@ -9,6 +9,9 @@ The core functions of any pipdig theme.
 
 == Description ==
 
+= 3.14.4 (12 September 2018) =
+* Increase max limit on random posts widget to 8.
+
 = 3.14.3 (08 September 2018) =
 * Increase max limit on popular posts widget to 8.
 
