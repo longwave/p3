@@ -510,7 +510,7 @@ function pipdig_p3_activate() {
 		*/
 	}
 
-	if (get_the_title(1) == 'WordPress Resources at SiteGround') {
+	if (get_the_title(1) == 'WordPress Resources at SiteGround' || get_the_title(1) == 'Hello world!') {
 		wp_delete_post(1);
 	}
 
