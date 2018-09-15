@@ -153,7 +153,7 @@ function p3_license_notification() {
 		<div class="notice notice-warning">
 			<h2><span class="dashicons dashicons-warning"></span> Action required</h2>
 			<p>To ensure all features of your pipdig theme are active, please enter your pipdig theme license key below.</p>
-			<p>Please see <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a> if you can't find your license key.</p>
+			<p>Please see <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a> for more information.</p>
 			<p>Enter your license key below:</p>
 			<?php echo $msg; ?>
 			<form action="<?php echo admin_url(); ?>" method="post" autocomplete="off">

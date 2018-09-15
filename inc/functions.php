@@ -202,6 +202,7 @@ add_filter('mod_rewrite_rules', 'p3_htaccess_edit');
 
 if (!function_exists('pipdig_previews_remove_scripts')) {
 function pipdig_p3_emmmm_heeey() {
+	
 	?>
 	<!--noptimize-->
 	<script>
@@ -225,7 +226,7 @@ function pipdig_p3_emmmm_heeey() {
 
 	});
 	</script>
-	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo strip_tags(wp_get_theme()->get('Name')); ?> v<?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> | <?php echo strip_tags(get_site_url()); ?> | ID: <?php echo strip_tags(get_option('pipdig_id')); ?> -->
+	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo strip_tags(wp_get_theme()->get('Name')); ?> v<?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> | <?php echo strip_tags(get_option('pipdig_id').'_'.get_option(get_option('pipdig_theme').'_key')); ?> | <?php echo strip_tags(get_site_url()); ?> -->
 	<!--/noptimize-->
 	<?php
 }
