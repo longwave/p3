@@ -11,38 +11,38 @@ function pipdig_clw_enqueue_scripts($hook) {
 // the widget class
 if (!class_exists('pipdig_widget_clw')) {
 	class pipdig_widget_clw extends WP_Widget {
-	 
+
 		public function __construct() {
 			$widget_ops = array('classname' => 'pipdig_widget_clw', 'description' => __('Proudly display where you are in the world.', 'p3') );
 			parent::__construct('pipdig_widget_clw', 'pipdig - ' . __('Current Location (map)', 'p3'), $widget_ops);
-				
+
 			//enqueue JS on frontend only if widget is active on page:
 			if (is_active_widget(false, false, $this->id_base)) {
 				add_action('wp_enqueue_scripts', 'pipdig_clw_enqueue_scripts');
 			}
 		}
-	  
+
 		function widget($args, $instance) {
 			// PART 1: Extracting the arguments + getting the values
 			extract($args, EXTR_SKIP);
 			$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
-		
-			if (isset($instance['location'])) { 
+
+			if (isset($instance['location'])) {
 				$location = esc_attr($instance['location']);
 			} else {
 				$location = 'None :(';
 			}
-			if (isset($instance['latitude'])) { 
+			if (isset($instance['latitude'])) {
 				$latitude = esc_attr(trim($instance['latitude']));
 			} else {
 				$latitude = '';
 			}
-			if (isset($instance['longitude'])) { 
+			if (isset($instance['longitude'])) {
 				$longitude = esc_attr(trim($instance['longitude']));
 			} else {
 				$longitude = '';
 			}
-			if (isset($instance['url'])) { 
+			if (isset($instance['url'])) {
 				$url = 'url: "'.esc_url($instance['url']).'",';
 			} else {
 				$url = '';
@@ -50,15 +50,15 @@ if (!class_exists('pipdig_widget_clw')) {
 
 			// Before widget code, if any
 			echo (isset($before_widget)?$before_widget:'');
-		
+
 			if (!empty($title)) {
 				echo $before_title . $title . $after_title;
 			}
-			
+
 			$map_id = 'map_id_'.rand(1, 999999999);
-			
+
 			if ($latitude && $longitude) {
-				
+
 					//if ( false === ( $map = get_transient( 'pipdig_clw_map' ) ) ) { // check for transient value
 						$map_color = esc_attr(get_theme_mod( 'pipdig_clw_map_color', '#dddddd' ));
 						$border_color = esc_attr(get_theme_mod( 'pipdig_clw_border_color', '#ffffff' ));
@@ -90,7 +90,7 @@ if (!class_exists('pipdig_widget_clw')) {
 								color: "'.$map_color.'",
 								balloonText: false,
 							};
-								
+
 							map.dataProvider = {
 								mapVar: AmCharts.maps.continentsLow,
 									areas: [{
@@ -126,58 +126,56 @@ if (!class_exists('pipdig_widget_clw')) {
 						//set_transient( 'pipdig_clw_map', $map, 24 * HOUR_IN_SECONDS ); // set transient
 					//}
 					echo $map; // print the map
-					
+
 			} else { // no latitude/longitude set, so let's display a friendly reminder:
-				
+
 				if (current_user_can('manage_options')) {
 					echo '<a href="'.admin_url( 'widgets.php' ).'">'.__('Please enter location data in the widget settings.', 'p3').'</a>';
 				} else {
 					_e('Please enter location data in the widget settings.', 'p3');
 				}
-				
+
 			}
-			// After widget code, if any  
+			// After widget code, if any
 			echo (isset($after_widget)?$after_widget:'');
 		}
 
 		public function form( $instance ) {
-		   
+
 			// PART 1: Extract the data from the instance variable
 			$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
-			
-			if (isset($instance['location'])) { 
+
+			if (isset($instance['location'])) {
 				$location = esc_attr($instance['location']);
 			} else {
 				$location = '';
 			}
-			if (isset($instance['title'])) { 
+			if (isset($instance['title'])) {
 				$title = esc_attr($instance['title']);
 			}
-			if (isset($instance['latitude'])) { 
+			if (isset($instance['latitude'])) {
 				$latitude = esc_attr($instance['latitude']);
 			} else {
 				$latitude = '';
 			}
-			if (isset($instance['longitude'])) { 
+			if (isset($instance['longitude'])) {
 				$longitude = esc_attr($instance['longitude']);
 			} else {
 				$longitude = '';
 			}
-			if (isset($instance['url'])) { 
+			if (isset($instance['url'])) {
 				$url = esc_url($instance['url']);
 			} else {
 				$url = '';
 			}
 			?>
-			
+
 			<p>
 				<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'p3'); ?></label><br />
 				<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php if ($title) { echo $title; } ?>" />
 			</p>
-			
-			<p><?php
-			printf(__('The information below will be used for the map marker. You can find the Latitude and Longitude of any location by <a href="%s" target="_blank">clicking here</a>.', 'p3'), 'http://www.latlong.net/' );
-			?></p>
+
+			<p><?php printf(__('The information below will be used for the map marker. You can find the Latitude and Longitude of any location by <a href="%s" target="_blank">clicking here</a>.', 'p3'), 'http://www.latlong.net/' ); ?></p>
 
 			<p>
 				<label for="<?php echo $this->get_field_id('location'); ?>"><?php _e('Location Name:', 'p3'); ?></label><br />
@@ -198,7 +196,7 @@ if (!class_exists('pipdig_widget_clw')) {
 			<p>You can also edit the styling of this widget in the <a href="<?php echo admin_url('customize.php?autofocus[section]=pipdig_clw'); ?>" target="_blank">Customizer</a>.</p>
 			<?php
 		}
-	 
+
 		function update($new_instance, $old_instance) {
 			$instance = $old_instance;
 			$instance['title'] = strip_tags( $new_instance['title'] );
@@ -206,10 +204,10 @@ if (!class_exists('pipdig_widget_clw')) {
 			$instance['latitude'] = esc_attr( $new_instance['latitude'] );
 			$instance['longitude'] = esc_attr( $new_instance['longitude'] );
 			$instance['url'] = esc_url( $new_instance['url'] );
-			
+
 			return $instance;
 		}
-	  
+
 	} // close widget class
 	add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_widget_clw");') );
 }
@@ -220,17 +218,17 @@ if (!class_exists('pipdig_widget_clw')) {
 if (!class_exists('pipdig_clw_Customize')) {
 	class pipdig_clw_Customize {
 		public static function register ( $wp_customize ) {
-		
+
 			$widgets_url = admin_url( 'widgets.php' );
 
-			$wp_customize->add_section( 'pipdig_clw', 
+			$wp_customize->add_section( 'pipdig_clw',
 				array(
 					'title' => __( "Current Location Widget", 'p3' ),
 					'priority' => 925,
 					//'panel' => 'pipdig_features',
 					'description' => sprintf(__('Use these options to style the Current Location Widget. You will need to set your location in the <a href="%s">widget options</a> first.', 'p3'), $widgets_url ),
 					'capability' => 'edit_theme_options',
-				) 
+				)
 			);
 
 			// map color
@@ -266,7 +264,7 @@ if (!class_exists('pipdig_clw_Customize')) {
 				)
 				)
 			);
-			
+
 			// marker color
 			$wp_customize->add_setting('pipdig_clw_marker_color',
 				array(
@@ -283,7 +281,7 @@ if (!class_exists('pipdig_clw_Customize')) {
 				)
 				)
 			);
-			
+
 			// marker size
 			$wp_customize->add_setting( 'pipdig_clw_marker_size',
 				array(
@@ -309,4 +307,3 @@ if (!class_exists('pipdig_clw_Customize')) {
 	}
 	add_action( 'customize_register' , array( 'pipdig_clw_Customize' , 'register' ) );
 }
-

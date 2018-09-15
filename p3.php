@@ -308,7 +308,14 @@ function pipdig_p3_scripts_styles() {
 		wp_enqueue_script( 'pipdig-lazy', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js', array( 'jquery' ), null, true );
 	}
 
-	wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', '', null );
+	// Font awesome 5?
+	if (get_option('p3_font_awesome_5') == 1) {
+		wp_enqueue_style( 'font-awesome-5', 'https://use.fontawesome.com/releases/v5.3.1/css/all.css', '', null );
+		wp_enqueue_script( 'pipdig-fa5-convert', 'https://pipdigz.co.uk/p3/js/fa5-convert.js', array('jquery'), null, true );
+	} else {
+		wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', '', null );
+	}
+	
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
 

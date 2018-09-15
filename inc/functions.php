@@ -41,7 +41,7 @@ function p3_theme_enabled($enabled_themes) {
 	foreach($enabled_themes as $enabled_theme) {
 		if ($this_theme == $enabled_theme) {
 			return 1;
-		} 
+		}
 	}
 	return 0;
 }
@@ -83,17 +83,17 @@ function p3_get_youtube_video_thumb($post_id) {
 
 // Grab image
 function p3_catch_image($post_id = '', $size = 'large', $meta_field = '') {
-	
+
 	if ($meta_field && function_exists('rwmb_meta')) {
 		$images = rwmb_meta('pipdig_meta_'.$meta_field, 'type=image&limit=1&size='.$size);
 		if (isset($images[0]['url'])){
 			return esc_url($images[0]['url']);
 		}
 	}
-	
+
 	$attachemnt_id = get_post_thumbnail_id($post_id);
 	$nearest = image_get_intermediate_size($attachemnt_id, $size);
-	
+
 	if (!empty($nearest['url'])) {
 		return $nearest['url'];
 	} elseif (get_the_post_thumbnail_url($post_id, $size)) {
@@ -107,18 +107,18 @@ function p3_catch_image($post_id = '', $size = 'large', $meta_field = '') {
 			return $image_link;
 		}
 	}
-	
+
 	$video_thumb = p3_get_youtube_video_thumb($post_id);
 	if ($video_thumb) {
 		return $video_thumb;
 	}
-	
+
 	return 'https://pipdigz.co.uk/p3/img/catch-placeholder.jpg';
 }
 
 // depreciated
 function pipdig_p3_catch_that_image() {
-	
+
 }
 
 // truncate stuff
@@ -165,7 +165,7 @@ if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')
 // Add Featured Image to feed if using excerpt mode, or just add the full content if not
 if ( !class_exists('Rss_Image_Feed') && !function_exists('firss_init') && !defined('SENDIMAGESRSS_BASENAME') ) {
 function pipdig_p3_rss_post_thumbnail($content) {
-	
+
 	if (get_option('rss_use_excerpt')) {
 		global $post;
 		$img = p3_catch_image($post->ID, 'p3_medium');
@@ -174,7 +174,7 @@ function pipdig_p3_rss_post_thumbnail($content) {
 	} else {
 		return $content;
 	}
-	
+
 }
 add_filter('the_excerpt_rss', 'pipdig_p3_rss_post_thumbnail');
 add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');
@@ -206,7 +206,7 @@ function pipdig_p3_emmmm_heeey() {
 	<!--noptimize-->
 	<script>
 	jQuery(document).ready(function($) {
-		
+
 		$(window).scroll(function() {
 			if ($(window).scrollTop() + $(window).height() == $(document).height()) {
 				$(".cc-window,.cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script,.gdpr-privacy-bar,#moove_gdpr_cookie_info_bar").addClass('p3_hide_me');
@@ -214,15 +214,15 @@ function pipdig_p3_emmmm_heeey() {
 				$(".cc-window,.cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script,.gdpr-privacy-bar,#moove_gdpr_cookie_info_bar").removeClass('p3_hide_me');
 			}
 		});
-		
+
 		<?php if (!get_transient('p3_news_new_user_wait')) { ?>
-		if ($('.site-credit a:contains("blogger2wp")').length > 0) {
+		if (($('.site-credit a:contains("blogger2wp")').length > 0) || ($('.site-credit a:contains("Blogger2wp")').length > 0)) {
 			$('.site-credit a').html('<a href="https://www.pipdig.co/" target="_blank">Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>');
 		} else if ($('.site-credit a:contains("Blogerize")').length > 0) {
 			$('.site-credit a').html('<a href="https://www.pipdig.co/" target="_blank">Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>');
 		}
 		<?php } ?>
-		
+
 	});
 	</script>
 	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo strip_tags(wp_get_theme()->get('Name')); ?> v<?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> | <?php echo strip_tags(get_site_url()); ?> | ID: <?php echo strip_tags(get_option('pipdig_id')); ?> -->
@@ -443,13 +443,13 @@ function p3_slicknav_brand() {
 		$brand .= '<a href="'.esc_attr($links['rss']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-rss"></i></a>';
 		$count++;
 	}
-	
+
 	/*
 	if (empty($brand)) {
 		$brand = esc_attr(get_bloginfo());
 	}
 	*/
-	
+
 	return $brand;
 }
 
@@ -529,7 +529,7 @@ function p3_build_cc($wp_customize, $fonts_array, $slugs, $title, $font_slug, $s
 			),
 		)
 	);
-	
+
 	// transform
 	if ($uppercase !== false) {
 		$wp_customize->add_setting($slugs[2],
@@ -546,7 +546,7 @@ function p3_build_cc($wp_customize, $fonts_array, $slugs, $title, $font_slug, $s
 			)
 		);
 	}
-	
+
 	// italic
 	if ($italic !== false) {
 		$wp_customize->add_setting($slugs[3],
@@ -563,7 +563,7 @@ function p3_build_cc($wp_customize, $fonts_array, $slugs, $title, $font_slug, $s
 			)
 		);
 	}
-	
+
 	// bold
 	if ($bold !== false) {
 		$wp_customize->add_setting($slugs[4],
@@ -580,9 +580,9 @@ function p3_build_cc($wp_customize, $fonts_array, $slugs, $title, $font_slug, $s
 			)
 		);
 	}
-	
+
 	return $wp_customize;
-	
+
 }
 
 function p3_get_cats() {
@@ -607,7 +607,7 @@ function p3_highlight_author_comment($link) {
 		return $link;
 	else {
 		return $link.'<br /><span class="p3_comment_author">'.__('Author').'</span>';
-	}	
+	}
 }
 add_filter('get_comment_author_link', 'p3_highlight_author_comment');
 

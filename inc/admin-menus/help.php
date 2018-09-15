@@ -1,9 +1,14 @@
-<?php
+<?php if (!defined('ABSPATH')) die;
 
-if (!defined('ABSPATH')) die;
-
-if (!function_exists('pipdig_help_options_page')) {
-	function pipdig_help_options_page() { 
+function pipdig_help_options_page() { 
+	
+	if (isset($_GET['fa5'])) {
+		update_option('p3_font_awesome_5', 1);
+	}
+	
+	if (isset($_GET['montserrat'])) {
+		update_option('p3_original_montserrat', 1);
+	}
 
 	?>
 	
@@ -79,12 +84,5 @@ if (!function_exists('pipdig_help_options_page')) {
 	<!-- #poststuff -->
 
 </div> <!-- .wrap -->
-	
-	
-	
-	
-	<?php
-
-	}
+<?php
 }
-

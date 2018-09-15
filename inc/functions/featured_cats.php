@@ -82,6 +82,7 @@ function p3_featured_cats() {
 	$post_cat_3 = get_theme_mod('p3_featured_cats_cat_3');
 	$post_cat_4 = get_theme_mod('p3_featured_cats_cat_4');
 	$post_cat_5 = get_theme_mod('p3_featured_cats_cat_5');
+	$post_cat_6 = get_theme_mod('p3_featured_cats_cat_6');
 
 	$text_color = get_theme_mod('p3_featured_cats_text_color', '#000');
 	$text_bg_color = get_theme_mod('p3_featured_cats_text_bg_color', '#fff');
@@ -102,6 +103,9 @@ function p3_featured_cats() {
 	if (!empty($post_cat_5)) {
 		$count++;
 	}
+	if (!empty($post_cat_6)) {
+		$count++;
+	}
 	
 	switch ( $count ) {
 		case 1:
@@ -118,6 +122,9 @@ function p3_featured_cats() {
 			break;
 		case 5:
 			$col = '5ths';
+			break;
+		case 6:
+			$col = '2';
 			break;
 	}
 	
@@ -144,6 +151,9 @@ function p3_featured_cats() {
 		}
 		if (!empty($post_cat_5)) {
 			p3_featured_cats_puller($post_cat_5, $col);
+		}
+		if (!empty($post_cat_6)) {
+			p3_featured_cats_puller($post_cat_6, $col);
 		}
 		?>
 		
@@ -341,6 +351,21 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 				array(
 					'type' => 'select',
 					'label' => __('Category').' 5',
+					'section' => 'p3_featured_cats_section',
+					'choices' => p3_get_cats(),
+				)
+			);
+			
+			// Choose category 5
+			$wp_customize->add_setting('p3_featured_cats_cat_6',
+				array(
+					'sanitize_callback' => 'absint',
+				)
+			);
+			$wp_customize->add_control('p3_featured_cats_cat_6',
+				array(
+					'type' => 'select',
+					'label' => __('Category').' 6',
 					'section' => 'p3_featured_cats_section',
 					'choices' => p3_get_cats(),
 				)
