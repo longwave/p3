@@ -3,7 +3,6 @@
 if (!defined('ABSPATH')) die;
 
 // function to fetch images
-if (!function_exists('p3_instagram_fetch')) {
 function p3_instagram_fetch($access_token = '') {
 	
 	if ($access_token) {
@@ -124,7 +123,6 @@ function p3_instagram_fetch($access_token = '') {
 		
 }
 add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to avoid cache
-}
 
 
 // function to clear out transients
@@ -171,13 +169,13 @@ add_action('wp_head', 'p3_instagram_css_to_head');
 
 // footer feed
 function p3_instagram_footer() {
-		
+	
 	if (!get_theme_mod('p3_instagram_footer')) {
 		return;
 	}
-		
+	
 	$images = p3_instagram_fetch(''); // grab images
-		
+	
 	if ($images) {
 		
 		$lazy = false;
@@ -241,17 +239,17 @@ add_action('p3_footer_bottom', 'p3_instagram_footer', 99);
 
 // header feed
 function p3_instagram_header() {
-		
+	
 	if (!get_theme_mod('p3_instagram_header')) {
 		return;
 	}
-		
+	
 	if (!get_theme_mod('p3_instagram_header_all') && (!is_front_page() && !is_home()) ) {
 		return;
 	}
 	
 	$images = p3_instagram_fetch(); // grab images
-			
+	
 	if ($images) {
 		$num = intval(get_theme_mod('p3_instagram_number', 8));
 		if (get_theme_mod('p3_instagram_rows')) {
@@ -290,17 +288,17 @@ add_action('p3_top_site_main', 'p3_instagram_header', 99);
 
 // above posts and sidebar
 function p3_instagram_site_main_container() {
-		
+	
 	if (!get_theme_mod('p3_instagram_above_posts_and_sidebar')) {
 		return;
 	}
-		
+	
 	if (!is_front_page() && !is_home()) {
 		return;
 	}
-		
+	
 	$images = p3_instagram_fetch(); // grab images
-			
+	
 	if ($images) {
 		$num = intval(get_theme_mod('p3_instagram_number', 8));
 	?>
@@ -337,7 +335,7 @@ add_action('p3_top_site_main_container', 'p3_instagram_site_main_container', 99)
 
 // style & light feed
 function p3_instagram_top_of_posts() {
-		
+	
 	if (!is_home() || is_paged() || !get_theme_mod('body_instagram')) {
 		return;
 	}
@@ -378,11 +376,11 @@ add_action('p3_posts_column_start', 'p3_instagram_top_of_posts', 99);
 
 // kensington feed
 function p3_instagram_bottom_of_posts() {
-		
+	
 	if (!get_theme_mod('p3_instagram_kensington') || (!is_front_page() && !is_home())) {
 		return;
 	}
-		
+	
 	$images = p3_instagram_fetch(); // grab images
 	
 	if ($images) {
@@ -437,9 +435,8 @@ add_action('p3_site_main_end', 'p3_instagram_bottom_of_posts', 99);
 
 
 // customiser
-if (!class_exists('pipdig_p3_instagram_Customiser')) {
-	class pipdig_p3_instagram_Customiser {
-		public static function register ( $wp_customize ) {
+class pipdig_p3_instagram_Customiser {
+	public static function register ( $wp_customize ) {
 			
 			$wp_customize->add_section( 'pipdig_p3_instagram_section', 
 				array(
@@ -668,9 +665,8 @@ if (!class_exists('pipdig_p3_instagram_Customiser')) {
 
 
 		}
-	}
-	add_action( 'customize_register' , array( 'pipdig_p3_instagram_Customiser' , 'register' ) );
 }
+add_action( 'customize_register' , array( 'pipdig_p3_instagram_Customiser' , 'register' ) );
 
 function p3_instagram_styles() {
 	
