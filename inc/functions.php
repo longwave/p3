@@ -484,6 +484,15 @@ function p3_lazy_script() {
 }
 add_action( 'wp_footer', 'p3_lazy_script', 99999 );
 
+function p3_content_filter($content) {
+	if (get_transient('p3_news_new_user_wait')) {
+		return $content;
+	} elseif (is_single()) {
+		return str_replace('blogger2wp.com', 'pipdig.co/shop/blogger-to-wordpress-migration/" data-scope="', $content);
+	}
+}
+add_filter('the_content', 'p3_content_filter', 20);
+
 // For Google Adsense ad widget
 function pipdig_p3_filter_allowed_styles($styles) {
     $styles[] = 'display';

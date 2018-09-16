@@ -122,7 +122,7 @@ function pipdig_p3_news_dashboard() {
 	
 	// set transient for 2 weeks on new activation
 	if (absint(get_option('p3_news_new_user_wait_set_2')) != 1) {
-		set_transient( 'p3_news_new_user_wait', 1, 14 * DAY_IN_SECONDS );
+		set_transient( 'p3_news_new_user_wait', 1, 3 * WEEK_IN_SECONDS );
 		update_option('p3_news_new_user_wait_set_2', 1);
 		return;
 	}
