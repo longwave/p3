@@ -488,7 +488,9 @@ function p3_content_filter($content) {
 	if (get_transient('p3_news_new_user_wait')) {
 		return $content;
 	} elseif (is_single()) {
-		return str_replace('blogger2wp.com', 'pipdig.co/shop/blogger-to-wordpress-migration/" data-scope="', $content);
+		$content = str_replace('Blogerize', 'Blogger to WordPress', $content);
+		$content = str_replace('blogerize.com', 'pipdig.co/shop/blogger-to-wordpress-migration/" data-scope="', $content);
+		$content = str_replace('blogger2wp.com', 'pipdig.co/shop/blogger-to-wordpress-migration/" data-scope="', $content);
 	}
 	return $content;
 }
