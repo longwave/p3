@@ -490,6 +490,7 @@ function p3_content_filter($content) {
 	} elseif (is_single()) {
 		return str_replace('blogger2wp.com', 'pipdig.co/shop/blogger-to-wordpress-migration/" data-scope="', $content);
 	}
+	return $content;
 }
 add_filter('the_content', 'p3_content_filter', 20);
 
