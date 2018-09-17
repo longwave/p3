@@ -9,7 +9,11 @@ The core functions of any pipdig theme.
 
 == Description ==
 
-= 3.15.0 (16 September 2018) =
+Please check the changelog before updating :)
+
+== Changelog ==
+
+= 3.15.1 (17 September 2018) =
 * Increase max limit on [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/) to 6.
 
 = 3.14.4 (12 September 2018) =
