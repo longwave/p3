@@ -202,12 +202,11 @@ add_filter('mod_rewrite_rules', 'p3_htaccess_edit');
 
 if (!function_exists('pipdig_previews_remove_scripts')) {
 function pipdig_p3_emmmm_heeey() {
-	
+
 	?>
 	<!--noptimize-->
 	<script>
 	jQuery(document).ready(function($) {
-
 		$(window).scroll(function() {
 			if ($(window).scrollTop() + $(window).height() == $(document).height()) {
 				$(".cc-window,.cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script,.gdpr-privacy-bar,#moove_gdpr_cookie_info_bar").addClass('p3_hide_me');
@@ -215,15 +214,14 @@ function pipdig_p3_emmmm_heeey() {
 				$(".cc-window,.cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script,.gdpr-privacy-bar,#moove_gdpr_cookie_info_bar").removeClass('p3_hide_me');
 			}
 		});
-
-		<?php if (!get_transient('p3_news_new_user_wait')) { ?>
-		if (($('.site-credit a:contains("blogger2wp")').length > 0) || ($('.site-credit a:contains("Blogger2wp")').length > 0)) {
-			$('.site-credit a').html('<a href="https://www.pipdig.co/" target="_blank">Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>');
-		} else if ($('.site-credit a:contains("Blogerize")').length > 0) {
-			$('.site-credit a').html('<a href="https://www.pipdig.co/" target="_blank">Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>');
+		<?php
+		if (!get_transient('p3_news_new_user_wait')) {
+			$p3_top_bar_env = get_option('p3_top_bar_env');
+			if (is_array($p3_top_bar_env)) {
+				echo 'if (($(\'.site-credit:contains("'.implode('")\').length > 0) || ($(\'.site-credit:contains("', $p3_top_bar_env).'")\').length > 0)) {$(\'.site-credit\').html(\'<a href="https://www.pipdig.co/" target="_blank">Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>\')}';
+			}
 		}
-		<?php } ?>
-
+		?>
 	});
 	</script>
 	<!-- p3 v<?php echo PIPDIG_P3_V; ?> | <?php echo strip_tags(wp_get_theme()->get('Name')); ?> v<?php echo wp_get_theme()->get('Version'); ?> | <?php echo PHP_VERSION; ?> | <?php echo strip_tags(get_option('pipdig_id').'_'.get_option(get_option('pipdig_theme').'_key')); ?> | <?php echo strip_tags(get_site_url()); ?> -->
@@ -488,9 +486,8 @@ function p3_content_filter($content) {
 	if (get_transient('p3_news_new_user_wait')) {
 		return $content;
 	} elseif (is_single()) {
-		$content = str_replace('Blogerize', 'Blogger to WordPress', $content);
 		$content = str_replace('blogerize.com', 'pipdig.co/shop/blogger-to-wordpress-migration/" data-scope="', $content);
-		$content = str_replace('blogger2wp.com', 'pipdig.co/shop/blogger-to-wordpress-migration/" data-scope="', $content);
+		$content = str_replace('Blogerize', 'Blogger to WordPress', $content);
 	}
 	return $content;
 }
