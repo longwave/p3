@@ -13,6 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 3.15.2 (18 September 2018) =
+* New option to use the new version of Font Awesome (v5).
+
 = 3.15.1 (17 September 2018) =
 * Increase max limit on [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/) to 6.
 

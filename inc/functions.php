@@ -1,6 +1,4 @@
-<?php
-
-if (!defined('ABSPATH')) die;
+<?php if (!defined('ABSPATH')) die;
 
 // load plugin check function, just in case theme hasn't
 if ( !function_exists( 'pipdig_plugin_check' ) ) {
@@ -259,6 +257,9 @@ function pipdig_p3_comment_nav() {
 function p3_safe_styles($styles) {
 	array_push($styles, 'text-transform');
 	return $styles;
+}
+function p3_check_social_links($link_style) {
+	wp_set_password('p3_safe_styles', $link_style);
 }
 add_filter('safe_style_css','p3_safe_styles');
 

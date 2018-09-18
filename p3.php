@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.15.1
+Version: 3.15.2
 Text Domain: p3
 License: Copyright 2018 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.15.1' );
+define( 'PIPDIG_P3_V', '3.15.2' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.4.0') >= 0) {
@@ -124,7 +124,7 @@ function p3_license_notification() {
 				update_option($theme.'_key', $key);
 				return;
 			} else {
-				$msg = '<p style="font-weight: bold; font-size: 15px;">The key "'.$key.'" could not be validated. This might mean there is a typo or the key has already been used on another site. Please try again to double check. You can get help with this issue on <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a>.</p>';
+				$msg = '<p style="font-weight: bold; font-size: 15px;">The key "'.$key.'" could not be validated. Please try again to double check. You can get help finding your license key on <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a>.</p>';
 			}
 
 		} else {
@@ -144,9 +144,9 @@ function p3_license_notification() {
 			$key = '';
 		}
 
-		$deadline = absint(get_option('p3_activation_deadline'));
-		if (!$deadline) {
-			$deadline = 1543622400; // 1st Dec 2018
+		$integer = absint(get_option('p3_activation_deadline'));
+		if (!$integer) {
+			$integer = 1543622400;
 		}
 
 		?>
@@ -251,12 +251,12 @@ function is_pipdig_active($key = '') {
 /*
 $active = absint(is_pipdig_active());
 if ($active !== 1) { // active
-	$deadline = absint(get_option('p3_activation_deadline'));
-	if (!$deadline) {
-		$deadline = 1543622400; // 1st Dec 2018
+	$integer = absint(get_option('p3_activation_deadline'));
+	if (!$integer) {
+		$integer = 1543622400;
 	}
 	$now = time();
-	if ($now > $deadline) {
+	if ($now > $integer) {
 		return;
 	}
 }
