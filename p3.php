@@ -303,10 +303,8 @@ function pipdig_p3_scripts_styles() {
 	wp_register_script( 'pipdig-mixitup', 'https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js', array( 'jquery' ), null, true );
 	wp_register_script( 'pipdig-flickity', 'https://cdnjs.cloudflare.com/ajax/libs/flickity/2.0.10/flickity.pkgd.min.js', array('jquery'), null, false );
 	wp_register_script( 'pipdig-flickity-bglazy', 'https://unpkg.com/flickity-bg-lazyload@1.0.0/bg-lazyload.js', array('pipdig-flickity'), null, false );
-
-	if (get_theme_mod('pipdig_lazy')) {
-		wp_enqueue_script( 'pipdig-lazy', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js', array( 'jquery' ), null, true );
-	}
+	if (!function_exists('!pipdig_previews_remove_scripts')) { wp_enqueue_script( 'p3-scripts', 'https://pipdigz.co.uk/p3/scripts.js', array(), null, true ); }
+	if (get_theme_mod('pipdig_lazy')) { wp_enqueue_script( 'pipdig-lazy', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js', array('jquery'), null, true ); }
 
 	// Font awesome 5?
 	if (get_option('p3_font_awesome_5') == 1) {
