@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 3.15.2
+Version: 4.0.0
 Text Domain: p3
 License: Copyright 2018 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '3.15.2' );
+define( 'PIPDIG_P3_V', '4.0.0' );
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.4.0') >= 0) {
@@ -28,7 +28,7 @@ function p3_php_version_notice() {
 }
 add_action( 'admin_notices', 'p3_php_version_notice' );
 
-function pipdig_p3_themes_top_link() {
+function p3_themes_top_link() {
 
 	if (isset($_GET['pipdig_key'])) {
 		delete_transient('pipdig_active');
@@ -47,16 +47,16 @@ function pipdig_p3_themes_top_link() {
 	<?php
 	}
 }
-add_action( 'admin_head-themes.php', 'pipdig_p3_themes_top_link' );
+add_action( 'admin_head-themes.php', 'p3_themes_top_link' );
 
-function pipdig_p3_plugins_head() {
+function p3_plugins_head() {
 	?>
 	<style>
 	#all-404-redirect-to-homepage-upgradeMsg {display:none!important}
 	</style>
 	<?php
 }
-add_action( 'admin_head-plugins.php', 'pipdig_p3_plugins_head' );
+add_action( 'admin_head-plugins.php', 'p3_plugins_head' );
 
 function pipdig_p3_deactivate() {
 

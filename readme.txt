@@ -13,16 +13,11 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
-= 3.15.2 (18 September 2018) =
+= 4.0.0 (21 September 2018) =
+* Update some features in line with newest version of [Gutenberg](https://www.pipdig.co/blog/gutenberg/).
 * New option to use the new version of Font Awesome (v5).
-
-= 3.15.1 (17 September 2018) =
 * Increase max limit on [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/) to 6.
-
-= 3.14.4 (12 September 2018) =
 * Increase max limit on random posts widget to 8.
-
-= 3.14.3 (08 September 2018) =
 * Increase max limit on popular posts widget to 8.
 
 = 3.14.2 (02 September 2018) =

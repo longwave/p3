@@ -19,6 +19,8 @@ register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
 function p3_do_this_daily() {
 
 	pipdig_p3_scrapey_scrapes();
+	
+	delete_transient('pipdig_fonts');
 
 	$instagram_deets = get_option('pipdig_instagram');
 	if (!empty($instagram_deets['user_id'])) {
