@@ -15,6 +15,7 @@ Please check the changelog before updating :)
 
 = 4.0.0 (21 September 2018) =
 * Update some features in line with newest version of [Gutenberg](https://www.pipdig.co/blog/gutenberg/).
+* New option to show/hide widgets on the mobile layout - [read more](https://support.pipdig.co/articles/wordpress-hide-widget-on-mobile/).
 * New option to use the new version of Font Awesome (v5).
 * Add new "shop" link under the "pipdig > Social Links" page. Can be used to add a link to any shop page you like, e.g. [Shopr](https://www.pipdig.co/shop/shopr-wordpress-plugin/) or [Liketoknow.it](https://www.liketoknow.it/).
 * More accurate Popular Posts widget stats from Jetpack.
