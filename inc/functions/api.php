@@ -3,24 +3,24 @@
 if (!defined('ABSPATH')) die;
 
 function pipdig_p3_scrapey_scrapes() {
-	
+
 	$links = get_option('pipdig_links');
-	
+
 	if (empty($links)) {
 		return;
 	}
-	
+
 	if ( false === ( $value = get_transient('p3_stats_gen') ) ) {
-		
+
 		set_transient('p3_stats_gen', true, 11 * HOUR_IN_SECONDS);
-		
+
 		$allow_url_fopen = false;
 		if(ini_get('allow_url_fopen')) {
 			$allow_url_fopen = true;
 		}
-		
+
 		$facebook_url_test = $pinterest_url_test = $bloglovin_url_test = $twitter_url_test = $youtube_url_test = $request_array = array();
-		
+
 		// Facebook --------------------
 		$facebook_url = esc_url($links['facebook']);
 		if($facebook_url) {
@@ -40,7 +40,7 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_facebook_count');
 		}
-		
+
 		// Pinterest ---------------------
 		$pinterest_url = esc_url($links['pinterest']);
 		if($pinterest_url) {
@@ -75,8 +75,8 @@ function pipdig_p3_scrapey_scrapes() {
 			}
 		} else {
 			delete_option('p3_bloglovin_count');
-		}	
-		
+		}
+
 		// Twitter ---------------------
 		$twitter_url = esc_url($links['twitter']);
 		if ($twitter_url) {
@@ -106,7 +106,7 @@ function pipdig_p3_scrapey_scrapes() {
 				update_option('p3_instagram_count', $instagram_count);
 			} else {
 				$instagram_deets = get_option('pipdig_instagram'); // from p3
-				if (!empty($instagram_deets['access_token'])) { 
+				if (!empty($instagram_deets['access_token'])) {
 					$ig_token = pipdig_strip($instagram_deets['access_token']);
 					$request_array['instagram'] = $ig_token;
 				}
@@ -114,7 +114,7 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_instagram_count');
 		}
-			
+
 		// YouTube ---------------------
 		$youtube_url = esc_url($links['youtube']);
 		if ($youtube_url) {
@@ -134,12 +134,18 @@ function pipdig_p3_scrapey_scrapes() {
 		}
 
 		if (!empty($request_array)) {
-			
+
 			$request_array['site_url'] = get_site_url();
 			$request_array['tempToken'] = 'dcx15';
-			
+
+			$theme = get_option('pipdig_theme');
+			if ($theme) {
+				$key = get_option($theme.'_key');
+				$request_array['key'] = $key;
+			}
+
 			$url = add_query_arg($request_array, 'https://pipdig.rocks/c');
-			
+
 			$args = array(
 				//'body' => json_encode($request_array),
 				'timeout' => '28',
@@ -158,11 +164,11 @@ function pipdig_p3_scrapey_scrapes() {
 				$response = wp_remote_get( $url, $args );
 				$response_body = wp_remote_retrieve_body($response);
 			}
-			
+
 			if (!is_wp_error($response)) {
-				
+
 				$response_data = json_decode($response_body);
-			
+
 				if (isset($response_data->items->pinterest)) {
 					update_option('p3_pinterest_count', $response_data->items->pinterest);
 				}
@@ -181,7 +187,7 @@ function pipdig_p3_scrapey_scrapes() {
 				if (isset($response_data->items->bloglovin)) {
 					update_option('p3_bloglovin_count', $response_data->items->bloglovin);
 				}
-				
+
 			}
 		}
 
@@ -196,7 +202,7 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_google_plus_count');
 		}
-		
+
 		$soundcloud_url = esc_url($links['soundcloud']);
 		if ($soundcloud_url) {
 			if (function_exists('get_scp_counter') && get_scp_counter('soundcloud')) {
@@ -206,7 +212,7 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_soundcloud_count');
 		}
-		
+
 		$linkedin_url = esc_url($links['linkedin']);
 		if ($linkedin_url) {
 			if (function_exists('get_scp_counter') && get_scp_counter('linkedin')) {
@@ -216,7 +222,7 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_linkedin_count');
 		}
-		
+
 		$tumblr_url = esc_url($links['tumblr']);
 		if ($tumblr_url) {
 			if (function_exists('get_scp_counter') && get_scp_counter('tumblr')) {
@@ -226,9 +232,9 @@ function pipdig_p3_scrapey_scrapes() {
 		} else {
 			delete_option('p3_tumblr_count');
 		}
-		
+
 		$today = array();
-		
+
 		if (get_option('p3_pinterest_count')) {
 			$today['pinterest'] = absint(get_option('p3_pinterest_count'));
 		}
@@ -250,7 +256,7 @@ function pipdig_p3_scrapey_scrapes() {
 		if (get_option('p3_twitch_count')) {
 			$today['twitch'] = absint(get_option('p3_twitch_count'));
 		}
-		
+
 		// scp
 		if (get_option('p3_linkedin_count')) {
 			$today['linkedin'] = absint(get_option('p3_linkedin_count'));
@@ -261,24 +267,24 @@ function pipdig_p3_scrapey_scrapes() {
 		if (get_option('p3_soundcloud_count')) {
 			$today['soundcloud'] = absint(get_option('p3_soundcloud_count'));
 		}
-		
-		
+
+
 		if (empty($today)) {
 			return;
 		}
-		
+
 		if (is_array(get_option('p3_stats_data'))) {
 			$p3_stats_data = get_option('p3_stats_data');
 		} else {
 			$p3_stats_data = array();
 		}
-		
+
 		$todays_date = date('Ymd'); // http://codepad.org/PYcR13C2
 		$p3_stats_data[$todays_date] = $today;
 		$today['date'] = $todays_date;
 		update_option('p3_stats_data', $p3_stats_data);
-	
+
 	}
-	
+
 }
 add_action('login_footer', 'pipdig_p3_scrapey_scrapes', 999); // push on login page to avoid cache
