@@ -299,7 +299,7 @@ function p3_vk_field_render() {
 
 function p3_twitch_field_render() { 
 	$links = get_option('pipdig_links'); ?>
-	<input class='large-text' type='url' name='pipdig_links[twitch]' placeholder='e.g. https://twitch.tv/dansgaming' value="<?php if (isset($links['twitch'])) { echo $links['twitch']; } ?>"> <?php
+	<input class='large-text' type='url' name='pipdig_links[twitch]' placeholder='e.g. https://twitch.tv/pipdig' value="<?php if (isset($links['twitch'])) { echo $links['twitch']; } ?>"> <?php
 }
 
 function p3_stumbleupon_field_render() { 

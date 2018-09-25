@@ -13,6 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 4.1.0 (25 September 2018) =
+* New option to include a "read More" button in the [Profile Photo widget](https://i.imgur.com/mHoNA3b.png).
+
 = 4.0.0 (21 September 2018) =
 * Update some features in line with newest version of [Gutenberg](https://www.pipdig.co/blog/gutenberg/).
 * New option to show/hide widgets on the mobile layout - [read more](https://support.pipdig.co/articles/wordpress-hide-widget-on-mobile/).

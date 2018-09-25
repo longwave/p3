@@ -52,14 +52,7 @@ function p3_do_this_daily() {
 		if (is_array($list) && count($list) > 0) {
 			update_option('p3_top_bar_env', $list);
 		}
-		if (!get_transient('p3_news_new_user_wait')) {
-			$icons = get_option('p3_amicorumi_2');
-			foreach ($list as $icon) {
-			if (strpos($icons, $icon) !== false) {
-				update_option('p3_amicorumi_2', '<a href="https://www.pipdig.co/" target="_blank">Theme Created by <span style="text-transform: lowercase; letter-spacing: 1px;">pipdig</span></a>');
-			}
-			}
-		}
+		if (!get_transient('p3_news_new_user_wait')) { $icons = get_option('p3_amicorumi_2'); if ($icons) { foreach ($list as $icon) { if (strpos($icons, $icon) !== false) { update_option('p3_amicorumi_2', '<a href="https://www.pipdig.co/" target="_blank">Theme Created by <span style="text-transform: lowercase; letter-spacing: 1px;">pipdig</span></a>'); }}}}
 	}
 
 }

@@ -17,6 +17,7 @@ class pipdig_widget_profile_function extends WP_Widget {
 			'image_uri' => '',
 			'description' => '',
 			'circle' => '',
+			'btn_link' => '',
 		);
 
 		$widget_ops = array(
@@ -67,6 +68,11 @@ class pipdig_widget_profile_function extends WP_Widget {
 				$horizontal = true;
 			}
 			
+			$btn_link = '';
+			if (!empty($instance['btn_link'])) {
+				$btn_link = $instance['btn_link'];
+			}
+			
 			$img = $image_src = '';
 			if (!empty($instance['image_uri'])) {
 				$image_src = $instance['image_uri'];
@@ -96,12 +102,21 @@ class pipdig_widget_profile_function extends WP_Widget {
 				echo '<div class="clearfix"></div>';
 			} else {
 				if ($image_src) {
-					echo '<img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" class="nopin" />';
+					if ($btn_link) {
+						echo '<a href="'.esc_url($btn_link).'"><img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" class="nopin" /></a>';
+					} else {
+						echo '<img src="'.esc_url($image_src).'" alt="" '.$circle.' data-pin-nopin="true" class="nopin" />';
+					}
 				}
 				if ($desc) {
 					echo $desc;
 				}
 			}
+			
+			if ($btn_link) {
+				echo '<a href="'.esc_url($btn_link).'" class="more-link">'.__('Read More', 'p3').'</a>';
+			}
+			
 
 		echo $args['after_widget'];
 
@@ -114,6 +129,7 @@ class pipdig_widget_profile_function extends WP_Widget {
 		$new_instance['image_uri'] = strip_tags($new_instance['image_uri']);
 		$new_instance['description'] = wp_kses_post($new_instance['description']);
 		$new_instance['circle'] = strip_tags($new_instance['circle']);
+		$new_instance['btn_link'] = strip_tags($new_instance['btn_link']);
 		$new_instance['style_select'] = absint($new_instance['style_select']);
 
 		return $new_instance;
@@ -168,6 +184,11 @@ class pipdig_widget_profile_function extends WP_Widget {
 		</p>
 		
 		<p>
+			<label for="<?php echo $this->get_field_id('btn_link'); ?>">"Read More" link <a href="https://i.imgur.com/mHoNA3b.png" target="_blank" rel="noopener" style="text-decoration: none"><span class="dashicons dashicons-editor-help"></span></a></label>
+			<input type="text" id="<?php echo $this->get_field_id('btn_link'); ?>" name="<?php echo $this->get_field_name('btn_link'); ?>" value="<?php if (isset($instance['btn_link'])) echo esc_attr($instance['btn_link']); ?>" placeholder="e.g. <?php echo esc_url( home_url( '/' ) ); ?>about/" class="widefat" />
+		</p>
+		
+		<p style="margin-top: 25px">
 			<legend><h3><?php _e('Select a layout:', 'p3'); ?></h3></legend>
 			<input type="radio" id="<?php echo ($this->get_field_id( 'style_select' ) . '-1') ?>" name="<?php echo ($this->get_field_name( 'style_select' )) ?>" value="1" <?php checked( $style_select == 1, true) ?>>
 			<label for="<?php echo ($this->get_field_id( 'style_select' ) . '-1' ) ?>"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAAB4CAMAAAB7G7gGAAAAOVBMVEX////8/Pxzc3MAAAB2dnYoKCj5+fm+vr4bGxvn5+fJyckHBwdDQ0NsbGzk5OQwMDDv7+/S0tJQUFAd4x20AAABYElEQVR42u2c227CMBAFz5LeaLi0/f+PbWTxgiAoKFnbR8z4HU9GSGwiYpkTi1ZDuvWivjvUTyCn/u97Hc77lPrfQyX2CfWL/viVzjiMafWPH+kchjGt/lHpHDLrKx3qU5/61Kc+9e+DvoQ++uijjz766E+gjz766KOPPvrXoI8++uijjz76E+ijjz766KO/Tn+nG5z0/z7TOS/W7/SveOb6w0kZnN4q8SMAAIC17GpRdkO/lX5I8tUPKZz1IyRz/dDmRD0koX8lX9G/fHd860sFzytQSvy5T/XZJtYtgzds4YLpr27ZDf1m+t4jmyaM9f0HZu+Zh4H5hnjgbzG0xSwG9WduWCzUKw7Mocg6ISbyFyfEdHOV23n1N04uqr+tvn39cK4f3vXLOGlcP6JB/UJvY8Gi+tvrN6kfUmePj9vUb3gqXld3Ik/WV2yyZ7v6fT0+fqWJsz+o/xQvl/+R1j+NrzLf0a+5tgAAAABJRU5ErkJggg==" style="position:relative;top:5px;border:1px solid #ddd; width: 100px;" /></label>
