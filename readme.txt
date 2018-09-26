@@ -13,7 +13,7 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
-= 4.1.0 (25 September 2018) =
+= 4.1.1 (26 September 2018) =
 * New option to include a "read More" button in the [Profile Photo widget](https://i.imgur.com/mHoNA3b.png).
 
 = 4.0.0 (21 September 2018) =

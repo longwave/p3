@@ -5,7 +5,7 @@ if ( !wp_next_scheduled('pipdig_p3_daily_event') ) {
 	wp_schedule_event( time(), 'daily', 'pipdig_p3_daily_event'); // hourly, twicedaily or daily
 }
 if ( !wp_next_scheduled('pipdig_p3_hourly_event') ) {
-	wp_schedule_event( time(), 'hourly', 'pipdig_p3_hourly_event'); // hourly, twicedaily or daily
+	wp_schedule_event( time(), 'hourly', 'pipdig_p3_hourly_event');
 }
 
 // Remove scheduled event on plugin deactivation
