@@ -9,6 +9,11 @@ function pipdig_help_options_page() {
 	if (isset($_GET['montserrat'])) {
 		update_option('p3_original_montserrat', 1);
 	}
+	
+	// dashboard widgets and front end
+	if (isset($_GET['p3_widget_override'])) {
+		update_option('p3_widget_override', 1);
+	}
 
 	?>
 	

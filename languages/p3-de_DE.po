@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-17 11:58+0100\n"
-"PO-Revision-Date: 2018-09-12 22:41+0100\n"
+"POT-Creation-Date: 2018-09-28 16:22+0100\n"
+"PO-Revision-Date: 2018-09-28 16:23+0100\n"
 "Last-Translator: Marcel マルセル <marcelschnelle@aol.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -38,7 +38,7 @@ msgstr "Eigenes CSS"
 msgid "Theme"
 msgstr "Theme"
 
-#: inc/admin-menus.php:19 inc/admin-menus/help.php:12
+#: inc/admin-menus.php:19 inc/admin-menus/help.php:17
 msgid "Help / Support"
 msgstr "Hilfe / Support"
 
@@ -113,27 +113,27 @@ msgstr ""
 "ACHTUNG: Diese Einstellungen können deine Seite kaputt machen. Bitte sei' "
 "vorsichtig."
 
-#: inc/admin-menus/hooks.php:201 inc/functions/feature_header.php:195
-#: inc/functions/featured_cats.php:168 inc/functions/featured_panels.php:225
-#: inc/functions/navbar_icons.php:140 inc/functions/related-posts.php:136
+#: inc/admin-menus/hooks.php:201 inc/functions/feature_header.php:197
+#: inc/functions/featured_cats.php:176 inc/functions/featured_panels.php:225
+#: inc/functions/navbar_icons.php:159 inc/functions/related-posts.php:136
 #: inc/functions/social-sidebar.php:140 inc/functions/top_menu_bar.php:47
 msgid "Click here for more information"
 msgstr "Für mehr Informationen hier klicken"
 
-#: inc/admin-menus/instagram.php:63
+#: inc/admin-menus/instagram.php:62
 msgid "Click here to connect your Instagram account"
 msgstr "Zum Verbinden von Instagram hier klicken"
 
-#: inc/admin-menus/instagram.php:64
+#: inc/admin-menus/instagram.php:63
 msgid ""
 "Once you have connected your account, copy and paste your Access Token below:"
 msgstr "Nach der Verknüpfung deines Kontos, füge den Access Token hier ein:"
 
-#: inc/admin-menus/links.php:335
+#: inc/admin-menus/links.php:348
 msgid "Add the links to each social media page below:"
 msgstr "Füge die Links zu allen Social Media-Seiten hier ein:"
 
-#: inc/admin-menus/links.php:336
+#: inc/admin-menus/links.php:349
 #, php-format
 msgid ""
 "Any links added can then be used across your website, such as on <a href=\"%s"
@@ -142,7 +142,7 @@ msgstr ""
 "Alle hinzugefügten Links können überall auf deiner Webseite benutzt werden, "
 "zum Beispiel auch <a href=\"%s\">auf dieser Seite</a>."
 
-#: inc/admin-menus/links.php:357
+#: inc/admin-menus/links.php:370
 #, php-format
 msgid ""
 "If you find that certain social network counters are not working correctly, "
@@ -152,129 +152,122 @@ msgstr ""
 "Falls ein Social Network-Counter nicht korrekt funktionieren sollte, findest "
 "du <a href=\"%s\" target=\"_blank\">hier</a> eine mögliche Lösung."
 
-#: inc/dash.php:244
+#: inc/dash.php:241
 msgid "Hide this message"
 msgstr ""
 
-#: inc/dash.php:252
+#: inc/dash.php:249
 msgid "Never show messages like this again"
 msgstr ""
 
-#: inc/dash.php:267
+#: inc/dash.php:264
 msgid "Your Followers"
 msgstr "Deine Follower"
 
-#: inc/functions.php:237
+#: inc/functions.php:229
 msgid "Leave a comment"
 msgstr "Kommentar schreiben"
 
-#: inc/functions.php:239
+#: inc/functions.php:231
 msgid "1 Comment"
 msgstr "1 Kommentar"
 
-#: inc/functions.php:241
+#: inc/functions.php:233
 msgid "Comments"
 msgstr "Kommentare"
 
-#: inc/functions.php:252
+#: inc/functions.php:244
 msgid "Older Comments"
 msgstr "Ältere Kommentare"
 
-#: inc/functions.php:253
+#: inc/functions.php:245
 msgid "Newer Comments"
 msgstr "Neuere Kommentare"
 
-#: inc/functions.php:501
+#: inc/functions.php:510
 msgid "What's this?"
 msgstr ""
 
-#: inc/functions.php:587
+#: inc/functions.php:596
+msgid "Select a category"
+msgstr "Kategorie auswählen"
+
+#: inc/functions.php:612
 msgid "Author"
 msgstr ""
 
-#: inc/functions.php:594
-#, php-format
-msgid ""
-"This site uses Akismet to reduce spam. <a href=\"%s\" rel=\"nofollow "
-"noopener noreferrer\" target=\"_blank\">Learn how your comment data is "
-"processed</a>."
-msgstr ""
-"Diese Website verwendet Akismet, um Spam zu reduzieren. <a href=\"%s\" rel="
-"\"nofollow noopener noreferrer\" target=\"_blank\">Erfahre mehr darüber, wie "
-"deine Kommentardaten verarbeitet werden</a>."
-
-#: inc/functions/feature_header.php:26 inc/functions/feature_header.php:379
+#: inc/functions/feature_header.php:26 inc/functions/feature_header.php:374
 msgid "Big this Month"
 msgstr "Gerade angesagt"
 
-#: inc/functions/feature_header.php:30 inc/functions/feature_header.php:396
+#: inc/functions/feature_header.php:30 inc/functions/feature_header.php:391
 msgid "Recent Posts"
 msgstr "Neueste Beiträge"
 
-#: inc/functions/feature_header.php:194
+#: inc/functions/feature_header.php:196
 msgid "Feature Header"
 msgstr "Feature-Header"
 
-#: inc/functions/feature_header.php:195
+#: inc/functions/feature_header.php:197
 msgid "Display recent/popular posts at the top of your site."
 msgstr ""
 "Zeige die neuesten/beliebtesten Beiträge am oberen Rand deiner Seite an."
 
-#: inc/functions/feature_header.php:213 inc/functions/featured_cats.php:186
+#: inc/functions/feature_header.php:215 inc/functions/featured_cats.php:194
 #: inc/functions/featured_panels.php:243
 #: inc/functions/full_screen_landing_image.php:188
-#: inc/functions/post_slider_posts_column.php:122
-#: inc/functions/post_slider_site_main_width.php:130
+#: inc/functions/post_slider_posts_column.php:123
+#: inc/functions/post_slider_site_main_width.php:131
 #: inc/functions/social-sidebar.php:156 inc/functions/trending.php:129
 msgid "Enable this feature"
 msgstr "Feature aktivieren"
 
-#: inc/functions/feature_header.php:229 inc/functions/featured_panels.php:275
+#: inc/functions/feature_header.php:231 inc/functions/featured_panels.php:275
 #: inc/functions/full_screen_landing_image.php:204
-#: inc/functions/post_slider_site_main_width.php:146
+#: inc/functions/post_slider_site_main_width.php:147
 #: inc/functions/trending.php:145
 msgid "Display on homepage only"
 msgstr "Nur auf der Homepage anzeigen"
 
-#: inc/functions/feature_header.php:246
+#: inc/functions/feature_header.php:248
 msgid "Switch sides"
 msgstr "Seite wechseln"
 
-#: inc/functions/feature_header.php:262
+#: inc/functions/feature_header.php:264
 msgid "Date range for \"Big this Month\":"
 msgstr "Zeitraum für \"Gerade angesagt\":"
 
-#: inc/functions/feature_header.php:265 inc/functions/trending.php:221
+#: inc/functions/feature_header.php:267 inc/functions/trending.php:221
 #: inc/widgets/popular-posts.php:76 inc/widgets/post-slider.php:65
 #: inc/widgets/random-posts.php:76
 msgid "1 Week"
 msgstr "1 Woche"
 
-#: inc/functions/feature_header.php:266 inc/functions/related-posts.php:205
+#: inc/functions/feature_header.php:268 inc/functions/related-posts.php:205
 #: inc/functions/trending.php:222 inc/widgets/popular-posts.php:77
 #: inc/widgets/post-slider.php:66 inc/widgets/random-posts.php:77
 msgid "1 Month"
 msgstr "1 Monat"
 
-#: inc/functions/feature_header.php:267 inc/functions/related-posts.php:206
+#: inc/functions/feature_header.php:269 inc/functions/related-posts.php:206
 #: inc/functions/trending.php:223 inc/widgets/popular-posts.php:78
 #: inc/widgets/random-posts.php:78
 msgid "3 Months"
 msgstr "3 Monate"
 
-#: inc/functions/feature_header.php:268 inc/functions/related-posts.php:207
+#: inc/functions/feature_header.php:270 inc/functions/related-posts.php:207
 #: inc/functions/trending.php:224 inc/widgets/popular-posts.php:79
 #: inc/widgets/random-posts.php:79
 msgid "6 Months"
 msgstr "6 Monate"
 
-#: inc/functions/feature_header.php:269 inc/functions/related-posts.php:208
+#: inc/functions/feature_header.php:271 inc/functions/related-posts.php:208
 #: inc/functions/trending.php:225 inc/widgets/popular-posts.php:80
 #: inc/widgets/post-slider.php:67 inc/widgets/random-posts.php:80
 msgid "1 Year"
 msgstr "1 Jahr"
 
-#: inc/functions/feature_header.php:270 inc/functions/related-posts.php:209
+#: inc/functions/feature_header.php:272 inc/functions/related-posts.php:209
 #: inc/functions/trending.php:226 inc/widgets/popular-posts.php:81
 #: inc/widgets/post-slider.php:68 inc/widgets/random-posts.php:81
 msgid "All Time"
@@ -284,49 +277,45 @@ msgstr "Immer"
 msgid "Category for \"Big this Month\":"
 msgstr "Kategorie für \"Gerade angesagt\":"
 
-#: inc/functions/feature_header.php:287 inc/functions/trending.php:243
-msgid "Only display posts from:"
-msgstr "Zeige nur Beiträge aus:"
-
-#: inc/functions/feature_header.php:305
+#: inc/functions/feature_header.php:301
 msgid "Category for \"Recent Posts\":"
 msgstr "Kategorie für \"Neueste Beiträge\":"
 
-#: inc/functions/feature_header.php:323
+#: inc/functions/feature_header.php:318
 msgid "Number of slides for \"Recent Posts\""
 msgstr "Anzahl der Slides für \"Neueste Beiträge\""
 
-#: inc/functions/feature_header.php:343
-#: inc/functions/post_slider_posts_column.php:218
-#: inc/functions/post_slider_site_main_width.php:196
-#: inc/functions/trending.php:260
+#: inc/functions/feature_header.php:338
+#: inc/functions/post_slider_posts_column.php:216
+#: inc/functions/post_slider_site_main_width.php:194
+#: inc/functions/trending.php:255
 msgid "Background color"
 msgstr "Hintergrundfarbe"
 
-#: inc/functions/feature_header.php:360
-#: inc/functions/post_slider_posts_column.php:235
-#: inc/functions/post_slider_site_main_width.php:213
-#: inc/functions/trending.php:276
+#: inc/functions/feature_header.php:355
+#: inc/functions/post_slider_posts_column.php:233
+#: inc/functions/post_slider_site_main_width.php:211
+#: inc/functions/trending.php:271
 msgid "Title color"
 msgstr "Überschriftfarbe"
 
-#: inc/functions/feature_header.php:376
+#: inc/functions/feature_header.php:371
 msgid "\"Big this Month\" title"
 msgstr "\"Gerade angesagt\"-Überschrift"
 
-#: inc/functions/feature_header.php:393
+#: inc/functions/feature_header.php:388
 msgid "\"Recent Posts\" title"
 msgstr "\"Neueste Beiträge\"-Überschrift"
 
-#: inc/functions/feature_header.php:412
+#: inc/functions/feature_header.php:407
 msgid "Limit post title length (words)"
 msgstr "Überschrift von Beiträgen begrenzen (Worte)"
 
-#: inc/functions/featured_cats.php:167
+#: inc/functions/featured_cats.php:175
 msgid "Featured Categories"
 msgstr "Beworbene Kategorien"
 
-#: inc/functions/featured_cats.php:168
+#: inc/functions/featured_cats.php:176
 msgid ""
 "Display 4 featured post categories at the top of your homepage. Each "
 "category will display the latest post from that topic."
@@ -334,27 +323,27 @@ msgstr ""
 "Zeige vier beworbene Kategorien am Anfang deiner Homepage an. Jede Kategorie "
 "wird ihren jeweils neuesten Beitrag anzeigen."
 
-#: inc/functions/featured_cats.php:203 inc/functions/featured_panels.php:259
+#: inc/functions/featured_cats.php:211 inc/functions/featured_panels.php:259
 msgid "Enable on mobile"
 msgstr ""
 
-#: inc/functions/featured_cats.php:218 inc/functions/featured_panels.php:290
-#: inc/functions/related-posts.php:283 inc/functions/trending.php:177
+#: inc/functions/featured_cats.php:226 inc/functions/featured_panels.php:290
+#: inc/functions/related-posts.php:280 inc/functions/trending.php:177
 msgid "Image shape"
 msgstr "Bildform"
 
-#: inc/functions/featured_cats.php:255
+#: inc/functions/featured_cats.php:263
 msgid "Display post date"
 msgstr ""
 
-#: inc/functions/featured_cats.php:271
-#: inc/functions/post_slider_posts_column.php:180
+#: inc/functions/featured_cats.php:279
+#: inc/functions/post_slider_posts_column.php:178
 msgid "Display post title"
 msgstr "Zeige Überschrift"
 
-#: inc/functions/featured_cats.php:287 inc/functions/featured_cats.php:305
-#: inc/functions/featured_cats.php:323 inc/functions/featured_cats.php:341
-#: inc/functions/featured_cats.php:359
+#: inc/functions/featured_cats.php:293 inc/functions/featured_cats.php:308
+#: inc/functions/featured_cats.php:323 inc/functions/featured_cats.php:338
+#: inc/functions/featured_cats.php:353 inc/functions/featured_cats.php:368
 msgid "Category"
 msgstr "Kategorie"
 
@@ -389,7 +378,7 @@ msgstr ""
 "Das vollflächige Landing-Bild wird pro Besucher einmal täglich angezeigt."
 
 #: inc/functions/full_screen_landing_image.php:238
-#: inc/functions/pinterest_hover.php:290
+#: inc/functions/pinterest_hover.php:283
 msgid "Upload a custom image"
 msgstr "Eigenes Bild hochladen"
 
@@ -397,12 +386,12 @@ msgstr "Eigenes Bild hochladen"
 #: inc/functions/related-posts.php:184 inc/functions/shares.php:124
 #: inc/widgets/clw.php:174 inc/widgets/depop.php:66 inc/widgets/facebook.php:84
 #: inc/widgets/featured-post.php:113 inc/widgets/google-adsense.php:82
-#: inc/widgets/image.php:122 inc/widgets/instagram.php:153
-#: inc/widgets/pinterest.php:165 inc/widgets/popular-posts.php:49
-#: inc/widgets/post-slider.php:55 inc/widgets/profile.php:131
+#: inc/widgets/image.php:122 inc/widgets/instagram.php:145
+#: inc/widgets/pinterest.php:169 inc/widgets/popular-posts.php:49
+#: inc/widgets/post-slider.php:55 inc/widgets/profile.php:149
 #: inc/widgets/random-posts.php:49 inc/widgets/snapcode.php:103
-#: inc/widgets/socialz.php:221 inc/widgets/spotify.php:56
-#: inc/widgets/subscribe.php:81 inc/widgets/twitter.php:94
+#: inc/widgets/socialz.php:228 inc/widgets/spotify.php:56
+#: inc/widgets/subscribe.php:80 inc/widgets/twitter.php:94
 #: inc/widgets/we-heart-it.php:74 inc/widgets/youtube.php:198
 msgid "Title:"
 msgstr "Überschrift:"
@@ -428,7 +417,7 @@ msgstr "\"Scroll herunter\"-Text am Ende anzeigen"
 msgid "\"Scroll down\" text:"
 msgstr "\"Scroll herunter\"-Text:"
 
-#: inc/functions/instagram.php:446
+#: inc/functions/instagram.php:444
 #, php-format
 msgid ""
 "Before enabling these features, you will need to add your Instagram account "
@@ -437,15 +426,15 @@ msgstr ""
 "Vor der Aktivierung dieser Features musst du dein Instagram-Konto mit <a "
 "href=\"%s\">dieser Seite</a> verbinden."
 
-#: inc/functions/instagram.php:464
+#: inc/functions/instagram.php:462
 msgid "Display feed across the header (Homepage)"
 msgstr "Feed im Header anzeigen (Homepage)"
 
-#: inc/functions/instagram.php:480
+#: inc/functions/instagram.php:478
 msgid "Display header feed on all pages"
 msgstr "Feed auf jeder Seite im Header anzeigen"
 
-#: inc/functions/instagram.php:481
+#: inc/functions/instagram.php:479
 msgid ""
 "By default, the header feed will only display on the homepage. If you want "
 "to display it on all pages, select this option too."
@@ -453,44 +442,44 @@ msgstr ""
 "Standardmäßig wird der Feed nur auf der Homepage angezeigt. Wenn du ihn auf "
 "allen Seiten darstellen willst, aktiviere auch diese Einstellung."
 
-#: inc/functions/instagram.php:497
+#: inc/functions/instagram.php:495
 msgid "Display feed above posts and sidebar on homepage"
 msgstr "Feed über Beiträgen und Seitenleiste auf der Homepage anzeigen"
 
-#: inc/functions/instagram.php:513
+#: inc/functions/instagram.php:511
 msgid "Display feed above posts on homepage"
 msgstr "Feed über Beiträgen auf der Homepage anzeigen"
 
-#: inc/functions/instagram.php:529
+#: inc/functions/instagram.php:527
 msgid "Display feed below posts on homepage"
 msgstr "Feed unter Beiträgen auf der Homepage anzeigen"
 
-#: inc/functions/instagram.php:545
+#: inc/functions/instagram.php:543
 msgid "Display feed across the footer"
 msgstr "Feed in der Fußzeile anzeigen"
 
-#: inc/functions/instagram.php:559 inc/widgets/instagram.php:173
-#: inc/widgets/pinterest.php:195
+#: inc/functions/instagram.php:557 inc/widgets/instagram.php:165
+#: inc/widgets/pinterest.php:199
 msgid "Number of images to display:"
 msgstr "Anzahl angezeigter Bilder:"
 
-#: inc/functions/instagram.php:580
+#: inc/functions/instagram.php:578
 msgid "Display feed in 2 rows"
 msgstr "Feed zweizeilig darstellen"
 
-#: inc/functions/instagram.php:596
+#: inc/functions/instagram.php:594
 msgid "Display title above footer feed"
 msgstr "Überschrift über dem Feed in der Fußzeile anzeigen"
 
-#: inc/functions/instagram.php:613
+#: inc/functions/instagram.php:611
 msgid "Display Comments & Likes count on hover"
 msgstr "Kommentare & Likes bei Hover anzeigen"
 
-#: inc/functions/navbar_icons.php:139
+#: inc/functions/navbar_icons.php:158
 msgid "Navbar Icons"
 msgstr "Navbar-Icons"
 
-#: inc/functions/navbar_icons.php:140
+#: inc/functions/navbar_icons.php:159
 msgid ""
 "You can display your social icons in the navbar using these options. Select "
 "the social icons you would like to add from below."
@@ -498,87 +487,91 @@ msgstr ""
 "Du kannst deine Social-Icons mit diesen Einstellungen in der Navbar "
 "anzeigen. Wähle diese Icons aus der folgenden Liste aus."
 
-#: inc/functions/pinterest_hover.php:150
+#: inc/functions/navbar_icons.php:176 inc/functions/social-sidebar.php:226
+msgid "Icon size"
+msgstr ""
+
+#: inc/functions/pinterest_hover.php:143
 msgid "Pin this image on Pinterest"
 msgstr "Dieses Bild auf Pinterest pinnen"
 
-#: inc/functions/pinterest_hover.php:202
+#: inc/functions/pinterest_hover.php:195
 msgid "Pinterest Hover Button"
 msgstr "Pinterest Hover-Button"
 
-#: inc/functions/pinterest_hover.php:220
+#: inc/functions/pinterest_hover.php:213
 msgid "Display on posts"
 msgstr ""
 
-#: inc/functions/pinterest_hover.php:235
+#: inc/functions/pinterest_hover.php:228
 msgid "Display on pages"
 msgstr ""
 
-#: inc/functions/pinterest_hover.php:251
+#: inc/functions/pinterest_hover.php:244
 msgid "Display on categories/archives"
 msgstr ""
 
-#: inc/functions/pinterest_hover.php:267
+#: inc/functions/pinterest_hover.php:260
 msgid "Display on:"
 msgstr ""
 
-#: inc/functions/pinterest_hover.php:270
+#: inc/functions/pinterest_hover.php:263
 msgid "Desktop"
 msgstr ""
 
-#: inc/functions/pinterest_hover.php:271
+#: inc/functions/pinterest_hover.php:264
 msgid "Desktop and mobile"
 msgstr ""
 
-#: inc/functions/pinterest_hover.php:307
+#: inc/functions/pinterest_hover.php:300
 msgid "Image position"
 msgstr "Bildposition"
 
-#: inc/functions/pinterest_hover.php:310
+#: inc/functions/pinterest_hover.php:303
 msgid "Center"
 msgstr "Zentriert"
 
-#: inc/functions/pinterest_hover.php:311
+#: inc/functions/pinterest_hover.php:304
 msgid "Top left"
 msgstr "Oben links"
 
-#: inc/functions/pinterest_hover.php:312
+#: inc/functions/pinterest_hover.php:305
 msgid "Top right"
 msgstr "Oben rechts"
 
-#: inc/functions/pinterest_hover.php:313
+#: inc/functions/pinterest_hover.php:306
 msgid "Bottom right"
 msgstr "Unten rechts"
 
-#: inc/functions/pinterest_hover.php:314
+#: inc/functions/pinterest_hover.php:307
 msgid "Bottom left"
 msgstr "Unten links"
 
-#: inc/functions/pinterest_hover.php:328
+#: inc/functions/pinterest_hover.php:321
 msgid "Image margin"
 msgstr "Seitenabstand"
 
-#: inc/functions/pinterest_hover.php:347
+#: inc/functions/pinterest_hover.php:340
 msgid "Use alt tags"
 msgstr ""
 
-#: inc/functions/pinterest_hover.php:363
+#: inc/functions/pinterest_hover.php:356
 msgid "Prefix for \"Description\" field"
 msgstr "Präfix für Feld \"Beschreibung\""
 
-#: inc/functions/post-options.php:36
+#: inc/functions/post-options.php:40
 msgid "Find me on:"
 msgstr "Mehr von mir:"
 
-#: inc/functions/post-options.php:51
+#: inc/functions/post-options.php:55
 msgid "Blog Post Options"
 msgstr "Einstellungen Blog-Einträge"
 
-#: inc/functions/post-options.php:68
+#: inc/functions/post-options.php:72
 msgid "Add Featured Image to content"
 msgstr "Feature-Bild zu Inhalt hinzufügen"
 
-#: inc/functions/post-options.php:69
+#: inc/functions/post-options.php:73
 msgid ""
 "Select this option to display the selected Featured Image at the top of the "
 "post."
@@ -586,33 +579,34 @@ msgstr ""
 "Aktiviere diese Einstellung, um das verknüpfte Feature-Bild am Anfang des "
 "Beitrags anzuzeigen."
 
-#: inc/functions/post-options.php:85
+#: inc/functions/post-options.php:89
 msgid "Display author bio in the footer"
 msgstr ""
 
-#: inc/functions/post_slider_posts_column.php:103
+#: inc/functions/post_slider_posts_column.php:104
 msgid "Small Posts Slider"
 msgstr "Kleiner Beitrag-Slider"
 
-#: inc/functions/post_slider_posts_column.php:139
-#: inc/functions/post_slider_site_main_width.php:179
-msgid "Display posts from:"
-msgstr "Zeige Beiträge aus:"
+#: inc/functions/post_slider_posts_column.php:138
+#: inc/functions/post_slider_site_main_width.php:178
+#: inc/functions/trending.php:240
+msgid "Only include posts from:"
+msgstr "Zeige nur Beiträge aus:"
 
-#: inc/functions/post_slider_posts_column.php:157
+#: inc/functions/post_slider_posts_column.php:155
 msgid "Number of posts"
 msgstr "Anzahl Beiträge"
 
-#: inc/functions/post_slider_posts_column.php:196
-#: inc/functions/related-posts.php:304 inc/functions/trending.php:310
+#: inc/functions/post_slider_posts_column.php:194
+#: inc/functions/related-posts.php:301 inc/functions/trending.php:305
 msgid "Post title length (words)"
 msgstr "Länge Überschrift (Wörter)"
 
-#: inc/functions/post_slider_site_main_width.php:111
+#: inc/functions/post_slider_site_main_width.php:112
 msgid "Large Rectangle Slider"
 msgstr "Großer rechteckiger Slider"
 
-#: inc/functions/post_slider_site_main_width.php:163
+#: inc/functions/post_slider_site_main_width.php:164
 msgid "Number of posts to show in the slider"
 msgstr ""
 
@@ -642,19 +636,19 @@ msgstr "Nicht in Beiträgen anzeigen"
 msgid "Date range for posts:"
 msgstr "Zeitraum für Beiträge:"
 
-#: inc/functions/related-posts.php:244
+#: inc/functions/related-posts.php:242
 msgid "Exclude posts from:"
 msgstr ""
 
-#: inc/functions/related-posts.php:262
+#: inc/functions/related-posts.php:259
 msgid "Number of posts to display"
 msgstr "Anzahl angezeigter Beiträge"
 
-#: inc/functions/related-posts.php:263
+#: inc/functions/related-posts.php:260
 msgid "Maximum = 4"
 msgstr "Maximum = 4"
 
-#: inc/functions/shares.php:74 inc/functions/shares.php:127
+#: inc/functions/shares.php:76 inc/functions/shares.php:127
 msgid "Share:"
 msgstr "Teilen:"
 
@@ -710,10 +704,6 @@ msgstr "Iconfarbe"
 msgid "Icon hover color"
 msgstr "Icon-Hoverfarbe"
 
-#: inc/functions/social-sidebar.php:226
-msgid "Icon size"
-msgstr ""
-
 #: inc/functions/top_menu_bar.php:13
 msgid "Top Menu Bar"
 msgstr "Top-Menüleiste"
@@ -768,11 +758,7 @@ msgstr "Zufällig"
 msgid "Recent"
 msgstr "Neu"
 
-#: inc/functions/trending.php:242
-msgid "Only include posts from:"
-msgstr "Zeige nur Beiträge aus:"
-
-#: inc/functions/trending.php:294
+#: inc/functions/trending.php:289
 msgid "Overlay the post titles"
 msgstr "Überlagere die Überschriften"
 
@@ -838,7 +824,7 @@ msgstr "Unbekannter Update-Status \"%s\""
 msgid "There is no changelog available."
 msgstr "Es gibt keinen Changelog."
 
-#: inc/shortcodes/pipdig_category_section.php:104
+#: inc/shortcodes/pipdig_category_section.php:116
 #: inc/shortcodes/pipdig_portfolio.php:38
 msgid "View All"
 msgstr "Alle anzeigen"
@@ -894,8 +880,8 @@ msgid "Follow on Bloglovin'"
 msgstr "Folge auf Bloglovin'"
 
 #: inc/widgets/bloglovin.php:58 inc/widgets/depop.php:38
-#: inc/widgets/facebook.php:52 inc/widgets/pinterest.php:118
-#: inc/widgets/spotify.php:36 inc/widgets/subscribe.php:58
+#: inc/widgets/facebook.php:52 inc/widgets/pinterest.php:119
+#: inc/widgets/spotify.php:36 inc/widgets/subscribe.php:57
 #: inc/widgets/twitter.php:55 inc/widgets/we-heart-it.php:46
 #: inc/widgets/youtube.php:170
 msgid "Setup not complete. Please check the widget options."
@@ -927,7 +913,7 @@ msgstr "Aktuelle Position (Karte)"
 msgid "Please enter location data in the widget settings."
 msgstr "Bitte füge Standortdaten in den Widget-Einstellungen hinzu."
 
-#: inc/widgets/clw.php:179
+#: inc/widgets/clw.php:178
 #, php-format
 msgid ""
 "The information below will be used for the map marker. You can find the "
@@ -938,31 +924,31 @@ msgstr ""
 "Längen- und Breitengrad eines Ortes kannst du <a href=\"%s\" target=\"_blank"
 "\">hier erfahren</a>."
 
-#: inc/widgets/clw.php:183
+#: inc/widgets/clw.php:181
 msgid "Location Name:"
 msgstr "Ort:"
 
-#: inc/widgets/clw.php:184
+#: inc/widgets/clw.php:182
 msgid "London, UK"
 msgstr "Berlin, Germany"
 
-#: inc/widgets/clw.php:187
+#: inc/widgets/clw.php:185
 msgid "Latitude:"
 msgstr "Breitengrad:"
 
-#: inc/widgets/clw.php:191
+#: inc/widgets/clw.php:189
 msgid "Longitude:"
 msgstr "Längengrad:"
 
-#: inc/widgets/clw.php:195
+#: inc/widgets/clw.php:193
 msgid "Link the map to a url when clicked: (optional)"
 msgstr "Verknüpfe Karte bei Klick mit URL: (optional)"
 
-#: inc/widgets/clw.php:228
+#: inc/widgets/clw.php:226
 msgid "Current Location Widget"
 msgstr "Aktuelle Position-Widget"
 
-#: inc/widgets/clw.php:231
+#: inc/widgets/clw.php:229
 #, php-format
 msgid ""
 "Use these options to style the Current Location Widget. You will need to set "
@@ -971,19 +957,19 @@ msgstr ""
 "Gestalte das Aktuelle Position-Widget mit diesen Einstellungen. Du musst "
 "zunächst deinen Standort in den <a href=\"%s\">Widget-Optionen</a> festlegen."
 
-#: inc/widgets/clw.php:246
+#: inc/widgets/clw.php:244
 msgid "Map color"
 msgstr "Farbe Karte"
 
-#: inc/widgets/clw.php:263
+#: inc/widgets/clw.php:261
 msgid "Border color"
 msgstr "Farbe Rahmen"
 
-#: inc/widgets/clw.php:280
+#: inc/widgets/clw.php:278
 msgid "Marker color"
 msgstr "Farbe Marker"
 
-#: inc/widgets/clw.php:300
+#: inc/widgets/clw.php:298
 msgid "Marker size"
 msgstr "Größe Marker"
 
@@ -1067,15 +1053,15 @@ msgstr "Zusammenfassung verstecken"
 msgid "Hide the \"View Post\" button"
 msgstr "\"Beitrag ansehen\"-Button verstecken"
 
-#: inc/widgets/goodreads.php:34
+#: inc/widgets/goodreads.php:30
 msgid "Display your books from Goodreads"
 msgstr "Bücher von Goodreads anzeigen"
 
-#: inc/widgets/goodreads.php:41
+#: inc/widgets/goodreads.php:37
 msgid "Currently Reading"
 msgstr "Aktuelles Buch"
 
-#: inc/widgets/goodreads.php:56
+#: inc/widgets/goodreads.php:52
 #, php-format
 msgid ""
 "You need to enter your numeric user ID for the <a href=\"%1$s\">Goodreads "
@@ -1086,7 +1072,7 @@ msgstr ""
 "\">Goodreads-Widget</a> richtig funktionieren kann. <a href=\"%2$s\" target="
 "\"_blank\">Vollständige Anleitung</a>."
 
-#: inc/widgets/goodreads.php:123
+#: inc/widgets/goodreads.php:119
 #, php-format
 msgid ""
 "Goodreads numeric user ID <a href=\"%s\" target=\"_blank\">(instructions)</"
@@ -1094,7 +1080,7 @@ msgid ""
 msgstr ""
 "Goodreads Nutzer-ID <a href=\"%s\" target=\"_blank\">(Anweisungen)</a>:"
 
-#: inc/widgets/goodreads.php:125
+#: inc/widgets/goodreads.php:121
 msgid ""
 "Invalid User ID, please verify and re-enter your Goodreads numeric user ID."
 msgstr ""
@@ -1112,12 +1098,12 @@ msgstr "Lade ein einzelnes Bild mit einem optionalen Link hoch."
 msgid "Image Widget"
 msgstr "Bild-Widget"
 
-#: inc/widgets/image.php:136 inc/widgets/profile.php:151
+#: inc/widgets/image.php:136 inc/widgets/profile.php:169
 #: inc/widgets/snapcode.php:120
 msgid "Remove"
 msgstr "Entfernen"
 
-#: inc/widgets/image.php:138 inc/widgets/profile.php:153
+#: inc/widgets/image.php:138 inc/widgets/profile.php:171
 #: inc/widgets/snapcode.php:122
 msgid "Select Image"
 msgstr "Bild auswählen"
@@ -1146,11 +1132,11 @@ msgstr "Zeige deine neuesten Instagram-Fotos an."
 msgid "Instagram Feed"
 msgstr "Instagram-Feed"
 
-#: inc/widgets/instagram.php:112
+#: inc/widgets/instagram.php:108
 msgid "Follow on Instagram"
 msgstr "Folge auf Instagram"
 
-#: inc/widgets/instagram.php:160
+#: inc/widgets/instagram.php:152
 #, php-format
 msgid ""
 "By default, this widget will display recent images from your main <a href="
@@ -1163,7 +1149,7 @@ msgstr ""
 "soll, kann der <a href=\"%s\" target=\"_blank\">Access Token</a> hier "
 "eingefügt werden:"
 
-#: inc/widgets/instagram.php:162
+#: inc/widgets/instagram.php:154
 #, php-format
 msgid ""
 "You need to complete the settings on <a href=\"%s\">this page</a> before "
@@ -1172,19 +1158,15 @@ msgstr ""
 "Die Einstellungen auf <a href=\"%s\">dieser Seite</a> müssen abgeschlossen "
 "sein, bevor dieses Widget funktionieren kann."
 
-#: inc/widgets/instagram.php:168
+#: inc/widgets/instagram.php:160
 msgid "Access Token (optional)"
 msgstr "Access Token (optional)"
 
-#: inc/widgets/instagram.php:177 inc/widgets/pinterest.php:200
+#: inc/widgets/instagram.php:169 inc/widgets/pinterest.php:204
 msgid "Number of columns:"
 msgstr "Anzahl Spalten:"
 
-#: inc/widgets/instagram.php:188
-msgid "Display Comments & Likes count on hover."
-msgstr "Zeige Kommentare & Likes bei Hover an."
-
-#: inc/widgets/instagram.php:193 inc/widgets/pinterest.php:212
+#: inc/widgets/instagram.php:180 inc/widgets/pinterest.php:216
 #: inc/widgets/twitter.php:107
 msgid "Display a \"Follow\" link."
 msgstr "Zeige einen \"Folgen\"-Link an."
@@ -1197,19 +1179,19 @@ msgstr "Zeige die neuesten Pinterest-Pins an."
 msgid "Pinterest Pins"
 msgstr "Pinterest-Pins"
 
-#: inc/widgets/pinterest.php:114
+#: inc/widgets/pinterest.php:115
 msgid "Follow on Pinterest"
 msgstr "Folge auf Pinterest"
 
-#: inc/widgets/pinterest.php:174
+#: inc/widgets/pinterest.php:178
 msgid "Add your Pinterest account name to the box below."
 msgstr "Füge den Namen deines Pinterest-Kontos hier ein."
 
-#: inc/widgets/pinterest.php:175 inc/widgets/subscribe.php:89
+#: inc/widgets/pinterest.php:179 inc/widgets/subscribe.php:88
 msgid "For example, the red part below:"
 msgstr "Zum Beispiel, der rote Teil hier:"
 
-#: inc/widgets/pinterest.php:179
+#: inc/widgets/pinterest.php:183
 msgid "Pinterest Account Name:"
 msgstr "Pinterest-Kontoname:"
 
@@ -1217,8 +1199,8 @@ msgstr "Pinterest-Kontoname:"
 msgid "Displays your most popular posts."
 msgstr "Zeige deine beliebtesten Beiträge an."
 
-#: inc/widgets/popular-posts.php:55 inc/widgets/profile.php:169
-#: inc/widgets/random-posts.php:55 inc/widgets/socialz.php:231
+#: inc/widgets/popular-posts.php:55 inc/widgets/profile.php:192
+#: inc/widgets/random-posts.php:55 inc/widgets/socialz.php:238
 msgid "Select a layout:"
 msgstr "Wähle ein Layout:"
 
@@ -1304,15 +1286,19 @@ msgstr "Nein"
 msgid "On hover"
 msgstr "Bei Hover"
 
-#: inc/widgets/profile.php:24
+#: inc/widgets/profile.php:25
 msgid "Show a profile photo and some \"About Me\" text."
 msgstr "Zeige ein Profilbild und einen \"Über mich\"-Text."
 
-#: inc/widgets/profile.php:33
+#: inc/widgets/profile.php:34
 msgid "Profile Photo"
 msgstr "Profilbild"
 
-#: inc/widgets/profile.php:160
+#: inc/widgets/profile.php:117
+msgid "Read More"
+msgstr "Weiterlesen"
+
+#: inc/widgets/profile.php:178
 msgid "Change image to a circle"
 msgstr "Bild in einen Kreis verwandeln"
 
@@ -1353,7 +1339,7 @@ msgstr "Die einfachste Art, Social Media Icons darzustellen."
 msgid "Social Media Icons"
 msgstr "Social Media Icons"
 
-#: inc/widgets/socialz.php:253
+#: inc/widgets/socialz.php:260
 msgid "Add your links:"
 msgstr "Links hinzufügen:"
 
@@ -1376,26 +1362,26 @@ msgstr ""
 "Gib' deine E-Mail-Adresse ein, um bei neuen Beiträgen benachrichtigt zu "
 "werden."
 
-#: inc/widgets/subscribe.php:46
+#: inc/widgets/subscribe.php:45
 msgid "Enter your email"
 msgstr "E-Mail-Adresse eingeben"
 
-#: inc/widgets/subscribe.php:50
+#: inc/widgets/subscribe.php:49
 #, php-format
 msgid ""
 "I accept that my email will be processed by FeedBurner and their <a href=\"%s"
 "\" target=\"_blank\" rel=\"nofollow noopener\">privacy policy</a>."
 msgstr ""
 
-#: inc/widgets/subscribe.php:52
+#: inc/widgets/subscribe.php:51
 msgid "Subscribe"
 msgstr "Abonnieren"
 
-#: inc/widgets/subscribe.php:100
+#: inc/widgets/subscribe.php:99
 msgid "Text to display above the form:"
 msgstr "Text oberhalb des Formulars:"
 
-#: inc/widgets/subscribe.php:101
+#: inc/widgets/subscribe.php:100
 msgid "Enter your email address to subscribe:"
 msgstr "Abonnieren für E-Mail-Adresse:"
 
@@ -1475,9 +1461,27 @@ msgstr ""
 msgid "YouTube Playlist ID:"
 msgstr ""
 
-#: p3.php:206
+#: p3.php:380
 msgid "Howdy!"
 msgstr "Hallo!"
+
+#~ msgid ""
+#~ "This site uses Akismet to reduce spam. <a href=\"%s\" rel=\"nofollow "
+#~ "noopener noreferrer\" target=\"_blank\">Learn how your comment data is "
+#~ "processed</a>."
+#~ msgstr ""
+#~ "Diese Website verwendet Akismet, um Spam zu reduzieren. <a href=\"%s\" "
+#~ "rel=\"nofollow noopener noreferrer\" target=\"_blank\">Erfahre mehr "
+#~ "darüber, wie deine Kommentardaten verarbeitet werden</a>."
+
+#~ msgid "Only display posts from:"
+#~ msgstr "Zeige nur Beiträge aus:"
+
+#~ msgid "Display posts from:"
+#~ msgstr "Zeige Beiträge aus:"
+
+#~ msgid "Display Comments & Likes count on hover."
+#~ msgstr "Zeige Kommentare & Likes bei Hover an."
 
 #~ msgid "Text to show below the photo: (optional)"
 #~ msgstr "Bildunterschrift: (optional)"

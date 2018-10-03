@@ -39,11 +39,6 @@ function pipdig_p3_unregister_widgets() {
 		return;
 	}
 	
-	if (isset($_GET['p3_widget_override'])) { // if peeps want it go to ?p3_widget_override
-		update_option('p3_widget_override', 1);
-		return;
-	}
-	
 	unregister_widget('WP_Widget_Pages');
 	unregister_widget('WP_Widget_Links');
 	unregister_widget('WP_Widget_Meta');
@@ -505,14 +500,6 @@ function p3_dash_settings_warnings() {
 		jQuery(document).ready(function($) {
 			$('.options-general-php #siteurl').after(' BE CAREFUL. THIS OPTION CAN BREAK YOUR SITE.');
 			$('.options-general-php #home').after(' BE CAREFUL. THIS OPTION CAN BREAK YOUR SITE.');
-		});
-		</script>
-		<?php
-	} elseif (($pagenow == 'theme-editor.php') && !is_child_theme()) {
-		?>
-		<script>
-		jQuery(document).ready(function($) {
-			$('#file-editor-warning .file-editor-warning-message').html( '<h1>Warning!</h1><p>You appear to be making direct edits to your theme in the WordPress dashboard. We recommend that you don&#8217;t! Editing your theme directly could break your site and your changes may be lost in future updates. <a href="https://go.pipdig.co/open.php?id=edit-theme-warning" target="_blank" rel="noopener">Click here for more information</a></p><p>If you&#8217;d like to proceed anyway, you can click the button below.</p>' );
 		});
 		</script>
 		<?php

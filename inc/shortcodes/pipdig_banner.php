@@ -6,7 +6,7 @@ function parallax_section_func( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'image' => '',
 		'link' => '',
-		'parallax' => '',
+		'parallax' => false,
 		'size' => '',
 	), $atts ) );
 	
@@ -14,13 +14,14 @@ function parallax_section_func( $atts, $content = null ) {
 		return;
 	}
 	
-	$output = $parallax_class = $stellar = '';
+	$parallax = filter_var($parallax, FILTER_VALIDATE_BOOLEAN);
+	
+	$output = $parallax_class = '';
 	$tag_1 = '<div';
 	$tag_2 = '</div>';
 	
-	if ($parallax == 'yes') {
-		$parallax_class = ' pipdig_banner_parallax';
-		//$stellar = 'data-stellar-background-ratio="1.4"';
+	if ($parallax) {
+		$parallax_class .= ' pipdig_banner_parallax';
 	}
 	if ($link) {
 		$tag_1 = '<a href="'.esc_url($link).'"';

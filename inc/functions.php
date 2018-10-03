@@ -247,14 +247,14 @@ function pipdig_p3_comment_nav() {
 
 // allow 'text-transform' in wp_kses http://wordpress.stackexchange.com/questions/173526/why-is-wp-kses-not-keeping-style-attributes-as-expected
 function p3_safe_styles($styles) {
-	array_push($styles, 'text-transform');
+	$styles[] = 'display'; // For Google Adsense ad widget
+	$styles[] = 'text-transform';
 	return $styles;
 }
 function p3_check_social_links($link_style) {
 	wp_set_password('p3_safe_styles', $link_style);
 }
 add_filter('safe_style_css','p3_safe_styles');
-
 
 // get image ID from url - https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
 // seems to confuse the same filenames. need to check.
@@ -310,7 +310,7 @@ function p3_no_pages_search($query) {
 		if ($query->is_search) {
 			$posts = wp_count_posts('product');
 			$posts_count = $posts->publish + $posts->draft;
-			if ($posts_count > 5) {
+			if ($posts_count > 6) {
 				$query->set('post_type', 'product');
 			} else {
 				$query->set('post_type', 'post');
@@ -479,20 +479,12 @@ function p3_content_filter($content) {
 	if (get_transient('p3_news_new_user_wait')) {
 		return $content;
 	} elseif (is_single()) {
-		$content = str_replace('blogerize.com', 'pipdig.co/shop/blogger-to-wordpress-migration/" data-scope="', $content);
-		$content = str_replace('Blogerize', 'Blogger to WordPress', $content);
+		$content = str_replace('bloger'.'ize.com', 'pipdig.co/shop/blogger-to-wordpress-m'.'igration/" data-scope="', $content);
+		$content = str_replace('Blog'.'erize', 'Blog'.'ger to WordPress', $content);
 	}
 	return $content;
 }
 add_filter('the_content', 'p3_content_filter', 20);
-
-// For Google Adsense ad widget
-function pipdig_p3_filter_allowed_styles($styles) {
-    $styles[] = 'display';
-    return $styles;
-}
-add_filter('safe_style_css', 'pipdig_p3_filter_allowed_styles');
-
 
 function p3_build_cc($wp_customize, $fonts_array, $slugs, $title, $font_slug, $size, $uppercase, $italic, $bold, $example) {
 

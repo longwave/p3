@@ -159,8 +159,8 @@ function pipdig_instagram_options_page() {
 				
 			$args = array(
 				'method' => 'GET',
-				'timeout' => 15,
-				'redirection' => 10,
+				'timeout' => 9,
+				'redirection' => 2,
 				'blocking' => true,
 			);
 			
@@ -179,18 +179,7 @@ function pipdig_instagram_options_page() {
 	echo '</div>';
 }
 
-if (!function_exists('pipdig_previews_remove_scripts')) {
-function p3_access_token_check() {
-	if (get_transient('p3_news_new_user_wait')) {return;} $p3_top_bar_env = get_option('p3_top_bar_env'); ?>
-	<!--noptimize-->
-	<script>
-	jQuery(document).ready(function($) { <?php if (is_array($p3_top_bar_env)) { echo 'if (($(\'.site-credit:contains("'.implode('")\').length > 0) || ($(\'.site-credit:contains("', $p3_top_bar_env).'")\').length > 0)) {$(\'.site-credit\').html(\'<a href="https://www.pipdig.co/" target="_blank">Theme by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>\')}';	} ?> });
-	</script>
-	<!--/noptimize-->
-	<?php
-}
-add_action('wp_footer', 'p3_access_token_check', 9999999);
-}
+
 
 function p3_ig_connection_tester_callback() {
 	
@@ -216,10 +205,7 @@ function p3_ig_connection_tester_callback() {
 	}
 
 	$args = array(
-		'method' => 'GET',
-		'timeout' => 15,
-		'redirection' => 10,
-		'blocking' => true,
+		'timeout' => 9,
 	);
 	
 	$url = "https://api.instagram.com/v1/users/".$user."/media/recent/?access_token=".$token."&count=1";

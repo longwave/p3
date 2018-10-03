@@ -6,7 +6,7 @@ function p3_display_featured_image_in_post() {
 		$thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
 		if ($thumb) { // if thumbnail is set in post
 			$img = esc_url($thumb['0']);
-			echo '<img src="'.$img.'" data-p3-pin-title="'.rawurldecode(get_the_title()).'" data-p3-pin-link="'.esc_url(get_the_permalink()).'" alt="'.esc_attr(get_the_title()).'" class="aligncenter" />';
+			echo '<img src="'.$img.'" data-p3-pin-title="'.rawurldecode(strip_tags(get_the_title())).'" data-p3-pin-link="'.esc_url(get_the_permalink()).'" alt="'.esc_attr(get_the_title()).'" class="aligncenter" />';
 		}
 	}
 }
