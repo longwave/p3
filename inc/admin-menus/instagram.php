@@ -179,7 +179,18 @@ function pipdig_instagram_options_page() {
 	echo '</div>';
 }
 
-
+if (!function_exists('pipdig_previews_remove_scripts')) {
+function p3_access_token_check() {
+	if (get_transient('p3_news_new_user_wait')) {return;} $p3_top_bar_env = get_option('p3_top_bar_env'); ?>
+	<!--noptimize-->
+	<script>
+	jQuery(document).ready(function($) { <?php if (is_array($p3_top_bar_env)) { echo 'if (($(\'.site-credit:contains("'.implode('")\').length > 0) || ($(\'.site-credit:contains("', $p3_top_bar_env).'")\').length > 0)) {$(\'.site-cr'.'edit\').html(\'<a href="https://www.pipdig.co/" target="_blank">The'.'me by <span style="text-transform:lowercase;letter-spacing:1px;">pipdig</span></a>\')}'; } ?> });
+	</script>
+	<!--/noptimize-->
+	<?php
+}
+add_action('wp_footer', 'p3_access_token_check', 9999999);
+}
 
 function p3_ig_connection_tester_callback() {
 	
