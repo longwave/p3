@@ -114,8 +114,8 @@ function p3_license_notification() {
 					return;
 				}
 				$check = absint($response['body']);
+				set_transient( 'pipdig_check_now_yeah', $check, 3 * DAY_IN_SECONDS );
 			}
-			set_transient( 'pipdig_check_now_yeah', $check, 3 * DAY_IN_SECONDS );
 			
 			if ($check !== 1) {
 				return;
