@@ -140,7 +140,7 @@ function p3_pinterest_hover() {
 					link += '?url='+shareURL;
 					link += '&media='+imgURL;
 					link += '&description=<?php echo addslashes($dec_prefix).' '; ?>'+description;
-					$(this).wrap('<div class="p3_pin_wrapper_outer '+pin_positon+'"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>" target="_blank" rel="nofollow noopener"><img src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
+					$(this).wrap('<div class="p3_pin_wrapper_outer '+pin_positon+'"><div class="p3_pin_wrapper">').after('<a href="'+link+'" class="pin <?php echo $position; ?>" target="_blank" rel="nofollow noopener"><img class="p3_pin_hover_btn" src="'+pinImg+'" alt="<?php _e('Pin this image on Pinterest', 'p3'); ?>"/></a>');
 
 				<?php if ($position == 'center') { ?>
 				var img = new Image();

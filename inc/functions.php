@@ -466,7 +466,7 @@ function p3_lazy_script() {
 			effectTime: 600,
 		});
 		$(".pipdig_lazy").Lazy({
-			delay: 10000,
+			delay: 5000,
 		});
 	});
 	</script>

@@ -127,9 +127,9 @@ add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to a
 
 // function to clear out transients
 function p3_instagram_clear_transients($userid = '') {
-		
+	
 	delete_transient( 'p3_instagram_feed_'.$userid );
-		
+	
 	$instagram_deets = get_option('pipdig_instagram');
 	if (!empty($instagram_deets['access_token'])) {
 		
@@ -141,7 +141,7 @@ function p3_instagram_clear_transients($userid = '') {
 		}
 		delete_transient( 'p3_instagram_feed_'.$userid );
 	}
-		
+	
 }
 add_action('p3_instagram_save_action', 'p3_instagram_clear_transients');
 
@@ -151,6 +151,7 @@ function p3_instagram_css_to_head($width) {
 		$num = absint(get_theme_mod('p3_instagram_number', 8));
 		$width = 100 / $num;
 		?>
+		<!--noptimize-->
 		<style>
 		.p3_instagram_post{width:<?php echo $width; ?>%}
 		<?php if(!get_theme_mod('disable_responsive')) { ?>
@@ -161,6 +162,7 @@ function p3_instagram_css_to_head($width) {
 		}
 		<?php } ?>
 		</style>
+		<!--/noptimize-->
 		<?php
 	}
 }

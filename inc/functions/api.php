@@ -147,26 +147,16 @@ function pipdig_p3_scrapey_scrapes() {
 			$url = add_query_arg($request_array, 'https://pipdig.rocks/c');
 
 			$args = array(
-				//'body' => json_encode($request_array),
 				'timeout' => '28',
 				'redirection' => '3',
-				//'httpversion' => '1.0',
 				'blocking' => true,
 			);
 
 			$response = wp_remote_get( $url, $args );
 
-			$response_body = wp_remote_retrieve_body($response);
-
-			if ($response_body == "500 error") {
-				// 500, let's try again in 3 seconds
-				sleep(3);
-				$response = wp_remote_get( $url, $args );
-				$response_body = wp_remote_retrieve_body($response);
-			}
-
 			if (!is_wp_error($response)) {
-
+				
+				$response_body = wp_remote_retrieve_body($response);
 				$response_data = json_decode($response_body);
 
 				if (isset($response_data->items->pinterest)) {
@@ -282,7 +272,7 @@ function pipdig_p3_scrapey_scrapes() {
 		$todays_date = date('Ymd'); // http://codepad.org/PYcR13C2
 		$p3_stats_data[$todays_date] = $today;
 		$today['date'] = $todays_date;
-		update_option('p3_stats_data', $p3_stats_data);
+		update_option('p3_stats_data', $p3_stats_data, 'no');
 
 	}
 

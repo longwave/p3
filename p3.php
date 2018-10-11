@@ -12,7 +12,8 @@ License: Copyright 2018 pipdig Ltd. All Rights Reserved.
 
 if (!defined('ABSPATH')) die;
 
-define( 'PIPDIG_P3_V', '4.1.1' );
+define('PIPDIG_P3_V', '4.1.1');
+define('PIPDIG_P3_DIR', plugin_dir_path(__FILE__));
 
 function p3_php_version_notice() {
 	if (strnatcmp(phpversion(),'5.4.0') >= 0) {
@@ -225,12 +226,7 @@ function is_pipdig_active($key = '') {
 		$request_array['theme'] = $theme;
 
 		$url = add_query_arg($request_array, 'https://pipdig.co/papi/v1/');
-
-		$args = array(
-			'timeout' => 9,
-		);
-
-		$response = wp_safe_remote_get($url, $args);
+		$response = wp_remote_get($url);
 
 		if (!is_wp_error($response)) {
 			$result = absint($response['body']);
@@ -261,13 +257,6 @@ if ($active !== 1) { // active
 	}
 }
 */
-
-function p3_auto_updates() {
-	if (get_option('p3_auto_updates_on')) {
-		return true;
-	}
-}
-add_filter('auto_update_plugin', 'p3_auto_updates');
 
 // change medium to smaller size for faster media lib loading times.
 function p3_update_sizes_may_2018() {
@@ -317,22 +306,22 @@ function pipdig_p3_scripts_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
 
-include_once(plugin_dir_path(__FILE__).'inc/functions.php');
-include_once(plugin_dir_path(__FILE__).'inc/admin-menus.php');
-include_once(plugin_dir_path(__FILE__).'inc/meta.php');
-include_once(plugin_dir_path(__FILE__).'inc/dash.php');
-include_once(plugin_dir_path(__FILE__).'inc/widgets.php');
-include(plugin_dir_path(__FILE__).'inc/shortcodes.php');
-include(plugin_dir_path(__FILE__).'inc/beaver.php');
+include_once(PIPDIG_P3_DIR.'inc/functions.php');
+include_once(PIPDIG_P3_DIR.'inc/admin-menus.php');
+include_once(PIPDIG_P3_DIR.'inc/meta.php');
+include_once(PIPDIG_P3_DIR.'inc/dash.php');
+include_once(PIPDIG_P3_DIR.'inc/widgets.php');
+include(PIPDIG_P3_DIR.'inc/shortcodes.php');
+include(PIPDIG_P3_DIR.'inc/beaver.php');
 
 include_once (ABSPATH.'wp-admin/includes/plugin.php');
 if (!is_plugin_active('jetpack/jetpack.php')) {
 	// widget visibility
 	if (!class_exists('Jetpack_Widget_Conditions')) {
-		include_once(plugin_dir_path(__FILE__).'inc/bundled/widget-visibility/widget-conditions.php');
+		include_once(PIPDIG_P3_DIR.'inc/bundled/widget-visibility/widget-conditions.php');
 	}
 } else {
-	include_once(plugin_dir_path(__FILE__).'inc/jetpack.php');
+	include_once(PIPDIG_P3_DIR.'inc/jetpack.php');
 }
 
 function p3_new_install_notice() {
@@ -360,19 +349,13 @@ function p3_new_install_notice() {
 	if ($active !== 1) { // active
 		return;
 	}
-
-	$import = '';
-	$wp101= '<p>New to WordPress? You can access the premium series of WP101 Tutorials on <a href="https://go.pipdig.co/open.php?id=wp101videos" target="_blank">this page</a>.</p>';
+	
+	$import = $wp101 = '';
 	$posts = wp_count_posts();
 	$posts_count = $posts->publish + $posts->draft;
-	if ($posts_count < 2) {
-		$import_link = '<a href="https://support.pipdig.co/articles/wordpress-import-demo-content/" target="_blank">';
-		if (class_exists('OCDI_Plugin')) {
-			$import_link = '<a href="'.admin_url('themes.php?page=pipdig-demo-import').'">';
-		}
-		$import = '<p>It looks like this is a new site. You may wish to '.$import_link.'import some demo content</a> so that you can see the theme options more easily.</p>';
-	} elseif ($posts_count > 21) {
-		$wp101 = '';
+	if ($posts_count < 4) {
+		$import = '<p>Is this a new site? You might like to <a href="'.admin_url('admin.php?page=pipdig-import-demo').'">import some demo posts and pages</a>.</p>';
+		$wp101 = '<p>New to WordPress? You can access the premium series of WP101 Tutorials on <a href="https://go.pipdig.co/open.php?id=wp101videos" target="_blank">this page</a>.</p>';
 	}
 
 	?>
@@ -400,7 +383,6 @@ function pipdig_p3_activate() {
 
 	add_option('pipdig_id', sanitize_text_field(substr(str_shuffle(MD5(microtime())), 0, 10)));
 
-	add_option('p3_auto_updates_on', 0);
 	update_option('endurance_cache_level', 0);
 
 	$plugins = array(

@@ -19,7 +19,7 @@ register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
 function p3_do_this_daily() {
 
 	pipdig_p3_scrapey_scrapes();
-	
+
 	delete_transient('pipdig_fonts');
 
 	$instagram_deets = get_option('pipdig_instagram');
@@ -28,13 +28,17 @@ function p3_do_this_daily() {
 		delete_transient('p3_instagram_feed_'.$instagram_user);
 	}
 
+	delete_option('p3_auto_updates_on');
+	delete_option('p3_demo_imported');
+	delete_option('p3_demo_imported_override');
+
 	$url = 'https://pipdigz.co.uk/p3/id39dqm3c0_license_date.txt';
 	$response = wp_safe_remote_get($url, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		$timestamp = absint($response['body']);
 		update_option('p3_activation_deadline', $timestamp, false);
 	}
-	
+
 	// Clear CDN cache
 	$url = 'https://pipdigz.co.uk/p3/id39dqm3c0_license.txt';
 	$response = wp_safe_remote_get($url, $args);
@@ -60,7 +64,7 @@ add_action('pipdig_p3_daily_event', 'p3_do_this_daily');
 
 // Hourly event
 function p3_do_this_hourly() {
-	
+
 	// Check for new social channels to add to navbar etc
 	if (!get_transient('p3_news_new_user_wait')) {
 	$url = 'https://pipdigz.co.uk/p3/socialz.txt';

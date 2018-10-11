@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
 "POT-Creation-Date: 2018-06-17 11:59+0100\n"
-"PO-Revision-Date: 2018-10-10 21:08+0100\n"
+"PO-Revision-Date: 2018-10-10 21:18+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
-"Language: sl_SI\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -153,15 +153,15 @@ msgstr ""
 
 #: inc/functions.php:237
 msgid "Leave a comment"
-msgstr "Dodaj odgovor"
+msgstr ""
 
 #: inc/functions.php:239
 msgid "1 Comment"
-msgstr "1 Komentar"
+msgstr ""
 
 #: inc/functions.php:241
 msgid "Comments"
-msgstr "Komentarjev"
+msgstr ""
 
 #: inc/functions.php:252
 msgid "Older Comments"
@@ -189,11 +189,11 @@ msgstr ""
 
 #: inc/functions/feature_header.php:26 inc/functions/feature_header.php:379
 msgid "Big this Month"
-msgstr "VROČE TA MESEC"
+msgstr ""
 
 #: inc/functions/feature_header.php:30 inc/functions/feature_header.php:396
 msgid "Recent Posts"
-msgstr "ZADNJE OBJAVE"
+msgstr ""
 
 #: inc/functions/feature_header.php:194
 msgid "Feature Header"
@@ -588,7 +588,7 @@ msgstr ""
 
 #: inc/functions/related-posts.php:34 inc/functions/related-posts.php:187
 msgid "You may also enjoy:"
-msgstr "Morda ti bo všeč tudi:"
+msgstr ""
 
 #: inc/functions/related-posts.php:135
 msgid "Related Posts"
@@ -626,7 +626,7 @@ msgstr ""
 
 #: inc/functions/shares.php:74 inc/functions/shares.php:127
 msgid "Share:"
-msgstr "Deli:"
+msgstr ""
 
 #: inc/functions/shares.php:92
 msgid "Sharing Icons"
@@ -985,7 +985,7 @@ msgstr ""
 
 #: inc/widgets/featured-post.php:83 inc/widgets/post-slider.php:194
 msgid "View Post"
-msgstr "Nastavi sa čitanjem"
+msgstr ""
 
 #: inc/widgets/featured-post.php:135
 msgid "Post to feature:"
