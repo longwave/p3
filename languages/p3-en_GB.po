@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2018-09-28 16:23+0100\n"
-"PO-Revision-Date: 2018-09-28 16:23+0100\n"
+"POT-Creation-Date: 2018-10-11 18:54+0100\n"
+"PO-Revision-Date: 2018-10-11 18:54+0100\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: en_GB\n"
@@ -20,24 +20,29 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: img\n"
 "X-Poedit-SearchPathExcluded-3: css\n"
 "X-Poedit-SearchPathExcluded-4: inc/bundled\n"
+"X-Poedit-SearchPathExcluded-5: inc/plugin-update-checker\n"
 
-#: inc/admin-menus.php:12
+#: inc/admin-menus.php:10
 msgid "Social Stats"
 msgstr ""
 
-#: inc/admin-menus.php:13
+#: inc/admin-menus.php:11
 msgid "Social Links"
 msgstr ""
 
-#: inc/admin-menus.php:15 inc/admin-menus/css.php:12
+#: inc/admin-menus.php:13 inc/admin-menus/css.php:12
 msgid "Custom CSS"
 msgstr ""
 
-#: inc/admin-menus.php:16
+#: inc/admin-menus.php:14
 msgid "Theme"
 msgstr ""
 
-#: inc/admin-menus.php:19 inc/admin-menus/help.php:17
+#: inc/admin-menus.php:18
+msgid "Import Demo Content"
+msgstr ""
+
+#: inc/admin-menus.php:21 inc/admin-menus/help.php:22
 msgid "Help / Support"
 msgstr ""
 
@@ -139,15 +144,15 @@ msgid ""
 "solution."
 msgstr ""
 
-#: inc/dash.php:241
+#: inc/dash.php:236
 msgid "Hide this message"
 msgstr ""
 
-#: inc/dash.php:249
+#: inc/dash.php:244
 msgid "Never show messages like this again"
 msgstr ""
 
-#: inc/dash.php:264
+#: inc/dash.php:259
 msgid "Your Followers"
 msgstr ""
 
@@ -171,15 +176,15 @@ msgstr ""
 msgid "Newer Comments"
 msgstr ""
 
-#: inc/functions.php:510
+#: inc/functions.php:502
 msgid "What's this?"
 msgstr ""
 
-#: inc/functions.php:596
+#: inc/functions.php:588
 msgid "Select a category"
 msgstr ""
 
-#: inc/functions.php:612
+#: inc/functions.php:604
 msgid "Author"
 msgstr ""
 
@@ -398,57 +403,57 @@ msgstr ""
 msgid "\"Scroll down\" text:"
 msgstr ""
 
-#: inc/functions/instagram.php:444
+#: inc/functions/instagram.php:446
 #, php-format
 msgid ""
 "Before enabling these features, you will need to add your Instagram account "
 "to <a href=\"%s\">this page</a>."
 msgstr ""
 
-#: inc/functions/instagram.php:462
+#: inc/functions/instagram.php:464
 msgid "Display feed across the header (Homepage)"
 msgstr ""
 
-#: inc/functions/instagram.php:478
+#: inc/functions/instagram.php:480
 msgid "Display header feed on all pages"
 msgstr ""
 
-#: inc/functions/instagram.php:479
+#: inc/functions/instagram.php:481
 msgid ""
 "By default, the header feed will only display on the homepage. If you want "
 "to display it on all pages, select this option too."
 msgstr ""
 
-#: inc/functions/instagram.php:495
+#: inc/functions/instagram.php:497
 msgid "Display feed above posts and sidebar on homepage"
 msgstr ""
 
-#: inc/functions/instagram.php:511
+#: inc/functions/instagram.php:513
 msgid "Display feed above posts on homepage"
 msgstr ""
 
-#: inc/functions/instagram.php:527
+#: inc/functions/instagram.php:529
 msgid "Display feed below posts on homepage"
 msgstr ""
 
-#: inc/functions/instagram.php:543
+#: inc/functions/instagram.php:545
 msgid "Display feed across the footer"
 msgstr ""
 
-#: inc/functions/instagram.php:557 inc/widgets/instagram.php:165
+#: inc/functions/instagram.php:559 inc/widgets/instagram.php:165
 #: inc/widgets/pinterest.php:199
 msgid "Number of images to display:"
 msgstr ""
 
-#: inc/functions/instagram.php:578
+#: inc/functions/instagram.php:580
 msgid "Display feed in 2 rows"
 msgstr ""
 
-#: inc/functions/instagram.php:594
+#: inc/functions/instagram.php:596
 msgid "Display title above footer feed"
 msgstr ""
 
-#: inc/functions/instagram.php:611
+#: inc/functions/instagram.php:613
 msgid "Display Comments & Likes count on hover"
 msgstr ""
 
@@ -760,28 +765,6 @@ msgstr ""
 
 #: inc/meta/pages.php:24
 msgid "Hide the website header/logo"
-msgstr ""
-
-#: inc/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:395
-msgid "Check for updates"
-msgstr ""
-
-#: inc/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:432
-msgid "View details"
-msgstr ""
-
-#: inc/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:455
-#, php-format
-msgid "More information about %s"
-msgstr ""
-
-#: inc/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:558
-#, php-format
-msgid "Unknown update checker status \"%s\""
-msgstr ""
-
-#: inc/plugin-update-checker/Puc/v4p4/Vcs/PluginUpdateChecker.php:98
-msgid "There is no changelog available."
 msgstr ""
 
 #: inc/shortcodes/pipdig_category_section.php:116
@@ -1393,7 +1376,7 @@ msgstr ""
 msgid "YouTube Playlist ID:"
 msgstr ""
 
-#: p3.php:380
+#: p3.php:342
 msgid "Howdy!"
 msgstr ""
 

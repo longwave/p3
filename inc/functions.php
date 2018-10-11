@@ -606,33 +606,33 @@ function p3_highlight_author_comment($link) {
 }
 add_filter('get_comment_author_link', 'p3_highlight_author_comment');
 
-include(plugin_dir_path(__FILE__).'functions/api.php');
-include(plugin_dir_path(__FILE__).'functions/social-sidebar.php');
-include(plugin_dir_path(__FILE__).'functions/full_screen_landing_image.php');
-include(plugin_dir_path(__FILE__).'functions/top_menu_bar.php');
-include(plugin_dir_path(__FILE__).'functions/post-options.php');
-include(plugin_dir_path(__FILE__).'functions/shares.php');
-include(plugin_dir_path(__FILE__).'functions/related-posts.php');
-include(plugin_dir_path(__FILE__).'functions/instagram.php');
-include(plugin_dir_path(__FILE__).'functions/youtube.php');
-include(plugin_dir_path(__FILE__).'functions/pinterest.php');
-include(plugin_dir_path(__FILE__).'functions/pinterest_hover.php');
-include(plugin_dir_path(__FILE__).'functions/social_footer.php');
-include(plugin_dir_path(__FILE__).'functions/navbar_icons.php');
-include(plugin_dir_path(__FILE__).'functions/feature_header.php');
-include(plugin_dir_path(__FILE__).'functions/trending.php');
-include(plugin_dir_path(__FILE__).'functions/post_slider_site_main_width.php');
-include(plugin_dir_path(__FILE__).'functions/post_slider_posts_column.php');
-include(plugin_dir_path(__FILE__).'functions/width_customizer.php');
-include(plugin_dir_path(__FILE__).'functions/featured_cats.php');
-include(plugin_dir_path(__FILE__).'functions/featured_panels.php');
-include(plugin_dir_path(__FILE__).'functions/rewardstyle.php');
-include(plugin_dir_path(__FILE__).'functions/schema.php');
-include(plugin_dir_path(__FILE__).'functions/header_image.php');
+include(PIPDIG_P3_DIR.'inc/functions/api.php');
+include(PIPDIG_P3_DIR.'inc/functions/social-sidebar.php');
+include(PIPDIG_P3_DIR.'inc/functions/full_screen_landing_image.php');
+include(PIPDIG_P3_DIR.'inc/functions/top_menu_bar.php');
+include(PIPDIG_P3_DIR.'inc/functions/post-options.php');
+include(PIPDIG_P3_DIR.'inc/functions/shares.php');
+include(PIPDIG_P3_DIR.'inc/functions/related-posts.php');
+include(PIPDIG_P3_DIR.'inc/functions/instagram.php');
+include(PIPDIG_P3_DIR.'inc/functions/youtube.php');
+include(PIPDIG_P3_DIR.'inc/functions/pinterest.php');
+include(PIPDIG_P3_DIR.'inc/functions/pinterest_hover.php');
+include(PIPDIG_P3_DIR.'inc/functions/social_footer.php');
+include(PIPDIG_P3_DIR.'inc/functions/navbar_icons.php');
+include(PIPDIG_P3_DIR.'inc/functions/feature_header.php');
+include(PIPDIG_P3_DIR.'inc/functions/trending.php');
+include(PIPDIG_P3_DIR.'inc/functions/post_slider_site_main_width.php');
+include(PIPDIG_P3_DIR.'inc/functions/post_slider_posts_column.php');
+include(PIPDIG_P3_DIR.'inc/functions/width_customizer.php');
+include(PIPDIG_P3_DIR.'inc/functions/featured_cats.php');
+include(PIPDIG_P3_DIR.'inc/functions/featured_panels.php');
+include(PIPDIG_P3_DIR.'inc/functions/rewardstyle.php');
+include(PIPDIG_P3_DIR.'inc/functions/schema.php');
+include(PIPDIG_P3_DIR.'inc/functions/header_image.php');
 
 // bundled
 if (class_exists('RW_Meta_Box') && function_exists('rwmb_get_registry')) {
-	include_once(plugin_dir_path(__FILE__).'bundled/mb-settings-page/mb-settings-page.php');
-	include_once(plugin_dir_path(__FILE__).'bundled/meta-box-include-exclude/meta-box-include-exclude.php');
-	include_once(plugin_dir_path(__FILE__).'bundled/mb-term-meta/mb-term-meta.php');
+	include_once(PIPDIG_P3_DIR.'inc/bundled/mb-settings-page/mb-settings-page.php');
+	include_once(PIPDIG_P3_DIR.'inc/bundled/meta-box-include-exclude/meta-box-include-exclude.php');
+	include_once(PIPDIG_P3_DIR.'inc/bundled/mb-term-meta/mb-term-meta.php');
 }

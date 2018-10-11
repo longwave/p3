@@ -5,39 +5,17 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 4.1.1
+Version: 4.1.2
 Text Domain: p3
 License: Copyright 2018 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define('PIPDIG_P3_V', '4.1.1');
+define('PIPDIG_P3_V', '4.1.2');
 define('PIPDIG_P3_DIR', plugin_dir_path(__FILE__));
 
-function p3_php_version_notice() {
-	if (strnatcmp(phpversion(),'5.4.0') >= 0) {
-		return;
-	}
-	?>
-	<div class="notice notice-error is-dismissible">
-		<h2><span class="dashicons dashicons-warning"></span> Security Warning</h2>
-		<p>Your host is using an old, insecure version of PHP. Please contact your web host so that they can update to PHP version 7.0 or higher. <strong>DO NOT IGNORE THIS MESSAGE</strong>.</p>
-		<p>&nbsp;</p>
-	</div>
-	<?php
-}
-add_action( 'admin_notices', 'p3_php_version_notice' );
-
 function p3_themes_top_link() {
-
-	if (isset($_GET['pipdig_key'])) {
-		delete_transient('pipdig_active');
-		$theme = get_option('pipdig_theme');
-		$key = sanitize_text_field($_GET['pipdig_key']);
-		update_option($theme.'_key', $key);
-	}
-
 	if (!isset($_GET['page'])) {
 	?>
 	<script>
@@ -72,7 +50,7 @@ function pipdig_p3_deactivate() {
 }
 register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
 
-include(plugin_dir_path(__FILE__).'inc/cron.php');
+include(PIPDIG_P3_DIR.'inc/cron.php');
 
 remove_action('try_gutenberg_panel', 'wp_try_gutenberg_panel');
 remove_action('welcome_panel', 'wp_welcome_panel');
@@ -129,19 +107,20 @@ function p3_license_notification() {
 			}
 
 		} else {
-
-			if ( false === ( $check = get_transient( 'pipdig_check_now_yeah' ) )) {
+			
+			if (false === ($check = get_transient('pipdig_check_now_yeah'))) {
 				$response = wp_safe_remote_get('https://pipdigz.co.uk/p3/check.txt', array('timeout' => 4));
 				if (is_wp_error($response) || !isset($response['body'])) {
 					return;
 				}
 				$check = absint($response['body']);
-				if ($check !== 1) {
-					return;
-				}
 			}
 			set_transient( 'pipdig_check_now_yeah', $check, 3 * DAY_IN_SECONDS );
-
+			
+			if ($check !== 1) {
+				return;
+			}
+			
 			$key = '';
 		}
 
@@ -210,13 +189,13 @@ function is_pipdig_active($key = '') {
 
 		$theme = get_option('pipdig_theme');
 		if (!$theme) {
-			return 0;
+			$active = 0;
 		}
 
 		if (!$key) {
 			$key = get_option($theme.'_key');
 			if (!$key) {
-				return 0;
+				$active = 0;
 			}
 		}
 
@@ -227,7 +206,7 @@ function is_pipdig_active($key = '') {
 
 		$url = add_query_arg($request_array, 'https://pipdig.co/papi/v1/');
 		$response = wp_remote_get($url);
-
+		
 		if (!is_wp_error($response)) {
 			$result = absint($response['body']);
 			if ($result === 1 || $result === 2 || $result === 3) {
@@ -236,7 +215,7 @@ function is_pipdig_active($key = '') {
 				$active = 0;
 			}
 		} else {
-			return 1;
+			$active = 1;
 		}
 
 	}
