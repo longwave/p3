@@ -105,9 +105,7 @@ function p3_license_notification() {
 			} else {
 				$msg = '<p style="font-weight: bold; font-size: 15px;">The key "'.$key.'" could not be validated. Please try again to double check. You can get help finding your license key on <a href="https://go.pipdig.co/open.php?id=license-help" target="_blank" rel="noopener">this page</a>.</p>';
 			}
-
 		} else {
-			
 			if (false === ($check = get_transient('pipdig_check_now_yeah'))) {
 				$response = wp_safe_remote_get('https://pipdigz.co.uk/p3/check.txt', array('timeout' => 4));
 				if (is_wp_error($response) || !isset($response['body'])) {
@@ -116,11 +114,9 @@ function p3_license_notification() {
 				$check = absint($response['body']);
 				set_transient( 'pipdig_check_now_yeah', $check, 3 * DAY_IN_SECONDS );
 			}
-			
 			if ($check !== 1) {
 				return;
 			}
-			
 			$key = '';
 		}
 
