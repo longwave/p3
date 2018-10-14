@@ -120,7 +120,7 @@ function p3_instagram_fetch($access_token = '') {
 	} else {
 		return false;
 	}
-		
+	
 }
 add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to avoid cache
 

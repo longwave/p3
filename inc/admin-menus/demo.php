@@ -124,7 +124,7 @@ function p3_import_demo_content() {
 
 	} elseif ($theme == 'blossom') {
 
-		p3_insert_widget_in_sidebar('blossom_home_1', array('cols' => 4), 'pipdig_widget_instagram');
+		//p3_insert_widget_in_sidebar('blossom_home_1', array('cols' => 4), 'pipdig_widget_instagram');
 
 		update_option('posts_per_page', 9);
 		set_theme_mod('about_me_section_enable', 0);

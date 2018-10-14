@@ -13,7 +13,7 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
-= 4.1.2 (11 October 2018) =
+= 4.1.3 (14 October 2018) =
 * Minor change to the [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) to fix a bug in Gutenberg.
 
 = 4.1.1 (26 September 2018) =
