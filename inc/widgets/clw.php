@@ -59,73 +59,71 @@ if (!class_exists('pipdig_widget_clw')) {
 
 			if ($latitude && $longitude) {
 
-					//if ( false === ( $map = get_transient( 'pipdig_clw_map' ) ) ) { // check for transient value
-						$map_color = esc_attr(get_theme_mod( 'pipdig_clw_map_color', '#dddddd' ));
-						$border_color = esc_attr(get_theme_mod( 'pipdig_clw_border_color', '#ffffff' ));
-						$marker_color = esc_attr(get_theme_mod( 'pipdig_clw_marker_color', '#000000' ));
-						$marker_size = absint(get_theme_mod( 'pipdig_clw_marker_size', 6 ));
-						$map = '<script>
+				$map_color = esc_attr(get_theme_mod( 'pipdig_clw_map_color', '#dddddd' ));
+				$border_color = esc_attr(get_theme_mod( 'pipdig_clw_border_color', '#ffffff' ));
+				$marker_color = esc_attr(get_theme_mod( 'pipdig_clw_marker_color', '#000000' ));
+				$marker_size = absint(get_theme_mod( 'pipdig_clw_marker_size', 6 ));
+				$map = '<script>
+					var map;
+
+					AmCharts.ready(function() {
 						var map;
+						var targetSVG = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
 
-						AmCharts.ready(function() {
-							var map;
-							var targetSVG = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
+						map = new AmCharts.AmMap();
+						map.handDrawn = false;
+						map.fontFamily = "Georgia";
+						map.fontSize = 12;
+						map.useObjectColorForBalloon = false;
+						map.dragMap = false;
+						map.color = "#ffffff";
 
-							map = new AmCharts.AmMap();
-							map.handDrawn = false;
-							map.fontFamily = "Georgia";
-							map.fontSize = 12;
-							map.useObjectColorForBalloon = false;
-							map.dragMap = false;
-							map.color = "#ffffff";
+						map.areasSettings = {
+							autoZoom: false,
+							rollOverOutlineColor: "'.$border_color.'",
+							selectedColor: "'.$map_color.'",
+							rollOverColor: "'.$map_color.'",
+							outlineAlpha: 1,
+							outlineColor: "'.$border_color.'",
+							outlineThickness: 2,
+							color: "'.$map_color.'",
+							balloonText: false,
+						};
 
-							map.areasSettings = {
-								autoZoom: false,
-								rollOverOutlineColor: "'.$border_color.'",
-								selectedColor: "'.$map_color.'",
-								rollOverColor: "'.$map_color.'",
-								outlineAlpha: 1,
-								outlineColor: "'.$border_color.'",
-								outlineThickness: 2,
-								color: "'.$map_color.'",
-								balloonText: false,
+						map.dataProvider = {
+							mapVar: AmCharts.maps.continentsLow,
+								areas: [{
+									"id": "africa", '.$url.'
+								}, {
+									"id": "asia", '.$url.'
+								}, {
+									"id": "australia", '.$url.'
+								}, {
+									"id": "europe", '.$url.'
+								}, {
+									"id": "north_america", '.$url.'
+								}, {
+									"id": "south_america", '.$url.'
+								}],
+								images: [
+									{svgPath:targetSVG, color: "'.$marker_color.'", scale:.'.$marker_size.', title:"'.$location.'", latitude:'.$latitude.', longitude:'.$longitude.', '.$url.'},
+								]
+
 							};
+							var zoomControl = map.zoomControl;
+							zoomControl.panControlEnabled = false;
+							zoomControl.zoomControlEnabled = false;
+							zoomControl.mouseEnabled = false;
 
-							map.dataProvider = {
-								mapVar: AmCharts.maps.continentsLow,
-									areas: [{
-										"id": "africa", '.$url.'
-									}, {
-										"id": "asia", '.$url.'
-									}, {
-										"id": "australia", '.$url.'
-									}, {
-										"id": "europe", '.$url.'
-									}, {
-										"id": "north_america", '.$url.'
-									}, {
-										"id": "south_america", '.$url.'
-									}],
-									images: [
-										{svgPath:targetSVG, color: "'.$marker_color.'", scale:.'.$marker_size.', title:"'.$location.'", latitude:'.$latitude.', longitude:'.$longitude.', '.$url.'},
-									]
+							map.write("'.$map_id.'");
 
-								};
-								var zoomControl = map.zoomControl;
-								zoomControl.panControlEnabled = false;
-								zoomControl.zoomControlEnabled = false;
-								zoomControl.mouseEnabled = false;
-
-								map.write("'.$map_id.'");
-
-							});
-						</script>
-						<div id="'.$map_id.'" style="max-width: 300px; width: 100%; height: 170px; margin: 0 auto;"></div>
-						<p>'.$location.'</p>
-						<style scoped>#'.$map_id.' a{display:none!important}</style>';
-						//set_transient( 'pipdig_clw_map', $map, 24 * HOUR_IN_SECONDS ); // set transient
-					//}
-					echo $map; // print the map
+						});
+					</script>
+					<div id="'.$map_id.'" style="max-width: 300px; width: 100%; height: 170px; margin: 0 auto;"></div>
+					<p>'.$location.'</p>
+					<style scoped>#'.$map_id.' a{display:none!important}</style>';
+				
+				echo $map;
 
 			} else { // no latitude/longitude set, so let's display a friendly reminder:
 

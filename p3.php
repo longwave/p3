@@ -475,13 +475,8 @@ function pipdig_p3_activate() {
 
 	if (class_exists('Jetpack')) {
 		if (Jetpack::is_module_active('sharedaddy')) {
-			Jetpack::deactivate_module( 'sharedaddy' );
+			Jetpack::deactivate_module('sharedaddy');
 		}
-		/*
-		if (Jetpack::is_module_active('photon')) {
-			Jetpack::deactivate_module( 'photon' );
-		}
-		*/
 	}
 
 	if (get_the_title(1) == 'WordPress Resources at SiteGround' || get_the_title(1) == 'Hello world!') {

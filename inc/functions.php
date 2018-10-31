@@ -101,8 +101,10 @@ function p3_catch_image($post_id = '', $size = 'large', $meta_field = '') {
 		preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 		if (!empty($matches[1][0])) {
 			$image_link = esc_url($matches[1][0]);
-			$image_link = str_replace('http:', '', $image_link);
-			return $image_link;
+			if (basename($image_link) != '350.gif') {
+				$image_link = str_replace('http:', '', $image_link);
+				return $image_link;
+			}
 		}
 	}
 
