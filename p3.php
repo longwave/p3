@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 4.1.3
+Version: 4.1.4
 Text Domain: p3
 License: Copyright 2018 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define('PIPDIG_P3_V', '4.1.3');
+define('PIPDIG_P3_V', '4.1.4');
 define('PIPDIG_P3_DIR', plugin_dir_path(__FILE__));
 
 function p3_themes_top_link() {
@@ -354,7 +354,47 @@ function p3_new_install_notice() {
 }
 add_action( 'admin_notices', 'p3_new_install_notice' );
 
+function p3_update_oct_2018_notice() {
 
+	global $pagenow;
+	if ($pagenow != 'index.php' && $pagenow != 'themes.php' && $pagenow != 'plugins.php') {
+		return;
+	}
+
+	if (isset($_GET['page']) && $_GET['page'] == 'pipdig-demo-import') {
+		return;
+	}
+
+	if (current_user_can('manage_options')) {
+		if (isset($_POST['p3_oct_2018_notice'])) {
+			update_option('p3_oct_2018_notice', 1);
+		}
+	}
+
+	if (get_option('p3_oct_2018_notice') || !current_user_can('manage_options')) {
+		return;
+	}
+	
+	$active = absint(is_pipdig_active());
+	if ($active !== 1) { // active
+		return;
+	}
+
+	?>
+	<div class="notice notice-success is-dismissible">
+		<h2>Thanks for updating the pipdig Power Pack!</h2>
+		<p>You can find out more about any new features in <a href="https://go.pipdig.co/open.php?id=oct-2018" target="_blank">this blog post</a>.</p>
+		<form action="<?php echo admin_url(); ?>" method="post">
+			<?php wp_nonce_field('p3-oct-2018-notice-nonce'); ?>
+			<input type="hidden" value="true" name="p3_oct_2018_notice" />
+			<p class="submit" style="margin-top: 5px; padding-top: 5px;">
+				<input name="submit" class="button" value="Hide this notice" type="submit" />
+			</p>
+		</form>
+	</div>
+	<?php
+}
+add_action( 'admin_notices', 'p3_update_oct_2018_notice' );
 
 function pipdig_p3_activate() {
 

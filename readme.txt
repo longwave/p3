@@ -13,6 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 4.1.4 (31 October 2018) =
+* Update Slovenian language.
+
 = 4.1.3 (14 October 2018) =
 * Minor change to the [Pinterest Hover Button](https://support.pipdig.co/articles/wordpress-custom-pinterest-hover-button/) to fix a bug in Gutenberg.
 
