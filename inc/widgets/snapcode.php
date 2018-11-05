@@ -140,12 +140,3 @@ class pipdig_p3_snapchat_snapcode extends WP_Widget {
 	}
 
 }
-
-
-/**
- * Register Widget
- */
-function register_pipdig_p3_snapchat_widget() { 
-	register_widget('pipdig_p3_snapchat_snapcode');
-}
-add_action('widgets_init', 'register_pipdig_p3_snapchat_widget');

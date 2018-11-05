@@ -5,12 +5,12 @@ if (!defined('ABSPATH')) die;
 if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 	class pipdig_widget_facebook extends WP_Widget {
 	 
-	  public function __construct() {
-		  $widget_ops = array('classname' => 'pipdig_widget_facebook', 'description' => 'Display a Facebook Like Box.' );
-		  parent::__construct('pipdig_widget_facebook', 'pipdig - ' . __('Facebook Likebox', 'p3'), $widget_ops);
-	  }
-	  
-	  function widget($args, $instance) {
+		public function __construct() {
+			$widget_ops = array('classname' => 'pipdig_widget_facebook', 'description' => 'Display a Facebook Like Box.' );
+			parent::__construct('pipdig_widget_facebook', 'pipdig - ' . __('Facebook Likebox', 'p3'), $widget_ops);
+		}
+		
+		function widget($args, $instance) {
 		// PART 1: Extracting the arguments + getting the values
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
@@ -40,7 +40,7 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
-	   
+		 
 		// PART 2: The title and the text output
 		if (!empty($title)) {
 			echo $before_title . $title . $after_title;
@@ -51,12 +51,12 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 		} else {
 			echo 'Facebook widget in section "'.$args['name'].'": '.__('Setup not complete. Please check the widget options.', 'p3');
 		}
-		// After widget code, if any  
+		// After widget code, if any	
 		echo (isset($after_widget)?$after_widget:'');
-	  }
+		}
 	 
-	  public function form( $instance ) {
-	   
+		public function form( $instance ) {
+		
 		// PART 1: Extract the data from the instance variable
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 		$title = $instance['title'];
@@ -76,7 +76,7 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 			$show_posts = $instance['show_posts'];
 		}
 		 
-	   
+		 
 		// PART 2-3: Display the fields
 		?>
 		 
@@ -109,21 +109,20 @@ if ( !class_exists( 'pipdig_widget_facebook' ) ) {
 			<label for="<?php echo $this->get_field_id('show_posts'); ?>"><?php _e('Show Posts', 'p3'); ?></label>
 		</p>
 
-		 <?php
-	   
-	  }
+		<?php
+		
+		}
 	 
-	  function update($new_instance, $old_instance) {
-		$instance = $old_instance;
-		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['facebook_url'] = strip_tags($new_instance['facebook_url']);
-		$instance['hide_cover'] = $new_instance['hide_cover'];
-		$instance['show_posts'] = $new_instance['show_posts'];
-		$instance['show_faces'] = $new_instance['show_faces'];
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			$instance['facebook_url'] = strip_tags($new_instance['facebook_url']);
+			$instance['hide_cover'] = $new_instance['hide_cover'];
+			$instance['show_posts'] = $new_instance['show_posts'];
+			$instance['show_faces'] = $new_instance['show_faces'];
 
-		return $instance;
-	  }
+			return $instance;
+		}
 
 	}
-	add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_widget_facebook");') );
 }

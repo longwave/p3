@@ -166,7 +166,6 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 		'showposts' => $number_posts,
 		'cat' => $category,
 		'ignore_sticky_posts' => 1,
-		//'orderby' => 'rand',
 		'date_query' => array(
 			array(
 				'after' => $date_range_posts,
@@ -206,9 +205,8 @@ if ( !class_exists( 'pipdig_widget_post_slider' ) ) {
 </div>
 
 	<?php
-	  echo $after_widget;
-	  }
+	echo $after_widget;
+	}
 	 
 	}
-	add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_widget_post_slider");') );
 }

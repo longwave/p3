@@ -346,39 +346,39 @@ function p3_slicknav_brand() {
 		$count++;
 	}
 	if (($count < 6) && !empty($links['twitter'])) {
-		$brand .= '<a href="'.esc_url($links['twitter']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-twitter"></i></a>';
+		$brand .= '<a href="'.esc_url($links['twitter']).'" target="_blank" rel="nofollow noopener" aria-label="twitter" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['instagram'])) {
-		$brand .= '<a href="'.esc_url($links['instagram']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-instagram"></i></a>';
+		$brand .= '<a href="'.esc_url($links['instagram']).'" target="_blank" rel="nofollow noopener" aria-label="instagram" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['facebook'])) {
-		$brand .= '<a href="'.esc_url($links['facebook']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-facebook"></i></a>';
+		$brand .= '<a href="'.esc_url($links['facebook']).'" target="_blank" rel="nofollow noopener" aria-label="facebook" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['pinterest'])) {
-		$brand .= '<a href="'.esc_url($links['pinterest']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-pinterest"></i></a>';
+		$brand .= '<a href="'.esc_url($links['pinterest']).'" target="_blank" rel="nofollow noopener" aria-label="pinterest" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['youtube'])) {
-		$brand .= '<a href="'.esc_url($links['youtube']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-youtube-play"></i></a>';
+		$brand .= '<a href="'.esc_url($links['youtube']).'" target="_blank" rel="nofollow noopener" aria-label="youtube" title="youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['bloglovin'])) {
-		$brand .= '<a href="'.esc_url($links['bloglovin']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-plus"></i></a>';
+		$brand .= '<a href="'.esc_url($links['bloglovin']).'" target="_blank" rel="nofollow noopener" aria-label="bloglovin" title="bloglovin"><i class="fa fa-plus" aria-hidden="true"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['email'])) {
-		$brand .= '<a href="mailto:'.sanitize_email($links['email']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-envelope"></i></a>';
+		$brand .= '<a href="mailto:'.sanitize_email($links['email']).'" target="_blank" rel="nofollow noopener" aria-label="Email" title="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['snapchat'])) {
-		$brand .= '<a href="'.esc_url($links['snapchat']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-snapchat-ghost"></i></a>';
+		$brand .= '<a href="'.esc_url($links['snapchat']).'" target="_blank" rel="nofollow noopener" aria-label="snapchat" title="snapchat"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['tumblr'])) {
-		$brand .= '<a href="'.esc_url($links['tumblr']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-tumblr"></i></a>';
+		$brand .= '<a href="'.esc_url($links['tumblr']).'" target="_blank" rel="nofollow noopener" aria-label="tumblr" title="tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a>';
 		$count++;
 	}
 	if (($count < 6) && !empty($links['linkedin'])) {

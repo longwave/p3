@@ -13,6 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 4.1.5 (05 November 2018) =
+* PHP 7.2 compatibility.
+
 = 4.1.4 (31 October 2018) =
 * Update Slovenian language.
 

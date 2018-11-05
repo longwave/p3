@@ -489,5 +489,5 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 	  }
 	  
 	}
-	add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_widget_social_icons");') );
+	
 }

@@ -182,12 +182,3 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 	}
 
 }
-
-
-/**
- * Register Widget
- */
-function register_pipdig_widget_featured_post() { 
-	register_widget('pipdig_widget_featured_post_function');
-}
-add_action('widgets_init', 'register_pipdig_widget_featured_post');

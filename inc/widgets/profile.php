@@ -203,12 +203,3 @@ class pipdig_widget_profile_function extends WP_Widget {
 	}
 
 }
-
-
-/**
- * Register Widget
- */
-function register_pipdig_widget_profile() { 
-	register_widget('pipdig_widget_profile_function');
-}
-add_action('widgets_init', 'register_pipdig_widget_profile');

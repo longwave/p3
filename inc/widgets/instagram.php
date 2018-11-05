@@ -184,16 +184,16 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 		<?php
 	}
 	 
-	  function update($new_instance, $old_instance) {
-		$instance = $old_instance;
-		$instance['title'] = pipdig_strip($new_instance['title']);
-		$instance['access_token'] = pipdig_strip($new_instance['access_token']);
-		$instance['images_num'] = absint($new_instance['images_num']);
-		$instance['cols'] = absint($new_instance['cols'] );
-		$instance['follow'] = strip_tags($new_instance['follow']);
-		return $instance;
-	  }
-	  
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = pipdig_strip($new_instance['title']);
+			$instance['access_token'] = pipdig_strip($new_instance['access_token']);
+			$instance['images_num'] = absint($new_instance['images_num']);
+			$instance['cols'] = absint($new_instance['cols'] );
+			$instance['follow'] = strip_tags($new_instance['follow']);
+			return $instance;
+		}
+		
 	}
-	add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_widget_instagram");') );
+
 }

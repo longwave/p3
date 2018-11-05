@@ -49,31 +49,24 @@ function p3_youtube_fetch($channel_id) {
 						
 						$thumbnail = "https://img.youtube.com/vi/".$id."/0.jpg";
 						
-						if ($i < 4) { // First few get special treatment. Roll out the red carpet.
+						if ($i < 5) { // First vids get special treatment. Roll out the red carpet.
 						
-							$max_res_url_1 = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
-							$max_res_url_2 = "https://i.ytimg.com/vi/".$id."/maxresdefault.jpg";
-							
-							if (@getimagesize($max_res_url_1)) {
-								$thumbnail = $max_res_url_1;
-							} elseif (@getimagesize($max_res_url_2)) {
-								$thumbnail = $max_res_url_2;
-							} else {
-								stream_context_set_default( array(
-									'ssl' => array(
-										'verify_peer' => false,
-										'verify_peer_name' => false,
-									),
-								) );
-								$header_response = get_headers($max_res_url_1, 1);
-								if (strpos($header_response[0], "404") === false) {
-									$thumbnail = $max_res_url_1;
-								} else {
-									$header_response = get_headers($max_res_url_2, 1);
-									if (strpos($header_response[0], "404") === false) {
-										$thumbnail = $max_res_url_2;
-									}
+							// Get extended information from video endpoint
+							$url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id='.$id.'&key='.$key;
+							$video_response = wp_remote_get($url, $args);
+							if (!is_wp_error($video_response)) {
+								
+								$video_response = json_decode($video_response['body']);
+								
+								// Only use YT's thumb if the user hasn't chosen to overwrite it
+								if (isset($video_response->items[0]->snippet->thumbnails->maxres->url)) {
+									$thumbnail = $video_response->items[0]->snippet->thumbnails->maxres->url;
 								}
+								
+								if (isset($video_response->items[0]->snippet->description)) {
+									$desc = $video_response->items[0]->snippet->description;
+								}
+								
 							}
 							
 						}
@@ -125,7 +118,7 @@ function p3_youtube_fetch_playlist($playlist_id) {
 		$key = 'AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c'; // blue marker
 		
 		if ( false === ( $videos = get_transient( 'p3_youtube_'.$playlist_id ) )) {
-			$url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2C+id&maxResults=20&playlistId='.$playlist_id.'&key='.$key.'&type=video&maxResults=12';
+			$url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2C+id&playlistId='.$playlist_id.'&key='.$key.'&type=video&maxResults=12';
 			$args = array(
 			    'timeout' => 15,
 			);

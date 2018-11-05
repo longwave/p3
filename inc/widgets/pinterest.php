@@ -217,23 +217,20 @@ if ( !class_exists( 'pipdig_widget_pinterest' ) ) {
 			<br />
 		</p>
 		 <?php
-	   
-	  }
-	 
-	  function update($new_instance, $old_instance) {
-		$instance = $old_instance;
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['pinterestuser'] = strip_tags( $new_instance['pinterestuser'] );
-		$instance['board'] = strip_tags( $new_instance['board'] );
-		$instance['images_num'] = absint( $new_instance['images_num'] );
-		$instance['cols'] = absint( $new_instance['cols'] );
-		$instance['follow'] = strip_tags( $new_instance['follow'] );
-		
-		delete_transient('p3_pinz');
-		
-		return $instance;
-	  }
-	  
 	}
-	add_action( 'widgets_init', create_function('', 'return register_widget("pipdig_widget_pinterest");') );
+		
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags( $new_instance['title'] );
+			$instance['pinterestuser'] = strip_tags( $new_instance['pinterestuser'] );
+			$instance['board'] = strip_tags( $new_instance['board'] );
+			$instance['images_num'] = absint( $new_instance['images_num'] );
+			$instance['cols'] = absint( $new_instance['cols'] );
+			$instance['follow'] = strip_tags( $new_instance['follow'] );
+			
+			return $instance;
+		}
+	
+	}
+		
 }

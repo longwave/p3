@@ -167,12 +167,3 @@ class pipdig_Image_Widget extends WP_Widget {
 	}
 
 }
-
-
-/**
- * Register Widget
- */
-function register_pipdig_image_upload_widget() { 
-	register_widget('pipdig_Image_Widget');
-}
-add_action('widgets_init', 'register_pipdig_image_upload_widget');

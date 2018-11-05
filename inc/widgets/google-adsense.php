@@ -95,12 +95,3 @@ class pipdig_widget_google_adsense extends WP_Widget {
 	}
 
 }
-
-
-/**
- * Register Widget
- */
-function register_pipdig_widget_google_adsense() {
-	register_widget('pipdig_widget_google_adsense');
-}
-add_action('widgets_init', 'register_pipdig_widget_google_adsense');

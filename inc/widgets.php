@@ -27,9 +27,32 @@ include('widgets/snapcode.php');
 include('widgets/post-slider.php');
 include('widgets/twitter.php');
 include('widgets/we-heart-it.php');
-//include('widgets/depop.php');
 include('widgets/image.php');
 include('widgets/goodreads.php');
 include('widgets/featured-post.php');
 include('widgets/google-adsense.php');
 include('widgets/spotify.php');
+
+function p3_register_widgets() {
+	register_widget('pipdig_widget_facebook');
+	register_widget('pipdig_widget_latest_youtube');
+	register_widget('pipdig_widget_spotify');
+	register_widget('pipdig_widget_weheartit');
+	register_widget('pipdig_theme_bloglovin_widget');
+	register_widget('pipdig_widget_clw');
+	register_widget('pipdig_widget_weheartit');
+	register_widget('pipdig_widget_featured_post_function');
+	register_widget('pipdig_widget_google_adsense');
+	register_widget('pipdig_Image_Widget');
+	register_widget('pipdig_widget_instagram');
+	register_widget('pipdig_widget_pinterest');
+	register_widget('pipdig_widget_twitter');
+	register_widget('pipdig_widget_subscribe');
+	register_widget('pipdig_widget_popular_posts');
+	register_widget('pipdig_widget_post_slider');
+	register_widget('pipdig_widget_profile_function');
+	register_widget('pipdig_widget_random_posts');
+	register_widget('pipdig_p3_snapchat_snapcode');
+	register_widget('pipdig_widget_social_icons');
+}
+add_action('widgets_init', 'p3_register_widgets');
