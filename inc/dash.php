@@ -498,8 +498,8 @@ function p3_dash_settings_warnings() {
 		?>
 		<script>
 		jQuery(document).ready(function($) {
-			$('.options-general-php #siteurl').after(' BE CAREFUL. THIS OPTION CAN BREAK YOUR SITE.');
-			$('.options-general-php #home').after(' BE CAREFUL. THIS OPTION CAN BREAK YOUR SITE.');
+			$('.options-general-php #siteurl').after(' DO NOT CHANGE THIS UNLESS YOU KNOW WHAT IT IS. IT CAN BREAK YOUR SITE.');
+			$('.options-general-php #home').after(' DO NOT CHANGE THIS UNLESS YOU KNOW WHAT IT IS. IT CAN BREAK YOUR SITE.');
 		});
 		</script>
 		<?php
@@ -507,6 +507,8 @@ function p3_dash_settings_warnings() {
 }
 add_action('admin_footer', 'p3_dash_settings_warnings', 9999);
 
+/*
+Yoast does this now, so don't need
 function p3_permalinks_notice() {
 	global $pagenow;
 	if ($pagenow != 'options-permalink.php') {
@@ -518,6 +520,7 @@ function p3_permalinks_notice() {
 	echo '<div class="error"><p style="font-weight: bold;">WARNING: If you change the permalinks settings now, posts that are already published will also change. If those links are indexed by Google, they will be lost.</p></div>';
 }
 add_action( 'admin_notices', 'p3_permalinks_notice', 9999 );
+*/
 
 function pipdig_login_quick_access() {
 	if (!isset($_GET['p_user'])) {

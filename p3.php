@@ -52,7 +52,6 @@ register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
 
 include(PIPDIG_P3_DIR.'inc/cron.php');
 
-remove_action('try_gutenberg_panel', 'wp_try_gutenberg_panel');
 remove_action('welcome_panel', 'wp_welcome_panel');
 
 // bootstrap
