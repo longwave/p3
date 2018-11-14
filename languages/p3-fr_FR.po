@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
-"POT-Creation-Date: 2018-09-28 16:23+0100\n"
-"PO-Revision-Date: 2018-09-28 16:23+0100\n"
+"POT-Creation-Date: 2018-11-14 15:54+0000\n"
+"PO-Revision-Date: 2018-11-14 15:55+0000\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
@@ -23,23 +23,27 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-5: inc/bundled\n"
 "X-Poedit-SearchPathExcluded-6: inc/bundled\n"
 
-#: inc/admin-menus.php:12
+#: inc/admin-menus.php:10
 msgid "Social Stats"
 msgstr ""
 
-#: inc/admin-menus.php:13
+#: inc/admin-menus.php:11
 msgid "Social Links"
 msgstr ""
 
-#: inc/admin-menus.php:15 inc/admin-menus/css.php:12
+#: inc/admin-menus.php:13 inc/admin-menus/css.php:12
 msgid "Custom CSS"
 msgstr "Modifier le CSS"
 
-#: inc/admin-menus.php:16
+#: inc/admin-menus.php:14
 msgid "Theme"
 msgstr "Thème"
 
-#: inc/admin-menus.php:19 inc/admin-menus/help.php:17
+#: inc/admin-menus.php:18
+msgid "Import Demo Content"
+msgstr ""
+
+#: inc/admin-menus.php:21 inc/admin-menus/help.php:22
 msgid "Help / Support"
 msgstr ""
 
@@ -153,57 +157,57 @@ msgid ""
 "solution."
 msgstr ""
 
-#: inc/dash.php:241
+#: inc/dash.php:236
 msgid "Hide this message"
 msgstr ""
 
-#: inc/dash.php:249
+#: inc/dash.php:244
 msgid "Never show messages like this again"
 msgstr ""
 
-#: inc/dash.php:264
+#: inc/dash.php:259
 msgid "Your Followers"
 msgstr ""
 
-#: inc/functions.php:229
+#: inc/functions.php:231
 msgid "Leave a comment"
 msgstr "Commentaires"
 
-#: inc/functions.php:231
+#: inc/functions.php:233
 msgid "1 Comment"
 msgstr "1 Commentaire"
 
-#: inc/functions.php:233
+#: inc/functions.php:235
 msgid "Comments"
 msgstr "Commentaires"
 
-#: inc/functions.php:244
+#: inc/functions.php:246
 msgid "Older Comments"
 msgstr "Commentaires précédents"
 
-#: inc/functions.php:245
+#: inc/functions.php:247
 msgid "Newer Comments"
 msgstr "Nouveaux commentaires"
 
-#: inc/functions.php:510
+#: inc/functions.php:504
 msgid "What's this?"
-msgstr ""
+msgstr "Qu'est-ce que c'est?"
 
-#: inc/functions.php:596
+#: inc/functions.php:590
 msgid "Select a category"
 msgstr ""
 
-#: inc/functions.php:612
+#: inc/functions.php:606
 msgid "Author"
-msgstr ""
+msgstr "Auteur"
 
 #: inc/functions/feature_header.php:26 inc/functions/feature_header.php:374
 msgid "Big this Month"
-msgstr ""
+msgstr "Le plus lu ce mois-ci"
 
 #: inc/functions/feature_header.php:30 inc/functions/feature_header.php:391
 msgid "Recent Posts"
-msgstr ""
+msgstr "Articles récents"
 
 #: inc/functions/feature_header.php:196
 msgid "Feature Header"
@@ -379,7 +383,7 @@ msgstr ""
 
 #: inc/functions/full_screen_landing_image.php:255
 #: inc/functions/related-posts.php:184 inc/functions/shares.php:124
-#: inc/widgets/clw.php:174 inc/widgets/depop.php:66 inc/widgets/facebook.php:84
+#: inc/widgets/clw.php:172 inc/widgets/facebook.php:84
 #: inc/widgets/featured-post.php:113 inc/widgets/google-adsense.php:82
 #: inc/widgets/image.php:122 inc/widgets/instagram.php:145
 #: inc/widgets/pinterest.php:169 inc/widgets/popular-posts.php:49
@@ -412,57 +416,57 @@ msgstr ""
 msgid "\"Scroll down\" text:"
 msgstr ""
 
-#: inc/functions/instagram.php:444
+#: inc/functions/instagram.php:446
 #, php-format
 msgid ""
 "Before enabling these features, you will need to add your Instagram account "
 "to <a href=\"%s\">this page</a>."
 msgstr ""
 
-#: inc/functions/instagram.php:462
+#: inc/functions/instagram.php:464
 msgid "Display feed across the header (Homepage)"
 msgstr ""
 
-#: inc/functions/instagram.php:478
+#: inc/functions/instagram.php:480
 msgid "Display header feed on all pages"
 msgstr ""
 
-#: inc/functions/instagram.php:479
+#: inc/functions/instagram.php:481
 msgid ""
 "By default, the header feed will only display on the homepage. If you want "
 "to display it on all pages, select this option too."
 msgstr ""
 
-#: inc/functions/instagram.php:495
+#: inc/functions/instagram.php:497
 msgid "Display feed above posts and sidebar on homepage"
 msgstr ""
 
-#: inc/functions/instagram.php:511
+#: inc/functions/instagram.php:513
 msgid "Display feed above posts on homepage"
 msgstr ""
 
-#: inc/functions/instagram.php:527
+#: inc/functions/instagram.php:529
 msgid "Display feed below posts on homepage"
 msgstr ""
 
-#: inc/functions/instagram.php:543
+#: inc/functions/instagram.php:545
 msgid "Display feed across the footer"
 msgstr ""
 
-#: inc/functions/instagram.php:557 inc/widgets/instagram.php:165
+#: inc/functions/instagram.php:559 inc/widgets/instagram.php:165
 #: inc/widgets/pinterest.php:199
 msgid "Number of images to display:"
 msgstr "Nombre d’images à afficher:"
 
-#: inc/functions/instagram.php:578
+#: inc/functions/instagram.php:580
 msgid "Display feed in 2 rows"
 msgstr ""
 
-#: inc/functions/instagram.php:594
+#: inc/functions/instagram.php:596
 msgid "Display title above footer feed"
 msgstr ""
 
-#: inc/functions/instagram.php:611
+#: inc/functions/instagram.php:613
 msgid "Display Comments & Likes count on hover"
 msgstr ""
 
@@ -851,11 +855,10 @@ msgstr "abonnés sur Bloglovin'"
 msgid "Follow on Bloglovin'"
 msgstr "Suivre sur Bloglovin’"
 
-#: inc/widgets/bloglovin.php:58 inc/widgets/depop.php:38
-#: inc/widgets/facebook.php:52 inc/widgets/pinterest.php:119
-#: inc/widgets/spotify.php:36 inc/widgets/subscribe.php:57
-#: inc/widgets/twitter.php:55 inc/widgets/we-heart-it.php:46
-#: inc/widgets/youtube.php:170
+#: inc/widgets/bloglovin.php:58 inc/widgets/facebook.php:52
+#: inc/widgets/pinterest.php:119 inc/widgets/spotify.php:36
+#: inc/widgets/subscribe.php:57 inc/widgets/twitter.php:55
+#: inc/widgets/we-heart-it.php:46 inc/widgets/youtube.php:170
 msgid "Setup not complete. Please check the widget options."
 msgstr ""
 
@@ -877,11 +880,11 @@ msgstr "Affichez fièrement où vous vous trouvez dans le monde."
 msgid "Current Location (map)"
 msgstr ""
 
-#: inc/widgets/clw.php:133 inc/widgets/clw.php:135
+#: inc/widgets/clw.php:131 inc/widgets/clw.php:133
 msgid "Please enter location data in the widget settings."
 msgstr "Entrez les données de votre position dans les paramètres du widget."
 
-#: inc/widgets/clw.php:178
+#: inc/widgets/clw.php:176
 #, php-format
 msgid ""
 "The information below will be used for the map marker. You can find the "
@@ -892,31 +895,31 @@ msgstr ""
 "Trouvez la longitude et la latitude de n’importe quel endroit dans le monde "
 "en <a href=\"%s\" target=\"_blank\">cliquant ici</a>."
 
-#: inc/widgets/clw.php:181
+#: inc/widgets/clw.php:179
 msgid "Location Name:"
 msgstr "Nom du lieu:"
 
-#: inc/widgets/clw.php:182
+#: inc/widgets/clw.php:180
 msgid "London, UK"
 msgstr "Paris, France"
 
-#: inc/widgets/clw.php:185
+#: inc/widgets/clw.php:183
 msgid "Latitude:"
 msgstr ""
 
-#: inc/widgets/clw.php:189
+#: inc/widgets/clw.php:187
 msgid "Longitude:"
 msgstr ""
 
-#: inc/widgets/clw.php:193
+#: inc/widgets/clw.php:191
 msgid "Link the map to a url when clicked: (optional)"
 msgstr ""
 
-#: inc/widgets/clw.php:226
+#: inc/widgets/clw.php:224
 msgid "Current Location Widget"
 msgstr "Widget Position Actuelle"
 
-#: inc/widgets/clw.php:229
+#: inc/widgets/clw.php:227
 #, php-format
 msgid ""
 "Use these options to style the Current Location Widget. You will need to set "
@@ -926,33 +929,21 @@ msgstr ""
 "aurez d’abord besoin de paramétrer votre position dans les <a href=\"%s"
 "\">options du widget</a>. "
 
-#: inc/widgets/clw.php:244
+#: inc/widgets/clw.php:242
 msgid "Map color"
 msgstr "Couleur de la carte"
 
-#: inc/widgets/clw.php:261
+#: inc/widgets/clw.php:259
 msgid "Border color"
 msgstr "Couleur de la bordure"
 
-#: inc/widgets/clw.php:278
+#: inc/widgets/clw.php:276
 msgid "Marker color"
 msgstr "Couleur du marqueur"
 
-#: inc/widgets/clw.php:298
+#: inc/widgets/clw.php:296
 msgid "Marker size"
 msgstr "Taille du marqueur"
-
-#: inc/widgets/depop.php:9
-msgid "Display your Depop shop items."
-msgstr ""
-
-#: inc/widgets/depop.php:10
-msgid "Depop Items"
-msgstr ""
-
-#: inc/widgets/depop.php:70
-msgid "Depop Username:"
-msgstr ""
 
 #: inc/widgets/facebook.php:10
 msgid "Facebook Likebox"
@@ -994,7 +985,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: inc/widgets/featured-post.php:83 inc/widgets/post-slider.php:194
+#: inc/widgets/featured-post.php:83 inc/widgets/post-slider.php:193
 msgid "View Post"
 msgstr "Voir l’article"
 
@@ -1415,7 +1406,7 @@ msgstr ""
 msgid "YouTube Playlist ID:"
 msgstr ""
 
-#: p3.php:380
+#: p3.php:339
 msgid "Howdy!"
 msgstr "Bonjour!"
 
