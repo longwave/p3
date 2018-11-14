@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pipdig Power Pack (p3)\n"
 "POT-Creation-Date: 2018-11-14 14:04+0000\n"
-"PO-Revision-Date: 2018-11-14 14:04+0000\n"
+"PO-Revision-Date: 2018-11-14 14:08+0000\n"
 "Last-Translator: pipdig <hello@pipdig.co>\n"
 "Language-Team: pipdig <hello@pipdig.co>\n"
 "Language: is\n"
@@ -628,7 +628,7 @@ msgstr ""
 
 #: inc/functions/shares.php:76 inc/functions/shares.php:127
 msgid "Share:"
-msgstr ""
+msgstr "Deila"
 
 #: inc/functions/shares.php:92
 msgid "Sharing Icons"
@@ -863,7 +863,7 @@ msgstr ""
 
 #: inc/widgets/clw.php:180
 msgid "London, UK"
-msgstr ""
+msgstr "Reykjavík"
 
 #: inc/widgets/clw.php:183
 msgid "Latitude:"
