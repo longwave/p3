@@ -57,7 +57,7 @@ remove_action('welcome_panel', 'wp_welcome_panel');
 // bootstrap
 $this_theme = wp_get_theme();
 $theme_textdomain = $this_theme->get('TextDomain');
-if (empty($theme_textdomain) && !function_exists('catch_that_image')) {function catch_that_image(){}}
+if (empty($theme_textdomain) && (!is_multisite()) && !function_exists('catch_that_image')) {function catch_that_image(){}}
 if ($this_theme->get('Author') != 'pipdig') {
 	$child_parent = $this_theme->get('Template');
 	if ($child_parent) {

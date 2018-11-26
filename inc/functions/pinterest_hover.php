@@ -57,6 +57,7 @@ function p3_pinterest_hover() {
 		$dec_prefix = '%20'.esc_attr(get_theme_mod('p3_pinterest_hover_prefix_text'));
 	}
 	?>
+	<!--noptimize-->
 	<style>
 	.p3_pin_wrapper .left {left:<?php echo $margin; ?>px}
 	.p3_pin_wrapper .right {right:<?php echo $margin; ?>px}
@@ -171,6 +172,7 @@ function p3_pinterest_hover() {
 		jQuery('.entry-content img:not(.wp-smiley, .nopin, .nopin img), .entry-summary img:not(.pipdig_p3_related_posts img, .nopin img), .p3_pin_this').imgPin();
 	<?php } ?>
 	</script>
+	<!--/noptimize-->
 	<?php
 }
 add_action('wp_footer', 'p3_pinterest_hover', 999);

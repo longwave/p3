@@ -134,8 +134,10 @@ function pipdig_p3_scrapey_scrapes() {
 		}
 
 		if (!empty($request_array)) {
+			
+			$me = get_site_url();
 
-			$request_array['site_url'] = get_site_url();
+			$request_array['site_url'] = $me;
 			$request_array['tempToken'] = 'dcx15';
 
 			$theme = get_option('pipdig_theme');
@@ -147,8 +149,7 @@ function pipdig_p3_scrapey_scrapes() {
 			$url = add_query_arg($request_array, 'https://pipdig.rocks/c');
 
 			$args = array(
-				'timeout' => '28',
-				'redirection' => '3',
+				'timeout' => 9,
 				'blocking' => true,
 			);
 

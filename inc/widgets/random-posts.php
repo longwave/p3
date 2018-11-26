@@ -161,9 +161,12 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		  echo $before_title . $title . $after_title;;
 	 
 	query_posts('');
+	
+	$id = 'p3_rand_widget_'.rand(1, 999999999);
+	
 	?>
 
-	<ul class="p3_popular_posts_widget" class="nopin">
+	<ul id="<?php echo $id; ?>" class="p3_popular_posts_widget" class="nopin">
 	
 	<?php
 		$popular = new WP_Query( array(
@@ -204,8 +207,9 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 	?>
 	
 	<?php if ($style_select === 3) { ?>
+	<!--noptimize-->
 	<style scoped>
-	.p3_pop_horizontal {
+	#<?php echo $id; ?> .p3_pop_horizontal {
 		float: left;
 		width: <?php echo $width; ?>%;
 		text-align: center;
@@ -216,7 +220,7 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 	.p3_popular_posts_widget li.p3_pop_horizontal {
 		margin-bottom: 0;
 	}
-	.p3_popular_posts_widget h4 {
+	#<?php echo $id; ?> .p3_popular_posts_widget h4 {
 		left: 0;
 		right: 0;
 		width: 100%;
@@ -225,18 +229,19 @@ if ( !class_exists( 'pipdig_widget_random_posts' ) ) {
 		margin-top: 3px;
 	}
 	@media only screen and (max-width: 769px) {
-		.p3_pop_horizontal {
+		#<?php echo $id; ?> .p3_pop_horizontal {
 			float: none;
 			width: 100%;
 		}
-		.p3_pop_horizontal > div {
+		#<?php echo $id; ?> .p3_pop_horizontal > div {
 			padding: 0;
 		}
-		.p3_popular_posts_widget li.p3_pop_horizontal {
+		#<?php echo $id; ?> .p3_popular_posts_widget li.p3_pop_horizontal {
 			margin-bottom: 15px;
 		}
 	}
 	</style>
+	<!--/noptimize-->
 	<?php } ?>
 	
 	<?php while ( $popular->have_posts() ): $popular->the_post();

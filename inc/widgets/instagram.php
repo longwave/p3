@@ -79,12 +79,14 @@ if (!class_exists( 'pipdig_widget_instagram')) {
 			
 		?>
 			<div id="<?php echo $id; ?>" class="p3_instagram_widget">
+			<!--noptimize-->
 			<style>
 				#<?php echo $id; ?> .p3_instagram_post {
 					width: <?php echo $width; ?>;
 					border: <?php echo $border; ?>px solid <?php echo strip_tags(get_theme_mod('content_background_color', '#fff')); ?>
 				}
 			</style>
+			<!--/noptimize-->
 			<?php for ($x = 0; $x <= $images_num; $x++) {
 				
 				$image_src = 'style="background-image:url('.$images[$x]['src'].');"';
