@@ -163,6 +163,7 @@ function p3_import_demo_content() {
 		set_theme_mod('header_full_width_slider', 1);
 		set_theme_mod('header_full_width_slider_home', 1);
 		set_theme_mod('p3_instagram_footer', 1);
+		set_theme_mod('hide_comments_link', 1);
 		set_theme_mod('pipdig_lazy', 1);
 		set_theme_mod('p3_pinterest_hover_image_file', 'https://sites.google.com/site/pipdig1/equinox-pin.png');
 		set_theme_mod('p3_pinterest_hover_image_position', 'center');

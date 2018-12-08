@@ -335,7 +335,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 				</a>
 				</div>
 				<div class="p3_pop_left-right">
-					<h4 class="p_post_titles_font"><?php echo pipdig_p3_truncate($title, 10); ?></h4>
+					<a href="<?php the_permalink() ?>"><h4 class="p_post_titles_font"><?php echo pipdig_p3_truncate($title, 10); ?></h4></a>
 					<?php if ($show_date) { ?><div class="p3_pop_left_date"><?php echo apply_filters('the_date', get_the_date(), get_option('date_format'), '', ''); ?></div><?php } ?>
 				</div>
 			</li>
