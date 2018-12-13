@@ -1,7 +1,7 @@
 === pipdig Power pack (p3) ===
 Contributors: pipdig
 Requires at least: 4.0
-Tested up to: 4.9
+Tested up to: 5.0
 Stable tag: master
 License: Copyright 2018 pipdig Ltd. All rights reserved.
 
@@ -12,6 +12,10 @@ The core functions of any pipdig theme.
 Please check the changelog before updating :)
 
 == Changelog ==
+
+= 4.1.6 (13 December 2018) =
+* Fix a bug which was showing the incorrect dates for [social stats](https://i.imgur.com/sZMH0hA.png)
+* Speed up image loading time in Instagram widgets/features.
 
 = 4.1.5 (05 November 2018) =
 * PHP 7.2 compatibility.

@@ -272,7 +272,6 @@ function pipdig_p3_scrapey_scrapes() {
 
 		$todays_date = date('Ymd'); // http://codepad.org/PYcR13C2
 		$p3_stats_data[$todays_date] = $today;
-		$today['date'] = $todays_date;
 		update_option('p3_stats_data', $p3_stats_data, 'no');
 
 	}

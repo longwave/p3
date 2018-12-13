@@ -498,7 +498,7 @@ function p3_import_demo_content() {
 		'post_title' => 'Contact',
 		'post_type' => 'page',
 		'post_status' => 'publish',
-		'post_content' => '<p style="text-align: center">This is an example of a contact page where you could add some information about how people can reach you.</p><p style="text-align: center">You could niclude a contact form or simply your email address. After adding your social links to <a href="'.admin_url('admin.php?page=pipdig-links').'" rel="nofollow">this page</a>, they will appear as icons below:</p><p style="text-align: center">[pipdig_social_icons]</p>'
+		'post_content' => '<p style="text-align: center">This is an example of a contact page where you could add some information about how people can reach you.</p><p style="text-align: center">You could include a contact form or simply your email address. After adding your social links to <a href="'.admin_url('admin.php?page=pipdig-links').'" rel="nofollow">this page</a>, they will appear as icons below:</p><p style="text-align: center">[pipdig_social_icons]</p>'
 	);
 
 	$page_2 = wp_insert_post($page_2_args);

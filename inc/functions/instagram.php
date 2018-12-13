@@ -102,6 +102,7 @@ function p3_instagram_fetch($access_token = '') {
 						*/
 						$images[] = array (
 							'src' => esc_url($image->images->standard_resolution->url),
+							'src_low' => esc_url($image->images->low_resolution->url),
 							'link' => esc_url($image->link),
 							'likes' => absint($image->likes->count),
 							'comments' => absint($image->comments->count),

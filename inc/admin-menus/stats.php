@@ -77,9 +77,9 @@ function pipdig_stats_options_page() {
 		
 		<?php
 		ksort($p3_stats_data, SORT_NUMERIC);
-		foreach ($p3_stats_data as $item) {
-			$item['date'] = date('d F Y',strtotime($item['date']));
-			echo json_encode($item).',';
+		foreach ($p3_stats_data as $key => $value) {
+			$value['date'] = date('d F Y',strtotime($key));
+			echo json_encode($value).',';
 		}
 		?>
 		
