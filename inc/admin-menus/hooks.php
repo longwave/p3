@@ -263,7 +263,7 @@ function pipdig_after_first_post_stuff() { // After the first post (unless grid 
 	}
 	echo $output;
 }
-add_action('after_first_post','pipdig_after_first_post_stuff');
+add_action('after_first_post', 'pipdig_after_first_post_stuff');
 
 
 function pipdig_textarea_p3_content_start_stuff() { // top of post content
@@ -274,7 +274,7 @@ function pipdig_textarea_p3_content_start_stuff() { // top of post content
 	}
 	echo $output;
 }
-add_action('p3_content_start','pipdig_textarea_p3_content_start_stuff');
+add_action('p3_content_start', 'pipdig_textarea_p3_content_start_stuff');
 
 
 function pipdig_textarea_p3_content_end_stuff() { // end of post content
@@ -285,4 +285,4 @@ function pipdig_textarea_p3_content_end_stuff() { // end of post content
 	}
 	echo $output;
 }
-add_action('p3_content_end','pipdig_textarea_p3_content_end_stuff', 0);
+add_action('p3_content_end', 'pipdig_textarea_p3_content_end_stuff', 0);

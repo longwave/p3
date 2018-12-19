@@ -103,7 +103,9 @@ function p3_import_demo_content() {
 	p3_insert_widget_in_sidebar('sidebar-1', 'pipdig_widget_popular_posts', array('title' => 'Popular Posts'));
 	p3_insert_widget_in_sidebar('sidebar-1', 'categories', array('dropdown' => 1));
 	p3_insert_widget_in_sidebar('sidebar-1', 'archives', array('dropdown' => 1));
-
+	
+	do_action('pipdig_importing_demo');
+	
 	if ($theme == 'aquae') {
 
 		update_option('posts_per_page', 13);

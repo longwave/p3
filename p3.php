@@ -278,6 +278,13 @@ function pipdig_p3_scripts_styles() {
 	} else {
 		wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', '', null );
 	}
+	
+	/*
+	// Classic Editor quirk
+	if () {
+		wp_dequeue_style('wp-block-library');
+	}
+	*/
 
 }
 add_action( 'wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
@@ -353,6 +360,7 @@ function p3_new_install_notice() {
 }
 add_action( 'admin_notices', 'p3_new_install_notice' );
 
+/*
 function p3_update_oct_2018_notice() {
 
 	global $pagenow;
@@ -394,6 +402,7 @@ function p3_update_oct_2018_notice() {
 	<?php
 }
 add_action( 'admin_notices', 'p3_update_oct_2018_notice' );
+*/
 
 function pipdig_p3_activate() {
 
