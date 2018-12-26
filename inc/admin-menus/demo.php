@@ -259,6 +259,12 @@ function p3_import_demo_content() {
 		set_theme_mod('p3_pinterest_hover_margin', 0);
 		set_theme_mod('p3_instagram_kensington', 1);
 		set_theme_mod('p3_instagram_number', 6);
+		
+	} elseif ($theme == 'lavoie') {
+		
+		set_theme_mod('p_header_bg', 'https://pipdigz.co.uk/p3/img/fullscreen-travel.jpg');
+		set_theme_mod('show_navbar_bg_color', 1);
+		// set widgets?
 
 	} elseif ($theme == 'londoncalling') {
 
@@ -447,7 +453,12 @@ function p3_import_demo_content() {
 		'https://etoile4.pipdig.co/wp-content/uploads/2016/02/jared-rice-388253-unsplash.jpg',
 		'https://etoile4.pipdig.co/wp-content/uploads/2015/05/04.jpg',
 		'https://etoile4.pipdig.co/wp-content/uploads/2015/10/06.jpg',
-		'https://etoile4.pipdig.co/wp-content/uploads/2015/08/01.jpg'
+		'https://etoile4.pipdig.co/wp-content/uploads/2015/08/01.jpg',
+		'https://etoile.pipdig.co/wp-content/uploads/2018/07/botanical-garden-botany-garden-880465.jpg',
+		'https://etoile.pipdig.co/wp-content/uploads/2018/07/apartment-architecture-chair-892618.jpg',
+		'https://etoile.pipdig.co/wp-content/uploads/2015/08/pexels-photo-709805.jpeg',
+		'https://etoile.pipdig.co/wp-content/uploads/2015/07/casual-close-up-cold-1030944.jpg',
+		'https://etoile.pipdig.co/wp-content/uploads/2018/07/adult-beautiful-bowl-880460.jpg'
 	);
 
 	$post_content_start = array(
@@ -465,10 +476,14 @@ function p3_import_demo_content() {
 		'<p>Cotton candy candy canes biscuit tiramisu cake. Toffee jelly beans ice cream powder candy canes apple pie cake lemon drops. Topping donut gummi bears apple pie chocolate gummies gummi bears. Marzipan danish halvah chocolate cake donut sesame snaps <a href="https://www.pipdig.co" target="_blank">pipdig</a> liquorice. Ice cream halvah lemon drops danish biscuit bonbon fruitcake. Gummies jujubes tiramisu lollipop.</p>',
 		'<p>Jelly beans sugar plum bonbon tiramisu sugar plum muffin chupa chups powder halvah. Dessert apple pie dessert bear claw croissant pudding. Gummies pie jujubes. Carrot cake apple pie liquorice sweet. Pudding candy canes chupa chups bear claw apple pie. Jelly-o powder sweet roll marshmallow donut muffin pudding caramels. Topping croissant cheesecake cupcake. Cheesecake cookie jujubes jelly. Soufflé jelly apple pie <a href="https://www.pipdig.co" target="_blank">pipdig</a> chupa chups croissant bear claw macaroon dragée biscuit. Halvah jelly beans bonbon marzipan macaroon brownie candy canes.</p>'
 	);
-
+	
 	foreach ($images as $image) {
 
-		$post_content = $post_content_start[array_rand($post_content_start)].'<img src="'.$image.'" alt="" />'.$post_content_end[array_rand($post_content_end)];
+		$post_content = 
+		"<!-- wp:paragraph -->\n".$post_content_start[array_rand($post_content_start)]."\n<!-- /wp:paragraph -->".
+		"<!-- wp:image -->\n<figure class=\"wp-block-image\">\n".'<img src="'.$image.'" alt="" />'."</figure>\n<!-- /wp:image -->".
+		"<!-- wp:paragraph -->\n".$post_content_end[array_rand($post_content_end)]."\n<!-- /wp:paragraph -->".
+		"<!-- wp:image -->\n<figure class=\"wp-block-image\">\n".'<img src="'.$images[array_rand($images)].'" alt="" />'."</figure>\n<!-- /wp:image -->";
 
 		$args = array(
 			'post_title' => $post_titles[array_rand($post_titles)],
@@ -476,9 +491,11 @@ function p3_import_demo_content() {
 			'post_status' => 'publish',
 			'ping_status' => 'closed',
 			'post_category' => array($cats[array_rand($cats)]),
+			/*
 			'meta_input' => array(
 				'pipdig_meta_homepage_secondary_img' => 'value of pipdig_meta_test_meta_key',
 			),
+			*/
 			'post_content' => $post_content
 		);
 
@@ -491,7 +508,7 @@ function p3_import_demo_content() {
 		'post_title' => 'About',
 		'post_type' => 'page',
 		'post_status' => 'publish',
-		'post_content' => '<p>This is an example of a page, which works a little differently to blog posts. Pages can be used to list any general information, such as an "About Me" page where you can introduce yourself and your website.</p><p>You can add or edit any pages in the <a href="'.admin_url('edit.php?post_type=page').'" rel="nofollow">Pages section of your dashboard</a>.</p><p>Unlike blog posts, pages do not show a date or comments.</p><p>After creating any pages, you can add them to the main menu/navbar on your site via <a href="https://support.pipdig.co/articles/wordpress-how-to-create-the-main-menu-navbar/" target="_blank">this guide</a>.</p>'
+		'post_content' => "<!-- wp:paragraph -->\n".'<p>This is an example of a page, which works a little differently to blog posts. Pages can be used to list any general information, such as an "About Me" page where you can introduce yourself and your website.</p>'."\n<!-- /wp:paragraph -->"."<!-- wp:paragraph -->\n".'<p>You can add or edit any pages in the <a href="'.admin_url('edit.php?post_type=page').'" rel="nofollow">Pages section of your dashboard</a>.</p>'."\n<!-- /wp:paragraph -->"."<!-- wp:paragraph -->\n".'<p>Unlike blog posts, pages do not show a date or comments.</p>'."\n<!-- /wp:paragraph -->"."<!-- wp:paragraph -->\n".'<p>After creating any pages, you can add them to the main menu/navbar on your site via <a href="https://support.pipdig.co/articles/wordpress-how-to-create-the-main-menu-navbar/" target="_blank">this guide</a>.</p>'."\n<!-- /wp:paragraph -->"
 	);
 
 	$page_1 = wp_insert_post($page_1_args);
@@ -500,7 +517,7 @@ function p3_import_demo_content() {
 		'post_title' => 'Contact',
 		'post_type' => 'page',
 		'post_status' => 'publish',
-		'post_content' => '<p style="text-align: center">This is an example of a contact page where you could add some information about how people can reach you.</p><p style="text-align: center">You could include a contact form or simply your email address. After adding your social links to <a href="'.admin_url('admin.php?page=pipdig-links').'" rel="nofollow">this page</a>, they will appear as icons below:</p><p style="text-align: center">[pipdig_social_icons]</p>'
+		'post_content' => "<!-- wp:paragraph -->\n".'<p style="text-align: center">This is an example of a contact page where you could add some information about how people can reach you.</p>'."\n<!-- /wp:paragraph -->"."<!-- wp:paragraph -->\n".'<p style="text-align: center">You could include a contact form or simply your email address. After adding your social links to <a href="'.admin_url('admin.php?page=pipdig-links').'" rel="nofollow">this page</a>, they will appear as icons below:</p>'."\n<!-- /wp:paragraph -->"."<!-- wp:paragraph -->\n".'<p style="text-align: center">[pipdig_social_icons]</p>'."\n<!-- /wp:paragraph -->"
 	);
 
 	$page_2 = wp_insert_post($page_2_args);
@@ -515,8 +532,9 @@ function p3_import_demo_content() {
 		remove_theme_mod('nav_menu_locations');
 
 		$menu_id = wp_create_nav_menu($menu_name);
-
-	    wp_update_nav_menu_item($menu_id, 0, array(
+		
+		if ($theme != 'lavoie') {
+			wp_update_nav_menu_item($menu_id, 0, array(
 				'menu-item-title' => 'Home',
 				'menu-item-classes' => 'home',
 				'menu-item-url' => '/',
@@ -532,35 +550,32 @@ function p3_import_demo_content() {
 					'menu-item-type' => 'post_type',
 				));
 			}
-
-			foreach ($cats as $cat_id) {
-				if ($cat_id < 1) {
-					continue;
-				}
-				wp_update_nav_menu_item($menu_id, 0, array(
-					'menu-item-title' => get_cat_name($cat_id),
-					'menu-item-object-id' => $cat_id,
-					'menu-item-db-id' => 0,
-					'menu-item-object' => 'category',
-					'menu-item-parent-id' => 0,
-					'menu-item-type' => 'taxonomy',
-					'menu-item-url' => get_category_link($cat_id),
-					'menu-item-status' => 'publish',
-				));
+		}
+		foreach ($cats as $cat_id) {
+			if ($cat_id < 1) {
+				continue;
 			}
+			wp_update_nav_menu_item($menu_id, 0, array(
+				'menu-item-title' => get_cat_name($cat_id),
+				'menu-item-object-id' => $cat_id,
+				'menu-item-db-id' => 0,
+				'menu-item-object' => 'category',
+				'menu-item-parent-id' => 0,
+				'menu-item-type' => 'taxonomy',
+				'menu-item-url' => get_category_link($cat_id),
+				'menu-item-status' => 'publish',
+			));
+		}
 
-			if (absint($page_2)) {
-				wp_update_nav_menu_item($menu_id, 0, array(
-					'menu-item-title' => 'Contact',
-					'menu-item-object-id' => $page_2,
-					'menu-item-object' => 'page',
-					'menu-item-status' => 'publish',
-					'menu-item-type' => 'post_type',
-				));
-			}
-
-		// remove current menus
-		remove_theme_mod('nav_menu_locations');
+		if (absint($page_2)) {
+			wp_update_nav_menu_item($menu_id, 0, array(
+				'menu-item-title' => 'Contact',
+				'menu-item-object-id' => $page_2,
+				'menu-item-object' => 'page',
+				'menu-item-status' => 'publish',
+				'menu-item-type' => 'post_type',
+			));
+		}
 
 		// Set new one
 		set_theme_mod('nav_menu_locations', array(

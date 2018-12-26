@@ -8,24 +8,32 @@ if (function_exists('shopthepost_show_widget')) {
 
 function p3_shopthepost_show_widget($atts) {
 	extract(shortcode_atts(array(
-		'id'	=> '0'
+		'id' => '0'
 	), $atts));
+	
+	$css_id = 'p3_rs_'.rand(1000,999999);
 
-	$out = '<div class="shopthepost-widget" data-widget-id="'.esc_attr($id).'">
+	$out = '<div id="'.$css_id.'" class="shopthepost-widget" data-widget-id="'.esc_attr($id).'" style="-moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out; opacity: 0;">
+				<!--noptimize-->
 				<script>
+				setTimeout(function(){
 					!function(d,s,id){
-						var e, p = /^http:/.test(d.location) ? \'http\' : \'https\';
-						if(!d.getElementById(id)) {
-							e	 = d.createElement(s);
-							e.id  = id;
-							e.src = p + \'://widgets.rewardstyle.com/js/shopthepost.js\';
+						var e;
+						if (!d.getElementById(id)) {
+							e = d.createElement(s);
+							e.id = id;
+							e.src = "https://widgets.rewardstyle.com/js/shopthepost.js"
 							d.body.appendChild(e);
 						}
-						if(typeof window.__stp === \'object\') if(d.readyState === \'complete\') {
+						if (typeof window.__stp === "object") if (d.readyState === "complete") {
 							window.__stp.init();
 						}
-					}(document, \'script\', \'shopthepost-script\');
+					}(document, "script", "shopthepost-script");
+					var '.$css_id.' = document.getElementById("'.$css_id.'");
+					'.$css_id.'.style.opacity = "1";
+				}, 3000);
 				</script>
+				<!--/noptimize-->
 			</div>';
 	return $out;
 }

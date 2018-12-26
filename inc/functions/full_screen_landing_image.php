@@ -160,7 +160,6 @@ if (!function_exists('p3_full_screen_landing')) {
 
 
 // customiser
-if (!class_exists('p3_full_screen_landing_Customize')) {
 	class p3_full_screen_landing_Customize {
 		public static function register ( $wp_customize ) {
 			
@@ -368,5 +367,5 @@ if (!class_exists('p3_full_screen_landing_Customize')) {
 
 		}
 	}
-	add_action( 'customize_register' , array( 'p3_full_screen_landing_Customize' , 'register' ) );
-}
+	add_action('customize_register', array('p3_full_screen_landing_Customize', 'register'));
+

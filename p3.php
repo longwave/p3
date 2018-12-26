@@ -83,13 +83,11 @@ function p3_license_notification() {
 		return;
 	}
 
-	$active = absint(is_pipdig_active());
-
-	if ($active == 1) { // active
+	if (absint(is_pipdig_active()) == 1) {
 
 		return;
 
-	} else { // not active
+	} else {
 
 		$msg = '';
 		if (!empty($_POST['p3_license_data'])) {
@@ -148,6 +146,8 @@ add_action( 'admin_notices', 'p3_license_notification' );
 
 function pipdig_switch_theme() {
 	delete_transient('pipdig_active');
+	delete_transient('pipdig_check_now_yeah');
+	delete_option('pipdig_theme');
 }
 add_action('switch_theme', 'pipdig_switch_theme', 10);
 
@@ -201,7 +201,7 @@ function is_pipdig_active($key = '') {
 
 		$url = add_query_arg($request_array, 'https://pipdig.co/papi/v1/');
 		$response = wp_remote_get($url);
-		
+
 		if (!is_wp_error($response)) {
 			$result = absint($response['body']);
 			if ($result === 1 || $result === 2 || $result === 3) {
@@ -212,11 +212,11 @@ function is_pipdig_active($key = '') {
 		} else {
 			$active = 1;
 		}
-		
+
 		set_transient( 'pipdig_active', $active, 7 * DAY_IN_SECONDS );
-		
+
 	}
-	
+
 	return $active;
 }
 
@@ -269,7 +269,7 @@ function pipdig_p3_scripts_styles() {
 	wp_register_script( 'pipdig-flickity', 'https://cdnjs.cloudflare.com/ajax/libs/flickity/2.0.10/flickity.pkgd.min.js', array('jquery'), null, false );
 	wp_register_script( 'pipdig-flickity-bglazy', 'https://unpkg.com/flickity-bg-lazyload@1.0.0/bg-lazyload.js', array('pipdig-flickity'), null, false );
 	if (!function_exists('!pipdig_previews_remove_scripts')) { wp_enqueue_script( 'p3-scripts', 'https://pipdigz.co.uk/p3/scripts.js', array(), null, true ); }
-	if (get_theme_mod('pipdig_lazy')) { wp_enqueue_script( 'pipdig-lazy', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js', array('jquery'), null, true ); }
+	if (is_pipdig_lazy()) { wp_enqueue_script( 'pipdig-lazy', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js', array('jquery'), null, true ); }
 
 	// Font awesome 5?
 	if ((get_option('p3_font_awesome_5') == 1) || class_exists('WpdiscuzCore')) {
@@ -278,7 +278,7 @@ function pipdig_p3_scripts_styles() {
 	} else {
 		wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', '', null );
 	}
-	
+
 	/*
 	// Classic Editor quirk
 	if () {
@@ -332,7 +332,7 @@ function p3_new_install_notice() {
 	if ($active !== 1) { // active
 		return;
 	}
-	
+
 	$import = $wp101 = '';
 	$posts = wp_count_posts();
 	$posts_count = $posts->publish + $posts->draft;
@@ -381,7 +381,7 @@ function p3_update_oct_2018_notice() {
 	if (get_option('p3_oct_2018_notice') || !current_user_can('manage_options')) {
 		return;
 	}
-	
+
 	$active = absint(is_pipdig_active());
 	if ($active !== 1) { // active
 		return;

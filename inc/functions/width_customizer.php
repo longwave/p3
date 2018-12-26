@@ -11,6 +11,10 @@ function p3_width_customizer_styles() {
 		return;
 	}
 	
+	if (get_theme_mod('full_width_layout')) {
+		return;
+	}
+	
 	$side = 100 - $main;
 	
 	?>

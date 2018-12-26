@@ -10,8 +10,8 @@ function pipdig_p3_meta_boxes_page($meta_boxes) {
 		'id'       => 'page_options',
 		'title'    => __('Extra Page Options', 'p3').' (pipdig)',
 		'pages'    => 'page',
-		'context'  => 'normal',
-		'priority' => 'high',
+		'context'  => 'side',
+		'priority' => 'low',
 		'fields' => array(
 			array(
 				'name'		=> __('Hide the page title', 'p3'),

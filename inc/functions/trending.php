@@ -316,4 +316,4 @@ class p3_trending_bar_Customize {
 
 	}
 }
-add_action( 'customize_register' , array( 'p3_trending_bar_Customize' , 'register' ) );
+add_action('customize_register', array('p3_trending_bar_Customize', 'register'));

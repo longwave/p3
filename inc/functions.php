@@ -345,7 +345,7 @@ function is_pipdig_lazy() {
 }
 
 function p3_lazy_script() {
-	if (!get_theme_mod('pipdig_lazy')) {
+	if (!is_pipdig_lazy()) {
 		return;
 	}
 	?>

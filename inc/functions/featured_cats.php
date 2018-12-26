@@ -76,7 +76,9 @@ function p3_featured_cats() {
 	if (!get_theme_mod('p3_featured_cats_enable')) {
 		return;
 	}
-		
+	
+	$this_theme = get_option('pipdig_theme');
+	
 	$post_cat_1 = get_theme_mod('p3_featured_cats_cat_1');
 	$post_cat_2 = get_theme_mod('p3_featured_cats_cat_2');
 	$post_cat_3 = get_theme_mod('p3_featured_cats_cat_3');
@@ -133,6 +135,13 @@ function p3_featured_cats() {
 		$mobile_class = 'p3_featured_cats_no_mobile';
 	}
 	
+	if ($this_theme == 'lavoie') {
+		?>
+		<div class="container">
+		<div class="col-xs-12">
+		<?php
+	}
+	
 	?>
 	<div id="p3_featured_cats" class="row nopin <?php echo $mobile_class; ?>">
 			
@@ -159,7 +168,15 @@ function p3_featured_cats() {
 		
 		<div class="clearfix"></div>
 	</div>
-<?php
+	
+	<?php
+	if ($this_theme == 'lavoie') {
+		?>
+		</div>
+		</div>
+		<?php
+	}
+
 }
 add_action('p3_top_site_main_container', 'p3_featured_cats', 4);
 
@@ -374,5 +391,5 @@ if (!class_exists('pipdig_p3_featured_cats_Customize')) {
 	
 		}
 	}
-	add_action( 'customize_register' , array( 'pipdig_p3_featured_cats_Customize' , 'register' ) );
+	add_action('customize_register', array('pipdig_p3_featured_cats_Customize', 'register'));
 }
