@@ -11,7 +11,7 @@ function p3_shopthepost_show_widget($atts) {
 		'id' => '0'
 	), $atts));
 	
-	$css_id = 'p3_rs_'.rand(1000,999999);
+	$css_id = 'p3_rs_'.esc_attr($id);
 
 	$out = '<div id="'.$css_id.'" class="shopthepost-widget" data-widget-id="'.esc_attr($id).'" style="-moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out; opacity: 0;">
 				<!--noptimize-->
@@ -31,7 +31,7 @@ function p3_shopthepost_show_widget($atts) {
 					}(document, "script", "shopthepost-script");
 					var '.$css_id.' = document.getElementById("'.$css_id.'");
 					'.$css_id.'.style.opacity = "1";
-				}, 3000);
+				}, 2250);
 				</script>
 				<!--/noptimize-->
 			</div>';
