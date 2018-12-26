@@ -13,7 +13,7 @@ function p3_shopthepost_show_widget($atts) {
 	
 	$css_id = 'p3_rs_'.esc_attr($id);
 
-	$out = '<div id="'.$css_id.'" class="shopthepost-widget" data-widget-id="'.esc_attr($id).'" style="-moz-transition: all 0.25s ease-out; -webkit-transition: all 0.25s ease-out; transition: all 0.25s ease-out; opacity: 0;">
+	$out = '<div id="'.$css_id.'" class="shopthepost-widget" data-widget-id="'.esc_attr($id).'" style="-moz-transition: all 0.45s ease-out; -webkit-transition: all 0.45s ease-out; transition: all 0.45s ease-out; opacity: 0;">
 				<!--noptimize-->
 				<script>
 				setTimeout(function(){
