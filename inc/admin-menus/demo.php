@@ -137,6 +137,7 @@ function p3_import_demo_content() {
 		set_theme_mod('site_top_search', 1);
 		set_theme_mod('site_top_search_set', 1);
 		set_theme_mod('p3_share_tumblr', '');
+		set_theme_mod('p3_pinterest_theme_set', 1);
 
 	} elseif ($theme == 'crystal') {
 
@@ -262,8 +263,22 @@ function p3_import_demo_content() {
 		
 	} elseif ($theme == 'lavoie') {
 		
-		set_theme_mod('p_header_bg', 'https://pipdigz.co.uk/p3/img/fullscreen-travel.jpg');
+		set_theme_mod('p3_pinterest_hover_image_file', 'https://pipdigz.co.uk/p3/img/pin/white-corner.png');
+		set_theme_mod('p3_pinterest_hover_image_position', 'top left');
+		set_theme_mod('site_top_search', 1);
+		if (function_exists('p3_lazy_script')) {
+			set_theme_mod('pipdig_lazy', 1);
+		}
+		set_theme_mod('p3_instagram_meta', 1);
+		set_theme_mod('p3_instagram_kensington', 1);
+		set_theme_mod('p3_instagram_rows', 1);
+		set_theme_mod('p3_instagram_number', 6);
+		//set_theme_mod('p_header_bg', 'https://lavoie.pipdig.co/wp-content/uploads/2018/12/header1.jpg');
 		set_theme_mod('show_navbar_bg_color', 1);
+		update_option('posts_per_page', 18);
+		set_theme_mod('p_header_bg_height', 2);
+		set_theme_mod('p_header_bg_parallax', 0);
+		set_theme_mod('pipdig_theme_options_set', 1);
 		// set widgets?
 
 	} elseif ($theme == 'londoncalling') {
@@ -477,6 +492,10 @@ function p3_import_demo_content() {
 		'<p>Jelly beans sugar plum bonbon tiramisu sugar plum muffin chupa chups powder halvah. Dessert apple pie dessert bear claw croissant pudding. Gummies pie jujubes. Carrot cake apple pie liquorice sweet. Pudding candy canes chupa chups bear claw apple pie. Jelly-o powder sweet roll marshmallow donut muffin pudding caramels. Topping croissant cheesecake cupcake. Cheesecake cookie jujubes jelly. Soufflé jelly apple pie <a href="https://www.pipdig.co" target="_blank">pipdig</a> chupa chups croissant bear claw macaroon dragée biscuit. Halvah jelly beans bonbon marzipan macaroon brownie candy canes.</p>'
 	);
 	
+	$i = 0;
+	$image_array_keys = array_keys($images);
+	$last_item = array_pop($image_array_keys);
+	
 	foreach ($images as $image) {
 
 		$post_content = 
@@ -491,17 +510,21 @@ function p3_import_demo_content() {
 			'post_status' => 'publish',
 			'ping_status' => 'closed',
 			'post_category' => array($cats[array_rand($cats)]),
-			/*
-			'meta_input' => array(
-				'pipdig_meta_homepage_secondary_img' => 'value of pipdig_meta_test_meta_key',
-			),
-			*/
 			'post_content' => $post_content
 		);
+		
+		// Add RS shortcode to extra excerpt for latest post only
+		if ($i == $last_item) {
+			$args['meta_input'] = array(
+				'pipdig_meta_extra_excerpt' => '[show_shopthepost_widget id="3227559"]',
+			);
+		}
 
 		// https://developer.wordpress.org/reference/functions/wp_insert_post/
 		wp_insert_post($args);
-
+		
+		$i++;
+		
 	}
 
 	$page_1_args = array(

@@ -36,7 +36,7 @@ function p3_pinterest_fetch($user, $board = 'feed') {
 	}
 	
 	
-	if ( false === ( $body = get_transient( 'p3_pinterest_feed_'.$feed_id ) )) {
+	if ( false === ( $body = get_transient( 'p3_pins_'.$feed_id ) )) {
 		$url = "https://www.pinterest.com/".$user."/".$board.".rss/";
 		$args = array(
 		    'timeout' => 9,
@@ -55,7 +55,7 @@ function p3_pinterest_fetch($user, $board = 'feed') {
 			$body = $code;
 		}
 			
-		set_transient( 'p3_pinterest_feed_'.$feed_id, $body, 20 * MINUTE_IN_SECONDS );
+		set_transient( 'p3_pins_'.$feed_id, $body, 20 * MINUTE_IN_SECONDS );
 	}
 	
 	

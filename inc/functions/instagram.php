@@ -45,7 +45,7 @@ function p3_instagram_fetch($access_token = '') {
 	}
 	*/
 
-	if ( false === ( $images = get_transient( 'p3_instagram_feed_'.$userid ) )) {
+	if ( false === ( $images = get_transient( 'p3_insta_'.$userid ) )) {
 		
 		$url = 'https://api.instagram.com/v1/users/'.$userid.'/media/recent/?access_token='.$access_token.'&count=20';
 		$args = array(
@@ -113,7 +113,7 @@ function p3_instagram_fetch($access_token = '') {
 			}
 		}
 		
-		set_transient( 'p3_instagram_feed_'.$userid, $images, 15 * MINUTE_IN_SECONDS );
+		set_transient( 'p3_insta_'.$userid, $images, 15 * MINUTE_IN_SECONDS );
 	}
 	
 	if (!empty($images)) {
@@ -129,7 +129,7 @@ add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to a
 // function to clear out transients
 function p3_instagram_clear_transients($userid = '') {
 	
-	delete_transient( 'p3_instagram_feed_'.$userid );
+	delete_transient( 'p3_insta_'.$userid );
 	
 	$instagram_deets = get_option('pipdig_instagram');
 	if (!empty($instagram_deets['access_token'])) {
@@ -140,7 +140,7 @@ function p3_instagram_clear_transients($userid = '') {
 			$user_id = explode('.', $access_token);
 			$userid = trim($user_id[0]);
 		}
-		delete_transient( 'p3_instagram_feed_'.$userid );
+		delete_transient( 'p3_insta_'.$userid );
 	}
 	
 }

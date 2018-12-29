@@ -1,6 +1,7 @@
 <?php
 /**
- * Hide or show widgets conditionally.
+ * Feature originally sourced from https://github.com/Automattic/jetpack under GPL2+
+ * All props to the Jetpack team!
  */
 
 class Jetpack_Widget_Conditions {

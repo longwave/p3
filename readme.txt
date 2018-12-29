@@ -13,9 +13,10 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
-= 4.2.0 (27 December 2018) =
+= 4.2.1 (29 December 2018) =
 * Add a nicer fade effect onto rewardStyle widgets [https://i.imgur.com/JLxf2hg.gif](https://i.imgur.com/JLxf2hg.gif)
 * Add the "Shop" social link to the mobile menu, when available. Can be setup from the 'pipdig > Social Links' page.
+* Update Russian translation. Thanks [Madina](https://madinagatieva.com/)!
 
 = 4.1.6 (13 December 2018) =
 * Fix a bug which was showing the incorrect dates for [social stats](https://i.imgur.com/sZMH0hA.png)

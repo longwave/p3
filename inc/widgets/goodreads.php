@@ -1,13 +1,11 @@
-<?php
-
-if (!defined('ABSPATH')) die;
+<?php if (!defined('ABSPATH')) die;
 
 if (class_exists('Jetpack') && Jetpack::is_module_active('widgets')) {
 	return;
 }
 
 /**
- * Widget originally sourced from https://wordpress.org/plugins/jetpack/ under GPL2+
+ * Widget originally sourced from https://github.com/Automattic/jetpack under GPL2+
  * All props to the Jetpack team!
  */
 
