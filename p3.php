@@ -253,7 +253,7 @@ function pipdig_p3_scripts_styles() {
 	if (is_pipdig_active()) {
 		$cdn = PIPDIG_P3_V;
 	} else {
-		$cdn = get_option('pipdig_id', PIPDIG_P3_V);
+		$cdn = '300.'.esc_attr(get_option('pipdig_id', PIPDIG_P3_V));
 	}
 	if (get_theme_mod('disable_responsive')) {
 		wp_enqueue_style('p3-core', 'https://pipdigz.co.uk/p3/css/core.css', array(), $cdn);
