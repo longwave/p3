@@ -3,11 +3,11 @@
 if (!defined('ABSPATH')) die;
 
 function p3_slicknav_brand($limit = 6) {
-	
+
 	$links = get_option('pipdig_links');
 	$brand = '';
 	$count = 0;
-	
+
 	if (function_exists('wc_get_cart_url') && get_theme_mod('p3_navbar_woocommerce', 1)) {
 		global $woocommerce;
 		$brand .= '<a href="'.wc_get_cart_url().'" rel="nofollow noopener" aria-label="Shopping cart" title="Shopping cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span id="p3_navbar_cart_count"> '.$woocommerce->cart->cart_contents_count.'</span></a>';
@@ -35,6 +35,10 @@ function p3_slicknav_brand($limit = 6) {
 	}
 	if (($count < $limit) && !empty($links['youtube']) && get_theme_mod('p3_navbar_youtube', 1)) {
 		$brand .= '<a href="'.esc_url($links['youtube']).'" target="_blank" rel="nofollow noopener" aria-label="youtube" title="youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>';
+		$count++;
+	}
+	if (($count < $limit) && !empty($links['goodreads']) && get_theme_mod('p3_navbar_goodreads', 1)) {
+		$brand .= '<a href="'.esc_url($links['goodreads']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-book"></i></a>';
 		$count++;
 	}
 	if (($count < $limit) && !empty($links['bloglovin']) && get_theme_mod('p3_navbar_bloglovin', 1)) {
@@ -103,6 +107,10 @@ function p3_slicknav_brand($limit = 6) {
 		$brand .= '<a href="'.esc_url($links['houzz']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-houzz"></i></a>';
 		$count++;
 	}
+	if (($count < $limit) && !empty($links['rss']) && get_theme_mod('p3_navbar_rss', 1)) {
+		$brand .= '<a href="mailto:'.sanitize_email($links['rss']).'" target="_blank" rel="nofollow noopener" aria-label="RSS Feed" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i></a>';
+		$count++;
+	}
 	if (($count < $limit) && !empty($links['email']) && get_theme_mod('p3_navbar_email', 1)) {
 		$brand .= '<a href="mailto:'.sanitize_email($links['email']).'" target="_blank" rel="nofollow noopener" aria-label="Email" title="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>';
 		$count++;
@@ -118,31 +126,31 @@ function p3_slicknav_brand($limit = 6) {
 }
 
 function pipdig_p3_social_navbar( $items, $args ) {
-	
+
 	if ($args->theme_location != 'primary') {
 		return $items;
 	}
-	
+
 	$navbar_icons = p3_slicknav_brand(999);
-	
+
 	if (get_theme_mod('site_top_search')) $navbar_icons .= '<a id="p3_search_btn" class="toggle-search" aria-label="Search" title="Search"><i class="fa fa-search" aria-hidden="true"></i></a>'; // still need to p3 this.
-	
+
 	if ($navbar_icons) {
 		return $items.'<li class="socialz top-socialz">' . $navbar_icons . '</li>';
 	}
-	
+
 	return $items;
 }
 add_filter('wp_nav_menu_items', 'pipdig_p3_social_navbar', 10, 2);
 
 function pipdig_p3_social_navbar_styles() {
-	
+
 	$size = absint(get_theme_mod( 'p3_navbar_icon_size'));
-	
+
 	if ($size < 11) {
 		return;
 	}
-	
+
 	?>
 	<!-- p3 navbar icon size -->
 	<style>
@@ -156,16 +164,16 @@ add_action( 'wp_head', 'pipdig_p3_social_navbar_styles', 99999 );
 // customiser
 class pipdig_p3_navbar_icons_Customiser {
 	public static function register ( $wp_customize ) {
-		
-		$wp_customize->add_section( 'p3_navbar_icons_section', 
+
+		$wp_customize->add_section( 'p3_navbar_icons_section',
 			array(
 				'title' => __( 'Navbar Icons', 'p3' ),
 				'description' => __( 'You can display your social icons in the navbar using these options. Select the social icons you would like to add from below.', 'p3' ).' <a href="https://support.pipdig.co/articles/wordpress-how-to-add-social-icons-to-the-navbar/?utm_source=wordpress&utm_medium=p3&utm_campaign=customizer" target="_blank">'.__( 'Click here for more information', 'p3' ).'</a>.',
 				'capability' => 'edit_theme_options',
 				'priority' => 35,
-			) 
+			)
 		);
-		
+
 		// icon size
 		$wp_customize->add_setting('p3_navbar_icon_size',
 			array(
@@ -187,7 +195,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				),
 			)
 		);
-		
+
 		// woocommerce
 		if (class_exists('Woocommerce')) {
 			$wp_customize->add_setting('p3_navbar_woocommerce',
@@ -205,7 +213,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				)
 			);
 		}
-		
+
 		// twitter
 		$wp_customize->add_setting('p3_navbar_twitter',
 			array(
@@ -220,7 +228,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// instagram
 		$wp_customize->add_setting('p3_navbar_instagram',
 			array(
@@ -235,7 +243,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// Facebook
 		$wp_customize->add_setting('p3_navbar_facebook',
 			array(
@@ -265,8 +273,8 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
-			
+
+
 		// bloglovin
 		$wp_customize->add_setting('p3_navbar_bloglovin',
 			array(
@@ -296,7 +304,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// tumblr
 		$wp_customize->add_setting('p3_navbar_tumblr',
 			array(
@@ -311,7 +319,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// snapchat
 		$wp_customize->add_setting('p3_navbar_snapchat',
 			array(
@@ -326,7 +334,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// youtube
 		$wp_customize->add_setting('p3_navbar_youtube',
 			array(
@@ -356,7 +364,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// soundcloud
 		$wp_customize->add_setting('p3_navbar_soundcloud',
 			array(
@@ -371,7 +379,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// spotify
 		$wp_customize->add_setting('p3_navbar_spotify',
 			array(
@@ -386,7 +394,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// itunes
 		$wp_customize->add_setting('p3_navbar_itunes',
 			array(
@@ -401,7 +409,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// flickr
 		$wp_customize->add_setting('p3_navbar_flickr',
 			array(
@@ -416,7 +424,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// vk
 		$wp_customize->add_setting('p3_navbar_vk',
 			array(
@@ -431,7 +439,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// google plus
 		$wp_customize->add_setting('p3_navbar_google_plus',
 			array(
@@ -446,7 +454,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// twitch
 		$wp_customize->add_setting('p3_navbar_twitch',
 			array(
@@ -461,7 +469,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// stumbleupon
 		$wp_customize->add_setting('p3_navbar_stumbleupon',
 			array(
@@ -476,7 +484,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// Goodreads
 		$wp_customize->add_setting('p3_navbar_goodreads',
 			array(
@@ -491,7 +499,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// etsy
 		$wp_customize->add_setting('p3_navbar_etsy',
 			array(
@@ -506,7 +514,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// reddit
 		$wp_customize->add_setting('p3_navbar_reddit',
 			array(
@@ -521,7 +529,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// digg
 		$wp_customize->add_setting('p3_navbar_digg',
 			array(
@@ -536,7 +544,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-			
+
 		// houzz
 		$wp_customize->add_setting('p3_navbar_houzz',
 			array(
@@ -551,7 +559,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-		
+
 		// shop
 		$wp_customize->add_setting('p3_navbar_shop',
 			array(
@@ -566,7 +574,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
-		
+
 		// rss
 		$wp_customize->add_setting('p3_navbar_rss',
 			array(

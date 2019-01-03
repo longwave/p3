@@ -13,6 +13,11 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 4.2.2 (03 January 2019) =
+* Happy New Year folks!
+* Make post titles clickable in the popular/random posts widget.
+* Fix a bug which stopped certain social icons showing in the navbar.
+
 = 4.2.1 (29 December 2018) =
 * Add a nicer fade effect onto rewardStyle widgets [https://i.imgur.com/JLxf2hg.gif](https://i.imgur.com/JLxf2hg.gif)
 * Add the "Shop" social link to the mobile menu, when available. Can be setup from the 'pipdig > Social Links' page.

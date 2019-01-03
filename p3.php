@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 4.2.1
+Version: 4.2.2
 Text Domain: p3
 License: Copyright 2018 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define('PIPDIG_P3_V', '4.2.1');
+define('PIPDIG_P3_V', '4.2.2');
 define('PIPDIG_P3_DIR', plugin_dir_path(__FILE__));
 
 function p3_themes_top_link() {
@@ -53,6 +53,13 @@ register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
 include(PIPDIG_P3_DIR.'inc/cron.php');
 
 remove_action('welcome_panel', 'wp_welcome_panel');
+
+function pipdig_switch_theme() {
+	delete_transient('pipdig_active');
+	delete_transient('pipdig_check_now_yeah');
+	delete_option('pipdig_theme');
+}
+add_action('switch_theme', 'pipdig_switch_theme', 10);
 
 // bootstrap
 $this_theme = wp_get_theme();
@@ -143,13 +150,6 @@ function p3_license_notification() {
 
 }
 add_action( 'admin_notices', 'p3_license_notification' );
-
-function pipdig_switch_theme() {
-	delete_transient('pipdig_active');
-	delete_transient('pipdig_check_now_yeah');
-	delete_option('pipdig_theme');
-}
-add_action('switch_theme', 'pipdig_switch_theme', 10);
 
 function is_pipdig_active($key = '') {
 
