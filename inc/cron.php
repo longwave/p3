@@ -14,6 +14,8 @@ function p3_do_this_daily() {
 	pipdig_p3_scrapey_scrapes();
 
 	delete_transient('pipdig_fonts');
+	
+	update_option('antispam_dismiss_notice', 'true');
 
 	$instagram_deets = get_option('pipdig_instagram');
 	if (!empty($instagram_deets['user_id'])) {

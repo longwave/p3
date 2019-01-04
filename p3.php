@@ -414,7 +414,7 @@ function pipdig_p3_activate() {
 	add_option('pipdig_id', sanitize_text_field(substr(str_shuffle(MD5(microtime())), 0, 10)));
 	
 	update_option('link_manager_enabled', 0);
-	
+	update_option('antispam_dismiss_notice', 'true');	
 	update_option('endurance_cache_level', 0);
 
 	$plugins = array(
