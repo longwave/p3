@@ -12,7 +12,6 @@ function p3_slicknav_brand($limit = 6, $slicknav = true) {
 		$mobile = get_theme_mod('p3_nav_social_mob', 1);
 	}
 	
-	
 	if (function_exists('wc_get_cart_url')) {
 		if (get_theme_mod('p3_navbar_woocommerce', 1) || $mobile) {
 			global $woocommerce;
@@ -116,43 +115,59 @@ function p3_slicknav_brand($limit = 6, $slicknav = true) {
 			$count++;
 		}
 	}
-	/*
-	if (($count < $limit) && !empty($links['google_plus'])) {
-		$brand .= '<a href="'.esc_url($links['google_plus']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-google-plus"></i></a>';
-		$count++;
+	if (($count < $limit) && !empty($links['behance'])) {
+		if (get_theme_mod('p3_navbar_behance', 1) || $mobile) {
+			$brand .= '<a href="'.esc_url($links['behance']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-behance"></i></a>';
+			$count++;
+		}
 	}
-	*/
-	if (($count < $limit) && !empty($links['twitch']) && get_theme_mod('p3_navbar_twitch', 1)) {
-		$brand .= '<a href="'.esc_url($links['twitch']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-twitch"></i></a>';
-		$count++;
+	if (($count < $limit) && !empty($links['twitch'])) {
+		if (get_theme_mod('p3_navbar_twitch', 1) || $mobile) {
+			$brand .= '<a href="'.esc_url($links['twitch']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-twitch"></i></a>';
+			$count++;
+		}
 	}
-	if (($count < $limit) && !empty($links['stumbleupon']) && get_theme_mod('p3_navbar_stumbleupon', 1)) {
-		$brand .= '<a href="'.esc_url($links['stumbleupon']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-stumbleupon"></i></a>';
-		$count++;
+	if (($count < $limit) && !empty($links['stumbleupon'])) {
+		if (get_theme_mod('p3_navbar_stumbleupon', 1) || $mobile) {
+			$brand .= '<a href="'.esc_url($links['stumbleupon']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-stumbleupon"></i></a>';
+			$count++;
+		}
 	}
-	if (($count < $limit) && !empty($links['etsy']) && get_theme_mod('p3_navbar_etsy', 1)) {
-		$brand .= '<a href="'.esc_url($links['etsy']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-etsy"></i></a>';
-		$count++;
+	if (($count < $limit) && !empty($links['etsy'])) {
+		if (get_theme_mod('p3_navbar_etsy', 1) || $mobile) {
+			$brand .= '<a href="'.esc_url($links['etsy']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-etsy"></i></a>';
+			$count++;
+		}
 	}
-	if (($count < $limit) && !empty($links['reddit']) && get_theme_mod('p3_navbar_redit', 1)) {
-		$brand .= '<a href="'.esc_url($links['reddit']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-reddit"></i></a>';
-		$count++;
+	if (($count < $limit) && !empty($links['reddit'])) {
+		if (get_theme_mod('p3_navbar_redit', 1) || $mobile) {
+			$brand .= '<a href="'.esc_url($links['reddit']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-reddit"></i></a>';
+			$count++;
+		}
 	}
-	if (($count < $limit) && !empty($links['digg']) && get_theme_mod('p3_navbar_digg', 1)) {
-		$brand .= '<a href="'.esc_url($links['digg']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-digg"></i></a>';
-		$count++;
+	if (($count < $limit) && !empty($links['digg'])) {
+		if (get_theme_mod('p3_navbar_digg', 1) || $mobile) {
+			$brand .= '<a href="'.esc_url($links['digg']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-digg"></i></a>';
+			$count++;
+		}
 	}
-	if (($count < $limit) && !empty($links['houzz']) && get_theme_mod('p3_navbar_houzz', 1)) {
-		$brand .= '<a href="'.esc_url($links['houzz']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-houzz"></i></a>';
-		$count++;
+	if (($count < $limit) && !empty($links['houzz'])) {
+		if (get_theme_mod('p3_navbar_houzz', 1) || $mobile) {
+			$brand .= '<a href="'.esc_url($links['houzz']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-houzz"></i></a>';
+			$count++;
+		}
 	}
-	if (($count < $limit) && !empty($links['rss']) && get_theme_mod('p3_navbar_rss', 1)) {
-		$brand .= '<a href="mailto:'.sanitize_email($links['rss']).'" target="_blank" rel="nofollow noopener" aria-label="RSS Feed" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i></a>';
-		$count++;
+	if (($count < $limit) && !empty($links['rss'])) {
+		if (get_theme_mod('p3_navbar_rss', 1) || $mobile) {
+			$brand .= '<a href="mailto:'.sanitize_email($links['rss']).'" target="_blank" rel="nofollow noopener" aria-label="RSS Feed" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i></a>';
+			$count++;
+		}
 	}
-	if (($count < $limit) && !empty($links['email']) && get_theme_mod('p3_navbar_email', 1)) {
-		$brand .= '<a href="mailto:'.sanitize_email($links['email']).'" target="_blank" rel="nofollow noopener" aria-label="Email" title="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>';
-		$count++;
+	if (($count < $limit) && !empty($links['email'])) {
+		if (get_theme_mod('p3_navbar_email', 1) || $mobile) {
+			$brand .= '<a href="mailto:'.sanitize_email($links['email']).'" target="_blank" rel="nofollow noopener" aria-label="Email" title="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>';
+			$count++;
+		}
 	}
 
 	/*
@@ -490,6 +505,21 @@ class pipdig_p3_navbar_icons_Customiser {
 			array(
 				'type' => 'checkbox',
 				'label' => 'Google Plus',
+				'section' => 'p3_navbar_icons_section',
+			)
+		);
+		
+		// Behance
+		$wp_customize->add_setting('p3_navbar_behance',
+			array(
+				'default' => 1,
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp_customize->add_control('p3_navbar_behance',
+			array(
+				'type' => 'checkbox',
+				'label' => 'Behance',
 				'section' => 'p3_navbar_icons_section',
 			)
 		);

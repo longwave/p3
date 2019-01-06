@@ -150,6 +150,14 @@ function pipdig_links_init() {
 	);
 	
 	add_settings_field( 
+		'Behance', 
+		'<i class="fa fa-behance" aria-hidden="true"></i>&nbsp;&nbsp;Behance', 
+		'p3_behance_field_render', 
+		'pipdig_links_options_page', 
+		'pipdig_links_options_page_section' 
+	);
+	
+	add_settings_field( 
 		'twitch', 
 		'<i class="fa fa-twitch" aria-hidden="true"></i>&nbsp;&nbsp;Twitch', 
 		'p3_twitch_field_render', 
@@ -340,6 +348,11 @@ function p3_shop_field_render() {
 function p3_rss_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[rss]' placeholder='e.g. <?php echo esc_url(get_site_url());?>/feed' value="<?php if (isset($links['rss'])) { echo $links['rss']; } ?>"> <?php
+}
+
+function p3_behance_field_render() { 
+	$links = get_option('pipdig_links'); ?>
+	<input class='large-text' type='url' name='pipdig_links[behance]' placeholder='e.g. https://behance.com/pipdig' value="<?php if (isset($links['behance'])) { echo $links['behance']; } ?>"> <?php
 }
 
 function pipdig_links_section_callback() { 
