@@ -159,7 +159,7 @@ function p3_slicknav_brand($limit = 6, $slicknav = true) {
 	}
 	if (($count < $limit) && !empty($links['rss'])) {
 		if (get_theme_mod('p3_navbar_rss', 1) || $mobile) {
-			$brand .= '<a href="mailto:'.sanitize_email($links['rss']).'" target="_blank" rel="nofollow noopener" aria-label="RSS Feed" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i></a>';
+			$brand .= '<a href="'.esc_url($links['rss']).'" target="_blank" rel="nofollow noopener" aria-label="RSS Feed" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i></a>';
 			$count++;
 		}
 	}
