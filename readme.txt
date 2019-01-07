@@ -13,6 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 4.2.3 (07 January 2019) =
+* Remove depreciated functions to speed things up a bit.
+
 = 4.2.2 (03 January 2019) =
 * Happy New Year folks!
 * Make post titles clickable in the popular/random posts widget.
