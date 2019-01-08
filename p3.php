@@ -61,13 +61,13 @@ function pipdig_switch_theme() {
 }
 add_action('switch_theme', 'pipdig_switch_theme', 10);
 
-function pipdig_body_classes($classes) {
+function pipdig_p3_body_classes($classes) {
     if (get_option('pipdig_id')) {
         $classes[] = sanitize_text_field(get_option('pipdig_id'));
     }
     return $classes;
 }
-add_filter('body_class', 'pipdig_body_classes');
+add_filter('body_class', 'pipdig_p3_body_classes');
 
 // bootstrap
 $this_theme = wp_get_theme();
