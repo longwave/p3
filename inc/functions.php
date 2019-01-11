@@ -131,37 +131,6 @@ function pipdig_p3_truncate($text, $limit) {
 	return $text;
 }
 
-// dns prefetch
-/*
-if (!function_exists('pipdig_p3_dns_prefetch')) {
-	function pipdig_p3_dns_prefetch() {
-		?>
-		<link rel="dns-prefetch" href="//ajax.googleapis.com" />
-		<link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
-		<?php
-	}
-	add_action('wp_head', 'pipdig_p3_dns_prefetch', 1, 1);
-}
-*/
-
-// use public CDNs for jquery
-/*
-if (!class_exists('JCP_UseGoogleLibraries') && !function_exists('pipdig_p3_cdn')) {
-	function pipdig_p3_cdn() {
-		global $wp_scripts;
-		if (!is_admin()) {
-			$jquery_ver = $wp_scripts->registered['jquery']->ver;
-			$jquery_migrate_ver = $wp_scripts->registered['jquery-migrate']->ver;
-			wp_deregister_script('jquery');
-			wp_deregister_script('jquery-migrate');
-			wp_enqueue_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/'.$jquery_ver.'/jquery.min.js', false, null, false);
-			wp_enqueue_script('jquery-migrate', '//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/'.$jquery_migrate_ver.'/jquery-migrate.min.js', false, null, false);
-		}
-	}
-	add_action('wp_enqueue_scripts', 'pipdig_p3_cdn', 9999);
-}
-*/
-
 // Add Featured Image to feed if using excerpt mode, or just add the full content if not
 if ( !class_exists('Rss_Image_Feed') && !function_exists('firss_init') && !defined('SENDIMAGESRSS_BASENAME') ) {
 function pipdig_p3_rss_post_thumbnail($content) {
@@ -180,26 +149,6 @@ add_filter('the_excerpt_rss', 'pipdig_p3_rss_post_thumbnail');
 add_filter('the_content_feed', 'pipdig_p3_rss_post_thumbnail');
 }
 
-/*
-function p3_flush_htacess() {
-	global $wp_rewrite;
-	$wp_rewrite->flush_rules();
-}
-
-function p3_htaccess_edit($rules) {
-$p3_rules = "
-Redirect 301 /feeds/posts/default /feed
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{QUERY_STRING} ^m=1$
-RewriteRule ^(.*)$ /$1? [R=301,L]
-</IfModule>
-";
-return $p3_rules . $rules;
-}
-add_filter('mod_rewrite_rules', 'p3_htaccess_edit');
-*/
-
 if (!function_exists('pipdig_previews_remove_scripts')) {
 function pipdig_p3_emmmm_heeey() {
 
@@ -209,9 +158,9 @@ function pipdig_p3_emmmm_heeey() {
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 			if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-				$(".cc-window,.cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script,.gdpr-privacy-bar,#moove_gdpr_cookie_info_bar").addClass('p3_hide_me');
+				$(".cc-window,.cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script,.gdpr-privacy-bar,#moove_gdpr_cookie_info_bar").addClass('p3_hide_me');
 			} else {
-				$(".cc-window,.cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#adhesion_desktop_wrapper,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script,.gdpr-privacy-bar,#moove_gdpr_cookie_info_bar").removeClass('p3_hide_me');
+				$(".cc-window,.cookie-notice-container,.scrollbox-bottom-right,.widget_eu_cookie_law_widget,#cookie-law-bar,#cookie-law-info-bar,.cc_container,#catapult-cookie-bar,.mailmunch-scrollbox,#barritaloca,#upprev_box,#at4-whatsnext,#cookie-notice,.mailmunch-topbar,#cookieChoiceInfo, #eu-cookie-law,.sumome-scrollbox-popup,.tplis-cl-cookies,#eu-cookie,.pea_cook_wrapper,#milotree_box,#cookie-law-info-again,#jquery-cookie-law-script,.gdpr-privacy-bar,#moove_gdpr_cookie_info_bar").removeClass('p3_hide_me');
 			}
 		});
 	});
