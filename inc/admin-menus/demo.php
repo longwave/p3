@@ -90,7 +90,9 @@ function p3_import_demo_content() {
 	if (empty($theme)) {
 		return;
 	}
-
+	
+	$rs_widgets = false;
+	
 	// Remove Customizer settings
 	remove_theme_mods();
 
@@ -174,7 +176,9 @@ function p3_import_demo_content() {
 		set_theme_mod('p3_share_tumblr', '');
 		set_theme_mod('p3_share_title', ' ');
 		set_theme_mod('site_top_search', 1);
-
+		
+		$rs_widgets = true;
+		
 	} elseif ($theme == 'etoile') {
 
 		update_option('posts_per_page', 6);
@@ -185,6 +189,8 @@ function p3_import_demo_content() {
 		set_theme_mod('p3_pinterest_hover_image_position', 'top left');
 		set_theme_mod('p3_pinterest_hover_margin', 0);
 		set_theme_mod('site_top_search', 1);
+		
+		$rs_widgets = true;
 
 	} elseif ($theme == 'evelynrose') {
 
@@ -280,6 +286,8 @@ function p3_import_demo_content() {
 		set_theme_mod('p_header_bg_parallax', 0);
 		set_theme_mod('pipdig_theme_options_set', 1);
 		// set widgets?
+		
+		$rs_widgets = true;
 
 	} elseif ($theme == 'londoncalling') {
 
@@ -514,13 +522,15 @@ function p3_import_demo_content() {
 		);
 		
 		// Add RS shortcode to extra excerpt for latest post only
-		if ($i == $last_item) {
-			$args['meta_input'] = array(
-				'pipdig_meta_extra_excerpt' => '[show_shopthepost_widget id="3227559"]',
-			);
+		if ($rs_widgets) {
+			if ($i == $last_item) {
+				$args['meta_input'] = array(
+					'pipdig_meta_extra_excerpt' => '[show_shopthepost_widget id="3227559"]',
+				);
+			}
 		}
-
-		// https://developer.wordpress.org/reference/functions/wp_insert_post/
+		
+		usleep(500);
 		wp_insert_post($args);
 		
 		$i++;
