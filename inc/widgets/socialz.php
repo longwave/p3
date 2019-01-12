@@ -39,6 +39,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$goodreads = empty($instance['goodreads']) ? '' : esc_url($instance['goodreads']);
 		$vimeo = empty($instance['vimeo']) ? '' : esc_url($instance['vimeo']);
 		$rss = empty($instance['rss']) ? '' : esc_attr($instance['rss']);
+		$behance = empty($instance['behance']) ? '' : esc_url($instance['behance']);
 		//$style_select = empty($instance['style_select']) ? '' : $instance['style_select'];
 
 		if (isset($instance['style_select'])) { 
@@ -78,6 +79,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopener" aria-label="twitch" title="twitch"><i class="fa fa-twitch" aria-hidden="true"></i></a>';
 			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopener" aria-label="stumbleupon" title="stumbleupon"><i class="fa fa-stumbleupon" aria-hidden="true"></i></a>';
 			if (!empty($etsy)) $icons_output .= '<a href="'.$etsy.'" target="_blank" rel="nofollow noopener" aria-label="etsy" title="etsy"><i class="fa fa-etsy" aria-hidden="true"></i></a>';
+			if (!empty($behance)) $icons_output .= '<a href="'.$behance.'" target="_blank" rel="nofollow noopener" aria-label="behance" title="behance"><i class="fa fa-behance" aria-hidden="true"></i></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'" aria-label="Email" title="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>';
 			if (!empty($rss)) $icons_output .= '<a href="'.$rss.'" target="_blank" rel="nofollow noopener" aria-label="RSS Feed" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i></a>';
 			
@@ -107,13 +109,12 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopener" aria-label="twitch" title="twitch"><i class="fa fa-twitch" aria-hidden="true"></i><br /><span>Twitch</span></a>';
 			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopener" aria-label="stumbleupon" title="stumbleupon"><i class="fa fa-stumbleupon" aria-hidden="true"></i><br /><span>Stumble</span></a>';
 			if (!empty($etsy)) $icons_output .= '<a href="'.$etsy.'" target="_blank" rel="nofollow noopener" aria-label="etsy" title="etsy"><i class="fa fa-etsy" aria-hidden="true"></i><br /><span>Etsy</span></a>';
+			if (!empty($behance)) $icons_output .= '<a href="'.$behance.'" target="_blank" rel="nofollow noopener" aria-label="behance" title="behance"><i class="fa fa-behance" aria-hidden="true"></i><br /><span>Behance</span></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'"><i class="fa fa-envelope" aria-hidden="true"></i><br /><span>Email</span></a>';
 			if (!empty($rss)) $icons_output .= '<a href="'.$rss.'" target="_blank" rel="nofollow noopener" aria-label="RSS Feed" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i><br /><span>RSS</span></a>';
 			echo '<div class="socialz pipdig_socialz_2">'.$icons_output.'</div>';
 
 		}
-		
-		
 		
 		echo (isset($after_widget)?$after_widget:''); // After widget code, if any  
 	  }
@@ -146,6 +147,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
 		$snapchat = empty($instance['snapchat']) ? '' : esc_url($instance['snapchat']);
 		$goodreads = empty($instance['goodreads']) ? '' : esc_url($instance['goodreads']);
+		$behance = empty($instance['behance']) ? '' : esc_url($instance['behance']);
 		$rss = empty($instance['rss']) ? '' : strip_tags($instance['rss']);
 		
 		$links = get_option('pipdig_links');
@@ -209,6 +211,9 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		}
 		if (empty($goodreads) && isset($links['goodreads'])) {
 			$goodreads = esc_url($links['goodreads']);
+		}
+		if (empty($behance) && isset($links['behance'])) {
+			$behance = esc_url($links['behance']);
 		}
 		/* not on links page yet
 		if (empty($medium)) {
@@ -444,6 +449,14 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		</p>
 		
 		<p>
+			<label for="<?php echo $this->get_field_id('behance'); ?>">Behance (e.g. http://behance.com/pipdig) 
+			<input class="widefat" id="<?php echo $this->get_field_id('behance'); ?>" 
+			name="<?php echo $this->get_field_name('behance'); ?>" type="text" 
+			value="<?php echo esc_url($behance); ?>" />
+			</label>
+		</p>
+		
+		<p>
 			<label for="<?php echo $this->get_field_id('twitch'); ?>">Twitch (e.g. https://twitch.tv/dansgaming) 
 			<input class="widefat" id="<?php echo $this->get_field_id('twitch'); ?>" 
 			name="<?php echo $this->get_field_name('twitch'); ?>" type="text" 
@@ -480,6 +493,7 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$instance['stumbleupon'] = esc_url($new_instance['stumbleupon']);
 		$instance['etsy'] = esc_url($new_instance['etsy']);
 		$instance['goodreads'] = esc_url($new_instance['goodreads']);
+		$instance['behance'] = esc_url($new_instance['behance']);
 		$instance['email'] = sanitize_email($new_instance['email']);
 		$instance['rss'] = strip_tags($new_instance['rss']);
 		

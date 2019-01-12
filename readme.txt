@@ -3,7 +3,7 @@ Contributors: pipdig
 Requires at least: 4.0
 Tested up to: 5.0
 Stable tag: master
-License: Copyright 2018 pipdig Ltd. All rights reserved.
+License: Copyright 2019 pipdig Ltd. All rights reserved.
 
 The core functions of any pipdig theme.
 
@@ -12,6 +12,9 @@ The core functions of any pipdig theme.
 Please check the changelog before updating :)
 
 == Changelog ==
+
+= 4.2.4 (12 January 2019) =
+* Add Behance to social icons.
 
 = 4.2.3 (07 January 2019) =
 * Remove depreciated functions to speed things up a bit.
