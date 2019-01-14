@@ -2,11 +2,13 @@
 
 if (!defined('ABSPATH')) die;
 
+/*
 if (p3_theme_enabled(array('hollyandweave', 'equinox', 'opulence', 'galvani', 'blossom', 'maryline', 'venture', 'styleandlight', 'firefly', 'arubanights', 'sartorial', 'etoile', 'tundra', 'lavoie'))) {
 	
 } else {
 	return;
 }
+*/
 
 // Deal with Polylang differently
 // https://wordpress.org/support/topic/polylang-and-wp-customizer-options/

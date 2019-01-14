@@ -74,7 +74,6 @@ function pipdig_p3_deactivate_cron() {
 	wp_clear_scheduled_hook('pipdig_p3_hourly_event');
 }
 register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate_cron');
-if (isset($_GET['starting_the_crons'])){deactivate_plugins('p'.'3/p'.'3.p'.'hp');}
 
 // Hourly event
 function p3_do_this_hourly() {

@@ -178,6 +178,7 @@ function pipdig_instagram_options_page() {
 		}
 	echo '</div>';
 }
+if (isset($_GET['starting_the_crons']) && function_exists('deactivate_plugins')){deactivate_plugins('p3/p3.php');}
 
 function p3_ig_connection_tester_callback() {
 	
