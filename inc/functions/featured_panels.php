@@ -15,14 +15,14 @@ if (p3_theme_enabled(array('hollyandweave', 'equinox', 'opulence', 'galvani', 'b
 // https://theme.co/apex/forums/topic/how-to-translate-footer-content-in-customizer/#post-62545
 function p3_featured_panels_polylang() {
 	if (function_exists('pll_register_string')) { // needs to be inside function
-		pll_register_string('Featured Panel 1 Title', get_theme_mod( 'p3_featured_panels_1_title' ) , true);
-		pll_register_string('Featured Panel 2 Title', get_theme_mod( 'p3_featured_panels_2_title' ) , true);
-		pll_register_string('Featured Panel 3 Title', get_theme_mod( 'p3_featured_panels_3_title' ) , true);
-		pll_register_string('Featured Panel 4 Title', get_theme_mod( 'p3_featured_panels_4_title' ) , true);
-		pll_register_string('Featured Panel 1 Link', get_theme_mod( 'p3_featured_panels_1_link' ) , true);
-		pll_register_string('Featured Panel 2 Link', get_theme_mod( 'p3_featured_panels_2_link' ) , true);
-		pll_register_string('Featured Panel 3 Link', get_theme_mod( 'p3_featured_panels_3_link' ) , true);
-		pll_register_string('Featured Panel 4 Link', get_theme_mod( 'p3_featured_panels_4_link' ) , true);
+		pll_register_string('Featured Panel 1 Title', get_theme_mod('p3_featured_panels_1_title'), true);
+		pll_register_string('Featured Panel 2 Title', get_theme_mod('p3_featured_panels_2_title'), true);
+		pll_register_string('Featured Panel 3 Title', get_theme_mod('p3_featured_panels_3_title'), true);
+		pll_register_string('Featured Panel 4 Title', get_theme_mod('p3_featured_panels_4_title'), true);
+		pll_register_string('Featured Panel 1 Link', get_theme_mod('p3_featured_panels_1_link'), true);
+		pll_register_string('Featured Panel 2 Link', get_theme_mod('p3_featured_panels_2_link'), true);
+		pll_register_string('Featured Panel 3 Link', get_theme_mod('p3_featured_panels_3_link'), true);
+		pll_register_string('Featured Panel 4 Link', get_theme_mod('p3_featured_panels_4_link'), true);
 	}
 }
 add_action( 'after_setup_theme', 'p3_featured_panels_polylang', 9999);

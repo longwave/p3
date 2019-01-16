@@ -1,6 +1,4 @@
-<?php 
-
-if (!defined('ABSPATH')) die;
+<?php if (!defined('ABSPATH')) die;
 
 /*
 if (function_exists('rwmb_meta')) {
@@ -8,11 +6,6 @@ if (function_exists('rwmb_meta')) {
 }
 */
 
-/*
-if (get_theme_mod('p3_full_width_slider_site_main_enable')) {
-	include('meta/full_width_slider.php');
-}
-*/
-
 include('meta/pages.php');
 include('meta/cats.php');
+include('meta/user.php');

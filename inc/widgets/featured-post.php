@@ -62,6 +62,7 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 				
 			$title = get_the_title($post_id);
 			$link = esc_url(get_permalink($post_id));
+			$excerpt = get_the_excerpt($post_id);
 				
 			$featured_text = '';
 			if (empty($instance['hide_label'])) {
@@ -76,7 +77,7 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 			if (empty($instance['hide_excerpt'])) {
 				$post = get_post($post_id);
 				setup_postdata($post);
-				echo '<p class="p3_featured_post_widget_post_excerpt">'.strip_tags(get_the_excerpt()).'</p>';
+				echo '<p class="p3_featured_post_widget_post_excerpt">'.strip_tags($excerpt).'</p>';
 				wp_reset_postdata();
 			}
 			if (empty($instance['hide_button'])) {

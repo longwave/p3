@@ -261,7 +261,7 @@ function p3_no_pages_search($query) {
 		if ($query->is_search) {
 			$posts = wp_count_posts('product');
 			$posts_count = $posts->publish + $posts->draft;
-			if ($posts_count > 6) {
+			if ($posts_count > 7) {
 				$query->set('post_type', 'product');
 			} else {
 				$query->set('post_type', 'post');
