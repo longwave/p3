@@ -13,6 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 4.2.5 (16 January 2019) =
+* Fix an issue which would show the incorrect excerpt text in the Featured Post widget.
+
 = 4.2.4 (12 January 2019) =
 * Add Behance to social icons.
 
