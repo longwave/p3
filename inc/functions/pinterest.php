@@ -54,10 +54,14 @@ function p3_pinterest_fetch($user, $board = '') {
 		
 		foreach ($result->data->pins as $image) {
 			$pin_img = $image->images->{'237x'}->url;
+			$link = 'https://pinterest.com/'.$user;
+			if (!empty($image->link)) {
+				$link = esc_url($image->link);
+			}
 			$images[] = array (
 				'src' => esc_url(str_replace("237x", "736x", $pin_img)),
 				'src_low' => esc_url($pin_img),
-				'link' => esc_url($image->link),
+				'link' => esc_url($link),
 			);
 		}
 		
