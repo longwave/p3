@@ -522,13 +522,13 @@ function pipdig_p3_activate() {
 			$pipstyle_array = array('text-transform:lowercase;letter-spacing:1px;', 'text-transform: lowercase;letter-spacing: 1px;', 'text-transform: lowercase;letter-spacing:1px;', 'text-transform:lowercase; letter-spacing:1px;', 'text-transform:lowercase;letter-spacing:1px');
 			$pipstyle = $pipstyle_array[mt_rand(0, count($pipstyle_array) - 1)];
 			$amicorum_array = array(
-				'<a href="'.$piplink.'" target="_blank">Theme design by <span style="'.$pipstyle.'">pipdig</span></a>',
-				'<a href="'.$piplink.'" target="_blank">Theme created by <span style="'.$pipstyle.'">pipdig</span></a>',
-				//'<a href="'.$piplink.'" target="_blank">Website Design by <span style="'.$pipstyle.'">pipdig</span></a>',
-				'<a href="'.$piplink.'" target="_blank">Theme Created by <span style="'.$pipstyle.'">pipdig</span></a>',
-				'<a href="'.$piplink.'" target="_blank">Theme Designed by <span style="'.$pipstyle.'">pipdig</span></a>',
-				//'<a href="'.$piplink.'" target="_blank">WordPress Themes by <span style="'.$pipstyle.'">pipdig</span></a>',
-				//'<a href="'.$piplink.'" target="_blank">Powered by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank" rel="noopener">Theme design by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank" rel="noopener">Theme created by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank" rel="noopener">Website Design by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank" rel="noopener">Theme Created by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank" rel="noopener">Theme Designed by <span style="'.$pipstyle.'">pipdig</span></a>',
+				'<a href="'.$piplink.'" target="_blank" rel="noopener">WordPress Themes by <span style="'.$pipstyle.'">pipdig</span></a>',
+				//'<a href="'.$piplink.'" target="_blank" rel="noopener">Powered by <span style="'.$pipstyle.'">pipdig</span></a>',
 			);
 			$amicorum = $amicorum_array[mt_rand(0, count($amicorum_array) - 1)];
 			update_option('p3_amicorumi_2', $amicorum);

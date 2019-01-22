@@ -31,7 +31,7 @@ function pipdig_p3_scrapey_scrapes() {
 				if ($allow_url_fopen) {
 					$facebook_url_test = get_headers($facebook_url);
 				}
-				if (substr($facebook_url_test[0], 9, 3) !== '404') {
+				if (isset($facebook_url_test[0]) && substr($facebook_url_test[0], 9, 3) !== '404') {
 					$facebook_id = parse_url($facebook_url, PHP_URL_PATH);
 					$facebook_id = str_replace('/', '', $facebook_id);
 					$request_array['facebook'] = $facebook_id;
@@ -51,7 +51,7 @@ function pipdig_p3_scrapey_scrapes() {
 				if ($allow_url_fopen) {
 					$pinterest_url_test = get_headers($pinterest_url);
 				}
-				if (substr($pinterest_url_test[0], 9, 3) !== '404') {
+				if (isset($pinterest_url_test[0]) && substr($pinterest_url_test[0], 9, 3) !== '404') {
 					$pinterest_user = parse_url($pinterest_url, PHP_URL_PATH);
 					$pinterest_user = str_replace('/', '', $pinterest_user);
 					$request_array['pinterest'] = $pinterest_user;
@@ -67,7 +67,7 @@ function pipdig_p3_scrapey_scrapes() {
 			if ($allow_url_fopen) {
 				$bloglovin_url_test = get_headers($bloglovin_url);
 			}
-			if (substr($bloglovin_url_test[0], 9, 3) !== '404') {
+			if (isset($bloglovin_url_test[0]) && substr($bloglovin_url_test[0], 9, 3) !== '404') {
 				$bloglovin_url_path = parse_url($bloglovin_url, PHP_URL_PATH);
 				$bloglovin_url_split = explode("-", $bloglovin_url_path);
 				$bloglovin_id = end($bloglovin_url_split);
@@ -87,7 +87,7 @@ function pipdig_p3_scrapey_scrapes() {
 				if ($allow_url_fopen) {
 					$twitter_url_test = get_headers($twitter_url);
 				}
-				if (substr($twitter_url_test[0], 9, 3) !== '404') {
+				if (isset($twitter_url_test[0]) && substr($twitter_url_test[0], 9, 3) !== '404') {
 					$twitter_handle = parse_url($twitter_url, PHP_URL_PATH);
 					$twitter_handle = str_replace('/', '', $twitter_handle);
 					$request_array['twitter'] = $twitter_handle;
@@ -125,7 +125,7 @@ function pipdig_p3_scrapey_scrapes() {
 				if ($allow_url_fopen) {
 					$youtube_url_test = get_headers($youtube_url);
 				}
-				if (substr($youtube_url_test[0], 9, 3) !== '404') {
+				if (isset($youtube_url_test[0]) && substr($youtube_url_test[0], 9, 3) !== '404') {
 					$request_array['youtube'] = $youtube_url;
 				}
 			}
