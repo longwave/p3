@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 4.2.5
+Version: 4.2.6
 Text Domain: p3
 License: Copyright 2018 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define('PIPDIG_P3_V', '4.2.5');
+define('PIPDIG_P3_V', '4.2.6');
 define('PIPDIG_P3_DIR', plugin_dir_path(__FILE__));
 
 function p3_themes_top_link() {
@@ -540,6 +540,7 @@ function pipdig_p3_activate() {
 		if (Jetpack::is_module_active('sharedaddy')) {
 			Jetpack::deactivate_module('sharedaddy');
 		}
+		update_option('jetpack_edit_links_calypso_redirect', 0);
 	}
 
 	if (get_the_title(1) == 'WordPress Resources at SiteGround' || get_the_title(1) == 'Hello world!') {

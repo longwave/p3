@@ -117,13 +117,13 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 		
 		<?php
 		$args = array(
-			'posts_per_page'=> 75,
-			//'fields' => 'ids',
+			'posts_per_page'=> 150,
+			'fields' => 'ids',
 			'post_type' => 'post',
 			'post_status' => 'publish',
 		);
 
-		$posts_array = get_posts($args);
+		$posts_ids = get_posts($args);
 		
 		if (isset($instance['the_post'])) { 
 			$the_post = $instance['the_post'];
@@ -135,8 +135,8 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('the_post'); ?>"><?php _e('Post to feature:', 'p3'); ?></label>
 			<select class="widefat" id="<?php echo $this->get_field_id( 'the_post' ); ?>" name="<?php echo $this->get_field_name( 'the_post' ); ?>">
-				<?php foreach($posts_array as $a_post) { ?>
-					<option value="<?php echo $a_post->ID; ?>" <?php if ( $a_post->ID == $the_post ) echo 'selected="selected"'; ?>><?php echo $a_post->post_title; ?></option>
+				<?php foreach($posts_ids as $post_id) { ?>
+					<option value="<?php echo $post_id; ?>" <?php if ( $post_id == $the_post ) echo 'selected="selected"'; ?>><?php echo strip_tags(get_the_title($post_id)); ?></option>
 				<?php } ?>
 			</select>
 		</p>

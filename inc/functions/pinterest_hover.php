@@ -13,35 +13,35 @@ function p3_pinterest_hover_add_data($content) {
 	} elseif ( ((is_home() || is_archive() || is_search()) && get_theme_mod('p3_pinterest_hover_enable_archives')) ) {
 		$active = true;
 	}
-	
+
 	if ($active) {
 		$link = esc_url(get_the_permalink());
 		$title = rawurldecode(get_the_title());
 		$content = str_replace('<img', '<img data-p3-pin-title="'.$title.'" data-p3-pin-link="'.$link.'"', $content);
 	}
-	
+
 	return $content;
-	
+
 }
 add_filter('the_content','p3_pinterest_hover_add_data');
 
 
 function p3_pinterest_hover() {
-	
+
 	$active = false;
 
-	if ( (is_singular('post') && get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
+	if ( (is_single() && get_theme_mod('p3_pinterest_hover_enable_posts')) ) {
 		$active = true;
 	} elseif ( (is_page() && get_theme_mod('p3_pinterest_hover_enable_page')) ) {
 		$active = true;
 	} elseif ( ((is_home() || is_archive() || is_search()) && get_theme_mod('p3_pinterest_hover_enable_archives')) ) {
 		$active = true;
 	}
-	
+
 	if (!$active) {
 		return;
 	}
-	
+
 	$margin = absint(get_theme_mod('p3_pinterest_hover_margin', 0));
 	$position = esc_attr(get_theme_mod('p3_pinterest_hover_image_position', 'center'));
 	if (empty($position)) {
@@ -67,7 +67,7 @@ function p3_pinterest_hover() {
 	<script>
 	(function($){
 		$.fn.imgPin = function( options ) {
-			
+
 			var defaults = {
 				pinImg : '<?php echo $pin_img; ?>',
 				position: 'center',
@@ -77,23 +77,23 @@ function p3_pinterest_hover() {
 			pinImg = options.pinImg,
 			position = '';
 			this.each(function(){
-				
+
 				// skip image if manually excluded with data-pin-nopin="true"
 				if ($(this).data("pin-nopin") == true) {
 					return true;
 				}
-				
+
 				// skip image if smaller than 350px wide (except on mobiles)
 				if ( ($(this).width() < 350) && (document.documentElement.clientWidth > 769 ) ) {
 					return true;
 				}
-				
+
 				if ($(this).hasClass('p3_invisible')) {
 					var src = $(this).data('p3-pin-img-src');
 				} else {
 					var src = $(this).attr('src');
 				}
-				
+
 				var shareURL = $(this).data('p3-pin-link');
 				// if data attribute not found
 				if (typeof shareURL == 'undefined') {
@@ -108,10 +108,10 @@ function p3_pinterest_hover() {
 				} else if ($(this).hasClass('aligncenter')) {
 					var pin_positon = 'pin_align_center';
 				}
-				
+
 				var img = new Image();
 				img.src = src;
-				
+
 				<?php if (get_theme_mod('p3_pinterest_hover_alt')) { // use alt tags ?>
 					var description = $(this).attr("alt");
 					if (description == null){
@@ -126,7 +126,7 @@ function p3_pinterest_hover() {
 					} else {
 						var description = $(this).data('p3-pin-title');
 					}
-					
+
 					if (description == null){
 						var description = $(this).attr("alt");
 						if (description == null){
@@ -134,7 +134,7 @@ function p3_pinterest_hover() {
 						}
 					}
 				<?php } ?>
-					
+
 				var imgURL = encodeURIComponent(src);
 
 				var link = 'https://www.pinterest.com/pin/create/button/';
@@ -191,15 +191,15 @@ add_action( 'customize_controls_print_styles', 'p3_pinterest_hover_customizer_st
 // customiser
 class pipdig_pinterest_hover_Customize {
 	public static function register ( $wp_customize ) {
-		
-		$wp_customize->add_section( 'pipdig_pinterest_hover', 
+
+		$wp_customize->add_section( 'pipdig_pinterest_hover',
 			array(
 				'title' => __( 'Pinterest Hover Button', 'p3' ),
 				'description'=> 'When you hover your mouse over an image in a post/page, a Pinterest "Pin it" button will appear. You can download some of our custom Pinterest Hover Images on <a href="https://www.dropbox.com/sh/k8myt2vd8lgoz6a/AAD4w2WGe99Nr9wXpJl5T-TQa?dl=0" target="_blank">this page</a>.',
 				'capability' => 'edit_theme_options',
 				//'panel' => 'pipdig_features',
 				'priority' => 64,
-			) 
+			)
 		);
 
 		// show on posts
@@ -216,7 +216,7 @@ class pipdig_pinterest_hover_Customize {
 				'section' => 'pipdig_pinterest_hover',
 			)
 		);
-			
+
 		// show on pages
 		$wp_customize->add_setting('p3_pinterest_hover_enable_pages',
 			array(
@@ -231,7 +231,7 @@ class pipdig_pinterest_hover_Customize {
 				'section' => 'pipdig_pinterest_hover',
 			)
 		);
-		
+
 		// show on archives
 		if (get_option('pipdig_theme') != 'sartorial') {
 			$wp_customize->add_setting('p3_pinterest_hover_enable_archives',
@@ -248,8 +248,8 @@ class pipdig_pinterest_hover_Customize {
 				)
 			);
 		}
-		
-		// display on mobile or desktop+mobile?			
+
+		// display on mobile or desktop+mobile?
 		$wp_customize->add_setting('p3_pinterest_hover_mobile',
 			array(
 				'default' => 2,
@@ -267,9 +267,9 @@ class pipdig_pinterest_hover_Customize {
 				),
 			)
 		);
-		
+
 		$pin_img = get_theme_mod('p3_pinterest_hover_image_file','https://assets.pinterest.com/images/pidgets/pin_it_button.png');
-		
+
 		// Image
 		$wp_customize->add_setting('p3_pinterest_hover_image_file',
 			array(
@@ -288,8 +288,8 @@ class pipdig_pinterest_hover_Customize {
 					 )
 				 )
 		);
-		
-		// Position			
+
+		// Position
 		$wp_customize->add_setting('p3_pinterest_hover_image_position',
 			array(
 				'default' => 'center',
@@ -310,7 +310,7 @@ class pipdig_pinterest_hover_Customize {
 				),
 			)
 		);
-		
+
 		// Image margin top
 		$wp_customize->add_setting( 'p3_pinterest_hover_margin', array(
 			'default' => 0,
@@ -328,7 +328,7 @@ class pipdig_pinterest_hover_Customize {
 				),
 			)
 		);
-			
+
 		// show on posts
 		$wp_customize->add_setting('p3_pinterest_hover_alt',
 			array(
@@ -344,7 +344,7 @@ class pipdig_pinterest_hover_Customize {
 				'section' => 'pipdig_pinterest_hover',
 			)
 		);
-		
+
 		// preix description text
 		$wp_customize->add_setting('p3_pinterest_hover_prefix_text',
 			array(
