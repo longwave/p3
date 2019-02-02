@@ -5,12 +5,12 @@ if (!defined('ABSPATH')) die;
 if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 	class pipdig_widget_subscribe extends WP_Widget {
 	 
-	  public function __construct() {
-		  $widget_ops = array('classname' => 'pipdig_widget_subscribe', 'description' => __('Allow people to subscribe to your blog via email', 'p3') );
-		  parent::__construct('pipdig_widget_subscribe', 'pipdig - ' . __('Email Subscribe', 'p3') . ' (FeedBurner)', $widget_ops);
-	  }
-	  
-	  function widget($args, $instance) {
+	public function __construct() {
+		$widget_ops = array('classname' => 'pipdig_widget_subscribe', 'description' => __('Allow people to subscribe to your blog via email', 'p3') );
+		parent::__construct('pipdig_widget_subscribe', 'pipdig - ' . __('Email Subscribe', 'p3') . ' (FeedBurner)', $widget_ops);
+	}
+	
+	function widget($args, $instance) {
 		// PART 1: Extracting the arguments + getting the values
 		extract($args, EXTR_SKIP);
 		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
@@ -25,14 +25,14 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 
 		// Before widget code, if any
 		echo (isset($before_widget)?$before_widget:'');
-	   
+	 
 		// PART 2: The title and the text output
 		if (!empty($title)) {
 			echo $before_title . $title . $after_title;
 		}
 		
 		if (!empty($feed)) {
-			if (filter_var($feed, FILTER_VALIDATE_URL)) {  // they've entered a flippin url
+			if (filter_var($feed, FILTER_VALIDATE_URL)) {// they've entered a flippin url
 				$feed = parse_url($feed, PHP_URL_PATH);
 				$feed = str_replace('/', '', $feed);
 			}
@@ -56,7 +56,7 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 		} else {
 			echo 'Email Subscribe widget in section "'.$args['name'].'": '.__('Setup not complete. Please check the widget options.', 'p3');
 		}
-		// After widget code, if any  
+		// After widget code, if any
 		echo (isset($after_widget)?$after_widget:'');
 	}
 	 
@@ -72,7 +72,7 @@ if ( !class_exists( 'pipdig_widget_subscribe' ) ) {
 			$show_confirm = $instance['show_confirm'];
 		}
 		
-	   
+	 
 		// PART 2-3: Display the fields
 		?>
 		

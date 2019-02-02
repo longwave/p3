@@ -51,7 +51,6 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 				$img_size = 'large';
 			}
 			
-
 			$img = p3_catch_image($post_id);
 			$image_src = 'src="'.$img.'"';
 			$lazy_class = '';
@@ -63,7 +62,7 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 			$title = get_the_title($post_id);
 			$link = esc_url(get_permalink($post_id));
 			$excerpt = get_the_excerpt($post_id);
-				
+			
 			$featured_text = '';
 			if (empty($instance['hide_label'])) {
 				$featured_text = '<div style="position: absolute; left: 0; top: 15px; background: #fff; color: #000; padding: 2px 5px;">'.__('Featured', 'p3').'</div>';
