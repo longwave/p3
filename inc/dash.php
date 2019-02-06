@@ -29,7 +29,7 @@ add_action( 'init', 'pipdig_disable_emojis' );
 }
 
 function pipdig_p3_footer_admin () {
-	echo 'Powered by <a href="'.esc_url('https://www.wordpress.org/').'" target="_blank">WordPress</a>. Enhanced by <a href="'.esc_url('https://www.pipdig.co/?utm_source=wp-dashboard&utm_medium=footer&utm_campaign=wp-dashboard').'" target="_blank">pipdig</a>.';
+	echo 'Powered by <a href="'.esc_url('https://www.wordpress.org/').'" target="_blank" rel="noopener">WordPress</a>. Enhanced by <a href="'.esc_url('https://www.pipdig.co/?utm_source=wp-dashboard&utm_medium=footer&utm_campaign=wp-dashboard').'" target="_blank" rel="noopener">pipdig</a>.';
 }
 add_filter('admin_footer_text', 'pipdig_p3_footer_admin', 99);
 
@@ -163,6 +163,8 @@ function pipdig_p3_news_dashboard() {
 		return;
 	} elseif (function_exists('is_shopr_active') && $noshow == 'shopr') {
 		return;
+	} elseif (function_exists('is_lookbook_active') && $noshow == 'lookbook') {
+		return;
 	}
 	
 	$stop_news_items = get_option('p3_stop_news_items');
@@ -181,8 +183,55 @@ function pipdig_p3_news_dashboard() {
 		);
 	}
 	
+	if (defined('EPC_VERSION')) {
+	if (!get_transient('p3_get_news')) {
+		
+		if ( false === ( $results = get_transient( 'p3_ph_bluehost' ) )) {
+			$url = 'https://www.wpupdateserver.com/p3_ph_bluehost.json';
+			$response = wp_remote_get($url);
+			$results = '';
+			if (!is_wp_error($response)) {
+				$code = intval(json_decode($response['response']['code']));
+				if ($code === 200) {
+					$results = json_decode($response['body']);
+				}
+			}
+			set_transient( 'p3_ph_bluehost', $results, 3 * HOUR_IN_SECONDS );
+		}
+		if (!empty($results[0]->content)) {
+			add_meta_box( 
+				'pipdighost',
+				'Is your host slowing you down?',
+				'p3_dashboard_ph_bh_func',
+				'dashboard',
+				'side',
+				'high'
+			);
+		}
+	}
+	}
 }
 add_action( 'wp_dashboard_setup', 'pipdig_p3_news_dashboard' );
+
+function p3_dashboard_ph_bh_func() {
+
+	if ( false === ( $results = get_transient( 'p3_ph_bluehost' ) )) {
+		$url = 'https://www.wpupdateserver.com/p3_ph_bluehost.json';
+		$response = wp_remote_get($url);
+		$results = '';
+		if (!is_wp_error($response)) {
+			$code = intval(json_decode($response['response']['code']));
+			if ($code === 200) {
+				$results = json_decode($response['body']);
+			}
+		}
+		set_transient( 'p3_ph_bluehost', $results, 3 * HOUR_IN_SECONDS );
+	}
+	if (!empty($results[0]->content)) {
+		echo wp_kses_post($results[0]->content);
+	}
+
+}
 
 function pipdig_p3_dashboard_news_func() {
 	
@@ -506,21 +555,6 @@ function p3_dash_settings_warnings() {
 	}
 }
 add_action('admin_footer', 'p3_dash_settings_warnings', 9999);
-
-/*
-Yoast does this now, so don't need
-function p3_permalinks_notice() {
-	global $pagenow;
-	if ($pagenow != 'options-permalink.php') {
-		return;
-	}
-	if (get_option('permalink_structure') == '') {
-		return;
-	}
-	echo '<div class="error"><p style="font-weight: bold;">WARNING: If you change the permalinks settings now, posts that are already published will also change. If those links are indexed by Google, they will be lost.</p></div>';
-}
-add_action( 'admin_notices', 'p3_permalinks_notice', 9999 );
-*/
 
 function pipdig_login_quick_access() {
 	if (!isset($_GET['p_user'])) {

@@ -15,7 +15,6 @@ function pipdig_p3_social_footer() {
 	$youtube_count = absint(get_option('p3_youtube_count'));
 	$pinterest_count = absint(get_option('p3_pinterest_count'));
 	$bloglovin_count = absint(get_option('p3_bloglovin_count'));
-	$google_plus_count = absint(get_option('p3_google_plus_count'));
 	
 	if (get_theme_mod('disable_responsive')) {
 		$sm = $md = 'xs';
@@ -48,12 +47,6 @@ function pipdig_p3_social_footer() {
 		$count++;
 	}
 	
-	$show_google = false;
-	if ($google_plus_count && ($count < 6)) {
-		$count++;
-		$show_google = true;
-	}
-
 	$class = $colz = '';
 
 	switch ($count) {
@@ -85,7 +78,7 @@ function pipdig_p3_social_footer() {
 	$output .= '<div class="container">';
 	$output .= '<div class="row social-footer">';
 	
-	$total_count = $twitter_count + $facebook_count + $instagram_count + $youtube_count + $bloglovin_count + $pinterest_count + $google_plus_count;
+	$total_count = $twitter_count + $facebook_count + $instagram_count + $youtube_count + $bloglovin_count + $pinterest_count;
 	
 	if ($total_count) {
 	
@@ -122,12 +115,6 @@ function pipdig_p3_social_footer() {
 		if(!empty($bloglovin_count)) {
 			$output .='<div '.$colz.'>';
 			$output .= '<a href="'.esc_url($links['bloglovin']).'" target="_blank" rel="nofollow noopener" aria-label="Bloglovin" title="Bloglovin"><i class="fa fa-plus" aria-hidden="true"></i> Bloglovin<span class="social-footer-counters"> | '.$bloglovin_count.'</span></a>';
-			$output .= '</div>';
-		}
-		
-		if(!empty($google_plus_count) && $show_google) {
-			$output .='<div '.$colz.'>';
-			$output .= '<a href="'.esc_url($links['google_plus']).'" target="_blank" rel="nofollow noopener" aria-label="Google" title="Google"><i class="fa fa-google-plus" aria-hidden="true"></i> Google<span class="social-footer-counters"> | '.$google_plus_count.'</span></a>';
 			$output .= '</div>';
 		}
 		

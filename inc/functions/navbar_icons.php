@@ -495,6 +495,7 @@ class pipdig_p3_navbar_icons_Customiser {
 		);
 
 		// google plus
+		/*
 		$wp_customize->add_setting('p3_navbar_google_plus',
 			array(
 				'default' => 1,
@@ -508,6 +509,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
+		*/
 		
 		// Behance
 		$wp_customize->add_setting('p3_navbar_behance',

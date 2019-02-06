@@ -60,7 +60,7 @@ function pipdig_links_init() {
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
 	);
-	
+	/*
 	add_settings_field( 
 		'google_plus', 
 		'<i class="fa fa-google-plus" aria-hidden="true"></i>&nbsp;&nbsp;Google Plus', 
@@ -68,7 +68,7 @@ function pipdig_links_init() {
 		'pipdig_links_options_page', 
 		'pipdig_links_options_page_section' 
 	);
-	
+	*/
 	add_settings_field( 
 		'bloglovin', 
 		'<i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Bloglovin&#146;', 
@@ -243,11 +243,12 @@ function p3_facebook_field_render() {
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[facebook]' placeholder='e.g. https://facebook.com/pipdig' value="<?php if (isset($links['facebook'])) { echo $links['facebook']; } ?>"> <?php
 }
-
+/*
 function p3_google_plus_field_render() { 
 	$links = get_option('pipdig_links'); ?>
 	<input class='large-text' type='url' name='pipdig_links[google_plus]' placeholder='e.g. https://plus.google.com/+pipdig' value="<?php if (isset($links['google_plus'])) { echo $links['google_plus']; } ?>"> <?php
 }
+*/
 
 function p3_bloglovin_field_render() { 
 	$links = get_option('pipdig_links'); ?>

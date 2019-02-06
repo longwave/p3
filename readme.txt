@@ -13,6 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 4.3.0 (06 February 2019) =
+* Remove Google+ features due to [service shutdown](https://www.blog.google/technology/safety-security/project-strobe/).
+
 = 4.2.6 (24 January 2019) =
 * Increase available list of posts which can be displayed in the Featured Post widget.
 

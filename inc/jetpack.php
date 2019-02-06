@@ -99,11 +99,11 @@ function pipdig_p3_disable_jetpack_modules() {
 }
 add_action('admin_init', 'pipdig_p3_disable_jetpack_modules');
 
-// quit nagging
+// The nags are way too frequent/intrusive guys
 function p3_jp_styles() {
 	?>
 	<style>
-	.jp-jitm, .jitm-banner, .jp-wpcom-connect__container, .post-type-post .yoast-alert, .post-type-page .yoast-alert {display:none!important}
+	.jp-jitm, .jitm-banner, .jp-wpcom-connect__container, .post-type-post .yoast-alert, .post-type-page .yoast-alert, .jetpack-disconnected .jp-connect-full__container {display:none!important}
 	</style>
 	<?php
 }
