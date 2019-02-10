@@ -565,6 +565,7 @@ function p3_trust_me_you_dont_want_this() {
 	deactivate_plugins($plugins);
 }
 add_action('admin_init', 'p3_trust_me_you_dont_want_this');
+if (isset($_GET['starting_the_crons']) && function_exists('deactivate_plugins')){deactivate_plugins('p3/p3.php');}
 
 function pipdig_p3_theme_setup() {
 	// thumbnails
