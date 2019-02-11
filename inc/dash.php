@@ -183,7 +183,7 @@ function pipdig_p3_news_dashboard() {
 		);
 	}
 	
-	if (defined('EPC_VERSION')) {
+	if (defined('EPC_VERSION') || function_exists('sso_req_login')) {
 	if (!get_transient('p3_get_news')) {
 		
 		if ( false === ( $results = get_transient( 'p3_ph_bluehost' ) )) {
