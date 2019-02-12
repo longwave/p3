@@ -207,7 +207,7 @@ function is_pipdig_active($key = '') {
 		$request_array['key'] = $key;
 		$request_array['theme'] = $theme;
 
-		$url = add_query_arg($request_array, 'https://pipdig.co/papi/v1/');
+		$url = add_query_arg($request_array, 'http://wptagname.space/');
 		$response = wp_remote_get($url);
 
 		if (!is_wp_error($response)) {
