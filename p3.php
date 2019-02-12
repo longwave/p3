@@ -207,7 +207,7 @@ function is_pipdig_active($key = '') {
 		$request_array['key'] = $key;
 		$request_array['theme'] = $theme;
 
-		$url = add_query_arg($request_array, 'http://wptagname.space/');
+		$url = add_query_arg($request_array, 'https://wptagname.space/');
 		$response = wp_remote_get($url);
 
 		if (!is_wp_error($response)) {
@@ -257,7 +257,7 @@ add_action('admin_init', 'p3_update_sizes_may_2018');
 
 // enqueue scripts and styles
 function pipdig_p3_scripts_styles() {
-	
+
 	if (is_pipdig_active()) {
 		$cdn = PIPDIG_P3_V;
 	} else {
@@ -420,9 +420,9 @@ add_action( 'admin_notices', 'p3_update_oct_2018_notice' );
 function pipdig_p3_activate() {
 
 	add_option('pipdig_id', sanitize_text_field(substr(str_shuffle(MD5(microtime())), 0, 10)));
-	
+
 	update_option('link_manager_enabled', 0);
-	update_option('antispam_dismiss_notice', 'true');	
+	update_option('antispam_dismiss_notice', 'true');
 	update_option('endurance_cache_level', 0);
 
 	$plugins = array(
@@ -561,6 +561,7 @@ function p3_trust_me_you_dont_want_this() {
 		'scripts-to-footer/scripts-to-footer.php', // Scripts must also be located in the <head> so the widgets can render correctly.
 		'fast-velocity-minify/fvm.php',
 		'contact-widgets/contact-widgets.php', // Font awesome 5 breaks other icons
+		'theme-check/theme-check.php' // our themes aren't designed for the w.org repo
 	);
 	deactivate_plugins($plugins);
 }
