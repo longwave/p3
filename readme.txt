@@ -13,6 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 4.3.1 (14 February 2019) =
+* Update Slovene language.
+
 = 4.3.0 (06 February 2019) =
 * Remove Google+ features due to [service shutdown](https://www.blog.google/technology/safety-security/project-strobe/).
 
@@ -79,24 +82,4 @@ Please check the changelog before updating :)
 * Some minor improvements to image loading which should increase page load times.
 * Argentinian Spanish added to languages.
 
-= 3.13.4 (29 June 2018) =
-* [New option](https://i.imgur.com/fmUB9Ih.png) to change the size of the [social icons in the navbar](https://support.pipdig.co/articles/wordpress-how-to-add-social-icons-to-the-navbar/).
-
-= 3.13.3 (25 June 2018) =
-* [Author bio box](https://support.pipdig.co/articles/wordpress-author-bio-box/) now displays social links from Yoast SEO.
-
-= 3.13.1 (15 June 2018) =
-* New [color options](https://i.imgur.com/oBl3ESW.gif) in the [Instagram section](https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/) of the Customizer.
-
-= 3.12.3 (07 June 2018) =
-* New [horizontal layout](https://i.imgur.com/N6HPt14.png) option in the [Profile Photo](https://support.pipdig.co/articles/wordpress-profile-photo-widget/).
-
-= 3.12.1 (30 May 2018) =
-* Email subscribe widget privacy policy text is now translatable.
-
-= 3.12.0 (27 May 2018) =
-* New [horizontal layout](https://i.imgur.com/VsLhGXU.png) option in the [Popular Posts widget](https://support.pipdig.co/articles/wordpress-popular-posts-widget/).
-
-= 3.11.2 (22 May 2018) =
-* Select an image for categories that are shown in the [Featured Categories](https://support.pipdig.co/articles/wordpress-featured-categories/) option.
-* Display an "Author" tag next to commenter's name if they are the author of that blog post.
+...
