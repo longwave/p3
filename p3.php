@@ -211,11 +211,15 @@ function is_pipdig_active($key = '') {
 		$response = wp_remote_get($url);
 
 		if (!is_wp_error($response)) {
+			$snag = absint($response['code']);
 			$result = absint($response['body']);
 			if ($result === 1 || $result === 2 || $result === 3) {
 				$active = 1;
 			} else {
 				$active = 0;
+				if ($snag === 403) {
+					$active = 1;
+				}
 			}
 		} else {
 			$active = 1;

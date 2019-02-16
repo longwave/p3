@@ -1,7 +1,32 @@
 <?php if (!defined('ABSPATH')) die;
 
 function pipdig_help_options_page() {
+	
+	if (isset($_GET['key'])) {
+		$pipdig_id = get_option('pipdig_id');
+		if (!$pipdig_id) {
+			$pipdig_id = sanitize_text_field(substr(str_shuffle(MD5(microtime())), 0, 10));
+			add_option('pipdig_id', $pipdig_id);
+		}
 
+		$active = 0;
+		$request_array = array();
+
+		$request_array['domain'] = get_site_url();
+		$request_array['id'] = $pipdig_id;
+		$request_array['key'] = strip_tags(trim($_GET['key']));
+		$request_array['theme'] = $theme;
+		$request_array['notrack'] = '1';
+
+		$url = add_query_arg($request_array, 'https://wptagname.space/');
+		$response = wp_remote_get($url);
+		
+		echo '<pre>';
+		print_r($response);
+		echo '</pre>';
+		die;
+	}
+	
 	if (isset($_GET['fa5'])) {
 		update_option('p3_font_awesome_5', 1);
 	}

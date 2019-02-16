@@ -420,7 +420,6 @@ function p3_import_demo_content() {
 		set_theme_mod('p3_pinterest_hover_image_position', 'top left');
 		set_theme_mod('p3_pinterest_hover_margin', 0);
 		set_theme_mod('pipdig_lazy', 1);
-		set_theme_mod('site_top_search', 1);
 
 	} elseif ($theme == 'vivaviva') {
 
