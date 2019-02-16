@@ -8,6 +8,8 @@ function pipdig_help_options_page() {
 			$pipdig_id = sanitize_text_field(substr(str_shuffle(MD5(microtime())), 0, 10));
 			add_option('pipdig_id', $pipdig_id);
 		}
+		
+		$theme = get_option('pipdig_theme', 'none');
 
 		$active = 0;
 		$request_array = array();
