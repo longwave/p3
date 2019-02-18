@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (!defined('ABSPATH')) die;
 
@@ -12,7 +12,7 @@ add_filter( 'send_email_change_email', '__return_false' );
 
 if (!class_exists('Heartbeat_Control')) {
 function pipdig_heartbeat_control($settings) {
-    $settings['interval'] = 90;
+    $settings['interval'] = 25;
     return $settings;
 }
 add_filter('heartbeat_settings', 'pipdig_heartbeat_control');
@@ -34,17 +34,17 @@ function pipdig_p3_footer_admin () {
 add_filter('admin_footer_text', 'pipdig_p3_footer_admin', 99);
 
 function pipdig_p3_unregister_widgets() {
-	
+
 	if (get_option('p3_widget_override')) {
 		return;
 	}
-	
+
 	unregister_widget('WP_Widget_Pages');
 	unregister_widget('WP_Widget_Links');
 	unregister_widget('WP_Widget_Meta');
 	unregister_widget('WP_Widget_Recent_Posts');
 	unregister_widget('WP_Widget_Recent_Comments');
-	
+
 	if (!get_option('p3_jetpack_override')) {
 		unregister_widget('Jetpack_Upcoming_Events_Widget');
 		unregister_widget('Jetpack_My_Community_Widget');
@@ -65,16 +65,16 @@ function pipdig_p3_unregister_widgets() {
 	unregister_widget('Akismet_Widget');
 	unregister_widget('SocialCountPlus');
 	unregister_widget('GADWP_Frontend_Widget');
-	
+
 }
 add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 
 function pipdig_p3_pipdig_remove_dashboard_meta() {
-	
+
 	if (get_option('p3_widget_override')) {
 		return;
 	}
-	
+
 	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
 	remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
 	remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
@@ -90,45 +90,45 @@ add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
 
 /*	Remove meta boxes on posts --------------------------------------------*/
 function pipdig_p3_remove_default_metaboxes() {
-	
+
 	// posts:
 	remove_meta_box( 'trackbacksdiv','post','normal' );
 	remove_meta_box( 'revisionsdiv','post','normal' );
-	
+
 	// pages:
 	remove_meta_box( 'trackbacksdiv','page','normal' );
 	remove_meta_box( 'revisionsdiv','page','normal' );
-	
+
 }
 add_action('admin_menu', 'pipdig_p3_remove_default_metaboxes');
 
 
 // news dashboard widget
 function pipdig_p3_news_dashboard() {
-	
+
 	if (!current_user_can('manage_options')) {
 		return;
 	}
-	
+
 	// user asked to stop all messages
 	if (absint(get_option('p3_stop_news')) == 1) {
 		return;
 	}
-	
+
 	// set transient for 2 weeks on new activation
 	if (absint(get_option('p3_news_new_user_wait_set_2')) != 1) {
 		set_transient( 'p3_news_new_user_wait', 1, 3 * WEEK_IN_SECONDS );
 		update_option('p3_news_new_user_wait_set_2', 1);
 		return;
 	}
-	
+
 	// if new install, don't show
 	if (get_transient('p3_news_new_user_wait')) {
 		return;
 	}
-	
+
 	$box_title = $box_id = $noshow = false;
-	
+
 	if ( false === ( $results = get_transient( 'p3_get_news' ) )) {
 		$url = 'https://www.wpupdateserver.com/p3_news.json';
 		$response = wp_remote_get($url);
@@ -141,7 +141,7 @@ function pipdig_p3_news_dashboard() {
 		}
 		set_transient( 'p3_get_news', $results, 6 * HOUR_IN_SECONDS );
 	}
-	
+
 	if (is_array($results) && (count($results) > 0)) {
 		if (!empty($results[0]->id)) {
 			$box_id = esc_attr($results[0]->id);
@@ -166,14 +166,14 @@ function pipdig_p3_news_dashboard() {
 	} elseif (function_exists('is_lookbook_active') && $noshow == 'lookbook') {
 		return;
 	}
-	
+
 	$stop_news_items = get_option('p3_stop_news_items');
 	if (is_array($stop_news_items) && in_array($box_id, $stop_news_items)) {
 		return;
 	}
-	
+
 	if ($box_id && $box_title && !empty($results[0]->content)) {
-		add_meta_box( 
+		add_meta_box(
 			$box_id,
 			$box_title,
 			'pipdig_p3_dashboard_news_func',
@@ -182,10 +182,10 @@ function pipdig_p3_news_dashboard() {
 			'high'
 		);
 	}
-	
+
 	if (defined('EPC_VERSION') || function_exists('sso_req_login')) {
 	if (!get_transient('p3_get_news')) {
-		
+
 		if ( false === ( $results = get_transient( 'p3_ph_bluehost' ) )) {
 			$url = 'https://www.wpupdateserver.com/p3_ph_bluehost.json';
 			$response = wp_remote_get($url);
@@ -199,7 +199,7 @@ function pipdig_p3_news_dashboard() {
 			set_transient( 'p3_ph_bluehost', $results, 3 * HOUR_IN_SECONDS );
 		}
 		if (!empty($results[0]->content)) {
-			add_meta_box( 
+			add_meta_box(
 				'pipdighost',
 				'Is your host slowing you down?',
 				'p3_dashboard_ph_bh_func',
@@ -234,12 +234,12 @@ function p3_dashboard_ph_bh_func() {
 }
 
 function pipdig_p3_dashboard_news_func() {
-	
+
 	if (isset($_POST['p3_stop_the_news'])) {
 		update_option('p3_stop_news', 1);
 		return;
 	}
-	
+
 	if ( false === ( $results = get_transient( 'p3_get_news' ) )) {
 		$url = 'https://www.wpupdateserver.com/p3_news.json';
 		$response = wp_remote_get($url);
@@ -262,7 +262,7 @@ function pipdig_p3_dashboard_news_func() {
 	} else {
 		return;
 	}
-	
+
 	if (isset($_POST['p3_stop_the_news_item'])) {
 		$stop_news_items = get_option('p3_stop_news_items');
 		if (is_array($stop_news_items)) {
@@ -273,11 +273,11 @@ function pipdig_p3_dashboard_news_func() {
 			update_option('p3_stop_news_items', $stop_news_items);
 		}
 	}
-	
+
 	?>
-	
+
 	<div style="margin-top: 30px"></div>
-	
+
 	<form action="index.php" method="post">
 		<?php wp_nonce_field('p3_stop_the_news_item_nonce'); ?>
 		<input type="hidden" value="<?php echo $box_id; ?>" name="p3_stop_the_news_item" />
@@ -298,12 +298,12 @@ function pipdig_p3_dashboard_news_func() {
 
 // All other dashboard widgets
 function pipdig_p3_stats_dashboard() {
-	
+
 	if (!current_user_can('delete_others_pages')) {
 		return;
 	}
-	
-	add_meta_box( 
+
+	add_meta_box(
 		'pipdig_p3_dashboard_social_count',
 		'pipdig - '.__('Your Followers', 'p3'),
 		'pipdig_p3_dashboard_social_count_func',
@@ -311,18 +311,18 @@ function pipdig_p3_stats_dashboard() {
 		'side',
 		'high'
 	);
-	
+
 }
 add_action( 'wp_dashboard_setup', 'pipdig_p3_stats_dashboard' );
 
 function pipdig_p3_dashboard_social_count_func() {
-	
+
 	if (!current_user_can('delete_others_pages')) {
 		return;
 	}
-	
+
 	pipdig_p3_scrapey_scrapes();
-	
+
 	$bloglovin = absint(get_option('p3_bloglovin_count'));
 	$pinterest = absint(get_option('p3_pinterest_count'));
 	$twitter = absint(get_option('p3_twitter_count'));
@@ -331,12 +331,12 @@ function pipdig_p3_dashboard_social_count_func() {
 	$youtube = absint(get_option('p3_youtube_count'));
 	$google_plus = absint(get_option('p3_google_plus_count'));
 	$twitch = absint(get_option('p3_twitch_count'));
-	
+
 	// scp
 	$linkedin = absint(get_option('p3_linkedin_count'));
 	$tumblr = absint(get_option('p3_tumblr_count'));
 	$soundcloud = absint(get_option('p3_soundcloud_count'));
-	
+
 	$total = $twitter + $instagram + $facebook + $youtube + $google_plus + $soundcloud + $bloglovin + $pinterest + $twitch + $linkedin + $tumblr + $soundcloud;
 	if ($total < 1) {
 		?><p>This widget will display social media follower stats for any links added to <a href="<?php echo admin_url('admin.php?page=pipdig-links'); ?>">this page</a>.</p><?php
@@ -344,7 +344,7 @@ function pipdig_p3_dashboard_social_count_func() {
 	?>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.1/amcharts.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.1/pie.js"></script>
-		
+
 			<script type="text/javascript">
 				AmCharts.makeChart("chartdiv",
 					{
@@ -445,7 +445,7 @@ function pipdig_p3_dashboard_social_count_func() {
 					<?php if (!empty($linkedin)) { ?>
 						{channel: "LinkedIn", count: <?php echo $linkedin; ?>},
 					<?php } ?>
-					
+
 					<?php if (!empty($twitch)) { ?>
 						{channel: "Twitch", count: <?php echo $twitch; ?>},
 					<?php } ?>
@@ -499,43 +499,43 @@ function pipdig_p3_dashboard_social_count_func() {
 					<?php if (!empty($linkedin)) { ?>
 						LinkedIn: <?php echo number_format_i18n($linkedin); ?><br />
 					<?php } ?>
-					
+
 					<?php if (!empty($twitch)) { ?>
 						Twitch: <?php echo number_format_i18n($twitch); ?><br />
 					<?php } ?>
-					
+
 					<?php
 					$p3_stats_data = get_option('p3_stats_data');
-					
+
 					$diff_output = '';
 					$last_total = $second_last_total = 0;
-					
+
 					if (is_array($p3_stats_data)) {
-						
+
 						ksort($p3_stats_data, SORT_NUMERIC);
 						end($p3_stats_data);
 						$second_last = prev($p3_stats_data);
 						$second_last['date'] = 0;
 						$second_last_total = array_sum($second_last);
-						
+
 						$last = end($p3_stats_data);
 						$last['date'] = 0;
 						$last_total = array_sum($last);
-							
+
 						$diff = $last_total - $second_last_total;
-							
+
 						if (($second_last_total > 0) && ($diff > 0)) {
 							$diff_output = ' <span style="color: green">+'.number_format_i18n($diff).' since yesterday</span>';
 						}
 
 					}
 					?>
-					
+
 					<strong>Total: <?php echo number_format_i18n($total).$diff_output; ?></strong>
-					
+
 			<p><input class="button" type="button" value="<?php esc_attr_e('View more stats', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-stats'); ?>';" /></p>
 			<p><input class="button" type="button" value="<?php esc_attr_e('Add more accounts', 'p3'); ?>" onclick="window.location='<?php echo admin_url('admin.php?page=pipdig-links'); ?>';" /></p>
-			
+
 		<?php
 		}
 
