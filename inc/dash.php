@@ -70,7 +70,15 @@ function pipdig_p3_unregister_widgets() {
 add_action('widgets_init', 'pipdig_p3_unregister_widgets', 11);
 
 function pipdig_p3_pipdig_remove_dashboard_meta() {
-
+	
+	if (is_pipdig_active()) {
+		$cdn = PIPDIG_P3_V;
+	} else {
+		$cdn = '300_'.esc_attr(get_option('pipdig_id', PIPDIG_P3_V));
+	}
+	
+	update_option('pipdig_cdn', $cdn);
+	
 	if (get_option('p3_widget_override')) {
 		return;
 	}
