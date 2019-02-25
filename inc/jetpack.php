@@ -98,13 +98,3 @@ function pipdig_p3_disable_jetpack_modules() {
 	
 }
 add_action('admin_init', 'pipdig_p3_disable_jetpack_modules');
-
-// Clean up
-function p3_jp_styles() {
-	?>
-	<style>
-	.jp-jitm, .jitm-banner, .jp-wpcom-connect__container, .post-type-post .yoast-alert, .post-type-page .yoast-alert, .plugins-php.jetpack-disconnected .jp-connect-full__container, .litespeed-banner-promo-full, #jetpack_summary_widget footer, #jetpack_summary_widget .stats-view-all {display:none!important}
-	</style>
-	<?php
-}
-add_action('admin_head', 'p3_jp_styles', 9999);

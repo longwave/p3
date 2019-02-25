@@ -13,6 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 4.4.4 (25 February 2019) =
+* Add Instagram field to user profiles - [https://i.imgur.com/aVbAk1w.png](https://i.imgur.com/aVbAk1w.png)
+
 = 4.3.1 (14 February 2019) =
 * Update Slovene language.
 

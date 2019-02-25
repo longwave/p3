@@ -25,6 +25,7 @@ function p3_author_bio() {
 		<?php
 		$twitter = trim(get_the_author_meta('twitter'));
 		$facebook = trim(get_the_author_meta('facebook'));
+		$instagram = trim(get_the_author_meta('instagram'));
 		$user_url = esc_url(get_the_author_meta('user_url'));
 		$socialz = array();
 		if ($user_url) {
@@ -32,6 +33,9 @@ function p3_author_bio() {
 		}
 		if ($twitter) {
 			$socialz[] = '<a href="'.esc_url('https://twitter.com/'.$twitter).'" rel="nofollow noopener" target="_blank" class="p3_author_bio_twitter">Twitter</a>';
+		}
+		if ($instagram) {
+			$socialz[] = '<a href="'.esc_url('https://www.instagram.com/'.$instagram).'" rel="nofollow noopener" target="_blank" class="p3_author_bio_instagram">Instagram</a>';
 		}
 		if ($facebook) {
 			$socialz[] = '<a href="'.esc_url($facebook).'" rel="nofollow noopener" target="_blank" class="p3_author_bio_facebook">Facebook</a>';

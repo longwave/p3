@@ -33,6 +33,15 @@ function pipdig_p3_footer_admin () {
 }
 add_filter('admin_footer_text', 'pipdig_p3_footer_admin', 99);
 
+function p3_admin_head() {
+	?>
+	<style>
+	.jp-jitm, .jitm-banner, .jp-wpcom-connect__container, .post-type-post .yoast-alert, .post-type-page .yoast-alert, .plugins-php.jetpack-disconnected .jp-connect-full__container, .litespeed-banner-promo-full, #jetpack_summary_widget footer, #jetpack_summary_widget .stats-view-all, #widgets-left .widget-title-action, #all-404-redirect-to-homepage-upgradeMsg {display:none!important}
+	</style>
+	<?php
+}
+add_action('admin_head', 'p3_admin_head', 9999);
+
 function pipdig_p3_unregister_widgets() {
 
 	if (get_option('p3_widget_override')) {
