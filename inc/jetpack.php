@@ -19,13 +19,7 @@ add_action('wp_enqueue_scripts', 'p3_dequeue_devicepx');
 
 
 function p3_add_link_to_jp_modules() {
-    add_submenu_page(
-        'jetpack',
-        'Modules',
-        'Modules',
-        'manage_options',
-        'p3_jp_mods',
-        'p3_add_link_to_jp_modules_content');
+	add_submenu_page('jetpack', 'Modules', 'Modules', 'manage_options', 'p3_jp_mods', 'p3_add_link_to_jp_modules_content');
 }
 add_action('admin_menu', 'p3_add_link_to_jp_modules', 9999999);
 
@@ -41,21 +35,20 @@ function pipdig_p3_hide_jetpack_modules($modules, $min_version, $max_version) {
 	if (!class_exists('Jetpack')) {
 		return;
 	}
-	$jp_mods_to_disable = array(
-	'custom-css',
-	'post-by-email',
-	'minileven',
-	'latex',
-	'gravatar-hovercards',
-	'search',
-	'seo-tools',
-	'omnisearch',
-	//'photon',
-	'markdown',
-	'related-posts',
-	//'lazy-images',
+	$mods = array(
+		'custom-css',
+		'post-by-email',
+		'minileven',
+		'latex',
+		'gravatar-hovercards',
+		'search',
+		'seo-tools',
+		'omnisearch',
+		//'photon',
+		'markdown',
+		'related-posts',
 	);
-	foreach ($jp_mods_to_disable as $mod) {
+	foreach ($mods as $mod) {
 		if (isset($modules[$mod])) {
 			unset($modules[$mod]);
 		}

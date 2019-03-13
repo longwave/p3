@@ -3,12 +3,12 @@
 if (!defined('ABSPATH')) die;
 
 // https://make.wordpress.org/core/2018/01/17/auto-formatting-of-author-bios-reverted-in-4-9-2/
-add_filter( 'get_the_author_description', 'wptexturize' );
-add_filter( 'get_the_author_description', 'convert_chars' );
-add_filter( 'get_the_author_description', 'wpautop' );
-add_filter( 'get_the_author_description', 'shortcode_unautop' );
+add_filter('get_the_author_description', 'wptexturize');
+add_filter('get_the_author_description', 'convert_chars');
+add_filter('get_the_author_description', 'wpautop');
+add_filter('get_the_author_description', 'shortcode_unautop');
 
-add_filter( 'send_email_change_email', '__return_false' );
+add_filter('send_email_change_email', '__return_false');
 
 if (!class_exists('Heartbeat_Control')) {
 function pipdig_heartbeat_control($settings) {
@@ -20,12 +20,12 @@ add_filter('heartbeat_settings', 'pipdig_heartbeat_control');
 
 if (!function_exists('disable_emojis') && get_option('p3_emoji_override') != 1) {
 function pipdig_disable_emojis() {
-	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-	remove_action( 'wp_print_styles', 'print_emoji_styles' );
-	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	remove_action('wp_head', 'print_emoji_detection_script', 7);
+	remove_action('admin_print_scripts', 'print_emoji_detection_script');
+	remove_action('wp_print_styles', 'print_emoji_styles');
+	remove_action('admin_print_styles', 'print_emoji_styles');
 }
-add_action( 'init', 'pipdig_disable_emojis' );
+add_action('init', 'pipdig_disable_emojis');
 }
 
 function pipdig_p3_footer_admin () {
@@ -33,14 +33,16 @@ function pipdig_p3_footer_admin () {
 }
 add_filter('admin_footer_text', 'pipdig_p3_footer_admin', 99);
 
+if (!function_exists('pipdighost_admin_head')) {
 function p3_admin_head() {
 	?>
 	<style>
-	.jp-jitm, .jitm-banner, .jp-wpcom-connect__container, .post-type-post .yoast-alert, .post-type-page .yoast-alert, .plugins-php.jetpack-disconnected .jp-connect-full__container, .litespeed-banner-promo-full, #jetpack_summary_widget footer, #jetpack_summary_widget .stats-view-all, #widgets-left .widget-title-action, #all-404-redirect-to-homepage-upgradeMsg {display:none!important}
+	.jp-jitm, .jitm-banner, .jp-wpcom-connect__container, .post-type-post .yoast-alert, .post-type-page .yoast-alert, .plugins-php.jetpack-disconnected .jp-connect-full__container, .litespeed-banner-promo-full, #jetpack_summary_widget footer, #jetpack_summary_widget .stats-view-all, #widgets-left .widget-title-action, #all-404-redirect-to-homepage-upgradeMsg, .plugin-card-jetpack-plugin-search {display:none!important}
 	</style>
 	<?php
 }
 add_action('admin_head', 'p3_admin_head', 9999);
+}
 
 function pipdig_p3_unregister_widgets() {
 
@@ -92,29 +94,29 @@ function pipdig_p3_pipdig_remove_dashboard_meta() {
 		return;
 	}
 
-	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
-	remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
-	remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
-	remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
-	remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
-	remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
-	remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
-	//remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'normal' );
-	//remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+	remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal');
+	remove_meta_box('dashboard_plugins', 'dashboard', 'normal');
+	remove_meta_box('dashboard_primary', 'dashboard', 'side');
+	remove_meta_box('dashboard_secondary', 'dashboard', 'normal');
+	remove_meta_box('dashboard_quick_press', 'dashboard', 'side');
+	remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side');
+	remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal');
+	//remove_meta_box('wpseo-dashboard-overview', 'dashboard', 'normal');
+	//remove_meta_box('dashboard_right_now', 'dashboard', 'normal');
 }
-add_action( 'admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta' );
+add_action('admin_init', 'pipdig_p3_pipdig_remove_dashboard_meta');
 
 
 /*	Remove meta boxes on posts --------------------------------------------*/
 function pipdig_p3_remove_default_metaboxes() {
 
 	// posts:
-	remove_meta_box( 'trackbacksdiv','post','normal' );
-	remove_meta_box( 'revisionsdiv','post','normal' );
+	remove_meta_box('trackbacksdiv','post','normal');
+	remove_meta_box('revisionsdiv','post','normal');
 
 	// pages:
-	remove_meta_box( 'trackbacksdiv','page','normal' );
-	remove_meta_box( 'revisionsdiv','page','normal' );
+	remove_meta_box('trackbacksdiv','page','normal');
+	remove_meta_box('revisionsdiv','page','normal');
 
 }
 add_action('admin_menu', 'pipdig_p3_remove_default_metaboxes');
@@ -134,7 +136,7 @@ function pipdig_p3_news_dashboard() {
 
 	// set transient for 2 weeks on new activation
 	if (absint(get_option('p3_news_new_user_wait_set_2')) != 1) {
-		set_transient( 'p3_news_new_user_wait', 1, 3 * WEEK_IN_SECONDS );
+		set_transient('p3_news_new_user_wait', 1, 3 * WEEK_IN_SECONDS);
 		update_option('p3_news_new_user_wait_set_2', 1);
 		return;
 	}
@@ -146,7 +148,7 @@ function pipdig_p3_news_dashboard() {
 
 	$box_title = $box_id = $noshow = false;
 
-	if ( false === ( $results = get_transient( 'p3_get_news' ) )) {
+	if (false === ($results = get_transient('p3_get_news'))) {
 		$url = 'https://www.wpupdateserver.com/p3_news.json';
 		$response = wp_remote_get($url);
 		$results = '';
@@ -156,7 +158,7 @@ function pipdig_p3_news_dashboard() {
 				$results = json_decode($response['body']);
 			}
 		}
-		set_transient( 'p3_get_news', $results, 6 * HOUR_IN_SECONDS );
+		set_transient('p3_get_news', $results, 6 * HOUR_IN_SECONDS);
 	}
 
 	if (is_array($results) && (count($results) > 0)) {
@@ -203,7 +205,7 @@ function pipdig_p3_news_dashboard() {
 	if (defined('EPC_VERSION') || function_exists('sso_req_login')) {
 	if (!get_transient('p3_get_news')) {
 
-		if ( false === ( $results = get_transient( 'p3_ph_bluehost' ) )) {
+		if (false === ($results = get_transient('p3_ph_bluehost'))) {
 			$url = 'https://www.wpupdateserver.com/p3_ph_bluehost.json';
 			$response = wp_remote_get($url);
 			$results = '';
@@ -213,7 +215,7 @@ function pipdig_p3_news_dashboard() {
 					$results = json_decode($response['body']);
 				}
 			}
-			set_transient( 'p3_ph_bluehost', $results, 3 * HOUR_IN_SECONDS );
+			set_transient('p3_ph_bluehost', $results, 3 * HOUR_IN_SECONDS);
 		}
 		if (!empty($results[0]->content)) {
 			add_meta_box(
@@ -228,11 +230,11 @@ function pipdig_p3_news_dashboard() {
 	}
 	}
 }
-add_action( 'wp_dashboard_setup', 'pipdig_p3_news_dashboard' );
+add_action('wp_dashboard_setup', 'pipdig_p3_news_dashboard');
 
 function p3_dashboard_ph_bh_func() {
 
-	if ( false === ( $results = get_transient( 'p3_ph_bluehost' ) )) {
+	if (false === ($results = get_transient('p3_ph_bluehost'))) {
 		$url = 'https://www.wpupdateserver.com/p3_ph_bluehost.json';
 		$response = wp_remote_get($url);
 		$results = '';
@@ -242,7 +244,7 @@ function p3_dashboard_ph_bh_func() {
 				$results = json_decode($response['body']);
 			}
 		}
-		set_transient( 'p3_ph_bluehost', $results, 3 * HOUR_IN_SECONDS );
+		set_transient('p3_ph_bluehost', $results, 3 * HOUR_IN_SECONDS);
 	}
 	if (!empty($results[0]->content)) {
 		echo wp_kses_post($results[0]->content);
@@ -257,7 +259,7 @@ function pipdig_p3_dashboard_news_func() {
 		return;
 	}
 
-	if ( false === ( $results = get_transient( 'p3_get_news' ) )) {
+	if (false === ($results = get_transient('p3_get_news'))) {
 		$url = 'https://www.wpupdateserver.com/p3_news.json';
 		$response = wp_remote_get($url);
 		$results = '';
@@ -267,7 +269,7 @@ function pipdig_p3_dashboard_news_func() {
 				$results = json_decode($response['body']);
 			}
 		}
-		set_transient( 'p3_get_news', $results, 6 * HOUR_IN_SECONDS );
+		set_transient('p3_get_news', $results, 6 * HOUR_IN_SECONDS);
 	}
 	if (!empty($results[0]->content)) {
 		echo wp_kses_post($results[0]->content);
@@ -330,7 +332,7 @@ function pipdig_p3_stats_dashboard() {
 	);
 
 }
-add_action( 'wp_dashboard_setup', 'pipdig_p3_stats_dashboard' );
+add_action('wp_dashboard_setup', 'pipdig_p3_stats_dashboard');
 
 function pipdig_p3_dashboard_social_count_func() {
 
@@ -559,6 +561,11 @@ function pipdig_p3_dashboard_social_count_func() {
 }
 
 function p3_dash_settings_warnings() {
+	
+	if (function_exists('pipdighost_admin_footer')) {
+		return;
+	}
+	
 	global $pagenow;
 	if ($pagenow == 'options-general.php') {
 		?>

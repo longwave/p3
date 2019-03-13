@@ -67,6 +67,9 @@ function pipdig_instagram_section_callback() {
 function pipdig_instagram_options_page() { 
 	?>
 	<div class="wrap">
+	
+	<h1 class="wp-heading-inline">Instagram Settings</h1>
+	
 	<style scoped>
 	.form-table th {
 		width: 110px;
@@ -92,9 +95,8 @@ function pipdig_instagram_options_page() {
 		color: green;
 	}
 	</style>
+	
 	<form action='options.php' method='post'>
-		
-		<h1>Instagram Settings</h1>
 		
 		<div class="card">
 		

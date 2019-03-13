@@ -24,8 +24,8 @@ function p3_schema_publisher() {
 	
 	$body = sanitize_text_field(get_the_excerpt());
 	
-	if (get_post_meta(get_the_ID(), '_yoast_wpseo_opengraph-description', true)) {
-		$excerpt = esc_attr(get_post_meta(get_the_ID(), '_yoast_wpseo_opengraph-description', true));
+	if (get_post_meta(get_the_ID(), '_yoast_wpseo_metadesc', true)) {
+		$excerpt = esc_attr(get_post_meta(get_the_ID(), '_yoast_wpseo_metadesc', true));
 	} else {
 		$excerpt = $body;
 	}

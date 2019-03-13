@@ -368,21 +368,30 @@ function pipdig_links_section_callback() {
 
 function pipdig_links_options_page() { 
 	?>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<style scoped>
-	.form-table th {width: 120px;}
-	</style>
-	<form action='options.php' method='post'>
+	
+	<div class="wrap">
+	
+		<h1 class="wp-heading-inline">Social Media Links</h1>
+	
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style scoped>
+		.form-table th {width: 120px;}
+		</style>
+		<form action='options.php' method='post'>
 			
-		<h1>Social Media Links</h1>
+			<div class="card" style="width: 700px; max-width: 100%;">
 			
-		<?php
-		settings_fields('pipdig_links_options_page');
-		do_settings_sections('pipdig_links_options_page');
-		submit_button();
-		?>
-		<p><a href="https://support.pipdig.co/articles/wordpress-advanced-social-stats/" target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true" aria-hidden="true"></i></a> <?php printf(__('If you find that certain social network counters are not working correctly, please see <a href="%s" target="_blank">this guide</a> for a possible solution.', 'p3'), esc_url('https://support.pipdig.co/articles/wordpress-advanced-social-stats/')); ?></p>
-	</form>
+				<?php
+				settings_fields('pipdig_links_options_page');
+				do_settings_sections('pipdig_links_options_page');
+				submit_button();
+				?>
+				<!-- <p><a href="https://support.pipdig.co/articles/wordpress-advanced-social-stats/" target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true" aria-hidden="true"></i></a> <?php printf(__('If you find that certain social network counters are not working correctly, please see <a href="%s" target="_blank">this guide</a> for a possible solution.', 'p3'), esc_url('https://support.pipdig.co/articles/wordpress-advanced-social-stats/')); ?></p> -->
+			
+			</div><!--// .card -->
+			
+		</form>
+	</div><!--// .wrap -->
 	<?php
 }
 

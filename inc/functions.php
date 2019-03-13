@@ -44,17 +44,6 @@ function p3_theme_enabled($enabled_themes) {
 	return 0;
 }
 
-// WP < 4.4.0 - remove this at end of 2018
-if (!function_exists('get_the_post_thumbnail_url')) {
-function get_the_post_thumbnail_url( $post = null, $size = 'post-thumbnail' ) {
-    $post_thumbnail_id = get_post_thumbnail_id( $post );
-    if ( ! $post_thumbnail_id ) {
-        return false;
-    }
-    return wp_get_attachment_image_url( $post_thumbnail_id, $size );
-}
-}
-
 // grab YT video thumbnail
 function p3_get_youtube_video_thumb($post_id) {
     $post = get_post($post_id);

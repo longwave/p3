@@ -115,8 +115,12 @@ class pipdig_widget_featured_post_function extends WP_Widget {
 		</p>
 		
 		<?php
+		$limit = 150;
+		if (defined('JETPACK_IP_ADDRESS_OK')) {
+			$limit = 250;
+		}
 		$args = array(
-			'posts_per_page'=> 150,
+			'posts_per_page'=> $limit,
 			'fields' => 'ids',
 			'post_type' => 'post',
 			'post_status' => 'publish',
