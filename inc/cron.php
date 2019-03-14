@@ -15,18 +15,16 @@ function p3_do_this_daily() {
 
 	delete_transient('pipdig_fonts');
 	
-	update_option('antispam_dismiss_notice', 'true');
-
+	if (!function_exists('pipdighost_admin_footer')) {
+		return;
+	}
+	
 	$instagram_deets = get_option('pipdig_instagram');
 	if (!empty($instagram_deets['user_id'])) {
 		$instagram_user = sanitize_text_field($instagram_deets['user_id']);
 		delete_transient('p3_instagram_feed_'.$instagram_user);
 	}
 
-	delete_option('p3_auto_updates_on');
-	delete_option('p3_demo_imported');
-	delete_option('p3_demo_imported_override');
-	
 	$args = array('timeout' => 5);
 	
 	if (!get_option('p3_check_linkded')) {
