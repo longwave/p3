@@ -198,7 +198,7 @@ function is_pipdig_active($key = '') {
 		$init = wp_remote_get($url, $args);
 		$version = absint(wp_remote_retrieve_response_code($init));
 		if ($version === 200) {
-			$result = wp_remote_retrieve_body($init);
+			$result = absint(wp_remote_retrieve_body($init));
 			if ($result === 1 || $result === 2 || $result === 3) {
 				$active = 1;
 			} else {
@@ -207,7 +207,7 @@ function is_pipdig_active($key = '') {
 		} else {
 			$active = 1;
 		}
-		
+
 		if ($active) {
 			set_transient('pipdig_active', $active, 7 * DAY_IN_SECONDS);
 		} else {
