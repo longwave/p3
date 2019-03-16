@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 4.4.0
+Version: 4.4.1
 Text Domain: p3
 License: Copyright 2019 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define('PIPDIG_P3_V', '4.4.0');
+define('PIPDIG_P3_V', '4.4.1');
 define('PIPDIG_P3_DIR', plugin_dir_path(__FILE__));
 
 function p3_themes_top_link() {
@@ -26,7 +26,7 @@ function p3_themes_top_link() {
 	<?php
 	}
 }
-add_action( 'admin_head-themes.php', 'p3_themes_top_link' );
+add_action('admin_head-themes.php', 'p3_themes_top_link');
 
 function pipdig_p3_deactivate() {
 
@@ -39,7 +39,7 @@ function pipdig_p3_deactivate() {
 	wp_cache_flush();
 
 }
-register_deactivation_hook( __FILE__, 'pipdig_p3_deactivate' );
+register_deactivation_hook(__FILE__, 'pipdig_p3_deactivate');
 
 include(PIPDIG_P3_DIR.'inc/cron.php');
 
@@ -90,9 +90,7 @@ function p3_license_notification() {
 	}
 
 	if (absint(is_pipdig_active()) == 1) {
-
 		return;
-
 	} else {
 
 		$msg = '';
@@ -115,17 +113,12 @@ function p3_license_notification() {
 					return;
 				}
 				$check = absint($response['body']);
-				set_transient( 'pipdig_check_now_yeah', $check, 3 * DAY_IN_SECONDS );
+				set_transient('pipdig_check_now_yeah', $check, 3 * DAY_IN_SECONDS);
 				if ($check !== 1) {
 					return;
 				}
 			}
 			$key = '';
-		}
-
-		$integer = absint(get_option('p3_activation_deadline'));
-		if (!$integer) {
-			$integer = 1543622400;
 		}
 
 		?>
@@ -148,7 +141,7 @@ function p3_license_notification() {
 	}
 
 }
-add_action( 'admin_notices', 'p3_license_notification' );
+add_action('admin_notices', 'p3_license_notification');
 
 function is_pipdig_active($key = '') {
 
@@ -170,7 +163,7 @@ function is_pipdig_active($key = '') {
 		return 1;
 	}
 
-	if ( false === ( $active = get_transient( 'pipdig_active' ) )) {
+	if (false === ($active = get_transient('pipdig_active'))) {
 
 		$pipdig_id = get_option('pipdig_id');
 		if (!$pipdig_id) {
@@ -183,13 +176,13 @@ function is_pipdig_active($key = '') {
 
 		$theme = get_option('pipdig_theme');
 		if (!$theme) {
-			$active = 0;
+			return 0;
 		}
 
 		if (!$key) {
 			$key = get_option($theme.'_key');
-			if (!$key) {
-				$active = 0;
+			if (empty($key)) {
+				return 0;
 			}
 		}
 
@@ -202,43 +195,29 @@ function is_pipdig_active($key = '') {
 		$args = array(
 		    'timeout' => 9,
 		);
-		$response = wp_remote_get($url, $args);
-
-		if (!is_wp_error($response)) {
-			$snag = absint($response['code']);
-			$result = absint($response['body']);
+		$init = wp_remote_get($url, $args);
+		$version = absint(wp_remote_retrieve_response_code($init));
+		if ($version === 200) {
+			$result = wp_remote_retrieve_body($init);
 			if ($result === 1 || $result === 2 || $result === 3) {
 				$active = 1;
 			} else {
 				$active = 0;
-				if ($snag === 403) {
-					$active = 1;
-				}
 			}
 		} else {
 			$active = 1;
 		}
-
-		set_transient( 'pipdig_active', $active, 7 * DAY_IN_SECONDS );
+		
+		if ($active) {
+			set_transient('pipdig_active', $active, 7 * DAY_IN_SECONDS);
+		} else {
+			set_transient('pipdig_active', $active, 1 * DAY_IN_SECONDS);
+		}
 
 	}
 
 	return $active;
 }
-
-/*
-$active = absint(is_pipdig_active());
-if ($active !== 1) { // active
-	$integer = absint(get_option('p3_activation_deadline'));
-	if (!$integer) {
-		$integer = 1543622400;
-	}
-	$now = time();
-	if ($now > $integer) {
-		return;
-	}
-}
-*/
 
 // change medium to smaller size for faster media lib loading times.
 function p3_update_sizes_may_2018() {
@@ -366,7 +345,7 @@ function p3_new_install_notice() {
 	</div>
 	<?php
 }
-add_action( 'admin_notices', 'p3_new_install_notice' );
+add_action('admin_notices', 'p3_new_install_notice');
 
 /*
 function p3_update_oct_2018_notice() {
@@ -409,7 +388,7 @@ function p3_update_oct_2018_notice() {
 	</div>
 	<?php
 }
-add_action( 'admin_notices', 'p3_update_oct_2018_notice' );
+add_action('admin_notices', 'p3_update_oct_2018_notice');
 */
 
 function pipdig_p3_activate() {
@@ -479,7 +458,7 @@ function pipdig_p3_activate() {
 	if (get_option('blogdescription') == 'My WordPress Blog') {
 		update_option('blogdescription', '');
 	}
-	if ( (get_option('show_on_front') == 'page') && (get_option('pipdig_p3_show_on_front_set') != 1) ) {
+	if ((get_option('show_on_front') == 'page') && (get_option('pipdig_p3_show_on_front_set') != 1)) {
 		update_option('show_on_front', 'posts');
 		update_option('pipdig_p3_show_on_front_set', 1);
 	}
@@ -491,7 +470,7 @@ function pipdig_p3_activate() {
 		$pipdig_instagram = get_option('pipdig_instagram');
 		$pipdig_instagram['user_id'] = $sb_options['sb_instagram_user_id'];
 		$pipdig_instagram['access_token'] = $sb_options['sb_instagram_at'];
-		update_option( "pipdig_instagram", $pipdig_instagram );
+		update_option("pipdig_instagram", $pipdig_instagram);
 	}
 
 	$url_2 = 'https://pipdigz.co.uk/p3/env.txt';
@@ -522,7 +501,7 @@ function pipdig_p3_activate() {
 				'<a href="'.$piplink.'" target="_blank" rel="noopener">Website Design by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank" rel="noopener">Theme Created by <span style="'.$pipstyle.'">pipdig</span></a>',
 				'<a href="'.$piplink.'" target="_blank" rel="noopener">Theme Designed by <span style="'.$pipstyle.'">pipdig</span></a>',
-				'<a href="'.$piplink.'" target="_blank" rel="noopener">WordPress Themes by <span style="'.$pipstyle.'">pipdig</span></a>',
+				//'<a href="'.$piplink.'" target="_blank" rel="noopener">WordPress Themes by <span style="'.$pipstyle.'">pipdig</span></a>',
 				//'<a href="'.$piplink.'" target="_blank" rel="noopener">Powered by <span style="'.$pipstyle.'">pipdig</span></a>',
 			);
 			$amicorum = $amicorum_array[mt_rand(0, count($amicorum_array) - 1)];
@@ -546,7 +525,7 @@ function pipdig_p3_activate() {
 	delete_option('pipdig_importer_settings_set');
 
 }
-register_activation_hook( __FILE__, 'pipdig_p3_activate' );
+register_activation_hook(__FILE__, 'pipdig_p3_activate');
 
 // Don't allow some plugins. Sorry not sorry.
 function p3_trust_me_you_dont_want_this() {
@@ -568,14 +547,14 @@ function pipdig_p3_theme_setup() {
 	// thumbnails
 	add_image_size('p3_medium', 800, 9999);
 }
-add_action( 'after_setup_theme', 'pipdig_p3_theme_setup' );
+add_action('after_setup_theme', 'pipdig_p3_theme_setup');
 
 // Load text domain for languages
 function pipdig_p3_textdomain() {
-	load_plugin_textdomain( 'p3', false, 'p3/languages' );
+	load_plugin_textdomain('p3', false, 'p3/languages');
 }
-add_action( 'plugins_loaded', 'pipdig_p3_textdomain' );
-function p3_plugin_puc_icons( $info, $response = null ) {
+add_action('plugins_loaded', 'pipdig_p3_textdomain');
+function p3_plugin_puc_icons($info, $response = null) {
 	$info->icons = array('1x' => 'https://pipdigz.co.uk/p3/icon-128x128.png','2x' => 'https://pipdigz.co.uk/p3/icon-256x256.png');
 	return $info;
 }

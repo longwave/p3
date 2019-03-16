@@ -13,7 +13,10 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
-= 4.4.4 (25 February 2019) =
+= 4.4.1 (16 March 2019) =
+* Lazy load gravatar images.
+
+= 4.4.0 (25 February 2019) =
 * Add Instagram field to user profiles - [https://i.imgur.com/aVbAk1w.png](https://i.imgur.com/aVbAk1w.png)
 
 = 4.3.1 (14 February 2019) =

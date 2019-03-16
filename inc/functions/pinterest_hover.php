@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) die;
 function p3_pinterest_hover_add_data($content) {
 	
 	if (defined('TASTY_PINS_PLUGIN_VERSION')) {
-		return;
+		return $content;
 	}
 	
 	$active = false;
