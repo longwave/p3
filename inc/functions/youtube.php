@@ -7,9 +7,9 @@ function p3_youtube_fetch($channel_id) {
 	
 		$videos = array();
 		$channel_id = trim($channel_id);
-		$transient_id = substr($channel_id, 0, 15);
+		$transient_id = substr($channel_id, 0, 20);
 		
-		if ( false === ( $videos = get_transient( 'p3_youtube_'.$transient_id ) )) {
+		if ( false === ( $videos = get_transient( 'p3_yt_'.$transient_id ) )) {
 			$url = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&type=video&channelId='.$channel_id.'&key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c&maxResults=20';
 			$args = array(
 			    'timeout' => 9,
@@ -63,7 +63,7 @@ function p3_youtube_fetch($channel_id) {
 				return;
 			}
 			
-			set_transient( 'p3_youtube_'.$transient_id, $videos, 30 * MINUTE_IN_SECONDS );
+			set_transient( 'p3_yt_'.$transient_id, $videos, 30 * MINUTE_IN_SECONDS );
 		}
 		
 		return $videos;
