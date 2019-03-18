@@ -6,23 +6,8 @@ if (!defined('ABSPATH')) die;
 function p3_youtube_fetch($channel_id) {
 	
 		$videos = array();
-		
 		$channel_id = trim($channel_id);
-		
 		$transient_id = substr($channel_id, 0, 15);
-		
-		// store ids so we can clear transients in cron
-		$youtube_channels = get_option('pipdig_youtube_channels');
-		
-		if (!empty($youtube_channels)) {
-			if (is_array($youtube_channels)) {
-				$youtube_channels = array_push($youtube_channels, $channel_id);
-				update_option('pipdig_youtube_channels', $youtube_channels);
-			}
-		} else {
-			$youtube_channels = array($channel_id);
-			update_option('pipdig_youtube_channels', $youtube_channels);
-		}
 		
 		if ( false === ( $videos = get_transient( 'p3_youtube_'.$transient_id ) )) {
 			$url = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&type=video&channelId='.$channel_id.'&key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c&maxResults=20';
@@ -78,7 +63,7 @@ function p3_youtube_fetch($channel_id) {
 				return;
 			}
 			
-			set_transient( 'p3_youtube_'.$transient_id, $videos, 60 * MINUTE_IN_SECONDS );
+			set_transient( 'p3_youtube_'.$transient_id, $videos, 30 * MINUTE_IN_SECONDS );
 		}
 		
 		return $videos;
@@ -95,23 +80,10 @@ function p3_youtube_fetch_playlist($playlist_id) {
 		}
 	
 		$videos = array();
-		
 		$playlist_id = trim($playlist_id);
+		$transient_id = substr($playlist_id, 0, 15);
 		
-		// store ids so we can clear transients in cron
-		$youtube_channels = get_option('pipdig_youtube_channels');
-			
-		if (!empty($youtube_channels)) {
-			if (is_array($youtube_channels)) {
-				$youtube_channels = array_push($youtube_channels, $playlist_id);
-				update_option('pipdig_youtube_channels', $youtube_channels);
-			}
-		} else {
-			$youtube_channels = array($playlist_id);
-			update_option('pipdig_youtube_channels', $youtube_channels);
-		}
-		
-		if ( false === ( $videos = get_transient( 'p3_youtube_'.$playlist_id ) )) {
+		if ( false === ( $videos = get_transient( 'p3_youtube_'.$transient_id ) )) {
 			$url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2C+id&playlistId='.$playlist_id.'&key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c&type=video&maxResults=12';
 			$args = array(
 			    'timeout' => 9,
@@ -164,7 +136,7 @@ function p3_youtube_fetch_playlist($playlist_id) {
 				}
 			}
 			
-			set_transient( 'p3_youtube_'.$playlist_id, $videos, 60 * MINUTE_IN_SECONDS );
+			set_transient( 'p3_youtube_'.$transient_id, $videos, 30 * MINUTE_IN_SECONDS );
 		}
 		
 		return $videos;
