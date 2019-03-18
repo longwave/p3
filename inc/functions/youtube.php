@@ -9,6 +9,8 @@ function p3_youtube_fetch($channel_id) {
 		
 		$channel_id = trim($channel_id);
 		
+		$transient_id = substr($channel_id, 0, 15);
+		
 		// store ids so we can clear transients in cron
 		$youtube_channels = get_option('pipdig_youtube_channels');
 		
@@ -22,7 +24,7 @@ function p3_youtube_fetch($channel_id) {
 			update_option('pipdig_youtube_channels', $youtube_channels);
 		}
 		
-		if ( false === ( $videos = get_transient( 'p3_youtube_'.$channel_id ) )) {
+		if ( false === ( $videos = get_transient( 'p3_youtube_'.$transient_id ) )) {
 			$url = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&type=video&channelId=UCYy8vp5OELC4WPv9DMIATeg&key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c&maxResults=20';
 			$args = array(
 			    'timeout' => 9,
@@ -76,7 +78,7 @@ function p3_youtube_fetch($channel_id) {
 				return;
 			}
 			
-			set_transient( 'p3_youtube_'.$channel_id, $videos, 60 * MINUTE_IN_SECONDS );
+			set_transient( 'p3_youtube_'.$transient_id, $videos, 60 * MINUTE_IN_SECONDS );
 		}
 		
 		return $videos;
