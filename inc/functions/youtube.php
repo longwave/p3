@@ -11,7 +11,7 @@ function p3_youtube_fetch($channel_id) {
 		
 		// store ids so we can clear transients in cron
 		$youtube_channels = get_option('pipdig_youtube_channels');
-			
+		
 		if (!empty($youtube_channels)) {
 			if (is_array($youtube_channels)) {
 				$youtube_channels = array_push($youtube_channels, $channel_id);
@@ -21,25 +21,18 @@ function p3_youtube_fetch($channel_id) {
 			$youtube_channels = array($channel_id);
 			update_option('pipdig_youtube_channels', $youtube_channels);
 		}
-	
-		$key = 'AIzaSyAttqQSW7MI7kKcdmrYL2jl1t9Shw1bMwE'; // red marker for interna use
-		$key = 'AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c'; // blue marker
 		
 		if ( false === ( $videos = get_transient( 'p3_youtube_'.$channel_id ) )) {
-			$url = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&type=video&channelId='.$channel_id.'&key='.$key.'&maxResults=20';
+			$url = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&type=video&channelId=UCYy8vp5OELC4WPv9DMIATeg&key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c&maxResults=20';
 			$args = array(
 			    'timeout' => 9,
 			);
 			$response = wp_remote_get($url, $args);
 			
-			if (is_wp_error($response)) {
-				return false;
-			}
-				
-			$code = intval(json_decode($response['response']['code']));
+			$code = absint(wp_remote_retrieve_response_code($response));
 			
 			if ($code === 200) {
-				$response = json_decode($response['body']);
+				$response = json_decode(wp_remote_retrieve_body($response));
 				//print_r($response);
 				
 				for ($i = 0; $i < 20; $i++) {
@@ -52,11 +45,11 @@ function p3_youtube_fetch($channel_id) {
 						if ($i < 5) { // First vids get special treatment. Roll out the red carpet.
 						
 							// Get extended information from video endpoint
-							$url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id='.$id.'&key='.$key;
+							$url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id='.$id.'&key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c';
 							$video_response = wp_remote_get($url, $args);
 							if (!is_wp_error($video_response)) {
 								
-								$video_response = json_decode($video_response['body']);
+								$video_response = json_decode(wp_remote_retrieve_body($video_response));
 								
 								// Only use YT's thumb if the user hasn't chosen to overwrite it
 								if (isset($video_response->items[0]->snippet->thumbnails->maxres->url)) {
@@ -79,6 +72,8 @@ function p3_youtube_fetch($channel_id) {
 						);
 					}
 				}
+			} else {
+				return;
 			}
 			
 			set_transient( 'p3_youtube_'.$channel_id, $videos, 60 * MINUTE_IN_SECONDS );
@@ -114,20 +109,17 @@ function p3_youtube_fetch_playlist($playlist_id) {
 			update_option('pipdig_youtube_channels', $youtube_channels);
 		}
 		
-		$key = 'AIzaSyAttqQSW7MI7kKcdmrYL2jl1t9Shw1bMwE'; // red marker for internal use
-		$key = 'AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c'; // blue marker
-		
 		if ( false === ( $videos = get_transient( 'p3_youtube_'.$playlist_id ) )) {
-			$url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2C+id&playlistId='.$playlist_id.'&key='.$key.'&type=video&maxResults=12';
+			$url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2C+id&playlistId='.$playlist_id.'&key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c&type=video&maxResults=12';
 			$args = array(
-			    'timeout' => 15,
+			    'timeout' => 9,
 			);
 			$response = wp_remote_get($url, $args);
 				
-			$code = intval(json_decode($response['response']['code']));
+			$code = absint(wp_remote_retrieve_response_code($response));
 			
 			if ($code === 200) {
-				$response = json_decode($response['body']);
+				$response = json_decode(wp_remote_retrieve_body($response));
 				//print_r($response);
 				
 				for ($i = 0; $i < 12; $i++) {
@@ -137,12 +129,26 @@ function p3_youtube_fetch_playlist($playlist_id) {
 						
 						$thumbnail = "https://img.youtube.com/vi/".$id."/0.jpg";
 						
-						if ($i < 4) { // First few get special treatment. Open the red carpet.
-							$max_res_url = "https://img.youtube.com/vi/".$id."/maxresdefault.jpg";
-							$max = get_headers($max_res_url);
-							if (substr($max[0], 9, 3) !== '404') {
-								$thumbnail = $max_res_url;
+						if ($i < 5) { // First vids get special treatment. Roll out the red carpet.
+						
+							// Get extended information from video endpoint
+							$url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id='.$id.'&key=AIzaSyCBYyhzMnNNP8d0tvLdSP8ryTlSDqegN5c';
+							$video_response = wp_remote_get($url, $args);
+							if (!is_wp_error($video_response)) {
+								
+								$video_response = json_decode(wp_remote_retrieve_body($video_response));
+								
+								// Only use YT's thumb if the user hasn't chosen to overwrite it
+								if (isset($video_response->items[0]->snippet->thumbnails->maxres->url)) {
+									$thumbnail = $video_response->items[0]->snippet->thumbnails->maxres->url;
+								}
+								
+								if (isset($video_response->items[0]->snippet->description)) {
+									$desc = $video_response->items[0]->snippet->description;
+								}
+								
 							}
+							
 						}
 						
 						$videos[$i] = array (

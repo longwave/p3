@@ -30,21 +30,6 @@ function p3_instagram_fetch($access_token = '') {
 		
 	}
 	
-	// store user ids so we can clear transients in cron
-	/*
-	$instagram_users = get_option('pipdig_instagram_users');
-	
-	if (!empty($instagram_users)) {
-		if (is_array($instagram_users)) {
-			$instagram_users = array_push($instagram_users, $userid);
-			update_option('pipdig_instagram_users', $instagram_users);
-		}
-	} else {
-		$instagram_users = array($userid);
-		update_option('pipdig_instagram_users', $instagram_users);
-	}
-	*/
-
 	if ( false === ( $images = get_transient( 'p3_insta_'.$userid ) )) {
 		
 		$url = 'https://api.instagram.com/v1/users/'.$userid.'/media/recent/?access_token='.$access_token.'&count=20';

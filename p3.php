@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 4.4.2
+Version: 4.5.0
 Text Domain: p3
 License: Copyright 2019 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define('PIPDIG_P3_V', '4.4.2');
+define('PIPDIG_P3_V', '4.5.0');
 define('PIPDIG_P3_DIR', plugin_dir_path(__FILE__));
 
 function p3_themes_top_link() {
@@ -20,7 +20,7 @@ function p3_themes_top_link() {
 	?>
 	<script>
 	jQuery(document).ready(function($) {
-		$('.page-title-action').before('<a class="add-new-h2" href="https://www.pipdig.co/products/wordpress-themes?utm_source=wpmojo&utm_medium=wpmojo&utm_campaign=wpmojo" target="_blank" rel="noopener">pipdig.co Themes</a>');
+		$('.page-title-action').after('<a class="add-new-h2" href="https://www.pipdig.co/products/wordpress-themes?utm_source=wpmojo&utm_medium=wpmojo&utm_campaign=wpmojo" target="_blank" rel="noopener">pipdig.co Themes</a>');
 	});
 	</script>
 	<?php
@@ -211,7 +211,7 @@ function is_pipdig_active($key = '') {
 		if ($active) {
 			set_transient('pipdig_active', $active, 7 * DAY_IN_SECONDS);
 		} else {
-			set_transient('pipdig_active', $active, 1 * DAY_IN_SECONDS);
+			set_transient('pipdig_active', $active, 6 * HOUR_IN_SECONDS);
 		}
 
 	}
@@ -260,18 +260,11 @@ function pipdig_p3_scripts_styles() {
 
 	// Font awesome 5?
 	if ((get_option('p3_font_awesome_5') == 1) || class_exists('WpdiscuzCore')) {
-		wp_enqueue_style('font-awesome-5', 'https://use.fontawesome.com/releases/v5.3.1/css/all.css', '', null);
+		wp_enqueue_style('font-awesome-5', 'https://use.fontawesome.com/releases/v5.3.1/css/all.css', array(), null);
 		wp_enqueue_script('pipdig-fa5-convert', 'https://pipdigz.co.uk/p3/js/fa5-convert.js', array('jquery'), null, true);
 	} else {
-		wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', '', null);
+		wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', array(), null);
 	}
-
-	/*
-	// Classic Editor quirk
-	if () {
-		wp_dequeue_style('wp-block-library');
-	}
-	*/
 
 }
 add_action('wp_enqueue_scripts', 'pipdig_p3_scripts_styles');
@@ -316,7 +309,7 @@ function p3_new_install_notice() {
 	}
 
 	$active = absint(is_pipdig_active());
-	if ($active !== 1) { // active
+	if ($active !== 1) {
 		return;
 	}
 

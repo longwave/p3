@@ -21,7 +21,7 @@ function p3_pinterest_hover_add_data($content) {
 	if ($active) {
 		$link = esc_url(get_the_permalink());
 		$title = rawurldecode(get_the_title());
-		$content = str_replace('<img', '<img data-p3-pin-title="'.$title.'" data-p3-pin-link="'.$link.'"', $content);
+		$content = str_replace('<img', '<img data-pin-description="'.$title.'" data-pin-url="'.$link.'"', $content);
 	}
 
 	return $content;
@@ -102,7 +102,7 @@ function p3_pinterest_hover() {
 					var src = $(this).attr('src');
 				}
 
-				var shareURL = $(this).data('p3-pin-link');
+				var shareURL = $(this).data('pin-url');
 				// if data attribute not found
 				if (typeof shareURL == 'undefined') {
 					shareURL = window.location.href;
@@ -123,18 +123,13 @@ function p3_pinterest_hover() {
 				<?php if (get_theme_mod('p3_pinterest_hover_alt')) { // use alt tags ?>
 					var description = $(this).attr("alt");
 					if (description == null){
-						var description = $(this).data('p3-pin-title');
+						var description = $(this).data('pin-description');
 						if (description == null){
 							var description = '<?php echo esc_attr(get_the_title()); ?>';
 						}
 					}
 				<?php } else { // use post title ?>
-					if ($(this).attr("data-pin-description") != null) {
-						var description = $(this).data('pin-description'); <?php // data-pin-description is the "official" title attribute ?>
-					} else {
-						var description = $(this).data('p3-pin-title');
-					}
-
+					var description = $(this).data('pin-description');
 					if (description == null){
 						var description = $(this).attr("alt");
 						if (description == null){
