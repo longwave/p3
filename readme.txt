@@ -13,11 +13,11 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
-= 4.5.1 (18 March 2019) =
+= 4.6.0 (18 March 2019) =
 * Optimize all post images for greater visibility on Pinterest (when [hover button](https://wp.me/p79IlF-gC) is enabled).
 * Czech language.
 
-= 4.4.1 (17 March 2019) =
+= 4.5.0 (17 March 2019) =
 * Lazy load gravatar images.
 
 = 4.4.0 (25 February 2019) =
