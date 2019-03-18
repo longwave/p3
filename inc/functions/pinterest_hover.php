@@ -97,7 +97,7 @@ function p3_pinterest_hover() {
 				}
 
 				if ($(this).hasClass('p3_invisible')) {
-					var src = $(this).data('p3-pin-img-src');
+					var src = $(this).data('pin-media');
 				} else {
 					var src = $(this).attr('src');
 				}
