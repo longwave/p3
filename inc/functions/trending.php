@@ -2,26 +2,24 @@
 
 if (!defined('ABSPATH')) die;
 
-/*
-$theme = get_option('pipdig_theme');
-if ($theme == 'londoncalling') {
-	return;
-}
-*/
-
 function p3_trending_bar() {
-		
+	
 	if (!get_theme_mod('p3_trending_bar_enable')) {
 		return;
 	}
-	if (!is_front_page() && get_theme_mod('p3_trending_bar_home', 1)) {
-		return;
+	if (get_theme_mod('p3_trending_bar_home', 1)) {
+		if (!is_front_page()) {
+			return;
+		}
+		if (is_paged()) {
+			return;
+		}
 	}
 		
 	$the_shape = absint(get_theme_mod('p3_trending_bar_shape'));
 		
 	$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoAQMAAAD9/NgSAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAADJJREFUeNrtwQENAAAAwiD7p3Z7DmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5HHoAAHnxtRqAAAAAElFTkSuQmCC'; // landscape
-		
+	
 	if ($the_shape == 2) {
 		$shape = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAHgAQMAAACyyGUjAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACxJREFUeNrtwTEBAAAAwiD7p7bGDmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkHVZAAAFam5MDAAAAAElFTkSuQmCC'; // portrait
 	} elseif ($the_shape == 3) {

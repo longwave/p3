@@ -42,10 +42,11 @@ function p3_youtube_fetch($channel_id) {
 								if (isset($video_response->items[0]->snippet->thumbnails->maxres->url)) {
 									$thumbnail = $video_response->items[0]->snippet->thumbnails->maxres->url;
 								}
-								
+								/*
 								if (isset($video_response->items[0]->snippet->description)) {
 									$desc = $video_response->items[0]->snippet->description;
 								}
+								*/
 								
 							}
 							
