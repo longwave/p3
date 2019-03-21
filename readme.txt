@@ -13,6 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 4.6.1 (21 March 2019) =
+* Options to change the color of the Featured Image Panels titles.
+
 = 4.6.0 (18 March 2019) =
 * Optimize all post images for greater visibility on Pinterest (when [hover button](https://wp.me/p79IlF-gC) is enabled).
 * Czech language.

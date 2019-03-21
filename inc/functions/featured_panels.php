@@ -133,7 +133,19 @@ function p3_featured_panels() {
 	}
 	
 	if ($show) {
-	?>
+		
+		$bg_color = get_theme_mod('p3_featured_panels_bg_col');
+		$title_color = get_theme_mod('p3_featured_panels_text_col');
+		
+		if ($bg_color) {
+			$bg_color = 'border: 0; background: '.$bg_color.';';
+		}
+		
+		if ($title_color) {
+			$title_color = 'color: '.$title_color.';';
+		}
+		
+		?>
 		<div id="p3_featured_panels" class="row nopin" <?php echo $style; ?>>
 			
 			<?php if ($img_1 && $link_1) { ?>
@@ -143,8 +155,8 @@ function p3_featured_panels() {
 						<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_1); ?>" class="p3_invisible" />
 					</div>
 					<?php if (!empty($title_1)) { ?>
-					<div class='p3_feature_panel_overlay'>
-						<h3><?php echo esc_html($title_1); ?></h3>
+					<div class="p3_feature_panel_overlay" style="<?php echo strip_tags($bg_color); ?>">
+						<h3 style="<?php echo strip_tags($title_color); ?>"><?php echo strip_tags($title_1); ?></h3>
 					</div>
 					<?php } ?>
 				</a>
@@ -158,8 +170,8 @@ function p3_featured_panels() {
 						<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_2); ?>" class="p3_invisible" />
 					</div>
 					<?php if (!empty($title_2)) { ?>
-					<div class='p3_feature_panel_overlay'>
-						<h3><?php echo esc_html($title_2); ?></h3>
+					<div class="p3_feature_panel_overlay" style="<?php echo strip_tags($bg_color); ?>">
+						<h3 style="<?php echo strip_tags($title_color); ?>"><?php echo strip_tags($title_2); ?></h3>
 					</div>
 					<?php } ?>
 				</a>
@@ -173,14 +185,14 @@ function p3_featured_panels() {
 						<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_3); ?>" class="p3_invisible" />
 					</div>
 					<?php if (!empty($title_3)) { ?>
-					<div class='p3_feature_panel_overlay'>
-						<h3><?php echo esc_html($title_3); ?></h3>
+					<div class="p3_feature_panel_overlay" style="<?php echo strip_tags($bg_color); ?>">
+						<h3 style="<?php echo strip_tags($title_color); ?>"><?php echo strip_tags($title_3); ?></h3>
 					</div>
 					<?php } ?>
 				</a>
 			</div>
 			<?php } ?>
-				
+			
 			<?php if ($img_4 && $link_4) { ?>
 			<div class="col-<?php echo $sm; ?>-<?php echo $col; ?> p3_featured_panel">
 				<a href="<?php echo esc_url($link_4); ?>">
@@ -188,8 +200,8 @@ function p3_featured_panels() {
 						<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title_4); ?>" class="p3_invisible" />
 					</div>
 					<?php if (!empty($title_4)) { ?>
-					<div class='p3_feature_panel_overlay'>
-						<h3><?php echo esc_html($title_4); ?></h3>
+					<div class="p3_feature_panel_overlay" style="<?php echo strip_tags($bg_color); ?>">
+						<h3 style="<?php echo strip_tags($title_color); ?>"><?php echo strip_tags($title_4); ?></h3>
 					</div>
 					<?php } ?>
 				</a>
@@ -298,9 +310,39 @@ class pipdig_p3_featured_panels_Customize {
 				),
 			)
 		);
-			
+		
+		// Title background color
+		$wp_customize->add_setting('p3_featured_panels_bg_col',
+			array(
+				'default' => '',
+				'sanitize_callback' => 'sanitize_hex_color',
+			)
+		);
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_featured_panels_bg_col',
+			array(
+				'label' => 'Title background color',
+				'section' => 'p3_featured_panels_section',
+				'settings' => 'p3_featured_panels_bg_col',
+			))
+		);
+		
+		// Title text color
+		$wp_customize->add_setting('p3_featured_panels_text_col',
+			array(
+				'default' => '',
+				'sanitize_callback' => 'sanitize_hex_color',
+			)
+		);
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'p3_featured_panels_text_col',
+			array(
+				'label' => 'Title text color',
+				'section' => 'p3_featured_panels_section',
+				'settings' => 'p3_featured_panels_text_col',
+			))
+		);
+		
 		for ($x = 1; $x <= 3; $x++) {
-			
+		
 		// Image
 		$wp_customize->add_setting('p3_featured_panels_'.$x.'_img',
 			array(
