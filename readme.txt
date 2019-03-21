@@ -13,7 +13,7 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
-= 4.6.1 (21 March 2019) =
+= 4.7.0 (21 March 2019) =
 * Options to change the color of the Featured Image Panels titles.
 
 = 4.6.0 (18 March 2019) =
