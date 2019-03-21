@@ -1,7 +1,7 @@
 === pipdig Power pack (p3) ===
 Contributors: pipdig
 Requires at least: 4.0
-Tested up to: 5.1
+Tested up to: 5.2
 Stable tag: master
 License: Copyright 2019 pipdig Ltd. All rights reserved.
 
