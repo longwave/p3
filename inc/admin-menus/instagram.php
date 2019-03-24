@@ -117,7 +117,7 @@ function pipdig_instagram_options_page() {
 		delete_transient('p3_stats_gen');
 		?>
 		
-		<p>After connecting your account, you can setup our <a href="https://support.pipdig.co/articles/wordpress-how-to-create-and-use-widgets/" target="_blank">Instagram Widget</a> and <a href="https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/" target="_blank">Instagram Feed</a> options</p>
+		<p>After connecting your account, you can setup our <a href="https://support.pipdig.co/articles/wordpress-how-to-create-and-use-widgets/" target="_blank" rel="noopener">Instagram Widget</a> and <a href="https://support.pipdig.co/articles/wordpress-how-to-display-an-instagram-feed/" target="_blank" rel="noopener">Instagram Feed</a> options</p>
 		
 		<!--<button type="button" class="button" id="p3_test_connection">Click here to test connection</button>-->
 		
@@ -158,23 +158,21 @@ function pipdig_instagram_options_page() {
 			$token = sanitize_text_field($instagram_deets['access_token']);
 			$user = sanitize_text_field($instagram_deets['user_id']);
 			
-				
+			$url = 'https://api.instagram.com/v1/users/'.$user.'/media/recent/?access_token='.$token.'&count=1';
 			$args = array(
-				'method' => 'GET',
-				'timeout' => 9,
-				'redirection' => 2,
-				'blocking' => true,
+				'timeout' => 6,
 			);
+			$response = wp_remote_get($url, $args);
 			
-			$url = "https://api.instagram.com/v1/users/".$user."/media/recent/?access_token=".$token."&count=1";
+			$code = absint(wp_remote_retrieve_response_code($response));
 			
-			$response = wp_safe_remote_get($url, $args);
-			
-			if (!is_wp_error($response)) {
-				$result = json_decode(strip_tags($response['body']));
+			if ($code === 200) {
+				$result = json_decode(wp_remote_retrieve_body($response));
 				echo '<pre>';
 				print_r($result);
 				echo '</pre>';
+			} else {
+				return false;
 			}
 			
 		}
@@ -200,28 +198,28 @@ function p3_ig_connection_tester_callback() {
 	}
 	
 	if (!function_exists('curl_version')) {
-		echo '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Your web hosting server does not have cURL enabled. Please contact your web host so that they can fix that.</span>';
+		echo '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Your web hosting server does not have cURL enabled. Please contact your web host so that htey can check if Instagram is being blocked by their firewall. Your host might be using an older version of cURL. If you forward this information to them they will be able to check that.</span>';
 		wp_die();
 	}
 
 	$args = array(
-		'timeout' => 9,
+		'timeout' => 6,
 	);
 	
 	$url = "https://api.instagram.com/v1/users/".$user."/media/recent/?access_token=".$token."&count=1";
 	
 	$result_msg = '';
 	
-	$response = wp_safe_remote_get($url, $args);
+	$response = wp_remote_get($url, $args);
 	if (is_wp_error($response)) {
 		$error_message = strip_tags($response->get_error_message());
-		$result_msg = '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Response from your server: "'.$error_message.'". Please contact your web host so that they can fix it.</span>';
+		$result_msg = '<span class="piperror"><span class="dashicons dashicons-no"></span> Error! Response from your server: "'.$error_message.'". Please contact your web host for further information.</span>';
 	} elseif (is_array($response)) {
-		$code = intval($response['response']['code']);
+		$code = absint(wp_remote_retrieve_response_code($response));
 		if ($code === 200) {
 			$result_msg = '<span class="pipsuccess"><span class="dashicons dashicons-yes"></span> You are successully connected to Instagram.</span>';
 		} else {
-			$data = json_decode($response['body']);
+			$data = json_decode(wp_remote_retrieve_body($response));
 			$error_message = strip_tags($data->meta->error_message);
 			$result_msg = '<span class="piperror"><span class="dashicons dashicons-no"></span> Connection to Instagram has failed! Error message from Instagram: "'.$error_message.'"</span>';
 		}

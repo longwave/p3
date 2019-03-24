@@ -32,7 +32,6 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$soundcloud = empty($instance['soundcloud']) ? '' : esc_url($instance['soundcloud']);
 		$itunes = empty($instance['itunes']) ? '' : esc_url($instance['itunes']);
 		$medium = empty($instance['medium']) ? '' : esc_url($instance['medium']);
-		$stumbleupon = empty($instance['stumbleupon']) ? '' : esc_url($instance['stumbleupon']);
 		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
 		$snapchat = empty($instance['snapchat']) ? '' : esc_url($instance['snapchat']);
 		$goodreads = empty($instance['goodreads']) ? '' : esc_url($instance['goodreads']);
@@ -75,7 +74,6 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($soundcloud)) $icons_output .= '<a href="'.$soundcloud.'" target="_blank" rel="nofollow noopener" aria-label="soundcloud" title="soundcloud"><i class="fa fa-soundcloud" aria-hidden="true"></i></a>';
 			if (!empty($medium)) $icons_output .= '<a href="'.$medium.'" target="_blank" rel="nofollow noopener" aria-label="medium" title="medium"><i class="fa fa-medium" aria-hidden="true"></i></a>';
 			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopener" aria-label="twitch" title="twitch"><i class="fa fa-twitch" aria-hidden="true"></i></a>';
-			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopener" aria-label="stumbleupon" title="stumbleupon"><i class="fa fa-stumbleupon" aria-hidden="true"></i></a>';
 			if (!empty($etsy)) $icons_output .= '<a href="'.$etsy.'" target="_blank" rel="nofollow noopener" aria-label="etsy" title="etsy"><i class="fa fa-etsy" aria-hidden="true"></i></a>';
 			if (!empty($behance)) $icons_output .= '<a href="'.$behance.'" target="_blank" rel="nofollow noopener" aria-label="behance" title="behance"><i class="fa fa-behance" aria-hidden="true"></i></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'" aria-label="Email" title="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>';
@@ -104,7 +102,6 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 			if (!empty($soundcloud)) $icons_output .= '<a href="'.$soundcloud.'" target="_blank" rel="nofollow noopener" aria-label="soundcloud" title="soundcloud"><i class="fa fa-soundcloud" aria-hidden="true"></i><br /><span>Soundcloud</span></a>';
 			if (!empty($medium)) $icons_output .= '<a href="'.$medium.'" target="_blank" rel="nofollow noopener" aria-label="medium" title="medium"><i class="fa fa-medium" aria-hidden="true"></i><br /><span>Medium</span></a>';
 			if (!empty($twitch)) $icons_output .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopener" aria-label="twitch" title="twitch"><i class="fa fa-twitch" aria-hidden="true"></i><br /><span>Twitch</span></a>';
-			if (!empty($stumbleupon)) $icons_output .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopener" aria-label="stumbleupon" title="stumbleupon"><i class="fa fa-stumbleupon" aria-hidden="true"></i><br /><span>Stumble</span></a>';
 			if (!empty($etsy)) $icons_output .= '<a href="'.$etsy.'" target="_blank" rel="nofollow noopener" aria-label="etsy" title="etsy"><i class="fa fa-etsy" aria-hidden="true"></i><br /><span>Etsy</span></a>';
 			if (!empty($behance)) $icons_output .= '<a href="'.$behance.'" target="_blank" rel="nofollow noopener" aria-label="behance" title="behance"><i class="fa fa-behance" aria-hidden="true"></i><br /><span>Behance</span></a>';
 			if (!empty($email)) $icons_output .= '<a href="mailto:'.$email.'"><i class="fa fa-envelope" aria-hidden="true"></i><br /><span>Email</span></a>';
@@ -139,7 +136,6 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$itunes = empty($instance['itunes']) ? '' : esc_url($instance['itunes']);
 		$soundcloud = empty($instance['soundcloud']) ? '' : esc_url($instance['soundcloud']);
 		$medium = empty($instance['medium']) ? '' : esc_url($instance['medium']);
-		$stumbleupon = empty($instance['stumbleupon']) ? '' : esc_url($instance['stumbleupon']);
 		$etsy = empty($instance['etsy']) ? '' : esc_url($instance['etsy']);
 		$snapchat = empty($instance['snapchat']) ? '' : esc_url($instance['snapchat']);
 		$goodreads = empty($instance['goodreads']) ? '' : esc_url($instance['goodreads']);
@@ -189,9 +185,6 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		}
 		if (empty($twitch) && isset($links['twitch'])) {
 			$twitch = esc_url($links['twitch']);
-		}
-		if (empty($stumbleupon) && isset($links['stumbleupon'])) {
-			$stumbleupon = esc_url($links['stumbleupon']);
 		}
 		if (empty($etsy) && isset($links['etsy'])) {
 			$etsy = esc_url($links['etsy']);
@@ -370,14 +363,6 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('stumbleupon'); ?>">Stumbleupon (e.g. https://stumbleupon.com/pipdig)
-			<input class="widefat" id="<?php echo $this->get_field_id('stumbleupon'); ?>"
-			name="<?php echo $this->get_field_name('stumbleupon'); ?>" type="text"
-			value="<?php echo esc_url($stumbleupon); ?>" />
-			</label>
-		</p>
-
-		<p>
 			<label for="<?php echo $this->get_field_id('etsy'); ?>">Etsy (e.g. https://etsy.com/pipdig)
 			<input class="widefat" id="<?php echo $this->get_field_id('etsy'); ?>"
 			name="<?php echo $this->get_field_name('etsy'); ?>" type="text"
@@ -475,7 +460,6 @@ if ( !class_exists( 'pipdig_widget_social_icons' ) ) {
 		$instance['soundcloud'] = esc_url($new_instance['soundcloud']);
 		$instance['medium'] = esc_url($new_instance['medium']);
 		$instance['twitch'] = esc_url($new_instance['twitch']);
-		$instance['stumbleupon'] = esc_url($new_instance['stumbleupon']);
 		$instance['etsy'] = esc_url($new_instance['etsy']);
 		$instance['goodreads'] = esc_url($new_instance['goodreads']);
 		$instance['behance'] = esc_url($new_instance['behance']);

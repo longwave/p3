@@ -14,6 +14,8 @@ function p3_do_this_daily() {
 
 	delete_transient('pipdig_fonts');
 	
+	update_option('link_manager_enabled', 0);
+	
 	if (!function_exists('pipdighost_admin_footer')) {
 		return;
 	}

@@ -33,16 +33,10 @@ function pipdig_p3_footer_admin () {
 }
 add_filter('admin_footer_text', 'pipdig_p3_footer_admin', 99);
 
-if (!function_exists('pipdighost_admin_head')) {
-function p3_admin_head() {
-	?>
-	<style>
-	.jp-jitm, .jitm-banner, .jp-wpcom-connect__container, .post-type-post .yoast-alert, .post-type-page .yoast-alert, .plugins-php.jetpack-disconnected .jp-connect-full__container, .litespeed-banner-promo-full, #jetpack_summary_widget footer, #jetpack_summary_widget .stats-view-all, #widgets-left .widget-title-action, #all-404-redirect-to-homepage-upgradeMsg, .plugin-card-jetpack-plugin-search {display:none!important}
-	</style>
-	<?php
+function p3_admin_scripts() {
+	wp_enqueue_style('p3_dash', 'https://pipdigz.co.uk/p3/css/dash.css', array(), null);
 }
-add_action('admin_head', 'p3_admin_head', 9999);
-}
+add_action('admin_enqueue_scripts', 'p3_admin_scripts', 9999);
 
 function pipdig_p3_unregister_widgets() {
 

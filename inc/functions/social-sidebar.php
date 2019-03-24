@@ -17,7 +17,7 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 		
 		$links = get_option('pipdig_links');
 		
-		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $stumbleupon = $spotify = $itunes = $goodreads = '';
+		$twitter = $instagram = $facebook = $bloglovin = $pinterest = $youtube = $tumblr = $linkedin = $soundcloud = $flickr = $snapchat = $vk = $email = $twitch = $spotify = $itunes = $goodreads = '';
 		
 		if (!empty($links['twitter'])) {
 			$twitter = esc_url($links['twitter']);
@@ -64,9 +64,6 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 		if (!empty($links['twitch'])) {
 			$twitch = esc_url($links['twitch']);
 		}
-		if (!empty($links['stumbleupon'])) {
-			$stumbleupon = esc_url($links['stumbleupon']);
-		}
 		if (!empty($links['goodreads'])) {
 			$goodreads = esc_url($links['goodreads']);
 		}
@@ -74,7 +71,7 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 			$email = sanitize_email($links['email']);
 		}
 		
-		if ($twitter || $instagram || $facebook || $bloglovin || $pinterest || $youtube || $tumblr || $linkedin || $soundcloud || $flickr || $snapchat || $vk || $email || $twitch || $stumbleupon || $spotify || $itunes || $goodreads) {
+		if ($twitter || $instagram || $facebook || $bloglovin || $pinterest || $youtube || $tumblr || $linkedin || $soundcloud || $flickr || $snapchat || $vk || $email || $twitch || $spotify || $itunes || $goodreads) {
 			
 			$social_sidebar .= '<div id="p3_social_sidebar" class="'.$position_class.'">';
 
@@ -107,7 +104,6 @@ if (!function_exists('pipdig_p3_social_sidebar')) {
 			if($itunes && get_theme_mod('p3_social_sidebar_itunes', 1)) $social_sidebar .= '<a href="'.$itunes.'" target="_blank" rel="nofollow noopener"><i class="fa fa-apple"></i></a>';
 			if($flickr && get_theme_mod('p3_social_sidebar_flickr', 1)) $social_sidebar .= '<a href="'.$flickr.'" target="_blank" rel="nofollow noopener"><i class="fa fa-flickr"></i></a>';
 			if($twitch && get_theme_mod('p3_social_sidebar_twitch', 1)) $social_sidebar .= '<a href="'.$twitch.'" target="_blank" rel="nofollow noopener"><i class="fa fa-twitch"></i></a>';
-			if($stumbleupon && get_theme_mod('p3_social_sidebar_stumbleupon', 1)) $social_sidebar .= '<a href="'.$stumbleupon.'" target="_blank" rel="nofollow noopener"><i class="fa fa-stumbleupon"></i></a>';
 			if($goodreads && get_theme_mod('p3_social_sidebar_goodreads', 1)) $social_sidebar .= '<a href="'.$goodreads.'" target="_blank" rel="nofollow noopener"><i class="fa fa-book"></i></a>';
 			if($vk && get_theme_mod('p3_social_sidebar_vk', 1)) $social_sidebar .= '<a href="'.$vk.'" target="_blank" rel="nofollow noopener"><i class="fa fa-vk"></i></a>';
 			if($email && get_theme_mod('p3_social_sidebar_email', 1)) $social_sidebar .= '<a href="mailto:'.$email.'" rel="nofollow noopener"><i class="fa fa-envelope"></i></a>';
@@ -491,21 +487,6 @@ if (!class_exists('pipdig_p3_sidebar_icons_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Twitch.tv',
-					'section' => 'p3_social_sidebar_section',
-				)
-			);
-			
-			// stumbleupon
-			$wp_customize->add_setting('p3_social_sidebar_stumbleupon',
-				array(
-					'default' => 1,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control('p3_social_sidebar_stumbleupon',
-				array(
-					'type' => 'checkbox',
-					'label' => 'Stumbleupon',
 					'section' => 'p3_social_sidebar_section',
 				)
 			);

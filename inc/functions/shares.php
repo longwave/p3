@@ -57,9 +57,6 @@ function pipdig_p3_social_shares() {
 	if (get_theme_mod('p3_share_linkedin')) {
 		$output .= '<a href="'.esc_url('https://www.linkedin.com/shareArticle?mini=true&amp;url='.$link).'" target="_blank" rel="nofollow noopener" aria-label="Share on linkedin" title="Share on linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>';
 	}
-	if (get_theme_mod('p3_share_stumbleupon')) {
-		$output .= '<a href="'.esc_url('https://www.stumbleupon.com/submit?url='.$link.'&title='.$title).'" target="_blank" rel="nofollow noopener" aria-label="Share on stumbleupon" title="Share on stumbleupon"><i class="fa fa-stumbleupon" aria-hidden="true"></i></a>';
-	}
 	if (get_theme_mod('p3_share_reddit')) {
 		$output .= '<a href="'.esc_url('https://reddit.com/submit?url='.$link.'&title='.$title).'" target="_blank" rel="nofollow noopener" aria-label="Share on reddit" title="Share on reddit"><i class="fa fa-reddit" aria-hidden="true"></i></a>';
 	}
@@ -250,21 +247,6 @@ if (!class_exists('pipdig_p3_social_shares_Customiser')) {
 				array(
 					'type' => 'checkbox',
 					'label' => 'Linkedin',
-					'section' => 'pipdig_p3_shares_section',
-				)
-			);
-			
-			// stumbleupon
-			$wp_customize->add_setting('p3_share_stumbleupon',
-				array(
-					'default' => 0,
-					'sanitize_callback' => 'absint',
-				)
-			);
-			$wp_customize->add_control('p3_share_stumbleupon',
-				array(
-					'type' => 'checkbox',
-					'label' => 'Stumbleupon',
 					'section' => 'pipdig_p3_shares_section',
 				)
 			);

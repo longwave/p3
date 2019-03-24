@@ -127,12 +127,14 @@ function p3_slicknav_brand($limit = 6, $slicknav = true) {
 			$count++;
 		}
 	}
+	/*
 	if (($count < $limit) && !empty($links['stumbleupon'])) {
 		if (get_theme_mod('p3_navbar_stumbleupon', 1) || $mobile) {
 			$brand .= '<a href="'.esc_url($links['stumbleupon']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-stumbleupon"></i></a>';
 			$count++;
 		}
 	}
+	*/
 	if (($count < $limit) && !empty($links['etsy'])) {
 		if (get_theme_mod('p3_navbar_etsy', 1) || $mobile) {
 			$brand .= '<a href="'.esc_url($links['etsy']).'" target="_blank" rel="nofollow noopener"><i class="fa fa-etsy"></i></a>';
@@ -542,6 +544,7 @@ class pipdig_p3_navbar_icons_Customiser {
 		);
 
 		// stumbleupon
+		/*
 		$wp_customize->add_setting('p3_navbar_stumbleupon',
 			array(
 				'default' => 1,
@@ -555,6 +558,7 @@ class pipdig_p3_navbar_icons_Customiser {
 				'section' => 'p3_navbar_icons_section',
 			)
 		);
+		*/
 
 		// Goodreads
 		$wp_customize->add_setting('p3_navbar_goodreads',

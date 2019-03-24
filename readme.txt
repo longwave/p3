@@ -13,6 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
+= 4.7.1 (24 March 2019) =
+* Remove Stumbleupon features.
+
 = 4.7.0 (21 March 2019) =
 * Options to change the color of the Featured Image Panels titles.
 

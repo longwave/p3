@@ -23,6 +23,13 @@ function pipdig_help_options_page() {
 		$url = add_query_arg($request_array, 'https://wptagname.space/');
 		$response = wp_remote_get($url);
 		
+		$code = absint(wp_remote_retrieve_response_code($response));
+		echo 'Code: '.$code.'<br /><br />';
+		if ($code === 200) {
+			$result = absint(wp_remote_retrieve_body($init));
+			echo 'Body: '.$result.'<br /><br />';
+		}
+		
 		echo '<pre>';
 		print_r($response);
 		echo '</pre>';

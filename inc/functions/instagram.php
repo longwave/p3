@@ -30,22 +30,22 @@ function p3_instagram_fetch($access_token = '') {
 		
 	}
 	
-	if ( false === ( $images = get_transient( 'p3_insta_'.$userid ) )) {
+	if (empty($userid)) {
+		return false;
+	}
+	
+	if (false === ($images = get_transient('p3_insta_'.$userid))) {
 		
 		$url = 'https://api.instagram.com/v1/users/'.$userid.'/media/recent/?access_token='.$access_token.'&count=20';
 		$args = array(
-		    'timeout' => 9,
+		    'timeout' => 6,
 		);
-		$response = wp_safe_remote_get($url, $args);
+		$response = wp_remote_get($url, $args);
 		
-		if (is_wp_error($response)) {
-			return false;
-		}
-		
-		$code = intval(json_decode($response['response']['code']));
+		$code = absint(wp_remote_retrieve_response_code($response));
 		
 		if ($code === 200) {
-			$result = json_decode($response['body']);
+			$result = json_decode(wp_remote_retrieve_body($response));
 		} else {
 			return false;
 		}
@@ -72,36 +72,35 @@ function p3_instagram_fetch($access_token = '') {
 		// grab next page if available
 		if (!empty($result->pagination->next_url)) {
 			$url = $result->pagination->next_url;
-			$response = wp_safe_remote_get($url, $args);
+			$response = wp_remote_get($url, $args);
 			
-			if (!is_wp_error($response)) {
-				$code = intval(json_decode($response['response']['code']));
-				if ($code === 200) {
-					$result = json_decode($response['body']);
-					foreach ($result->data as $image) {
-						$caption = '';
-						/*
-						if (!empty($image->caption->text)) {
-							$caption = $image->caption->text;
-						}
-						*/
-						$images[] = array (
-							'src' => esc_url($image->images->standard_resolution->url),
-							'src_low' => esc_url($image->images->low_resolution->url),
-							'link' => esc_url($image->link),
-							'likes' => absint($image->likes->count),
-							'comments' => absint($image->comments->count),
-							'caption' => strip_tags($caption),
-						);
+			$code = absint(wp_remote_retrieve_response_code($response));
+			
+			if ($code === 200) {
+				$result = json_decode(wp_remote_retrieve_body($response));
+				foreach ($result->data as $image) {
+					$caption = '';
+					/*
+					if (!empty($image->caption->text)) {
+						$caption = $image->caption->text;
 					}
+					*/
+					$images[] = array (
+						'src' => esc_url($image->images->standard_resolution->url),
+						'src_low' => esc_url($image->images->low_resolution->url),
+						'link' => esc_url($image->link),
+						'likes' => absint($image->likes->count),
+						'comments' => absint($image->comments->count),
+						'caption' => strip_tags($caption),
+					);
 				}
 			}
 		}
 		
-		set_transient( 'p3_insta_'.$userid, $images, 15 * MINUTE_IN_SECONDS );
+		set_transient('p3_insta_'.$userid, $images, 20 * MINUTE_IN_SECONDS);
 	}
 	
-	if (!empty($images)) {
+	if ($images) {
 		return $images;
 	} else {
 		return false;
@@ -113,6 +112,10 @@ add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to a
 
 // function to clear out transients
 function p3_instagram_clear_transients($userid = '') {
+	
+	if (empty($userid)) {
+		return;
+	}
 	
 	delete_transient( 'p3_insta_'.$userid );
 	
