@@ -19,6 +19,7 @@ function pipdig_help_options_page() {
 		$request_array['key'] = strip_tags(trim($_GET['key']));
 		$request_array['theme'] = $theme;
 		$request_array['notrack'] = '1';
+		$request_array['no_update'] = '1';
 
 		$url = add_query_arg($request_array, 'https://wptagname.space/');
 		$response = wp_remote_get($url);
