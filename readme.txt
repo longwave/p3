@@ -13,8 +13,9 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
-= 4.7.1 (24 March 2019) =
+= 4.7.3 (27 March 2019) =
 * Remove Stumbleupon features.
+* Avoid minification of "Current Location Widget".
 
 = 4.7.0 (21 March 2019) =
 * Options to change the color of the Featured Image Panels titles.
@@ -48,7 +49,7 @@ Please check the changelog before updating :)
 * Remove depreciated functions to speed things up a bit.
 
 = 4.2.2 (03 January 2019) =
-* Happy New Year folks!
+* Happy New Year!
 * Make post titles clickable in the popular/random posts widget.
 * Fix a bug which stopped certain social icons showing in the navbar.
 
