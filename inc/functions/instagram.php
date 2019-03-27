@@ -4,61 +4,61 @@ if (!defined('ABSPATH')) die;
 
 // function to fetch images
 function p3_instagram_fetch($access_token = '') {
-	
+
 	if ($access_token) {
-		
+
 		$user_id = explode('.', $access_token);
 		$userid = trim($user_id[0]);
-		
+
 	} else { // no access token passed, so let's use site default
-		
+
 		$instagram_deets = get_option('pipdig_instagram');
 		$access_token = sanitize_text_field($instagram_deets['access_token']);
-		
+
 		if (empty($access_token)) {
 			return false;
 		}
-		
+
 		if (!empty($instagram_deets['user_id'])) {
 			$userid = sanitize_text_field($instagram_deets['user_id']);
 		}
-		
+
 		if (empty($userid)) {
 			$user_id = explode('.', $access_token);
 			$userid = trim($user_id[0]);
 		}
-		
+
 	}
-	
+
 	if (empty($userid)) {
 		return false;
 	}
-	
+
 	if (false === ($images = get_transient('p3_insta_'.$userid))) {
-		
+
 		$url = 'https://api.instagram.com/v1/users/'.$userid.'/media/recent/?access_token='.$access_token.'&count=20';
 		$args = array(
-		    'timeout' => 6,
+		    'timeout' => 9,
 		);
 		$response = wp_remote_get($url, $args);
-		
+
 		$code = absint(wp_remote_retrieve_response_code($response));
-		
+
 		if ($code === 200) {
 			$result = json_decode(wp_remote_retrieve_body($response));
 		} else {
 			return false;
 		}
-		
+
 		$images = array();
-		
+
 		foreach ($result->data as $image) {
 			$caption = '';
 			/*
 			if (!empty($image->caption->text)) {
 				$caption = $image->caption->text;
 			}
-			*/			
+			*/
 			$images[] = array (
 				'src' => esc_url($image->images->standard_resolution->url),
 				'src_low' => esc_url($image->images->low_resolution->url),
@@ -68,14 +68,14 @@ function p3_instagram_fetch($access_token = '') {
 				'caption' => strip_tags($caption),
 			);
 		}
-		
+
 		// grab next page if available
 		if (!empty($result->pagination->next_url)) {
 			$url = $result->pagination->next_url;
 			$response = wp_remote_get($url, $args);
-			
+
 			$code = absint(wp_remote_retrieve_response_code($response));
-			
+
 			if ($code === 200) {
 				$result = json_decode(wp_remote_retrieve_body($response));
 				foreach ($result->data as $image) {
@@ -96,41 +96,41 @@ function p3_instagram_fetch($access_token = '') {
 				}
 			}
 		}
-		
+
 		set_transient('p3_insta_'.$userid, $images, 20 * MINUTE_IN_SECONDS);
 	}
-	
+
 	if ($images) {
 		return $images;
 	} else {
 		return false;
 	}
-	
+
 }
 add_action('login_footer', 'p3_instagram_fetch', 99); // push on login page to avoid cache
 
 
 // function to clear out transients
 function p3_instagram_clear_transients($userid = '') {
-	
+
 	if (empty($userid)) {
 		return;
 	}
-	
+
 	delete_transient( 'p3_insta_'.$userid );
-	
+
 	$instagram_deets = get_option('pipdig_instagram');
 	if (!empty($instagram_deets['access_token'])) {
-		
+
 		$access_token = pipdig_strip($instagram_deets['access_token']);
-			
+
 		if (empty($userid)) {
 			$user_id = explode('.', $access_token);
 			$userid = trim($user_id[0]);
 		}
 		delete_transient( 'p3_insta_'.$userid );
 	}
-	
+
 }
 add_action('p3_instagram_save_action', 'p3_instagram_clear_transients');
 
@@ -160,20 +160,20 @@ add_action('wp_head', 'p3_instagram_css_to_head');
 
 // footer feed
 function p3_instagram_footer() {
-	
+
 	if (!get_theme_mod('p3_instagram_footer')) {
 		return;
 	}
-	
+
 	$images = p3_instagram_fetch(''); // grab images
-	
+
 	if ($images) {
-		
+
 		$lazy = false;
 		if (is_pipdig_lazy()) {
 			$lazy = true;
 		}
-		
+
 		$num = intval(get_theme_mod('p3_instagram_number', 8));
 		if (get_theme_mod('p3_instagram_rows')) {
 			$rows = apply_filters('p3_instagram_rows_number', 2);
@@ -230,17 +230,17 @@ add_action('p3_footer_bottom', 'p3_instagram_footer', 99);
 
 // header feed
 function p3_instagram_header() {
-	
+
 	if (!get_theme_mod('p3_instagram_header')) {
 		return;
 	}
-	
+
 	if (!get_theme_mod('p3_instagram_header_all') && (!is_front_page() && !is_home()) ) {
 		return;
 	}
-	
+
 	$images = p3_instagram_fetch(); // grab images
-	
+
 	if ($images) {
 		$num = intval(get_theme_mod('p3_instagram_number', 8));
 		if (get_theme_mod('p3_instagram_rows')) {
@@ -279,17 +279,17 @@ add_action('p3_top_site_main', 'p3_instagram_header', 99);
 
 // above posts and sidebar
 function p3_instagram_site_main_container() {
-	
+
 	if (!get_theme_mod('p3_instagram_above_posts_and_sidebar')) {
 		return;
 	}
-	
+
 	if (!is_front_page() && !is_home()) {
 		return;
 	}
-	
+
 	$images = p3_instagram_fetch(); // grab images
-	
+
 	if ($images) {
 		$num = intval(get_theme_mod('p3_instagram_number', 8));
 	?>
@@ -326,16 +326,16 @@ add_action('p3_top_site_main_container', 'p3_instagram_site_main_container', 99)
 
 // style & light feed
 function p3_instagram_top_of_posts() {
-	
+
 	if (!is_home() || is_paged() || !get_theme_mod('body_instagram')) {
 		return;
 	}
-	
+
 	$images = p3_instagram_fetch(); // grab images
-	
+
 	if ($images) {
 		//$num = intval(get_theme_mod('p3_instagram_number', 8));
-	?>	
+	?>
 		<div id="p3_instagram_top_of_posts">
 		<h3 class="widget-title"><span>Instagram</span></h3>
 			<?php for ($x = 0; $x <= 4; $x++) {
@@ -367,20 +367,20 @@ add_action('p3_posts_column_start', 'p3_instagram_top_of_posts', 99);
 
 // kensington feed
 function p3_instagram_bottom_of_posts() {
-	
+
 	if (!get_theme_mod('p3_instagram_kensington') || (!is_front_page() && !is_home())) {
 		return;
 	}
-	
+
 	$images = p3_instagram_fetch(); // grab images
-	
+
 	if ($images) {
-		
+
 		$lazy = false;
 		if (is_pipdig_lazy()) {
 			$lazy = true;
 		}
-		
+
 		$num = intval(get_theme_mod('p3_instagram_number', 8));
 		if (get_theme_mod('p3_instagram_rows')) {
 			$num = $num*2;
@@ -428,17 +428,17 @@ add_action('p3_site_main_end', 'p3_instagram_bottom_of_posts', 99);
 // customiser
 class pipdig_p3_instagram_Customiser {
 	public static function register ( $wp_customize ) {
-			
-			$wp_customize->add_section( 'pipdig_p3_instagram_section', 
+
+			$wp_customize->add_section( 'pipdig_p3_instagram_section',
 				array(
 					'title' => 'Instagram',
 					'description' => sprintf(__('Before enabling these features, you will need to add your Instagram account to <a href="%s">this page</a>.', 'p3'), admin_url( 'admin.php?page=pipdig-instagram' )),
 					'capability' => 'edit_theme_options',
 					'priority' => 39,
-				) 
+				)
 			);
 
-			
+
 			// header feed
 			$wp_customize->add_setting('p3_instagram_header',
 				array(
@@ -454,7 +454,7 @@ class pipdig_p3_instagram_Customiser {
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
-			
+
 			// header feed on all pages?
 			$wp_customize->add_setting('p3_instagram_header_all',
 				array(
@@ -471,7 +471,7 @@ class pipdig_p3_instagram_Customiser {
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
-			
+
 			// above posts and sidebar
 			$wp_customize->add_setting('p3_instagram_above_posts_and_sidebar',
 				array(
@@ -487,7 +487,7 @@ class pipdig_p3_instagram_Customiser {
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
-			
+
 			// style and light
 			$wp_customize->add_setting('body_instagram',
 				array(
@@ -503,7 +503,7 @@ class pipdig_p3_instagram_Customiser {
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
-			
+
 			// kensington
 			$wp_customize->add_setting('p3_instagram_kensington',
 				array(
@@ -536,7 +536,7 @@ class pipdig_p3_instagram_Customiser {
 				)
 			);
 
-			
+
 			// Number of images to display in instagram feed
 			$wp_customize->add_setting( 'p3_instagram_number', array(
 				'default' => 8,
@@ -554,7 +554,7 @@ class pipdig_p3_instagram_Customiser {
 					),
 				)
 			);
-			
+
 			// 2 rows?
 			$wp_customize->add_setting('p3_instagram_rows',
 				array(
@@ -570,7 +570,7 @@ class pipdig_p3_instagram_Customiser {
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
-			
+
 			// footer feed title
 			$wp_customize->add_setting('p3_instagram_footer_title',
 				array(
@@ -586,8 +586,8 @@ class pipdig_p3_instagram_Customiser {
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
-			
-			
+
+
 			// show likes/comments on hover
 			$wp_customize->add_setting('p3_instagram_meta', 1,
 				array(
@@ -603,7 +603,7 @@ class pipdig_p3_instagram_Customiser {
 					'section' => 'pipdig_p3_instagram_section',
 				)
 			);
-			
+
 			//  Post overlay background color
 			$wp_customize->add_setting('p3_instagram_hover_bg',
 				array(
@@ -619,7 +619,7 @@ class pipdig_p3_instagram_Customiser {
 				)
 				)
 			);
-			
+
 			//  Post overlay text color
 			$wp_customize->add_setting('p3_instagram_hover_text',
 				array(
@@ -635,7 +635,7 @@ class pipdig_p3_instagram_Customiser {
 				)
 				)
 			);
-			
+
 			$wp_customize->add_setting('p3_instagram_hover_opacity',
 				array(
 					'default' => 80,
@@ -660,27 +660,27 @@ class pipdig_p3_instagram_Customiser {
 add_action( 'customize_register' , array( 'pipdig_p3_instagram_Customiser' , 'register' ) );
 
 function p3_instagram_styles() {
-	
+
 	$styles = '';
-	
+
 	$p3_instagram_hover_bg = get_theme_mod('p3_instagram_hover_bg');
 	$p3_instagram_hover_text = get_theme_mod('p3_instagram_hover_text');
 	$p3_instagram_hover_opacity = absint(get_theme_mod('p3_instagram_hover_opacity', 80));
-	
+
 	if ($p3_instagram_hover_bg) {
 		list($r, $g, $b) = sscanf($p3_instagram_hover_bg, "#%02x%02x%02x");
 		$styles .= ".p3_instagram_post_overlay { background: rgba($r, $g, $b, .$p3_instagram_hover_opacity); }";
 	}
-	
+
 	if ($p3_instagram_hover_text) {
 		$styles .= '.p3_instagram_post .p3_instagram_likes { color: '.$p3_instagram_hover_text.' }';
 	}
-	
-	
+
+
 	if ($styles) {
 		echo '<style>'.strip_tags($styles).'</style>';
 	}
-	
-	
+
+
 }
 add_action( 'wp_head', 'p3_instagram_styles' );

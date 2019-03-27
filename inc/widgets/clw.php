@@ -63,7 +63,9 @@ if (!class_exists('pipdig_widget_clw')) {
 				$border_color = esc_attr(get_theme_mod( 'pipdig_clw_border_color', '#ffffff' ));
 				$marker_color = esc_attr(get_theme_mod( 'pipdig_clw_marker_color', '#000000' ));
 				$marker_size = absint(get_theme_mod( 'pipdig_clw_marker_size', 6 ));
-				$map = '<script>
+				$map = '
+				<!--noptimize-->
+				<script>
 					var map;
 
 					AmCharts.ready(function() {
@@ -121,8 +123,10 @@ if (!class_exists('pipdig_widget_clw')) {
 					</script>
 					<div id="'.$map_id.'" style="max-width: 300px; width: 100%; height: 170px; margin: 0 auto;"></div>
 					<p>'.$location.'</p>
-					<style scoped>#'.$map_id.' a{display:none!important}</style>';
-				
+					<style scoped>#'.$map_id.' a{display:none!important}</style>
+					<!--/noptimize-->
+					';
+
 				echo $map;
 
 			} else { // no latitude/longitude set, so let's display a friendly reminder:
