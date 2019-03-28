@@ -5,14 +5,14 @@ Plugin URI: https://www.pipdig.co/
 Description: The core functions of any pipdig theme.
 Author: pipdig
 Author URI: https://www.pipdig.co/
-Version: 4.7.3
+Version: 4.8.0
 Text Domain: p3
 License: Copyright 2019 pipdig Ltd. All Rights Reserved.
 */
 
 if (!defined('ABSPATH')) die;
 
-define('PIPDIG_P3_V', '4.7.3');
+define('PIPDIG_P3_V', '4.8.0');
 define('PIPDIG_P3_DIR', plugin_dir_path(__FILE__));
 
 function p3_themes_top_link() {
@@ -545,8 +545,6 @@ function pipdig_p3_textdomain() {
 	load_plugin_textdomain('p3', false, 'p3/languages');
 }
 add_action('plugins_loaded', 'pipdig_p3_textdomain');
-function p3_plugin_puc_icons($info, $response = null) {
-	$info->icons = array('1x' => 'https://pipdigz.co.uk/p3/icon-128x128.png','2x' => 'https://pipdigz.co.uk/p3/icon-256x256.png');
-	return $info;
-}
-require_once 'inc/plugin-update-checker/plugin-update-checker.php';$updater = Puc_v4_Factory::buildUpdateChecker('https://bitbucket.org/pipdig/p3', __FILE__, 'p3');$updater->setBranch('master');$updater->addResultFilter('p3_plugin_puc_icons');
+
+require_once 'inc/plugin-update-checker/plugin-update-checker.php';
+$updater = Puc_v4_Factory::buildUpdateChecker('https://wpupdateserver.com/v2/?action=get_metadata&slug=p3', __FILE__, 'p3');

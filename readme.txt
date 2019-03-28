@@ -2,7 +2,6 @@
 Contributors: pipdig
 Requires at least: 4.0
 Tested up to: 5.2
-Stable tag: master
 License: Copyright 2019 pipdig Ltd. All rights reserved.
 
 The core functions of any pipdig theme.
@@ -13,7 +12,7 @@ Please check the changelog before updating :)
 
 == Changelog ==
 
-= 4.7.3 (27 March 2019) =
+= 4.8.0 (28 March 2019) =
 * Remove Stumbleupon features.
 * Avoid minification of "Current Location Widget".
 
