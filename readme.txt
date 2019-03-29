@@ -13,6 +13,7 @@ Please check the changelog before updating :)
 == Changelog ==
 
 = 4.8.0 (28 March 2019) =
+* New "Caption" option for the [Image Widget](https://support.pipdig.co/articles/wordpress-image-widget/).
 * Remove Stumbleupon features.
 * Avoid minification of "Current Location Widget".
 

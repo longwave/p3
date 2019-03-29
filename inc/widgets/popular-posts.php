@@ -309,16 +309,16 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 		<?php if ($style_select === 3) { ?>
 			<li class="p3_pop_horizontal">
 				<div>
-					<a href="<?php the_permalink() ?>">
+					<a href="<?php the_permalink() ?>" class="p3_pop_horizontal_image">
 						<?php if ($image_shape == 4) { ?>
-							<img src="<?php echo $img; ?>" alt="<?php echo esc_attr($title); ?>" />
+							<img <?php echo $image_src; ?> alt="<?php echo esc_attr($title); ?>" class="<?php echo $lazy_class; ?>" />
 						<?php } else { ?>
 							<div class="p3_cover_me <?php echo $lazy_class; ?>" <?php echo $image_src; ?>>
 								<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
 							</div>
 						<?php } ?>
 					</a>
-					<a href="<?php the_permalink() ?>"><h4 class="p_post_titles_font"><?php if (!empty($instance['show_date'])) { echo get_the_date().': '; } ?><?php echo pipdig_p3_truncate($title, 11); ?></h4></a>
+					<a href="<?php the_permalink() ?>" class="p3_pop_horizontal_post_title"><h4 class="p_post_titles_font"><?php if (!empty($instance['show_date'])) { echo get_the_date().': '; } ?><?php echo pipdig_p3_truncate($title, 11); ?></h4></a>
 				</div>
 			</li>
 		<?php } elseif ($style_select === 2) { ?>
@@ -326,7 +326,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 				<div class="p3_pop_left-left">
 				<a href="<?php the_permalink() ?>">
 					<?php if ($image_shape == 4) { ?>
-						<img src="<?php echo $img; ?>" alt="<?php echo esc_attr($title); ?>" />
+						<img <?php echo $image_src; ?> alt="<?php echo esc_attr($title); ?>" class="<?php echo $lazy_class; ?>" />
 					<?php } else { ?>
 						<div class="p3_cover_me <?php echo $lazy_class; ?>" <?php echo $image_src; ?>>
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />
@@ -343,7 +343,7 @@ if ( !class_exists( 'pipdig_widget_popular_posts' ) ) {
 			<li>
 				<a href="<?php the_permalink() ?>">
 					<?php if ($image_shape == 4) { ?>
-						<img src="<?php echo $img; ?>" alt="<?php echo esc_attr($title); ?>" />
+						<img <?php echo $image_src; ?> alt="<?php echo esc_attr($title); ?>" class="<?php echo $lazy_class; ?>" />
 					<?php } else { ?>
 						<div class="p3_cover_me <?php echo $lazy_class; ?>" <?php echo $image_src; ?>>
 							<img src="<?php echo $shape; ?>" alt="<?php echo esc_attr($title); ?>" class="p3_invisible" />

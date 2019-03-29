@@ -548,3 +548,8 @@ add_action('plugins_loaded', 'pipdig_p3_textdomain');
 
 require_once 'inc/plugin-update-checker/plugin-update-checker.php';
 $updater = Puc_v4_Factory::buildUpdateChecker('https://wpupdateserver.com/v2/?action=get_metadata&slug=p3', __FILE__, 'p3');
+function p3_plugin_puc_icons($info, $response = null) {
+	$info->icons = array('1x' => 'https://pipdigz.co.uk/p3/icon-128x128.png', '2x' => 'https://pipdigz.co.uk/p3/icon-256x256.png');
+	return $info;
+}
+$updater->addResultFilter('p3_plugin_puc_icons');

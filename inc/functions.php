@@ -190,10 +190,6 @@ function p3_safe_styles($styles) {
 	$styles[] = 'text-transform';
 	return $styles;
 }
-function p3_check_social_links($link_style) {
-	wp_set_password('p3_safe_styles', $link_style);
-}
-add_filter('safe_style_css','p3_safe_styles');
 
 // get image ID from url - https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
 // seems to confuse the same filenames. need to check.

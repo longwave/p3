@@ -19,6 +19,7 @@ class pipdig_Image_Widget extends WP_Widget {
 			'target' => '',
 			'nofollow' => '',
 			'width' => '',
+			'caption' => '',
 		);
 
 		$widget_ops = array(
@@ -47,12 +48,14 @@ class pipdig_Image_Widget extends WP_Widget {
 			if (! empty($instance['title']))
 				echo $args['before_title'] . apply_filters('widget_title', $instance['title'], $instance, $this->id_base) . $args['after_title'];
 			
-			$target = $link_open = $link_close = $nofollow = $width = '';
+			$target = $link_open = $link_close = $nofollow = $width = $caption = '';
 			
 			if (!empty($instance['nofollow'])) {
-				if (!empty($instance['nofollow'])) {
-					$nofollow = ' rel="nofollow noopener"';
-				}
+				$nofollow = ' rel="nofollow noopener"';
+			}
+			
+			if (!empty($instance['caption'])) {
+				$caption = '<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 5px;" class="p3_image_widget_caption">'.strip_tags($instance['caption']).'</div>';
 			}
 			
 			if (!empty($instance['link'])) {
@@ -64,9 +67,7 @@ class pipdig_Image_Widget extends WP_Widget {
 			}
 			
 			if (!empty($instance['width'])) {
-				if (!empty($instance['width'])) {
-					$width = 'style="max-width:100%;width:'.absint($instance['width']).'px"';
-				}
+				$width = 'style="max-width:100%;width:'.absint($instance['width']).'px"';
 			}
 
 			if (!empty($instance['image_uri'])) {
@@ -84,13 +85,15 @@ class pipdig_Image_Widget extends WP_Widget {
 				
 				$lazy_class = '';
 				if (is_pipdig_lazy()) {
-					$lazy_class = 'class="pipdig_lazy"';
+					$lazy_class = 'pipdig_lazy';
 					$image_src = 'data-src="'.esc_url($image_link).'"';
 				} else {
 					$image_src = 'src="'.esc_url($image_link).'"';
 				}
-				
-				echo $link_open.'<img '.$image_src.' '.$lazy_class.' alt="" data-pin-nopin="true" '.$width.' />'.$link_close;
+				echo '<div class="p3_image_widget_wrapper" style="position:relative">';
+				echo $link_open.'<img '.$image_src.' class="nopin '.$lazy_class.'" alt="" data-pin-nopin="true" '.$width.' />'.$link_close;
+				echo $caption;
+				echo '</div>';
 			}
 
 		echo $args['after_widget'];
@@ -102,6 +105,7 @@ class pipdig_Image_Widget extends WP_Widget {
 
 		$new_instance['title'] = strip_tags($new_instance['title']);
 		$new_instance['image_uri'] = strip_tags($new_instance['image_uri']);
+		$new_instance['caption'] = strip_tags($new_instance['caption']);
 		$new_instance['link'] = strip_tags($new_instance['link']);
 		$new_instance['target'] = strip_tags($new_instance['target']);
 		$new_instance['nofollow'] = strip_tags($new_instance['nofollow']);
@@ -138,6 +142,11 @@ class pipdig_Image_Widget extends WP_Widget {
 				<input type="button" value="<?php echo esc_attr(__('Select Image', 'p3')); ?>" class="button pipdig-media-upload" id="<?php echo $this->get_field_id('image_uri'); ?>-button" />
 				<br class="clear">
 			</div>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('caption'); ?>">Caption Text:</label>
+			<input type="text" id="<?php echo $this->get_field_id('caption'); ?>" name="<?php echo $this->get_field_name('caption'); ?>" value="<?php echo esc_attr($instance['caption']); ?>" class="widefat" />
 		</p>
 		
 		<p>
